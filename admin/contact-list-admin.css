@@ -1,0 +1,158 @@
+.contact-list-request-update {
+  cursor: pointer;
+  margin-top: .25rem;
+}
+
+.contact-list-start-import {
+  cursor: pointer;
+}
+
+.contact-list-request-update-info {
+  margin-top: .25rem;
+  display: none;
+}
+
+.pro-feature {
+  background: #fff;
+  color: #bbb;
+  padding: 2rem;
+  font-size: 1.2rem;
+  font-style: italic;
+  text-align: center;
+  margin-right: 2rem;
+  border: 1px solid #bbb;
+}
+
+.pro-feature a {
+  background: #6bc406;
+  color: #fff;
+  display: inline-block;
+  font-style: normal;
+  font-size: 1rem;
+  padding: .25rem .5rem;
+  text-decoration: none;
+  margin-left: .5rem;  
+  border: 1px solid #6bc406;
+}
+
+.pro-feature a:hover {
+  background: #fff;
+  color: #6bc406;
+  border: 1px solid #6bc406;
+}
+
+#menu-posts-contact > ul > li > a.contact-list-upgrade {
+  color: greenyellow;
+}
+
+#menu-posts-contact > ul > li > a.contact-list-upgrade:hover {
+  color: greenyellow;
+}
+
+.contact-list-feedback-form-container {
+  padding: 10px;
+  background: #fff;
+}
+
+hr.style-one {
+  border: 0;
+  height: 1px;
+  background: #333;
+  background-image: linear-gradient(to right, #bbb, #333, #bbb);
+  margin: 2rem 0;
+}
+
+.target_send_email {
+  background: rgb(241, 241, 241);
+  width: 100%;
+  height: 160px;
+}
+
+.send_email_target_div {
+  width: 100%;
+  height: 160px;
+  background: #fff;
+  background: rgb(241, 241, 241);
+}
+
+.send_email_form label span,
+.recipients-title,
+.restrict-recipients-title {
+  font-weight: 500;
+  font-size: 1rem;
+  margin-top: .75rem;
+  margin-bottom: .25rem;
+  display: block;
+}
+      
+.send_email_form input {
+  width: 100%;
+  border: 1px solid #bbb;
+  padding: .5rem;
+}
+
+.send_email_form .contact-category {
+  display: block;
+  padding-left: 10px;
+}
+
+.send_email_form .contact-category span {
+  display: inline-block;
+  font-weight: 400;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.send_email_form .contact-category input {
+  width: 16px;
+}
+
+.send_email_form .contact-subcategory {
+  display: block;
+  padding-left: 25px;
+}
+
+.send_email_form .contact-subcategory span {
+  display: inline-block;
+  font-weight: 400;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.send_email_form .contact-subcategory input {
+  width: 16px;
+}
+
+.send_email_form textarea {
+  width: 100%;        
+  height: 200px;
+  border: 1px solid #bbb;
+  box-shadow: none;
+  padding: .5rem;
+}
+
+.send_email_form input[type=submit] {
+  width: 160px;
+  font-weight: bold;
+  margin-top: 1.5rem;
+  cursor: pointer;
+  border: 1px solid #333; 
+}
+
+.send_email_form input[type=submit]:disabled {
+  border: 1px solid #eee; 
+}
+
+.email-info {
+  background: #eee;
+  border: 1px solid #bbb;
+  max-width: 600px;
+  padding: .5rem;
+  margin-top: .5rem;
+  font-size: .8rem;
+}
+
+.sender-info {
+  margin-top: 10px;
+}
+

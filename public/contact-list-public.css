@@ -1,0 +1,417 @@
+#search-contacts {
+  margin-bottom: 20px;
+  padding: 15px 12px;
+}
+
+.search-groups {
+  margin-bottom: 20px;
+}
+
+#contact-list-search {
+  margin-bottom: 20px;
+}
+
+input[type="text"].search-all-contacts {
+  margin-bottom: 10px;
+  padding: 15px 12px;
+}
+
+.contact-subcategory {
+  padding-left: 1rem;
+}
+
+#contact-list-search ul,
+#main ul.contact-list-groups,
+#all-contacts {
+  list-style: none;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.contact-list-groups,
+.entry-content ul.contact-list-groups {
+  list-style: none;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#contact-list-search ul li {
+  padding: 0;
+  margin: 0 0 40px 0;
+  border-radius: 10px;
+}
+
+.contact-list-groups li {
+  padding: 0;
+  margin: 0 0 4px 0;
+}
+
+#contact-list-search .contact-list-main-elements {
+  margin-bottom: 10px;
+}
+
+#contact-list-search ul li h3 {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 10px 0 0 0;
+}
+
+.contact-list-all-contacts-search #contact-list-search ul li .contact-list-main-elements {
+  padding-top: 1.5rem;
+  margin-top: 10px;
+}
+
+.contact-list-all-contacts-search #contact-list-search ul li h3 {
+  padding: 0;
+}
+
+.contact-list-contact-groups span {
+  background: #f7f7f7;
+  padding: 0.25rem 0.5rem;
+  margin-right: 0.25rem;
+  display: inline-block;
+}
+
+#contact-list-search ul li a {
+  cursor: pointer;
+}
+
+#contact-list-search .contact-list-job-title {
+  display: block;
+}
+
+#contact-list-search .contact-list-email {
+  display: block;
+}
+
+#contact-list-search .contact-list-phone {
+  display: block;
+}
+
+#contact-list-files-found {
+  display: none;
+  margin-bottom: 20px;
+}
+
+#contact-list-nothing-found {
+  display: none;
+}
+
+.contact-list-groups-found {
+  display: none;
+  margin-bottom: 20px;
+}
+
+.contact-list-no-groups-found {
+  display: none;
+}
+
+.contact-list-all-contacts-list {
+  display: none;
+}
+
+.contact-list-all-contacts-contacts-found {
+  display: none;
+  margin-top: 1rem;
+}
+
+.contact-list-all-contacts-nothing-found {
+  display: none;
+  margin-top: 1rem;
+}
+
+.contact-list-some-elements a {
+  float: left;
+  display: inline-block;
+  width: 37px;
+}
+
+.contact-list-address {
+  margin-top: 8px;
+}
+
+.contact-list-address-title {
+  font-weight: bold;
+  display: block;
+}
+
+.contact-list-address-line-1 {
+  display: block;
+}
+
+.contact-list-address-line-2 {
+  display: block;
+}
+
+.contact-list-address-line-3 {
+  display: block;
+}
+
+.contact-list-address-line-4 {
+  display: block;
+}
+
+.contact-list-description {
+  margin-top: 8px;  
+}
+
+.contact-list-description-title {
+  font-weight: bold;
+  display: block;
+}
+
+.contact-list-description p {
+  margin-bottom: 10px;
+}
+
+h2.contact-list-group-title,
+.entry-content h2.contact-list-group-title {
+  margin: 20px 0 12px 0;
+  padding: 0;
+}
+
+.subgroups-list-container {
+  margin-bottom: 20px;
+}
+
+.contact-list-form-wrap .form-field input {
+  margin-bottom: 20px;
+  display: block;
+}
+
+.contact-list-form-wrap .form-field input[type=checkbox] {
+  margin: 0 5px 0 0;
+  display: inline-block;
+  padding-top: 0;
+}
+
+.contact-list-form-wrap .form-field .contact-list-checkbox-title {
+  display: inline-block;
+  padding-top: 0;
+}
+
+.form-field-categories {
+  margin-bottom: 1.25rem;
+}
+
+.contact-list-form-wrap label {
+  font-weight: 400;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.contact-list-form-wrap h3 {
+  font-weight: bold;
+}
+
+.contact-list-form-submit {
+  margin-top: 20px;
+}
+
+.input-email {
+  position: absolute;
+  left: -9000px;
+}
+
+.contact-list-form-field-required {
+  color: #b22222;
+  border: 1px solid #b22222;
+  padding: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  background: #fff;
+  display: none;
+}
+
+.contact-list-custom-field-1 strong {
+  display: block;
+  margin-top: 8px;
+}
+
+.contact-list-custom-field-2 strong {
+  display: block;
+  margin-top: 8px;
+}
+
+.contact-list-custom-field-3 strong {
+  display: block;
+  margin-top: 8px;
+}
+
+.contact-list-custom-field-4 strong {
+  display: block;
+  margin-top: 8px;
+}
+
+.subgroup-title {
+  margin-top: 0;
+  padding-top: 20px;
+}
+
+.contact-list-image-container {
+  position: relative;
+}
+
+.contact-list-image {
+  position: absolute;
+  right: 0;
+}
+
+.contact-list-image img {
+  max-width: 160px;
+  max-height: 200px;
+  margin-top: 0;
+}
+
+.pro-feature {
+  background: #fff;
+  color: #bbb;
+  padding: 2rem;
+  font-size: 20px;
+  font-style: italic;
+  text-align: center;
+  margin-right: 2rem;
+  border: 1px solid #bbb;
+}
+
+hr.clear,
+.entry-content hr.clear {
+  background: none;
+  border: 0;
+  clear: both;
+  display: block;
+  float: none;
+  font-size: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+  margin: 0;
+}
+
+.select_v2 {
+  font-size: 13px;
+  color: #32373c;
+  border: 1px solid #7e8993;
+  box-shadow: none;
+  border-radius: 3px;
+  padding: 4px 24px 3px 8px;
+  min-height: 28px;
+  max-width: 250px;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  background:
+  #fff url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2220%22%20height%3D%2220%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M5%206l5%205%205-5%202%201-7%207-7-7%202-1z%22%20fill%3D%22%23555%22%2F%3E%3C%2Fsvg%3E') no-repeat right 5px top 55%;
+  background-size: auto;
+  background-size: 16px 16px;
+  cursor: pointer;  
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.contact-list-container button.filter-contacts {
+  font-size: 13px;
+  color: #32373c;
+  background-color: #fff;
+  border: 1px solid #7e8993;
+  box-shadow: none;
+  border-radius: 3px;
+  padding: 4px 8px 3px 8px;
+  min-height: 28px;
+  max-width: 250px;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  cursor: pointer;  
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.contact-list-pagination {
+  padding: 10px;
+}
+
+.contact-list-pagination span.contact-list-more-contacts {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.contact-list-pagination a {
+  padding: 5px 10px;
+  background: #fff;
+  display: inline-block;
+}
+
+.contact-list-2-cards-on-the-same-row #all-contacts li {
+  float: left;
+  width: 50%;
+  padding: 10px;
+}
+
+.contact-list-2-cards-on-the-same-row #all-contacts li .contact-list-contact-container {
+  height: 380px;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.contact-list-3-cards-on-the-same-row #all-contacts li {
+  float: left;
+  width: 33.333%;
+  padding: 10px;
+}
+
+.contact-list-3-cards-on-the-same-row #all-contacts li .contact-list-contact-container {
+  height: 380px;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.contact-list-4-cards-on-the-same-row #all-contacts li {
+  float: left;
+  width: 25%;
+  padding: 10px;
+}
+
+.contact-list-4-cards-on-the-same-row #all-contacts li .contact-list-contact-container {
+  height: 380px;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+@media (max-width: 500px) {
+
+  .contact-list-2-cards-on-the-same-row #all-contacts li {
+    float: left;
+    width: 100%;
+    height: auto;
+    padding: 0;
+  }
+
+  .contact-list-2-cards-on-the-same-row #all-contacts li .contact-list-contact-container {
+    height: auto;
+  }  
+  
+  .contact-list-3-cards-on-the-same-row #all-contacts li {
+    float: left;
+    width: 100%;
+    height: auto;
+    padding: 0;
+  }
+
+  .contact-list-3-cards-on-the-same-row #all-contacts li .contact-list-contact-container {
+    height: auto;
+  }  
+  
+  .contact-list-4-cards-on-the-same-row #all-contacts li {
+    float: left;
+    width: 100%;
+    padding: 0;
+  }
+
+  .contact-list-4-cards-on-the-same-row #all-contacts li .contact-list-contact-container {
+    height: auto;
+  }  
+}
