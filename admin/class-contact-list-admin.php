@@ -157,9 +157,27 @@ class Contact_List_Admin
             if ( $column_name == 'job_title' ) {
                 echo  get_post_meta( $post_ID, '_cl_job_title', true ) ;
             }
+            
             if ( $column_name == 'email' ) {
-                echo  get_post_meta( $post_ID, '_cl_email', true ) ;
+                $email = get_post_meta( $post_ID, '_cl_email', true );
+                
+                if ( $email ) {
+                    echo  $email ;
+                    $valid_period = 60 * 60 * 24 * 2;
+                    // 60 minutes * 24 * 2
+                    $expiry = current_time( 'timestamp', 1 ) + $valid_period;
+                    // current_time( 'timestamp' ) for your blog local timestamp
+                    $url = site_url( '/_cl_update-contact/' . $post_ID . '/' );
+                    $url = add_query_arg( 'valid', $expiry, $url );
+                    // Adding the timestamp to the url with the "valid" arg
+                    $nonce_url = wp_nonce_url( $url, 'contact_link_uid_' . $expiry, 'contact' );
+                    // Adding our nonce to the url with a unique id made from the expiry timestamp
+                    $update_url = $nonce_url;
+                    echo  '<button class="contact-list-request-update contact-list-request-update-' . $post_ID . '" data-contact-id="' . $post_ID . '" data-email="' . get_post_meta( $post_ID, '_cl_email', true ) . '" data-site-url="' . get_site_url() . '" data-update-url="' . $update_url . '">' . __( 'Request update' ) . '</button><div class="contact-list-request-update-info contact-list-request-update-info-' . $post_ID . '"></div>' ;
+                }
+            
             }
+            
             if ( $column_name == 'phone' ) {
                 echo  get_post_meta( $post_ID, '_cl_phone', true ) ;
             }
@@ -227,6 +245,18 @@ class Contact_List_Admin
             'manage_options',
             'contact-list-send-email',
             [ $this, 'register_send_email_page_callback' ]
+        );
+    }
+    
+    public function register_mail_log_page()
+    {
+        add_submenu_page(
+            'edit.php?post_type=contact',
+            __( 'Send email to contacts', 'contact-list' ),
+            __( 'Mail log', 'contact-list' ),
+            'manage_options',
+            'contact-list-mail-log',
+            [ $this, 'register_mail_log_page_callback' ]
         );
     }
     
@@ -314,7 +344,7 @@ class Contact_List_Admin
      */
     public function register_send_email_page_callback()
     {
-        $term_id = $_GET['group_id'];
+        $term_id = ( isset( $_GET['group_id'] ) ? $_GET['group_id'] : 0 );
         $tax_query = [];
         if ( $term_id ) {
             $tax_query = array( array(
@@ -345,7 +375,7 @@ class Contact_List_Admin
     
     <div class="wrap">
 
-      <form method="post" class="send_email_form" action="https://mail.anssilaitila.fi/contact-list/" target="send_email">
+      <form method="post" class="send_email_form" action="" target="send_email">
 
           <h1><?php 
         echo  __( 'Send email to contacts', 'contact-list' ) ;
@@ -360,7 +390,7 @@ class Contact_List_Admin
           </div>
 
           <div class="sender-info"><?php 
-        echo  __( 'The sender of the message is' ) ;
+        echo  __( 'The sender email of the message is' ) ;
         ?> <b>no-reply@contactlistpro.com</b>.</div>
     
           <label>
@@ -368,6 +398,33 @@ class Contact_List_Admin
         echo  __( 'Subject', 'contact-list' ) ;
         ?></span>
             <input name="subject" value="" />
+          </label>
+
+          <?php 
+        $user_id = get_current_user_id();
+        ?>
+          <?php 
+        $user = get_userdata( $user_id );
+        ?>
+          
+          <label>
+            <span><?php 
+        echo  __( 'Sender name', 'contact-list' ) ;
+        ?></span>
+            <input name="sender_name" value="<?php 
+        echo  $user->first_name ;
+        ?> <?php 
+        echo  $user->last_name ;
+        ?>" />
+          </label>
+
+          <label>
+            <span><?php 
+        echo  __( 'Reply-to', 'contact-list' ) ;
+        ?></span>
+            <input name="reply_to" value="<?php 
+        echo  $user->user_email ;
+        ?>" />
           </label>
     
           <label>
@@ -437,7 +494,250 @@ class Contact_List_Admin
           
       </form>
 
-      <?php 
+    </div>
+    <?php 
+    }
+    
+    public function register_mail_log_page_callback()
+    {
+        $term_id = ( isset( $_GET['group_id'] ) ? $_GET['group_id'] : 0 );
+        $tax_query = [];
+        if ( $term_id ) {
+            $tax_query = array( array(
+                'taxonomy'         => 'contact-group',
+                'field'            => 'term_id',
+                'terms'            => $term_id,
+                'include_children' => true,
+            ) );
+        }
+        $wpb_all_query = new WP_Query( array(
+            'post_type'      => 'contact',
+            'post_status'    => 'publish',
+            'posts_per_page' => -1,
+            'tax_query'      => $tax_query,
+        ) );
+        $recipient_emails = [];
+        if ( $wpb_all_query->have_posts() ) {
+            while ( $wpb_all_query->have_posts() ) {
+                $wpb_all_query->the_post();
+                $c = get_post_custom();
+                if ( isset( $c['_cl_email'] ) && sanitize_email( $c['_cl_email'][0] ) ) {
+                    $recipient_emails[] = $c['_cl_email'][0];
+                }
+            }
+        }
+        wp_reset_postdata();
+        ?>
+    
+    <div class="wrap">
+
+          <h1><?php 
+        echo  __( 'Log of sent mail', 'contact-list' ) ;
+        ?></h1>
+
+          <?php 
+        
+        if ( isset( $_GET['mail_id'] ) ) {
+            ?>
+
+            <?php 
+            $mail_id = (int) $_GET['mail_id'];
+            global  $wpdb ;
+            $table_name = $wpdb->prefix . "cl_sent_mail_log";
+            $msg = $wpdb->get_results( "SELECT * FROM {$table_name} WHERE id = " . $mail_id );
+            ?>
+            
+            <a href="javascript:history.go(-1)">&lt;&lt; Back</a>
+            
+            <?php 
+            foreach ( $msg as $row ) {
+                ?>
+
+              <table class="contact-list-mail-log-msg-details">
+              <tr>
+                <td><?php 
+                echo  __( 'Message sent', 'contact-list' ) ;
+                ?></td>
+                <td><?php 
+                echo  $row->created_at ;
+                ?></td>
+              </tr>
+              <tr>
+                <td><?php 
+                echo  __( 'Sender email', 'contact-list' ) ;
+                ?></td>
+                <td><?php 
+                echo  $row->sender_email ;
+                ?></td>
+              </tr>
+              <tr>
+                <td><?php 
+                echo  __( 'Sender name', 'contact-list' ) ;
+                ?></td>
+                <td><?php 
+                echo  $row->sender_name ;
+                ?></td>
+              </tr>
+              <tr>
+                <td><?php 
+                echo  __( 'Reply-to', 'contact-list' ) ;
+                ?></td>
+                <td><?php 
+                echo  $row->reply_to ;
+                ?></td>
+              </tr>
+              <tr>
+                <td><?php 
+                echo  __( 'Subject', 'contact-list' ) ;
+                ?></td>
+                <td><?php 
+                echo  $row->subject ;
+                ?></td>
+              </tr>
+              <tr>
+                <td><?php 
+                echo  __( 'Message count', 'contact-list' ) ;
+                ?></td>
+                <td><?php 
+                echo  $row->mail_cnt ;
+                ?></td>
+              </tr>
+              </table>
+              
+              <h3><?php 
+                echo  __( 'Mail was sent to the following recipients:', 'contact-list' ) ;
+                ?></h3>
+              
+              <div class="contact-list-mail-log-recipients-container">
+                <?php 
+                echo  $row->report ;
+                ?>
+              </div>
+
+            <?php 
+            }
+            ?>
+
+          <?php 
+        } else {
+            ?>
+          
+            <?php 
+            global  $wpdb ;
+            $table_name = $wpdb->prefix . 'cl_sent_mail_log';
+            $msg = $wpdb->get_results( "SELECT * FROM {$table_name} ORDER BY created_at DESC LIMIT 200" );
+            ?>
+            
+            <table class="contact-list-mail-log">
+            <tr>
+              <th><?php 
+            echo  __( 'Date', 'contact-list' ) ;
+            ?></th>
+              <th><?php 
+            echo  __( 'Sender email', 'contact-list' ) ;
+            ?></th>
+              <th><?php 
+            echo  __( 'Sender name', 'contact-list' ) ;
+            ?></th>
+              <th><?php 
+            echo  __( 'Reply-to', 'contact-list' ) ;
+            ?></th>
+              <th><?php 
+            echo  __( 'Subject', 'contact-list' ) ;
+            ?></th>
+              <th><?php 
+            echo  __( 'Messages sent', 'contact-list' ) ;
+            ?></th>
+              <th><?php 
+            echo  __( 'Report', 'contact-list' ) ;
+            ?></th>
+            </tr>
+
+            <?php 
+            
+            if ( sizeof( $msg ) > 0 ) {
+                ?>
+              <?php 
+                foreach ( $msg as $row ) {
+                    ?>
+                <tr>
+                  <td>
+                    <?php 
+                    echo  $row->created_at ;
+                    ?>
+                  </td>
+                  <td>
+                    <?php 
+                    echo  $row->sender_email ;
+                    ?>
+                  </td>
+                  <td>
+                    <?php 
+                    echo  $row->sender_name ;
+                    ?>
+                  </td>
+                  <td>
+                    <?php 
+                    
+                    if ( isset( $row->reply_to ) ) {
+                        ?>
+                      <?php 
+                        echo  $row->reply_to ;
+                        ?>
+                    <?php 
+                    }
+                    
+                    ?>
+                  </td>
+                  <td>
+                    <?php 
+                    echo  $row->subject ;
+                    ?>
+                  </td>
+                  <td>
+                    <?php 
+                    echo  $row->mail_cnt ;
+                    ?>
+                  </td>
+                  <td>
+                    <a href="./edit.php?post_type=contact&page=contact-list-mail-log&mail_id=<?php 
+                    echo  $row->id ;
+                    ?>">Open &raquo;</a>
+                  </td>
+                </tr>
+              <?php 
+                }
+                ?>
+            <?php 
+            } else {
+                ?>
+              <tr>
+                <td colspan="7">
+                  <?php 
+                echo  __( 'No mail sent yet.', 'contact-list' ) ;
+                ?>
+                </td>
+              </tr>
+            <?php 
+            }
+            
+            ?>
+            
+            </table>
+            
+          <?php 
+        }
+        
+        ?>
+
+          <?php 
+        ?>
+
+            <?php 
+        echo  proFeatureMarkup() ;
+        ?>
+            
+          <?php 
         ?>
 
     </div>
@@ -452,25 +752,6 @@ class Contact_List_Admin
     public function register_support_page_callback()
     {
         ?>
-    
-    <style>
-      .contact-list-feedback-form-container {
-        padding: 10px;
-        background: #fff;
-      }
-      hr.style-one {
-        border: 0;
-        height: 1px;
-        background: #333;
-        background-image: linear-gradient(to right, #bbb, #333, #bbb);
-        margin: 2rem 0;
-      }
-      .contact-list-shortcode {
-        background: #fff;
-        padding: 2px 6px;
-        margin: 0 5px;
-      }
-    </style>
     
     <div class="wrap">
 
@@ -568,38 +849,23 @@ class Contact_List_Admin
     <?php 
     }
     
+    public function cl_send_mail()
+    {
+        global  $wpdb ;
+        $wpdb->insert( 'wp_cl_sent_mail_log', array(
+            'subject'      => $_POST['subject'],
+            'sender_name'  => $_POST['sender_name'],
+            'reply_to'     => $_POST['reply_to'],
+            'report'       => $_POST['report'],
+            'sender_email' => $_POST['sender_email'],
+            'mail_cnt'     => $_POST['mail_cnt'],
+        ) );
+        wp_die();
+    }
+    
     public function register_import_page_callback()
     {
         ?>
-    
-    <style>
-      .contact-list-feedback-form-container {
-        padding: 10px;
-        background: #fff;
-      }
-      hr.style-one {
-        border: 0;
-        height: 1px;
-        background: #333;
-        background-image: linear-gradient(to right, #bbb, #333, #bbb);
-        margin: 2rem 0;
-      }
-      .btn-submit {
-        font-size: 1.1rem;
-        padding: .25rem 2rem;
-        margin-top: 1rem;
-      }
-      .import-finished {
-        border: #333;
-        background: #fff;
-        padding: 2rem;
-        margin-top: 1rem;
-        line-height: 1.2;
-      }
-      .import-finished h3 {
-        margin-top: 0;
-      }
-    </style>
     
     <div class="wrap">
 
@@ -727,6 +993,62 @@ class Contact_List_Admin
             $result_final = file_get_contents( $url, false, $context_final );
         }
     
+    }
+    
+    public function update_db_check()
+    {
+        $installed_version = get_site_option( 'contact_list_version' );
+        
+        if ( $installed_version != CONTACT_LIST_VERSION ) {
+            global  $wpdb ;
+            $charset_collate = $wpdb->get_charset_collate();
+            $table_name = $wpdb->prefix . 'cl_sent_mail_log';
+            $wpdb->query( "CREATE TABLE IF NOT EXISTS " . $table_name . " (\n    \t  id              BIGINT(20) NOT NULL auto_increment,\n    \t  msg_id          VARCHAR(255) NOT NULL,\n    \t  sender_email    VARCHAR(255) NOT NULL,\n    \t  sender_name     VARCHAR(255) NOT NULL,\n    \t  recipient_email VARCHAR(255) NOT NULL,\n    \t  reply_to        VARCHAR(255) NOT NULL,\n    \t  msg_type        VARCHAR(255) NOT NULL,\n    \t  subject         VARCHAR(255) NOT NULL,\n    \t  response        VARCHAR(255) NOT NULL,\n    \t  mail_cnt        MEDIUMINT NOT NULL,\n    \t  report          TEXT NOT NULL,\n    \t  created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n    \t  PRIMARY KEY (id)\n    \t) " . $charset_collate . ";" );
+            update_option( 'contact_list_version', CONTACT_LIST_VERSION );
+        }
+    
+    }
+    
+    public function alter_the_query( $request )
+    {
+        global  $wp ;
+        $url = home_url( $wp->request );
+        $cl_query = 0;
+        $cl_sub = 0;
+        $url_parts = parse_url( $url );
+        if ( isset( $url_parts['path'] ) ) {
+            $path_parts = explode( '/', $url_parts['path'] );
+        }
+        
+        if ( isset( $path_parts[2] ) && $path_parts[2] == '_cl_update-contact' ) {
+            $cl_query = 1;
+            $cl_sub = 1;
+        } else {
+            if ( isset( $path_parts[1] ) && $path_parts[1] == '_cl_update-contact' ) {
+                $cl_query = 1;
+            }
+        }
+        
+        
+        if ( $cl_query ) {
+            $contact_id = 0;
+            
+            if ( $cl_sub ) {
+                $contact_id = ( isset( $path_parts[3] ) ? (int) $path_parts[3] : 0 );
+            } else {
+                $contact_id = ( isset( $path_parts[2] ) ? (int) $path_parts[2] : 0 );
+            }
+            
+            
+            if ( $contact_id ) {
+                $html = updateContactMarkup( $contact_id );
+                print_r( $html );
+                die;
+            }
+        
+        }
+        
+        return $request;
     }
 
 }

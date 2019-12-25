@@ -9,9 +9,9 @@ function shortcodeContactListGroupsMarkup( $atts )
         $html .= '<style>.contact-list-container #contact-list-search ul li { margin-bottom: 5px; } </style>';
         
         if ( $s['card_background'] == 'white' ) {
-            $html .= '<style>.contact-list-contact-container { background: #fff; } </style>';
+            $html .= '<style>.contact-list-contact-container { background: #fff; padding: 20px; border-radius: 10px; margin-bottom: 20px; } </style>';
         } elseif ( $s['card_background'] == 'light_gray' ) {
-            $html .= '<style>.contact-list-contact-container { background: #f7f7f7; } </style>';
+            $html .= '<style>.contact-list-contact-container { background: #f7f7f7; padding: 20px; border-radius: 10px; margin-bottom: 20px; } </style>';
         }
     
     }

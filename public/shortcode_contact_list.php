@@ -3,6 +3,17 @@
 function shortcodeContactListMarkup( $atts )
 {
     $s = get_option( 'contact_list_settings' );
+    $layout = '';
+    
+    if ( isset( $atts['layout'] ) ) {
+        $layout = $atts['layout'];
+    } elseif ( isset( $s['layout'] ) && $s['layout'] ) {
+        $layout = $s['layout'];
+    }
+    
+    // 2-cards-on-the-same-row
+    // 3-cards-on-the-same-row
+    // 4-cards-on-the-same-row
     $html = '';
     
     if ( isset( $s['card_background'] ) && $s['card_background'] ) {
@@ -18,12 +29,15 @@ function shortcodeContactListMarkup( $atts )
     
     
     if ( isset( $s['card_height'] ) && $s['card_height'] ) {
-        $html .= '<style>.contact-list-container.contact-list-2-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: ' . $s['card_height'] . 'px; } </style>';
-        $html .= '<style>.contact-list-container.contact-list-3-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: ' . $s['card_height'] . 'px; } </style>';
-        $html .= '<style>.contact-list-container.contact-list-4-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: ' . $s['card_height'] . 'px; } </style>';
+        $html .= '<style>.contact-list-2-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: ' . $s['card_height'] . 'px; } </style>';
+        $html .= '<style>.contact-list-3-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: ' . $s['card_height'] . 'px; } </style>';
+        $html .= '<style>.contact-list-4-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: ' . $s['card_height'] . 'px; } </style>';
+        $html .= '<style> @media (max-width: 500px) { .contact-list-2-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: auto; } } </style>';
+        $html .= '<style> @media (max-width: 500px) { .contact-list-3-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: auto; } } </style>';
+        $html .= '<style> @media (max-width: 500px) { .contact-list-4-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: auto; } } </style>';
     }
     
-    $html .= '<div class="contact-list-container ' . (( isset( $s['layout'] ) && $s['layout'] ? 'contact-list-' . $s['layout'] : '' )) . '">';
+    $html .= '<div class="contact-list-container ' . (( $layout ? 'contact-list-' . $layout : '' )) . '">';
     
     if ( isset( $atts['contact'] ) ) {
         $contact = (int) $atts['contact'];

@@ -3,13 +3,13 @@
   margin-top: .25rem;
 }
 
-.contact-list-start-import {
-  cursor: pointer;
-}
-
 .contact-list-request-update-info {
   margin-top: .25rem;
   display: none;
+}
+
+.contact-list-start-import {
+  cursor: pointer;
 }
 
 .pro-feature {
@@ -70,9 +70,69 @@ hr.style-one {
 
 .send_email_target_div {
   width: 100%;
-  height: 160px;
+  height: 50px;
   background: #fff;
   background: rgb(241, 241, 241);
+}
+
+.sending-in-progress {
+  border: 1px solid #bbb;
+  background: #fff;
+  color: #333;
+  margin-top: 10px;
+  padding: 15px;
+}
+
+.contact-list-mail-sent {
+  border: 1px solid #bbb;
+  background: #fff;
+  color: #333;
+  margin-top: 10px;
+  padding: 15px;
+  color: green;
+  font-weight: bold;  
+}
+
+.contact-list-send-mail-error {
+  border: 1px solid #bbb;
+  background: #fff;
+  color: #333;
+  margin-top: 10px;
+  padding: 15px;
+  color: red;
+  font-weight: bold;
+}
+
+.contact-list-mail-log-msg-details {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  border-collapse: collapse;
+}
+
+.contact-list-mail-log-msg-details td:first-of-type {
+  font-weight: bold;
+  background: #fff;
+}
+
+.contact-list-mail-log-msg-details td {
+  border: 1px solid #bbb;
+  padding: 5px 10px;
+}
+
+.contact-list-mail-log-recipients-container table {
+  border-collapse: collapse;
+}
+
+.contact-list-mail-log-recipients-container table th {
+  background: #fff;
+  border-collapse: collapse;
+}
+
+.contact-list-mail-log-recipients-container table th,
+.contact-list-mail-log-recipients-container table td {
+  text-align: left;
+  padding: 10px;
+  border: 1px solid #bbb;
 }
 
 .send_email_form label span,
@@ -156,3 +216,59 @@ hr.style-one {
   margin-top: 10px;
 }
 
+.contact-list-mail-log {
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+.contact-list-mail-log th {
+  background: #fff;
+}
+
+.contact-list-mail-log th,
+.contact-list-mail-log td {
+  border: 1px solid #bbb;
+  padding: 10px;
+}
+
+.contact-list-feedback-form-container {
+  padding: 10px;
+  background: #fff;
+}
+
+hr.style-one {
+  border: 0;
+  height: 1px;
+  background: #333;
+  background-image: linear-gradient(to right, #bbb, #333, #bbb);
+  margin: 2rem 0;
+}
+
+.contact-list-shortcode {
+  background: #fff;
+  padding: 2px 6px;
+  margin: 0 5px;
+}
+
+.contact-list-feedback-form-container {
+  padding: 10px;
+  background: #fff;
+}
+
+.btn-submit {
+  font-size: 1.1rem;
+  padding: .25rem 2rem;
+  margin-top: 1rem;
+}
+
+.import-finished {
+  border: #333;
+  background: #fff;
+  padding: 2rem;
+  margin-top: 1rem;
+  line-height: 1.2;
+}
+
+.import-finished h3 {
+  margin-top: 0;
+}

@@ -63,6 +63,7 @@ Also support for images, custom fields and WYSIWYG editor.
 * Send email to all contacts or contacts in a specific group
 * Import contacts from CSV file
 * Customize fields in any way: change titles and hide specific fields from public form or admin area
+* Request contacts to update their contact info
 
 Contact author [here](https://anssilaitila.fi/).
 
@@ -80,6 +81,10 @@ Contact author [here](https://anssilaitila.fi/).
 5. Plugin settings
 
 == Changelog ==
+
+= 2.7.0 =
+* New feature (Free & Pro): Request update for contact
+* New feature (Pro): Sent mail is now logged
 
 = 2.6.2 =
 * Bug fixes
