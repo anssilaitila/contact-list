@@ -1,5 +1,18 @@
 jQuery(function ($) {
 
+  $('.contact-list-settings-tabs li').on('click', function (e) {
+    let container_class = $(this).data('settings-container');
+
+    $('.contact-list-settings-tabs li').removeClass('active');
+
+    $('.contact-list-settings-tab-1').hide();
+    $('.contact-list-settings-tab-2').hide();
+    $('.contact-list-settings-tab-3').hide();
+
+    $(this).addClass('active');    
+    $('.' + container_class).show();
+  });
+  
   $('.contact-list-request-update').on('click', function (e) {
 
     e.preventDefault();    

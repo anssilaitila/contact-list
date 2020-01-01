@@ -11,6 +11,7 @@ function shortcodeContactListMarkup( $atts )
         $layout = $s['layout'];
     }
     
+    $layout = '';
     // 2-cards-on-the-same-row
     // 3-cards-on-the-same-row
     // 4-cards-on-the-same-row

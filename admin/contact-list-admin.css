@@ -1,3 +1,109 @@
+.contact-list-settings-container {
+  background: #fff;
+  padding: 20px;
+  border-top: 1px solid #007cba;
+  border-left: 1px solid #007cba;
+  border-bottom: 1px solid #007cba;
+  border-right: 1px solid #007cba;
+  width: 90%;
+}
+
+.contact-list-settings-container h2:first-of-type {
+  margin-top: 0;
+}
+
+.cl-icon-sel {
+  border: 1px solid #eee;
+  padding: 10px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  display: inline-block;
+  height: 28px;
+}
+
+.cl-icon-sel i {
+  font-size: 24px;
+}
+
+.form-table input[type="radio"] {
+  margin-right: 3px;  
+}
+
+.contact-list-settings-form h1 {
+  margin-bottom: 2rem;
+}
+
+.contact-list-settings-form .input-field {
+  width: 300px;
+}
+
+.contact-list-settings-form #contact-list-thank_you_page_content {
+  width: 800px;
+}
+
+.contact-list-settings-form .form-table td,
+.contact-list-settings-form .form-table th {
+  padding: 0.5rem;
+}
+
+.contact-list-settings-form p {
+  margin-bottom: 1rem;
+}
+
+.contact-list-settings-form .email-info {
+  background: #eee;
+  border: 1px solid #bbb;
+  max-width: 600px;
+  padding: .5rem;
+  margin-top: .5rem;
+  font-size: .8rem;
+}
+
+.contact-list-settings-tabs-container {
+  position: relative;
+  height: 50px;
+}
+
+.contact-list-settings-tabs {
+  margin-bottom: 0;
+  position: absolute;
+  height: 50px;
+}
+
+.contact-list-settings-tabs li {
+  float: left;
+  padding: 10px 20px;
+  margin: 0;
+  background: #007cba;
+  color: white;
+  font-size: 15px;
+}
+
+.contact-list-settings-tabs li:hover {
+  cursor: pointer;
+}
+
+.contact-list-settings-tabs li.active {
+  background: white;
+  color: #007cba;
+  border-top: 1px solid #007cba;
+  border-left: 1px solid #007cba;
+  border-right: 1px solid #007cba;
+  font-weight: bold;
+}
+
+.contact-list-settings-tab-2 {
+  display: none;
+}
+
+.contact-list-settings-tab-3 {
+  display: none;
+}
+
+.contact-list-settings-tab-4 {
+  display: none;
+}
+
 .contact-list-request-update {
   cursor: pointer;
   margin-top: .25rem;
@@ -271,4 +377,49 @@ hr.style-one {
 
 .import-finished h3 {
   margin-top: 0;
+}
+
+.contact-list-pro-only-inline {
+  background: #fff;  
+  color: #bbb;
+  border: 1px solid #eee;
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: bold;
+  text-align: center;
+  padding: 1px 5px;
+}
+
+.contact-list-admin-ul {
+  list-style: disc;
+  margin: 4px 0 0 12px;
+}
+
+.contact-list-admin-ul li {
+  padding-bottom: 0 !important;
+}
+
+.contact-list-examples {
+  background: #f7f7f7;
+  padding: 10px 20px;
+  border: 1px solid #eee;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+hr.clear {
+  background: none;
+  border: 0;
+  clear: both;
+  display: block;
+  float: none;
+  font-size: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+  margin: 0;
 }

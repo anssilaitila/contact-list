@@ -95,6 +95,7 @@ class Contact_List_Admin
             'public'             => true,
             'has_archive'        => false,
             'publicly_queryable' => false,
+            'menu_icon'          => 'dashicons-id',
         ] );
         remove_post_type_support( 'contact', 'title' );
         remove_post_type_support( 'contact', 'editor' );
@@ -758,6 +759,13 @@ class Contact_List_Admin
       <h1><?php 
         echo  __( 'How to use the Contact List plugin', 'contact-list' ) ;
         ?></h1>
+
+      <div class="contact-list-examples"><?php 
+        echo  __( 'Some examples on how you can use different views available', 'contact-list' ) ;
+        ?> <a href="https://www.contactlistpro.com/contact-list/" target="_blank"><?php 
+        echo  __( 'here', 'contact-list' ) ;
+        ?></a>.</div>
+
       <h2><?php 
         echo  __( 'Only contacts, no groups', 'contact-list' ) ;
         ?></h2>
@@ -769,11 +777,32 @@ class Contact_List_Admin
         <li><?php 
         echo  __( 'Insert the shortcode <span class="contact-list-shortcode">[contact_list]</span> to the content editor of any page you wish the contact list to appear.', 'contact-list' ) ;
         ?></li>
+        <li><?php 
+        echo  __( 'Additional parameters', 'contact-list' ) ;
+        ?> <span class="contact-list-pro-only-inline">Pro</span>
+            <ul class="contact-list-admin-ul">
+                <li><?php 
+        echo  __( 'Hide search form:', 'contact-list' ) ;
+        ?> <span class="contact-list-shortcode">[contact_list hide_search=1]</span></li>
+                <li><?php 
+        echo  __( 'Layout "2 cards on the same row":', 'contact-list' ) ;
+        ?> <span class="contact-list-shortcode">[contact_list layout=2-cards-on-the-same-row]</span></li>
+                <li><?php 
+        echo  __( 'Layout "3 cards on the same row":', 'contact-list' ) ;
+        ?> <span class="contact-list-shortcode">[contact_list layout=3-cards-on-the-same-row]</span></li>
+                <li><?php 
+        echo  __( 'Layout "4 cards on the same row":', 'contact-list' ) ;
+        ?> <span class="contact-list-shortcode">[contact_list layout=4-cards-on-the-same-row]</span></li>
+                <li><?php 
+        echo  __( 'Multiple parameters:', 'contact-list' ) ;
+        ?> <span class="contact-list-shortcode">[contact_list layout=2-cards-on-the-same-row hide_search=1]</span></li>
+            </ul>
+        </li>
       </ol>
 
       <h2><?php 
         echo  __( 'Contacts with groups', 'contact-list' ) ;
-        ?></h2>
+        ?> <span class="contact-list-pro-only-inline">Pro</span></h2>
       <ol>
         <li><?php 
         echo  __( 'Add the groups via the Groups page. There may be groups under groups (hierarchial groups, 2 or more levels).', 'contact-list' ) ;
@@ -788,7 +817,7 @@ class Contact_List_Admin
 
       <h2><?php 
         echo  __( 'Contacts from specific group', 'contact-list' ) ;
-        ?></h2>
+        ?> <span class="contact-list-pro-only-inline">Pro</span></h2>
       <ol>
         <li><?php 
         echo  __( 'Insert the shortcode', 'contact-list' ) . '<span class="contact-list-shortcode">[contact_list_groups group=GROUP_SLUG]</span>' . __( 'to the content editor of any page you wish the contact list to appear. Replace GROUP_SLUG with the appropriate slug that can be found from group management.', 'contact-list' ) ;
@@ -806,7 +835,7 @@ class Contact_List_Admin
 
       <h3><?php 
         echo  __( 'Allow visitors to add new contacts', 'contact-list' ) ;
-        ?></h2>
+        ?> <span class="contact-list-pro-only-inline">Pro</span></h2>
       <ol>
         <li><?php 
         echo  __( 'Insert the shortcode', 'contact-list' ) . '<span class="contact-list-shortcode">[contact_list_form]</span>' . __( 'to the page you wish the form to appear on.', 'contact-list' ) ;
@@ -946,6 +975,12 @@ class Contact_List_Admin
         ?></li>
                 <li><?php 
         echo  __( 'Custom field 4', 'contact-list' ) ;
+        ?></li>
+                <li><?php 
+        echo  __( 'Custom field 5', 'contact-list' ) ;
+        ?></li>
+                <li><?php 
+        echo  __( 'Custom field 6', 'contact-list' ) ;
         ?></li>
             </ol>
         </p>

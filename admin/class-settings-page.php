@@ -18,7 +18,7 @@ class Contact_List_Settings
         register_setting( 'contact-list', 'contact_list_settings' );
         add_settings_section(
             'contact-list_section_general',
-            __( 'General settings', 'contact-list' ),
+            '',
             array( $this, 'contact_list_settings_general_section_callback' ),
             'contact-list'
         );
@@ -32,6 +32,18 @@ class Contact_List_Settings
             'label_for'  => 'contact-list-order_by',
             'field_name' => 'order_by',
         )
+        );
+        add_settings_section(
+            'contact-list_section',
+            '',
+            array( $this, 'contact_list_settings_section_callback' ),
+            'contact-list'
+        );
+        add_settings_section(
+            'contact-list_admin_form',
+            '',
+            array( $this, 'contact_list_settings_admin_form_callback' ),
+            'contact-list'
         );
     }
     
@@ -137,6 +149,61 @@ class Contact_List_Settings
     
     }
     
+    public function icon_render( $args )
+    {
+        
+        if ( $args['field_name'] ) {
+            $options = get_option( 'contact_list_settings' );
+            $sel = '';
+            if ( isset( $options[$args['field_name']] ) ) {
+                $sel = $options[$args['field_name']];
+            }
+            ?>    
+
+      <label class="cl-icon-sel"><input type="radio" name="contact_list_settings[<?php 
+            echo  $args['field_name'] ;
+            ?>]"  value="" <?php 
+            echo  ( $sel == '' ? 'checked' : '' ) ;
+            ?>> <?php 
+            echo  __( 'none', 'contact-list' ) ;
+            ?></label>
+
+      <?php 
+            $icons = [
+                'phone',
+                'phone-square',
+                'mobile',
+                'envelope',
+                'envelope-o',
+                'envelope-square',
+                'fax',
+                'hand-o-right',
+                'check-square',
+                'arrow-circle-o-right'
+            ];
+            ?>
+      
+      <?php 
+            foreach ( $icons as $icon ) {
+                ?>
+          <label class="cl-icon-sel"><input type="radio" name="contact_list_settings[<?php 
+                echo  $args['field_name'] ;
+                ?>]"  value="fa-<?php 
+                echo  $icon ;
+                ?>" <?php 
+                echo  ( $sel == 'fa-' . $icon ? 'checked' : '' ) ;
+                ?>> <i class="fa fa-<?php 
+                echo  $icon ;
+                ?>" aria-hidden="true"></i></label>
+      <?php 
+            }
+            ?>
+
+      <?php 
+        }
+    
+    }
+    
     public function layout_render( $args )
     {
         
@@ -206,66 +273,73 @@ class Contact_List_Settings
     
     }
     
-    public function contact_list_settings_section_callback()
-    {
-        echo  '<p>' . __( 'You may enter alternative titles and texts here. The values defined here will override the default values.', 'contact-list' ) . '</p>' ;
-    }
-    
-    public function contact_list_settings_admin_form_callback()
-    {
-        echo  '<p>' . __( 'You may customize the admin form (the one displayed in the WP admin area) using these settings.', 'contact-list' ) . '</p>' ;
-    }
-    
-    public function contact_list_settings_public_form_callback()
-    {
-        echo  '<p>' . __( 'You may customize the public form (the one displayed using the [contact_list_form] shortcode) using these settings.', 'contact-list' ) . '</p>' ;
-    }
-    
     public function contact_list_settings_general_section_callback()
     {
         echo  proFeatureSettingsMarkup() ;
     }
     
+    public function contact_list_settings_section_callback()
+    {
+        echo  '</div>' ;
+        echo  '<div class="contact-list-settings-tab-2">' ;
+        echo  proFeatureSettingsMarkup() ;
+    }
+    
+    public function contact_list_settings_admin_form_callback()
+    {
+        echo  '</div>' ;
+        echo  '<div class="contact-list-settings-tab-3">' ;
+        echo  proFeatureSettingsMarkup() ;
+    }
+    
+    public function contact_list_settings_public_form_callback()
+    {
+        echo  '<h2>' . __( 'Public form elements', 'contact-list' ) . '</h2>' ;
+        echo  '<p>' . __( 'You may customize the public form (the one displayed using the [contact_list_form] shortcode) using these settings.', 'contact-list' ) . '</p>' ;
+    }
+    
     public function settings_page()
     {
         ?>
-    <style>
-      h1 {
-        margin-bottom: 2rem;
-      }
-      .input-field {
-        width: 300px;
-      }
-      #contact-list-thank_you_page_content {
-        width: 800px;
-      }
-      .form-table td,
-      .form-table th {
-        padding: 0.5rem;
-      }
-      p {
-        margin-bottom: 1rem;
-      }
-      .email-info {
-        background: #eee;
-        border: 1px solid #bbb;
-        max-width: 600px;
-        padding: .5rem;
-        margin-top: .5rem;
-        font-size: .8rem;
-      }
-    </style>
-    <form action="options.php" method="post">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+
+    <form action="options.php" method="post" class="contact-list-settings-form">
 
       <h1><?php 
         echo  __( 'Contact List Settings', 'contact-list' ) ;
         ?></h1>
 
-      <?php 
+      <div class="contact-list-settings-tabs-container">
+        <ul class="contact-list-settings-tabs">
+          <li class="active" data-settings-container="contact-list-settings-tab-1"><?php 
+        echo  __( 'General settings', 'contact-list' ) ;
+        ?></li>
+          <li data-settings-container="contact-list-settings-tab-2"><?php 
+        echo  __( 'Field titles, icons and texts', 'contact-list' ) ;
+        ?></li>
+          <li data-settings-container="contact-list-settings-tab-3"><?php 
+        echo  __( 'Hide form elements', 'contact-list' ) ;
+        ?></li>
+          <hr class="clear" />
+        </ul>
+      </div>
+
+      <div class="contact-list-settings-container">
+
+        <div class="contact-list-settings-tab-1">
+          <?php 
         settings_fields( 'contact-list' );
+        ?>
+          <?php 
         do_settings_sections( 'contact-list' );
+        ?>  
+        </div>
+        
+        <?php 
         submit_button();
         ?>
+      
+      </div>
 
     </form>
     <?php 

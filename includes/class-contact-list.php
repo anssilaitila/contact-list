@@ -161,10 +161,10 @@ class Contact_List
             0
         );
         $this->loader->add_action( 'pre_get_posts', $plugin_admin, 'contact_list_custom_orderby' );
-        $this->loader->add_action( 'admin_menu', $plugin_admin, 'add_settings_link' );
         $this->loader->add_action( 'admin_menu', $plugin_admin, 'register_send_email_page' );
         $this->loader->add_action( 'admin_menu', $plugin_admin, 'register_mail_log_page' );
         $this->loader->add_action( 'admin_menu', $plugin_admin, 'register_import_page' );
+        $this->loader->add_action( 'admin_menu', $plugin_admin, 'add_settings_link' );
         $this->loader->add_action( 'admin_menu', $plugin_admin, 'register_support_page' );
         $this->loader->add_action( 'wp_ajax_cl_send_mail', $plugin_admin, 'cl_send_mail' );
         $this->loader->add_action( 'admin_menu', $plugin_admin, 'add_upgrade_link' );

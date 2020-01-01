@@ -226,6 +226,32 @@ input[type="submit"].contact-list-form-submit {
   display: none;
 }
 
+.contact-list-custom-fields-container {
+  margin-bottom: 14px;
+}
+
+.contact-list-custom-field-with-icon {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 3px;
+}
+
+.contact-list-custom-field-with-icon i {
+  flex: 0 0 28px;
+  font-size: 28px;
+  margin-right: 8px;
+  text-align: right;
+}
+
+.contact-list-custom-field-with-icon span {
+  line-height: 1.3;
+  padding-top: 1px;
+}
+
+.contact-list-custom-field-1 {
+  margin-top: 10px;
+}
+
 .contact-list-custom-field-1 strong {
   display: block;
   margin-top: 8px;

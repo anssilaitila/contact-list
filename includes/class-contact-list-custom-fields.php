@@ -175,6 +175,22 @@ class myCustomFields
         "capability"  => "edit_posts",
     ),
         array(
+        "name"        => "custom_field_5",
+        "title"       => "Custom field 5",
+        "description" => "",
+        "type"        => "text",
+        "scope"       => array( "contact" ),
+        "capability"  => "edit_posts",
+    ),
+        array(
+        "name"        => "custom_field_6",
+        "title"       => "Custom field 6",
+        "description" => "",
+        "type"        => "text",
+        "scope"       => array( "contact" ),
+        "capability"  => "edit_posts",
+    ),
+        array(
         "name"        => "additional_info",
         "title"       => "Additional information",
         "description" => "",

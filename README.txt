@@ -82,6 +82,10 @@ Contact author [here](https://anssilaitila.fi/).
 
 == Changelog ==
 
+= 2.7.1 =
+* Settings page made more usable
+* New features (Pro): 2 more custom fields and options to set icons instead of titles for custom fields (see settings)
+
 = 2.7.0 =
 * New feature (Free & Pro): Request update for contact
 * New feature (Pro): Sent mail is now logged
