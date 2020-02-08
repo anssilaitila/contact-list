@@ -11,7 +11,7 @@ Display staff contact directory, phone book of personnel and more! Send newslett
 
 == Description ==
 = The Best WordPress contact directory plugin on the market =
-Display a list of personnels contact information including name, email, phone and social media links.
+Display a list of personnels contact information including name, email, phone and social media links. Send email directly to contacts using a built-in form (with spam-prevention).
 
 Also support for images, custom fields and WYSIWYG editor.
 
