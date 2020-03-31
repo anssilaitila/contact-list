@@ -60,7 +60,8 @@ class Contact_List_Public {
    * @since    1.0.0
    */
   public function enqueue_styles() {
-    wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'contact-list-public.css', array(), $this->version, 'all');
+//    wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'contact-list-public.css', array(), $this->version, 'all');
+    wp_enqueue_style($this->plugin_name, CONTACT_LIST_URI . 'dist/css/main.css', array(), $this->version, 'all');
   }
 
   /**
@@ -69,7 +70,7 @@ class Contact_List_Public {
    * @since    1.0.0
    */
   public function enqueue_scripts() {
-    wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'contact-list-public.js', array('jquery'), $this->version, false);
+    wp_enqueue_script($this->plugin_name, CONTACT_LIST_URI . 'dist/js/main.js', array('jquery'), $this->version, false);
   }
 
   /**
@@ -78,9 +79,10 @@ class Contact_List_Public {
    * @since    1.0.0
    */
   public function register_shortcodes() {
-    add_shortcode('contact_list', array('Contact_List_Public', 'contact_list_search'));
+    add_shortcode('contact_list', array('Contact_List_Public', 'contact_list'));
     add_shortcode('contact_list_groups', array('Contact_List_Public', 'contact_list_groups'));
     add_shortcode('contact_list_form', array('Contact_List_Public', 'contact_list_form'));
+    add_shortcode('contact_list_search', array('Contact_List_Public', 'contact_list_search'));
   }
 
   /**
@@ -88,13 +90,13 @@ class Contact_List_Public {
    *
    * @since    1.0.0
    */
-  public static function contact_list_search($atts = [], $content = null, $tag = '') {
+  public static function contact_list($atts = [], $content = null, $tag = '') {
 
     // normalize attribute keys, lowercase
     $atts = array_change_key_case( (array) $atts, CASE_LOWER);
 
     $html = '';
-    $html .= shortcodeContactListMarkup($atts);
+    $html .= ShortcodeContactList::shortcodeContactListMarkup($atts);
 
     return $html;
   }
@@ -110,7 +112,7 @@ class Contact_List_Public {
     $atts = array_change_key_case( (array) $atts, CASE_LOWER);
 
     $html = '';
-    $html .= shortcodeContactListGroupsMarkup($atts);
+    $html .= ContactListGroups::shortcodeContactListGroupsMarkup($atts);
 
     return $html;
   }
@@ -123,7 +125,15 @@ class Contact_List_Public {
   public static function contact_list_form() {
 
     $html = '';
-    $html .= shortcodeContactListFormMarkup();
+    $html .= ContactListForm::shortcodeContactListFormMarkup();
+
+    return $html;
+  }
+
+  public static function contact_list_search() {
+
+    $html = '';
+    $html .= ShortcodeContactListSearch::view($atts);
 
     return $html;
   }

@@ -54,7 +54,7 @@ class Contact_List_Admin
     {
         wp_enqueue_style(
             $this->plugin_name,
-            plugin_dir_url( __FILE__ ) . 'contact-list-admin.css',
+            CONTACT_LIST_URI . 'dist/css/main.css',
             array(),
             $this->version,
             'all'
@@ -65,7 +65,7 @@ class Contact_List_Admin
     {
         wp_enqueue_script(
             $this->plugin_name,
-            plugin_dir_url( __FILE__ ) . 'contact-list-admin.js',
+            CONTACT_LIST_URI . 'dist/js/main.js',
             array( 'jquery' ),
             $this->version,
             false
@@ -74,9 +74,13 @@ class Contact_List_Admin
     
     public function modify_post_title( $data )
     {
-        if ( $_POST && $data['post_type'] == 'contact' ) {
+        
+        if ( isset( $_POST ) && $data['post_type'] == 'contact' && !isset( $_POST['_cl_last_name'] ) && $data['post_content'] == 'imported' ) {
+            // ...
+        } elseif ( isset( $_POST ) && $data['post_type'] == 'contact' ) {
             $data['post_title'] = (( isset( $_POST['_cl_first_name'] ) ? $_POST['_cl_first_name'] : '' )) . ' ' . (( isset( $_POST['_cl_last_name'] ) ? $_POST['_cl_last_name'] : '' ));
         }
+        
         return $data;
     }
     
@@ -100,9 +104,6 @@ class Contact_List_Admin
         remove_post_type_support( 'contact', 'title' );
         remove_post_type_support( 'contact', 'editor' );
         add_image_size( 'contact-list-contact', 160, 200 );
-        /**
-         * Custom columns for shared files (admin)
-         */
         add_filter( 'manage_contact_posts_columns', 'contact_custom_columns', 10 );
         add_action(
             'manage_contact_posts_custom_column',
@@ -261,23 +262,6 @@ class Contact_List_Admin
         );
     }
     
-    /**
-     * Adds a submenu page under a custom post type parent.
-     *
-     * @since    1.0.0
-     */
-    public function register_support_page()
-    {
-        add_submenu_page(
-            'edit.php?post_type=contact',
-            __( 'How to use the Contact List plugin', 'contact-list' ),
-            __( 'Help / Support', 'contact-list' ),
-            'manage_options',
-            'contact-list-support',
-            [ $this, 'register_support_page_callback' ]
-        );
-    }
-    
     public function register_import_page()
     {
         add_submenu_page(
@@ -287,26 +271,6 @@ class Contact_List_Admin
             'manage_options',
             'contact-list-import',
             [ $this, 'register_import_page_callback' ]
-        );
-    }
-    
-    public function add_settings_link()
-    {
-        global  $submenu ;
-        $permalink = './options-general.php?page=contact-list';
-        $submenu['edit.php?post_type=contact'][] = array( __( 'Settings', 'contact-list' ), 'manage_options', $permalink );
-    }
-    
-    public function add_upgrade_link()
-    {
-        global  $submenu ;
-        $permalink = './options-general.php?page=contact-list-pricing';
-        $submenu['edit.php?post_type=contact'][] = array(
-            __( 'Upgrade&nbsp;&nbsp;➤', 'contact-list' ),
-            'manage_options',
-            $permalink,
-            '',
-            'contact-list-upgrade'
         );
     }
     
@@ -336,6 +300,50 @@ class Contact_List_Admin
             'slug' => 'groups',
         ),
         ) );
+    }
+    
+    function contact_group_taxonomy_custom_fields( $tag )
+    {
+        $t_id = $tag->term_id;
+        $term_meta = get_option( "taxonomy_term_{$t_id}" );
+        ?>  
+    
+  <tr class="form-field">  
+    <th scope="row" valign="top">  
+      <label for="term_meta[hide_group]"><?php 
+        echo  __( 'Hide group', 'contact-list' ) ;
+        ?></label>  
+      <div style="font-weight: 400; font-style: italic; font-size: 12px; margin-top: 6px;"><?php 
+        echo  __( 'Note: this hides only the group, not the actual contacts that may belong to this group' ) ;
+        ?></div>
+    </th>  
+    <td>  
+      <input type="checkbox" name="term_meta[hide_group]" id="term_meta[hide_group]" <?php 
+        echo  ( isset( $term_meta['hide_group'] ) ? 'checked="checked"' : '' ) ;
+        ?>>
+    </td>  
+  </tr>  
+    
+  <?php 
+    }
+    
+    function save_taxonomy_custom_fields( $term_id )
+    {
+        $t_id = $term_id;
+        $term_meta = get_option( "taxonomy_term_{$t_id}" );
+        
+        if ( isset( $_POST['term_meta'] ) ) {
+            $cat_keys = array_keys( $_POST['term_meta'] );
+            foreach ( $cat_keys as $key ) {
+                if ( isset( $_POST['term_meta'][$key] ) ) {
+                    $term_meta[$key] = $_POST['term_meta'][$key];
+                }
+            }
+        } else {
+            $term_meta = array();
+        }
+        
+        update_option( "taxonomy_term_{$t_id}", $term_meta );
     }
     
     /**
@@ -487,7 +495,7 @@ class Contact_List_Admin
         ?>
 
             <?php 
-        echo  proFeatureMarkup() ;
+        echo  ContactListHelpers::proFeatureMarkup() ;
         ?>
             
           <?php 
@@ -735,144 +743,11 @@ class Contact_List_Admin
         ?>
 
             <?php 
-        echo  proFeatureMarkup() ;
+        echo  ContactListHelpers::proFeatureMarkup() ;
         ?>
             
           <?php 
         ?>
-
-    </div>
-    <?php 
-    }
-    
-    /**
-     * Display callback for the submenu page.
-     *
-     * @since    1.0.0
-     */
-    public function register_support_page_callback()
-    {
-        ?>
-    
-    <div class="wrap">
-
-      <h1><?php 
-        echo  __( 'How to use the Contact List plugin', 'contact-list' ) ;
-        ?></h1>
-
-      <div class="contact-list-examples"><?php 
-        echo  __( 'Some examples on how you can use different views available', 'contact-list' ) ;
-        ?> <a href="https://www.contactlistpro.com/contact-list/" target="_blank"><?php 
-        echo  __( 'here', 'contact-list' ) ;
-        ?></a>.</div>
-
-      <h2><?php 
-        echo  __( 'Only contacts, no groups', 'contact-list' ) ;
-        ?></h2>
-
-      <ol>
-        <li><?php 
-        echo  __( 'Add the contacts via the All Contacts page.', 'contact-list' ) ;
-        ?></li>
-        <li><?php 
-        echo  __( 'Insert the shortcode <span class="contact-list-shortcode">[contact_list]</span> to the content editor of any page you wish the contact list to appear.', 'contact-list' ) ;
-        ?></li>
-        <li><?php 
-        echo  __( 'Additional parameters', 'contact-list' ) ;
-        ?> <span class="contact-list-pro-only-inline">Pro</span>
-            <ul class="contact-list-admin-ul">
-                <li><?php 
-        echo  __( 'Hide search form:', 'contact-list' ) ;
-        ?> <span class="contact-list-shortcode">[contact_list hide_search=1]</span></li>
-                <li><?php 
-        echo  __( 'Layout "2 cards on the same row":', 'contact-list' ) ;
-        ?> <span class="contact-list-shortcode">[contact_list layout=2-cards-on-the-same-row]</span></li>
-                <li><?php 
-        echo  __( 'Layout "3 cards on the same row":', 'contact-list' ) ;
-        ?> <span class="contact-list-shortcode">[contact_list layout=3-cards-on-the-same-row]</span></li>
-                <li><?php 
-        echo  __( 'Layout "4 cards on the same row":', 'contact-list' ) ;
-        ?> <span class="contact-list-shortcode">[contact_list layout=4-cards-on-the-same-row]</span></li>
-                <li><?php 
-        echo  __( 'Multiple parameters:', 'contact-list' ) ;
-        ?> <span class="contact-list-shortcode">[contact_list layout=2-cards-on-the-same-row hide_search=1]</span></li>
-            </ul>
-        </li>
-      </ol>
-
-      <h2><?php 
-        echo  __( 'Contacts with groups', 'contact-list' ) ;
-        ?> <span class="contact-list-pro-only-inline">Pro</span></h2>
-      <ol>
-        <li><?php 
-        echo  __( 'Add the groups via the Groups page. There may be groups under groups (hierarchial groups, 2 or more levels).', 'contact-list' ) ;
-        ?></li>
-        <li><?php 
-        echo  __( 'Add the contacts via the All Contacts page. You may select the appropriate group(s) at this point.', 'contact-list' ) ;
-        ?></li>
-        <li><?php 
-        echo  __( 'Insert the shortcode <span class="contact-list-shortcode">[contact_list_groups]</span> to the content editor of any page you wish the group list to appear. When a user selects a group, then a list of contacts belonging to that group is displayed. Also, if there are subgroups under that group, those will be displayed.', 'contact-list' ) ;
-        ?></li>
-      </ol>
-
-      <h2><?php 
-        echo  __( 'Contacts from specific group', 'contact-list' ) ;
-        ?> <span class="contact-list-pro-only-inline">Pro</span></h2>
-      <ol>
-        <li><?php 
-        echo  __( 'Insert the shortcode', 'contact-list' ) . '<span class="contact-list-shortcode">[contact_list_groups group=GROUP_SLUG]</span>' . __( 'to the content editor of any page you wish the contact list to appear. Replace GROUP_SLUG with the appropriate slug that can be found from group management.', 'contact-list' ) ;
-        ?></li>
-      </ol>
-
-      <h3><?php 
-        echo  __( 'Single contact', 'contact-list' ) ;
-        ?></h2>
-      <ol>
-        <li><?php 
-        echo  __( 'Insert the shortcode', 'contact-list' ) . '<span class="contact-list-shortcode">[contact_list contact=CONTACT_ID]</span>' . __( 'to the content editor of any page you wish the contact to appear. Replace CONTACT_ID with the appropriate id that can be found from contact management. There\'s a column "ID" in the All Contacts -page, which contains the numeric value.', 'contact-list' ) ;
-        ?></li>
-      </ol>
-
-      <h3><?php 
-        echo  __( 'Allow visitors to add new contacts', 'contact-list' ) ;
-        ?> <span class="contact-list-pro-only-inline">Pro</span></h2>
-      <ol>
-        <li><?php 
-        echo  __( 'Insert the shortcode', 'contact-list' ) . '<span class="contact-list-shortcode">[contact_list_form]</span>' . __( 'to the page you wish the form to appear on.', 'contact-list' ) ;
-        ?></li>
-        <li><?php 
-        echo  __( 'When a user submits the form, a new contact is saved to the contacts. The status of that contact is "Pending Review" and a site administrator must publish/edit/delete the contact.', 'contact-list' ) ;
-        ?></li>
-      </ol>
-
-      <hr class="style-one" />
-
-      <h2><?php 
-        echo  __( 'Send feedback', 'contact-list' ) ;
-        ?></h2>
-      <p><?php 
-        echo  __( 'Any feedback is welcome. You may contact the author at', 'contact-list' ) . ' <a href="https://anssilaitila.fi/" target="_blank">anssilaitila.fi</a> ' . __( 'or e-mail directly:', 'contact-list' ) . ' <a href="mailto:&#97;&#110;&#115;&#115;&#105;&#46;&#108;&#97;&#105;&#116;&#105;&#108;&#97;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;"> &#97;&#110;&#115;&#115;&#105;&#46;&#108;&#97;&#105;&#116;&#105;&#108;&#97;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a>' ;
-        ?></p>
-
-      <h2><?php 
-        echo  __( 'Give a rating for the plugin', 'contact-list' ) ;
-        ?></h2>
-      <p><?php 
-        echo  __( "Whether it's 1 star or 5 stars, I'm grateful for your rating. You may rate the plugin", 'contact-list' ) ;
-        ?> <a href="https://wordpress.org/support/plugin/contact-list/reviews/" target="_blank"><?php 
-        echo  __( 'here', 'contact-list' ) ;
-        ?></a>.</p>
-
-      <h2><?php 
-        echo  __( 'Send direct feedback to the author', 'contact-list' ) ;
-        ?></h2>
-      <p><?php 
-        echo  __( 'Fill out the form below to send feedback or questions to the author. Only the information provided below is sent. Thanks!', 'contact-list' ) ;
-        ?></p>
-
-      <div class="contact-list-feedback-form-container">
-        <iframe src='https://anssilaitila.fi/form-builder/wp-contact-list/' id='FormBuilderViewport_wp-contact-list' class='FormBuilderViewport' data-form='wp-contact-list' title='wp-contact-list' frameborder='0' allowTransparency='true' style='width: 100%; height: 560px;'></iframe>
-      </div>
 
     </div>
     <?php 
@@ -914,7 +789,7 @@ class Contact_List_Admin
         ?>
 
             <?php 
-        echo  proFeatureMarkup() ;
+        echo  ContactListHelpers::proFeatureMarkup() ;
         ?>
         
         <?php 
@@ -982,6 +857,11 @@ class Contact_List_Admin
                 <li><?php 
         echo  __( 'Custom field 6', 'contact-list' ) ;
         ?></li>
+                <li><?php 
+        echo  __( 'Groups', 'contact-list' ) ;
+        ?><i><br /><?php 
+        echo  __( 'Group names separated by the character "|", like so: Cats|Dogs|Parrots', 'contact-list' ) ;
+        ?></i></li>
             </ol>
         </p>
 
@@ -1030,20 +910,6 @@ class Contact_List_Admin
     
     }
     
-    public function update_db_check()
-    {
-        $installed_version = get_site_option( 'contact_list_version' );
-        
-        if ( $installed_version != CONTACT_LIST_VERSION ) {
-            global  $wpdb ;
-            $charset_collate = $wpdb->get_charset_collate();
-            $table_name = $wpdb->prefix . 'cl_sent_mail_log';
-            $wpdb->query( "CREATE TABLE IF NOT EXISTS " . $table_name . " (\n    \t  id              BIGINT(20) NOT NULL auto_increment,\n    \t  msg_id          VARCHAR(255) NOT NULL,\n    \t  sender_email    VARCHAR(255) NOT NULL,\n    \t  sender_name     VARCHAR(255) NOT NULL,\n    \t  recipient_email VARCHAR(255) NOT NULL,\n    \t  reply_to        VARCHAR(255) NOT NULL,\n    \t  msg_type        VARCHAR(255) NOT NULL,\n    \t  subject         VARCHAR(255) NOT NULL,\n    \t  response        VARCHAR(255) NOT NULL,\n    \t  mail_cnt        MEDIUMINT NOT NULL,\n    \t  report          TEXT NOT NULL,\n    \t  created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n    \t  PRIMARY KEY (id)\n    \t) " . $charset_collate . ";" );
-            update_option( 'contact_list_version', CONTACT_LIST_VERSION );
-        }
-    
-    }
-    
     public function alter_the_query( $request )
     {
         global  $wp ;
@@ -1076,7 +942,7 @@ class Contact_List_Admin
             
             
             if ( $contact_id ) {
-                $html = updateContactMarkup( $contact_id );
+                $html = ContactListHelpers::updateContactMarkup( $contact_id );
                 print_r( $html );
                 die;
             }

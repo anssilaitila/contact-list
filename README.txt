@@ -1,33 +1,32 @@
-=== WordPress Contact Directory, Newsletter and Email Plugin – Contact List ===
-Contributors: anssilaitila
-Tags: directory, contact list, newsletter, contact data, phone book
+=== Contact List for WordPress ===
+Contributors: anssilaitila, freemius
+Tags: contact list, staff directory, staff, directory
 Requires at least: 4.0.0
-Tested up to: 5.3
+Tested up to: 5.4
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Display staff contact directory, phone book of personnel and more! Send newsletters and receive updates from contacts!
+Create staff directory or any contact list for your site. Import data easily.
 
 == Description ==
-= The Best WordPress contact directory plugin on the market =
-Display a list of personnels contact information including name, email, phone and social media links. Send email directly to contacts using a built-in form (with spam-prevention).
+= The Best WordPress staff directory plugin on the market =
+Display a list of any contact data including name, email, phone and social media links. Send email directly to contacts using a built-in form (with spam-prevention).
 
 Also support for images, custom fields and WYSIWYG editor.
 
 **14 days trial available for Pro version, no credit card required.**
 
-= Demo versions of features: =
+= See live demos at [contactlistpro.com](https://www.contactlistpro.com): =
 * [Contact List](https://www.contactlistpro.com/contact-list/)
 * [Contacts with Groups](https://www.contactlistpro.com/contacts-with-groups/)
 * [Contact List Form](https://www.contactlistpro.com/submit-contact/)
 
 = Some use cases for this plugin: =
+* Staff directory
 * Contact directory
-* Staff contact information
-* Personnels contact list
+* List of any kind of contacts
 * Phone book
-* List of persons contact data
 * Email a large group of people
 * Send newsletter to a group of people
 * Inform multiple recipients by email
@@ -51,6 +50,7 @@ Also support for images, custom fields and WYSIWYG editor.
 * Obfuscated emails to prevent spam
 * Simple and clean user interface
 * No options to set, ready to use right away
+* Customizable layout
 * Contacts may belong to groups
 
 = Features in Pro version: =
@@ -64,6 +64,7 @@ Also support for images, custom fields and WYSIWYG editor.
 * Import contacts from CSV file
 * Customize fields in any way: change titles and hide specific fields from public form or admin area
 * Request contacts to update their contact info
+* More features on the way based on user feedback
 
 Contact author [here](https://anssilaitila.fi/).
 
@@ -81,6 +82,26 @@ Contact author [here](https://anssilaitila.fi/).
 5. Plugin settings
 
 == Changelog ==
+
+= 2.8.0 =
+* New feature (Pro): New shortcode [contact_list_search], see Help / Support -page
+* Some minor bug fixes
+
+= 2.7.6 =
+* Support for custom fields added to public form
+
+= 2.7.5 =
+* Bug fixes
+
+= 2.7.4 =
+* New feature (Pro): Send message to single contacts on contact list
+
+= 2.7.3 =
+* New feature (Pro): Define border for contact cards
+* New feature (Pro): Imported data may now contain groups
+
+= 2.7.2 =
+* New feature (Pro): Option to hide a group from the front-end
 
 = 2.7.1 =
 * Settings page made more usable

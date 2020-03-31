@@ -106,7 +106,7 @@ class Contact_List
          * The class responsible for defining all actions that occur in the admin area.
          */
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-contact-list-admin.php';
-        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-settings-page.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-contact-list-settings.php';
         /**
          * The class responsible for defining all actions that occur in the public-facing
          * side of the site.
@@ -116,10 +116,11 @@ class Contact_List
          * The class responsible for defining custom fields for the custom post type
          */
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-contact-list-custom-fields.php';
-        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'partials/helper-functions.php';
-        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/shortcode_contact_list.php';
-        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/shortcode_contact_list_groups.php';
-        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/shortcode_contact_list_form.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-contact-list-helpers.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-shortcode_contact_list.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-shortcode_contact_list_groups.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-shortcode_contact_list_form.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-shortcode_contact_list_search.php';
         $this->loader = new Contact_List_Loader();
     }
     
@@ -148,9 +149,9 @@ class Contact_List
     private function define_admin_hooks()
     {
         $plugin_admin = new Contact_List_Admin( $this->get_plugin_name(), $this->get_version() );
+        $plugin_settings = new ContactListSettings();
         $plugin_custom_fields = new myCustomFields();
-        $plugin_settings = new Contact_List_Settings();
-        $this->loader->add_action( 'plugins_loaded', $plugin_admin, 'update_db_check' );
+        $this->loader->add_action( 'plugins_loaded', $plugin_settings, 'update_db_check' );
         $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
         $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
         $this->loader->add_action( 'init', $plugin_admin, 'create_custom_post_type_contact' );
@@ -160,14 +161,25 @@ class Contact_List
             'create_contact_list_custom_taxonomy',
             0
         );
+        $this->loader->add_action(
+            'contact-group_edit_form_fields',
+            $plugin_admin,
+            'contact_group_taxonomy_custom_fields',
+            10,
+            2
+        );
+        $this->loader->add_action(
+            'edited_contact-group',
+            $plugin_admin,
+            'save_taxonomy_custom_fields',
+            10,
+            2
+        );
         $this->loader->add_action( 'pre_get_posts', $plugin_admin, 'contact_list_custom_orderby' );
         $this->loader->add_action( 'admin_menu', $plugin_admin, 'register_send_email_page' );
         $this->loader->add_action( 'admin_menu', $plugin_admin, 'register_mail_log_page' );
         $this->loader->add_action( 'admin_menu', $plugin_admin, 'register_import_page' );
-        $this->loader->add_action( 'admin_menu', $plugin_admin, 'add_settings_link' );
-        $this->loader->add_action( 'admin_menu', $plugin_admin, 'register_support_page' );
         $this->loader->add_action( 'wp_ajax_cl_send_mail', $plugin_admin, 'cl_send_mail' );
-        $this->loader->add_action( 'admin_menu', $plugin_admin, 'add_upgrade_link' );
         $this->loader->add_action(
             'wp_insert_post',
             $plugin_admin,
@@ -175,6 +187,9 @@ class Contact_List
             10,
             3
         );
+        $this->loader->add_action( 'admin_menu', $plugin_admin, 'add_upgrade_link' );
+        $this->loader->add_action( 'admin_menu', $plugin_settings, 'add_settings_link' );
+        $this->loader->add_action( 'admin_menu', $plugin_settings, 'register_support_page' );
         $this->loader->add_action( 'admin_menu', $plugin_settings, 'contact_list_add_admin_menu' );
         $this->loader->add_action( 'admin_init', $plugin_settings, 'contact_list_settings_init' );
         $this->loader->add_filter( 'request', $plugin_admin, 'alter_the_query' );

@@ -442,10 +442,10 @@ class myCustomFields
                         echo  '<h3>' . (( isset( $options[$options_field] ) && $options[$options_field] ? $options[$options_field] : __( $customField['title'], 'contact-list' ) )) . '</h3>' ;
                         
                         if ( $custom_fields_notify ) {
-                            echo  proFeatureMarkup() ;
+                            echo  ContactListHelpers::proFeatureMarkup() ;
                         } else {
                             if ( $additional_info_notify ) {
-                                echo  proFeatureMarkup() ;
+                                echo  ContactListHelpers::proFeatureMarkup() ;
                             }
                         }
                         

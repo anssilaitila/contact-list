@@ -15,7 +15,7 @@
  * @wordpress-plugin
  * Plugin Name:       Contact List
  * Description:       Easily display contact information on your site with this simple plugin.
- * Version:           2.7.1
+ * Version:           2.8.0
  * Author:            Anssi Laitila
  * Author URI:        https://anssilaitila.fi
  * License:           GPL-2.0+
@@ -77,7 +77,7 @@ if ( function_exists( 'cl_fs' ) ) {
     
     function cl_fs_custom_connect_message( $message, $user_first_name )
     {
-        return sprintf( __( 'Hey %1$s' ) . ',<br>' . __( 'never miss an important update -- opt-in to our security and feature updates notifications, and non-sensitive diagnostic tracking with freemius.com.', 'user-magic' ), $user_first_name );
+        return sprintf( __( 'Hey %1$s' ) . ',<br>' . __( 'never miss an important update -- opt-in to our security and feature updates notifications, and non-sensitive diagnostic tracking with freemius.com.' ), $user_first_name );
     }
     
     cl_fs()->add_filter(
@@ -96,7 +96,7 @@ if ( function_exists( 'cl_fs' ) ) {
     )
     {
         return sprintf(
-            __( 'Hey %1$s' ) . ',<br>' . __( 'Please help us improve %2$s! If you opt-in, some data about your usage of %2$s will be sent to %5$s. If you skip this, that\'s okay! %2$s will still work just fine.', 'user-magic' ),
+            __( 'Hey %1$s' ) . ',<br>' . __( 'Please help us improve %2$s! If you opt-in, some data about your usage of %2$s will be sent to %5$s. If you skip this, that\'s okay! %2$s will still work just fine.' ),
             $user_first_name,
             '<b>' . $plugin_title . '</b>',
             '<b>' . $user_login . '</b>',
@@ -117,7 +117,8 @@ if ( function_exists( 'cl_fs' ) ) {
         $order_by = $s['order_by'];
     }
     define( 'ORDER_BY', $order_by );
-    define( 'CONTACT_LIST_VERSION', '2.7.1' );
+    define( 'CONTACT_LIST_VERSION', '2.8.0' );
+    define( 'CONTACT_LIST_URI', plugin_dir_url( __FILE__ ) );
     /**
      * The code that runs during plugin activation.
      * This action is documented in includes/class-contact-list-activator.php

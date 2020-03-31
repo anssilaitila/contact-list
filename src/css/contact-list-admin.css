@@ -408,6 +408,10 @@ hr.style-one {
   font-size: 14px;
 }
 
+.contact-list-examples a {
+  font-weight: bold;
+}
+
 hr.clear {
   background: none;
   border: 0;

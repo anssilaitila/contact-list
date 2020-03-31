@@ -1,6 +1,6 @@
 <?php
 
-class Contact_List_Settings
+class ContactListSettings
 {
     public function contact_list_add_admin_menu()
     {
@@ -101,7 +101,7 @@ class Contact_List_Settings
           <b><?php 
                 echo  __( 'Note:' ) ;
                 ?></b> <?php 
-                echo  __( 'By activating this you agree that the email sending is handled by the plugin developers own server and using <a href="https://www.mailgun.com" target="_blank">Mailgun</a>. The server is a DigitalOcean Droplet hosted in the EU. This method was chosen to ensure reliable mail delivery.', 'contact-list' ) ;
+                echo  __( 'The emails are sent by the plugin developers own server and using <a href="https://www.mailgun.com" target="_blank">Mailgun</a>. The server is a DigitalOcean Droplet hosted in the EU. This method was chosen to ensure reliable mail delivery.', 'contact-list' ) ;
                 ?>
         </div>
       <?php 
@@ -273,23 +273,55 @@ class Contact_List_Settings
     
     }
     
+    public function card_border_render( $args )
+    {
+        
+        if ( $args['field_name'] ) {
+            $options = get_option( 'contact_list_settings' );
+            $card_border = '';
+            if ( isset( $options[$args['field_name']] ) ) {
+                $card_border = $options[$args['field_name']];
+            }
+            ?>    
+      <select name="contact_list_settings[<?php 
+            echo  $args['field_name'] ;
+            ?>]">
+          <option value=""><?php 
+            echo  __( 'None', 'contact-list' ) ;
+            ?></option>
+          <option value="black" <?php 
+            echo  ( $card_border == 'black' ? 'selected' : '' ) ;
+            ?>><?php 
+            echo  __( 'Black', 'contact-list' ) ;
+            ?></option>
+          <option value="gray" <?php 
+            echo  ( $card_border == 'gray' ? 'selected' : '' ) ;
+            ?>><?php 
+            echo  __( 'Gray', 'contact-list' ) ;
+            ?></option>
+      </select>
+      <?php 
+        }
+    
+    }
+    
     public function contact_list_settings_general_section_callback()
     {
-        echo  proFeatureSettingsMarkup() ;
+        echo  ContactListHelpers::proFeatureSettingsMarkup() ;
     }
     
     public function contact_list_settings_section_callback()
     {
         echo  '</div>' ;
         echo  '<div class="contact-list-settings-tab-2">' ;
-        echo  proFeatureSettingsMarkup() ;
+        echo  ContactListHelpers::proFeatureSettingsMarkup() ;
     }
     
     public function contact_list_settings_admin_form_callback()
     {
         echo  '</div>' ;
         echo  '<div class="contact-list-settings-tab-3">' ;
-        echo  proFeatureSettingsMarkup() ;
+        echo  ContactListHelpers::proFeatureSettingsMarkup() ;
     }
     
     public function contact_list_settings_public_form_callback()
@@ -343,6 +375,189 @@ class Contact_List_Settings
 
     </form>
     <?php 
+    }
+    
+    public function register_support_page()
+    {
+        add_submenu_page(
+            'edit.php?post_type=contact',
+            __( 'How to use Contact List', 'contact-list' ),
+            __( 'Help / Support', 'contact-list' ),
+            'manage_options',
+            'contact-list-support',
+            [ $this, 'register_support_page_callback' ]
+        );
+    }
+    
+    public function add_settings_link()
+    {
+        global  $submenu ;
+        $permalink = './options-general.php?page=contact-list';
+        $submenu['edit.php?post_type=contact'][] = array( __( 'Settings', 'contact-list' ), 'manage_options', $permalink );
+    }
+    
+    public function add_upgrade_link()
+    {
+        global  $submenu ;
+        $permalink = './options-general.php?page=contact-list-pricing';
+        $submenu['edit.php?post_type=contact'][] = array(
+            __( 'Upgrade&nbsp;&nbsp;➤', 'contact-list' ),
+            'manage_options',
+            $permalink,
+            '',
+            'contact-list-upgrade'
+        );
+    }
+    
+    public function register_support_page_callback()
+    {
+        ?>
+    
+    <div class="wrap">
+
+      <h1><?php 
+        echo  __( 'How to use Contact List', 'contact-list' ) ;
+        ?></h1>
+
+      <div class="contact-list-examples"><?php 
+        echo  __( 'Some examples on how you can use different views available at', 'contact-list' ) ;
+        ?> <a href="https://www.contactlistpro.com/contact-list/" target="_blank"><?php 
+        echo  __( 'contactlistpro.com', 'contact-list' ) ;
+        ?></a>.</div>
+
+      <h2><?php 
+        echo  __( 'Only contacts, no groups', 'contact-list' ) ;
+        ?></h2>
+
+      <ol>
+        <li><?php 
+        echo  __( 'Add the contacts via the All Contacts page.', 'contact-list' ) ;
+        ?></li>
+        <li><?php 
+        echo  __( 'Insert the shortcode <span class="contact-list-shortcode">[contact_list]</span> to the content editor of any page you wish the contact list to appear.', 'contact-list' ) ;
+        ?></li>
+        <li><?php 
+        echo  __( 'Additional parameters', 'contact-list' ) ;
+        ?> <span class="contact-list-pro-only-inline">Pro</span>
+            <ul class="contact-list-admin-ul">
+                <li><?php 
+        echo  __( 'Hide search form:', 'contact-list' ) ;
+        ?> <span class="contact-list-shortcode">[contact_list hide_search=1]</span></li>
+                <li><?php 
+        echo  __( 'Layout "2 cards on the same row":', 'contact-list' ) ;
+        ?> <span class="contact-list-shortcode">[contact_list layout=2-cards-on-the-same-row]</span></li>
+                <li><?php 
+        echo  __( 'Layout "3 cards on the same row":', 'contact-list' ) ;
+        ?> <span class="contact-list-shortcode">[contact_list layout=3-cards-on-the-same-row]</span></li>
+                <li><?php 
+        echo  __( 'Layout "4 cards on the same row":', 'contact-list' ) ;
+        ?> <span class="contact-list-shortcode">[contact_list layout=4-cards-on-the-same-row]</span></li>
+                <li><?php 
+        echo  __( 'Multiple parameters:', 'contact-list' ) ;
+        ?> <span class="contact-list-shortcode">[contact_list layout=2-cards-on-the-same-row hide_search=1]</span></li>
+            </ul>
+        </li>
+      </ol>
+
+      <h2><?php 
+        echo  __( 'Contacts with groups', 'contact-list' ) ;
+        ?> <span class="contact-list-pro-only-inline">Pro</span></h2>
+      <ol>
+        <li><?php 
+        echo  __( 'Add the groups via the Groups page. There may be groups under groups (hierarchial groups, 2 or more levels).', 'contact-list' ) ;
+        ?></li>
+        <li><?php 
+        echo  __( 'Add the contacts via the All Contacts page. You may select the appropriate group(s) at this point.', 'contact-list' ) ;
+        ?></li>
+        <li><?php 
+        echo  __( 'Insert the shortcode <span class="contact-list-shortcode">[contact_list_groups]</span> to the content editor of any page you wish the group list to appear. When a user selects a group, then a list of contacts belonging to that group is displayed. Also, if there are subgroups under that group, those will be displayed.', 'contact-list' ) ;
+        ?></li>
+      </ol>
+
+      <h2><?php 
+        echo  __( 'Contacts from specific group', 'contact-list' ) ;
+        ?> <span class="contact-list-pro-only-inline">Pro</span></h2>
+      <ol>
+        <li><?php 
+        echo  __( 'Insert the shortcode', 'contact-list' ) . '<span class="contact-list-shortcode">[contact_list_groups group=GROUP_SLUG]</span>' . __( 'to the content editor of any page you wish the contact list to appear. Replace GROUP_SLUG with the appropriate slug that can be found from group management.', 'contact-list' ) ;
+        ?></li>
+      </ol>
+
+      <h3><?php 
+        echo  __( 'Single contact', 'contact-list' ) ;
+        ?></h2>
+      <ol>
+        <li><?php 
+        echo  __( 'Insert the shortcode', 'contact-list' ) . '<span class="contact-list-shortcode">[contact_list contact=CONTACT_ID]</span>' . __( 'to the content editor of any page you wish the contact to appear. Replace CONTACT_ID with the appropriate id that can be found from contact management. There\'s a column "ID" in the All Contacts -page, which contains the numeric value.', 'contact-list' ) ;
+        ?></li>
+      </ol>
+
+      <h3><?php 
+        echo  __( 'Allow visitors to add new contacts', 'contact-list' ) ;
+        ?> <span class="contact-list-pro-only-inline">Pro</span></h2>
+      <ol>
+        <li><?php 
+        echo  __( 'Insert the shortcode', 'contact-list' ) . '<span class="contact-list-shortcode">[contact_list_form]</span>' . __( 'to the page you wish the form to appear on.', 'contact-list' ) ;
+        ?></li>
+        <li><?php 
+        echo  __( 'When a user submits the form, a new contact is saved to the contacts. The status of that contact is "Pending Review" and a site administrator must publish/edit/delete the contact.', 'contact-list' ) ;
+        ?></li>
+      </ol>
+
+      <h3><?php 
+        echo  __( 'Only a search form that searches from all contacts', 'contact-list' ) ;
+        ?> <span class="contact-list-pro-only-inline">Pro</span></h2>
+      <ol>
+        <li><?php 
+        echo  __( 'Insert the shortcode', 'contact-list' ) . '<span class="contact-list-shortcode">[contact_list_search]</span>' . __( 'to the page you wish the view to appear on.', 'contact-list' ) ;
+        ?></li>
+      </ol>
+
+      <hr class="style-one" />
+
+      <h2><?php 
+        echo  __( 'Send feedback', 'contact-list' ) ;
+        ?></h2>
+      <p><?php 
+        echo  __( 'Any feedback is welcome. You may contact the author at', 'contact-list' ) . ' <a href="https://anssilaitila.fi/" target="_blank">anssilaitila.fi</a> ' . __( 'or e-mail directly:', 'contact-list' ) . ' <a href="mailto:&#97;&#110;&#115;&#115;&#105;&#46;&#108;&#97;&#105;&#116;&#105;&#108;&#97;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;"> &#97;&#110;&#115;&#115;&#105;&#46;&#108;&#97;&#105;&#116;&#105;&#108;&#97;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a>' ;
+        ?></p>
+
+      <h2><?php 
+        echo  __( 'Give a rating for the plugin', 'contact-list' ) ;
+        ?></h2>
+      <p><?php 
+        echo  __( "Whether it's 1 star or 5 stars, I'm grateful for your rating. You may rate the plugin", 'contact-list' ) ;
+        ?> <a href="https://wordpress.org/support/plugin/contact-list/reviews/" target="_blank"><?php 
+        echo  __( 'here', 'contact-list' ) ;
+        ?></a>.</p>
+
+      <h2><?php 
+        echo  __( 'Send direct feedback to the author', 'contact-list' ) ;
+        ?></h2>
+      <p><?php 
+        echo  __( 'Fill out the form below to send feedback or questions to the author. Only the information provided below is sent. Thanks!', 'contact-list' ) ;
+        ?></p>
+
+      <div class="contact-list-feedback-form-container">
+        <iframe src='https://anssilaitila.fi/form-builder/wp-contact-list/' id='FormBuilderViewport_wp-contact-list' class='FormBuilderViewport' data-form='wp-contact-list' title='wp-contact-list' frameborder='0' allowTransparency='true' style='width: 100%; height: 560px;'></iframe>
+      </div>
+
+    </div>
+    <?php 
+    }
+    
+    public function update_db_check()
+    {
+        $installed_version = get_site_option( 'contact_list_version' );
+        
+        if ( $installed_version != CONTACT_LIST_VERSION ) {
+            global  $wpdb ;
+            $charset_collate = $wpdb->get_charset_collate();
+            $table_name = $wpdb->prefix . 'cl_sent_mail_log';
+            $wpdb->query( "CREATE TABLE IF NOT EXISTS " . $table_name . " (\n    \t  id              BIGINT(20) NOT NULL auto_increment,\n    \t  msg_id          VARCHAR(255) NOT NULL,\n    \t  sender_email    VARCHAR(255) NOT NULL,\n    \t  sender_name     VARCHAR(255) NOT NULL,\n    \t  recipient_email VARCHAR(255) NOT NULL,\n    \t  reply_to        VARCHAR(255) NOT NULL,\n    \t  msg_type        VARCHAR(255) NOT NULL,\n    \t  subject         VARCHAR(255) NOT NULL,\n    \t  response        VARCHAR(255) NOT NULL,\n    \t  mail_cnt        MEDIUMINT NOT NULL,\n    \t  report          TEXT NOT NULL,\n    \t  created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n    \t  PRIMARY KEY (id)\n    \t) " . $charset_collate . ";" );
+            update_option( 'contact_list_version', CONTACT_LIST_VERSION );
+        }
+    
     }
 
 }
