@@ -163,7 +163,7 @@ class ContactListGroups
                     $t_id = $g->term_id;
                     $custom_fields = get_option( "taxonomy_term_{$t_id}" );
                     
-                    if ( !$custom_fields['hide_group'] ) {
+                    if ( !isset( $custom_fields['hide_group'] ) ) {
                         $html .= '<li>';
                         $html .= '<div class="contact-list-searchable-elements">';
                         $html .= '<a href="?g=' . $g->slug . '">' . $g->name . '</a>';

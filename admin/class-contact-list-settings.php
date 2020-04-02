@@ -94,21 +94,6 @@ class ContactListSettings
             ?>>
       
       <?php 
-            
-            if ( $args['field_name'] == 'send_email' ) {
-                ?>
-        <div class="email-info">
-          <b><?php 
-                echo  __( 'Note:' ) ;
-                ?></b> <?php 
-                echo  __( 'The emails are sent by the plugin developers own server and using <a href="https://www.mailgun.com" target="_blank">Mailgun</a>. The server is a DigitalOcean Droplet hosted in the EU. This method was chosen to ensure reliable mail delivery.', 'contact-list' ) ;
-                ?>
-        </div>
-      <?php 
-            }
-            
-            ?>
-      <?php 
         }
     
     }

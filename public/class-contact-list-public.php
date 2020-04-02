@@ -71,6 +71,7 @@ class Contact_List_Public {
    */
   public function enqueue_scripts() {
     wp_enqueue_script($this->plugin_name, CONTACT_LIST_URI . 'dist/js/main.js', array('jquery'), $this->version, false);
+    wp_localize_script($this->plugin_name, 'my_ajax_object', array('ajax_url' => admin_url('admin-ajax.php')));
   }
 
   /**
@@ -130,12 +131,55 @@ class Contact_List_Public {
     return $html;
   }
 
-  public static function contact_list_search() {
+  public static function contact_list_search($atts = [], $content = null, $tag = '') {
 
     $html = '';
     $html .= ShortcodeContactListSearch::view($atts);
 
     return $html;
+  }
+
+  public function cl_send_mail_public() {
+
+    $subject = isset($_POST['subject']) ? $_POST['subject'] : '';
+    $sender_name = isset($_POST['sender_name']) ? $_POST['sender_name'] : '';
+    $sender_email = isset($_POST['sender_email']) ? $_POST['sender_email'] : '';
+    $mail_cnt = isset($_POST['mail_cnt']) ? $_POST['mail_cnt'] : '';
+
+    $reply_to = isset($_POST['reply_to']) ? $_POST['reply_to'] : '';
+
+    $body = '';
+
+    if ($sender_name) {
+      $body .= "Sent by: " . $sender_name;
+    }
+    
+    if ($sender_email) {
+      $body .= " <" . $sender_email . ">";
+    }
+
+    if ($sender_name || $sender_email) {
+      $body .= "\n\n";
+    }
+
+    $body .= isset($_POST['body']) ? $_POST['body'] : '';
+    $body .= "\n\n-- \nThis mail was sent using Contact List Pro";
+    
+    $recipient_emails = isset($_POST['recipient_emails']) ? $_POST['recipient_emails'] : '';
+
+    $resp = wp_mail($recipient_emails, $subject, $body);
+    
+    wp_die();
+  }
+
+  public function my_ajax_without_file() { ?>
+  
+      <script type="text/javascript" >
+      jQuery(document).ready(function($) {
+        ajaxurl = "<?= admin_url('admin-ajax.php') ?>"; // get ajaxurl
+      });
+      </script> 
+      <?php
   }
 
 }

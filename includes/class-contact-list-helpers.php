@@ -125,7 +125,7 @@ class ContactListHelpers
                 foreach ( $terms as $term ) {
                     $t_id = $term->term_id;
                     $custom_fields = get_option( "taxonomy_term_{$t_id}" );
-                    if ( !$custom_fields['hide_group'] ) {
+                    if ( !isset( $custom_fields['hide_group'] ) ) {
                         $html .= '<span>' . $term->name . '</span>';
                     }
                 }

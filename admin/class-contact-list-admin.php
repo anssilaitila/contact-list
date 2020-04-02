@@ -390,60 +390,10 @@ class Contact_List_Admin
         echo  __( 'Send email to contacts', 'contact-list' ) ;
         ?></h1>
 
-          <div class="email-info">
-            <b><?php 
-        echo  __( 'Note:' ) ;
-        ?></b> <?php 
-        echo  __( 'The emails are sent by the plugin developers own server and using <a href="https://www.mailgun.com" target="_blank">Mailgun</a>. The server is a DigitalOcean Droplet hosted in the EU. This method was chosen to ensure reliable mail delivery.', 'contact-list' ) ;
-        ?>
-          </div>
-
-          <div class="sender-info"><?php 
-        echo  __( 'The sender email of the message is' ) ;
-        ?> <b>no-reply@contactlistpro.com</b>.</div>
-    
-          <label>
-            <span><?php 
-        echo  __( 'Subject', 'contact-list' ) ;
-        ?></span>
-            <input name="subject" value="" />
-          </label>
-
-          <?php 
-        $user_id = get_current_user_id();
-        ?>
-          <?php 
-        $user = get_userdata( $user_id );
-        ?>
-          
-          <label>
-            <span><?php 
-        echo  __( 'Sender name', 'contact-list' ) ;
-        ?></span>
-            <input name="sender_name" value="<?php 
-        echo  $user->first_name ;
-        ?> <?php 
-        echo  $user->last_name ;
-        ?>" />
-          </label>
-
-          <label>
-            <span><?php 
-        echo  __( 'Reply-to', 'contact-list' ) ;
-        ?></span>
-            <input name="reply_to" value="<?php 
-        echo  $user->user_email ;
-        ?>" />
-          </label>
-    
-          <label>
-            <span><?php 
-        echo  __( 'Message', 'contact-list' ) ;
-        ?></span>
-            <textarea name="body"></textarea>
-          </label>
-
           <div>
+            
+              <br />
+            
               <span class="restrict-recipients-title"><?php 
         echo  __( 'Restrict recipients to specific group', 'contact-list' ) ;
         ?></span>
@@ -490,6 +440,43 @@ class Contact_List_Admin
           <input name="recipient_emails" type="hidden" value="<?php 
         echo  implode( ",", $recipient_emails ) ;
         ?>" />
+
+          <hr class="style-one" />
+
+          <label>
+            <span><?php 
+        echo  __( 'Subject', 'contact-list' ) ;
+        ?></span>
+            <input name="subject" value="" />
+          </label>
+
+          <?php 
+        $user_id = get_current_user_id();
+        ?>
+          <?php 
+        $user = get_userdata( $user_id );
+        ?>
+          
+          <label>
+            <span><?php 
+        echo  __( 'Sender name', 'contact-list' ) ;
+        ?></span>
+            <input name="sender_name" value="" />
+          </label>
+
+          <label>
+            <span><?php 
+        echo  __( 'Sender email', 'contact-list' ) ;
+        ?></span>
+            <input name="sender_email" value="" />
+          </label>
+    
+          <label>
+            <span><?php 
+        echo  __( 'Message', 'contact-list' ) ;
+        ?></span>
+            <textarea name="body"></textarea>
+          </label>
 
           <?php 
         ?>
@@ -614,7 +601,7 @@ class Contact_List_Admin
               </table>
               
               <h3><?php 
-                echo  __( 'Mail was sent to the following recipients:', 'contact-list' ) ;
+                echo  __( 'Mail report:', 'contact-list' ) ;
                 ?></h3>
               
               <div class="contact-list-mail-log-recipients-container">
@@ -655,7 +642,7 @@ class Contact_List_Admin
             echo  __( 'Subject', 'contact-list' ) ;
             ?></th>
               <th><?php 
-            echo  __( 'Messages sent', 'contact-list' ) ;
+            echo  __( 'Recipients', 'contact-list' ) ;
             ?></th>
               <th><?php 
             echo  __( 'Report', 'contact-list' ) ;
@@ -755,15 +742,40 @@ class Contact_List_Admin
     
     public function cl_send_mail()
     {
-        global  $wpdb ;
-        $wpdb->insert( 'wp_cl_sent_mail_log', array(
-            'subject'      => $_POST['subject'],
-            'sender_name'  => $_POST['sender_name'],
-            'reply_to'     => $_POST['reply_to'],
-            'report'       => $_POST['report'],
-            'sender_email' => $_POST['sender_email'],
-            'mail_cnt'     => $_POST['mail_cnt'],
-        ) );
+        $subject = ( isset( $_POST['subject'] ) ? $_POST['subject'] : '' );
+        $sender_name = ( isset( $_POST['sender_name'] ) ? $_POST['sender_name'] : '' );
+        $sender_email = ( isset( $_POST['sender_email'] ) ? $_POST['sender_email'] : '' );
+        $mail_cnt = ( isset( $_POST['mail_cnt'] ) ? $_POST['mail_cnt'] : '' );
+        $reply_to = ( isset( $_POST['reply_to'] ) ? $_POST['reply_to'] : '' );
+        $body = ( isset( $_POST['body'] ) ? $_POST['body'] : '' );
+        $body .= "<br /><br />-- <br />This mail was sent using Contact List Pro";
+        $headers = [ 'Content-Type: text/html; charset=UTF-8' ];
+        if ( $sender_name && $sender_email && is_email( $sender_email ) ) {
+            $headers[] .= 'From: ' . $sender_name . ' <' . $sender_email . '>';
+        }
+        $recipient_emails = ( isset( $_POST['recipient_emails'] ) ? $_POST['recipient_emails'] : '' );
+        $resp = wp_mail(
+            $recipient_emails,
+            $subject,
+            $body,
+            $headers
+        );
+        
+        if ( $resp ) {
+            global  $wpdb ;
+            $report = 'Mail successfully processed using <strong>wp_mail</strong>.<br /><br /><strong>Full list of recipient(s):</strong><br />' . str_replace( ',', ', ', $recipient_emails );
+            $all_emails = explode( ',', $recipient_emails );
+            $mail_cnt = sizeof( $all_emails );
+            $wpdb->insert( 'wp_cl_sent_mail_log', array(
+                'subject'      => $subject,
+                'sender_name'  => $sender_name,
+                'reply_to'     => $reply_to,
+                'report'       => $report,
+                'sender_email' => $sender_email,
+                'mail_cnt'     => $mail_cnt,
+            ) );
+        }
+        
         wp_die();
     }
     
@@ -874,38 +886,38 @@ class Contact_List_Admin
         $post_title = get_the_title( $post_id );
         $s = get_option( 'contact_list_settings' );
         
-        if ( isset( $s['send_email'] ) && isset( $s['recipient_email'] ) && is_email( $s['recipient_email'] ) && $post->post_type == 'contact' && $post->post_status == 'pending' ) {
-            $url = 'https://mail.anssilaitila.fi';
+        if ( isset( $s['send_email'] ) && isset( $s['recipient_email'] ) && is_email( $s['recipient_email'] ) && $post->post_type == 'contact' && ($post->post_status == 'pending' || $post->post_status == 'draft') ) {
             $contact_list_admin_url = get_admin_url() . 'edit.php?post_type=contact';
             $data = array(
                 'post_title'      => $post_title,
                 'recipient_email' => $s['recipient_email'],
                 'url'             => $contact_list_admin_url,
             );
-            $options = array(
-                'http' => array(
-                'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-                'method'  => 'POST',
-                'content' => http_build_query( $data ),
-            ),
+            $headers = array( 'Content-Type: text/html; charset=UTF-8' );
+            $subject = 'New contact: ' . $post_title;
+            $body_html = '';
+            $body_html .= '<html><head><title></title></head><body>';
+            $body_html .= '<h3 style="color: #000;">New contact was added: ' . $post_title . '</h3>';
+            $body_html .= '<p style="color: #000;">See the full details here: ' . $contact_list_admin_url . '</p>';
+            $body_html .= '<p style="color: #bbb;">-- <br />This email was sent by Contact List Pro</p>';
+            $body_html .= '</body></html>';
+            $resp = wp_mail(
+                $s['recipient_email'],
+                $subject,
+                $body_html,
+                $headers
             );
-            $context = stream_context_create( $options );
-            $result = file_get_contents( $url, false, $context );
-            $data_final = array(
-                'post_title'      => $post_title,
-                'recipient_email' => $s['recipient_email'],
-                'url'             => $contact_list_admin_url,
-                's'               => $result,
-            );
-            $options_final = array(
-                'http' => array(
-                'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-                'method'  => 'POST',
-                'content' => http_build_query( $data_final ),
-            ),
-            );
-            $context_final = stream_context_create( $options_final );
-            $result_final = file_get_contents( $url, false, $context_final );
+            
+            if ( $resp ) {
+                global  $wpdb ;
+                $report = 'Mail successfully processed using <strong>wp_mail</strong>.<br /><br /><strong>Full list of recipient(s):</strong><br />' . $s['recipient_email'];
+                $wpdb->insert( 'wp_cl_sent_mail_log', array(
+                    'subject'  => $subject,
+                    'report'   => $report,
+                    'mail_cnt' => 1,
+                ) );
+            }
+        
         }
     
     }

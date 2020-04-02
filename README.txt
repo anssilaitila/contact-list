@@ -1,35 +1,30 @@
 === Contact List for WordPress ===
 Contributors: anssilaitila, freemius
-Tags: contact list, staff directory, staff, directory
+Tags: contact list, staff directory, staff, directory, crm
 Requires at least: 4.0.0
 Tested up to: 5.4
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Create staff directory or any contact list for your site. Import data easily.
+Create staff directory or any contact list for your site. Import existing data easily.
 
 == Description ==
-= The Best WordPress staff directory plugin on the market =
-Display a list of any contact data including name, email, phone and social media links. Send email directly to contacts using a built-in form (with spam-prevention).
 
-Also support for images, custom fields and WYSIWYG editor.
+Using Contact List you can list any contact data including i.e. name, email, phone and social media links. Contacts may also have necessary custom fields.
+
+Send email directly to contacts using a built-in form on the front-end (with spam-prevention).
 
 **14 days trial available for Pro version, no credit card required.**
 
-= See live demos at [contactlistpro.com](https://www.contactlistpro.com): =
-* [Contact List](https://www.contactlistpro.com/contact-list/)
-* [Contacts with Groups](https://www.contactlistpro.com/contacts-with-groups/)
-* [Contact List Form](https://www.contactlistpro.com/submit-contact/)
+See live demos at [contactlistpro.com](https://www.contactlistpro.com/contact-list/).
 
 = Some use cases for this plugin: =
 * Staff directory
 * Contact directory
 * List of any kind of contacts
 * Phone book
-* Email a large group of people
-* Send newsletter to a group of people
-* Inform multiple recipients by email
+* Send newsletter or any email to a group of people
 
 = Fields for each contact: =
 * First name
@@ -45,12 +40,12 @@ Also support for images, custom fields and WYSIWYG editor.
 * WYSIWYG editor
 * Category
 * Photo / image
+* Multiple custom fields
 
 = Features in Free version: =
 * Obfuscated emails to prevent spam
 * Simple and clean user interface
 * No options to set, ready to use right away
-* Customizable layout
 * Contacts may belong to groups
 
 = Features in Pro version: =
@@ -63,7 +58,7 @@ Also support for images, custom fields and WYSIWYG editor.
 * Send email to all contacts or contacts in a specific group
 * Import contacts from CSV file
 * Customize fields in any way: change titles and hide specific fields from public form or admin area
-* Request contacts to update their contact info
+* Request contacts to update their existing contact info simply clicking a button
 * More features on the way based on user feedback
 
 Contact author [here](https://anssilaitila.fi/).
@@ -82,6 +77,10 @@ Contact author [here](https://anssilaitila.fi/).
 5. Plugin settings
 
 == Changelog ==
+
+= 2.8.1 =
+* Mail delivery is now handled locally by WordPress
+* Bug fixes
 
 = 2.8.0 =
 * New feature (Pro): New shortcode [contact_list_search], see Help / Support -page
@@ -141,99 +140,6 @@ Contact author [here](https://anssilaitila.fi/).
 
 = 2.5.0 =
 * New licensing model
-
-= 2.4.0 =
-* Contacts can now be sorted by custom order
-* Image field added for contacts
-* User submitted contacts can now be automatically published (see options)
-
-= 2.3.11 =
-* Bug fix
-* New option: "Show contacts from subgroups in the main group view". If this is checked, all contacts belonging to any subgroups are listed below the main group contacts. If not, there are links to any subgroups under the main group title.
-
-= 2.3.10 =
-* Bug fix
-* Some new options
-* Custom fields added to CSV import
-
-= 2.3.9 =
-* New feature: CSV import
-
-= 2.3.8 =
-* Bug fix
-
-= 2.3.7 =
-* Bug fixes
-* 4 custom fields added
-
-= 2.3.6 =
-* "Back"-link made fully customizable
-* Finnish translations added
-
-= 2.3.5 =
-* More texts made translatable
-* Some more options
-
-= 2.3.4 =
-* Plugin made translatable
-
-= 2.3.3 =
-* New feature: Send email to contacts
-
-= 2.3.2 =
-* New setting: you may now define whether the contacts are sorted by last name or first name
-
-= 2.3.1 =
-* New feature: display group checkboxes on the public form (may be activated in the settings)
-
-= 2.3.0 =
-* New feature: email notify when a new contact is added (may be activated in the settings)
-
-= 2.2.1 =
-* Updated Help / Support page
-* Minor bug fixes
-
-= 2.2.0 =
-* New shortcodes for displaying contacts from specific group and for a single contact (see Help / Support page)
-
-= 2.1.1 =
-* Missing fields added to settings page: email and social media urls
-* Groups list view modified so that there's not limitation regarding the depth of group/subgroup hierarchy anymore
-
-= 2.1.0 =
-* Settings page added: You may now define alternative field titles and texts to be used throughout the plugin
-* Groups list view made more simple: There is now only one search form, targeting all contacts in every group
-
-= 2.0.1 =
-* Fixes relating to the new shortcode views
-
-= 2.0.0 =
-* New feature: Contacts may now optionally belong to group(s)
-* New feature: Possibility to embed a form to any page to allow visitors to add new contacts (with spam prevention)
-* New shortcodes for embeddable form and groups list (see Help / Support -page)
-
-= 1.1.0 =
-* New field for contacts added: Additional information (wysiwyg-editor)
-
-= 1.0.6 =
-* Added feedback form to Help / Support page
-
-= 1.0.5 =
-* Public contact list is now sorted by last name (and if necessary by first name) + admin view is sortable the same way (last name column is clickable).
-
-= 1.0.4 =
-* Support page updated
-
-= 1.0.3 =
-* Added 4 fields for contact address
-
-= 1.0.2 =
-* Bug fixes
-* Housekeeping
-* Testing on Gutenberg
-
-= 1.0.1 =
-* Social media icons added
 
 = 1.0.0 =
 * Initial release / 2018-07-13
