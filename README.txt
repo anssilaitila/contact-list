@@ -78,6 +78,9 @@ Contact author [here](https://anssilaitila.fi/).
 
 == Changelog ==
 
+= 2.8.2 =
+* Bug fix
+
 = 2.8.1 =
 * Mail delivery is now handled locally by WordPress
 * Bug fixes

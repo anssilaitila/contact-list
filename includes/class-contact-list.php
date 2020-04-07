@@ -187,9 +187,9 @@ class Contact_List
             10,
             3
         );
-        $this->loader->add_action( 'admin_menu', $plugin_admin, 'add_upgrade_link' );
         $this->loader->add_action( 'admin_menu', $plugin_settings, 'add_settings_link' );
         $this->loader->add_action( 'admin_menu', $plugin_settings, 'register_support_page' );
+        $this->loader->add_action( 'admin_menu', $plugin_settings, 'add_upgrade_link' );
         $this->loader->add_action( 'admin_menu', $plugin_settings, 'contact_list_add_admin_menu' );
         $this->loader->add_action( 'admin_init', $plugin_settings, 'contact_list_settings_init' );
         $this->loader->add_filter( 'request', $plugin_admin, 'alter_the_query' );
