@@ -404,11 +404,16 @@ class ContactListSettings
         echo  __( 'How to use Contact List', 'contact-list' ) ;
         ?></h1>
 
-      <div class="contact-list-examples"><?php 
+      <div class="contact-list-examples">
+          <p><?php 
         echo  __( 'Some examples on how you can use different views available at', 'contact-list' ) ;
         ?> <a href="https://www.contactlistpro.com/contact-list/" target="_blank"><?php 
         echo  __( 'contactlistpro.com', 'contact-list' ) ;
-        ?></a>.</div>
+        ?></a>.</p>
+          <p><?php 
+        echo  __( 'Any feedback is welcome. You may contact the author at', 'contact-list' ) . ' <a href="https://anssilaitila.fi/" target="_blank">anssilaitila.fi</a> ' . __( 'or by email:', 'contact-list' ) . ' <a href="mailto:&#97;&#110;&#115;&#115;&#105;&#46;&#108;&#97;&#105;&#116;&#105;&#108;&#97;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#97;&#110;&#115;&#115;&#105;&#46;&#108;&#97;&#105;&#116;&#105;&#108;&#97;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a>' ;
+        ?></p>
+      </div>
 
       <h2><?php 
         echo  __( 'Only contacts, no groups', 'contact-list' ) ;
@@ -501,13 +506,6 @@ class ContactListSettings
       <hr class="style-one" />
 
       <h2><?php 
-        echo  __( 'Send feedback', 'contact-list' ) ;
-        ?></h2>
-      <p><?php 
-        echo  __( 'Any feedback is welcome. You may contact the author at', 'contact-list' ) . ' <a href="https://anssilaitila.fi/" target="_blank">anssilaitila.fi</a> ' . __( 'or e-mail directly:', 'contact-list' ) . ' <a href="mailto:&#97;&#110;&#115;&#115;&#105;&#46;&#108;&#97;&#105;&#116;&#105;&#108;&#97;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;"> &#97;&#110;&#115;&#115;&#105;&#46;&#108;&#97;&#105;&#116;&#105;&#108;&#97;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a>' ;
-        ?></p>
-
-      <h2><?php 
         echo  __( 'Give a rating for the plugin', 'contact-list' ) ;
         ?></h2>
       <p><?php 
@@ -515,17 +513,6 @@ class ContactListSettings
         ?> <a href="https://wordpress.org/support/plugin/contact-list/reviews/" target="_blank"><?php 
         echo  __( 'here', 'contact-list' ) ;
         ?></a>.</p>
-
-      <h2><?php 
-        echo  __( 'Send direct feedback to the author', 'contact-list' ) ;
-        ?></h2>
-      <p><?php 
-        echo  __( 'Fill out the form below to send feedback or questions to the author. Only the information provided below is sent. Thanks!', 'contact-list' ) ;
-        ?></p>
-
-      <div class="contact-list-feedback-form-container">
-        <iframe src='https://anssilaitila.fi/form-builder/wp-contact-list/' id='FormBuilderViewport_wp-contact-list' class='FormBuilderViewport' data-form='wp-contact-list' title='wp-contact-list' frameborder='0' allowTransparency='true' style='width: 100%; height: 560px;'></iframe>
-      </div>
 
     </div>
     <?php 

@@ -60,7 +60,6 @@ class Contact_List_Public {
    * @since    1.0.0
    */
   public function enqueue_styles() {
-//    wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'contact-list-public.css', array(), $this->version, 'all');
     wp_enqueue_style($this->plugin_name, CONTACT_LIST_URI . 'dist/css/main.css', array(), $this->version, 'all');
   }
 
@@ -71,7 +70,6 @@ class Contact_List_Public {
    */
   public function enqueue_scripts() {
     wp_enqueue_script($this->plugin_name, CONTACT_LIST_URI . 'dist/js/main.js', array('jquery'), $this->version, false);
-    wp_localize_script($this->plugin_name, 'my_ajax_object', array('ajax_url' => admin_url('admin-ajax.php')));
   }
 
   /**

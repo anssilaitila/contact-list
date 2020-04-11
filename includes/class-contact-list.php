@@ -215,6 +215,7 @@ class Contact_List
         $plugin_public = new Contact_List_Public( $this->get_plugin_name(), $this->get_version() );
         $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
         $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+        $this->loader->add_action( 'wp_ajax_nopriv_cl_send_mail_public', $plugin_public, 'cl_send_mail_public' );
         $this->loader->add_action( 'wp_ajax_cl_send_mail_public', $plugin_public, 'cl_send_mail_public' );
         $this->loader->add_action( 'wp_footer', $plugin_public, 'my_ajax_without_file' );
         $this->loader->add_action( 'init', $plugin_public, 'register_shortcodes' );

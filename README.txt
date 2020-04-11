@@ -78,6 +78,9 @@ Contact author [here](https://anssilaitila.fi/).
 
 == Changelog ==
 
+= 2.8.3 =
+* Sending message to a single contact fixed
+
 = 2.8.2 =
 * Bug fix
 
