@@ -15,7 +15,7 @@
  * @wordpress-plugin
  * Plugin Name:       Contact List
  * Description:       Easily display contact information on your site with this simple plugin.
- * Version:           2.8.3
+ * Version:           2.8.4
  * Author:            Anssi Laitila
  * Author URI:        https://anssilaitila.fi
  * License:           GPL-2.0+
@@ -117,7 +117,7 @@ if ( function_exists( 'cl_fs' ) ) {
         $order_by = $s['order_by'];
     }
     define( 'ORDER_BY', $order_by );
-    define( 'CONTACT_LIST_VERSION', '2.8.3' );
+    define( 'CONTACT_LIST_VERSION', '2.8.4' );
     define( 'CONTACT_LIST_URI', plugin_dir_url( __FILE__ ) );
     /**
      * The code that runs during plugin activation.

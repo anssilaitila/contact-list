@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Contact List plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Contact List 2.7.7\n"
+"Project-Id-Version: Contact List 2.8.3\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/contact-list-pro\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-02-22T20:02:49+02:00\n"
+"POT-Creation-Date: 2020-04-12T22:17:08+03:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.1.0\n"
 "X-Domain: contact-list\n"
@@ -44,47 +44,69 @@ msgstr ""
 msgid "More settings available in the Pro version."
 msgstr ""
 
-#: includes/class-contact-list-helpers.php:42
-#: includes/class-contact-list-helpers.php:226
+#: includes/class-contact-list-helpers.php:57
+#: includes/class-contact-list-helpers.php:235
 msgid "Send message"
 msgstr ""
 
-#: includes/class-contact-list-helpers.php:46
-#: admin/class-contact-list-admin.php:414
-#: admin/class-contact-list-admin.php:548
-#: admin/class-contact-list-admin.php:585
+#: includes/class-contact-list-helpers.php:61
+#: admin/class-contact-list-admin.php:444
+#: admin/class-contact-list-admin.php:544
+#: admin/class-contact-list-admin.php:581
 msgid "Sender name"
 msgstr ""
 
-#: includes/class-contact-list-helpers.php:49
-#: admin/class-contact-list-admin.php:544
-#: admin/class-contact-list-admin.php:584
+#: includes/class-contact-list-helpers.php:64
+#: admin/class-contact-list-admin.php:449
+#: admin/class-contact-list-admin.php:540
+#: admin/class-contact-list-admin.php:580
 msgid "Sender email"
 msgstr ""
 
-#: includes/class-contact-list-helpers.php:52
+#: includes/class-contact-list-helpers.php:67
 msgid "Recipient"
 msgstr ""
 
-#: includes/class-contact-list-helpers.php:55
-#: admin/class-contact-list-admin.php:424
+#: includes/class-contact-list-helpers.php:70
+#: admin/class-contact-list-admin.php:454
 msgid "Message"
 msgstr ""
 
-#: includes/class-contact-list-helpers.php:78
-#: admin/class-contact-list-admin.php:466
+#: includes/class-contact-list-helpers.php:81
+msgid "Please write message first."
+msgstr ""
+
+#: includes/class-contact-list-helpers.php:82
+msgid "Message sent to"
+msgstr ""
+
+#: includes/class-contact-list-helpers.php:83
+msgid "Please wait..."
+msgstr ""
+
+#: includes/class-contact-list-helpers.php:84
+msgid "New message from"
+msgstr ""
+
+#: includes/class-contact-list-helpers.php:85
+msgid "sent by"
+msgstr ""
+
+#: includes/class-contact-list-helpers.php:87
+#: admin/class-contact-list-admin.php:462
 msgid "Send"
 msgstr ""
 
-#: includes/class-contact-list-helpers.php:111
-#: includes/class-contact-list-helpers.php:163
+#: includes/class-contact-list-helpers.php:120
+#: includes/class-contact-list-helpers.php:172
 #: admin/class-contact-list-admin.php:85
+#: public/class-shortcode_contact_list_search.php:82
 #: public/class-shortcode_contact_list_groups.php:54
 msgid "No contacts found."
 msgstr ""
 
-#: includes/class-contact-list-helpers.php:239
-#: includes/class-contact-list-helpers.php:591
+#: includes/class-contact-list-helpers.php:248
+#: includes/class-contact-list-helpers.php:600
 #: admin/class-contact-list-settings.php:273
 #: admin/class-contact-list-settings.php:277
 #: admin/class-contact-list-settings.php:282
@@ -92,8 +114,8 @@ msgstr ""
 msgid "Address"
 msgstr ""
 
-#: includes/class-contact-list-helpers.php:286
-#: includes/class-contact-list-helpers.php:644
+#: includes/class-contact-list-helpers.php:295
+#: includes/class-contact-list-helpers.php:653
 #: admin/class-contact-list-settings.php:429
 #: admin/class-contact-list-settings.php:433
 #: admin/class-contact-list-settings.php:438
@@ -102,65 +124,65 @@ msgstr ""
 msgid "Additional information"
 msgstr ""
 
-#: includes/class-contact-list-helpers.php:507
+#: includes/class-contact-list-helpers.php:516
 msgid "Thank you!"
 msgstr ""
 
-#: includes/class-contact-list-helpers.php:510
+#: includes/class-contact-list-helpers.php:519
 #: public/class-shortcode_contact_list_form.php:59
 msgid "Error processing data."
 msgstr ""
 
-#: includes/class-contact-list-helpers.php:530
+#: includes/class-contact-list-helpers.php:539
 msgid "Update contact info"
 msgstr ""
 
-#: includes/class-contact-list-helpers.php:536
-#: admin/class-contact-list-admin.php:114
-#: admin/class-contact-list-admin.php:791
+#: includes/class-contact-list-helpers.php:545
+#: admin/class-contact-list-admin.php:111
+#: admin/class-contact-list-admin.php:816
 #: admin/class-contact-list-settings.php:201
 #: admin/class-contact-list-settings.php:205
-#: admin/class-contact-list-settings.php:735
+#: admin/class-contact-list-settings.php:730
 #: public/class-shortcode_contact_list_form.php:75
 msgid "First name"
 msgstr ""
 
-#: includes/class-contact-list-helpers.php:542
-#: admin/class-contact-list-admin.php:117
-#: admin/class-contact-list-admin.php:792
+#: includes/class-contact-list-helpers.php:551
+#: admin/class-contact-list-admin.php:114
+#: admin/class-contact-list-admin.php:817
 #: admin/class-contact-list-settings.php:210
 #: admin/class-contact-list-settings.php:214
-#: admin/class-contact-list-settings.php:734
+#: admin/class-contact-list-settings.php:729
 #: public/class-shortcode_contact_list_form.php:81
 msgid "Last name"
 msgstr ""
 
-#: includes/class-contact-list-helpers.php:544
+#: includes/class-contact-list-helpers.php:553
 #: public/class-shortcode_contact_list_form.php:83
 msgid "Please insert at least last name first."
 msgstr ""
 
-#: includes/class-contact-list-helpers.php:549
-#: admin/class-contact-list-admin.php:121
-#: admin/class-contact-list-admin.php:793
+#: includes/class-contact-list-helpers.php:558
+#: admin/class-contact-list-admin.php:118
+#: admin/class-contact-list-admin.php:818
 #: admin/class-contact-list-settings.php:219
 #: admin/class-contact-list-settings.php:223
 #: public/class-shortcode_contact_list_form.php:88
 msgid "Job title"
 msgstr ""
 
-#: includes/class-contact-list-helpers.php:563
-#: admin/class-contact-list-admin.php:129
-#: admin/class-contact-list-admin.php:795
+#: includes/class-contact-list-helpers.php:572
+#: admin/class-contact-list-admin.php:126
+#: admin/class-contact-list-admin.php:820
 #: admin/class-contact-list-settings.php:237
 #: admin/class-contact-list-settings.php:241
 #: public/class-shortcode_contact_list_form.php:102
 msgid "Phone"
 msgstr ""
 
-#: includes/class-contact-list-helpers.php:570
-#: admin/class-contact-list-admin.php:133
-#: admin/class-contact-list-admin.php:796
+#: includes/class-contact-list-helpers.php:579
+#: admin/class-contact-list-admin.php:130
+#: admin/class-contact-list-admin.php:821
 #: admin/class-contact-list-settings.php:246
 #: admin/class-contact-list-settings.php:250
 #: admin/class-contact-list-settings.php:512
@@ -169,9 +191,9 @@ msgstr ""
 msgid "LinkedIn URL"
 msgstr ""
 
-#: includes/class-contact-list-helpers.php:577
-#: admin/class-contact-list-admin.php:137
-#: admin/class-contact-list-admin.php:797
+#: includes/class-contact-list-helpers.php:586
+#: admin/class-contact-list-admin.php:134
+#: admin/class-contact-list-admin.php:822
 #: admin/class-contact-list-settings.php:255
 #: admin/class-contact-list-settings.php:259
 #: admin/class-contact-list-settings.php:521
@@ -180,9 +202,9 @@ msgstr ""
 msgid "Twitter URL"
 msgstr ""
 
-#: includes/class-contact-list-helpers.php:584
-#: admin/class-contact-list-admin.php:141
-#: admin/class-contact-list-admin.php:798
+#: includes/class-contact-list-helpers.php:593
+#: admin/class-contact-list-admin.php:138
+#: admin/class-contact-list-admin.php:823
 #: admin/class-contact-list-settings.php:264
 #: admin/class-contact-list-settings.php:268
 #: admin/class-contact-list-settings.php:530
@@ -191,44 +213,44 @@ msgstr ""
 msgid "Facebook URL"
 msgstr ""
 
-#: includes/class-contact-list-helpers.php:594
-#: admin/class-contact-list-admin.php:799
+#: includes/class-contact-list-helpers.php:603
+#: admin/class-contact-list-admin.php:824
 #: admin/class-contact-list-settings.php:291
 #: admin/class-contact-list-settings.php:295
 #: public/class-shortcode_contact_list_form.php:133
 msgid "Address line 1"
 msgstr ""
 
-#: includes/class-contact-list-helpers.php:598
-#: admin/class-contact-list-admin.php:800
+#: includes/class-contact-list-helpers.php:607
+#: admin/class-contact-list-admin.php:825
 #: admin/class-contact-list-settings.php:300
 #: admin/class-contact-list-settings.php:304
 #: public/class-shortcode_contact_list_form.php:137
 msgid "Address line 2"
 msgstr ""
 
-#: includes/class-contact-list-helpers.php:602
-#: admin/class-contact-list-admin.php:801
+#: includes/class-contact-list-helpers.php:611
+#: admin/class-contact-list-admin.php:826
 #: admin/class-contact-list-settings.php:309
 #: admin/class-contact-list-settings.php:313
 #: public/class-shortcode_contact_list_form.php:141
 msgid "Address line 3"
 msgstr ""
 
-#: includes/class-contact-list-helpers.php:606
-#: admin/class-contact-list-admin.php:802
+#: includes/class-contact-list-helpers.php:615
+#: admin/class-contact-list-admin.php:827
 #: admin/class-contact-list-settings.php:318
 #: admin/class-contact-list-settings.php:322
 #: public/class-shortcode_contact_list_form.php:145
 msgid "Address line 4"
 msgstr ""
 
-#: includes/class-contact-list-helpers.php:633
+#: includes/class-contact-list-helpers.php:642
 #: public/class-shortcode_contact_list_form.php:185
 msgid "Group(s)"
 msgstr ""
 
-#: includes/class-contact-list-helpers.php:660
+#: includes/class-contact-list-helpers.php:669
 #: public/class-shortcode_contact_list_form.php:210
 msgid "Submit"
 msgstr ""
@@ -253,217 +275,208 @@ msgstr ""
 msgid "All Contacts"
 msgstr ""
 
-#: admin/class-contact-list-admin.php:111
+#: admin/class-contact-list-admin.php:108
 msgid "ID"
 msgstr ""
 
-#: admin/class-contact-list-admin.php:125
-#: admin/class-contact-list-admin.php:794
+#: admin/class-contact-list-admin.php:122
+#: admin/class-contact-list-admin.php:819
 #: admin/class-contact-list-settings.php:228
 #: admin/class-contact-list-settings.php:232
 msgid "Email"
 msgstr ""
 
-#: admin/class-contact-list-admin.php:250
-#: admin/class-contact-list-admin.php:261
-#: admin/class-contact-list-admin.php:397
+#: admin/class-contact-list-admin.php:247
+#: admin/class-contact-list-admin.php:258
+#: admin/class-contact-list-admin.php:394
 msgid "Send email to contacts"
 msgstr ""
 
-#: admin/class-contact-list-admin.php:251
+#: admin/class-contact-list-admin.php:248
 msgid "Send email"
 msgstr ""
 
-#: admin/class-contact-list-admin.php:262
+#: admin/class-contact-list-admin.php:259
 msgid "Mail log"
 msgstr ""
 
-#: admin/class-contact-list-admin.php:272
-#: admin/class-contact-list-admin.php:273
-#: admin/class-contact-list-admin.php:667
+#: admin/class-contact-list-admin.php:269
+#: admin/class-contact-list-admin.php:270
+#: admin/class-contact-list-admin.php:692
 msgid "Import contacts"
 msgstr ""
 
-#: admin/class-contact-list-admin.php:283
-#: admin/class-contact-list-admin.php:284
+#: admin/class-contact-list-admin.php:280
+#: admin/class-contact-list-admin.php:281
 msgid "Group"
 msgstr ""
 
-#: admin/class-contact-list-admin.php:285
+#: admin/class-contact-list-admin.php:282
 msgid "Search Groups"
 msgstr ""
 
-#: admin/class-contact-list-admin.php:286
+#: admin/class-contact-list-admin.php:283
 msgid "All Groups"
 msgstr ""
 
-#: admin/class-contact-list-admin.php:287
+#: admin/class-contact-list-admin.php:284
 msgid "Parent Group"
 msgstr ""
 
-#: admin/class-contact-list-admin.php:288
+#: admin/class-contact-list-admin.php:285
 msgid "Parent Group:"
 msgstr ""
 
-#: admin/class-contact-list-admin.php:289
+#: admin/class-contact-list-admin.php:286
 msgid "Edit Group"
 msgstr ""
 
-#: admin/class-contact-list-admin.php:290
+#: admin/class-contact-list-admin.php:287
 msgid "Update Group"
 msgstr ""
 
-#: admin/class-contact-list-admin.php:291
+#: admin/class-contact-list-admin.php:288
 msgid "Add New Group"
 msgstr ""
 
-#: admin/class-contact-list-admin.php:292
-#: admin/class-contact-list-admin.php:809
+#: admin/class-contact-list-admin.php:289
+#: admin/class-contact-list-admin.php:834
 msgid "Groups"
 msgstr ""
 
-#: admin/class-contact-list-admin.php:293
+#: admin/class-contact-list-admin.php:290
 msgid "No groups found."
 msgstr ""
 
-#: admin/class-contact-list-admin.php:314
+#: admin/class-contact-list-admin.php:311
 msgid "Hide group"
 msgstr ""
 
 #: admin/class-contact-list-admin.php:400
-#: admin/class-contact-list-settings.php:715
-msgid "The emails are sent by the plugin developers own server and using <a href=\"https://www.mailgun.com\" target=\"_blank\">Mailgun</a>. The server is a DigitalOcean Droplet hosted in the EU. This method was chosen to ensure reliable mail delivery."
-msgstr ""
-
-#: admin/class-contact-list-admin.php:406
-#: admin/class-contact-list-admin.php:556
-#: admin/class-contact-list-admin.php:587
-msgid "Subject"
-msgstr ""
-
-#: admin/class-contact-list-admin.php:419
-#: admin/class-contact-list-admin.php:552
-#: admin/class-contact-list-admin.php:586
-msgid "Reply-to"
-msgstr ""
-
-#: admin/class-contact-list-admin.php:429
 msgid "Restrict recipients to specific group"
 msgstr ""
 
-#: admin/class-contact-list-admin.php:458
+#: admin/class-contact-list-admin.php:429
+#: admin/class-contact-list-admin.php:584
 msgid "Recipients"
 msgstr ""
 
-#: admin/class-contact-list-admin.php:458
+#: admin/class-contact-list-admin.php:429
 msgid "total of"
 msgstr ""
 
-#: admin/class-contact-list-admin.php:458
+#: admin/class-contact-list-admin.php:429
 msgid "contacts with email addresses"
 msgstr ""
 
-#: admin/class-contact-list-admin.php:522
+#: admin/class-contact-list-admin.php:436
+#: admin/class-contact-list-admin.php:552
+#: admin/class-contact-list-admin.php:583
+msgid "Subject"
+msgstr ""
+
+#: admin/class-contact-list-admin.php:518
 msgid "Log of sent mail"
 msgstr ""
 
-#: admin/class-contact-list-admin.php:540
+#: admin/class-contact-list-admin.php:536
 msgid "Message sent"
 msgstr ""
 
-#: admin/class-contact-list-admin.php:560
+#: admin/class-contact-list-admin.php:548
+#: admin/class-contact-list-admin.php:582
+msgid "Reply-to"
+msgstr ""
+
+#: admin/class-contact-list-admin.php:556
 msgid "Message count"
 msgstr ""
 
-#: admin/class-contact-list-admin.php:565
-msgid "Mail was sent to the following recipients:"
+#: admin/class-contact-list-admin.php:561
+msgid "Mail report:"
 msgstr ""
 
-#: admin/class-contact-list-admin.php:583
+#: admin/class-contact-list-admin.php:579
 msgid "Date"
 msgstr ""
 
-#: admin/class-contact-list-admin.php:588
-msgid "Messages sent"
-msgstr ""
-
-#: admin/class-contact-list-admin.php:589
+#: admin/class-contact-list-admin.php:585
 msgid "Report"
 msgstr ""
 
-#: admin/class-contact-list-admin.php:623
+#: admin/class-contact-list-admin.php:619
 msgid "No mail sent yet."
 msgstr ""
 
-#: admin/class-contact-list-admin.php:670
+#: admin/class-contact-list-admin.php:695
 msgid "You may import contacts from csv file using this form. There should be one contact per row, columns separated by comma."
 msgstr ""
 
-#: admin/class-contact-list-admin.php:679
+#: admin/class-contact-list-admin.php:704
 msgid "Choose CSV File"
 msgstr ""
 
-#: admin/class-contact-list-admin.php:681
+#: admin/class-contact-list-admin.php:706
 msgid "Start import"
 msgstr ""
 
-#: admin/class-contact-list-admin.php:765
+#: admin/class-contact-list-admin.php:790
 msgid "Import finished"
 msgstr ""
 
-#: admin/class-contact-list-admin.php:765
+#: admin/class-contact-list-admin.php:790
 msgid "Contacts imported:"
 msgstr ""
 
-#: admin/class-contact-list-admin.php:766
+#: admin/class-contact-list-admin.php:791
 msgid "Contacts ignored:"
 msgstr ""
 
-#: admin/class-contact-list-admin.php:770
+#: admin/class-contact-list-admin.php:795
 msgid "Please choose file first."
 msgstr ""
 
-#: admin/class-contact-list-admin.php:789
+#: admin/class-contact-list-admin.php:814
 msgid "The columns should be in this order:"
 msgstr ""
 
-#: admin/class-contact-list-admin.php:803
+#: admin/class-contact-list-admin.php:828
 #: admin/class-contact-list-settings.php:327
 #: admin/class-contact-list-settings.php:331
 msgid "Custom field 1"
 msgstr ""
 
-#: admin/class-contact-list-admin.php:804
+#: admin/class-contact-list-admin.php:829
 #: admin/class-contact-list-settings.php:344
 #: admin/class-contact-list-settings.php:348
 msgid "Custom field 2"
 msgstr ""
 
-#: admin/class-contact-list-admin.php:805
+#: admin/class-contact-list-admin.php:830
 #: admin/class-contact-list-settings.php:361
 #: admin/class-contact-list-settings.php:365
 msgid "Custom field 3"
 msgstr ""
 
-#: admin/class-contact-list-admin.php:806
+#: admin/class-contact-list-admin.php:831
 #: admin/class-contact-list-settings.php:378
 #: admin/class-contact-list-settings.php:382
 msgid "Custom field 4"
 msgstr ""
 
-#: admin/class-contact-list-admin.php:807
+#: admin/class-contact-list-admin.php:832
 #: admin/class-contact-list-settings.php:395
 #: admin/class-contact-list-settings.php:399
 msgid "Custom field 5"
 msgstr ""
 
-#: admin/class-contact-list-admin.php:808
+#: admin/class-contact-list-admin.php:833
 #: admin/class-contact-list-settings.php:412
 #: admin/class-contact-list-settings.php:416
 msgid "Custom field 6"
 msgstr ""
 
-#: admin/class-contact-list-admin.php:809
+#: admin/class-contact-list-admin.php:834
 msgid "Group names separated by the character \"|\", like so: Cats|Dogs|Parrots"
 msgstr ""
 
@@ -535,6 +548,7 @@ msgstr ""
 
 #: admin/class-contact-list-settings.php:183
 #: admin/class-contact-list-settings.php:187
+#: public/class-shortcode_contact_list_search.php:80
 #: public/class-shortcode_contact_list_groups.php:52
 msgid "Search all contacts..."
 msgstr ""
@@ -667,250 +681,244 @@ msgstr ""
 msgid "additional_information"
 msgstr ""
 
-#: admin/class-contact-list-settings.php:739
+#: admin/class-contact-list-settings.php:734
 msgid "If \"First name\" is selected, only the contacts with the first name defined are listed."
 msgstr ""
 
-#: admin/class-contact-list-settings.php:758
+#: admin/class-contact-list-settings.php:753
 msgid "none"
 msgstr ""
 
-#: admin/class-contact-list-settings.php:782
+#: admin/class-contact-list-settings.php:777
 msgid "Default list"
 msgstr ""
 
-#: admin/class-contact-list-settings.php:783
+#: admin/class-contact-list-settings.php:778
 msgid "2 cards on the same row"
 msgstr ""
 
-#: admin/class-contact-list-settings.php:784
+#: admin/class-contact-list-settings.php:779
 msgid "3 cards on the same row"
 msgstr ""
 
-#: admin/class-contact-list-settings.php:785
+#: admin/class-contact-list-settings.php:780
 msgid "4 cards on the same row"
 msgstr ""
 
-#: admin/class-contact-list-settings.php:803
+#: admin/class-contact-list-settings.php:798
 msgid "Transparent"
 msgstr ""
 
-#: admin/class-contact-list-settings.php:804
+#: admin/class-contact-list-settings.php:799
 msgid "White"
 msgstr ""
 
-#: admin/class-contact-list-settings.php:805
+#: admin/class-contact-list-settings.php:800
 msgid "Light gray"
 msgstr ""
 
-#: admin/class-contact-list-settings.php:823
+#: admin/class-contact-list-settings.php:818
 msgid "None"
 msgstr ""
 
-#: admin/class-contact-list-settings.php:824
+#: admin/class-contact-list-settings.php:819
 msgid "Black"
 msgstr ""
 
-#: admin/class-contact-list-settings.php:825
+#: admin/class-contact-list-settings.php:820
 msgid "Gray"
 msgstr ""
 
-#: admin/class-contact-list-settings.php:846
+#: admin/class-contact-list-settings.php:841
 msgid "You may enter alternative titles and texts here. The values defined here will override the default values."
 msgstr ""
 
-#: admin/class-contact-list-settings.php:858
+#: admin/class-contact-list-settings.php:853
 msgid "Admin form elements"
 msgstr ""
 
-#: admin/class-contact-list-settings.php:859
+#: admin/class-contact-list-settings.php:854
 msgid "You may customize the admin form (the one displayed in the WP admin area) using these settings."
 msgstr ""
 
-#: admin/class-contact-list-settings.php:867
+#: admin/class-contact-list-settings.php:862
 msgid "Public form elements"
 msgstr ""
 
-#: admin/class-contact-list-settings.php:868
+#: admin/class-contact-list-settings.php:863
 msgid "You may customize the public form (the one displayed using the [contact_list_form] shortcode) using these settings."
 msgstr ""
 
-#: admin/class-contact-list-settings.php:877
+#: admin/class-contact-list-settings.php:872
 msgid "Contact List Settings"
 msgstr ""
 
-#: admin/class-contact-list-settings.php:881
+#: admin/class-contact-list-settings.php:876
 msgid "General settings"
 msgstr ""
 
-#: admin/class-contact-list-settings.php:882
+#: admin/class-contact-list-settings.php:877
 msgid "Field titles, icons and texts"
 msgstr ""
 
-#: admin/class-contact-list-settings.php:883
+#: admin/class-contact-list-settings.php:878
 msgid "Hide form elements"
 msgstr ""
 
-#: admin/class-contact-list-settings.php:906
-#: admin/class-contact-list-settings.php:931
+#: admin/class-contact-list-settings.php:901
+#: admin/class-contact-list-settings.php:926
 msgid "How to use Contact List"
 msgstr ""
 
-#: admin/class-contact-list-settings.php:907
+#: admin/class-contact-list-settings.php:902
 msgid "Help / Support"
 msgstr ""
 
-#: admin/class-contact-list-settings.php:917
+#: admin/class-contact-list-settings.php:912
 msgid "Settings"
 msgstr ""
 
-#: admin/class-contact-list-settings.php:923
+#: admin/class-contact-list-settings.php:918
 msgid "Upgrade&nbsp;&nbsp;➤"
 msgstr ""
 
-#: admin/class-contact-list-settings.php:933
-msgid "Some examples on how you can use different views available"
+#: admin/class-contact-list-settings.php:929
+msgid "Some examples on how you can use different views available at"
 msgstr ""
 
-#: admin/class-contact-list-settings.php:933
-#: admin/class-contact-list-settings.php:985
-msgid "here"
+#: admin/class-contact-list-settings.php:929
+msgid "contactlistpro.com"
 msgstr ""
 
-#: admin/class-contact-list-settings.php:935
-msgid "Only contacts, no groups"
-msgstr ""
-
-#: admin/class-contact-list-settings.php:938
-msgid "Add the contacts via the All Contacts page."
-msgstr ""
-
-#: admin/class-contact-list-settings.php:939
-msgid "Insert the shortcode <span class=\"contact-list-shortcode\">[contact_list]</span> to the content editor of any page you wish the contact list to appear."
-msgstr ""
-
-#: admin/class-contact-list-settings.php:940
-msgid "Additional parameters"
-msgstr ""
-
-#: admin/class-contact-list-settings.php:942
-msgid "Hide search form:"
-msgstr ""
-
-#: admin/class-contact-list-settings.php:943
-msgid "Layout \"2 cards on the same row\":"
-msgstr ""
-
-#: admin/class-contact-list-settings.php:944
-msgid "Layout \"3 cards on the same row\":"
-msgstr ""
-
-#: admin/class-contact-list-settings.php:945
-msgid "Layout \"4 cards on the same row\":"
-msgstr ""
-
-#: admin/class-contact-list-settings.php:946
-msgid "Multiple parameters:"
-msgstr ""
-
-#: admin/class-contact-list-settings.php:951
-msgid "Contacts with groups"
-msgstr ""
-
-#: admin/class-contact-list-settings.php:953
-msgid "Add the groups via the Groups page. There may be groups under groups (hierarchial groups, 2 or more levels)."
-msgstr ""
-
-#: admin/class-contact-list-settings.php:954
-msgid "Add the contacts via the All Contacts page. You may select the appropriate group(s) at this point."
-msgstr ""
-
-#: admin/class-contact-list-settings.php:955
-msgid "Insert the shortcode <span class=\"contact-list-shortcode\">[contact_list_groups]</span> to the content editor of any page you wish the group list to appear. When a user selects a group, then a list of contacts belonging to that group is displayed. Also, if there are subgroups under that group, those will be displayed."
-msgstr ""
-
-#: admin/class-contact-list-settings.php:958
-msgid "Contacts from specific group"
-msgstr ""
-
-#: admin/class-contact-list-settings.php:960
-#: admin/class-contact-list-settings.php:965
-#: admin/class-contact-list-settings.php:970
-#: admin/class-contact-list-settings.php:976
-msgid "Insert the shortcode"
-msgstr ""
-
-#: admin/class-contact-list-settings.php:960
-msgid "to the content editor of any page you wish the contact list to appear. Replace GROUP_SLUG with the appropriate slug that can be found from group management."
-msgstr ""
-
-#: admin/class-contact-list-settings.php:963
-msgid "Single contact"
-msgstr ""
-
-#: admin/class-contact-list-settings.php:965
-msgid "to the content editor of any page you wish the contact to appear. Replace CONTACT_ID with the appropriate id that can be found from contact management. There's a column \"ID\" in the All Contacts -page, which contains the numeric value."
-msgstr ""
-
-#: admin/class-contact-list-settings.php:968
-msgid "Allow visitors to add new contacts"
-msgstr ""
-
-#: admin/class-contact-list-settings.php:970
-msgid "to the page you wish the form to appear on."
-msgstr ""
-
-#: admin/class-contact-list-settings.php:971
-msgid "When a user submits the form, a new contact is saved to the contacts. The status of that contact is \"Pending Review\" and a site administrator must publish/edit/delete the contact."
-msgstr ""
-
-#: admin/class-contact-list-settings.php:974
-msgid "Only a search form that searches from all contacts"
-msgstr ""
-
-#: admin/class-contact-list-settings.php:976
-msgid "to the page you wish the view to appear on."
-msgstr ""
-
-#: admin/class-contact-list-settings.php:981
-msgid "Send feedback"
-msgstr ""
-
-#: admin/class-contact-list-settings.php:982
+#: admin/class-contact-list-settings.php:930
 msgid "Any feedback is welcome. You may contact the author at"
 msgstr ""
 
-#: admin/class-contact-list-settings.php:982
-msgid "or e-mail directly:"
+#: admin/class-contact-list-settings.php:930
+msgid "or by email:"
 msgstr ""
 
-#: admin/class-contact-list-settings.php:984
+#: admin/class-contact-list-settings.php:933
+msgid "Only contacts, no groups"
+msgstr ""
+
+#: admin/class-contact-list-settings.php:936
+msgid "Add the contacts via the All Contacts page."
+msgstr ""
+
+#: admin/class-contact-list-settings.php:937
+msgid "Insert the shortcode <span class=\"contact-list-shortcode\">[contact_list]</span> to the content editor of any page you wish the contact list to appear."
+msgstr ""
+
+#: admin/class-contact-list-settings.php:938
+msgid "Additional parameters"
+msgstr ""
+
+#: admin/class-contact-list-settings.php:940
+msgid "Hide search form:"
+msgstr ""
+
+#: admin/class-contact-list-settings.php:941
+msgid "Layout \"2 cards on the same row\":"
+msgstr ""
+
+#: admin/class-contact-list-settings.php:942
+msgid "Layout \"3 cards on the same row\":"
+msgstr ""
+
+#: admin/class-contact-list-settings.php:943
+msgid "Layout \"4 cards on the same row\":"
+msgstr ""
+
+#: admin/class-contact-list-settings.php:944
+msgid "Multiple parameters:"
+msgstr ""
+
+#: admin/class-contact-list-settings.php:949
+msgid "Contacts with groups"
+msgstr ""
+
+#: admin/class-contact-list-settings.php:951
+msgid "Add the groups via the Groups page. There may be groups under groups (hierarchial groups, 2 or more levels)."
+msgstr ""
+
+#: admin/class-contact-list-settings.php:952
+msgid "Add the contacts via the All Contacts page. You may select the appropriate group(s) at this point."
+msgstr ""
+
+#: admin/class-contact-list-settings.php:953
+msgid "Insert the shortcode <span class=\"contact-list-shortcode\">[contact_list_groups]</span> to the content editor of any page you wish the group list to appear. When a user selects a group, then a list of contacts belonging to that group is displayed. Also, if there are subgroups under that group, those will be displayed."
+msgstr ""
+
+#: admin/class-contact-list-settings.php:956
+msgid "Contacts from specific group"
+msgstr ""
+
+#: admin/class-contact-list-settings.php:958
+#: admin/class-contact-list-settings.php:963
+#: admin/class-contact-list-settings.php:968
+#: admin/class-contact-list-settings.php:974
+msgid "Insert the shortcode"
+msgstr ""
+
+#: admin/class-contact-list-settings.php:958
+msgid "to the content editor of any page you wish the contact list to appear. Replace GROUP_SLUG with the appropriate slug that can be found from group management."
+msgstr ""
+
+#: admin/class-contact-list-settings.php:961
+msgid "Single contact"
+msgstr ""
+
+#: admin/class-contact-list-settings.php:963
+msgid "to the content editor of any page you wish the contact to appear. Replace CONTACT_ID with the appropriate id that can be found from contact management. There's a column \"ID\" in the All Contacts -page, which contains the numeric value."
+msgstr ""
+
+#: admin/class-contact-list-settings.php:966
+msgid "Allow visitors to add new contacts"
+msgstr ""
+
+#: admin/class-contact-list-settings.php:968
+msgid "to the page you wish the form to appear on."
+msgstr ""
+
+#: admin/class-contact-list-settings.php:969
+msgid "When a user submits the form, a new contact is saved to the contacts. The status of that contact is \"Pending Review\" and a site administrator must publish/edit/delete the contact."
+msgstr ""
+
+#: admin/class-contact-list-settings.php:972
+msgid "Only a search form that searches from all contacts"
+msgstr ""
+
+#: admin/class-contact-list-settings.php:974
+msgid "to the page you wish the view to appear on."
+msgstr ""
+
+#: admin/class-contact-list-settings.php:979
 msgid "Give a rating for the plugin"
 msgstr ""
 
-#: admin/class-contact-list-settings.php:985
+#: admin/class-contact-list-settings.php:980
 msgid "Whether it's 1 star or 5 stars, I'm grateful for your rating. You may rate the plugin"
 msgstr ""
 
-#: admin/class-contact-list-settings.php:987
-msgid "Send direct feedback to the author"
-msgstr ""
-
-#: admin/class-contact-list-settings.php:988
-msgid "Fill out the form below to send feedback or questions to the author. Only the information provided below is sent. Thanks!"
+#: admin/class-contact-list-settings.php:980
+msgid "here"
 msgstr ""
 
 #: public/class-shortcode_contact_list.php:103
+#: public/class-shortcode_contact_list_search.php:35
 #: public/class-shortcode_contact_list_groups.php:46
 msgid "contact"
 msgstr ""
 
 #: public/class-shortcode_contact_list.php:104
+#: public/class-shortcode_contact_list_search.php:36
 #: public/class-shortcode_contact_list_groups.php:47
 msgid "contacts"
 msgstr ""
 
 #: public/class-shortcode_contact_list.php:105
+#: public/class-shortcode_contact_list_search.php:37
 #: public/class-shortcode_contact_list_groups.php:48
 msgid "found"
 msgstr ""
@@ -933,6 +941,10 @@ msgstr ""
 
 #: public/class-shortcode_contact_list_form.php:156
 msgid "Custom field"
+msgstr ""
+
+#: public/class-contact-list-public.php:164
+msgid "This mail was sent using Contact List Pro"
 msgstr ""
 
 #: public/class-shortcode_contact_list_groups.php:105

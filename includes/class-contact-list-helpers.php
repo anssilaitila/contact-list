@@ -24,6 +24,16 @@ class ContactListHelpers
     
     public static function modalSendMessageMarkup()
     {
+        $input = get_site_url();
+        // in case scheme relative URI is passed, e.g., //www.google.com/
+        $input = trim( $input, '/' );
+        // If scheme not included, prepend it
+        if ( !preg_match( '#^http(s)?://#', $input ) ) {
+            $input = 'http://' . $input;
+        }
+        $urlParts = parse_url( $input );
+        // remove www
+        $site_url = preg_replace( '/^www\\./', '', $urlParts['host'] );
         $html = '';
         $html .= '<div class="cl-modal-container">';
         $html .= '<div class="cl-modal">';
@@ -31,7 +41,7 @@ class ContactListHelpers
         $html .= '<a href="" class="cl-close-modal">x</a>';
         $html .= '</div>';
         $html .= '<h3>' . __( 'Send message', 'contact-list' ) . '</h3>';
-        $html .= '<form>';
+        $html .= '<form class="contact-list-send-single">';
         $html .= '<label for="sender_name" />' . __( 'Sender name', 'contact-list' ) . '</label>';
         $html .= '<input class="contact-list-sender-name" name="sender_name" value="" placeholder="Your name" />';
         $html .= '<label for="sender_email" />' . __( 'Sender email', 'contact-list' ) . '</label>';
@@ -44,17 +54,14 @@ class ContactListHelpers
         $html .= '<input class="contact-list-sf-1" name="sf_1" value="" />';
         $html .= '<div class="contact-list-sf-2-container"><input class="contact-list-sf-2" name="sf_2" value="" /></div>';
         $html .= '<input class="contact-list-sf-3" name="sf_3" value="" type="hidden" />';
-        $input = get_site_url();
-        // in case scheme relative URI is passed, e.g., //www.google.com/
-        $input = trim( $input, '/' );
-        // If scheme not included, prepend it
-        if ( !preg_match( '#^http(s)?://#', $input ) ) {
-            $input = 'http://' . $input;
-        }
-        $urlParts = parse_url( $input );
-        // remove www
-        $site_url = preg_replace( '/^www\\./', '', $urlParts['host'] );
-        $html .= '<input type="submit" class="contact-list-send-single" data-contact-email="" data-site-url="' . $site_url . '" value="' . __( 'Send', 'contact-list' ) . '" />';
+        $html .= '<input name="contact_email" type="hidden" value="" class="contact-list-contact-email" />';
+        $html .= '<input name="site_url" type="hidden" value="' . $site_url . '" />';
+        $html .= '<input name="txt_please_msg_first" type="hidden" value="' . __( 'Please write message first.', 'contact-list' ) . '" />';
+        $html .= '<input name="txt_msg_sent_to" type="hidden" value="' . __( 'Message sent to', 'contact-list' ) . '" />';
+        $html .= '<input name="txt_sending_please_wait" type="hidden" value="' . __( 'Please wait...', 'contact-list' ) . '" />';
+        $html .= '<input name="txt_new_msg_from" type="hidden" value="' . __( 'New message from', 'contact-list' ) . '" />';
+        $html .= '<input name="txt_sent_by" type="hidden" value="' . __( 'sent by', 'contact-list' ) . '" />';
+        $html .= '<input type="submit" class="contact-list-send-single-submit" value="' . __( 'Send', 'contact-list' ) . '" />';
         $html .= '<div class="contact-list-sending-message"></div>';
         $html .= '</form>';
         $html .= '</div>';

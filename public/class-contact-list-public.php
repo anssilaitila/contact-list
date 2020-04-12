@@ -161,7 +161,7 @@ class Contact_List_Public {
     }
 
     $body .= isset($_POST['body']) ? $_POST['body'] : '';
-    $body .= "\n\n-- \nThis mail was sent using Contact List Pro";
+    $body .= "\n\n-- \n" . __('This mail was sent using Contact List Pro', 'contact-list');
     
     $recipient_emails = isset($_POST['recipient_emails']) ? $_POST['recipient_emails'] : '';
 
