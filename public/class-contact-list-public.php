@@ -149,7 +149,7 @@ class Contact_List_Public {
     $body = '';
 
     if ($sender_name) {
-      $body .= "Sent by: " . $sender_name;
+      $body .= __('Sent by:', 'contact-list') . $sender_name;
     }
     
     if ($sender_email) {

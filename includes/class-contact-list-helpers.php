@@ -43,9 +43,9 @@ class ContactListHelpers
         $html .= '<h3>' . __( 'Send message', 'contact-list' ) . '</h3>';
         $html .= '<form class="contact-list-send-single">';
         $html .= '<label for="sender_name" />' . __( 'Sender name', 'contact-list' ) . '</label>';
-        $html .= '<input class="contact-list-sender-name" name="sender_name" value="" placeholder="Your name" />';
+        $html .= '<input class="contact-list-sender-name" name="sender_name" value="" placeholder="' . __( 'Your name', 'contact-list' ) . '" />';
         $html .= '<label for="sender_email" />' . __( 'Sender email', 'contact-list' ) . '</label>';
-        $html .= '<input class="contact-list-sender-email" name="sender_email" value="" placeholder="Your email" />';
+        $html .= '<input class="contact-list-sender-email" name="sender_email" value="" placeholder="' . __( 'Your email', 'contact-list' ) . '" />';
         $html .= '<label for="recipient" />' . __( 'Recipient', 'contact-list' ) . '</label>';
         $html .= '<span><span id="recipient" class="contact-list-recipient"></span> &lt;<span class="contact-list-recipient-email"></span>&gt;</span>';
         $html .= '<label for="message" />' . __( 'Message', 'contact-list' ) . '</label>';
@@ -61,7 +61,7 @@ class ContactListHelpers
         $html .= '<input name="txt_sending_please_wait" type="hidden" value="' . __( 'Please wait...', 'contact-list' ) . '" />';
         $html .= '<input name="txt_new_msg_from" type="hidden" value="' . __( 'New message from', 'contact-list' ) . '" />';
         $html .= '<input name="txt_sent_by" type="hidden" value="' . __( 'sent by', 'contact-list' ) . '" />';
-        $html .= '<input type="submit" class="contact-list-send-single-submit" value="' . __( 'Send', 'contact-list' ) . '" />';
+        $html .= '<input type="submit" name="send_message" class="contact-list-send-single-submit" value="' . __( 'Send', 'contact-list' ) . '" />';
         $html .= '<div class="contact-list-sending-message"></div>';
         $html .= '</form>';
         $html .= '</div>';

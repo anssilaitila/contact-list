@@ -78,12 +78,9 @@ Contact author [here](https://anssilaitila.fi/).
 
 == Changelog ==
 
-= 2.8.4 =
-* Sending message to a single contact fixed, hopefully better this time
-* More texts made translatable
-
-= 2.8.3 =
+= 2.8.5 =
 * Sending message to a single contact fixed
+* More texts made translatable
 
 = 2.8.2 =
 * Bug fix
