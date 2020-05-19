@@ -23,6 +23,28 @@ class ContactListSettings
             'contact-list'
         );
         add_settings_field(
+            'contact-list-hide_send_email_button',
+            __( 'Hide Send message -button from the public list', 'contact-list' ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_section_general',
+            array(
+            'label_for'  => 'contact-list-hide_send_email_button',
+            'field_name' => 'hide_send_email_button',
+        )
+        );
+        add_settings_field(
+            'contact-list-hide_contact_email',
+            __( 'Hide contact email from contact card', 'contact-list' ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_section_general',
+            array(
+            'label_for'  => 'contact-list-hide_contact_email',
+            'field_name' => 'hide_contact_email',
+        )
+        );
+        add_settings_field(
             'contact-list-order_by',
             __( 'Sort contact list by', 'contact-list' ),
             array( $this, 'select_render' ),
@@ -31,6 +53,84 @@ class ContactListSettings
             array(
             'label_for'  => 'contact-list-order_by',
             'field_name' => 'order_by',
+        )
+        );
+        add_settings_field(
+            'contact-list-layout',
+            __( 'Layout', 'contact-list' ),
+            array( $this, 'layout_render' ),
+            'contact-list',
+            'contact-list_section_general',
+            array(
+            'label_for'  => 'contact-list-layout',
+            'field_name' => 'layout',
+        )
+        );
+        add_settings_field(
+            'contact-list-card_height',
+            __( 'Card height in pixels', 'contact-list' ),
+            array( $this, 'input_render' ),
+            'contact-list',
+            'contact-list_section_general',
+            array(
+            'label_for'   => 'contact-list-card_height',
+            'field_name'  => 'card_height',
+            'placeholder' => '380',
+        )
+        );
+        add_settings_field(
+            'contact-list-card_background',
+            __( 'Card background', 'contact-list' ),
+            array( $this, 'card_background_render' ),
+            'contact-list',
+            'contact-list_section_general',
+            array(
+            'label_for'  => 'contact-list-card_background',
+            'field_name' => 'card_background',
+        )
+        );
+        add_settings_field(
+            'contact-list-card_border',
+            __( 'Card border', 'contact-list' ),
+            array( $this, 'card_border_render' ),
+            'contact-list',
+            'contact-list_section_general',
+            array(
+            'label_for'  => 'contact-list-card_border',
+            'field_name' => 'card_border',
+        )
+        );
+        add_settings_field(
+            'contact-list-show_country_select_in_search',
+            __( 'Show country select in search', 'contact-list' ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_section_general',
+            array(
+            'label_for'  => 'contact-list-show_country_select_in_search',
+            'field_name' => 'show_country_select_in_search',
+        )
+        );
+        add_settings_field(
+            'contact-list-show_state_select_in_search',
+            __( 'Show state select in search', 'contact-list' ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_section_general',
+            array(
+            'label_for'  => 'contact-list-show_state_select_in_search',
+            'field_name' => 'show_state_select_in_search',
+        )
+        );
+        add_settings_field(
+            'contact-list-show_category_select_in_search',
+            __( 'Show category select in search', 'contact-list' ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_section_general',
+            array(
+            'label_for'  => 'contact-list-show_category_select_in_search',
+            'field_name' => 'show_category_select_in_search',
         )
         );
         add_settings_section(
@@ -92,6 +192,24 @@ class ContactListSettings
             ?>]" <?php 
             echo  ( isset( $options[$args['field_name']] ) ? 'checked="checked"' : '' ) ;
             ?>>
+      
+      <?php 
+            
+            if ( $args['field_name'] == 'activate_recaptcha' ) {
+                ?>
+          <div class="general-info">
+            <b><?php 
+                echo  __( 'Note:', 'contact-list' ) ;
+                ?></b>
+            <?php 
+                echo  __( 'The plugin currently supports reCAPTCHA v2 ("I\'m not a robot" checkbox). When you create your keys, you must choose this type. More information on this at', 'contact-list' ) ;
+                ?> <a href="https://developers.google.com/recaptcha/docs/versions" target="_blank">https://developers.google.com/recaptcha/docs/versions</a>.
+          </div>
+      <?php 
+            }
+            
+            ?>
+      
       
       <?php 
         }

@@ -346,7 +346,7 @@ class myCustomFields
                 continue;
             } elseif ( ($customField['name'] == 'address' || $customField['name'] == 'address_line_1' || $customField['name'] == 'address_line_2' || $customField['name'] == 'address_line_3' || $customField['name'] == 'address_line_4') && isset( $options['af_hide_address'] ) ) {
                 continue;
-            } elseif ( ($customField['name'] == 'custom_fields' || $customField['name'] == 'custom_field_1' || $customField['name'] == 'custom_field_2' || $customField['name'] == 'custom_field_3' || $customField['name'] == 'custom_field_4') && isset( $options['af_hide_custom_fields'] ) ) {
+            } elseif ( ($customField['name'] == 'custom_fields' || $customField['name'] == 'custom_field_1' || $customField['name'] == 'custom_field_2' || $customField['name'] == 'custom_field_3' || $customField['name'] == 'custom_field_4' || $customField['name'] == 'custom_field_5' || $customField['name'] == 'custom_field_6') && isset( $options['af_hide_custom_fields'] ) ) {
                 continue;
             } elseif ( ($customField['name'] == 'additional_info' || $customField['name'] == 'description') && isset( $options['af_hide_additional_info'] ) ) {
                 continue;
@@ -374,7 +374,7 @@ class myCustomFields
                 $output = false;
             }
             
-            if ( $customField['name'] == 'custom_field_1' || $customField['name'] == 'custom_field_2' || $customField['name'] == 'custom_field_3' || $customField['name'] == 'custom_field_4' || $customField['name'] == 'description' ) {
+            if ( $customField['name'] == 'custom_field_1' || $customField['name'] == 'custom_field_2' || $customField['name'] == 'custom_field_3' || $customField['name'] == 'custom_field_4' || $customField['name'] == 'custom_field_5' || $customField['name'] == 'custom_field_6' || $customField['name'] == 'description' ) {
                 $output = false;
             } elseif ( $customField['name'] == 'custom_fields' ) {
                 $custom_fields_notify = 1;

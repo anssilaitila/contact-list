@@ -187,6 +187,7 @@ class Contact_List
             10,
             3
         );
+        $this->loader->add_action( 'phpmailer_init', $plugin_admin, 'wp_mail_returnpath_phpmailer_init' );
         $this->loader->add_action( 'admin_menu', $plugin_settings, 'add_settings_link' );
         $this->loader->add_action( 'admin_menu', $plugin_settings, 'register_support_page' );
         $this->loader->add_action( 'admin_menu', $plugin_settings, 'add_upgrade_link' );

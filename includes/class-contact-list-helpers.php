@@ -24,6 +24,13 @@ class ContactListHelpers
     
     public static function modalSendMessageMarkup()
     {
+        $s = get_option( 'contact_list_settings' );
+        
+        if ( isset( $s['activate_recaptcha'] ) ) {
+            wp_enqueue_script( 'contact-list-recaptcha', 'https://www.google.com/recaptcha/api.js' );
+            // async defer
+        }
+        
         $input = get_site_url();
         // in case scheme relative URI is passed, e.g., //www.google.com/
         $input = trim( $input, '/' );
@@ -42,6 +49,11 @@ class ContactListHelpers
         $html .= '</div>';
         $html .= '<h3>' . __( 'Send message', 'contact-list' ) . '</h3>';
         $html .= '<form class="contact-list-send-single">';
+        $recaptcha_active = ( isset( $s['activate_recaptcha'] ) ? 1 : 0 );
+        $html .= '<input type="hidden" name="recaptcha_active" value="' . $recaptcha_active . '" />';
+        if ( $recaptcha_active && isset( $s['recaptcha_site_key'] ) ) {
+            $html .= '<div class="g-recaptcha recaptcha-container" data-sitekey="' . $s['recaptcha_site_key'] . '"></div>';
+        }
         $html .= '<label for="sender_name" />' . __( 'Sender name', 'contact-list' ) . '</label>';
         $html .= '<input class="contact-list-sender-name" name="sender_name" value="" placeholder="' . __( 'Your name', 'contact-list' ) . '" />';
         $html .= '<label for="sender_email" />' . __( 'Sender email', 'contact-list' ) . '</label>';
@@ -61,6 +73,8 @@ class ContactListHelpers
         $html .= '<input name="txt_sending_please_wait" type="hidden" value="' . __( 'Please wait...', 'contact-list' ) . '" />';
         $html .= '<input name="txt_new_msg_from" type="hidden" value="' . __( 'New message from', 'contact-list' ) . '" />';
         $html .= '<input name="txt_sent_by" type="hidden" value="' . __( 'sent by', 'contact-list' ) . '" />';
+        $html .= '<input name="txt_recaptcha_validation_error" type="hidden" value="' . __( 'Please check the &quot;I\'m not a robot&quot;-checkbox first.', 'contact-list' ) . '" />';
+        $html .= '<input name="txt_please_sender_details_first" type="hidden" value="' . __( 'Please enter sender information first (name and email).', 'contact-list' ) . '" />';
         $html .= '<input type="submit" name="send_message" class="contact-list-send-single-submit" value="' . __( 'Send', 'contact-list' ) . '" />';
         $html .= '<div class="contact-list-sending-message"></div>';
         $html .= '</form>';
@@ -146,14 +160,18 @@ class ContactListHelpers
             $html .= '<span class="contact-list-job-title">' . $c['_cl_job_title'][0] . '</span>';
         }
         
-        if ( isset( $c['_cl_email'] ) && !isset( $s['hide_send_email_button'] ) ) {
+        if ( isset( $c['_cl_email'] ) ) {
             $mailto = $c['_cl_email'][0];
             $mailto_obs = '';
             for ( $i = 0 ;  $i < strlen( $mailto ) ;  $i++ ) {
                 $mailto_obs .= '&#' . ord( $mailto[$i] ) . ';';
             }
-            $html .= '<span class="contact-list-email">' . (( $c['_cl_email'][0] ? '<a href="mailto:' . $mailto_obs . '">' . $mailto_obs . '</a>' : '' )) . '</span>';
-            $html .= '<span class="contact-list-send-email">' . (( $c['_cl_email'][0] ? '<a href="" data-email="' . $mailto_obs . '" data-name="' . (( isset( $c['_cl_first_name'] ) ? $c['_cl_first_name'][0] . ' ' : '' )) . $c['_cl_last_name'][0] . '">' . __( 'Send message', 'contact-list' ) . ' &raquo;</a>' : '' )) . '</span>';
+            if ( !isset( $s['hide_contact_email'] ) ) {
+                $html .= '<span class="contact-list-email">' . (( $c['_cl_email'][0] ? '<a href="mailto:' . $mailto_obs . '">' . $mailto_obs . '</a>' : '' )) . '</span>';
+            }
+            if ( !isset( $s['hide_send_email_button'] ) ) {
+                $html .= '<span class="contact-list-send-email">' . (( $c['_cl_email'][0] ? '<a href="" data-email="' . $mailto_obs . '" data-name="' . (( isset( $c['_cl_first_name'] ) ? $c['_cl_first_name'][0] . ' ' : '' )) . $c['_cl_last_name'][0] . '">' . __( 'Send message', 'contact-list' ) . ' &raquo;</a>' : '' )) . '</span>';
+            }
         }
         
         

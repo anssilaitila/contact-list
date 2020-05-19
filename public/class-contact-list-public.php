@@ -139,17 +139,50 @@ class Contact_List_Public {
 
   public function cl_send_mail_public() {
 
+    $s = get_option('contact_list_settings');
+
+    if (isset($s['activate_recaptcha']) && isset($s['recaptcha_secret_key'])) {
+
+      $url = 'https://www.google.com/recaptcha/api/siteverify';
+      $recaptcha_response = isset($_POST['recaptcha_response']) ? $_POST['recaptcha_response'] : '';
+      $data = array('secret' => $s['recaptcha_secret_key'], 'response' => $recaptcha_response);
+      
+      $options = array(
+        'http' => array(
+          'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+          'method'  => 'POST',
+          'content' => http_build_query($data)
+        )
+      );
+  
+      $context = stream_context_create($options);
+      $result = file_get_contents($url, false, $context);
+      
+      if ($result) {
+        $recaptcha_validation = json_decode($result);
+  
+        if (!$recaptcha_validation->{'success'}) {
+          // Invalid reCAPTCHA challenge
+//          $t = wp_mail('anssi.laitila@gmail.com', 'INVALID RECAPTCHA 1', 'INVALID RECAPTCHA 1');
+          wp_die();
+        }
+      } else {
+        // Invalid reCAPTCHA challenge
+//        $t = wp_mail('anssi.laitila@gmail.com', 'INVALID RECAPTCHA 2', 'INVALID RECAPTCHA 2');
+        wp_die();
+      }
+      
+    }
+
     $subject = isset($_POST['subject']) ? $_POST['subject'] : '';
     $sender_name = isset($_POST['sender_name']) ? $_POST['sender_name'] : '';
     $sender_email = isset($_POST['sender_email']) ? $_POST['sender_email'] : '';
     $mail_cnt = isset($_POST['mail_cnt']) ? $_POST['mail_cnt'] : '';
 
-    $reply_to = isset($_POST['reply_to']) ? $_POST['reply_to'] : '';
-
     $body = '';
 
     if ($sender_name) {
-      $body .= __('Sent by:', 'contact-list') . $sender_name;
+      $body .= __('Sent by:', 'contact-list') . ' ' . $sender_name;
     }
     
     if ($sender_email) {
@@ -157,15 +190,61 @@ class Contact_List_Public {
     }
 
     if ($sender_name || $sender_email) {
-      $body .= "\n\n";
+      $body .= "<br /><br />";
     }
 
     $body .= isset($_POST['body']) ? $_POST['body'] : '';
-    $body .= "\n\n-- \n" . __('This mail was sent using Contact List Pro', 'contact-list');
+    $body .= "<br /><br />-- <br />" . __('This mail was sent using Contact List Pro', 'contact-list');
     
     $recipient_emails = isset($_POST['recipient_emails']) ? $_POST['recipient_emails'] : '';
 
-    $resp = wp_mail($recipient_emails, $subject, $body);
+    $headers = array('Content-Type: text/html; charset=UTF-8');
+    
+    $reply_to = '';
+    
+    if ($sender_name && is_email($sender_email)) {
+      $reply_to = $sender_name . ' <' . $sender_email . '>';
+    } elseif (is_email($sender_email)) {
+      $reply_to = '<' . $sender_email . '>';
+    }
+
+    if ($reply_to) {
+      $headers[] = 'Reply-To: ' . $reply_to;
+    }
+    
+    $from = '';
+    
+    if (isset($s['email_sender_contact_card']) && is_email($s['email_sender_contact_card'])) {
+      $from = $s['email_sender_contact_card'];
+    }
+
+    if ($from) {
+      $headers[] = 'From: <' . $from . '>';
+    }
+
+    $resp = wp_mail($recipient_emails, $subject, $body, $headers);
+
+//    $resp = wp_mail($recipient_emails, $subject, $body, $headers);
+
+    if ($resp) {
+
+      global $wpdb;
+      
+      $report = 'Mail successfully processed using <strong>wp_mail</strong>.<br /><br /><strong>Mail sent to:</strong><br />' . str_replace(',', ', ', $recipient_emails);
+
+      $all_emails = explode(',', $recipient_emails);
+      $mail_cnt = sizeof($all_emails);
+      
+      $wpdb->insert('wp_cl_sent_mail_log', array(
+         'subject' => $subject,
+         'sender_name' => $sender_name,
+         'reply_to' => $reply_to,
+         'report' => $report,
+         'sender_email' => $from,
+         'mail_cnt' => $mail_cnt
+      ));
+
+    }
     
     wp_die();
   }

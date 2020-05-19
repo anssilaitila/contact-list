@@ -5,39 +5,24 @@ class ContactListGroups
     public static function shortcodeContactListGroupsMarkup( $atts )
     {
         $s = get_option( 'contact_list_settings' );
+        $layout = '';
+        
+        if ( isset( $atts['layout'] ) ) {
+            $layout = $atts['layout'];
+        } elseif ( isset( $s['layout'] ) && $s['layout'] ) {
+            $layout = $s['layout'];
+        }
+        
+        $layout = '';
+        // 2-cards-on-the-same-row
+        // 3-cards-on-the-same-row
+        // 4-cards-on-the-same-row
         $html = '';
-        
-        if ( isset( $s['card_background'] ) && $s['card_background'] ) {
-            $html .= '<style>.contact-list-container #contact-list-search ul li { margin-bottom: 5px; } </style>';
-            
-            if ( $s['card_background'] == 'white' ) {
-                $html .= '<style>.contact-list-contact-container { background: #fff; padding: 20px; border-radius: 10px; margin-bottom: 20px; } </style>';
-            } elseif ( $s['card_background'] == 'light_gray' ) {
-                $html .= '<style>.contact-list-contact-container { background: #f7f7f7; padding: 20px; border-radius: 10px; margin-bottom: 20px; } </style>';
-            }
-        
-        }
-        
-        if ( isset( $s['card_border'] ) && $s['card_border'] ) {
-            
-            if ( $s['card_border'] == 'black' ) {
-                $html .= '<style>.contact-list-contact-container { border: 1px solid #333; padding: 20px; border-radius: 10px; } </style>';
-            } elseif ( $s['card_border'] == 'gray' ) {
-                $html .= '<style>.contact-list-contact-container { border: 1px solid #bbb; padding: 20px; border-radius: 10px; } </style>';
-            }
-        
-        }
-        
-        if ( isset( $s['card_height'] ) && $s['card_height'] ) {
-            $html .= '<style>.contact-list-container.contact-list-2-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: ' . $s['card_height'] . 'px; } </style>';
-            $html .= '<style>.contact-list-container.contact-list-3-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: ' . $s['card_height'] . 'px; } </style>';
-            $html .= '<style>.contact-list-container.contact-list-4-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: ' . $s['card_height'] . 'px; } </style>';
-        }
-        
+        $html .= ContactListHelpers::initLayout( $s );
         if ( cl_fs()->is__premium_only() && !isset( $s['hide_send_email_button'] ) ) {
             $html .= ContactListHelpers::modalSendMessageMarkup();
         }
-        $html .= '<div class="contact-list-container">';
+        $html .= '<div class="contact-list-container ' . (( $layout ? 'contact-list-' . $layout : '' )) . '">';
         $group_slug = ( isset( $_GET['g'] ) ? $_GET['g'] : '' );
         $include_children = isset( $s['show_contacts_from_subgroup'] ) && $s['show_contacts_from_subgroup'];
         $html .= '<div class="contact-list-text-contact" style="display: none;">' . __( 'contact', 'contact-list' ) . '</div>';
@@ -180,7 +165,7 @@ class ContactListGroups
             $html .= '</div>';
         }
         
-        $html .= '</div>';
+        $html .= '</div><hr class="clear" />';
         wp_reset_postdata();
         return $html;
     }

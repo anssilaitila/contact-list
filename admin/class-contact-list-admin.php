@@ -527,213 +527,203 @@ class Contact_List_Admin
     
     <div class="wrap">
 
-          <h1><?php 
+      <h1><?php 
         echo  __( 'Log of sent mail', 'contact-list' ) ;
         ?></h1>
 
-          <?php 
+      <?php 
         
         if ( isset( $_GET['mail_id'] ) ) {
             ?>
 
-            <?php 
+        <?php 
             $mail_id = (int) $_GET['mail_id'];
             global  $wpdb ;
             $table_name = $wpdb->prefix . "cl_sent_mail_log";
             $msg = $wpdb->get_results( "SELECT * FROM {$table_name} WHERE id = " . $mail_id );
             ?>
-            
-            <a href="javascript:history.go(-1)">&lt;&lt; Back</a>
-            
-            <?php 
+        
+        <a href="javascript:history.go(-1)">&lt;&lt; Back</a>
+        
+        <?php 
             foreach ( $msg as $row ) {
                 ?>
 
-              <table class="contact-list-mail-log-msg-details">
-              <tr>
-                <td><?php 
+          <table class="contact-list-mail-log-msg-details">
+          <tr>
+            <td><?php 
                 echo  __( 'Message sent', 'contact-list' ) ;
                 ?></td>
-                <td><?php 
+            <td><?php 
                 echo  $row->created_at ;
                 ?></td>
-              </tr>
-              <tr>
-                <td><?php 
+          </tr>
+          <tr>
+            <td><?php 
                 echo  __( 'Sender email', 'contact-list' ) ;
                 ?></td>
-                <td><?php 
+            <td><?php 
                 echo  $row->sender_email ;
                 ?></td>
-              </tr>
-              <tr>
-                <td><?php 
+          </tr>
+          <tr>
+            <td><?php 
                 echo  __( 'Sender name', 'contact-list' ) ;
                 ?></td>
-                <td><?php 
+            <td><?php 
                 echo  $row->sender_name ;
                 ?></td>
-              </tr>
-              <tr>
-                <td><?php 
+          </tr>
+          <tr>
+            <td><?php 
                 echo  __( 'Reply-to', 'contact-list' ) ;
                 ?></td>
-                <td><?php 
-                echo  $row->reply_to ;
+            <td><?php 
+                echo  htmlspecialchars( $row->reply_to ) ;
                 ?></td>
-              </tr>
-              <tr>
-                <td><?php 
+          </tr>
+          <tr>
+            <td><?php 
                 echo  __( 'Subject', 'contact-list' ) ;
                 ?></td>
-                <td><?php 
+            <td><?php 
                 echo  $row->subject ;
                 ?></td>
-              </tr>
-              <tr>
-                <td><?php 
+          </tr>
+          <tr>
+            <td><?php 
                 echo  __( 'Message count', 'contact-list' ) ;
                 ?></td>
-                <td><?php 
+            <td><?php 
                 echo  $row->mail_cnt ;
                 ?></td>
-              </tr>
-              </table>
-              
-              <h3><?php 
+          </tr>
+          </table>
+          
+          <h3><?php 
                 echo  __( 'Mail report:', 'contact-list' ) ;
                 ?></h3>
-              
-              <div class="contact-list-mail-log-recipients-container">
-                <?php 
+          
+          <div class="contact-list-mail-log-recipients-container">
+            <?php 
                 echo  $row->report ;
                 ?>
-              </div>
+          </div>
 
-            <?php 
+        <?php 
             }
             ?>
 
-          <?php 
+      <?php 
         } else {
             ?>
-          
-            <?php 
+      
+        <?php 
             global  $wpdb ;
             $table_name = $wpdb->prefix . 'cl_sent_mail_log';
             $msg = $wpdb->get_results( "SELECT * FROM {$table_name} ORDER BY created_at DESC LIMIT 200" );
             ?>
-            
-            <table class="contact-list-mail-log">
-            <tr>
-              <th><?php 
+        
+        <table class="contact-list-mail-log">
+        <tr>
+          <th><?php 
             echo  __( 'Date', 'contact-list' ) ;
             ?></th>
-              <th><?php 
+          <th><?php 
             echo  __( 'Sender email', 'contact-list' ) ;
             ?></th>
-              <th><?php 
+          <th><?php 
             echo  __( 'Sender name', 'contact-list' ) ;
             ?></th>
-              <th><?php 
+          <th><?php 
             echo  __( 'Reply-to', 'contact-list' ) ;
             ?></th>
-              <th><?php 
+          <th><?php 
             echo  __( 'Subject', 'contact-list' ) ;
             ?></th>
-              <th><?php 
+          <th><?php 
             echo  __( 'Recipients', 'contact-list' ) ;
             ?></th>
-              <th><?php 
+          <th><?php 
             echo  __( 'Report', 'contact-list' ) ;
             ?></th>
-            </tr>
+        </tr>
 
-            <?php 
+        <?php 
             
             if ( sizeof( $msg ) > 0 ) {
                 ?>
-              <?php 
+          <?php 
                 foreach ( $msg as $row ) {
                     ?>
-                <tr>
-                  <td>
-                    <?php 
+            <tr>
+              <td>
+                <?php 
                     echo  $row->created_at ;
                     ?>
-                  </td>
-                  <td>
-                    <?php 
+              </td>
+              <td>
+                <?php 
                     echo  $row->sender_email ;
                     ?>
-                  </td>
-                  <td>
-                    <?php 
+              </td>
+              <td>
+                <?php 
                     echo  $row->sender_name ;
                     ?>
-                  </td>
-                  <td>
-                    <?php 
+              </td>
+              <td>
+                <?php 
                     
                     if ( isset( $row->reply_to ) ) {
                         ?>
-                      <?php 
-                        echo  $row->reply_to ;
+                  <?php 
+                        echo  htmlspecialchars( $row->reply_to ) ;
                         ?>
-                    <?php 
+                <?php 
                     }
                     
                     ?>
-                  </td>
-                  <td>
-                    <?php 
+              </td>
+              <td>
+                <?php 
                     echo  $row->subject ;
                     ?>
-                  </td>
-                  <td>
-                    <?php 
+              </td>
+              <td>
+                <?php 
                     echo  $row->mail_cnt ;
                     ?>
-                  </td>
-                  <td>
-                    <a href="./edit.php?post_type=contact&page=contact-list-mail-log&mail_id=<?php 
+              </td>
+              <td>
+                <a href="./edit.php?post_type=contact&page=contact-list-mail-log&mail_id=<?php 
                     echo  $row->id ;
                     ?>">Open &raquo;</a>
-                  </td>
-                </tr>
-              <?php 
+              </td>
+            </tr>
+          <?php 
                 }
                 ?>
-            <?php 
+        <?php 
             } else {
                 ?>
-              <tr>
-                <td colspan="7">
-                  <?php 
+          <tr>
+            <td colspan="7">
+              <?php 
                 echo  __( 'No mail sent yet.', 'contact-list' ) ;
                 ?>
-                </td>
-              </tr>
-            <?php 
+            </td>
+          </tr>
+        <?php 
             }
             
             ?>
-            
-            </table>
-            
-          <?php 
+        
+        </table>
+        
+      <?php 
         }
         
-        ?>
-
-          <?php 
-        ?>
-
-            <?php 
-        echo  ContactListHelpers::proFeatureMarkup() ;
-        ?>
-            
-          <?php 
         ?>
 
     </div>
@@ -748,7 +738,7 @@ class Contact_List_Admin
         $mail_cnt = ( isset( $_POST['mail_cnt'] ) ? $_POST['mail_cnt'] : '' );
         $reply_to = ( isset( $_POST['reply_to'] ) ? $_POST['reply_to'] : '' );
         $body = ( isset( $_POST['body'] ) ? $_POST['body'] : '' );
-        $body .= "<br /><br />-- <br />This mail was sent using Contact List Pro";
+        $body .= '<br /><br />-- <br />' . __( 'This mail was sent using Contact List Pro', 'contact-list' );
         $headers = [ 'Content-Type: text/html; charset=UTF-8' ];
         if ( $sender_name && $sender_email && is_email( $sender_email ) ) {
             $headers[] .= 'From: ' . $sender_name . ' <' . $sender_email . '>';
@@ -962,6 +952,16 @@ class Contact_List_Admin
         }
         
         return $request;
+    }
+    
+    public function wp_mail_returnpath_phpmailer_init( $phpmailer )
+    {
+        $s = get_option( 'contact_list_settings' );
+        // Set the Sender (return-path)
+        if ( isset( $s['set_return_path'] ) ) {
+            // && filter_var($params->Sender, FILTER_VALIDATE_EMAIL) !== true) {
+            $phpmailer->Sender = $phpmailer->From;
+        }
     }
 
 }

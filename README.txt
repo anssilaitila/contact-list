@@ -42,20 +42,24 @@ See live demos at [contactlistpro.com](https://www.contactlistpro.com/contact-li
 * Photo / image
 * Multiple custom fields
 
-= Features in Free version: =
+= Features in the Free version: =
 * Obfuscated emails to prevent spam
 * Simple and clean user interface
 * No options to set, ready to use right away
 * Contacts may belong to groups
-
-= Features in Pro version: =
 * Fast search targeting all contacts
 * Filter contacts by country, state and category
 * Choose a layout from 4 different ones
+* All sent mail is logged
+
+= More features in the Pro version: =
+* Multiple different shortcodes/views for various use cases
+* Support for pagination
 * Contact database may be built with publicly available form
 * Custom fields and WYSIWYG editor
 * Settings available for customization
 * Send email to all contacts or contacts in a specific group
+* reCAPTCHA can be activated to public contact form
 * Import contacts from CSV file
 * Customize fields in any way: change titles and hide specific fields from public form or admin area
 * Request contacts to update their existing contact info simply clicking a button
@@ -77,6 +81,14 @@ Contact author [here](https://anssilaitila.fi/).
 5. Plugin settings
 
 == Changelog ==
+
+= 2.8.6 =
+* Free: More features are now free: search using [contact_list]-shortcode, filter contacts by categories and layout options (see settings)
+* Pro: Layout options now usable in [contact_list_groups]-view (bug fixed)
+* Pro: reCAPTCHA for sending messages (may be activated from the settings)
+* Pro: New settings for sending email
+* Pro: All sent mail is now logged (see the mail log page in the admin area)
+* Pro: Contact's email address may now be hidden from contact card still keeping the Send message -button there (see settings)
 
 = 2.8.5 =
 * Sending message to a single contact fixed
