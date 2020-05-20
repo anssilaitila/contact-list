@@ -496,7 +496,7 @@ class ContactListSettings
     {
         global  $submenu ;
         $permalink = './options-general.php?page=contact-list';
-        $submenu['edit.php?post_type=contact'][] = array( __( 'Settings', 'contact-list' ), 'manage_options', $permalink );
+        $submenu['edit.php?post_type=contact'][] = array( __( 'Settings&nbsp;&nbsp;➤', 'contact-list' ), 'manage_options', $permalink );
     }
     
     public function add_upgrade_link()
@@ -546,7 +546,7 @@ class ContactListSettings
         ?></li>
         <li><?php 
         echo  __( 'Additional parameters', 'contact-list' ) ;
-        ?> <span class="contact-list-pro-only-inline">Pro</span>
+        ?>
             <ul class="contact-list-admin-ul">
                 <li><?php 
         echo  __( 'Hide search form:', 'contact-list' ) ;
@@ -567,9 +567,18 @@ class ContactListSettings
         </li>
       </ol>
 
-      <h2><?php 
+      <h2>
+        <?php 
         echo  __( 'Contacts with groups', 'contact-list' ) ;
-        ?> <span class="contact-list-pro-only-inline">Pro</span></h2>
+        ?>
+        <?php 
+        ?>
+          <a href="<?php 
+        echo  get_admin_url() ;
+        ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">Pro</a>
+        <?php 
+        ?>
+      </h2>
       <ol>
         <li><?php 
         echo  __( 'Add the groups via the Groups page. There may be groups under groups (hierarchial groups, 2 or more levels).', 'contact-list' ) ;
@@ -582,27 +591,54 @@ class ContactListSettings
         ?></li>
       </ol>
 
-      <h2><?php 
+      <h2>
+        <?php 
         echo  __( 'Contacts from specific group', 'contact-list' ) ;
-        ?> <span class="contact-list-pro-only-inline">Pro</span></h2>
+        ?>
+        <?php 
+        ?>
+          <a href="<?php 
+        echo  get_admin_url() ;
+        ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">Pro</a>
+        <?php 
+        ?>
+      </h2>
       <ol>
         <li><?php 
         echo  __( 'Insert the shortcode', 'contact-list' ) . '<span class="contact-list-shortcode">[contact_list_groups group=GROUP_SLUG]</span>' . __( 'to the content editor of any page you wish the contact list to appear. Replace GROUP_SLUG with the appropriate slug that can be found from group management.', 'contact-list' ) ;
         ?></li>
       </ol>
 
-      <h3><?php 
+      <h2>
+        <?php 
         echo  __( 'Single contact', 'contact-list' ) ;
-        ?></h2>
+        ?>
+        <?php 
+        ?>
+          <a href="<?php 
+        echo  get_admin_url() ;
+        ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">Pro</a>
+        <?php 
+        ?>
+      </h2>
       <ol>
         <li><?php 
         echo  __( 'Insert the shortcode', 'contact-list' ) . '<span class="contact-list-shortcode">[contact_list contact=CONTACT_ID]</span>' . __( 'to the content editor of any page you wish the contact to appear. Replace CONTACT_ID with the appropriate id that can be found from contact management. There\'s a column "ID" in the All Contacts -page, which contains the numeric value.', 'contact-list' ) ;
         ?></li>
       </ol>
 
-      <h3><?php 
+      <h2>
+        <?php 
         echo  __( 'Allow visitors to add new contacts', 'contact-list' ) ;
-        ?> <span class="contact-list-pro-only-inline">Pro</span></h2>
+        ?>
+        <?php 
+        ?>
+          <a href="<?php 
+        echo  get_admin_url() ;
+        ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">Pro</a>
+        <?php 
+        ?>
+      </h2>
       <ol>
         <li><?php 
         echo  __( 'Insert the shortcode', 'contact-list' ) . '<span class="contact-list-shortcode">[contact_list_form]</span>' . __( 'to the page you wish the form to appear on.', 'contact-list' ) ;
@@ -612,9 +648,18 @@ class ContactListSettings
         ?></li>
       </ol>
 
-      <h3><?php 
+      <h3>
+        <?php 
         echo  __( 'Only a search form that searches from all contacts', 'contact-list' ) ;
-        ?> <span class="contact-list-pro-only-inline">Pro</span></h2>
+        ?>
+        <?php 
+        ?>
+          <a href="<?php 
+        echo  get_admin_url() ;
+        ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">Pro</a>
+        <?php 
+        ?>
+      </h2>
       <ol>
         <li><?php 
         echo  __( 'Insert the shortcode', 'contact-list' ) . '<span class="contact-list-shortcode">[contact_list_search]</span>' . __( 'to the page you wish the view to appear on.', 'contact-list' ) ;

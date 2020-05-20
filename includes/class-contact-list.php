@@ -118,9 +118,6 @@ class Contact_List
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-contact-list-custom-fields.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-contact-list-helpers.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-shortcode_contact_list.php';
-        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-shortcode_contact_list_groups.php';
-        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-shortcode_contact_list_form.php';
-        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-shortcode_contact_list_search.php';
         $this->loader = new Contact_List_Loader();
     }
     
@@ -176,9 +173,9 @@ class Contact_List
             2
         );
         $this->loader->add_action( 'pre_get_posts', $plugin_admin, 'contact_list_custom_orderby' );
+        $this->loader->add_action( 'admin_menu', $plugin_admin, 'register_import_page' );
         $this->loader->add_action( 'admin_menu', $plugin_admin, 'register_send_email_page' );
         $this->loader->add_action( 'admin_menu', $plugin_admin, 'register_mail_log_page' );
-        $this->loader->add_action( 'admin_menu', $plugin_admin, 'register_import_page' );
         $this->loader->add_action( 'wp_ajax_cl_send_mail', $plugin_admin, 'cl_send_mail' );
         $this->loader->add_action(
             'wp_insert_post',
@@ -188,8 +185,8 @@ class Contact_List
             3
         );
         $this->loader->add_action( 'phpmailer_init', $plugin_admin, 'wp_mail_returnpath_phpmailer_init' );
-        $this->loader->add_action( 'admin_menu', $plugin_settings, 'add_settings_link' );
         $this->loader->add_action( 'admin_menu', $plugin_settings, 'register_support_page' );
+        $this->loader->add_action( 'admin_menu', $plugin_settings, 'add_settings_link' );
         $this->loader->add_action( 'admin_menu', $plugin_settings, 'add_upgrade_link' );
         $this->loader->add_action( 'admin_menu', $plugin_settings, 'contact_list_add_admin_menu' );
         $this->loader->add_action( 'admin_init', $plugin_settings, 'contact_list_settings_init' );
@@ -218,6 +215,8 @@ class Contact_List
         $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
         $this->loader->add_action( 'wp_ajax_nopriv_cl_send_mail_public', $plugin_public, 'cl_send_mail_public' );
         $this->loader->add_action( 'wp_ajax_cl_send_mail_public', $plugin_public, 'cl_send_mail_public' );
+        $this->loader->add_action( 'wp_ajax_nopriv_cl_get_contacts', $plugin_public, 'cl_get_contacts' );
+        $this->loader->add_action( 'wp_ajax_cl_get_contacts', $plugin_public, 'cl_get_contacts' );
         $this->loader->add_action( 'wp_footer', $plugin_public, 'my_ajax_without_file' );
         $this->loader->add_action( 'init', $plugin_public, 'register_shortcodes' );
     }

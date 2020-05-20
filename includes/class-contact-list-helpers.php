@@ -626,9 +626,9 @@ class ContactListHelpers
         if ( isset( $s['card_border'] ) && $s['card_border'] ) {
             
             if ( $s['card_border'] == 'black' ) {
-                $html .= '<style>.contact-list-contact-container { border: 1px solid #333; } </style>';
+                $html .= '<style>.contact-list-contact-container { border: 1px solid #333; border-radius: 10px; padding: 10px; } </style>';
             } elseif ( $s['card_border'] == 'gray' ) {
-                $html .= '<style>.contact-list-contact-container { border: 1px solid #bbb; } </style>';
+                $html .= '<style>.contact-list-contact-container { border: 1px solid #bbb; border-radius: 10px; padding: 10px; } </style>';
             }
         
         }

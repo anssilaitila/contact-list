@@ -13,7 +13,7 @@ Create staff directory or any contact list for your site. Import existing data e
 
 Using Contact List you can list any contact data including i.e. name, email, phone and social media links. Contacts may also have necessary custom fields.
 
-Send email directly to contacts using a built-in form on the front-end (with spam-prevention).
+Send email directly to contacts using a built-in form on the front-end (featuring reCAPTCHA).
 
 **14 days trial available for Pro version, no credit card required.**
 
@@ -22,9 +22,9 @@ See live demos at [contactlistpro.com](https://www.contactlistpro.com/contact-li
 = Some use cases for this plugin: =
 * Staff directory
 * Contact directory
-* List of any kind of contacts
+* List of any kind of contacts like companies or offices
 * Phone book
-* Send newsletter or any email to a group of people
+* Send newsletter or any email to a specific group of people
 
 = Fields for each contact: =
 * First name
@@ -59,7 +59,7 @@ See live demos at [contactlistpro.com](https://www.contactlistpro.com/contact-li
 * Custom fields and WYSIWYG editor
 * Settings available for customization
 * Send email to all contacts or contacts in a specific group
-* reCAPTCHA can be activated to public contact form
+* reCAPTCHA can be activated to public contact forms
 * Import contacts from CSV file
 * Customize fields in any way: change titles and hide specific fields from public form or admin area
 * Request contacts to update their existing contact info simply clicking a button
@@ -82,8 +82,14 @@ Contact author [here](https://anssilaitila.fi/).
 
 == Changelog ==
 
+= 2.8.7 =
+* reCAPTCHA added to [contact_list_form]-view
+* Category, country and state dropdown change now updates the results without loading the whole page again
+* Bug fixes
+* New settings
+
 = 2.8.6 =
-* Free: More features are now free: search using [contact_list]-shortcode, filter contacts by categories and layout options (see settings)
+* More features are now free: search using [contact_list]-shortcode, filter contacts by categories and layout options (see settings)
 * Pro: Layout options now usable in [contact_list_groups]-view (bug fixed)
 * Pro: reCAPTCHA for sending messages (may be activated from the settings)
 * Pro: New settings for sending email
