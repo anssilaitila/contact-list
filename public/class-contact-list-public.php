@@ -226,6 +226,8 @@ class Contact_List_Public
     public function cl_send_mail_public()
     {
         $s = get_option( 'contact_list_settings' );
+        $contact_id = ( isset( $_POST['contact_id'] ) ? $_POST['contact_id'] : '' );
+        $c = get_post_custom( $contact_id );
         
         if ( isset( $s['activate_recaptcha'] ) && isset( $s['recaptcha_secret_key'] ) ) {
             $url = 'https://www.google.com/recaptcha/api/siteverify';
@@ -275,7 +277,10 @@ class Contact_List_Public
         }
         $body .= ( isset( $_POST['body'] ) ? $_POST['body'] : '' );
         $body .= "<br /><br />-- <br />" . __( 'This mail was sent using Contact List Pro', 'contact-list' );
-        $recipient_emails = ( isset( $_POST['recipient_emails'] ) ? $_POST['recipient_emails'] : '' );
+        $recipient_emails = '';
+        if ( isset( $c['_cl_email'] ) ) {
+            $recipient_emails = $c['_cl_email'][0];
+        }
         $headers = array( 'Content-Type: text/html; charset=UTF-8' );
         $reply_to = '';
         
@@ -313,7 +318,7 @@ class Contact_List_Public
         
         if ( $resp ) {
             $report = 'Mail successfully processed using <strong>wp_mail</strong>.<br /><br /><strong>Mail sent to:</strong><br />' . str_replace( ',', ', ', $recipient_emails );
-            $wpdb->insert( 'wp_cl_sent_mail_log', array(
+            $wpdb->insert( $wpdb->prefix . 'cl_sent_mail_log', array(
                 'subject'      => $subject,
                 'sender_name'  => $sender_name,
                 'reply_to'     => $reply_to,
@@ -323,7 +328,7 @@ class Contact_List_Public
             ) );
         } else {
             $report = '<span style="color: crimson;">ERROR processing mail using <strong>wp_mail</strong>.<br /><br /><strong>Mail WAS NOT sent to:</strong><br />' . str_replace( ',', ', ', $recipient_emails ) . '</span>';
-            $wpdb->insert( 'wp_cl_sent_mail_log', array(
+            $wpdb->insert( $wpdb->prefix . 'cl_sent_mail_log', array(
                 'subject'      => $subject,
                 'sender_name'  => $sender_name,
                 'reply_to'     => $reply_to,

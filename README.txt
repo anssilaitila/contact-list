@@ -82,6 +82,10 @@ Contact author [here](https://anssilaitila.fi/).
 
 == Changelog ==
 
+= 2.8.8 =
+* Contact email address is now hidden from the modal box if "Hide contact email from contact card" is checked in settings
+* Bug fixed regarding writing mail log
+
 = 2.8.7 =
 * reCAPTCHA added to [contact_list_form]-view
 * Category, country and state dropdown change now updates the results without loading the whole page again

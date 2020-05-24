@@ -756,7 +756,7 @@ class Contact_List_Admin
             $report = 'Mail successfully processed using <strong>wp_mail</strong>.<br /><br /><strong>Full list of recipient(s):</strong><br />' . str_replace( ',', ', ', $recipient_emails );
             $all_emails = explode( ',', $recipient_emails );
             $mail_cnt = sizeof( $all_emails );
-            $wpdb->insert( 'wp_cl_sent_mail_log', array(
+            $wpdb->insert( $wpdb->prefix . 'cl_sent_mail_log', array(
                 'subject'      => $subject,
                 'sender_name'  => $sender_name,
                 'reply_to'     => $reply_to,
@@ -901,7 +901,7 @@ class Contact_List_Admin
             if ( $resp ) {
                 global  $wpdb ;
                 $report = 'Mail successfully processed using <strong>wp_mail</strong>.<br /><br /><strong>Full list of recipient(s):</strong><br />' . $s['recipient_email'];
-                $wpdb->insert( 'wp_cl_sent_mail_log', array(
+                $wpdb->insert( $wpdb->prefix . 'cl_sent_mail_log', array(
                     'subject'  => $subject,
                     'report'   => $report,
                     'mail_cnt' => 1,

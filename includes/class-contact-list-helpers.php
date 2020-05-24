@@ -59,17 +59,14 @@ class ContactListHelpers
         $html .= '<label for="sender_email" />' . __( 'Sender email', 'contact-list' ) . '</label>';
         $html .= '<input class="contact-list-sender-email" name="sender_email" value="" placeholder="' . __( 'Your email', 'contact-list' ) . '" />';
         $html .= '<label for="recipient" />' . __( 'Recipient', 'contact-list' ) . '</label>';
-        $html .= '<span><span id="recipient" class="contact-list-recipient"></span> &lt;<span class="contact-list-recipient-email"></span>&gt;</span>';
+        $html .= '<span><span id="recipient" class="contact-list-recipient"></span></span>';
         $html .= '<label for="message" />' . __( 'Message', 'contact-list' ) . '</label>';
         $html .= '<textarea name="message" class="contact-list-message" value="" placeholder=""></textarea>';
         $html .= '<div class="contact-list-message-error"></div>';
-        $html .= '<input class="contact-list-sf-1" name="sf_1" value="" />';
-        $html .= '<div class="contact-list-sf-2-container"><input class="contact-list-sf-2" name="sf_2" value="" /></div>';
-        $html .= '<input class="contact-list-sf-3" name="sf_3" value="" type="hidden" />';
-        $html .= '<input name="contact_email" type="hidden" value="" class="contact-list-contact-email" />';
+        $html .= '<input name="contact_id" type="hidden" value="" class="contact-list-contact-id" />';
         $html .= '<input name="site_url" type="hidden" value="' . $site_url . '" />';
         $html .= '<input name="txt_please_msg_first" type="hidden" value="' . __( 'Please write message first.', 'contact-list' ) . '" />';
-        $html .= '<input name="txt_msg_sent_to" type="hidden" value="' . __( 'Message sent to', 'contact-list' ) . '" />';
+        $html .= '<input name="txt_msg_sent_to" type="hidden" value="' . __( 'Message sent to recipient.', 'contact-list' ) . '" />';
         $html .= '<input name="txt_sending_please_wait" type="hidden" value="' . __( 'Please wait...', 'contact-list' ) . '" />';
         $html .= '<input name="txt_new_msg_from" type="hidden" value="' . __( 'New message from', 'contact-list' ) . '" />';
         $html .= '<input name="txt_sent_by" type="hidden" value="' . __( 'sent by', 'contact-list' ) . '" />';
@@ -155,7 +152,8 @@ class ContactListHelpers
         
         }
         
-        $html .= '<h3>' . (( isset( $c['_cl_first_name'] ) ? $c['_cl_first_name'][0] . ' ' : '' )) . $c['_cl_last_name'][0] . '</h3>';
+        $contact_fullname = (( isset( $c['_cl_first_name'] ) ? $c['_cl_first_name'][0] . ' ' : '' )) . $c['_cl_last_name'][0];
+        $html .= '<h3>' . $contact_fullname . '</h3>';
         if ( isset( $c['_cl_job_title'] ) ) {
             $html .= '<span class="contact-list-job-title">' . $c['_cl_job_title'][0] . '</span>';
         }
@@ -170,7 +168,7 @@ class ContactListHelpers
                 $html .= '<span class="contact-list-email">' . (( $c['_cl_email'][0] ? '<a href="mailto:' . $mailto_obs . '">' . $mailto_obs . '</a>' : '' )) . '</span>';
             }
             if ( !isset( $s['hide_send_email_button'] ) ) {
-                $html .= '<span class="contact-list-send-email">' . (( $c['_cl_email'][0] ? '<a href="" data-email="' . $mailto_obs . '" data-name="' . (( isset( $c['_cl_first_name'] ) ? $c['_cl_first_name'][0] . ' ' : '' )) . $c['_cl_last_name'][0] . '">' . __( 'Send message', 'contact-list' ) . ' &raquo;</a>' : '' )) . '</span>';
+                $html .= '<span class="contact-list-send-email">' . (( $c['_cl_email'][0] ? '<a href="" data-id="' . $id . '" data-name="' . $contact_fullname . '">' . __( 'Send message', 'contact-list' ) . ' &raquo;</a>' : '' )) . '</span>';
             }
         }
         
