@@ -82,6 +82,11 @@ Contact author [here](https://anssilaitila.fi/).
 
 == Changelog ==
 
+= 2.8.9 =
+* New feature (Pro): Export contacts to a csv file
+* New feature (Pro): Single contact can now be displayed using GET-parameter like so: https://www.contactlistpro.com/contact-list/?contact_id=54 (when [contact_list]-shortcode is used)
+* Minor bug fixes
+
 = 2.8.8 =
 * Contact email address is now hidden from the modal box if "Hide contact email from contact card" is checked in settings
 * Bug fixed regarding writing mail log

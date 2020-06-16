@@ -20,10 +20,10 @@ class ShortcodeContactList
         }
         $html .= '<div class="contact-list-container ' . (( $layout ? 'contact-list-' . $layout : '' )) . '">';
         
-        if ( isset( $atts['contact'] ) ) {
+        if ( isset( $atts['contact'] ) || isset( $_GET['contact_id'] ) ) {
             $html = '<div class="pro-feature">' . __( 'This feature is available in the Pro version.' ) . '</div>';
             return $html;
-            $contact = (int) $atts['contact'];
+            $contact = ( isset( $atts['contact'] ) ? (int) $atts['contact'] : (int) $_GET['contact_id'] );
             
             if ( $contact ) {
                 $html .= '<div id="contact-list-search">';
@@ -46,7 +46,7 @@ class ShortcodeContactList
                 }
                 
                 $html .= '</ul>';
-                $html .= '</div>';
+                $html .= '</div><hr class="clear" />';
             } else {
                 $html .= '<p style="background: #f00; color: #fff; padding: 1rem; text-align: center;">' . __( 'Contact not found' ) . ' (ID: ' . $contact . ')</p>';
             }
