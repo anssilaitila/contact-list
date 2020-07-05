@@ -29,7 +29,7 @@ class ShortcodeContactList
                 $html .= '<div id="contact-list-search">';
                 $html .= '<ul id="all-contacts">';
                 $wpb_all_query = new WP_Query( array(
-                    'post_type'      => 'contact',
+                    'post_type'      => CONTACT_CPT,
                     'post_status'    => 'publish',
                     'posts_per_page' => 1,
                     'p'              => $contact,

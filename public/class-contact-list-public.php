@@ -203,7 +203,7 @@ class Contact_List_Public
             $posts_per_page = $s['contacts_per_page'];
         }
         $wp_query = new WP_Query( array(
-            'post_type'      => 'contact',
+            'post_type'      => CONTACT_CPT,
             'post_status'    => 'publish',
             'posts_per_page' => (int) $posts_per_page,
             'paged'          => $paged,
@@ -296,7 +296,7 @@ class Contact_List_Public
         $from = '';
         if ( isset( $s['email_sender_contact_card'] ) && is_email( $s['email_sender_contact_card'] ) ) {
             
-            if ( isset( $s['email_sender_name_contact_card'] ) ) {
+            if ( isset( $s['email_sender_name_contact_card'] ) && $s['email_sender_name_contact_card'] ) {
                 $from = $s['email_sender_name_contact_card'] . ' <' . $s['email_sender_contact_card'] . '>';
             } else {
                 $from = $s['email_sender_contact_card'];

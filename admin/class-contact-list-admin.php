@@ -75,9 +75,9 @@ class Contact_List_Admin
     public function modify_post_title( $data )
     {
         
-        if ( isset( $_POST ) && $data['post_type'] == 'contact' && !isset( $_POST['_cl_last_name'] ) && $data['post_content'] == 'imported' ) {
+        if ( isset( $_POST ) && $data['post_type'] == CONTACT_CPT && !isset( $_POST['_cl_last_name'] ) && $data['post_content'] == 'imported' ) {
             // ...
-        } elseif ( isset( $_POST ) && $data['post_type'] == 'contact' ) {
+        } elseif ( isset( $_POST ) && $data['post_type'] == CONTACT_CPT ) {
             $data['post_title'] = (( isset( $_POST['_cl_first_name'] ) ? $_POST['_cl_first_name'] : '' )) . ' ' . (( isset( $_POST['_cl_last_name'] ) ? $_POST['_cl_last_name'] : '' ));
         }
         
@@ -86,7 +86,7 @@ class Contact_List_Admin
     
     public function create_custom_post_type_contact()
     {
-        register_post_type( 'contact', [
+        register_post_type( CONTACT_CPT, [
             'labels'             => [
             'name'          => __( 'Contact List', 'contact-list' ),
             'singular_name' => __( 'Contact', 'contact-list' ),
@@ -102,8 +102,8 @@ class Contact_List_Admin
             'publicly_queryable' => false,
             'menu_icon'          => 'dashicons-id',
         ] );
-        remove_post_type_support( 'contact', 'title' );
-        remove_post_type_support( 'contact', 'editor' );
+        remove_post_type_support( CONTACT_CPT, 'title' );
+        remove_post_type_support( CONTACT_CPT, 'editor' );
         add_image_size( 'contact-list-contact', 160, 200 );
         add_filter( 'manage_contact_posts_columns', 'contact_custom_columns', 10 );
         add_action(
@@ -131,13 +131,13 @@ class Contact_List_Admin
                 $defaults['phone'] = ( isset( $options['phone_title'] ) && $options['phone_title'] ? $options['phone_title'] : __( 'Phone', 'contact-list' ) );
             }
             if ( !isset( $options['af_hide_linkedin_url'] ) ) {
-                $defaults['linkedin_url'] = ( isset( $options['linkedin_url_title'] ) && $options['linkedin_url_title'] ? $options['linkedin_url_title'] : __( 'LinkedIn URL', 'contact-list' ) );
+                $defaults['linkedin_url'] = ( isset( $options['linkedin_url_title'] ) && $options['linkedin_url_title'] ? $options['linkedin_url_title'] : __( 'LinkedIn', 'contact-list' ) );
             }
             if ( !isset( $options['af_hide_twitter_url'] ) ) {
-                $defaults['twitter_url'] = ( isset( $options['twitter_url_title'] ) && $options['twitter_url_title'] ? $options['twitter_url_title'] : __( 'Twitter URL', 'contact-list' ) );
+                $defaults['twitter_url'] = ( isset( $options['twitter_url_title'] ) && $options['twitter_url_title'] ? $options['twitter_url_title'] : __( 'Twitter', 'contact-list' ) );
             }
             if ( !isset( $options['af_hide_facebook_url'] ) ) {
-                $defaults['facebook_url'] = ( isset( $options['facebook_url_title'] ) && $options['facebook_url_title'] ? $options['facebook_url_title'] : __( 'Facebook URL', 'contact-list' ) );
+                $defaults['facebook_url'] = ( isset( $options['facebook_url_title'] ) && $options['facebook_url_title'] ? $options['facebook_url_title'] : __( 'Facebook', 'contact-list' ) );
             }
             return $defaults;
         }
@@ -242,7 +242,7 @@ class Contact_List_Admin
     public function register_send_email_page()
     {
         add_submenu_page(
-            'edit.php?post_type=contact',
+            'edit.php?post_type=' . CONTACT_CPT,
             __( 'Send email to contacts', 'contact-list' ),
             __( 'Send email', 'contact-list' ),
             'manage_options',
@@ -254,8 +254,8 @@ class Contact_List_Admin
     public function register_mail_log_page()
     {
         add_submenu_page(
-            'edit.php?post_type=contact',
-            __( 'Send email to contacts', 'contact-list' ),
+            'edit.php?post_type=' . CONTACT_CPT,
+            __( 'Mail log', 'contact-list' ),
             __( 'Mail log', 'contact-list' ),
             'manage_options',
             'contact-list-mail-log',
@@ -266,7 +266,7 @@ class Contact_List_Admin
     public function register_import_page()
     {
         add_submenu_page(
-            'edit.php?post_type=contact',
+            'edit.php?post_type=' . CONTACT_CPT,
             __( 'Import contacts', 'contact-list' ),
             __( 'Import contacts', 'contact-list' ),
             'manage_options',
@@ -278,7 +278,7 @@ class Contact_List_Admin
     public function register_export_page()
     {
         add_submenu_page(
-            'edit.php?post_type=contact',
+            'edit.php?post_type=' . CONTACT_CPT,
             __( 'Export contacts', 'contact-list' ),
             __( 'Export contacts', 'contact-list' ),
             'manage_options',
@@ -302,7 +302,7 @@ class Contact_List_Admin
             'menu_name'         => __( 'Groups', 'contact-list' ),
             'not_found'         => __( 'No groups found.', 'contact-list' ),
         );
-        register_taxonomy( 'contact-group', array( 'contact' ), array(
+        register_taxonomy( 'contact-group', array( CONTACT_CPT ), array(
             'hierarchical'      => true,
             'labels'            => $labels,
             'show_ui'           => true,
@@ -377,7 +377,7 @@ class Contact_List_Admin
             ) );
         }
         $wpb_all_query = new WP_Query( array(
-            'post_type'      => 'contact',
+            'post_type'      => CONTACT_CPT,
             'post_status'    => 'publish',
             'posts_per_page' => -1,
             'tax_query'      => $tax_query,
@@ -421,10 +421,10 @@ class Contact_List_Admin
             foreach ( $taxonomies as $category ) {
                 
                 if ( $category->parent == 0 ) {
-                    $output .= '<label class="contact-category"><input type="radio" name="_cl_groups[]" value="' . esc_attr( $category->term_id ) . '" onclick="document.location.href=\'./edit.php?post_type=contact&page=contact-list-send-email&group_id=\' + this.value;" ' . (( isset( $_GET['group_id'] ) && $_GET['group_id'] == $category->term_id ? 'checked' : '' )) . ' /> <span class="contact-list-checkbox-title">' . esc_attr( $category->name ) . '</span></label>';
+                    $output .= '<label class="contact-category"><input type="radio" name="_cl_groups[]" value="' . esc_attr( $category->term_id ) . '" onclick="document.location.href=\'./edit.php?post_type=' . CONTACT_CPT . '&page=contact-list-send-email&group_id=\' + this.value;" ' . (( isset( $_GET['group_id'] ) && $_GET['group_id'] == $category->term_id ? 'checked' : '' )) . ' /> <span class="contact-list-checkbox-title">' . esc_attr( $category->name ) . '</span></label>';
                     foreach ( $taxonomies as $subcategory ) {
                         if ( $subcategory->parent == $category->term_id ) {
-                            $output .= '<label class="contact-subcategory"><input type="radio" name="_cl_groups[]" value="' . esc_attr( $subcategory->term_id ) . '" onclick="document.location.href=\'./edit.php?post_type=contact&page=contact-list-send-email&group_id=\' + this.value;" ' . (( isset( $_GET['group_id'] ) && $_GET['group_id'] == $subcategory->term_id ? 'checked' : '' )) . ' /> <span class="contact-list-checkbox-title">' . esc_html( $subcategory->name ) . '</span></label>';
+                            $output .= '<label class="contact-subcategory"><input type="radio" name="_cl_groups[]" value="' . esc_attr( $subcategory->term_id ) . '" onclick="document.location.href=\'./edit.php?post_type=' . CONTACT_CPT . '&page=contact-list-send-email&group_id=\' + this.value;" ' . (( isset( $_GET['group_id'] ) && $_GET['group_id'] == $subcategory->term_id ? 'checked' : '' )) . ' /> <span class="contact-list-checkbox-title">' . esc_html( $subcategory->name ) . '</span></label>';
                         }
                     }
                 }
@@ -520,7 +520,7 @@ class Contact_List_Admin
             ) );
         }
         $wpb_all_query = new WP_Query( array(
-            'post_type'      => 'contact',
+            'post_type'      => CONTACT_CPT,
             'post_status'    => 'publish',
             'posts_per_page' => -1,
             'tax_query'      => $tax_query,
@@ -575,9 +575,19 @@ class Contact_List_Admin
             <td><?php 
                 echo  __( 'Sender email', 'contact-list' ) ;
                 ?></td>
-            <td><?php 
-                echo  $row->sender_email ;
-                ?></td>
+            <td>
+              <?php 
+                
+                if ( isset( $row->sender_email ) ) {
+                    ?>
+                <?php 
+                    echo  htmlspecialchars( $row->sender_email ) ;
+                    ?>
+              <?php 
+                }
+                
+                ?>
+            </td>
           </tr>
           <tr>
             <td><?php 
@@ -591,9 +601,19 @@ class Contact_List_Admin
             <td><?php 
                 echo  __( 'Reply-to', 'contact-list' ) ;
                 ?></td>
-            <td><?php 
-                echo  htmlspecialchars( $row->reply_to ) ;
-                ?></td>
+            <td>
+              <?php 
+                
+                if ( isset( $row->reply_to ) ) {
+                    ?>
+                <?php 
+                    echo  htmlspecialchars( $row->reply_to ) ;
+                    ?>
+              <?php 
+                }
+                
+                ?>
+            </td>
           </tr>
           <tr>
             <td><?php 
@@ -677,7 +697,15 @@ class Contact_List_Admin
               </td>
               <td>
                 <?php 
-                    echo  $row->sender_email ;
+                    
+                    if ( isset( $row->sender_email ) ) {
+                        ?>
+                  <?php 
+                        echo  htmlspecialchars( $row->sender_email ) ;
+                        ?>
+                <?php 
+                    }
+                    
                     ?>
               </td>
               <td>
@@ -709,9 +737,13 @@ class Contact_List_Admin
                     ?>
               </td>
               <td>
-                <a href="./edit.php?post_type=contact&page=contact-list-mail-log&mail_id=<?php 
+                <a href="./edit.php?post_type=<?php 
+                    echo  CONTACT_CPT ;
+                    ?>&page=contact-list-mail-log&mail_id=<?php 
                     echo  $row->id ;
-                    ?>">Open &raquo;</a>
+                    ?>"><?php 
+                    echo  __( 'Open', 'contact-list' ) ;
+                    ?>&nbsp;&raquo;</a>
               </td>
             </tr>
           <?php 
@@ -877,6 +909,16 @@ class Contact_List_Admin
         ?><i><br /><?php 
         echo  __( 'Group names separated by the character "|", like so: Cats|Dogs|Parrots', 'contact-list' ) ;
         ?></i></li>
+                <li><?php 
+        echo  __( 'Country', 'contact-list' ) ;
+        ?> <span class="new-feature-inline"><?php 
+        echo  __( 'New', 'contact-list' ) ;
+        ?></span></li>
+                <li><?php 
+        echo  __( 'State', 'contact-list' ) ;
+        ?> <span class="new-feature-inline"><?php 
+        echo  __( 'New', 'contact-list' ) ;
+        ?></span></li>
             </ol>
         </p>
 
@@ -979,6 +1021,16 @@ class Contact_List_Admin
         ?><i><br /><?php 
         echo  __( 'Group names separated by the character "|", like so: Cats|Dogs|Parrots', 'contact-list' ) ;
         ?></i></li>
+                <li><?php 
+        echo  __( 'Country', 'contact-list' ) ;
+        ?> <span class="new-feature-inline"><?php 
+        echo  __( 'New', 'contact-list' ) ;
+        ?></span></li>
+                <li><?php 
+        echo  __( 'State', 'contact-list' ) ;
+        ?> <span class="new-feature-inline"><?php 
+        echo  __( 'New', 'contact-list' ) ;
+        ?></span></li>
             </ol>
         </p>
 
@@ -991,8 +1043,8 @@ class Contact_List_Admin
         $post_title = get_the_title( $post_id );
         $s = get_option( 'contact_list_settings' );
         
-        if ( isset( $s['send_email'] ) && isset( $s['recipient_email'] ) && is_email( $s['recipient_email'] ) && $post->post_type == 'contact' && ($post->post_status == 'pending' || $post->post_status == 'draft') ) {
-            $contact_list_admin_url = get_admin_url() . 'edit.php?post_type=contact';
+        if ( isset( $s['send_email'] ) && isset( $s['recipient_email'] ) && is_email( $s['recipient_email'] ) && $post->post_type == CONTACT_CPT && ($post->post_status == 'pending' || $post->post_status == 'draft') ) {
+            $contact_list_admin_url = get_admin_url() . 'edit.php?post_type=' . CONTACT_CPT;
             $data = array(
                 'post_title'      => $post_title,
                 'recipient_email' => $s['recipient_email'],

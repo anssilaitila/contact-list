@@ -332,12 +332,16 @@ class ContactListSettings
             echo  ( $layout == '3-cards-on-the-same-row' ? 'selected' : '' ) ;
             ?>><?php 
             echo  __( '3 cards on the same row', 'contact-list' ) ;
-            ?></option>
+            ?> (<?php 
+            echo  __( 'without contact images', 'contact-list' ) ;
+            ?>)</option>
           <option value="4-cards-on-the-same-row" <?php 
             echo  ( $layout == '4-cards-on-the-same-row' ? 'selected' : '' ) ;
             ?>><?php 
             echo  __( '4 cards on the same row', 'contact-list' ) ;
-            ?></option>
+            ?> (<?php 
+            echo  __( 'without contact images', 'contact-list' ) ;
+            ?>)</option>
       </select>
       <?php 
         }
@@ -483,7 +487,7 @@ class ContactListSettings
     public function register_support_page()
     {
         add_submenu_page(
-            'edit.php?post_type=contact',
+            'edit.php?post_type=' . CONTACT_CPT,
             __( 'How to use Contact List', 'contact-list' ),
             __( 'Help / Support', 'contact-list' ),
             'manage_options',
@@ -496,14 +500,16 @@ class ContactListSettings
     {
         global  $submenu ;
         $permalink = './options-general.php?page=contact-list';
-        $submenu['edit.php?post_type=contact'][] = array( __( 'Settings&nbsp;&nbsp;➤', 'contact-list' ), 'manage_options', $permalink );
+        $menuitem = 'edit.php?post_type=' . CONTACT_CPT;
+        $submenu[$menuitem][] = array( __( 'Settings&nbsp;&nbsp;➤', 'contact-list' ), 'manage_options', $permalink );
     }
     
     public function add_upgrade_link()
     {
         global  $submenu ;
         $permalink = './options-general.php?page=contact-list-pricing';
-        $submenu['edit.php?post_type=contact'][] = array(
+        $menuitem = 'edit.php?post_type=' . CONTACT_CPT;
+        $submenu[$menuitem][] = array(
             __( 'Upgrade&nbsp;&nbsp;➤', 'contact-list' ),
             'manage_options',
             $permalink,
@@ -552,14 +558,18 @@ class ContactListSettings
         echo  __( 'Hide search form:', 'contact-list' ) ;
         ?> <span class="contact-list-shortcode">[contact_list hide_search=1]</span></li>
                 <li><?php 
-        echo  __( 'Layout "2 cards on the same row":', 'contact-list' ) ;
-        ?> <span class="contact-list-shortcode">[contact_list layout=2-cards-on-the-same-row]</span></li>
+        echo  __( 'Layout "2 cards on the same row"', 'contact-list' ) ;
+        ?>: <span class="contact-list-shortcode">[contact_list layout=2-cards-on-the-same-row]</span></li>
                 <li><?php 
-        echo  __( 'Layout "3 cards on the same row":', 'contact-list' ) ;
-        ?> <span class="contact-list-shortcode">[contact_list layout=3-cards-on-the-same-row]</span></li>
+        echo  __( 'Layout "3 cards on the same row"', 'contact-list' ) ;
+        ?> (<?php 
+        echo  __( 'without contact images', 'contact-list' ) ;
+        ?>): <span class="contact-list-shortcode">[contact_list layout=3-cards-on-the-same-row]</span></li>
                 <li><?php 
-        echo  __( 'Layout "4 cards on the same row":', 'contact-list' ) ;
-        ?> <span class="contact-list-shortcode">[contact_list layout=4-cards-on-the-same-row]</span></li>
+        echo  __( 'Layout "4 cards on the same row"', 'contact-list' ) ;
+        ?> (<?php 
+        echo  __( 'without contact images', 'contact-list' ) ;
+        ?>): <span class="contact-list-shortcode">[contact_list layout=4-cards-on-the-same-row]</span></li>
                 <li><?php 
         echo  __( 'Multiple parameters:', 'contact-list' ) ;
         ?> <span class="contact-list-shortcode">[contact_list layout=2-cards-on-the-same-row hide_search=1]</span></li>

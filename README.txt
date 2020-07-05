@@ -1,29 +1,36 @@
 === Contact List for WordPress ===
 Contributors: anssilaitila, freemius
-Tags: contact list, staff directory, staff, directory, crm
+Tags: staff list, directory, employee directory, faculty directory, staff directory
 Requires at least: 4.0.0
 Tested up to: 5.4
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Create staff directory or any contact list for your site. Import existing data easily.
+Create staff list or any contact list for your site. Import existing data easily.
 
 == Description ==
 
 Using Contact List you can list any contact data including i.e. name, email, phone and social media links. Contacts may also have necessary custom fields.
 
-Send email directly to contacts using a built-in form on the front-end (featuring reCAPTCHA).
+Send email directly to contacts using a built-in form on the front-end (featuring reCAPTCHA). Contact's email address can be completely hidden in the Pro version but still email can be sent to the contact.
 
 **14 days trial available for Pro version, no credit card required.**
 
 See live demos at [contactlistpro.com](https://www.contactlistpro.com/contact-list/).
 
 = Some use cases for this plugin: =
-* Staff directory
+* Staff list
 * Contact directory
 * List of any kind of contacts like companies or offices
 * Phone book
+* Faculty and Staff Directory
+* Medical Staff Directory
+* Church Directory
+* Directory of Doctors and Medical Staff
+* Employee Directory
+* Medical Personnel Directory
+* Team Members Directory
 * Send newsletter or any email to a specific group of people
 
 = Fields for each contact: =
@@ -61,6 +68,7 @@ See live demos at [contactlistpro.com](https://www.contactlistpro.com/contact-li
 * Send email to all contacts or contacts in a specific group
 * reCAPTCHA can be activated to public contact forms
 * Import contacts from CSV file
+* Export contacts to a CSV file
 * Customize fields in any way: change titles and hide specific fields from public form or admin area
 * Request contacts to update their existing contact info simply clicking a button
 * More features on the way based on user feedback
@@ -82,9 +90,13 @@ Contact author [here](https://anssilaitila.fi/).
 
 == Changelog ==
 
+= 2.9.0 =
+* Country and state added to import & export tool
+* [contact_list_groups] now also supports the GET-parameter contact_id
+
 = 2.8.9 =
 * New feature (Pro): Export contacts to a csv file
-* New feature (Pro): Single contact can now be displayed using GET-parameter like so: https://www.contactlistpro.com/contact-list/?contact_id=54 (when [contact_list]-shortcode is used)
+* New feature (Pro): Single contact can now be displayed using GET-parameter like so: https://www.contactlistpro.com/contact-list/?contact_id=35 (when [contact_list]-shortcode is used on that page)
 * Minor bug fixes
 
 = 2.8.8 =
@@ -173,7 +185,7 @@ Contact author [here](https://anssilaitila.fi/).
 * Minor updates
 
 = 2.5.0 =
-* New licensing model
+* New licensing model / 2019-12-04
 
 = 1.0.0 =
 * Initial release / 2018-07-13
