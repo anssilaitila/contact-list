@@ -15,7 +15,7 @@ Using Contact List you can list any contact data including i.e. name, email, pho
 
 Send email directly to contacts using a built-in form on the front-end (featuring reCAPTCHA). Contact's email address can be completely hidden in the Pro version but still email can be sent to the contact.
 
-**14 days trial available for Pro version, no credit card required.**
+**14 days free trial available for Pro version, no credit card required.**
 
 See live demos at [contactlistpro.com](https://www.contactlistpro.com/contact-list/).
 
@@ -83,10 +83,10 @@ Contact author [here](https://anssilaitila.fi/).
 == Screenshots ==
 
 1. List of contacts on your site
-2. List of groups
-3. Form for gathering the contact database
-4. Contact management in admin area
-5. Plugin settings
+2. Send message to a contact
+3. List of contacts in 4 columns (more layout options available)
+4. Form for gathering the contact database (including more fields)
+5. Contact management
 
 == Changelog ==
 
