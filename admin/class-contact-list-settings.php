@@ -676,17 +676,6 @@ class ContactListSettings
         ?></li>
       </ol>
 
-      <hr class="style-one" />
-
-      <h2><?php 
-        echo  __( 'Give a rating for the plugin', 'contact-list' ) ;
-        ?></h2>
-      <p><?php 
-        echo  __( "Whether it's 1 star or 5 stars, I'm grateful for your rating. You may rate the plugin", 'contact-list' ) ;
-        ?> <a href="https://wordpress.org/support/plugin/contact-list/reviews/" target="_blank"><?php 
-        echo  __( 'here', 'contact-list' ) ;
-        ?></a>.</p>
-
     </div>
     <?php 
     }

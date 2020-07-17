@@ -209,20 +209,25 @@ class ContactListHelpers
             if ( $n == 1 ) {
                 $html .= '<div class="contact-list-custom-fields-container">';
             }
+            $url = '@(http)?(s)?(://)?(([a-zA-Z])([-\\w]+\\.)+([^\\s\\.]+[^\\s]*)+[^,.\\s])@';
+            
             if ( isset( $c['_cl_custom_field_' . $n] ) ) {
+                $cf_value = $c['_cl_custom_field_' . $n][0];
+                $cf_value = preg_replace( $url, '<a href="http$2://$4" target="_blank" title="$0">$0</a>', $cf_value );
                 
                 if ( $s['custom_field_' . $n . '_icon'] ) {
                     $html .= '<div class="contact-list-custom-field-' . $n . ' contact-list-custom-field-with-icon">';
-                    $html .= '<i class="fa ' . $s['custom_field_' . $n . '_icon'] . '" aria-hidden="true"></i><span>' . $c['_cl_custom_field_' . $n][0] . '</span>';
+                    $html .= '<i class="fa ' . $s['custom_field_' . $n . '_icon'] . '" aria-hidden="true"></i><span>' . $cf_value . '</span>';
                     $html .= '</div>';
                 } else {
                     $html .= '<div class="contact-list-custom-field-' . $n . '">';
                     $html .= ( isset( $s['custom_field_' . $n . '_title'] ) && $s['custom_field_' . $n . '_title'] ? '<strong>' . $s['custom_field_' . $n . '_title'] . '</strong>' : '' );
-                    $html .= $c['_cl_custom_field_' . $n][0];
+                    $html .= $cf_value;
                     $html .= '</div>';
                 }
             
             }
+            
             if ( $n == 6 ) {
                 $html .= '</div>';
             }
@@ -240,6 +245,9 @@ class ContactListHelpers
         $html .= '<div class="contact-list-some-elements">';
         if ( isset( $c['_cl_facebook_url'] ) ) {
             $html .= ( $c['_cl_facebook_url'][0] ? '<a href="' . $c['_cl_facebook_url'][0] . '" target="_blank"><img src="' . plugins_url( '../img/facebook.png', __FILE__ ) . '" width="28" height="28" /></a>' : '' );
+        }
+        if ( isset( $c['_cl_instagram_url'] ) ) {
+            $html .= ( $c['_cl_instagram_url'][0] ? '<a href="' . $c['_cl_instagram_url'][0] . '" target="_blank"><img src="' . plugins_url( '../img/instagram.png', __FILE__ ) . '" width="28" height="28" /></a>' : '' );
         }
         if ( isset( $c['_cl_twitter_url'] ) ) {
             $html .= ( $c['_cl_twitter_url'][0] ? '<a href="' . $c['_cl_twitter_url'][0] . '" target="_blank"><img src="' . plugins_url( '../img/twitter.png', __FILE__ ) . '" width="28" height="28" /></a>' : '' );

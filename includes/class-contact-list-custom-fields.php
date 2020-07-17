@@ -79,6 +79,14 @@ class myCustomFields
         "capability"  => "edit_posts",
     ),
         array(
+        "name"        => "instagram_url",
+        "title"       => "Instagram URL",
+        "description" => "",
+        "type"        => "text",
+        "scope"       => array( "contact" ),
+        "capability"  => "edit_posts",
+    ),
+        array(
         "name"        => "address",
         "title"       => "Address",
         "description" => "",
@@ -343,6 +351,8 @@ class myCustomFields
             } elseif ( $customField['name'] == 'twitter_url' && isset( $options['af_hide_twitter_url'] ) ) {
                 continue;
             } elseif ( $customField['name'] == 'facebook_url' && isset( $options['af_hide_facebook_url'] ) ) {
+                continue;
+            } elseif ( $customField['name'] == 'instagram_url' && isset( $options['af_hide_instagram_url'] ) ) {
                 continue;
             } elseif ( ($customField['name'] == 'address' || $customField['name'] == 'address_line_1' || $customField['name'] == 'address_line_2' || $customField['name'] == 'address_line_3' || $customField['name'] == 'address_line_4') && isset( $options['af_hide_address'] ) ) {
                 continue;

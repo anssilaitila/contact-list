@@ -90,6 +90,10 @@ Contact author [here](https://anssilaitila.fi/).
 
 == Changelog ==
 
+= 2.9.1 =
+* New field for contacts: Instagram URL
+* URLs in custom fields are now automatically turned into links
+
 = 2.9.0 =
 * Country and state added to import & export tool
 * [contact_list_groups] now also supports the GET-parameter contact_id

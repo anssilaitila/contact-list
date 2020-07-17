@@ -101,6 +101,9 @@ class Contact_List_Admin
             'has_archive'        => false,
             'publicly_queryable' => false,
             'menu_icon'          => 'dashicons-id',
+            'capabilities'       => array(
+            'delete_posts' => true,
+        ),
         ] );
         remove_post_type_support( CONTACT_CPT, 'title' );
         remove_post_type_support( CONTACT_CPT, 'editor' );
@@ -138,6 +141,9 @@ class Contact_List_Admin
             }
             if ( !isset( $options['af_hide_facebook_url'] ) ) {
                 $defaults['facebook_url'] = ( isset( $options['facebook_url_title'] ) && $options['facebook_url_title'] ? $options['facebook_url_title'] : __( 'Facebook', 'contact-list' ) );
+            }
+            if ( !isset( $options['af_hide_instagram_url'] ) ) {
+                $defaults['instagram_url'] = ( isset( $options['instagram_url_title'] ) && $options['instagram_url_title'] ? $options['instagram_url_title'] : __( 'IG', 'contact-list' ) );
             }
             return $defaults;
         }
@@ -196,6 +202,11 @@ class Contact_List_Admin
             }
             if ( $column_name == 'facebook_url' ) {
                 if ( get_post_meta( $post_ID, '_cl_facebook_url', true ) ) {
+                    echo  'x' ;
+                }
+            }
+            if ( $column_name == 'instagram_url' ) {
+                if ( get_post_meta( $post_ID, '_cl_instagram_url', true ) ) {
                     echo  'x' ;
                 }
             }
