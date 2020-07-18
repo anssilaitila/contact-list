@@ -107,6 +107,8 @@ class Contact_List
          */
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-contact-list-admin.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-contact-list-settings.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-contact-list-help-support.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-contact-list-notifications.php';
         /**
          * The class responsible for defining all actions that occur in the public-facing
          * side of the site.
@@ -147,7 +149,9 @@ class Contact_List
     {
         $plugin_admin = new Contact_List_Admin( $this->get_plugin_name(), $this->get_version() );
         $plugin_settings = new ContactListSettings();
+        $plugin_help_support = new ContactListHelpSupport();
         $plugin_custom_fields = new myCustomFields();
+        $plugin_notifications = new ContactListNotifications();
         $this->loader->add_action( 'plugins_loaded', $plugin_settings, 'update_db_check' );
         $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
         $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
@@ -186,11 +190,18 @@ class Contact_List
             3
         );
         $this->loader->add_action( 'phpmailer_init', $plugin_admin, 'wp_mail_returnpath_phpmailer_init' );
-        $this->loader->add_action( 'admin_menu', $plugin_settings, 'register_support_page' );
         $this->loader->add_action( 'admin_menu', $plugin_settings, 'add_settings_link' );
+        $this->loader->add_action( 'admin_menu', $plugin_help_support, 'register_support_page' );
         $this->loader->add_action( 'admin_menu', $plugin_settings, 'add_upgrade_link' );
         $this->loader->add_action( 'admin_menu', $plugin_settings, 'contact_list_add_admin_menu' );
         $this->loader->add_action( 'admin_init', $plugin_settings, 'contact_list_settings_init' );
+        $this->loader->add_action(
+            'admin_notices',
+            $plugin_notifications,
+            'notifications_html',
+            8
+        );
+        $this->loader->add_action( 'admin_init', $plugin_notifications, 'process_notifications' );
         $this->loader->add_filter( 'request', $plugin_admin, 'alter_the_query' );
         $this->loader->add_filter(
             'wp_insert_post_data',

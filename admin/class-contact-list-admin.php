@@ -101,9 +101,7 @@ class Contact_List_Admin
             'has_archive'        => false,
             'publicly_queryable' => false,
             'menu_icon'          => 'dashicons-id',
-            'capabilities'       => array(
-            'delete_posts' => true,
-        ),
+            'capability_type'    => 'post',
         ] );
         remove_post_type_support( CONTACT_CPT, 'title' );
         remove_post_type_support( CONTACT_CPT, 'editor' );

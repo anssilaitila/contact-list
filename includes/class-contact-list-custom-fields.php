@@ -384,7 +384,7 @@ class myCustomFields
                 $output = false;
             }
             
-            if ( $customField['name'] == 'custom_field_1' || $customField['name'] == 'custom_field_2' || $customField['name'] == 'custom_field_3' || $customField['name'] == 'custom_field_4' || $customField['name'] == 'custom_field_5' || $customField['name'] == 'custom_field_6' || $customField['name'] == 'description' ) {
+            if ( $customField['name'] == 'custom_field_2' || $customField['name'] == 'custom_field_3' || $customField['name'] == 'custom_field_4' || $customField['name'] == 'custom_field_5' || $customField['name'] == 'custom_field_6' || $customField['name'] == 'description' ) {
                 $output = false;
             } elseif ( $customField['name'] == 'custom_fields' ) {
                 $custom_fields_notify = 1;

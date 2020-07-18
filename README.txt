@@ -56,6 +56,7 @@ See live demos at [contactlistpro.com](https://www.contactlistpro.com/contact-li
 * Contacts may belong to groups
 * Fast search targeting all contacts
 * Filter contacts by country, state and category
+* 1 custom field
 * Choose a layout from 4 different ones
 * All sent mail is logged
 
@@ -63,7 +64,7 @@ See live demos at [contactlistpro.com](https://www.contactlistpro.com/contact-li
 * Multiple different shortcodes/views for various use cases
 * Support for pagination
 * Contact database may be built with publicly available form
-* Custom fields and WYSIWYG editor
+* 6 custom fields and WYSIWYG editor
 * Settings available for customization
 * Send email to all contacts or contacts in a specific group
 * reCAPTCHA can be activated to public contact forms
@@ -89,6 +90,12 @@ Contact author [here](https://anssilaitila.fi/).
 5. Contact management
 
 == Changelog ==
+
+= 2.9.2 =
+* Plugin settings made more usable
+* 1 custom field added to free version
+* More icons for custom fields
+* New setting: activate monochrome or sepia effect on contact images to make more consistent appearance
 
 = 2.9.1 =
 * New field for contacts: Instagram URL

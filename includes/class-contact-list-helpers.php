@@ -132,7 +132,7 @@ class ContactListHelpers
         $html .= '<div class="contact-list-main-elements">';
         $featured_img_url = get_the_post_thumbnail_url( $id, 'contact-list-contact' );
         if ( $featured_img_url ) {
-            $html .= '<div class="contact-list-image-container"><div class="contact-list-image"><img src="' . $featured_img_url . '" /></div></div>';
+            $html .= '<div class="contact-list-image-container"><div class="contact-list-image ' . (( isset( $s['contact_image_style'] ) && $s['contact_image_style'] ? 'contact-list-image-' . $s['contact_image_style'] : '' )) . ' ' . (( isset( $s['contact_image_shadow'] ) && $s['contact_image_shadow'] ? 'contact-list-image-shadow' : '' )) . '"><img src="' . $featured_img_url . '" /></div></div>';
         }
         
         if ( $showGroups ) {
