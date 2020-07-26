@@ -126,14 +126,11 @@ class ContactListHelpers
     {
         $s = get_option( 'contact_list_settings' );
         $c = get_post_custom( $id );
+        $featured_img_url = get_the_post_thumbnail_url( $id, 'contact-list-contact' );
         $html = '';
         $html .= '<li id="cl-' . $id . '">';
         $html .= '<div class="contact-list-contact-container">';
-        $html .= '<div class="contact-list-main-elements">';
-        $featured_img_url = get_the_post_thumbnail_url( $id, 'contact-list-contact' );
-        if ( $featured_img_url ) {
-            $html .= '<div class="contact-list-image-container"><div class="contact-list-image ' . (( isset( $s['contact_image_style'] ) && $s['contact_image_style'] ? 'contact-list-image-' . $s['contact_image_style'] : '' )) . ' ' . (( isset( $s['contact_image_shadow'] ) && $s['contact_image_shadow'] ? 'contact-list-image-shadow' : '' )) . '"><img src="' . $featured_img_url . '" /></div></div>';
-        }
+        $html .= '<div class="contact-list-main-left ' . (( $featured_img_url ? '' : 'cl-full-width' )) . '"><div class="contact-list-main-elements">';
         
         if ( $showGroups ) {
             $terms = get_the_terms( $id, 'contact-group' );
@@ -164,14 +161,16 @@ class ContactListHelpers
             for ( $i = 0 ;  $i < strlen( $mailto ) ;  $i++ ) {
                 $mailto_obs .= '&#' . ord( $mailto[$i] ) . ';';
             }
-            if ( !isset( $s['hide_contact_email'] ) ) {
+            if ( isset( $c['_cl_email'] ) && !isset( $s['hide_contact_email'] ) ) {
                 $html .= '<span class="contact-list-email">' . (( $c['_cl_email'][0] ? '<a href="mailto:' . $mailto_obs . '">' . $mailto_obs . '</a>' : '' )) . '</span>';
-            }
-            if ( !isset( $s['hide_send_email_button'] ) ) {
-                $html .= '<span class="contact-list-send-email">' . (( $c['_cl_email'][0] ? '<a href="" data-id="' . $id . '" data-name="' . $contact_fullname . '">' . __( 'Send message', 'contact-list' ) . ' &raquo;</a>' : '' )) . '</span>';
             }
         }
         
+        if ( isset( $c['_cl_email'] ) || isset( $c['_cl_notify_emails'] ) ) {
+            if ( !isset( $s['hide_send_email_button'] ) ) {
+                $html .= '<span class="contact-list-send-email"><a href="" data-id="' . $id . '" data-name="' . $contact_fullname . '">' . __( 'Send message', 'contact-list' ) . ' &raquo;</a></span>';
+            }
+        }
         
         if ( isset( $c['_cl_phone'] ) ) {
             $phone_href = preg_replace( '/[^0-9]/', '', $c['_cl_phone'][0] );
@@ -256,6 +255,10 @@ class ContactListHelpers
             $html .= ( $c['_cl_linkedin_url'][0] ? '<a href="' . $c['_cl_linkedin_url'][0] . '" target="_blank"><img src="' . plugins_url( '../img/linkedin.png', __FILE__ ) . '" width="37" height="28" /></a>' : '' );
         }
         $html .= '<hr class="clear" /></div>';
+        $html .= '</div>';
+        if ( $featured_img_url ) {
+            $html .= '<div class="contact-list-main-right"><div class="contact-list-image ' . (( isset( $s['contact_image_style'] ) && $s['contact_image_style'] ? 'contact-list-image-' . $s['contact_image_style'] : '' )) . ' ' . (( isset( $s['contact_image_shadow'] ) && $s['contact_image_shadow'] ? 'contact-list-image-shadow' : '' )) . '"><img src="' . $featured_img_url . '" /></div></div>';
+        }
         $html .= '<hr class="clear" />';
         $html .= '</div>';
         $html .= '</li>';

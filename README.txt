@@ -91,6 +91,10 @@ Contact author [here](https://anssilaitila.fi/).
 
 == Changelog ==
 
+= 2.9.3 =
+* New field for contacts "Notify emails": if there are email addresses in this field, they will also be recipients for emails sent to that contact using the front-end form
+* Bug fixes
+
 = 2.9.2 =
 * Plugin settings made more usable
 * 1 custom field added to free version

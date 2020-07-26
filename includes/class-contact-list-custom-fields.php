@@ -39,6 +39,14 @@ class myCustomFields
         "capability"  => "edit_posts",
     ),
         array(
+        "name"        => "phone",
+        "title"       => "Phone",
+        "description" => "",
+        "type"        => "text",
+        "scope"       => array( "contact" ),
+        "capability"  => "edit_posts",
+    ),
+        array(
         "name"        => "email",
         "title"       => "Email",
         "description" => "",
@@ -47,12 +55,13 @@ class myCustomFields
         "capability"  => "edit_posts",
     ),
         array(
-        "name"        => "phone",
-        "title"       => "Phone",
-        "description" => "",
-        "type"        => "text",
-        "scope"       => array( "contact" ),
-        "capability"  => "edit_posts",
+        'name'        => 'notify_emails',
+        'title'       => 'Notify emails',
+        'description' => '',
+        'type'        => 'text',
+        'scope'       => array( CONTACT_CPT ),
+        'capability'  => 'edit_posts',
+        'descr'       => 'Email addresses defined here (comma separated) also receive the emails that are sent to the primary email address using the front-end form.',
     ),
         array(
         "name"        => "linkedin_url",
@@ -329,6 +338,7 @@ class myCustomFields
         </style>
 
         <div class="form-wrap">
+
             <?php 
         wp_nonce_field(
             'my-custom-fields',
@@ -400,6 +410,7 @@ class myCustomFields
                     <div class="form-field form-required form-field-type-<?php 
                 echo  $customField['type'] ;
                 ?>">
+
                         <?php 
                 switch ( $customField['type'] ) {
                     case "checkbox":
@@ -475,6 +486,9 @@ class myCustomFields
                         $options_field = $customField['name'] . '_title';
                         echo  '<label for="' . $this->prefix . $customField['name'] . '"><b>' . (( isset( $options[$options_field] ) && $options[$options_field] ? $options[$options_field] : __( $customField['title'], 'contact-list' ) )) . '</b></label>' ;
                         echo  '<input type="text" name="' . $this->prefix . $customField['name'] . '" id="' . $this->prefix . $customField['name'] . '" value="' . htmlspecialchars( get_post_meta( $post->ID, $this->prefix . $customField['name'], true ) ) . '" />' ;
+                        if ( isset( $customField['descr'] ) ) {
+                            echo  '<div style="background: rgb(251, 251, 251); border: 1px solid #eee; padding: 5px 7px; margin-top: 8px; width: 90%; font-size: 11px;">' . $customField['descr'] . '</div>' ;
+                        }
                         break;
                 }
                 ?>
@@ -513,18 +527,18 @@ class myCustomFields
                 
                 if ( isset( $_POST[$this->prefix . $customField['name']] ) && trim( $_POST[$this->prefix . $customField['name']] ) ) {
                     $value = $_POST[$this->prefix . $customField['name']];
-                    if ( $customField['type'] == "wysiwyg" ) {
+                    if ( $customField['type'] == 'wysiwyg' ) {
                         sanitize_text_field();
                     }
                     // Auto-paragraphs for any WYSIWYG
                     
-                    if ( $customField['type'] == "wysiwyg" || $customField['type'] == "wysiwyg_v2" ) {
+                    if ( $customField['type'] == 'wysiwyg' || $customField['type'] == 'wysiwyg_v2' ) {
                         $value = wpautop( $value );
                     } else {
                         $value = sanitize_text_field( $value );
                     }
                     
-                    if ( $customField['type'] == "wysiwyg_v2" ) {
+                    if ( $customField['type'] == 'wysiwyg_v2' ) {
                         $value = balanceTags( wp_kses_post( $value ), 1 );
                     }
                     update_post_meta( $post_id, $this->prefix . $customField['name'], $value );

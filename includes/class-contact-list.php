@@ -105,15 +105,24 @@ class Contact_List
         /**
          * The class responsible for defining all actions that occur in the admin area.
          */
-        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-contact-list-admin.php';
-        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-contact-list-settings.php';
-        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-contact-list-help-support.php';
-        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-contact-list-notifications.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-admin.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-admin-send-email.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-admin-mail-log.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-admin-list.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-settings.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-help-support.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-import-export.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-notifications.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-query.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-cpt.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-taxonomy.php';
         /**
          * The class responsible for defining all actions that occur in the public-facing
          * side of the site.
          */
-        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-contact-list-public.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cl-public.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cl-public-send-mail.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cl-public-ajax.php';
         /**
          * The class responsible for defining custom fields for the custom post type
          */
@@ -148,53 +157,82 @@ class Contact_List
     private function define_admin_hooks()
     {
         $plugin_admin = new Contact_List_Admin( $this->get_plugin_name(), $this->get_version() );
+        $plugin_admin_send_email = new ContactListAdminSendEmail();
+        $plugin_admin_mail_log = new ContactListAdminMailLog();
+        $plugin_admin_list = new ContactListAdminList();
         $plugin_settings = new ContactListSettings();
         $plugin_help_support = new ContactListHelpSupport();
+        $plugin_import_export = new ContactListImportExport();
+        $plugin_query = new ContactListQuery();
+        $plugin_cpt = new ContactListCPT();
+        $plugin_taxonomy = new ContactListTaxonomy();
         $plugin_custom_fields = new myCustomFields();
         $plugin_notifications = new ContactListNotifications();
         $this->loader->add_action( 'plugins_loaded', $plugin_settings, 'update_db_check' );
         $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
         $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-        $this->loader->add_action( 'init', $plugin_admin, 'create_custom_post_type_contact' );
+        // CPT
+        $this->loader->add_action( 'init', $plugin_cpt, 'create_custom_post_type_contact' );
+        // Admin list
+        $this->loader->add_filter(
+            'manage_contact_posts_columns',
+            $plugin_admin_list,
+            'contact_custom_columns',
+            10
+        );
+        $this->loader->add_action(
+            'manage_contact_posts_custom_column',
+            $plugin_admin_list,
+            'contact_custom_columns_content',
+            10,
+            2
+        );
+        $this->loader->add_action( 'pre_get_posts', $plugin_admin_list, 'contact_list_custom_orderby' );
+        $this->loader->add_filter( 'manage_edit-contact_sortable_columns', $plugin_admin_list, 'set_custom_contact_list_sortable_columns' );
+        // Custom taxonomy
         $this->loader->add_action(
             'init',
-            $plugin_admin,
+            $plugin_taxonomy,
             'create_contact_list_custom_taxonomy',
             0
         );
         $this->loader->add_action(
             'contact-group_edit_form_fields',
-            $plugin_admin,
+            $plugin_taxonomy,
             'contact_group_taxonomy_custom_fields',
             10,
             2
         );
         $this->loader->add_action(
             'edited_contact-group',
-            $plugin_admin,
+            $plugin_taxonomy,
             'save_taxonomy_custom_fields',
             10,
             2
         );
-        $this->loader->add_action( 'pre_get_posts', $plugin_admin, 'contact_list_custom_orderby' );
-        $this->loader->add_action( 'admin_menu', $plugin_admin, 'register_import_page' );
-        $this->loader->add_action( 'admin_menu', $plugin_admin, 'register_export_page' );
-        $this->loader->add_action( 'admin_menu', $plugin_admin, 'register_send_email_page' );
-        $this->loader->add_action( 'admin_menu', $plugin_admin, 'register_mail_log_page' );
-        $this->loader->add_action( 'wp_ajax_cl_send_mail', $plugin_admin, 'cl_send_mail' );
+        // Import & export
+        $this->loader->add_action( 'admin_menu', $plugin_import_export, 'register_import_page' );
+        $this->loader->add_action( 'admin_menu', $plugin_import_export, 'register_export_page' );
+        // Send email
+        $this->loader->add_action( 'admin_menu', $plugin_admin_send_email, 'register_send_email_page' );
+        $this->loader->add_action( 'wp_ajax_cl_send_mail', $plugin_admin_send_email, 'cl_send_mail' );
         $this->loader->add_action(
             'wp_insert_post',
-            $plugin_admin,
+            $plugin_admin_send_email,
             'new_contact_send_email',
             10,
             3
         );
-        $this->loader->add_action( 'phpmailer_init', $plugin_admin, 'wp_mail_returnpath_phpmailer_init' );
+        $this->loader->add_action( 'phpmailer_init', $plugin_admin_send_email, 'wp_mail_returnpath_phpmailer_init' );
+        // Mail log
+        $this->loader->add_action( 'admin_menu', $plugin_admin_mail_log, 'register_mail_log_page' );
+        // Settings
         $this->loader->add_action( 'admin_menu', $plugin_settings, 'add_settings_link' );
-        $this->loader->add_action( 'admin_menu', $plugin_help_support, 'register_support_page' );
-        $this->loader->add_action( 'admin_menu', $plugin_settings, 'add_upgrade_link' );
         $this->loader->add_action( 'admin_menu', $plugin_settings, 'contact_list_add_admin_menu' );
         $this->loader->add_action( 'admin_init', $plugin_settings, 'contact_list_settings_init' );
+        // Help & support
+        $this->loader->add_action( 'admin_menu', $plugin_help_support, 'register_support_page' );
+        // Notifications
         $this->loader->add_action(
             'admin_notices',
             $plugin_notifications,
@@ -202,7 +240,7 @@ class Contact_List
             8
         );
         $this->loader->add_action( 'admin_init', $plugin_notifications, 'process_notifications' );
-        $this->loader->add_filter( 'request', $plugin_admin, 'alter_the_query' );
+        // Query
         $this->loader->add_filter(
             'wp_insert_post_data',
             $plugin_admin,
@@ -210,7 +248,8 @@ class Contact_List
             '99',
             1
         );
-        $this->loader->add_filter( 'manage_edit-contact_sortable_columns', $plugin_admin, 'set_custom_contact_list_sortable_columns' );
+        $this->loader->add_filter( 'request', $plugin_query, 'alter_the_query' );
+        $this->loader->add_action( 'admin_menu', $plugin_settings, 'add_upgrade_link' );
     }
     
     /**
@@ -223,14 +262,18 @@ class Contact_List
     private function define_public_hooks()
     {
         $plugin_public = new Contact_List_Public( $this->get_plugin_name(), $this->get_version() );
+        $plugin_public_send_mail = new ContactListPublicSendMail();
+        $plugin_public_ajax = new ContactListPublicAjax();
         $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
         $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-        $this->loader->add_action( 'wp_ajax_nopriv_cl_send_mail_public', $plugin_public, 'cl_send_mail_public' );
-        $this->loader->add_action( 'wp_ajax_cl_send_mail_public', $plugin_public, 'cl_send_mail_public' );
-        $this->loader->add_action( 'wp_ajax_nopriv_cl_get_contacts', $plugin_public, 'cl_get_contacts' );
-        $this->loader->add_action( 'wp_ajax_cl_get_contacts', $plugin_public, 'cl_get_contacts' );
-        $this->loader->add_action( 'wp_footer', $plugin_public, 'my_ajax_without_file' );
         $this->loader->add_action( 'init', $plugin_public, 'register_shortcodes' );
+        // Send mail
+        $this->loader->add_action( 'wp_ajax_nopriv_cl_send_mail_public', $plugin_public_send_mail, 'cl_send_mail_public' );
+        $this->loader->add_action( 'wp_ajax_cl_send_mail_public', $plugin_public_send_mail, 'cl_send_mail_public' );
+        // Ajax query
+        $this->loader->add_action( 'wp_ajax_nopriv_cl_get_contacts', $plugin_public_ajax, 'cl_get_contacts' );
+        $this->loader->add_action( 'wp_ajax_cl_get_contacts', $plugin_public_ajax, 'cl_get_contacts' );
+        $this->loader->add_action( 'wp_footer', $plugin_public_ajax, 'my_ajax_without_file' );
     }
     
     /**
