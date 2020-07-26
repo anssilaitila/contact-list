@@ -37,7 +37,7 @@ class ContactListTaxonomy {
   <tr class="form-field">  
     <th scope="row" valign="top">  
       <label for="term_meta[hide_group]"><?= __('Hide group', 'contact-list'); ?></label>  
-      <div style="font-weight: 400; font-style: italic; font-size: 12px; margin-top: 6px;"><?= __('Note: this hides only the group, not the actual contacts that may belong to this group') ?></div>
+      <div style="font-weight: 400; font-style: italic; font-size: 12px; margin-top: 6px;"><?= __('Note: this hides only the group from the front-end views (such as dropdowns and group lists), not the actual contacts that may belong to this group.', 'contact-list') ?></div>
     </th>  
     <td>  
       <input type="checkbox" name="term_meta[hide_group]" id="term_meta[hide_group]" <?= isset($term_meta['hide_group']) ? 'checked="checked"' : ''; ?>>

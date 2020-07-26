@@ -91,6 +91,9 @@ Contact author [here](https://anssilaitila.fi/).
 
 == Changelog ==
 
+= 2.9.4 =
+* Adding new contact was broken in the last update, and this is now fixed
+
 = 2.9.3 =
 * New field for contacts "Notify emails": if there are email addresses in this field, they will also be recipients for emails sent to that contact using the front-end form
 * Bug fixes

@@ -243,7 +243,7 @@ class Contact_List
         // Query
         $this->loader->add_filter(
             'wp_insert_post_data',
-            $plugin_admin,
+            $plugin_query,
             'modify_post_title',
             '99',
             1

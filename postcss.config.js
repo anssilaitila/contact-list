@@ -1,8 +1,9 @@
-if (process.env.NODE_ENV === 'production') {
+// https://www.postcss.parts
+// if (process.env.NODE_ENV === 'production') {
     module.exports = {
         plugins: [
             require('autoprefixer'),
             require('cssnano')
         ]
     }
-}
+// }

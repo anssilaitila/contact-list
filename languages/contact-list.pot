@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Contact List plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Contact List 2.9.3\n"
+"Project-Id-Version: Contact List 2.9.4\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/contact-list-pro\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-07-26T08:08:23+00:00\n"
+"POT-Creation-Date: 2020-07-26T13:54:12+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: contact-list\n"
@@ -1012,6 +1012,10 @@ msgstr ""
 
 #: admin/class-cl-taxonomy.php:39
 msgid "Hide group"
+msgstr ""
+
+#: admin/class-cl-taxonomy.php:40
+msgid "Note: this hides only the group from the front-end views (such as dropdowns and group lists), not the actual contacts that may belong to this group."
 msgstr ""
 
 #: includes/class-contact-list-custom-fields.php:262
