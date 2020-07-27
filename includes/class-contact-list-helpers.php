@@ -54,14 +54,14 @@ class ContactListHelpers
         if ( $recaptcha_active && isset( $s['recaptcha_site_key'] ) ) {
             $html .= '<div class="g-recaptcha recaptcha-container" data-sitekey="' . $s['recaptcha_site_key'] . '"></div>';
         }
-        $html .= '<label for="sender_name" />' . __( 'Sender name', 'contact-list' ) . '</label>';
+        $html .= '<label for="sender_name">' . __( 'Sender name', 'contact-list' ) . '</label>';
         $html .= '<input class="contact-list-sender-name" name="sender_name" value="" placeholder="' . __( 'Your name', 'contact-list' ) . '" />';
-        $html .= '<label for="sender_email" />' . __( 'Sender email', 'contact-list' ) . '</label>';
+        $html .= '<label for="sender_email">' . __( 'Sender email', 'contact-list' ) . '</label>';
         $html .= '<input class="contact-list-sender-email" name="sender_email" value="" placeholder="' . __( 'Your email', 'contact-list' ) . '" />';
-        $html .= '<label for="recipient" />' . __( 'Recipient', 'contact-list' ) . '</label>';
+        $html .= '<label for="recipient">' . __( 'Recipient', 'contact-list' ) . '</label>';
         $html .= '<span><span id="recipient" class="contact-list-recipient"></span></span>';
-        $html .= '<label for="message" />' . __( 'Message', 'contact-list' ) . '</label>';
-        $html .= '<textarea name="message" class="contact-list-message" value="" placeholder=""></textarea>';
+        $html .= '<label for="message">' . __( 'Message', 'contact-list' ) . '</label>';
+        $html .= '<textarea name="message" class="contact-list-message" placeholder=""></textarea>';
         $html .= '<div class="contact-list-message-error"></div>';
         $html .= '<input name="contact_id" type="hidden" value="" class="contact-list-contact-id" />';
         $html .= '<input name="site_url" type="hidden" value="' . $site_url . '" />';
@@ -92,7 +92,7 @@ class ContactListHelpers
                 $html .= ContactListHelpers::singleContactMarkup( $id, 1 );
             }
         }
-        $html .= '</ul>';
+        $html .= '</ul><hr class="clear" />';
         $html .= '<div id="contact-list-nothing-found">';
         $html .= __( 'No contacts found.', 'contact-list' );
         $html .= '</div>';
@@ -113,7 +113,7 @@ class ContactListHelpers
                 $html .= ContactListHelpers::singleContactMarkup( $id );
             }
         }
-        $html .= '</ul>';
+        $html .= '</ul><hr class="clear" />';
         $html .= '<div id="contact-list-nothing-found">';
         $html .= __( 'No contacts found.', 'contact-list' );
         $html .= '</div>';
@@ -243,21 +243,21 @@ class ContactListHelpers
         $html .= '</div>';
         $html .= '<div class="contact-list-some-elements">';
         if ( isset( $c['_cl_facebook_url'] ) ) {
-            $html .= ( $c['_cl_facebook_url'][0] ? '<a href="' . $c['_cl_facebook_url'][0] . '" target="_blank"><img src="' . plugins_url( '../img/facebook.png', __FILE__ ) . '" width="28" height="28" /></a>' : '' );
+            $html .= ( $c['_cl_facebook_url'][0] ? '<a href="' . $c['_cl_facebook_url'][0] . '" target="_blank"><img src="' . plugins_url( '../img/facebook.png', __FILE__ ) . '" width="28" height="28" alt="" /></a>' : '' );
         }
         if ( isset( $c['_cl_instagram_url'] ) ) {
-            $html .= ( $c['_cl_instagram_url'][0] ? '<a href="' . $c['_cl_instagram_url'][0] . '" target="_blank"><img src="' . plugins_url( '../img/instagram.png', __FILE__ ) . '" width="28" height="28" /></a>' : '' );
+            $html .= ( $c['_cl_instagram_url'][0] ? '<a href="' . $c['_cl_instagram_url'][0] . '" target="_blank"><img src="' . plugins_url( '../img/instagram.png', __FILE__ ) . '" width="28" height="28" alt="" /></a>' : '' );
         }
         if ( isset( $c['_cl_twitter_url'] ) ) {
-            $html .= ( $c['_cl_twitter_url'][0] ? '<a href="' . $c['_cl_twitter_url'][0] . '" target="_blank"><img src="' . plugins_url( '../img/twitter.png', __FILE__ ) . '" width="28" height="28" /></a>' : '' );
+            $html .= ( $c['_cl_twitter_url'][0] ? '<a href="' . $c['_cl_twitter_url'][0] . '" target="_blank"><img src="' . plugins_url( '../img/twitter.png', __FILE__ ) . '" width="28" height="28" alt="" /></a>' : '' );
         }
         if ( isset( $c['_cl_linkedin_url'] ) ) {
-            $html .= ( $c['_cl_linkedin_url'][0] ? '<a href="' . $c['_cl_linkedin_url'][0] . '" target="_blank"><img src="' . plugins_url( '../img/linkedin.png', __FILE__ ) . '" width="37" height="28" /></a>' : '' );
+            $html .= ( $c['_cl_linkedin_url'][0] ? '<a href="' . $c['_cl_linkedin_url'][0] . '" target="_blank"><img src="' . plugins_url( '../img/linkedin.png', __FILE__ ) . '" width="37" height="28" alt="" /></a>' : '' );
         }
         $html .= '<hr class="clear" /></div>';
         $html .= '</div>';
         if ( $featured_img_url ) {
-            $html .= '<div class="contact-list-main-right"><div class="contact-list-image ' . (( isset( $s['contact_image_style'] ) && $s['contact_image_style'] ? 'contact-list-image-' . $s['contact_image_style'] : '' )) . ' ' . (( isset( $s['contact_image_shadow'] ) && $s['contact_image_shadow'] ? 'contact-list-image-shadow' : '' )) . '"><img src="' . $featured_img_url . '" /></div></div>';
+            $html .= '<div class="contact-list-main-right"><div class="contact-list-image ' . (( isset( $s['contact_image_style'] ) && $s['contact_image_style'] ? 'contact-list-image-' . $s['contact_image_style'] : '' )) . ' ' . (( isset( $s['contact_image_shadow'] ) && $s['contact_image_shadow'] ? 'contact-list-image-shadow' : '' )) . '"><img src="' . $featured_img_url . '" alt="" /></div></div>';
         }
         $html .= '<hr class="clear" />';
         $html .= '</div>';

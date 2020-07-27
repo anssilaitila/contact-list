@@ -91,6 +91,9 @@ Contact author [here](https://anssilaitila.fi/).
 
 == Changelog ==
 
+= 2.9.5 =
+* Markup fixes
+
 = 2.9.4 =
 * Adding new contact was broken in the last update, and this is now fixed
 
