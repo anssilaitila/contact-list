@@ -112,6 +112,7 @@ class Contact_List
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-settings.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-help-support.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-import-export.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-printable.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-notifications.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-query.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-cpt.php';
@@ -163,6 +164,7 @@ class Contact_List
         $plugin_settings = new ContactListSettings();
         $plugin_help_support = new ContactListHelpSupport();
         $plugin_import_export = new ContactListImportExport();
+        $plugin_printable = new ContactListPrintable();
         $plugin_query = new ContactListQuery();
         $plugin_cpt = new ContactListCPT();
         $plugin_taxonomy = new ContactListTaxonomy();
@@ -213,6 +215,8 @@ class Contact_List
         // Import & export
         $this->loader->add_action( 'admin_menu', $plugin_import_export, 'register_import_page' );
         $this->loader->add_action( 'admin_menu', $plugin_import_export, 'register_export_page' );
+        // Printable list
+        $this->loader->add_action( 'admin_menu', $plugin_printable, 'register_printable_page' );
         // Send email
         $this->loader->add_action( 'admin_menu', $plugin_admin_send_email, 'register_send_email_page' );
         $this->loader->add_action( 'wp_ajax_cl_send_mail', $plugin_admin_send_email, 'cl_send_mail' );
@@ -264,6 +268,7 @@ class Contact_List
         $plugin_public = new Contact_List_Public( $this->get_plugin_name(), $this->get_version() );
         $plugin_public_send_mail = new ContactListPublicSendMail();
         $plugin_public_ajax = new ContactListPublicAjax();
+        $this->loader->add_action( 'admin_enqueue_scripts', $plugin_public, 'enqueue_styles' );
         $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
         $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
         $this->loader->add_action( 'init', $plugin_public, 'register_shortcodes' );

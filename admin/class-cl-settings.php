@@ -44,6 +44,17 @@ class ContactListSettings
             'field_name' => 'order_by',
         )
         );
+        add_settings_field(
+            'contact-list-last_name_before_first_name',
+            __( 'Show last name before first name', 'contact-list' ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_section_general',
+            array(
+            'label_for'  => 'contact-list-last_name_before_first_name',
+            'field_name' => 'last_name_before_first_name',
+        )
+        );
         $tab = 2;
         add_settings_section(
             'contact-list_tab_' . $tab,

@@ -2,7 +2,7 @@
 Contributors: anssilaitila, freemius
 Tags: staff list, directory, employee directory, faculty directory, staff directory
 Requires at least: 4.0.0
-Tested up to: 5.4
+Tested up to: 5.5
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -59,6 +59,7 @@ See live demos at [contactlistpro.com](https://www.contactlistpro.com/contact-li
 * 1 custom field
 * Choose a layout from 4 different ones
 * All sent mail is logged
+* Printable contact list
 
 = More features in the Pro version: =
 * Multiple different shortcodes/views for various use cases
@@ -90,6 +91,11 @@ Contact author [here](https://anssilaitila.fi/).
 5. Contact management
 
 == Changelog ==
+
+= 2.9.6 =
+* New setting: Show last name before first name
+* New feature: Printable list for contacts
+* Fix: Export tool should now handle special characters correctly
 
 = 2.9.5 =
 * Markup fixes

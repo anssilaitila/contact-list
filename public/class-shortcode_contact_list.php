@@ -42,13 +42,13 @@ class ShortcodeContactList
                         $html .= ContactListHelpers::singleContactMarkup( $id );
                     }
                 } else {
-                    $html .= '<p style="background: #f00; color: #fff; padding: 1rem; text-align: center;">' . __( 'Contact not found' ) . ' (ID: ' . $contact . ')</p>';
+                    $html .= '<p style="background: #f00; color: #fff; padding: 1rem; text-align: center;">' . __( 'Contact not found', 'contact-list' ) . ' (ID: ' . $contact . ')</p>';
                 }
                 
                 $html .= '</ul>';
                 $html .= '</div><hr class="clear" />';
             } else {
-                $html .= '<p style="background: #f00; color: #fff; padding: 1rem; text-align: center;">' . __( 'Contact not found' ) . ' (ID: ' . $contact . ')</p>';
+                $html .= '<p style="background: #f00; color: #fff; padding: 1rem; text-align: center;">' . __( 'Contact not found', 'contact-list' ) . ' (ID: ' . $contact . ')</p>';
             }
         
         } else {
@@ -193,7 +193,7 @@ class ShortcodeContactList
                 }
                 
                 if ( $filter_active ) {
-                    $html .= '<button type="submit" class="filter-contacts">' . __( 'Filter contacts' ) . '</button>';
+                    $html .= '<button type="submit" class="filter-contacts">' . __( 'Filter contacts', 'contact-list' ) . '</button>';
                 }
                 $html .= '<hr class="clear" /></form>';
             }
@@ -223,7 +223,7 @@ class ShortcodeContactList
             }
             
             if ( $wp_query->found_posts == 0 ) {
-                $html .= '<p>' . __( 'No contacts found.' ) . '</p>';
+                $html .= '<p>' . __( 'No contacts found.', 'contact-list' ) . '</p>';
             }
         }
         

@@ -149,7 +149,14 @@ class ContactListHelpers
         
         }
         
-        $contact_fullname = (( isset( $c['_cl_first_name'] ) ? $c['_cl_first_name'][0] . ' ' : '' )) . $c['_cl_last_name'][0];
+        $contact_fullname = '';
+        
+        if ( isset( $s['last_name_before_first_name'] ) ) {
+            $contact_fullname = $c['_cl_last_name'][0] . (( isset( $c['_cl_first_name'] ) ? ' ' . $c['_cl_first_name'][0] : '' ));
+        } else {
+            $contact_fullname = (( isset( $c['_cl_first_name'] ) ? $c['_cl_first_name'][0] . ' ' : '' )) . $c['_cl_last_name'][0];
+        }
+        
         $html .= '<h3>' . $contact_fullname . '</h3>';
         if ( isset( $c['_cl_job_title'] ) ) {
             $html .= '<span class="contact-list-job-title">' . $c['_cl_job_title'][0] . '</span>';
@@ -168,7 +175,7 @@ class ContactListHelpers
         
         if ( isset( $c['_cl_email'] ) || isset( $c['_cl_notify_emails'] ) ) {
             if ( !isset( $s['hide_send_email_button'] ) ) {
-                $html .= '<span class="contact-list-send-email"><a href="" data-id="' . $id . '" data-name="' . $contact_fullname . '">' . __( 'Send message', 'contact-list' ) . ' &raquo;</a></span>';
+                $html .= '<span class="contact-list-send-email cl-dont-print"><a href="" data-id="' . $id . '" data-name="' . $contact_fullname . '">' . __( 'Send message', 'contact-list' ) . ' &raquo;</a></span>';
             }
         }
         
