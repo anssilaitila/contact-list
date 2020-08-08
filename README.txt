@@ -92,6 +92,10 @@ Contact author [here](https://anssilaitila.fi/).
 
 == Changelog ==
 
+= 2.9.7 =
+* Freemius SDK update
+* Tested up to: WP 5.5
+
 = 2.9.6 =
 * New setting: Show last name before first name
 * New feature: Printable list for contacts
