@@ -253,7 +253,10 @@ class Contact_List
             1
         );
         $this->loader->add_filter( 'request', $plugin_query, 'alter_the_query' );
-        $this->loader->add_action( 'admin_menu', $plugin_settings, 'add_upgrade_link' );
+        // Upgrade link
+        if ( ContactListHelpers::isPremium() == 0 ) {
+            $this->loader->add_action( 'admin_menu', $plugin_settings, 'add_upgrade_link' );
+        }
     }
     
     /**

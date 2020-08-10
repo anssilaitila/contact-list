@@ -143,12 +143,17 @@ class ContactListAdminSendEmail
 
           <?php 
         ?>
-
-            <?php 
-        echo  ContactListHelpers::proFeatureMarkup() ;
-        ?>
             
           <?php 
+        
+        if ( ContactListHelpers::isPremium() == 0 ) {
+            ?>  
+            <?php 
+            echo  ContactListHelpers::proFeatureMarkup() ;
+            ?>
+          <?php 
+        }
+        
         ?>
           
       </form>

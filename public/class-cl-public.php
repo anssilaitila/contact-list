@@ -119,7 +119,9 @@ class Contact_List_Public
         // normalize attribute keys, lowercase
         $atts = array_change_key_case( (array) $atts, CASE_LOWER );
         $html = '';
-        $html .= '<div class="pro-feature">' . __( 'This feature is available in the Pro version.' ) . '</div>';
+        if ( ContactListHelpers::isPremium() == 1 ) {
+            $html .= '<div class="pro-feature">' . __( 'This feature is available in the Pro version.' ) . '</div>';
+        }
         return $html;
     }
     
@@ -131,14 +133,18 @@ class Contact_List_Public
     public static function contact_list_form()
     {
         $html = '';
-        $html .= '<div class="pro-feature">' . __( 'This feature is available in the Pro version.' ) . '</div>';
+        if ( ContactListHelpers::isPremium() == 0 ) {
+            $html .= '<div class="pro-feature">' . __( 'This feature is available in the Pro version.' ) . '</div>';
+        }
         return $html;
     }
     
     public static function contact_list_search( $atts = array(), $content = null, $tag = '' )
     {
         $html = '';
-        $html .= '<div class="pro-feature">' . __( 'This feature is available in the Pro version.' ) . '</div>';
+        if ( ContactListHelpers::isPremium() == 0 ) {
+            $html .= '<div class="pro-feature">' . __( 'This feature is available in the Pro version.' ) . '</div>';
+        }
         return $html;
     }
 

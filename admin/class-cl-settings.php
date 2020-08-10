@@ -541,49 +541,92 @@ class ContactListSettings
     
     public function contact_list_settings_general_section_callback()
     {
-        echo  ContactListHelpers::proFeatureSettingsMarkup() ;
+        
+        if ( ContactListHelpers::isPremium() == 1 ) {
+            echo  '' ;
+        } else {
+            echo  ContactListHelpers::proFeatureSettingsMarkup() ;
+        }
+    
     }
     
     public function contact_list_settings_tab_2_callback()
     {
         echo  '</div>' ;
         echo  '<div class="contact-list-settings-tab-2">' ;
-        echo  ContactListHelpers::proFeatureSettingsMarkup() ;
+        
+        if ( ContactListHelpers::isPremium() == 1 ) {
+            echo  '<p>' . __( '', 'contact-list' ) . '</p>' ;
+        } else {
+            echo  ContactListHelpers::proFeatureSettingsMarkup() ;
+        }
+    
     }
     
     public function contact_list_settings_tab_3_callback()
     {
         echo  '</div>' ;
         echo  '<div class="contact-list-settings-tab-3">' ;
-        echo  ContactListHelpers::proFeatureSettingsMarkup() ;
+        
+        if ( ContactListHelpers::isPremium() == 1 ) {
+            echo  '<p>' . __( '', 'contact-list' ) . '</p>' ;
+        } else {
+            echo  ContactListHelpers::proFeatureSettingsMarkup() ;
+        }
+    
     }
     
     public function contact_list_settings_tab_4_callback()
     {
         echo  '</div>' ;
         echo  '<div class="contact-list-settings-tab-4">' ;
-        echo  ContactListHelpers::proFeatureSettingsMarkup() ;
+        
+        if ( ContactListHelpers::isPremium() == 1 ) {
+            echo  '<p style="font-size: 16px; font-weight: 600; margin-bottom: 10px;">' . __( 'These settings are for this form in the front-end:', 'contact-list' ) . '<hr class="clear" /><img src="' . plugins_url( '../img/search-form-sample.png', __FILE__ ) . '" style="box-shadow: 2px 2px 4px #bbb;" />' . '</p>' ;
+        } else {
+            echo  ContactListHelpers::proFeatureSettingsMarkup() ;
+        }
+    
     }
     
     public function contact_list_settings_tab_5_callback()
     {
         echo  '</div>' ;
         echo  '<div class="contact-list-settings-tab-5">' ;
-        echo  ContactListHelpers::proFeatureSettingsMarkup() ;
+        
+        if ( ContactListHelpers::isPremium() == 1 ) {
+            echo  '<p>' . __( '', 'contact-list' ) . '</p>' ;
+        } else {
+            echo  ContactListHelpers::proFeatureSettingsMarkup() ;
+        }
+    
     }
     
     public function contact_list_settings_section_callback()
     {
         echo  '</div>' ;
         echo  '<div class="contact-list-settings-tab-6">' ;
-        echo  ContactListHelpers::proFeatureSettingsMarkup() ;
+        
+        if ( ContactListHelpers::isPremium() == 1 ) {
+            echo  '<p>' . __( 'You may enter alternative titles and texts here. The values defined here will override the default values.', 'contact-list' ) . '</p>' ;
+        } else {
+            echo  ContactListHelpers::proFeatureSettingsMarkup() ;
+        }
+    
     }
     
     public function contact_list_settings_admin_form_callback()
     {
         echo  '</div>' ;
         echo  '<div class="contact-list-settings-tab-7">' ;
-        echo  ContactListHelpers::proFeatureSettingsMarkup() ;
+        
+        if ( ContactListHelpers::isPremium() == 1 ) {
+            echo  '<h2>' . __( 'Admin form elements', 'contact-list' ) . '</h2>' ;
+            echo  '<p>' . __( 'You may customize the admin form (the one displayed in the WP admin area) using these settings.', 'contact-list' ) . '</p>' ;
+        } else {
+            echo  ContactListHelpers::proFeatureSettingsMarkup() ;
+        }
+    
     }
     
     public function contact_list_settings_public_form_callback()

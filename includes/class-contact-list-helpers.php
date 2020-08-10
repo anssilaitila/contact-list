@@ -660,5 +660,11 @@ class ContactListHelpers
         
         return $html;
     }
+    
+    public static function isPremium()
+    {
+        $is_premium = 0;
+        return $is_premium;
+    }
 
 }

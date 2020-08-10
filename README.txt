@@ -92,6 +92,9 @@ Contact author [here](https://anssilaitila.fi/).
 
 == Changelog ==
 
+= 2.9.7.1 =
+* Bug fixes
+
 = 2.9.7 =
 * Freemius SDK update
 * Tested up to: WP 5.5

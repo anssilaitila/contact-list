@@ -43,15 +43,20 @@ class ContactListImportExport
         </p>
         
         <hr class="style-one" />
-
-          <?php 
-        ?>
-
-            <?php 
-        echo  ContactListHelpers::proFeatureMarkup() ;
-        ?>
         
         <?php 
+        ?>
+          
+        <?php 
+        
+        if ( ContactListHelpers::isPremium() == 0 ) {
+            ?>
+          <?php 
+            echo  ContactListHelpers::proFeatureMarkup() ;
+            ?>
+        <?php 
+        }
+        
         ?>
           
 
@@ -156,14 +161,19 @@ class ContactListImportExport
         
         <hr class="style-one" />
 
-          <?php 
-        ?>
-
-            <?php 
-        echo  ContactListHelpers::proFeatureMarkup() ;
-        ?>
-        
         <?php 
+        ?>
+  
+        <?php 
+        
+        if ( ContactListHelpers::isPremium() == 0 ) {
+            ?>
+          <?php 
+            echo  ContactListHelpers::proFeatureMarkup() ;
+            ?>
+        <?php 
+        }
+        
         ?>
           
 
