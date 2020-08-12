@@ -92,6 +92,9 @@ Contact author [here](https://anssilaitila.fi/).
 
 == Changelog ==
 
+= 2.9.9 =
+* Country and state added to contact card
+
 = 2.9.8 =
 * Some improvements to the printable list
 * Bug fixes

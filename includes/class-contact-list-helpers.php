@@ -200,6 +200,9 @@ class ContactListHelpers
             if ( isset( $c['_cl_address_line_4'] ) ) {
                 $html .= '<span class="contact-list-address-line-4">' . $c['_cl_address_line_4'][0] . '</span>';
             }
+            if ( isset( $c['_cl_country'] ) || isset( $c['_cl_state'] ) ) {
+                $html .= '<span class="contact-list-address-country-and-state">' . (( isset( $c['_cl_state'] ) ? $c['_cl_state'][0] : '' )) . (( isset( $c['_cl_country'] ) ? (( isset( $c['_cl_state'] ) ? ', ' : '' )) . $c['_cl_country'][0] : '' )) . '</span>';
+            }
             $html .= '</div>';
         }
         
