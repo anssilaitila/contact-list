@@ -117,6 +117,7 @@ class Contact_List
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-query.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-cpt.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-taxonomy.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-admin-maintenance.php';
         /**
          * The class responsible for defining all actions that occur in the public-facing
          * side of the site.
@@ -161,6 +162,7 @@ class Contact_List
         $plugin_admin_send_email = new ContactListAdminSendEmail();
         $plugin_admin_mail_log = new ContactListAdminMailLog();
         $plugin_admin_list = new ContactListAdminList();
+        $plugin_admin_maintenance = new ContactListAdminMaintenance();
         $plugin_settings = new ContactListSettings();
         $plugin_help_support = new ContactListHelpSupport();
         $plugin_import_export = new ContactListImportExport();
@@ -212,6 +214,8 @@ class Contact_List
             10,
             2
         );
+        // Maintenance
+        $this->loader->add_action( 'plugins_loaded', $plugin_admin_maintenance, 'actions' );
         // Import & export
         $this->loader->add_action( 'admin_menu', $plugin_import_export, 'register_import_page' );
         $this->loader->add_action( 'admin_menu', $plugin_import_export, 'register_export_page' );

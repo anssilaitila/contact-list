@@ -276,17 +276,18 @@ class ContactListHelpers
     {
         
         if ( $_POST ) {
-            // if timestamp is not valid, redirect to homepage
+            // if timestamp or nonce is not valid, redirect to homepage
             
-            if ( $_POST['valid'] < current_time( 'timestamp', 1 ) ) {
+            if ( $_POST['valid'] < current_time( 'timestamp', 1 ) || !wp_verify_nonce( $_REQUEST['_wpnonce'], '_CL_UPDATE' ) ) {
                 wp_safe_redirect( site_url() );
                 exit;
             }
         
         } else {
+            $sc = get_option( 'contact-list-sc' );
             // if the nonce fails, redirect to homepage
             
-            if ( !isset( $_GET['contact'] ) || !wp_verify_nonce( $_GET['contact'], 'contact_link_uid_' . $_GET['valid'] ) ) {
+            if ( !isset( $_GET['valid'] ) || !isset( $_GET['sc'] ) || md5( $contact_id . $_GET['valid'] . $sc ) != $_GET['sc'] ) {
                 wp_safe_redirect( site_url() );
                 exit;
             }

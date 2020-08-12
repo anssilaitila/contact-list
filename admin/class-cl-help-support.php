@@ -22,7 +22,7 @@ class ContactListHelpSupport {
 
       <div class="contact-list-examples">
           <p><?= __('Some examples on how you can use different views available at', 'contact-list') ?> <a href="https://www.contactlistpro.com/contact-list/" target="_blank"><?= __('contactlistpro.com', 'contact-list') ?></a>.</p>
-          <p><?= __('Any feedback is welcome. You may contact the author at', 'contact-list') . ' <a href="https://anssilaitila.fi/" target="_blank">anssilaitila.fi</a> ' . __('or by email:', 'contact-list') .  ' <a href="mailto:&#97;&#110;&#115;&#115;&#105;&#46;&#108;&#97;&#105;&#116;&#105;&#108;&#97;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#97;&#110;&#115;&#115;&#105;&#46;&#108;&#97;&#105;&#116;&#105;&#108;&#97;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a>'; ?></p>
+          <p><?= __('Any feedback is welcome. You may contact the author at', 'contact-list') . ' <a href="https://www.tammersoft.com/" target="_blank">tammersoft.com</a> ' . __('or by email:', 'contact-list') ?> <a href="javascript:location='mailto:\u0063\u006f\u006e\u0074\u0061\u0063\u0074\u0040\u0074\u0061\u006d\u006d\u0065\u0072\u0073\u006f\u0066\u0074\u002e\u0063\u006f\u006d';void 0"><script type="text/javascript">document.write('\u0063\u006f\u006e\u0074\u0061\u0063\u0074\u0040\u0074\u0061\u006d\u006d\u0065\u0072\u0073\u006f\u0066\u0074\u002e\u0063\u006f\u006d')</script></a></p>
       </div>
 
       <h2><?= __('Only contacts, no groups', 'contact-list'); ?></h2>

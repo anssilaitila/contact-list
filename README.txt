@@ -92,6 +92,10 @@ Contact author [here](https://anssilaitila.fi/).
 
 == Changelog ==
 
+= 2.9.8 =
+* Some improvements to the printable list
+* Bug fixes
+
 = 2.9.7.1 =
 * Bug fixes
 

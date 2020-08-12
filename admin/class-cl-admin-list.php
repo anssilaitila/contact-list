@@ -73,11 +73,11 @@ class ContactListAdminList {
         echo $email;
 
         $valid_period = 60 * 60 * 24 * 2; // 60 minutes * 24 * 2
-        $expiry = current_time('timestamp', 1) + $valid_period; // current_time( 'timestamp' ) for your blog local timestamp
+        $expiry = current_time('timestamp', 1) + $valid_period;
         $url = site_url('/_cl_update-contact/' . $post_ID . '/');
-        $url = add_query_arg('valid', $expiry, $url); // Adding the timestamp to the url with the "valid" arg
-        $nonce_url = wp_nonce_url($url, 'contact_link_uid_' . $expiry, 'contact');  // Adding our nonce to the url with a unique id made from the expiry timestamp          
-        $update_url = $nonce_url;
+        $url = add_query_arg('valid', $expiry, $url);
+        $url = add_query_arg('sc', md5($post_ID . $expiry . get_option('contact-list-sc')), $url);
+        $update_url = $url;
 
         echo '<button class="contact-list-request-update contact-list-request-update-' . $post_ID . '" data-contact-id="' . $post_ID . '" data-email="' . get_post_meta($post_ID, '_cl_email', true) . '" data-site-url="' . get_site_url() . '" data-update-url="' . $update_url . '">' . __('Request update') . '</button><div class="contact-list-request-update-info contact-list-request-update-info-' . $post_ID . '"></div>';
       }
