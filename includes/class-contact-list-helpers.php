@@ -185,12 +185,14 @@ class ContactListHelpers
         }
         
         
-        if ( isset( $c['_cl_address_line_1'] ) ) {
+        if ( isset( $c['_cl_address_line_1'] ) || isset( $c['_cl_country'] ) || isset( $c['_cl_state'] ) ) {
             $html .= '<div class="contact-list-address">';
             if ( !isset( $s['hide_address_title'] ) ) {
                 $html .= '<span class="contact-list-address-title">' . (( isset( $s['address_title'] ) && $s['address_title'] ? $s['address_title'] : __( 'Address', 'contact-list' ) )) . '</span>';
             }
-            $html .= '<span class="contact-list-address-line-1">' . $c['_cl_address_line_1'][0] . '</span>';
+            if ( isset( $c['_cl_address_line_1'] ) ) {
+                $html .= '<span class="contact-list-address-line-1">' . $c['_cl_address_line_1'][0] . '</span>';
+            }
             if ( isset( $c['_cl_address_line_2'] ) ) {
                 $html .= '<span class="contact-list-address-line-2">' . $c['_cl_address_line_2'][0] . '</span>';
             }

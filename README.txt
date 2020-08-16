@@ -92,6 +92,9 @@ Contact author [here](https://anssilaitila.fi/).
 
 == Changelog ==
 
+= 2.9.10 =
+* Country and state are now displayed also when no other address data is present
+
 = 2.9.9 =
 * Country and state added to contact card
 
