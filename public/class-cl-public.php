@@ -119,7 +119,7 @@ class Contact_List_Public
         // normalize attribute keys, lowercase
         $atts = array_change_key_case( (array) $atts, CASE_LOWER );
         $html = '';
-        if ( ContactListHelpers::isPremium() == 1 ) {
+        if ( ContactListHelpers::isPremium() == 0 ) {
             $html .= '<div class="pro-feature">' . __( 'This feature is available in the Pro version.' ) . '</div>';
         }
         return $html;

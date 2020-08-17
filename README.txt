@@ -92,6 +92,9 @@ Contact author [here](https://anssilaitila.fi/).
 
 == Changelog ==
 
+= 2.9.11 =
+* Bug fix: removed unnecessary notification from groups-view
+
 = 2.9.10 =
 * Country and state are now displayed also when no other address data is present
 
