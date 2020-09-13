@@ -1,8 +1,8 @@
 === Contact List for WordPress ===
 Contributors: anssilaitila, freemius
-Tags: staff list, directory, employee directory, faculty directory, staff directory
+Tags: staff list, business directory, employee directory, faculty directory, staff directory
 Requires at least: 4.0.0
-Tested up to: 5.5
+Tested up to: 5.4
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -15,7 +15,7 @@ Using Contact List you can list any contact data including i.e. name, email, pho
 
 Send email directly to contacts using a built-in form on the front-end (featuring reCAPTCHA). Contact's email address can be completely hidden in the Pro version but still email can be sent to the contact.
 
-**14 days free trial available for Pro version, no credit card required.**
+**14 days trial available for Pro version, no credit card required.**
 
 See live demos at [contactlistpro.com](https://www.contactlistpro.com/contact-list/).
 
@@ -56,7 +56,6 @@ See live demos at [contactlistpro.com](https://www.contactlistpro.com/contact-li
 * Contacts may belong to groups
 * Fast search targeting all contacts
 * Filter contacts by country, state and category
-* 1 custom field
 * Choose a layout from 4 different ones
 * All sent mail is logged
 * Printable contact list
@@ -65,7 +64,7 @@ See live demos at [contactlistpro.com](https://www.contactlistpro.com/contact-li
 * Multiple different shortcodes/views for various use cases
 * Support for pagination
 * Contact database may be built with publicly available form
-* 6 custom fields and WYSIWYG editor
+* Custom fields and WYSIWYG editor
 * Settings available for customization
 * Send email to all contacts or contacts in a specific group
 * reCAPTCHA can be activated to public contact forms
@@ -75,7 +74,7 @@ See live demos at [contactlistpro.com](https://www.contactlistpro.com/contact-li
 * Request contacts to update their existing contact info simply clicking a button
 * More features on the way based on user feedback
 
-Contact author [here](https://anssilaitila.fi/).
+Contact author [here](https://www.tammersoft.com/).
 
 == Installation ==
 
