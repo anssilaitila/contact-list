@@ -181,6 +181,8 @@ class ShortcodeContactList {
               $countries []= $c['_cl_country'][0];
             }
           endwhile;
+
+          sort($countries);
   
           $html .= '<select name="cl_country" class="select_v2">';
           $html .= '<option value="">' . __('Select country', 'contact-list') . '</option>';
@@ -205,6 +207,8 @@ class ShortcodeContactList {
               $states []= $c['_cl_state'][0];
             }
           endwhile;
+          
+          sort($states);
   
           $html .= '<select name="cl_state" class="select_v2">';
           $html .= '<option value="">' . __('Select state', 'contact-list') . '</option>';

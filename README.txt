@@ -1,8 +1,8 @@
-=== Contact List for WordPress ===
+=== WordPress Staff List, Address Book and Business Directory Plugin - Contact List ===
 Contributors: anssilaitila, freemius
-Tags: staff list, business directory, employee directory, faculty directory, staff directory
+Tags: staff list, employee list, business directory, church directory, address book
 Requires at least: 4.0.0
-Tested up to: 5.4
+Tested up to: 5.5
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -10,12 +10,12 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Create staff list or any contact list for your site. Import existing data easily.
 
 == Description ==
-
+= The most user friendly contact manager for WordPress =
 Using Contact List you can list any contact data including i.e. name, email, phone and social media links. Contacts may also have necessary custom fields.
 
 Send email directly to contacts using a built-in form on the front-end (featuring reCAPTCHA). Contact's email address can be completely hidden in the Pro version but still email can be sent to the contact.
 
-**14 days trial available for Pro version, no credit card required.**
+**14 days free trial available for Pro version, no credit card required.**
 
 See live demos at [contactlistpro.com](https://www.contactlistpro.com/contact-list/).
 
@@ -56,6 +56,7 @@ See live demos at [contactlistpro.com](https://www.contactlistpro.com/contact-li
 * Contacts may belong to groups
 * Fast search targeting all contacts
 * Filter contacts by country, state and category
+* 1 custom field
 * Choose a layout from 4 different ones
 * All sent mail is logged
 * Printable contact list
@@ -64,7 +65,7 @@ See live demos at [contactlistpro.com](https://www.contactlistpro.com/contact-li
 * Multiple different shortcodes/views for various use cases
 * Support for pagination
 * Contact database may be built with publicly available form
-* Custom fields and WYSIWYG editor
+* 6 custom fields and WYSIWYG editor
 * Settings available for customization
 * Send email to all contacts or contacts in a specific group
 * reCAPTCHA can be activated to public contact forms
@@ -90,6 +91,10 @@ Contact author [here](https://www.tammersoft.com/).
 5. Contact management
 
 == Changelog ==
+
+= 2.9.12 =
+* Country and state -dropdowns are now sorted alphabetically
+* Bug fixes
 
 = 2.9.11 =
 * Bug fix: removed unnecessary notification from groups-view

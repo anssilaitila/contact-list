@@ -150,6 +150,7 @@ class ContactListHelpers
         }
         
         $contact_fullname = '';
+        $html .= '<div style="display: none;">' . $c['_cl_last_name'][0] . (( isset( $c['_cl_first_name'] ) ? ' ' . $c['_cl_first_name'][0] : '' )) . '</div>';
         
         if ( isset( $s['last_name_before_first_name'] ) ) {
             $contact_fullname = $c['_cl_last_name'][0] . (( isset( $c['_cl_first_name'] ) ? ' ' . $c['_cl_first_name'][0] : '' ));
@@ -157,7 +158,7 @@ class ContactListHelpers
             $contact_fullname = (( isset( $c['_cl_first_name'] ) ? $c['_cl_first_name'][0] . ' ' : '' )) . $c['_cl_last_name'][0];
         }
         
-        $html .= '<h3>' . $contact_fullname . '</h3>';
+        $html .= '<span class="contact-list-contact-name">' . $contact_fullname . '</span>';
         if ( isset( $c['_cl_job_title'] ) ) {
             $html .= '<span class="contact-list-job-title">' . $c['_cl_job_title'][0] . '</span>';
         }
@@ -202,9 +203,23 @@ class ContactListHelpers
             if ( isset( $c['_cl_address_line_4'] ) ) {
                 $html .= '<span class="contact-list-address-line-4">' . $c['_cl_address_line_4'][0] . '</span>';
             }
-            if ( isset( $c['_cl_country'] ) || isset( $c['_cl_state'] ) ) {
-                $html .= '<span class="contact-list-address-country-and-state">' . (( isset( $c['_cl_state'] ) ? $c['_cl_state'][0] : '' )) . (( isset( $c['_cl_country'] ) ? (( isset( $c['_cl_state'] ) ? ', ' : '' )) . $c['_cl_country'][0] : '' )) . '</span>';
+            
+            if ( isset( $c['_cl_country'] ) && $c['_cl_country'][0] || isset( $c['_cl_state'] ) && $c['_cl_state'][0] ) {
+                $html .= '<span class="contact-list-address-country-and-state">';
+                if ( isset( $c['_cl_state'] ) && $c['_cl_state'][0] ) {
+                    $html .= $c['_cl_state'][0];
+                }
+                
+                if ( isset( $c['_cl_country'] ) && $c['_cl_country'][0] ) {
+                    if ( isset( $c['_cl_state'] ) && $c['_cl_state'][0] ) {
+                        $html .= ', ';
+                    }
+                    $html .= $c['_cl_country'][0];
+                }
+                
+                $html .= '</span>';
             }
+            
             $html .= '</div>';
         }
         
