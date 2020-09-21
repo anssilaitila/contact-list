@@ -92,6 +92,10 @@ Contact author [here](https://www.tammersoft.com/).
 
 == Changelog ==
 
+= 2.9.13 =
+* If an email is entered as a custom field value, it is now automatically converted to a mailto link
+* Search now finds both "firstname lastname" and "lastname firstname"
+
 = 2.9.12 =
 * Country and state -dropdowns are now sorted alphabetically
 * Bug fixes

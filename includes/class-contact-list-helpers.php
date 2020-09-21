@@ -150,12 +150,13 @@ class ContactListHelpers
         }
         
         $contact_fullname = '';
-        $html .= '<div style="display: none;">' . $c['_cl_last_name'][0] . (( isset( $c['_cl_first_name'] ) ? ' ' . $c['_cl_first_name'][0] : '' )) . '</div>';
         
         if ( isset( $s['last_name_before_first_name'] ) ) {
             $contact_fullname = $c['_cl_last_name'][0] . (( isset( $c['_cl_first_name'] ) ? ' ' . $c['_cl_first_name'][0] : '' ));
+            $html .= '<div style="display: none;">' . (( isset( $c['_cl_first_name'] ) ? $c['_cl_first_name'][0] . ' ' : '' )) . $c['_cl_last_name'][0] . '</div>';
         } else {
             $contact_fullname = (( isset( $c['_cl_first_name'] ) ? $c['_cl_first_name'][0] . ' ' : '' )) . $c['_cl_last_name'][0];
+            $html .= '<div style="display: none;">' . $c['_cl_last_name'][0] . (( isset( $c['_cl_first_name'] ) ? ' ' . $c['_cl_first_name'][0] : '' )) . '</div>';
         }
         
         $html .= '<span class="contact-list-contact-name">' . $contact_fullname . '</span>';
@@ -239,7 +240,18 @@ class ContactListHelpers
             
             if ( isset( $c['_cl_custom_field_' . $n] ) ) {
                 $cf_value = $c['_cl_custom_field_' . $n][0];
-                $cf_value = preg_replace( $url, '<a href="http$2://$4" target="_blank" title="$0">$0</a>', $cf_value );
+                
+                if ( is_email( $cf_value ) ) {
+                    $mailto = $cf_value;
+                    $mailto_obs = '';
+                    for ( $i = 0 ;  $i < strlen( $mailto ) ;  $i++ ) {
+                        $mailto_obs .= '&#' . ord( $mailto[$i] ) . ';';
+                    }
+                    $cf_value = '<a href="mailto:' . $mailto_obs . '">' . $mailto_obs . '</a>';
+                } else {
+                    $cf_value = preg_replace( $url, '<a href="http$2://$4" target="_blank" title="$0">$0</a>', $cf_value );
+                }
+                
                 
                 if ( $s['custom_field_' . $n . '_icon'] ) {
                     $html .= '<div class="contact-list-custom-field-' . $n . ' contact-list-custom-field-with-icon">';
