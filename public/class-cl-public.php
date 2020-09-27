@@ -73,13 +73,19 @@ class Contact_List_Public
      */
     public function enqueue_scripts()
     {
-        wp_enqueue_script(
+        $s = get_option( 'contact_list_settings' );
+        $settings = array(
+            'focus_on_search_field' => ( isset( $s['focus_on_search_field'] ) && $s['focus_on_search_field'] ? 1 : 0 ),
+        );
+        wp_register_script(
             $this->plugin_name,
             CONTACT_LIST_URI . 'dist/js/main.js',
             array( 'jquery' ),
             $this->version,
             false
         );
+        wp_localize_script( $this->plugin_name, 'contact_list_settings', $settings );
+        wp_enqueue_script( $this->plugin_name );
     }
     
     /**

@@ -55,6 +55,17 @@ class ContactListSettings
             'field_name' => 'last_name_before_first_name',
         )
         );
+        add_settings_field(
+            'contact-list-focus_on_search_field',
+            __( 'Focus on search field on page load', 'contact-list' ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_section_general',
+            array(
+            'label_for'  => 'contact-list-focus_on_search_field',
+            'field_name' => 'focus_on_search_field',
+        )
+        );
         $tab = 2;
         add_settings_section(
             'contact-list_tab_' . $tab,

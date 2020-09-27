@@ -1,0 +1,1518 @@
+# Copyright (C) 2020 Anssi Laitila
+# This file is distributed under the same license as the Contact List plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Contact List 2.9.12\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/contact-list-pro\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.4.0\n"
+"X-Domain: contact-list\n"
+
+# automatic translation
+#: admin/class-cl-cpt.php:10
+#: admin/class-cl-notifications.php:21
+#: admin/class-cl-notifications.php:46
+#. Plugin Name of the plugin
+msgid "Contact List"
+msgstr "Liste de contacts"
+
+# automatic translation
+#. Description of the plugin
+msgid "Easily display contact information on your site with this simple plugin."
+msgstr ""
+"Affichez facilement les informations de contact sur votre site avec ce "
+"plugin simple."
+
+# automatic translation
+#: admin/class-cl-admin-list.php:12
+#: admin/class-cl-import-export.php:162
+#: admin/class-cl-import-export.php:301
+#: admin/class-cl-settings.php:440
+#: admin/class-cl-settings.php:444
+#: admin/class-cl-settings.php:906
+#: includes/class-contact-list-helpers.php:615
+#: public/class-shortcode_contact_list_form__premium_only.php:111
+msgid "First name"
+msgstr "Prénom"
+
+# automatic translation
+#: admin/class-cl-admin-list.php:15
+#: admin/class-cl-import-export.php:163
+#: admin/class-cl-import-export.php:302
+#: admin/class-cl-settings.php:449
+#: admin/class-cl-settings.php:453
+#: admin/class-cl-settings.php:905
+#: includes/class-contact-list-helpers.php:621
+#: public/class-shortcode_contact_list_form__premium_only.php:117
+msgid "Last name"
+msgstr "Nom de famille"
+
+# automatic translation
+#: admin/class-cl-admin-list.php:19
+#: admin/class-cl-import-export.php:164
+#: admin/class-cl-import-export.php:303
+#: admin/class-cl-settings.php:458
+#: admin/class-cl-settings.php:462
+#: includes/class-contact-list-helpers.php:628
+#: public/class-shortcode_contact_list_form__premium_only.php:124
+msgid "Job title"
+msgstr "Profession"
+
+# automatic translation
+#: admin/class-cl-admin-list.php:23
+#: admin/class-cl-import-export.php:165
+#: admin/class-cl-import-export.php:304
+#: admin/class-cl-settings.php:467
+#: admin/class-cl-settings.php:471
+msgid "Email"
+msgstr "Email"
+
+# automatic translation
+#: admin/class-cl-admin-list.php:27
+#: admin/class-cl-import-export.php:166
+#: admin/class-cl-import-export.php:305
+#: admin/class-cl-settings.php:476
+#: admin/class-cl-settings.php:480
+#: includes/class-contact-list-helpers.php:642
+#: public/class-shortcode_contact_list_form__premium_only.php:138
+msgid "Phone"
+msgstr "Téléphone"
+
+# automatic translation
+#: admin/class-cl-admin-list.php:31
+msgid "LinkedIn"
+msgstr "LinkedIn"
+
+# automatic translation
+#: admin/class-cl-admin-list.php:35
+msgid "Twitter"
+msgstr "Twitter"
+
+# automatic translation
+#: admin/class-cl-admin-list.php:39
+msgid "Facebook"
+msgstr "Facebook"
+
+# automatic translation
+#: admin/class-cl-admin-mail-log.php:8
+#: admin/class-cl-admin-mail-log.php:9
+msgid "Mail log"
+msgstr "Courrier électronique"
+
+# automatic translation
+#: admin/class-cl-admin-mail-log.php:57
+msgid "Log of sent mail"
+msgstr "Journal des e-mails envoyés"
+
+# automatic translation
+#: admin/class-cl-admin-mail-log.php:75
+msgid "Message sent"
+msgstr "Message envoyé"
+
+# automatic translation
+#: admin/class-cl-admin-mail-log.php:79
+#: admin/class-cl-admin-send-email.php:114
+#: includes/class-contact-list-helpers.php:78
+msgid "Sender email"
+msgstr "Envoi d'un e-mail"
+
+# automatic translation
+#: admin/class-cl-admin-mail-log.php:87
+#: admin/class-cl-admin-send-email.php:109
+#: includes/class-contact-list-helpers.php:75
+msgid "Sender name"
+msgstr "Nom de l'expéditeur"
+
+# automatic translation
+#: admin/class-cl-admin-mail-log.php:91
+#: admin/class-cl-admin-mail-log.php:128
+msgid "Reply-to"
+msgstr "Répondre à"
+
+# automatic translation
+#: admin/class-cl-admin-mail-log.php:99
+#: admin/class-cl-admin-mail-log.php:129
+#: admin/class-cl-admin-send-email.php:101
+msgid "Subject"
+msgstr "Matière"
+
+# automatic translation
+#: admin/class-cl-admin-mail-log.php:103
+msgid "Message count"
+msgstr "Nombre de messages"
+
+# automatic translation
+#: admin/class-cl-admin-mail-log.php:108
+msgid "Mail report:"
+msgstr "Rapport de courrier:"
+
+# automatic translation
+#: admin/class-cl-admin-mail-log.php:126
+msgid "Date"
+msgstr "Date"
+
+# automatic translation
+#: admin/class-cl-admin-mail-log.php:127
+msgid "Sender"
+msgstr "Expéditeur"
+
+# automatic translation
+#: admin/class-cl-admin-mail-log.php:130
+#: admin/class-cl-admin-send-email.php:94
+msgid "Recipients"
+msgstr "Destinataires"
+
+# automatic translation
+#: admin/class-cl-admin-mail-log.php:155
+msgid "ERROR"
+msgstr "ERREUR"
+
+# automatic translation
+#: admin/class-cl-admin-mail-log.php:165
+msgid "No mail sent yet."
+msgstr "Aucun mail envoyé pour le moment."
+
+# automatic translation
+#: admin/class-cl-admin-send-email.php:8
+#: admin/class-cl-admin-send-email.php:59
+msgid "Send email to contacts"
+msgstr "Envoyer un e-mail aux contacts"
+
+# automatic translation
+#: admin/class-cl-admin-send-email.php:9
+msgid "Send email"
+msgstr "Envoyer un e-mail"
+
+# automatic translation
+#: admin/class-cl-admin-send-email.php:65
+msgid "Restrict recipients to specific group"
+msgstr "Restreindre les destinataires à un groupe spécifique"
+
+# automatic translation
+#: admin/class-cl-admin-send-email.php:94
+msgid "total of"
+msgstr "total de"
+
+# automatic translation
+#: admin/class-cl-admin-send-email.php:94
+msgid "contacts with email addresses"
+msgstr "contacts avec adresses e-mail"
+
+# automatic translation
+#: admin/class-cl-admin-send-email.php:119
+#: includes/class-contact-list-helpers.php:84
+msgid "Message"
+msgstr "Message"
+
+# automatic translation
+#: admin/class-cl-admin-send-email.php:128
+#: includes/class-contact-list-helpers.php:99
+msgid "Send"
+msgstr "Envoyer"
+
+# automatic translation
+#: admin/class-cl-admin-send-email.php:154
+#: public/class-cl-public-send-mail.php:64
+msgid "This mail was sent using Contact List Pro"
+msgstr "Cet e-mail a été envoyé à l'aide de Contact List Pro"
+
+# automatic translation
+#: admin/class-cl-cpt.php:11
+msgid "Contact"
+msgstr "Contact"
+
+# automatic translation
+#: admin/class-cl-cpt.php:12
+msgid "Add New Contact"
+msgstr "Ajouter un nouveau contact"
+
+# automatic translation
+#: admin/class-cl-cpt.php:13
+msgid "Edit Contact"
+msgstr "Modifier le contact"
+
+# automatic translation
+#: admin/class-cl-cpt.php:14
+#: includes/class-contact-list-helpers.php:132
+#: includes/class-contact-list-helpers.php:188
+#: public/class-shortcode_contact_list.php:292
+#: public/class-shortcode_contact_list_groups__premium_only.php:77
+#: public/class-shortcode_contact_list_search__premium_only.php:74
+msgid "No contacts found."
+msgstr "Aucun contact trouvé."
+
+# automatic translation
+#: admin/class-cl-cpt.php:15
+msgid "All Contacts"
+msgstr "Tous les contacts"
+
+# automatic translation
+#: admin/class-cl-help-support.php:8
+#: admin/class-cl-help-support.php:21
+msgid "How to use Contact List"
+msgstr "Comment utiliser la liste de contacts"
+
+# automatic translation
+#: admin/class-cl-help-support.php:9
+msgid "Help / Support"
+msgstr "Support d'aide"
+
+# automatic translation
+#: admin/class-cl-help-support.php:24
+msgid "Some examples on how you can use different views available at"
+msgstr "Quelques exemples d'utilisation de différentes vues disponibles sur"
+
+# automatic translation
+#: admin/class-cl-help-support.php:24
+msgid "contactlistpro.com"
+msgstr "contactlistpro.com"
+
+# automatic translation
+#: admin/class-cl-help-support.php:25
+msgid "Any feedback is welcome. You may contact the author at"
+msgstr "Tout commentaire est le bienvenu. Vous pouvez contacter l'auteur au"
+
+# automatic translation
+#: admin/class-cl-help-support.php:25
+msgid "or by email:"
+msgstr "ou par email:"
+
+# automatic translation
+#: admin/class-cl-help-support.php:28
+msgid "Only contacts, no groups"
+msgstr "Seulement des contacts, pas de groupes"
+
+# automatic translation
+#: admin/class-cl-help-support.php:31
+msgid "Add the contacts via the All Contacts page."
+msgstr "Ajoutez les contacts via la page Tous les contacts."
+
+# automatic translation
+#: admin/class-cl-help-support.php:32
+msgid ""
+"Insert the shortcode <span "
+"class=\"contact-list-shortcode\">[contact_list]</span> to the content "
+"editor of any page you wish the contact list to appear."
+msgstr ""
+"Insérez le shortcode <span "
+"class=\"contact-list-shortcode\">[contact_list]</span> dans l&#39;éditeur "
+"de contenu de toute page sur laquelle vous souhaitez que la liste de "
+"contacts apparaisse."
+
+# automatic translation
+#: admin/class-cl-help-support.php:33
+msgid "Additional parameters"
+msgstr "Paramètres supplémentaires"
+
+# automatic translation
+#: admin/class-cl-help-support.php:35
+msgid "Hide search form:"
+msgstr "Masquer le formulaire de recherche:"
+
+# automatic translation
+#: admin/class-cl-help-support.php:36
+msgid "Layout \"2 cards on the same row\""
+msgstr "Disposition \"2 cartes sur la même ligne\""
+
+# automatic translation
+#: admin/class-cl-help-support.php:37
+msgid "Layout \"3 cards on the same row\""
+msgstr "Disposition \"3 cartes sur la même ligne\""
+
+# automatic translation
+#: admin/class-cl-help-support.php:37
+#: admin/class-cl-help-support.php:38
+#: admin/class-cl-settings.php:955
+#: admin/class-cl-settings.php:956
+msgid "without contact images"
+msgstr "sans images de contact"
+
+# automatic translation
+#: admin/class-cl-help-support.php:38
+msgid "Layout \"4 cards on the same row\""
+msgstr "Disposition \"4 cartes sur la même ligne\""
+
+# automatic translation
+#: admin/class-cl-help-support.php:39
+msgid "Multiple parameters:"
+msgstr "Plusieurs paramètres:"
+
+# automatic translation
+#: admin/class-cl-help-support.php:45
+msgid "Contacts with groups"
+msgstr "Contacts avec des groupes"
+
+# automatic translation
+#: admin/class-cl-help-support.php:53
+msgid ""
+"Add the groups via the Groups page. There may be groups under groups "
+"(hierarchial groups, 2 or more levels)."
+msgstr ""
+"Ajoutez les groupes via la page Groupes. Il peut y avoir des groupes sous "
+"des groupes (groupes hiérarchiques, 2 niveaux ou plus)."
+
+# automatic translation
+#: admin/class-cl-help-support.php:54
+msgid ""
+"Add the contacts via the All Contacts page. You may select the appropriate "
+"group(s) at this point."
+msgstr ""
+"Ajoutez les contacts via la page Tous les contacts. Vous pouvez "
+"sélectionner le ou les groupes appropriés à ce stade."
+
+# automatic translation
+#: admin/class-cl-help-support.php:55
+msgid ""
+"Insert the shortcode <span "
+"class=\"contact-list-shortcode\">[contact_list_groups]</span> to the "
+"content editor of any page you wish the group list to appear. When a user "
+"selects a group, then a list of contacts belonging to that group is "
+"displayed. Also, if there are subgroups under that group, those will be "
+"displayed."
+msgstr ""
+"Insérez le shortcode <span "
+"class=\"contact-list-shortcode\">[contact_list_groups]</span> dans "
+"l&#39;éditeur de contenu de toute page sur laquelle vous souhaitez que la "
+"liste de groupes apparaisse. Lorsqu&#39;un utilisateur sélectionne un "
+"groupe, une liste de contacts appartenant à ce groupe s&#39;affiche. De "
+"plus, s&#39;il y a des sous-groupes dans ce groupe, ceux-ci seront affichés."
+
+# automatic translation
+#: admin/class-cl-help-support.php:59
+msgid "Contacts from specific group"
+msgstr "Contacts d'un groupe spécifique"
+
+# automatic translation
+#: admin/class-cl-help-support.php:67
+#: admin/class-cl-help-support.php:79
+#: admin/class-cl-help-support.php:91
+#: admin/class-cl-help-support.php:104
+msgid "Insert the shortcode"
+msgstr "Insérez le shortcode"
+
+# automatic translation
+#: admin/class-cl-help-support.php:67
+msgid ""
+"to the content editor of any page you wish the contact list to appear. "
+"Replace GROUP_SLUG with the appropriate slug that can be found from group "
+"management."
+msgstr ""
+"à l'éditeur de contenu de toute page sur laquelle vous souhaitez que la "
+"liste de contacts apparaisse. Remplacez GROUP_SLUG par le slug approprié "
+"qui peut être trouvé à partir de la gestion des groupes."
+
+# automatic translation
+#: admin/class-cl-help-support.php:71
+msgid "Single contact"
+msgstr "Contact unique"
+
+# automatic translation
+#: admin/class-cl-help-support.php:79
+msgid ""
+"to the content editor of any page you wish the contact to appear. Replace "
+"CONTACT_ID with the appropriate id that can be found from contact "
+"management. There's a column \"ID\" in the All Contacts -page, which "
+"contains the numeric value."
+msgstr ""
+"à l'éditeur de contenu de toute page sur laquelle vous souhaitez que le "
+"contact apparaisse. Remplacez CONTACT_ID par l'ID approprié qui peut être "
+"trouvé dans la gestion des contacts. Il y a une colonne \"ID\" dans la page "
+"Tous les contacts, qui contient la valeur numérique."
+
+# automatic translation
+#: admin/class-cl-help-support.php:83
+msgid "Allow visitors to add new contacts"
+msgstr "Autoriser les visiteurs à ajouter de nouveaux contacts"
+
+# automatic translation
+#: admin/class-cl-help-support.php:91
+msgid "to the page you wish the form to appear on."
+msgstr "à la page sur laquelle vous souhaitez que le formulaire apparaisse."
+
+# automatic translation
+#: admin/class-cl-help-support.php:92
+msgid ""
+"When a user submits the form, a new contact is saved to the contacts. The "
+"status of that contact is \"Pending Review\" and a site administrator must "
+"publish/edit/delete the contact."
+msgstr ""
+"Lorsqu'un utilisateur soumet le formulaire, un nouveau contact est "
+"enregistré dans les contacts. Le statut de ce contact est «En attente "
+"d'examen» et un administrateur de site doit publier / modifier / supprimer "
+"le contact."
+
+# automatic translation
+#: admin/class-cl-help-support.php:96
+msgid "Only a search form that searches from all contacts"
+msgstr "Uniquement un formulaire de recherche qui recherche parmi tous les contacts"
+
+# automatic translation
+#: admin/class-cl-help-support.php:104
+msgid "to the page you wish the view to appear on."
+msgstr "à la page sur laquelle vous souhaitez afficher la vue."
+
+# automatic translation
+#: admin/class-cl-import-export.php:8
+#: admin/class-cl-import-export.php:9
+#: admin/class-cl-import-export.php:32
+msgid "Import contacts"
+msgstr "Contacts d'importation"
+
+# automatic translation
+#: admin/class-cl-import-export.php:19
+#: admin/class-cl-import-export.php:20
+#: admin/class-cl-import-export.php:195
+msgid "Export contacts"
+msgstr "Exporter les contacts"
+
+# automatic translation
+#: admin/class-cl-import-export.php:35
+msgid ""
+"You may import contacts from csv file using this form. There should be one "
+"contact per row, columns separated by comma."
+msgstr ""
+"Vous pouvez importer des contacts à partir d'un fichier csv en utilisant ce "
+"formulaire. Il devrait y avoir un contact par ligne, colonnes séparées par "
+"des virgules."
+
+# automatic translation
+#: admin/class-cl-import-export.php:45
+msgid "Choose CSV File"
+msgstr "Choisissez un fichier CSV"
+
+# automatic translation
+#: admin/class-cl-import-export.php:47
+msgid "Start import"
+msgstr "Lancer l'importation"
+
+# automatic translation
+#: admin/class-cl-import-export.php:135
+msgid "Import finished"
+msgstr "Importation terminée"
+
+# automatic translation
+#: admin/class-cl-import-export.php:135
+msgid "Contacts imported:"
+msgstr "Contacts importés:"
+
+# automatic translation
+#: admin/class-cl-import-export.php:136
+msgid "Contacts ignored:"
+msgstr "Contacts ignorés:"
+
+# automatic translation
+#: admin/class-cl-import-export.php:140
+msgid "Please choose file first."
+msgstr "Veuillez d'abord choisir le fichier."
+
+# automatic translation
+#: admin/class-cl-import-export.php:160
+msgid "The columns should be in this order:"
+msgstr "Les colonnes doivent être dans cet ordre:"
+
+# automatic translation
+#: admin/class-cl-import-export.php:167
+#: admin/class-cl-import-export.php:306
+#: admin/class-cl-settings.php:485
+#: admin/class-cl-settings.php:489
+#: admin/class-cl-settings.php:660
+#: admin/class-cl-settings.php:775
+#: includes/class-contact-list-helpers.php:649
+#: public/class-shortcode_contact_list_form__premium_only.php:145
+msgid "LinkedIn URL"
+msgstr "URL LinkedIn"
+
+# automatic translation
+#: admin/class-cl-import-export.php:168
+#: admin/class-cl-import-export.php:307
+#: admin/class-cl-settings.php:494
+#: admin/class-cl-settings.php:498
+#: admin/class-cl-settings.php:669
+#: admin/class-cl-settings.php:784
+#: includes/class-contact-list-helpers.php:656
+#: public/class-shortcode_contact_list_form__premium_only.php:152
+msgid "Twitter URL"
+msgstr "URL Twitter"
+
+# automatic translation
+#: admin/class-cl-import-export.php:169
+#: admin/class-cl-import-export.php:308
+#: admin/class-cl-settings.php:503
+#: admin/class-cl-settings.php:507
+#: admin/class-cl-settings.php:678
+#: admin/class-cl-settings.php:793
+#: includes/class-contact-list-helpers.php:663
+#: public/class-shortcode_contact_list_form__premium_only.php:159
+msgid "Facebook URL"
+msgstr "L'adresse URL de Facebook"
+
+# automatic translation
+#: admin/class-cl-import-export.php:170
+#: admin/class-cl-import-export.php:309
+#: admin/class-cl-settings.php:539
+#: admin/class-cl-settings.php:543
+#: includes/class-contact-list-helpers.php:673
+#: public/class-shortcode_contact_list_form__premium_only.php:176
+msgid "Address line 1"
+msgstr "Adresse 1"
+
+# automatic translation
+#: admin/class-cl-import-export.php:171
+#: admin/class-cl-import-export.php:310
+#: admin/class-cl-settings.php:548
+#: admin/class-cl-settings.php:552
+#: includes/class-contact-list-helpers.php:677
+#: public/class-shortcode_contact_list_form__premium_only.php:180
+msgid "Address line 2"
+msgstr "Adresse Ligne 2"
+
+# automatic translation
+#: admin/class-cl-import-export.php:172
+#: admin/class-cl-import-export.php:311
+#: admin/class-cl-settings.php:557
+#: admin/class-cl-settings.php:561
+#: includes/class-contact-list-helpers.php:681
+#: public/class-shortcode_contact_list_form__premium_only.php:184
+msgid "Address line 3"
+msgstr "Ligne d'adresse 3"
+
+# automatic translation
+#: admin/class-cl-import-export.php:173
+#: admin/class-cl-import-export.php:312
+#: admin/class-cl-settings.php:566
+#: admin/class-cl-settings.php:570
+#: includes/class-contact-list-helpers.php:685
+#: public/class-shortcode_contact_list_form__premium_only.php:188
+msgid "Address line 4"
+msgstr "Ligne d'adresse 4"
+
+# automatic translation
+#: admin/class-cl-import-export.php:174
+#: admin/class-cl-import-export.php:313
+#: admin/class-cl-settings.php:295
+#: admin/class-cl-settings.php:299
+msgid "Custom field 1"
+msgstr "Champ personnalisé 1"
+
+# automatic translation
+#: admin/class-cl-import-export.php:175
+#: admin/class-cl-import-export.php:314
+#: admin/class-cl-settings.php:315
+#: admin/class-cl-settings.php:319
+msgid "Custom field 2"
+msgstr "Champ personnalisé 2"
+
+# automatic translation
+#: admin/class-cl-import-export.php:176
+#: admin/class-cl-import-export.php:315
+#: admin/class-cl-settings.php:332
+#: admin/class-cl-settings.php:336
+msgid "Custom field 3"
+msgstr "Champ personnalisé 3"
+
+# automatic translation
+#: admin/class-cl-import-export.php:177
+#: admin/class-cl-import-export.php:316
+#: admin/class-cl-settings.php:349
+#: admin/class-cl-settings.php:353
+msgid "Custom field 4"
+msgstr "Champ personnalisé 4"
+
+# automatic translation
+#: admin/class-cl-import-export.php:178
+#: admin/class-cl-import-export.php:317
+#: admin/class-cl-settings.php:366
+#: admin/class-cl-settings.php:370
+msgid "Custom field 5"
+msgstr "Champ personnalisé 5"
+
+# automatic translation
+#: admin/class-cl-import-export.php:179
+#: admin/class-cl-import-export.php:318
+#: admin/class-cl-settings.php:383
+#: admin/class-cl-settings.php:387
+msgid "Custom field 6"
+msgstr "Champ personnalisé 6"
+
+# automatic translation
+#: admin/class-cl-import-export.php:180
+#: admin/class-cl-import-export.php:319
+#: admin/class-cl-taxonomy.php:17
+msgid "Groups"
+msgstr "Groupes"
+
+# automatic translation
+#: admin/class-cl-import-export.php:180
+#: admin/class-cl-import-export.php:319
+msgid "Group names separated by the character \"|\", like so: Cats|Dogs|Parrots"
+msgstr ""
+"Noms de groupes séparés par le caractère \"|\", comme ceci: Chats | Chiens "
+"| Perroquets"
+
+# automatic translation
+#: admin/class-cl-import-export.php:181
+#: admin/class-cl-import-export.php:320
+msgid "Country"
+msgstr "Pays"
+
+# automatic translation
+#: admin/class-cl-import-export.php:181
+#: admin/class-cl-import-export.php:182
+#: admin/class-cl-import-export.php:320
+#: admin/class-cl-import-export.php:321
+msgid "New"
+msgstr "Nouveau"
+
+# automatic translation
+#: admin/class-cl-import-export.php:182
+#: admin/class-cl-import-export.php:321
+msgid "State"
+msgstr "Etat"
+
+# automatic translation
+#: admin/class-cl-import-export.php:198
+msgid ""
+"You may export contacts to a csv file. There will be one contact per row, "
+"columns separated by comma."
+msgstr ""
+"Vous pouvez exporter des contacts vers un fichier csv. Il y aura un contact "
+"par ligne, colonnes séparées par des virgules."
+
+# automatic translation
+#: admin/class-cl-import-export.php:214
+msgid "contact(s) found."
+msgstr "contact (s) trouvé (s)."
+
+# automatic translation
+#: admin/class-cl-import-export.php:221
+msgid "Start export"
+msgstr "Lancer l'exportation"
+
+# automatic translation
+#: admin/class-cl-import-export.php:280
+msgid "CSV-file created succesfully:"
+msgstr "Fichier CSV créé avec succès:"
+
+# automatic translation
+#: admin/class-cl-import-export.php:283
+msgid "Error creating file."
+msgstr "Erreur lors de la création du fichier."
+
+# automatic translation
+#: admin/class-cl-import-export.php:299
+msgid "The columns are in this order:"
+msgstr "Les colonnes sont dans cet ordre:"
+
+# automatic translation
+#: admin/class-cl-notifications.php:25
+msgid "Sure, I'd love to!"
+msgstr "Bien sûr j'adorerais!"
+
+# automatic translation
+#: admin/class-cl-printable.php:8
+#: admin/class-cl-printable.php:9
+#: admin/class-cl-printable.php:21
+msgid "Printable list"
+msgstr "Liste imprimable"
+
+# automatic translation
+#: admin/class-cl-printable.php:24
+msgid "When you print this page, only the list of contacts is printed."
+msgstr "Lorsque vous imprimez cette page, seule la liste des contacts est imprimée."
+
+# automatic translation
+#: admin/class-cl-printable.php:41
+msgid "Select category:"
+msgstr "Choisir une catégorie:"
+
+# automatic translation
+#: admin/class-cl-printable.php:43
+msgid "All contacts"
+msgstr "Tous les contacts"
+
+# automatic translation
+#: admin/class-cl-printable.php:60
+msgid "Change card height:"
+msgstr "Changer la hauteur de la carte:"
+
+# automatic translation
+#: admin/class-cl-printable.php:65
+msgid "Show contacts"
+msgstr "Afficher les contacts"
+
+# automatic translation
+#: admin/class-cl-printable.php:68
+msgid "Print contacts"
+msgstr "Imprimer les contacts"
+
+# automatic translation
+#: admin/class-cl-printable.php:177
+msgid "First click on the Show contacts -button to get the contacts."
+msgstr ""
+"Cliquez d'abord sur le bouton Afficher les contacts pour obtenir les "
+"contacts."
+
+# automatic translation
+#: admin/class-cl-settings.php:22
+msgid "Hide Send message -button from the public list"
+msgstr "Masquer le bouton Envoyer un message de la liste publique"
+
+# automatic translation
+#: admin/class-cl-settings.php:31
+msgid "Sort contact list by"
+msgstr "Trier la liste de contacts par"
+
+# automatic translation
+#: admin/class-cl-settings.php:40
+msgid "Show last name before first name"
+msgstr "Afficher le nom avant le prénom"
+
+# automatic translation
+#: admin/class-cl-settings.php:52
+msgid "Contacts per page (activates pagination)"
+msgstr "Contacts par page (active la pagination)"
+
+# automatic translation
+#: admin/class-cl-settings.php:61
+msgid "Display group checkboxes on public form"
+msgstr "Afficher les cases à cocher des groupes sur un formulaire public"
+
+# automatic translation
+#: admin/class-cl-settings.php:70
+msgid "Show contacts from subgroups in the main group view"
+msgstr "Afficher les contacts des sous-groupes dans la vue du groupe principal"
+
+# automatic translation
+#: admin/class-cl-settings.php:79
+msgid "Automatically publish user submitted contacts"
+msgstr "Publier automatiquement les contacts soumis par les utilisateurs"
+
+# automatic translation
+#: admin/class-cl-settings.php:100
+#: admin/class-cl-settings.php:1121
+msgid "Layout"
+msgstr "Disposition"
+
+# automatic translation
+#: admin/class-cl-settings.php:109
+msgid "Card height in pixels"
+msgstr "Hauteur de la carte en pixels"
+
+# automatic translation
+#: admin/class-cl-settings.php:118
+msgid "Card background"
+msgstr "Fond de carte"
+
+# automatic translation
+#: admin/class-cl-settings.php:127
+msgid "Card border"
+msgstr "Bordure de carte"
+
+# automatic translation
+#: admin/class-cl-settings.php:136
+msgid "Contact image style"
+msgstr "Style d'image de contact"
+
+# automatic translation
+#: admin/class-cl-settings.php:145
+msgid "Display shadow below contact image"
+msgstr "Afficher l'ombre sous l'image du contact"
+
+# automatic translation
+#: admin/class-cl-settings.php:163
+msgid "Hide contact email address from contact card"
+msgstr "Masquer l'adresse e-mail de contact de la carte de contact"
+
+# automatic translation
+#: admin/class-cl-settings.php:175
+msgid "Activate reCAPTCHA"
+msgstr "Activer reCAPTCHA"
+
+# automatic translation
+#: admin/class-cl-settings.php:184
+msgid "reCAPTCHA site key"
+msgstr "Clé de site reCAPTCHA"
+
+# automatic translation
+#: admin/class-cl-settings.php:193
+msgid "reCAPTCHA secret key"
+msgstr "Clé secrète reCAPTCHA"
+
+# automatic translation
+#: admin/class-cl-settings.php:202
+msgid "Sender email for messages sent from contact card"
+msgstr "E-mail de l'expéditeur pour les messages envoyés depuis la carte de visite"
+
+# automatic translation
+#: admin/class-cl-settings.php:211
+msgid "Sender name for messages sent from contact card"
+msgstr "Nom de l'expéditeur des messages envoyés depuis la carte de visite"
+
+# automatic translation
+#: admin/class-cl-settings.php:220
+msgid "Set Return-Path to same as sender email"
+msgstr "Définissez le chemin de retour sur le même que l'e-mail de l'expéditeur"
+
+# automatic translation
+#: admin/class-cl-settings.php:229
+msgid "Send an email notify when a contact is added via the public form"
+msgstr ""
+"Envoyer une notification par e-mail lorsqu'un contact est ajouté via le "
+"formulaire public"
+
+# automatic translation
+#: admin/class-cl-settings.php:238
+msgid "Notification recipient email"
+msgstr "E-mail du destinataire de la notification"
+
+# automatic translation
+#: admin/class-cl-settings.php:259
+msgid "Show country select in search"
+msgstr "Afficher la sélection de pays dans la recherche"
+
+# automatic translation
+#: admin/class-cl-settings.php:268
+msgid "Show state select in search"
+msgstr "Afficher la sélection d'état dans la recherche"
+
+# automatic translation
+#: admin/class-cl-settings.php:277
+msgid "Show category select in search"
+msgstr "Afficher la sélection de catégorie dans la recherche"
+
+# automatic translation
+#: admin/class-cl-settings.php:303
+msgid "Icon for custom field 1"
+msgstr "Icône du champ personnalisé 1"
+
+# automatic translation
+#: admin/class-cl-settings.php:323
+msgid "Icon for custom field 2"
+msgstr "Icône du champ personnalisé 2"
+
+# automatic translation
+#: admin/class-cl-settings.php:340
+msgid "Icon for custom field 3"
+msgstr "Icône du champ personnalisé 3"
+
+# automatic translation
+#: admin/class-cl-settings.php:357
+msgid "Icon for custom field 4"
+msgstr "Icône du champ personnalisé 4"
+
+# automatic translation
+#: admin/class-cl-settings.php:374
+msgid "Icon for custom field 5"
+msgstr "Icône du champ personnalisé 5"
+
+# automatic translation
+#: admin/class-cl-settings.php:391
+msgid "Icon for custom field 6"
+msgstr "Icône du champ personnalisé 6"
+
+# automatic translation
+#: admin/class-cl-settings.php:413
+#: admin/class-cl-settings.php:417
+#: public/class-shortcode_contact_list.php:164
+msgid "Search contacts..."
+msgstr "Rechercher des contacts..."
+
+# automatic translation
+#: admin/class-cl-settings.php:422
+#: admin/class-cl-settings.php:426
+#: public/class-shortcode_contact_list_groups__premium_only.php:75
+#: public/class-shortcode_contact_list_search__premium_only.php:72
+msgid "Search all contacts..."
+msgstr "Rechercher tous les contacts ..."
+
+# automatic translation
+#: admin/class-cl-settings.php:431
+msgid "\"Back\"-link title"
+msgstr "Titre du lien \"Retour\""
+
+# automatic translation
+#: admin/class-cl-settings.php:435
+#: public/class-shortcode_contact_list_groups__premium_only.php:143
+msgid "<< Back"
+msgstr "<< Retour"
+
+# automatic translation
+#: admin/class-cl-settings.php:512
+#: admin/class-cl-settings.php:516
+#: admin/class-cl-settings.php:687
+#: admin/class-cl-settings.php:802
+#: public/class-shortcode_contact_list_form__premium_only.php:166
+msgid "Instagram URL"
+msgstr "URL d'Instagram"
+
+# automatic translation
+#: admin/class-cl-settings.php:521
+#: admin/class-cl-settings.php:525
+#: admin/class-cl-settings.php:530
+#: includes/class-contact-list-helpers.php:278
+#: includes/class-contact-list-helpers.php:670
+#: public/class-shortcode_contact_list_form__premium_only.php:173
+msgid "Address"
+msgstr "Adresse"
+
+# automatic translation
+#: admin/class-cl-settings.php:530
+#: admin/class-cl-settings.php:584
+#: admin/class-cl-settings.php:624
+#: admin/class-cl-settings.php:633
+#: admin/class-cl-settings.php:642
+#: admin/class-cl-settings.php:651
+#: admin/class-cl-settings.php:660
+#: admin/class-cl-settings.php:669
+#: admin/class-cl-settings.php:678
+#: admin/class-cl-settings.php:687
+#: admin/class-cl-settings.php:696
+#: admin/class-cl-settings.php:705
+#: admin/class-cl-settings.php:714
+#: admin/class-cl-settings.php:723
+#: admin/class-cl-settings.php:739
+#: admin/class-cl-settings.php:748
+#: admin/class-cl-settings.php:757
+#: admin/class-cl-settings.php:766
+#: admin/class-cl-settings.php:775
+#: admin/class-cl-settings.php:784
+#: admin/class-cl-settings.php:793
+#: admin/class-cl-settings.php:802
+#: admin/class-cl-settings.php:811
+#: admin/class-cl-settings.php:835
+#: admin/class-cl-settings.php:844
+msgid "Hide"
+msgstr "Cacher"
+
+# automatic translation
+#: admin/class-cl-settings.php:530
+#: admin/class-cl-settings.php:584
+msgid "-title"
+msgstr "-Titre"
+
+# automatic translation
+#: admin/class-cl-settings.php:575
+#: admin/class-cl-settings.php:579
+#: admin/class-cl-settings.php:584
+#: admin/class-cl-settings.php:859
+#: includes/class-contact-list-helpers.php:353
+#: includes/class-contact-list-helpers.php:723
+#: public/class-shortcode_contact_list_form__premium_only.php:238
+msgid "Additional information"
+msgstr "Information additionnelle"
+
+# automatic translation
+#: admin/class-cl-settings.php:593
+msgid "Thank you page / title"
+msgstr "Merci page / titre"
+
+# automatic translation
+#: admin/class-cl-settings.php:597
+#: public/class-shortcode_contact_list_form__premium_only.php:86
+msgid "Thank you"
+msgstr "Je vous remercie"
+
+# automatic translation
+#: admin/class-cl-settings.php:602
+msgid "Thank you page / content"
+msgstr "Merci page / contenu"
+
+# automatic translation
+#: admin/class-cl-settings.php:606
+#: public/class-shortcode_contact_list_form__premium_only.php:87
+msgid ""
+"The form was successfully processed and the contents will be reviewed by "
+"site administrator before publishing."
+msgstr ""
+"Le formulaire a été traité avec succès et le contenu sera examiné par "
+"l'administrateur du site avant sa publication."
+
+# automatic translation
+#: admin/class-cl-settings.php:624
+#: admin/class-cl-settings.php:739
+msgid "first name"
+msgstr "Prénom"
+
+# automatic translation
+#: admin/class-cl-settings.php:633
+#: admin/class-cl-settings.php:748
+msgid "job title"
+msgstr "profession"
+
+# automatic translation
+#: admin/class-cl-settings.php:642
+#: admin/class-cl-settings.php:757
+msgid "email"
+msgstr "email"
+
+# automatic translation
+#: admin/class-cl-settings.php:651
+#: admin/class-cl-settings.php:766
+msgid "phone"
+msgstr "téléphone"
+
+# automatic translation
+#: admin/class-cl-settings.php:696
+#: admin/class-cl-settings.php:811
+msgid "address"
+msgstr "adresse"
+
+# automatic translation
+#: admin/class-cl-settings.php:705
+msgid "custom fields"
+msgstr "Les champs personnalisés"
+
+# automatic translation
+#: admin/class-cl-settings.php:714
+#: admin/class-cl-settings.php:835
+msgid "groups"
+msgstr "groupes"
+
+# automatic translation
+#: admin/class-cl-settings.php:723
+msgid "additional information"
+msgstr "Information additionnelle"
+
+# automatic translation
+#: admin/class-cl-settings.php:824
+msgid "Hide custom field"
+msgstr "Masquer le champ personnalisé"
+
+# automatic translation
+#: admin/class-cl-settings.php:844
+msgid "additional_information"
+msgstr "Information additionnelle"
+
+# automatic translation
+#: admin/class-cl-settings.php:883
+msgid "Note:"
+msgstr "Remarque:"
+
+# automatic translation
+#: admin/class-cl-settings.php:884
+msgid ""
+"The plugin currently supports reCAPTCHA v2 (\"I'm not a robot\" checkbox). "
+"When you create your keys, you must choose this type. More information on "
+"this at"
+msgstr ""
+"Le plugin prend actuellement en charge reCAPTCHA v2 (case à cocher \"Je ne "
+"suis pas un robot\"). Lorsque vous créez vos clés, vous devez choisir ce "
+"type. Plus d'informations à ce sujet sur"
+
+# automatic translation
+#: admin/class-cl-settings.php:910
+msgid ""
+"If \"First name\" is selected, only the contacts with the first name "
+"defined are listed."
+msgstr ""
+"Si \"Prénom\" est sélectionné, seuls les contacts avec le prénom défini "
+"sont répertoriés."
+
+# automatic translation
+#: admin/class-cl-settings.php:929
+msgid "none"
+msgstr "aucun"
+
+# automatic translation
+#: admin/class-cl-settings.php:953
+msgid "Default list"
+msgstr "Liste par défaut"
+
+# automatic translation
+#: admin/class-cl-settings.php:954
+msgid "2 cards on the same row"
+msgstr "2 cartes sur la même ligne"
+
+# automatic translation
+#: admin/class-cl-settings.php:955
+msgid "3 cards on the same row"
+msgstr "3 cartes sur la même ligne"
+
+# automatic translation
+#: admin/class-cl-settings.php:956
+msgid "4 cards on the same row"
+msgstr "4 cartes sur la même ligne"
+
+# automatic translation
+#: admin/class-cl-settings.php:974
+msgid "Transparent"
+msgstr "Transparent"
+
+# automatic translation
+#: admin/class-cl-settings.php:975
+msgid "White"
+msgstr "blanc"
+
+# automatic translation
+#: admin/class-cl-settings.php:976
+msgid "Light gray"
+msgstr "Gris clair"
+
+# automatic translation
+#: admin/class-cl-settings.php:994
+#: admin/class-cl-settings.php:1014
+msgid "None"
+msgstr "Aucun"
+
+# automatic translation
+#: admin/class-cl-settings.php:995
+msgid "Black"
+msgstr "Noir"
+
+# automatic translation
+#: admin/class-cl-settings.php:996
+msgid "Gray"
+msgstr "gris"
+
+# automatic translation
+#: admin/class-cl-settings.php:1015
+msgid "Sepia"
+msgstr "Sépia"
+
+# automatic translation
+#: admin/class-cl-settings.php:1016
+msgid "Grayscale"
+msgstr "Niveaux de gris"
+
+# automatic translation
+#: admin/class-cl-settings.php:1061
+msgid "These settings are for this form in the front-end:"
+msgstr "Ces paramètres sont pour ce formulaire dans le front-end:"
+
+# automatic translation
+#: admin/class-cl-settings.php:1085
+msgid ""
+"You may enter alternative titles and texts here. The values defined here "
+"will override the default values."
+msgstr ""
+"Vous pouvez saisir ici des titres et des textes alternatifs. Les valeurs "
+"définies ici remplaceront les valeurs par défaut."
+
+# automatic translation
+#: admin/class-cl-settings.php:1097
+msgid "Admin form elements"
+msgstr "Éléments du formulaire d'administration"
+
+# automatic translation
+#: admin/class-cl-settings.php:1098
+msgid ""
+"You may customize the admin form (the one displayed in the WP admin area) "
+"using these settings."
+msgstr ""
+"Vous pouvez personnaliser le formulaire d'administration (celui affiché "
+"dans la zone d'administration WP) à l'aide de ces paramètres."
+
+# automatic translation
+#: admin/class-cl-settings.php:1106
+msgid "Public form elements"
+msgstr "Éléments de formulaire public"
+
+# automatic translation
+#: admin/class-cl-settings.php:1107
+msgid ""
+"You may customize the public form (the one displayed using the "
+"[contact_list_form] shortcode) using these settings."
+msgstr ""
+"Vous pouvez personnaliser le formulaire public (celui affiché à l'aide du "
+"shortcode [contact_list_form]) à l'aide de ces paramètres."
+
+# automatic translation
+#: admin/class-cl-settings.php:1116
+msgid "Contact List Settings"
+msgstr "Paramètres de la liste de contacts"
+
+# automatic translation
+#: admin/class-cl-settings.php:1120
+msgid "General settings"
+msgstr "Réglages généraux"
+
+# automatic translation
+#: admin/class-cl-settings.php:1122
+msgid "reCAPTCHA and email"
+msgstr "reCAPTCHA et e-mail"
+
+# automatic translation
+#: admin/class-cl-settings.php:1123
+msgid "Search form"
+msgstr "Formulaire de recherche"
+
+# automatic translation
+#: admin/class-cl-settings.php:1124
+msgid "Custom fields"
+msgstr "Les champs personnalisés"
+
+# automatic translation
+#: admin/class-cl-settings.php:1125
+msgid "Field titles and texts"
+msgstr "Titres et textes des champs"
+
+# automatic translation
+#: admin/class-cl-settings.php:1126
+msgid "Hide form elements"
+msgstr "Masquer les éléments du formulaire"
+
+# automatic translation
+#: admin/class-cl-settings.php:1150
+msgid "Settings&nbsp;&nbsp;➤"
+msgstr "Paramètres & nbsp; & nbsp; ➤"
+
+# automatic translation
+#: admin/class-cl-settings.php:1157
+msgid "Upgrade&nbsp;&nbsp;➤"
+msgstr "Mettre à niveau & nbsp; & nbsp; ➤"
+
+# automatic translation
+#: admin/class-cl-taxonomy.php:8
+#: admin/class-cl-taxonomy.php:9
+msgid "Group"
+msgstr "Groupe"
+
+# automatic translation
+#: admin/class-cl-taxonomy.php:10
+msgid "Search Groups"
+msgstr "Rechercher des groupes"
+
+# automatic translation
+#: admin/class-cl-taxonomy.php:11
+msgid "All Groups"
+msgstr "Tous les groupes"
+
+# automatic translation
+#: admin/class-cl-taxonomy.php:12
+msgid "Parent Group"
+msgstr "Groupe parent"
+
+# automatic translation
+#: admin/class-cl-taxonomy.php:13
+msgid "Parent Group:"
+msgstr "Groupe parent:"
+
+# automatic translation
+#: admin/class-cl-taxonomy.php:14
+msgid "Edit Group"
+msgstr "Modifier le groupe"
+
+# automatic translation
+#: admin/class-cl-taxonomy.php:15
+msgid "Update Group"
+msgstr "Groupe de mise à jour"
+
+# automatic translation
+#: admin/class-cl-taxonomy.php:16
+msgid "Add New Group"
+msgstr "Ajouter un nouveau groupe"
+
+# automatic translation
+#: admin/class-cl-taxonomy.php:18
+msgid "No groups found."
+msgstr "Aucun groupe trouvé."
+
+# automatic translation
+#: admin/class-cl-taxonomy.php:39
+msgid "Hide group"
+msgstr "Masquer le groupe"
+
+# automatic translation
+#: admin/class-cl-taxonomy.php:40
+msgid ""
+"Note: this hides only the group from the front-end views (such as dropdowns "
+"and group lists), not the actual contacts that may belong to this group."
+msgstr ""
+"Remarque: cela masque uniquement le groupe des vues frontales (telles que "
+"les listes déroulantes et les listes de groupes), pas les contacts réels "
+"qui peuvent appartenir à ce groupe."
+
+# automatic translation
+#: includes/class-contact-list-custom-fields.php:262
+msgid "Contact Details"
+msgstr "Détails du contact"
+
+# automatic translation
+#: includes/class-contact-list-helpers.php:10
+msgid "This feature is available in the Pro version."
+msgstr "Cette fonctionnalité est disponible dans la version Pro."
+
+# automatic translation
+#: includes/class-contact-list-helpers.php:11
+#: includes/class-contact-list-helpers.php:24
+msgid "Upgrade here"
+msgstr "Mettre à jour ici"
+
+# automatic translation
+#: includes/class-contact-list-helpers.php:23
+msgid "More settings available in the Pro version."
+msgstr "Plus de paramètres disponibles dans la version Pro."
+
+# automatic translation
+#: includes/class-contact-list-helpers.php:64
+#: includes/class-contact-list-helpers.php:264
+msgid "Send message"
+msgstr "Envoyer le message"
+
+# automatic translation
+#: includes/class-contact-list-helpers.php:76
+msgid "Your name"
+msgstr "Votre nom"
+
+# automatic translation
+#: includes/class-contact-list-helpers.php:79
+msgid "Your email"
+msgstr "Votre email"
+
+# automatic translation
+#: includes/class-contact-list-helpers.php:81
+msgid "Recipient"
+msgstr "Bénéficiaire"
+
+# automatic translation
+#: includes/class-contact-list-helpers.php:91
+msgid "Please write message first."
+msgstr "Veuillez d'abord écrire le message."
+
+# automatic translation
+#: includes/class-contact-list-helpers.php:92
+msgid "Message sent to recipient."
+msgstr "Message envoyé au destinataire."
+
+# automatic translation
+#: includes/class-contact-list-helpers.php:93
+msgid "Please wait..."
+msgstr "S'il vous plaît, attendez..."
+
+# automatic translation
+#: includes/class-contact-list-helpers.php:94
+msgid "New message from"
+msgstr "Nouveau message de"
+
+# automatic translation
+#: includes/class-contact-list-helpers.php:95
+msgid "sent by"
+msgstr "envoyée par"
+
+# automatic translation
+#: includes/class-contact-list-helpers.php:96
+#: public/class-shortcode_contact_list_form__premium_only.php:260
+msgid "Please check the &quot;I'm not a robot&quot;-checkbox first."
+msgstr "Veuillez d'abord cocher la case \"Je ne suis pas un robot\"."
+
+# automatic translation
+#: includes/class-contact-list-helpers.php:97
+msgid "Please enter sender information first (name and email)."
+msgstr "Veuillez d'abord saisir les informations de l'expéditeur (nom et e-mail)."
+
+# automatic translation
+#: includes/class-contact-list-helpers.php:586
+msgid "Thank you!"
+msgstr "Je vous remercie!"
+
+# automatic translation
+#: includes/class-contact-list-helpers.php:589
+#: public/class-shortcode_contact_list_form__premium_only.php:89
+msgid "Error processing data."
+msgstr "Erreur lors du traitement des données."
+
+# automatic translation
+#: includes/class-contact-list-helpers.php:609
+msgid "Update contact info"
+msgstr "Mettre à jour les informations de contact"
+
+# automatic translation
+#: includes/class-contact-list-helpers.php:623
+#: public/class-shortcode_contact_list_form__premium_only.php:119
+msgid "Please insert at least last name first."
+msgstr "Veuillez insérer au moins le nom de famille en premier."
+
+# automatic translation
+#: includes/class-contact-list-helpers.php:712
+#: public/class-shortcode_contact_list_form__premium_only.php:228
+msgid "Group(s)"
+msgstr "Groupes)"
+
+# automatic translation
+#: includes/class-contact-list-helpers.php:739
+#: public/class-shortcode_contact_list_form__premium_only.php:264
+msgid "Submit"
+msgstr "Soumettre"
+
+# automatic translation
+#: public/class-cl-public-send-mail.php:52
+msgid "Sent by:"
+msgstr "Envoyée par:"
+
+# automatic translation
+#: public/class-shortcode_contact_list.php:58
+#: public/class-shortcode_contact_list.php:66
+msgid "Contact not found"
+msgstr "Contact introuvable"
+
+# automatic translation
+#: public/class-shortcode_contact_list.php:71
+#: public/class-shortcode_contact_list_groups__premium_only.php:69
+#: public/class-shortcode_contact_list_search__premium_only.php:27
+msgid "contact"
+msgstr "contact"
+
+# automatic translation
+#: public/class-shortcode_contact_list.php:72
+#: public/class-shortcode_contact_list_groups__premium_only.php:70
+#: public/class-shortcode_contact_list_search__premium_only.php:28
+msgid "contacts"
+msgstr "Contacts"
+
+# automatic translation
+#: public/class-shortcode_contact_list.php:73
+#: public/class-shortcode_contact_list_groups__premium_only.php:71
+#: public/class-shortcode_contact_list_search__premium_only.php:29
+msgid "found"
+msgstr "a trouvé"
+
+# automatic translation
+#: public/class-shortcode_contact_list.php:188
+msgid "Select country"
+msgstr "Choisissez le pays"
+
+# automatic translation
+#: public/class-shortcode_contact_list.php:214
+msgid "Select state"
+msgstr "Sélectionnez l'état"
+
+# automatic translation
+#: public/class-shortcode_contact_list.php:234
+msgid "Select category"
+msgstr "Choisir une catégorie"
+
+# automatic translation
+#: public/class-shortcode_contact_list.php:254
+msgid "Filter contacts"
+msgstr "Filtrer les contacts"
+
+# automatic translation
+#: public/class-shortcode_contact_list.php:285
+msgid "More contacts:"
+msgstr "Plus de contacts:"
+
+# automatic translation
+#: public/class-shortcode_contact_list_form__premium_only.php:199
+msgid "Custom field"
+msgstr "Champ personnalisé"
+
+# automatic translation
+#: public/class-shortcode_contact_list_groups__premium_only.php:128
+#: public/class-shortcode_contact_list_groups__premium_only.php:275
+msgid "There are no contacts in this group."
+msgstr "Il n'y a aucun contact dans ce groupe."
+
+# automatic translation
+#: public/class-shortcode_contact_list_groups__premium_only.php:281
+msgid "Group not found"
+msgstr "Groupe introuvable"
+
+# automatic translation
+#: public/class-shortcode_contact_list_groups__premium_only.php:322
+msgid "There are no groups."
+msgstr "Il n'y a pas de groupes."

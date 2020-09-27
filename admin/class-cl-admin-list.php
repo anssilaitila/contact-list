@@ -6,7 +6,7 @@ class ContactListAdminList {
 
     $options = get_option('contact_list_settings');
 
-    $defaults['contact_id']   = __('ID', 'contact-list');
+    $defaults['contact_id']   = 'ID';
 
     if (!isset($options['af_hide_first_name'])) {
       $defaults['first_name']   = isset($options['first_name_title']) && $options['first_name_title'] ? $options['first_name_title'] : __('First name', 'contact-list');
@@ -40,7 +40,7 @@ class ContactListAdminList {
     }
 
     if (!isset($options['af_hide_instagram_url'])) {
-      $defaults['instagram_url'] = isset($options['instagram_url_title']) && $options['instagram_url_title'] ? $options['instagram_url_title'] : __('IG', 'contact-list');
+      $defaults['instagram_url'] = isset($options['instagram_url_title']) && $options['instagram_url_title'] ? $options['instagram_url_title'] : 'IG';
     }
 
     return $defaults;

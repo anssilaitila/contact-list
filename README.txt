@@ -92,6 +92,12 @@ Contact author [here](https://www.tammersoft.com/).
 
 == Changelog ==
 
+= 2.9.15 =
+* jQuery-issue fixed
+
+= 2.9.14 =
+* New option: focus on search field on page load (see "General settings" tab)
+
 = 2.9.13 =
 * If an email is entered as a custom field value, it is now automatically converted to a mailto link
 * Search now finds both "firstname lastname" and "lastname firstname"
