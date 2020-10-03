@@ -92,6 +92,9 @@ Contact author [here](https://www.tammersoft.com/).
 
 == Changelog ==
 
+= 2.9.16 =
+* Another JS-issue fixed
+
 = 2.9.15 =
 * jQuery-issue fixed
 
