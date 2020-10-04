@@ -25,6 +25,8 @@ class ContactListHelpSupport {
           <p><?= __('Any feedback is welcome. You may contact the author at', 'contact-list') . ' <a href="https://www.tammersoft.com/" target="_blank">tammersoft.com</a> ' . __('or by email:', 'contact-list') ?> <a href="javascript:location='mailto:\u0063\u006f\u006e\u0074\u0061\u0063\u0074\u0040\u0074\u0061\u006d\u006d\u0065\u0072\u0073\u006f\u0066\u0074\u002e\u0063\u006f\u006d';void 0"><script type="text/javascript">document.write('\u0063\u006f\u006e\u0074\u0061\u0063\u0074\u0040\u0074\u0061\u006d\u006d\u0065\u0072\u0073\u006f\u0066\u0074\u002e\u0063\u006f\u006d')</script></a></p>
       </div>
 
+      <span class="contact-list-shortcodes-link"><?= __('A complete list of available shortcodes can be found at', 'shared-files') ?> <a href="https://www.contactlistpro.com/support/shortcodes/" target="_blank">https://www.contactlistpro.com/support/shortcodes/</a></span>
+
       <h2><?= __('Only contacts, no groups', 'contact-list'); ?></h2>
 
       <ol>

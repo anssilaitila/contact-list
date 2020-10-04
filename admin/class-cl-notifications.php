@@ -39,7 +39,7 @@ class ContactListNotifications {
   	$cl_offer_notice = get_option('contact_list_offer_notice');
   	$should_show_offer_notice = ($cl_offer_notice !== 'dismissed');
 
-    if (0 && $should_show_offer_notice && cl_fs()->is_not_paying() && current_user_can('administrator')) {
+    if (1 && $should_show_offer_notice && cl_fs()->is_not_paying() && current_user_can('administrator')) {
       
 			echo "
         <div class='cl_notice cl_review_notice cl_new_user_sale_notice'>

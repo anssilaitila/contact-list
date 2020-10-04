@@ -92,6 +92,9 @@ Contact author [here](https://www.tammersoft.com/).
 
 == Changelog ==
 
+= 2.9.17 =
+* CSS fixes
+
 = 2.9.16 =
 * Another JS-issue fixed
 
