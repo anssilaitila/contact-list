@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Contact List plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Contact List 2.9.14\n"
+"Project-Id-Version: Contact List 2.9.18\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/contact-list-pro\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-09-27T13:36:33+00:00\n"
+"POT-Creation-Date: 2020-10-11T16:09:08+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: contact-list\n"
@@ -211,9 +211,11 @@ msgstr ""
 #: admin/class-cl-cpt.php:14
 #: includes/class-contact-list-helpers.php:132
 #: includes/class-contact-list-helpers.php:188
+#: public/class-cl-public-helpers.php:130
 #: public/class-shortcode_contact_list.php:292
-#: public/class-shortcode_contact_list_groups__premium_only.php:77
+#: public/class-shortcode_contact_list_groups__premium_only.php:78
 #: public/class-shortcode_contact_list_search__premium_only.php:74
+#: public/class-shortcode_contact_list_simple.php:74
 msgid "No contacts found."
 msgstr ""
 
@@ -246,105 +248,114 @@ msgstr ""
 msgid "or by email:"
 msgstr ""
 
-#: admin/class-cl-help-support.php:28
-msgid "Only contacts, no groups"
-msgstr ""
-
-#: admin/class-cl-help-support.php:31
-msgid "Add the contacts via the All Contacts page."
-msgstr ""
-
-#: admin/class-cl-help-support.php:32
-msgid "Insert the shortcode <span class=\"contact-list-shortcode\">[contact_list]</span> to the content editor of any page you wish the contact list to appear."
+#: admin/class-cl-help-support.php:30
+msgid "Default contact list"
 msgstr ""
 
 #: admin/class-cl-help-support.php:33
-msgid "Additional parameters"
+#: admin/class-cl-help-support.php:49
+msgid "Add the contacts via the All Contacts page."
+msgstr ""
+
+#: admin/class-cl-help-support.php:34
+msgid "Insert the shortcode <span class=\"contact-list-shortcode\">[contact_list]</span> to the content editor of any page you wish the contact list to appear."
 msgstr ""
 
 #: admin/class-cl-help-support.php:35
+msgid "Additional parameters"
+msgstr ""
+
+#: admin/class-cl-help-support.php:37
 msgid "Hide search form:"
 msgstr ""
 
-#: admin/class-cl-help-support.php:36
+#: admin/class-cl-help-support.php:38
 msgid "Layout \"2 cards on the same row\""
 msgstr ""
 
-#: admin/class-cl-help-support.php:37
+#: admin/class-cl-help-support.php:39
 msgid "Layout \"3 cards on the same row\""
 msgstr ""
 
-#: admin/class-cl-help-support.php:37
-#: admin/class-cl-help-support.php:38
+#: admin/class-cl-help-support.php:39
+#: admin/class-cl-help-support.php:40
 #: admin/class-cl-settings.php:964
 #: admin/class-cl-settings.php:965
 msgid "without contact images"
 msgstr ""
 
-#: admin/class-cl-help-support.php:38
+#: admin/class-cl-help-support.php:40
 msgid "Layout \"4 cards on the same row\""
 msgstr ""
 
-#: admin/class-cl-help-support.php:39
+#: admin/class-cl-help-support.php:41
 msgid "Multiple parameters:"
 msgstr ""
 
-#: admin/class-cl-help-support.php:45
-msgid "Contacts with groups"
+#: admin/class-cl-help-support.php:46
+msgid "Simple contact list"
 msgstr ""
 
-#: admin/class-cl-help-support.php:53
-msgid "Add the groups via the Groups page. There may be groups under groups (hierarchial groups, 2 or more levels)."
+#: admin/class-cl-help-support.php:50
+msgid "Insert the shortcode <span class=\"contact-list-shortcode\">[contact_list_simple]</span> to the content editor of any page you wish the contact list to appear."
 msgstr ""
 
 #: admin/class-cl-help-support.php:54
+msgid "Contacts with groups"
+msgstr ""
+
+#: admin/class-cl-help-support.php:62
+msgid "Add the groups via the Groups page. There may be groups under groups (hierarchial groups, 2 or more levels)."
+msgstr ""
+
+#: admin/class-cl-help-support.php:63
 msgid "Add the contacts via the All Contacts page. You may select the appropriate group(s) at this point."
 msgstr ""
 
-#: admin/class-cl-help-support.php:55
+#: admin/class-cl-help-support.php:64
 msgid "Insert the shortcode <span class=\"contact-list-shortcode\">[contact_list_groups]</span> to the content editor of any page you wish the group list to appear. When a user selects a group, then a list of contacts belonging to that group is displayed. Also, if there are subgroups under that group, those will be displayed."
 msgstr ""
 
-#: admin/class-cl-help-support.php:59
+#: admin/class-cl-help-support.php:68
 msgid "Contacts from specific group"
 msgstr ""
 
-#: admin/class-cl-help-support.php:67
-#: admin/class-cl-help-support.php:79
-#: admin/class-cl-help-support.php:91
-#: admin/class-cl-help-support.php:104
+#: admin/class-cl-help-support.php:76
+#: admin/class-cl-help-support.php:88
+#: admin/class-cl-help-support.php:100
+#: admin/class-cl-help-support.php:113
 msgid "Insert the shortcode"
 msgstr ""
 
-#: admin/class-cl-help-support.php:67
+#: admin/class-cl-help-support.php:76
 msgid "to the content editor of any page you wish the contact list to appear. Replace GROUP_SLUG with the appropriate slug that can be found from group management."
 msgstr ""
 
-#: admin/class-cl-help-support.php:71
+#: admin/class-cl-help-support.php:80
 msgid "Single contact"
 msgstr ""
 
-#: admin/class-cl-help-support.php:79
+#: admin/class-cl-help-support.php:88
 msgid "to the content editor of any page you wish the contact to appear. Replace CONTACT_ID with the appropriate id that can be found from contact management. There's a column \"ID\" in the All Contacts -page, which contains the numeric value."
 msgstr ""
 
-#: admin/class-cl-help-support.php:83
+#: admin/class-cl-help-support.php:92
 msgid "Allow visitors to add new contacts"
 msgstr ""
 
-#: admin/class-cl-help-support.php:91
+#: admin/class-cl-help-support.php:100
 msgid "to the page you wish the form to appear on."
 msgstr ""
 
-#: admin/class-cl-help-support.php:92
+#: admin/class-cl-help-support.php:101
 msgid "When a user submits the form, a new contact is saved to the contacts. The status of that contact is \"Pending Review\" and a site administrator must publish/edit/delete the contact."
 msgstr ""
 
-#: admin/class-cl-help-support.php:96
+#: admin/class-cl-help-support.php:105
 msgid "Only a search form that searches from all contacts"
 msgstr ""
 
-#: admin/class-cl-help-support.php:104
+#: admin/class-cl-help-support.php:113
 msgid "to the page you wish the view to appear on."
 msgstr ""
 
@@ -725,6 +736,7 @@ msgstr ""
 #: admin/class-cl-settings.php:422
 #: admin/class-cl-settings.php:426
 #: public/class-shortcode_contact_list.php:164
+#: public/class-shortcode_contact_list_simple.php:61
 msgid "Search contacts..."
 msgstr ""
 
@@ -740,7 +752,7 @@ msgid "\"Back\"-link title"
 msgstr ""
 
 #: admin/class-cl-settings.php:444
-#: public/class-shortcode_contact_list_groups__premium_only.php:143
+#: public/class-shortcode_contact_list_groups__premium_only.php:144
 msgid "<< Back"
 msgstr ""
 
@@ -1129,6 +1141,26 @@ msgstr ""
 msgid "Submit"
 msgstr ""
 
+#: public/class-cl-public-helpers.php:33
+#: public/class-shortcode_contact_list.php:188
+msgid "Select country"
+msgstr ""
+
+#: public/class-cl-public-helpers.php:59
+#: public/class-shortcode_contact_list.php:214
+msgid "Select state"
+msgstr ""
+
+#: public/class-cl-public-helpers.php:79
+#: public/class-shortcode_contact_list.php:234
+msgid "Select category"
+msgstr ""
+
+#: public/class-cl-public-helpers.php:99
+#: public/class-shortcode_contact_list.php:254
+msgid "Filter contacts"
+msgstr ""
+
 #: public/class-cl-public-send-mail.php:52
 msgid "Sent by:"
 msgstr ""
@@ -1141,35 +1173,22 @@ msgstr ""
 #: public/class-shortcode_contact_list.php:71
 #: public/class-shortcode_contact_list_groups__premium_only.php:69
 #: public/class-shortcode_contact_list_search__premium_only.php:27
+#: public/class-shortcode_contact_list_simple.php:13
 msgid "contact"
 msgstr ""
 
 #: public/class-shortcode_contact_list.php:72
 #: public/class-shortcode_contact_list_groups__premium_only.php:70
 #: public/class-shortcode_contact_list_search__premium_only.php:28
+#: public/class-shortcode_contact_list_simple.php:14
 msgid "contacts"
 msgstr ""
 
 #: public/class-shortcode_contact_list.php:73
 #: public/class-shortcode_contact_list_groups__premium_only.php:71
 #: public/class-shortcode_contact_list_search__premium_only.php:29
+#: public/class-shortcode_contact_list_simple.php:15
 msgid "found"
-msgstr ""
-
-#: public/class-shortcode_contact_list.php:188
-msgid "Select country"
-msgstr ""
-
-#: public/class-shortcode_contact_list.php:214
-msgid "Select state"
-msgstr ""
-
-#: public/class-shortcode_contact_list.php:234
-msgid "Select category"
-msgstr ""
-
-#: public/class-shortcode_contact_list.php:254
-msgid "Filter contacts"
 msgstr ""
 
 #: public/class-shortcode_contact_list.php:285
@@ -1180,15 +1199,15 @@ msgstr ""
 msgid "Custom field"
 msgstr ""
 
-#: public/class-shortcode_contact_list_groups__premium_only.php:128
-#: public/class-shortcode_contact_list_groups__premium_only.php:275
+#: public/class-shortcode_contact_list_groups__premium_only.php:129
+#: public/class-shortcode_contact_list_groups__premium_only.php:278
 msgid "There are no contacts in this group."
 msgstr ""
 
-#: public/class-shortcode_contact_list_groups__premium_only.php:281
+#: public/class-shortcode_contact_list_groups__premium_only.php:284
 msgid "Group not found"
 msgstr ""
 
-#: public/class-shortcode_contact_list_groups__premium_only.php:322
+#: public/class-shortcode_contact_list_groups__premium_only.php:325
 msgid "There are no groups."
 msgstr ""

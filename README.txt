@@ -87,10 +87,14 @@ Contact author [here](https://www.tammersoft.com/).
 1. List of contacts on your site
 2. Send message to a contact
 3. List of contacts in 4 columns (more layout options available)
-4. Form for gathering the contact database (including more fields)
-5. Contact management
+4. Simple list
+5. Form for gathering the contact database (including more fields)
+6. Contact management
 
 == Changelog ==
+
+= 2.9.18 =
+* New shortcode: [contact_list_simple] (See https://www.contactlistpro.com/contact-list/simple-list/)
 
 = 2.9.17 =
 * CSS fixes

@@ -22,12 +22,12 @@ class ContactListHelpSupport {
 
       <div class="contact-list-examples">
           <p><?= __('Some examples on how you can use different views available at', 'contact-list') ?> <a href="https://www.contactlistpro.com/contact-list/" target="_blank"><?= __('contactlistpro.com', 'contact-list') ?></a>.</p>
-          <p><?= __('Any feedback is welcome. You may contact the author at', 'contact-list') . ' <a href="https://www.tammersoft.com/" target="_blank">tammersoft.com</a> ' . __('or by email:', 'contact-list') ?> <a href="javascript:location='mailto:\u0063\u006f\u006e\u0074\u0061\u0063\u0074\u0040\u0074\u0061\u006d\u006d\u0065\u0072\u0073\u006f\u0066\u0074\u002e\u0063\u006f\u006d';void 0"><script type="text/javascript">document.write('\u0063\u006f\u006e\u0074\u0061\u0063\u0074\u0040\u0074\u0061\u006d\u006d\u0065\u0072\u0073\u006f\u0066\u0074\u002e\u0063\u006f\u006d')</script></a></p>
+          <p><?= __('Any feedback is welcome. You may contact the author at', 'contact-list') . ' <a href="https://www.contactlistpro.com/support/" target="_blank">contactlistpro.com/support/</a> ' . __('or by email:', 'contact-list') ?> <a href="javascript:location='mailto:\u0063\u006f\u006e\u0074\u0061\u0063\u0074\u0040\u0074\u0061\u006d\u006d\u0065\u0072\u0073\u006f\u0066\u0074\u002e\u0063\u006f\u006d';void 0"><script type="text/javascript">document.write('\u0063\u006f\u006e\u0074\u0061\u0063\u0074\u0040\u0074\u0061\u006d\u006d\u0065\u0072\u0073\u006f\u0066\u0074\u002e\u0063\u006f\u006d')</script></a></p>
       </div>
 
       <span class="contact-list-shortcodes-link"><?= __('A complete list of available shortcodes can be found at', 'shared-files') ?> <a href="https://www.contactlistpro.com/support/shortcodes/" target="_blank">https://www.contactlistpro.com/support/shortcodes/</a></span>
 
-      <h2><?= __('Only contacts, no groups', 'contact-list'); ?></h2>
+      <h2><?= __('Default contact list', 'contact-list'); ?></h2>
 
       <ol>
         <li><?= __('Add the contacts via the All Contacts page.', 'contact-list'); ?></li>
@@ -41,6 +41,13 @@ class ContactListHelpSupport {
                 <li><?= __('Multiple parameters:', 'contact-list') ?> <span class="contact-list-shortcode">[contact_list layout=2-cards-on-the-same-row hide_search=1]</span></li>
             </ul>
         </li>
+      </ol>
+
+      <h2><?= __('Simple contact list', 'contact-list'); ?></h2>
+
+      <ol>
+        <li><?= __('Add the contacts via the All Contacts page.', 'contact-list'); ?></li>
+        <li><?= __('Insert the shortcode <span class="contact-list-shortcode">[contact_list_simple]</span> to the content editor of any page you wish the contact list to appear.', 'contact-list'); ?></li>
       </ol>
 
       <h2>

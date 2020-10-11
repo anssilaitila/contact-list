@@ -125,12 +125,14 @@ class Contact_List
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cl-public.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cl-public-send-mail.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cl-public-ajax.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cl-public-helpers.php';
         /**
          * The class responsible for defining custom fields for the custom post type
          */
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-contact-list-custom-fields.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-contact-list-helpers.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-shortcode_contact_list.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-shortcode_contact_list_simple.php';
         $this->loader = new Contact_List_Loader();
     }
     

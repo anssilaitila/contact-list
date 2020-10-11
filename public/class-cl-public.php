@@ -99,6 +99,7 @@ class Contact_List_Public
         add_shortcode( 'contact_list_groups', array( 'Contact_List_Public', 'contact_list_groups' ) );
         add_shortcode( 'contact_list_form', array( 'Contact_List_Public', 'contact_list_form' ) );
         add_shortcode( 'contact_list_search', array( 'Contact_List_Public', 'contact_list_search' ) );
+        add_shortcode( 'contact_list_simple', array( 'Contact_List_Public', 'contact_list_simple' ) );
     }
     
     /**
@@ -151,6 +152,13 @@ class Contact_List_Public
         if ( ContactListHelpers::isPremium() == 0 ) {
             $html .= '<div class="pro-feature">' . __( 'This feature is available in the Pro version.' ) . '</div>';
         }
+        return $html;
+    }
+    
+    public static function contact_list_simple( $atts = array(), $content = null, $tag = '' )
+    {
+        $html = '';
+        $html .= ShortcodeContactListSimple::view( $atts );
         return $html;
     }
 
