@@ -128,11 +128,12 @@ class ContactListImportExport
         ?></i></li>
                 <li><?php 
         echo  __( 'Country', 'contact-list' ) ;
-        ?> <span class="new-feature-inline"><?php 
-        echo  __( 'New', 'contact-list' ) ;
-        ?></span></li>
+        ?></li>
                 <li><?php 
         echo  __( 'State', 'contact-list' ) ;
+        ?></li>
+                <li><?php 
+        echo  __( 'Instagram URL', 'contact-list' ) ;
         ?> <span class="new-feature-inline"><?php 
         echo  __( 'New', 'contact-list' ) ;
         ?></span></li>
@@ -245,11 +246,12 @@ class ContactListImportExport
         ?></i></li>
                 <li><?php 
         echo  __( 'Country', 'contact-list' ) ;
-        ?> <span class="new-feature-inline"><?php 
-        echo  __( 'New', 'contact-list' ) ;
-        ?></span></li>
+        ?></li>
                 <li><?php 
         echo  __( 'State', 'contact-list' ) ;
+        ?></span></li>
+                <li><?php 
+        echo  __( 'Instagram URL', 'contact-list' ) ;
         ?> <span class="new-feature-inline"><?php 
         echo  __( 'New', 'contact-list' ) ;
         ?></span></li>

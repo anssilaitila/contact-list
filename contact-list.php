@@ -8,16 +8,16 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              https://anssilaitila.fi
+ * @link              https://www.contactlistpro.com
  * @since             1.0.0
  * @package           Contact_List
  *
  * @wordpress-plugin
  * Plugin Name:       Contact List
  * Description:       Easily display contact information on your site with this simple plugin.
- * Version:           2.9.18
- * Author:            Anssi Laitila
- * Author URI:        https://anssilaitila.fi
+ * Version:           2.9.19
+ * Author:            Tammersoft
+ * Author URI:        https://www.tammersoft.com
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       contact-list
@@ -117,7 +117,7 @@ if ( function_exists( 'cl_fs' ) ) {
         $order_by = $s['order_by'];
     }
     define( 'ORDER_BY', $order_by );
-    define( 'CONTACT_LIST_VERSION', '2.9.18' );
+    define( 'CONTACT_LIST_VERSION', '2.9.19' );
     define( 'CONTACT_LIST_URI', plugin_dir_url( __FILE__ ) );
     define( 'CONTACT_LIST_PATH', plugin_dir_path( __FILE__ ) );
     define( 'CONTACT_CPT', 'contact' );

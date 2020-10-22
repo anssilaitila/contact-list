@@ -5,8 +5,18 @@ class ContactListHelpers
     public static function proFeatureMarkup()
     {
         $html = '';
-        $html .= '<div class="pro-feature">';
+        $html .= '<div class="contact-list-pro-feature">';
         $html .= '<span>' . __( 'This feature is available in the Pro version.', 'contact-list' ) . '</span>';
+        $html .= '<a href="' . get_admin_url() . 'options-general.php?page=contact-list-pricing">' . __( 'Upgrade here', 'contact-list' ) . '</a>';
+        $html .= '</div>';
+        return $html;
+    }
+    
+    public static function proFeatureMarkupV2( $text = '' )
+    {
+        $html = '';
+        $html .= '<div class="contact-list-pro-feature">';
+        $html .= '<span>' . $text . '</span>';
         $html .= '<a href="' . get_admin_url() . 'options-general.php?page=contact-list-pricing">' . __( 'Upgrade here', 'contact-list' ) . '</a>';
         $html .= '</div>';
         return $html;
@@ -15,7 +25,7 @@ class ContactListHelpers
     public static function proFeatureSettingsMarkup()
     {
         $html = '';
-        $html .= '<div class="pro-feature">';
+        $html .= '<div class="contact-list-pro-feature">';
         $html .= '<span>' . __( 'More settings available in the Pro version.', 'contact-list' ) . '</span>';
         $html .= '<a href="' . get_admin_url() . 'options-general.php?page=contact-list-pricing">' . __( 'Upgrade here', 'contact-list' ) . '</a>';
         $html .= '</div>';
@@ -184,6 +194,18 @@ class ContactListHelpers
         if ( isset( $c['_cl_phone'] ) ) {
             $phone_href = preg_replace( '/[^0-9]/', '', $c['_cl_phone'][0] );
             $html .= '<span class="contact-list-phone"><a href="tel:' . $phone_href . '">' . $c['_cl_phone'][0] . '</a></span>';
+        }
+        
+        
+        if ( isset( $c['_cl_phone_2'] ) ) {
+            $phone_href = preg_replace( '/[^0-9]/', '', $c['_cl_phone_2'][0] );
+            $html .= '<span class="contact-list-phone"><a href="tel:' . $phone_href . '">' . $c['_cl_phone_2'][0] . '</a></span>';
+        }
+        
+        
+        if ( isset( $c['_cl_phone_3'] ) ) {
+            $phone_href = preg_replace( '/[^0-9]/', '', $c['_cl_phone_3'][0] );
+            $html .= '<span class="contact-list-phone"><a href="tel:' . $phone_href . '">' . $c['_cl_phone_3'][0] . '</a></span>';
         }
         
         

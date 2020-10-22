@@ -6,41 +6,41 @@ class ContactListAdminList {
 
     $options = get_option('contact_list_settings');
 
-    $defaults['contact_id']   = 'ID';
+    $defaults['contact_id'] = 'ID';
 
     if (!isset($options['af_hide_first_name'])) {
-      $defaults['first_name']   = isset($options['first_name_title']) && $options['first_name_title'] ? $options['first_name_title'] : __('First name', 'contact-list');
+      $defaults['first_name'] = isset($options['first_name_title']) && $options['first_name_title'] ? $options['first_name_title'] : __('First name', 'contact-list');
     }
 
-    $defaults['last_name']    = isset($options['last_name_title']) && $options['last_name_title'] ? $options['last_name_title'] : __('Last name', 'contact-list');
-    $defaults['menu_order']   = __('Order');
+    $defaults['last_name'] = isset($options['last_name_title']) && $options['last_name_title'] ? $options['last_name_title'] : __('Last name', 'contact-list');
+    $defaults['menu_order'] = __('Order');
 
     if (!isset($options['af_hide_job_title'])) {
-      $defaults['job_title']    = isset($options['job_title_title']) && $options['job_title_title'] ? $options['job_title_title'] : __('Job title', 'contact-list');
+      $defaults['job_title'] = isset($options['job_title_title']) && $options['job_title_title'] ? $options['job_title_title'] : __('Job title', 'contact-list');
     }
 
     if (!isset($options['af_hide_email'])) {
-      $defaults['email']        = __('Email', 'contact-list');
+      $defaults['email'] = __('Email', 'contact-list');
     }
 
     if (!isset($options['af_hide_phone'])) {
-      $defaults['phone']        = isset($options['phone_title']) && $options['phone_title'] ? $options['phone_title'] : __('Phone', 'contact-list');
+      $defaults['phone'] = isset($options['phone_title']) && $options['phone_title'] ? $options['phone_title'] : __('Phone', 'contact-list');
     }
     
     if (!isset($options['af_hide_linkedin_url'])) {
-      $defaults['linkedin_url'] = isset($options['linkedin_url_title']) && $options['linkedin_url_title'] ? $options['linkedin_url_title'] : __('LinkedIn', 'contact-list');
+      $defaults['linkedin_url'] = isset($options['linkedin_url_title']) && $options['linkedin_url_title'] ? $options['linkedin_url_title'] : '<img src="'  . plugins_url('../img/linkedin.png', __FILE__) . '" width="37" height="28" alt="" />';
     }
     
     if (!isset($options['af_hide_twitter_url'])) {
-      $defaults['twitter_url']  = isset($options['twitter_url_title']) && $options['twitter_url_title'] ? $options['twitter_url_title'] : __('Twitter', 'contact-list');
+      $defaults['twitter_url']  = isset($options['twitter_url_title']) && $options['twitter_url_title'] ? $options['twitter_url_title'] : '<img src="' . plugins_url('../img/twitter.png', __FILE__) . '" width="28" height="28" alt="" />';
     }
     
     if (!isset($options['af_hide_facebook_url'])) {
-      $defaults['facebook_url'] = isset($options['facebook_url_title']) && $options['facebook_url_title'] ? $options['facebook_url_title'] : __('Facebook', 'contact-list');
+      $defaults['facebook_url'] = isset($options['facebook_url_title']) && $options['facebook_url_title'] ? $options['facebook_url_title'] : '<img src="' . plugins_url('../img/facebook.png', __FILE__) . '" width="28" height="28" alt="" />';
     }
 
     if (!isset($options['af_hide_instagram_url'])) {
-      $defaults['instagram_url'] = isset($options['instagram_url_title']) && $options['instagram_url_title'] ? $options['instagram_url_title'] : 'IG';
+      $defaults['instagram_url'] = isset($options['instagram_url_title']) && $options['instagram_url_title'] ? $options['instagram_url_title'] : '<img src="' . plugins_url('../img/instagram.png', __FILE__) . '" width="28" height="28" alt="" />';
     }
 
     return $defaults;
@@ -89,25 +89,25 @@ class ContactListAdminList {
     if ($column_name == 'linkedin_url') {
       
       if (get_post_meta($post_ID, '_cl_linkedin_url', true)) {
-        echo 'x';
+        echo '<div style="text-align: center;">x</div>';
       }
     }
     if ($column_name == 'twitter_url') {
 
       if (get_post_meta($post_ID, '_cl_twitter_url', true)) {
-        echo 'x';
+        echo '<div style="text-align: center;">x</div>';
       }        
     }
     if ($column_name == 'facebook_url') {
 
       if (get_post_meta($post_ID, '_cl_facebook_url', true)) {
-        echo 'x';
+        echo '<div style="text-align: center;">x</div>';
       }
     }
     if ($column_name == 'instagram_url') {
 
       if (get_post_meta($post_ID, '_cl_instagram_url', true)) {
-        echo 'x';
+        echo '<div style="text-align: center;">x</div>';
       }
     }
   }

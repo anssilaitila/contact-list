@@ -27,7 +27,7 @@ class ShortcodeContactList {
     if (isset($atts['contact']) || isset($_GET['contact_id'])):
 
       if (ContactListHelpers::isPremium() == 0) {
-        $html = '<div class="pro-feature">' . __('This feature is available in the Pro version.') . '</div>';
+        $html = '<div class="contact-list-pro-feature">' . __('This feature is available in the Pro version.') . '</div>';
         return $html;
       }
     

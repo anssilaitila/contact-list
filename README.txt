@@ -75,7 +75,7 @@ See live demos at [contactlistpro.com](https://www.contactlistpro.com/contact-li
 * Request contacts to update their existing contact info simply clicking a button
 * More features on the way based on user feedback
 
-Contact author [here](https://www.tammersoft.com/).
+Contact author [here](https://www.contactlistpro.com/support/).
 
 == Installation ==
 
@@ -92,6 +92,15 @@ Contact author [here](https://www.tammersoft.com/).
 6. Contact management
 
 == Changelog ==
+
+= 2.9.19 =
+* New feature: Copy to clipboard -buttons added to Help / Support -page
+* New feature (Pro): filters for [contact_list_simple] -> [contact_list_simple show_filters=1] -> See demo: https://www.contactlistpro.com/contact-list/simple-list-with-filters/
+* New feature (Pro): 2 more phone fields added for contacts
+* Missing Instagram URL added to import & export tool
+* CSS fixes
+* Social media icons added to admin list
+* Freemius SDK updated to 2.4.1 (https://github.com/Freemius/wordpress-sdk/releases/tag/2.4.1)
 
 = 2.9.18 =
 * New shortcode: [contact_list_simple] (See https://www.contactlistpro.com/contact-list/simple-list/)

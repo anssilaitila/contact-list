@@ -42,7 +42,23 @@ class myCustomFields {
         ),
         array(
             "name"          => "phone",
-            "title"         => "Phone",
+            "title"         => "Phone 1",
+            "description"   => "",
+            "type"          => "text",
+            "scope"         => array( "contact" ),
+            "capability"    => "edit_posts"
+        ),
+        array(
+            "name"          => "phone_2",
+            "title"         => "Phone 2",
+            "description"   => "",
+            "type"          => "text",
+            "scope"         => array( "contact" ),
+            "capability"    => "edit_posts"
+        ),
+        array(
+            "name"          => "phone_3",
+            "title"         => "Phone 3",
             "description"   => "",
             "type"          => "text",
             "scope"         => array( "contact" ),
@@ -350,7 +366,7 @@ class myCustomFields {
                   continue;
                 } elseif ($customField['name'] == 'email' && isset($options['af_hide_email'])) {
                   continue;
-                } elseif ($customField['name'] == 'phone' && isset($options['af_hide_phone'])) {
+                } elseif (($customField['name'] == 'phone' || $customField['name'] == 'phone_2' || $customField['name'] == 'phone_3') && isset($options['af_hide_phone'])) {
                   continue;
                 } elseif ($customField['name'] == 'linkedin_url' && isset($options['af_hide_linkedin_url'])) {
                   continue;
@@ -397,10 +413,8 @@ class myCustomFields {
 
                 if (ContactListHelpers::isPremium() == 1) {
                   $output = true;
-                } elseif ($customField['name'] == 'custom_field_2' || $customField['name'] == 'custom_field_3' || $customField['name'] == 'custom_field_4' || $customField['name'] == 'custom_field_5' || $customField['name'] == 'custom_field_6' || $customField['name'] == 'description') {
+                } elseif ($customField['name'] == 'phone_2' || $customField['name'] == 'phone_3' || $customField['name'] == 'custom_field_2' || $customField['name'] == 'custom_field_3' || $customField['name'] == 'custom_field_4' || $customField['name'] == 'custom_field_5' || $customField['name'] == 'custom_field_6' || $customField['name'] == 'description') {
                   $output = false;
-                } elseif ($customField['name'] == 'custom_fields') {
-                  $custom_fields_notify = 1;
                 } elseif ($customField['name'] == 'additional_info') {
                   $additional_info_notify = 1;
                 }  
@@ -451,13 +465,11 @@ class myCustomFields {
 
                             case "title":
 
-                                $options_field = $customField['name'] . '_title';
-                                echo '<h3>' . (isset($options[$options_field]) && $options[$options_field] ? $options[$options_field] : __($customField['title'], 'contact-list')) . '</h3>';
-
-                                if ($custom_fields_notify) {
-                                  echo ContactListHelpers::proFeatureMarkup();
-                                } else if ($additional_info_notify) {
-                                  echo ContactListHelpers::proFeatureMarkup();
+                                if ($customField['name'] == 'additional_info' && $additional_info_notify) {
+                                  echo ContactListHelpers::proFeatureMarkupV2( __('More fields available in the Pro version.', 'contact-list') );
+                                } else {
+                                  $options_field = $customField['name'] . '_title';
+                                  echo '<h3>' . (isset($options[$options_field]) && $options[$options_field] ? $options[$options_field] : __($customField['title'], 'contact-list')) . '</h3>';
                                 }
                                 break;
 

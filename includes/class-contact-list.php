@@ -287,6 +287,8 @@ class Contact_List
         // Ajax query
         $this->loader->add_action( 'wp_ajax_nopriv_cl_get_contacts', $plugin_public_ajax, 'cl_get_contacts' );
         $this->loader->add_action( 'wp_ajax_cl_get_contacts', $plugin_public_ajax, 'cl_get_contacts' );
+        $this->loader->add_action( 'wp_ajax_nopriv_cl_get_contacts_simple', $plugin_public_ajax, 'cl_get_contacts_simple' );
+        $this->loader->add_action( 'wp_ajax_cl_get_contacts_simple', $plugin_public_ajax, 'cl_get_contacts_simple' );
         $this->loader->add_action( 'wp_footer', $plugin_public_ajax, 'my_ajax_without_file' );
     }
     

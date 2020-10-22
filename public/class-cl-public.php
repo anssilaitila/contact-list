@@ -127,7 +127,7 @@ class Contact_List_Public
         $atts = array_change_key_case( (array) $atts, CASE_LOWER );
         $html = '';
         if ( ContactListHelpers::isPremium() == 0 ) {
-            $html .= '<div class="pro-feature">' . __( 'This feature is available in the Pro version.' ) . '</div>';
+            $html .= '<div class="contact-list-pro-feature">' . __( 'This feature is available in the Pro version.' ) . '</div>';
         }
         return $html;
     }
@@ -141,7 +141,7 @@ class Contact_List_Public
     {
         $html = '';
         if ( ContactListHelpers::isPremium() == 0 ) {
-            $html .= '<div class="pro-feature">' . __( 'This feature is available in the Pro version.' ) . '</div>';
+            $html .= '<div class="contact-list-pro-feature">' . __( 'This feature is available in the Pro version.' ) . '</div>';
         }
         return $html;
     }
@@ -150,7 +150,7 @@ class Contact_List_Public
     {
         $html = '';
         if ( ContactListHelpers::isPremium() == 0 ) {
-            $html .= '<div class="pro-feature">' . __( 'This feature is available in the Pro version.' ) . '</div>';
+            $html .= '<div class="contact-list-pro-feature">' . __( 'This feature is available in the Pro version.' ) . '</div>';
         }
         return $html;
     }
