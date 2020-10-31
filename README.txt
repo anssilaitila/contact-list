@@ -93,6 +93,15 @@ Contact author [here](https://www.contactlistpro.com/support/).
 
 == Changelog ==
 
+= 2.9.20 =
+* Shortcodes and copy buttons added to Groups -page TEST FREE
+* Shortcodes for single contacts and copy buttons added to contact management
+* Filters can now be shown for shortcode [contact_list_groups] when a group is pre-defined: [contact_list_groups group=group-slug show_filters=1]
+  - UPDATE DOCUMENTATIONS
+* Shortcodes [contact_list] and [contact_list_groups] can now be ordered with parameter order_by: [contact_list order_by=first_name] | [contact_list order_by=last_name]
+* Bug fixes
+* CSS fixes
+
 = 2.9.19 =
 * New feature: Copy to clipboard -buttons added to Help / Support -page
 * New feature (Pro): filters for [contact_list_simple] -> [contact_list_simple show_filters=1] -> See demo: https://www.contactlistpro.com/contact-list/simple-list-with-filters/

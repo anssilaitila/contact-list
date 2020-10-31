@@ -60,11 +60,13 @@ class ContactListPublicHelpers
             ) );
             $html .= '<select name="cl_cat" class="select_v2">';
             $html .= '<option value="">' . __( 'Select category', 'contact-list' ) . '</option>';
+            $atts_group = ( isset( $atts['group'] ) ? $atts['group'] : '' );
+            $current_cat = ( isset( $_GET['cl_cat'] ) ? $_GET['cl_cat'] : $atts_group );
             foreach ( $groups as $g ) {
                 $t_id = $g->term_id;
                 $custom_fields = get_option( "taxonomy_term_{$t_id}" );
                 if ( !isset( $custom_fields['hide_group'] ) ) {
-                    $html .= '<option value="' . $g->slug . '" ' . (( isset( $_GET['cl_cat'] ) && $_GET['cl_cat'] == $g->slug ? 'selected="selected"' : '' )) . '>' . $g->name . '</option>';
+                    $html .= '<option value="' . $g->slug . '" ' . (( $current_cat == $g->slug ? 'selected="selected"' : '' )) . '>' . $g->name . '</option>';
                 }
             }
             $html .= '</select>';

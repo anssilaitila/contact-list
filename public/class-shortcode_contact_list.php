@@ -87,7 +87,7 @@ class ShortcodeContactList {
           'title' => 'ASC',
         );
         
-      if (ORDER_BY == '_cl_first_name') {
+      if ((ORDER_BY == '_cl_first_name' && !isset($atts['order_by'])) || (isset($atts['order_by']) && $atts['order_by'] == 'first_name')) {
     
         $meta_query []= array(
             'first_name_clause' => array(

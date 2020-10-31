@@ -59,6 +59,8 @@ class ContactListAdminList {
     }
     if ($column_name == 'last_name') {
       echo get_post_meta($post_ID, '_cl_last_name', true);
+      echo '<span class="contact-list-shortcode-admin-list contact-list-shortcode-admin-list-contact contact-list-shortcode-' . $post_ID . '" title="[contact_list contact=' . $post_ID . ']">[contact_list contact=' . $post_ID . ']</span>';
+      echo '<button class="contact-list-copy contact-list-copy-admin-list" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-' . $post_ID . '">' . __('Copy', 'contact-list') . '</button>';
     }
     if ($column_name == 'menu_order') {
       echo $post->menu_order;

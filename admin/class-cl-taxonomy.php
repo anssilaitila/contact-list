@@ -71,4 +71,35 @@ class ContactListTaxonomy {
       update_option("taxonomy_term_$t_id", $term_meta);  
   }    
 
+  public function theme_columns($theme_columns) {
+
+    $new_columns = array(
+      'cb' => '<input type="checkbox" />',
+      'name' => __('Name'),
+      'shortcode' => __('Shortcode', 'contact-list'),
+//      'description' => __('Description'),
+      'slug' => __('Slug'),
+      'posts' => __('Posts')
+    );
+
+    return $new_columns;
+  }
+
+  public function add_contact_group_column_content($content, $column_name, $term_id) {
+
+    $term = get_term($term_id, 'contact-group');
+
+    switch ($column_name) {
+      case 'shortcode':
+        $content = '<span class="contact-list-shortcode-admin-list contact-list-shortcode-' . $term->slug . '" title="[contact_list_groups group=' . $term->slug . ']">[contact_list_groups group=' . $term->slug . ']</span>' . 
+          '<button class="contact-list-copy contact-list-copy-admin-list" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-' . $term->slug . '">' . __('Copy', 'contact-list') . '</button>';
+        break;
+      default:
+        break;
+    }
+
+    return $content;
+
+  }
+
 }

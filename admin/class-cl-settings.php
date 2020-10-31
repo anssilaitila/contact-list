@@ -23,17 +23,6 @@ class ContactListSettings
             'contact-list'
         );
         add_settings_field(
-            'contact-list-hide_send_email_button',
-            __( 'Hide Send message -button from the public list', 'contact-list' ),
-            array( $this, 'checkbox_render' ),
-            'contact-list',
-            'contact-list_section_general',
-            array(
-            'label_for'  => 'contact-list-hide_send_email_button',
-            'field_name' => 'hide_send_email_button',
-        )
-        );
-        add_settings_field(
             'contact-list-order_by',
             __( 'Sort contact list by', 'contact-list' ),
             array( $this, 'select_render' ),
@@ -64,6 +53,17 @@ class ContactListSettings
             array(
             'label_for'  => 'contact-list-focus_on_search_field',
             'field_name' => 'focus_on_search_field',
+        )
+        );
+        add_settings_field(
+            'contact-list-hide_send_email_button',
+            __( 'Hide Send message -button from the public list', 'contact-list' ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_section_general',
+            array(
+            'label_for'  => 'contact-list-hide_send_email_button',
+            'field_name' => 'hide_send_email_button',
         )
         );
         $tab = 2;
@@ -189,7 +189,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-show_category_select_in_search',
-            __( 'Show category select in search', 'contact-list' ),
+            __( 'Show category / group select in search', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -235,11 +235,287 @@ class ContactListSettings
             array( $this, 'contact_list_settings_section_callback' ),
             'contact-list'
         );
+        add_settings_field(
+            'contact-list-search_contacts',
+            __( 'Search contacts...', 'contact-list' ),
+            array( $this, 'input_render' ),
+            'contact-list',
+            'contact-list_section',
+            array(
+            'label_for'   => 'contact-list-search_contacts',
+            'field_name'  => 'search_contacts',
+            'placeholder' => __( 'Search contacts...', 'contact-list' ),
+        )
+        );
+        add_settings_field(
+            'contact-list-search_all_contacts',
+            __( 'Search all contacts...', 'contact-list' ),
+            array( $this, 'input_render' ),
+            'contact-list',
+            'contact-list_section',
+            array(
+            'label_for'   => 'contact-list-search_all_contacts',
+            'field_name'  => 'search_all_contacts',
+            'placeholder' => __( 'Search all contacts...', 'contact-list' ),
+        )
+        );
+        add_settings_field(
+            'contact-list-back_link_title',
+            __( '"Back"-link title', 'contact-list' ),
+            array( $this, 'input_render' ),
+            'contact-list',
+            'contact-list_section',
+            array(
+            'label_for'   => 'contact-list-back_link_title',
+            'field_name'  => 'back_link_title',
+            'placeholder' => __( '<< Back', 'contact-list' ),
+        )
+        );
+        add_settings_field(
+            'contact-list-first_name_title',
+            __( 'First name', 'contact-list' ),
+            array( $this, 'input_render' ),
+            'contact-list',
+            'contact-list_section',
+            array(
+            'label_for'   => 'contact-list-first_name_title',
+            'field_name'  => 'first_name_title',
+            'placeholder' => __( 'First name', 'contact-list' ),
+        )
+        );
+        add_settings_field(
+            'contact-list-last_name_title',
+            __( 'Last name', 'contact-list' ),
+            array( $this, 'input_render' ),
+            'contact-list',
+            'contact-list_section',
+            array(
+            'label_for'   => 'contact-list-last_name_title',
+            'field_name'  => 'last_name_title',
+            'placeholder' => __( 'Last name', 'contact-list' ),
+        )
+        );
+        add_settings_field(
+            'contact-list-job_title_title',
+            __( 'Job title', 'contact-list' ),
+            array( $this, 'input_render' ),
+            'contact-list',
+            'contact-list_section',
+            array(
+            'label_for'   => 'contact-list-job_title_title',
+            'field_name'  => 'job_title_title',
+            'placeholder' => __( 'Job title', 'contact-list' ),
+        )
+        );
+        add_settings_field(
+            'contact-list-email_title',
+            __( 'Email', 'contact-list' ),
+            array( $this, 'input_render' ),
+            'contact-list',
+            'contact-list_section',
+            array(
+            'label_for'   => 'contact-list-email_title',
+            'field_name'  => 'email_title',
+            'placeholder' => __( 'Email', 'contact-list' ),
+        )
+        );
+        add_settings_field(
+            'contact-list-phone_title',
+            __( 'Phone', 'contact-list' ),
+            array( $this, 'input_render' ),
+            'contact-list',
+            'contact-list_section',
+            array(
+            'label_for'   => 'contact-list-phone_title',
+            'field_name'  => 'phone_title',
+            'placeholder' => __( 'Phone', 'contact-list' ),
+        )
+        );
+        add_settings_field(
+            'contact-list-linkedin_url_title',
+            __( 'LinkedIn URL', 'contact-list' ),
+            array( $this, 'input_render' ),
+            'contact-list',
+            'contact-list_section',
+            array(
+            'label_for'   => 'contact-list-linkedin_url_title',
+            'field_name'  => 'linkedin_url_title',
+            'placeholder' => __( 'LinkedIn URL', 'contact-list' ),
+        )
+        );
+        add_settings_field(
+            'contact-list-twitter_url_title',
+            __( 'Twitter URL', 'contact-list' ),
+            array( $this, 'input_render' ),
+            'contact-list',
+            'contact-list_section',
+            array(
+            'label_for'   => 'contact-list-twitter_url_title',
+            'field_name'  => 'twitter_url_title',
+            'placeholder' => __( 'Twitter URL', 'contact-list' ),
+        )
+        );
+        add_settings_field(
+            'contact-list-facebook_url_title',
+            __( 'Facebook URL', 'contact-list' ),
+            array( $this, 'input_render' ),
+            'contact-list',
+            'contact-list_section',
+            array(
+            'label_for'   => 'contact-list-facebook_url_title',
+            'field_name'  => 'facebook_url_title',
+            'placeholder' => __( 'Facebook URL', 'contact-list' ),
+        )
+        );
+        add_settings_field(
+            'contact-list-instagram_url_title',
+            __( 'Instagram URL', 'contact-list' ),
+            array( $this, 'input_render' ),
+            'contact-list',
+            'contact-list_section',
+            array(
+            'label_for'   => 'contact-list-instagram_url_title',
+            'field_name'  => 'instagram_url_title',
+            'placeholder' => __( 'Instagram URL', 'contact-list' ),
+        )
+        );
         add_settings_section(
             'contact-list_admin_form',
             '',
             array( $this, 'contact_list_settings_admin_form_callback' ),
             'contact-list'
+        );
+        add_settings_field(
+            'contact-list-af_hide_first_name',
+            __( 'Hide', 'contact-list' ) . ' ' . __( 'first name', 'contact-list' ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+            'label_for'  => 'contact-list-af_hide_first_name',
+            'field_name' => 'af_hide_first_name',
+        )
+        );
+        add_settings_field(
+            'contact-list-af_hide_job_title',
+            __( 'Hide', 'contact-list' ) . ' ' . __( 'job title', 'contact-list' ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+            'label_for'  => 'contact-list-af_hide_job_title',
+            'field_name' => 'af_hide_job_title',
+        )
+        );
+        add_settings_field(
+            'contact-list-af_hide_email',
+            __( 'Hide', 'contact-list' ) . ' ' . __( 'email', 'contact-list' ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+            'label_for'  => 'contact-list-af_hide_email',
+            'field_name' => 'af_hide_email',
+        )
+        );
+        add_settings_field(
+            'contact-list-af_hide_phone',
+            __( 'Hide', 'contact-list' ) . ' ' . __( 'phone', 'contact-list' ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+            'label_for'  => 'contact-list-af_hide_phone',
+            'field_name' => 'af_hide_phone',
+        )
+        );
+        add_settings_field(
+            'contact-list-af_hide_linkedin_url',
+            __( 'Hide', 'contact-list' ) . ' ' . __( 'LinkedIn URL', 'contact-list' ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+            'label_for'  => 'contact-list-af_hide_linkedin_url',
+            'field_name' => 'af_hide_linkedin_url',
+        )
+        );
+        add_settings_field(
+            'contact-list-af_hide_twitter_url',
+            __( 'Hide', 'contact-list' ) . ' ' . __( 'Twitter URL', 'contact-list' ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+            'label_for'  => 'contact-list-af_hide_twitter_url',
+            'field_name' => 'af_hide_twitter_url',
+        )
+        );
+        add_settings_field(
+            'contact-list-af_hide_facebook_url',
+            __( 'Hide', 'contact-list' ) . ' ' . __( 'Facebook URL', 'contact-list' ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+            'label_for'  => 'contact-list-af_hide_facebook_url',
+            'field_name' => 'af_hide_facebook_url',
+        )
+        );
+        add_settings_field(
+            'contact-list-af_hide_instagram_url',
+            __( 'Hide', 'contact-list' ) . ' ' . __( 'Instagram URL', 'contact-list' ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+            'label_for'  => 'contact-list-af_hide_instagram_url',
+            'field_name' => 'af_hide_instagram_url',
+        )
+        );
+        add_settings_field(
+            'contact-list-af_hide_address',
+            __( 'Hide', 'contact-list' ) . ' ' . __( 'address', 'contact-list' ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+            'label_for'  => 'contact-list-af_hide_address',
+            'field_name' => 'af_hide_address',
+        )
+        );
+        add_settings_field(
+            'contact-list-af_hide_custom_fields',
+            __( 'Hide', 'contact-list' ) . ' ' . __( 'custom fields', 'contact-list' ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+            'label_for'  => 'contact-list-af_hide_custom_fields',
+            'field_name' => 'af_hide_custom_fields',
+        )
+        );
+        add_settings_field(
+            'contact-list-af_hide_groups',
+            __( 'Hide', 'contact-list' ) . ' ' . __( 'groups', 'contact-list' ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+            'label_for'  => 'contact-list-af_hide_groups',
+            'field_name' => 'af_hide_groups',
+        )
+        );
+        add_settings_field(
+            'contact-list-af_hide_additional_info',
+            __( 'Hide', 'contact-list' ) . ' ' . __( 'additional information', 'contact-list' ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+            'label_for'  => 'contact-list-af_hide_additional_info',
+            'field_name' => 'af_hide_additional_info',
+        )
         );
     }
     
@@ -593,11 +869,12 @@ class ContactListSettings
         echo  '<div class="contact-list-settings-tab-4">' ;
         
         if ( ContactListHelpers::isPremium() == 1 ) {
-            echo  '<p style="font-size: 16px; font-weight: 600; margin-bottom: 10px;">' . __( 'These settings are for this form in the front-end:', 'contact-list' ) . '<hr class="clear" /><img src="' . plugins_url( '../img/search-form-sample.png', __FILE__ ) . '" style="box-shadow: 2px 2px 4px #bbb;" />' . '</p>' ;
+            echo  '<p>' . __( '', 'contact-list' ) . '</p>' ;
         } else {
             echo  ContactListHelpers::proFeatureSettingsMarkup() ;
         }
-    
+        
+        echo  '<p style="font-size: 16px; font-weight: 600; margin-bottom: 10px;">' . __( 'These settings are for this form in the front-end:', 'contact-list' ) . '<hr class="clear" /><img src="' . plugins_url( '../img/search-form-sample.png', __FILE__ ) . '" style="box-shadow: 2px 2px 4px #bbb;" />' . '</p>' ;
     }
     
     public function contact_list_settings_tab_5_callback()
@@ -617,27 +894,21 @@ class ContactListSettings
     {
         echo  '</div>' ;
         echo  '<div class="contact-list-settings-tab-6">' ;
-        
-        if ( ContactListHelpers::isPremium() == 1 ) {
-            echo  '<p>' . __( 'You may enter alternative titles and texts here. The values defined here will override the default values.', 'contact-list' ) . '</p>' ;
-        } else {
+        if ( ContactListHelpers::isPremium() == 0 ) {
             echo  ContactListHelpers::proFeatureSettingsMarkup() ;
         }
-    
+        echo  '<p>' . __( 'You may enter alternative titles and texts here. The values defined here will override the default values.', 'contact-list' ) . '</p>' ;
     }
     
     public function contact_list_settings_admin_form_callback()
     {
         echo  '</div>' ;
         echo  '<div class="contact-list-settings-tab-7">' ;
-        
-        if ( ContactListHelpers::isPremium() == 1 ) {
-            echo  '<h2>' . __( 'Admin form elements', 'contact-list' ) . '</h2>' ;
-            echo  '<p>' . __( 'You may customize the admin form (the one displayed in the WP admin area) using these settings.', 'contact-list' ) . '</p>' ;
-        } else {
+        if ( ContactListHelpers::isPremium() == 0 ) {
             echo  ContactListHelpers::proFeatureSettingsMarkup() ;
         }
-    
+        echo  '<h2>' . __( 'Admin form elements', 'contact-list' ) . '</h2>' ;
+        echo  '<p>' . __( 'You may customize the admin form (the one displayed in the WP admin area) using these settings.', 'contact-list' ) . '</p>' ;
     }
     
     public function contact_list_settings_public_form_callback()

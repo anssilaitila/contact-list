@@ -109,6 +109,8 @@ class Contact_List
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-admin-send-email.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-admin-mail-log.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-admin-list.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-admin-inline-styles.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-admin-inline-scripts.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-settings.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-help-support.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-import-export.php';
@@ -165,6 +167,8 @@ class Contact_List
         $plugin_admin_mail_log = new ContactListAdminMailLog();
         $plugin_admin_list = new ContactListAdminList();
         $plugin_admin_maintenance = new ContactListAdminMaintenance();
+        $plugin_admin_inline_styles = new ContactListAdminInlineStyles();
+        $plugin_admin_inline_scripts = new ContactListAdminInlineScripts();
         $plugin_settings = new ContactListSettings();
         $plugin_help_support = new ContactListHelpSupport();
         $plugin_import_export = new ContactListImportExport();
@@ -216,6 +220,14 @@ class Contact_List
             10,
             2
         );
+        $this->loader->add_filter( 'manage_edit-contact-group_columns', $plugin_taxonomy, 'theme_columns' );
+        $this->loader->add_filter(
+            'manage_contact-group_custom_column',
+            $plugin_taxonomy,
+            'add_contact_group_column_content',
+            10,
+            3
+        );
         // Maintenance
         $this->loader->add_action( 'plugins_loaded', $plugin_admin_maintenance, 'actions' );
         // Import & export
@@ -259,6 +271,19 @@ class Contact_List
             1
         );
         $this->loader->add_filter( 'request', $plugin_query, 'alter_the_query' );
+        // Inline styles
+        $this->loader->add_action(
+            'admin_head',
+            $plugin_admin_inline_styles,
+            'inline_styles',
+            100
+        );
+        $this->loader->add_action(
+            'admin_head',
+            $plugin_admin_inline_scripts,
+            'inline_scripts',
+            100
+        );
         // Upgrade link
         if ( ContactListHelpers::isPremium() == 0 ) {
             $this->loader->add_action( 'admin_menu', $plugin_settings, 'add_upgrade_link' );
