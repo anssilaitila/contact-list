@@ -124,7 +124,7 @@ class ContactListAdminSendEmail {
 
             <div class="contact-list-admin-no-contacts-found">
 
-              <?= __('No contacts found.', 'contact-list') ?>
+              <?= ContactListHelpers::getText('text_sr_no_contacts_found', __('No contacts found.', 'contact-list')) ?>
 
               <?php
               $url = get_admin_url() . 'edit.php?post_type=' . CONTACT_CPT;

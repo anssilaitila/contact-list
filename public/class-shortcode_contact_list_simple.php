@@ -39,11 +39,37 @@ class ShortcodeContactListSimple
             );
         }
         
+        if ( isset( $_GET['cl_country'] ) && $_GET['cl_country'] ) {
+            $meta_query[] = array(
+                'key'     => '_cl_country',
+                'value'   => $_GET['cl_country'],
+                'compare' => 'LIKE',
+            );
+        }
+        if ( isset( $_GET['cl_state'] ) && $_GET['cl_state'] ) {
+            $meta_query[] = array(
+                'key'     => '_cl_state',
+                'value'   => $_GET['cl_state'],
+                'compare' => 'LIKE',
+            );
+        }
+        $tax_query = [];
+        if ( isset( $_GET['cl_cat'] ) && $_GET['cl_cat'] ) {
+            $tax_query = array(
+                'relation' => 'AND',
+                array(
+                'taxonomy' => 'contact-group',
+                'field'    => 'slug',
+                'terms'    => $_GET['cl_cat'],
+            ),
+            );
+        }
         $wp_query = new WP_Query( array(
             'post_type'      => 'contact',
             'post_status'    => 'publish',
             'posts_per_page' => -1,
             'meta_query'     => $meta_query,
+            'tax_query'      => $tax_query,
             'orderby'        => $order_by,
         ) );
         if ( !isset( $atts['hide_search'] ) ) {
@@ -58,7 +84,7 @@ class ShortcodeContactListSimple
         }
         
         if ( $wp_query->found_posts == 0 ) {
-            $html .= '<p>' . __( 'No contacts found.', 'contact-list' ) . '</p>';
+            $html .= '<p>' . ContactListHelpers::getText( 'text_sr_no_contacts_found', __( 'No contacts found.', 'contact-list' ) ) . '</p>';
         }
         $html .= '</div>';
         wp_reset_postdata();

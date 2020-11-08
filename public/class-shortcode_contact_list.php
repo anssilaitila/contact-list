@@ -68,9 +68,11 @@ class ShortcodeContactList {
     
     else:
     
-      $html .= '<div class="contact-list-text-contact" style="display: none;">' . __('contact', 'contact-list') . '</div>';
-      $html .= '<div class="contact-list-text-contacts" style="display: none;">' . __('contacts', 'contact-list') . '</div>';
-      $html .= '<div class="contact-list-text-found" style="display: none;">' . __('found', 'contact-list') . '</div>';
+    
+    
+      $html .= '<div class="contact-list-text-contact" style="display: none;">' . ContactListHelpers::getText('text_sr_contact', __('contact', 'contact-list')) . '</div>';
+      $html .= '<div class="contact-list-text-contacts" style="display: none;">' . ContactListHelpers::getText('text_sr_contacts', __('contacts', 'contact-list')) . '</div>';
+      $html .= '<div class="contact-list-text-found" style="display: none;">' . ContactListHelpers::getText('text_sr_found', __('found', 'contact-list')) . '</div>';
   
       $meta_query = array('relation' => 'AND');
     
@@ -229,9 +231,9 @@ class ShortcodeContactList {
             'taxonomy'   => 'contact-group',
             'hide_empty' => true,
           ));
-          
+                    
           $html .= '<select name="cl_cat" class="select_v2">';
-          $html .= '<option value="">' . __('Select category', 'contact-list') . '</option>';
+          $html .= '<option value="">' . ContactListHelpers::getText('text_select_category', __('Select category', 'contact-list')) . '</option>';
   
           foreach ($groups as $g) {
             
@@ -251,7 +253,7 @@ class ShortcodeContactList {
   
         if ($filter_active) {
           
-          $html .= '<button type="submit" class="filter-contacts">' . __('Filter contacts', 'contact-list') . '</button>';
+          $html .= '<button type="submit" class="filter-contacts">' . ContactListHelpers::getText('text_filter_contacts', __('Filter contacts', 'contact-list')) . '</button>';
           
         }
   
@@ -289,7 +291,7 @@ class ShortcodeContactList {
       endif;
   
       if ($wp_query->found_posts == 0) {
-        $html .= '<p>' . __('No contacts found.', 'contact-list') . '</p>';
+        $html .= '<p>' . ContactListHelpers::getText('text_sr_no_contacts_found', __('No contacts found.', 'contact-list')) . '</p>';
       }
   
     endif;

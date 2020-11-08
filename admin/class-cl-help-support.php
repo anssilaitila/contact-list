@@ -43,6 +43,12 @@ class ContactListHelpSupport {
                 <li><?= __('Hide search form:', 'contact-list') ?>
                   <span class="contact-list-shortcode contact-list-shortcode-2">[contact_list hide_search=1]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-2"><?= __('Copy', 'contact-list') ?></button>
                 </li>
+                <li><?= __('Order by first name:', 'contact-list') ?>
+                  <span class="contact-list-shortcode contact-list-shortcode-14">[contact_list order_by=first_name]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-14"><?= __('Copy', 'contact-list') ?></button>
+                </li>
+                <li><?= __('Order by last name:', 'contact-list') ?>
+                  <span class="contact-list-shortcode contact-list-shortcode-15">[contact_list order_by=last_name]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-15"><?= __('Copy', 'contact-list') ?></button>
+                </li>
                 <li><?= __('Layout "2 cards on the same row"', 'contact-list') ?>:
                   <span class="contact-list-shortcode contact-list-shortcode-3">[contact_list layout=2-cards-on-the-same-row]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-3"><?= __('Copy', 'contact-list') ?></button>
                 </li>
@@ -83,6 +89,16 @@ class ContactListHelpSupport {
         <li><?= __('Insert the shortcode', 'contact-list') ?>
           <span class="contact-list-shortcode contact-list-shortcode-8">[contact_list_groups]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-8"><?= __('Copy', 'contact-list') ?></button>        
           <?= __('to the content editor of any page you wish the group list to appear. When a user selects a group, then a list of contacts belonging to that group is displayed. Also, if there are subgroups under that group, those will be displayed.', 'contact-list'); ?></li>
+        <li><?= __('Additional parameters', 'contact-list'); ?>
+            <ul class="contact-list-admin-ul">
+                <li><?= __('Order by first name:', 'contact-list') ?>
+                  <span class="contact-list-shortcode contact-list-shortcode-16">[contact_list_groups order_by=first_name]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-16"><?= __('Copy', 'contact-list') ?></button>
+                </li>
+                <li><?= __('Order by last name:', 'contact-list') ?>
+                  <span class="contact-list-shortcode contact-list-shortcode-17">[contact_list_groups order_by=last_name]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-17"><?= __('Copy', 'contact-list') ?></button>
+                </li>
+            </ul>
+        </li>
       </ol>
 
       <h2>
@@ -96,7 +112,13 @@ class ContactListHelpSupport {
       <ol>
         <li><?= __('Insert the shortcode', 'contact-list') ?>
           <span class="contact-list-shortcode contact-list-shortcode-9">[contact_list_groups group=GROUP_SLUG]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-9"><?= __('Copy', 'contact-list') ?></button>        
-          <?= __('to the content editor of any page you wish the contact list to appear. Replace GROUP_SLUG with the appropriate slug that can be found from group management.', 'contact-list'); ?></li>
+          <?= __('to the content editor of any page you wish the contact list to appear. Replace GROUP_SLUG with the appropriate slug that can be found from group management.', 'contact-list'); ?>
+        </li>
+        <li><?= __('Additional parameters', 'contact-list'); ?>
+          <ul class="contact-list-admin-ul">
+            <li><?= __('Show filters', 'contact-list') ?>: <span class="contact-list-shortcode contact-list-shortcode-13">[contact_list_groups group=GROUP_SLUG show_filters=1]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-13"><?= __('Copy', 'contact-list') ?></button></li>
+          </ul>
+        </li>
       </ol>
 
       <h2>

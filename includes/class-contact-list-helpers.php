@@ -2,6 +2,16 @@
 
 class ContactListHelpers
 {
+    public static function getText( $text_id, $default_text )
+    {
+        $s = get_option( 'contact_list_settings' );
+        $text = $default_text;
+        if ( isset( $s[$text_id] ) && $s[$text_id] ) {
+            $text = $s[$text_id];
+        }
+        return $text;
+    }
+    
     public static function proFeatureMarkup()
     {
         $html = '';
@@ -104,7 +114,7 @@ class ContactListHelpers
         }
         $html .= '</ul><hr class="clear" />';
         $html .= '<div id="contact-list-nothing-found">';
-        $html .= __( 'No contacts found.', 'contact-list' );
+        $html .= ContactListHelpers::getText( 'text_sr_no_contacts_found', __( 'No contacts found.', 'contact-list' ) );
         $html .= '</div>';
         $html .= '</div>';
         wp_reset_postdata();
@@ -125,7 +135,7 @@ class ContactListHelpers
         }
         $html .= '</ul><hr class="clear" />';
         $html .= '<div id="contact-list-nothing-found">';
-        $html .= __( 'No contacts found.', 'contact-list' );
+        $html .= ContactListHelpers::getText( 'text_sr_no_contacts_found', __( 'No contacts found.', 'contact-list' ) );
         $html .= '</div>';
         $html .= '</div>';
         wp_reset_postdata();

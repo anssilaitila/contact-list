@@ -91,7 +91,7 @@ class ContactListPublicAjax {
     endif;
 
     if ($wp_query->found_posts == 0) {
-      $html .= '<p>' . __('No contacts found.') . '</p>';
+      $html .= '<p>' . ContactListHelpers::getText('text_sr_no_contacts_found', __('No contacts found.', 'contact-list')) . '</p>';
     }
 
     echo $html;
@@ -186,7 +186,7 @@ class ContactListPublicAjax {
     endif;
 
     if ($wp_query->found_posts == 0) {
-      $html .= '<p>' . __('No contacts found.') . '</p>';
+      $html .= '<p>' . ContactListHelpers::getText('text_sr_no_contacts_found', __('No contacts found.', 'contact-list')) . '</p>';
     }
 
     echo $html;

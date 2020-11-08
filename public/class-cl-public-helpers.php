@@ -59,7 +59,7 @@ class ContactListPublicHelpers
                 'hide_empty' => true,
             ) );
             $html .= '<select name="cl_cat" class="select_v2">';
-            $html .= '<option value="">' . __( 'Select category', 'contact-list' ) . '</option>';
+            $html .= '<option value="">' . ContactListHelpers::getText( 'text_select_category', __( 'Select category', 'contact-list' ) ) . '</option>';
             $atts_group = ( isset( $atts['group'] ) ? $atts['group'] : '' );
             $current_cat = ( isset( $_GET['cl_cat'] ) ? $_GET['cl_cat'] : $atts_group );
             foreach ( $groups as $g ) {
@@ -74,7 +74,7 @@ class ContactListPublicHelpers
         }
         
         if ( $filter_active ) {
-            $html .= '<button type="submit" class="filter-contacts">' . __( 'Filter contacts', 'contact-list' ) . '</button>';
+            $html .= '<button type="submit" class="filter-contacts">' . ContactListHelpers::getText( 'text_filter_contacts', __( 'Filter contacts', 'contact-list' ) ) . '</button>';
         }
         $html .= '<hr class="clear" /></form>';
         return $html;
@@ -100,7 +100,7 @@ class ContactListPublicHelpers
         }
         $html .= '</div><hr class="clear" />';
         $html .= '<div class="contact-list-simple-nothing-found">';
-        $html .= __( 'No contacts found.', 'contact-list' );
+        $html .= ContactListHelpers::getText( 'text_sr_no_contacts_found', __( 'No contacts found.', 'contact-list' ) );
         $html .= '</div>';
         $html .= '</div>';
         wp_reset_postdata();
@@ -129,46 +129,108 @@ class ContactListPublicHelpers
             $html .= $c['_cl_job_title'][0];
         }
         $html .= '</span></div>';
-        $html .= '<div class="contact-list-simple-list-col"><span>';
         
-        if ( isset( $c['_cl_email'] ) ) {
-            $mailto = $c['_cl_email'][0];
-            $mailto_obs = '';
-            for ( $i = 0 ;  $i < strlen( $mailto ) ;  $i++ ) {
-                $mailto_obs .= '&#' . ord( $mailto[$i] ) . ';';
+        if ( !isset( $s['simple_list_hide_email'] ) ) {
+            $html .= '<div class="contact-list-simple-list-col"><span>';
+            
+            if ( isset( $c['_cl_email'] ) ) {
+                $mailto = $c['_cl_email'][0];
+                $mailto_obs = '';
+                for ( $i = 0 ;  $i < strlen( $mailto ) ;  $i++ ) {
+                    $mailto_obs .= '&#' . ord( $mailto[$i] ) . ';';
+                }
+                if ( isset( $c['_cl_email'] ) && !isset( $s['hide_contact_email'] ) ) {
+                    $html .= ( $c['_cl_email'][0] ? '<a href="mailto:' . $mailto_obs . '">' . $mailto_obs . '</a>' : '' );
+                }
             }
-            if ( isset( $c['_cl_email'] ) && !isset( $s['hide_contact_email'] ) ) {
-                $html .= ( $c['_cl_email'][0] ? '<a href="mailto:' . $mailto_obs . '">' . $mailto_obs . '</a>' : '' );
+            
+            $html .= '</span></div>';
+        }
+        
+        
+        if ( !isset( $s['simple_list_hide_phone_1'] ) ) {
+            $html .= '<div class="contact-list-simple-list-col"><span>';
+            
+            if ( isset( $c['_cl_phone'] ) ) {
+                $phone_href = preg_replace( '/[^0-9]/', '', $c['_cl_phone'][0] );
+                $html .= '<a href="tel:' . $phone_href . '">' . $c['_cl_phone'][0] . '</a>';
             }
+            
+            $html .= '</span></div>';
         }
         
-        $html .= '</span></div>';
-        $html .= '<div class="contact-list-simple-list-col"><span>';
         
-        if ( isset( $c['_cl_phone'] ) ) {
-            $phone_href = preg_replace( '/[^0-9]/', '', $c['_cl_phone'][0] );
-            $html .= '<a href="tel:' . $phone_href . '">' . $c['_cl_phone'][0] . '</a>';
+        if ( !isset( $s['simple_list_hide_some_links'] ) ) {
+            $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-some">';
+            $html .= '<div class="contact-list-simple-list-some-icons-container">';
+            $html .= '<div class="contact-list-simple-list-some-icons">';
+            if ( isset( $c['_cl_facebook_url'] ) ) {
+                $html .= ( $c['_cl_facebook_url'][0] ? '<a href="' . $c['_cl_facebook_url'][0] . '" target="_blank"><img src="' . plugins_url( '../img/facebook.png', __FILE__ ) . '" width="28" height="28" alt="" /></a>' : '' );
+            }
+            if ( isset( $c['_cl_instagram_url'] ) ) {
+                $html .= ( $c['_cl_instagram_url'][0] ? '<a href="' . $c['_cl_instagram_url'][0] . '" target="_blank"><img src="' . plugins_url( '../img/instagram.png', __FILE__ ) . '" width="28" height="28" alt="" /></a>' : '' );
+            }
+            if ( isset( $c['_cl_twitter_url'] ) ) {
+                $html .= ( $c['_cl_twitter_url'][0] ? '<a href="' . $c['_cl_twitter_url'][0] . '" target="_blank"><img src="' . plugins_url( '../img/twitter.png', __FILE__ ) . '" width="28" height="28" alt="" /></a>' : '' );
+            }
+            if ( isset( $c['_cl_linkedin_url'] ) ) {
+                $html .= ( $c['_cl_linkedin_url'][0] ? '<a href="' . $c['_cl_linkedin_url'][0] . '" target="_blank"><img src="' . plugins_url( '../img/linkedin.png', __FILE__ ) . '" width="37" height="28" alt="" /></a>' : '' );
+            }
+            $html .= '</div>';
+            $html .= '</div>';
+            $html .= '</div>';
         }
         
-        $html .= '</span></div>';
-        $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-some">';
-        $html .= '<div class="contact-list-simple-list-some-icons-container">';
-        $html .= '<div class="contact-list-simple-list-some-icons">';
-        if ( isset( $c['_cl_facebook_url'] ) ) {
-            $html .= ( $c['_cl_facebook_url'][0] ? '<a href="' . $c['_cl_facebook_url'][0] . '" target="_blank"><img src="' . plugins_url( '../img/facebook.png', __FILE__ ) . '" width="28" height="28" alt="" /></a>' : '' );
+        $custom_fields = [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ];
+        foreach ( $custom_fields as $n ) {
+            
+            if ( isset( $s['simple_list_show_custom_field_' . $n] ) ) {
+                $html .= '<div class="contact-list-simple-list-col"><span>';
+                
+                if ( isset( $c['_cl_custom_field_' . $n] ) ) {
+                    $url = '@(http)?(s)?(://)?(([a-zA-Z])([-\\w]+\\.)+([^\\s\\.]+[^\\s]*)+[^,.\\s])@';
+                    
+                    if ( isset( $c['_cl_custom_field_' . $n] ) ) {
+                        $cf_value = $c['_cl_custom_field_' . $n][0];
+                        
+                        if ( is_email( $cf_value ) ) {
+                            $mailto = $cf_value;
+                            $mailto_obs = '';
+                            for ( $i = 0 ;  $i < strlen( $mailto ) ;  $i++ ) {
+                                $mailto_obs .= '&#' . ord( $mailto[$i] ) . ';';
+                            }
+                            $cf_value = '<a href="mailto:' . $mailto_obs . '">' . $mailto_obs . '</a>';
+                        } else {
+                            $cf_value = preg_replace( $url, '<a href="http$2://$4" target="_blank" title="$0">$0</a>', $cf_value );
+                        }
+                        
+                        
+                        if ( $s['custom_field_' . $n . '_icon'] ) {
+                            $html .= '<div class="contact-list-custom-field-simple-list contact-list-custom-field-' . $n . ' contact-list-custom-field-with-icon">';
+                            $html .= '<i class="fa ' . $s['custom_field_' . $n . '_icon'] . '" aria-hidden="true"></i><span>' . $cf_value . '</span>';
+                            $html .= '</div>';
+                        } else {
+                            $html .= '<div class="contact-list-custom-field-simple-list contact-list-custom-field-' . $n . '">';
+                            $html .= ( isset( $s['custom_field_' . $n . '_title'] ) && $s['custom_field_' . $n . '_title'] ? '<strong>' . $s['custom_field_' . $n . '_title'] . '</strong>' : '' );
+                            $html .= $cf_value;
+                            $html .= '</div>';
+                        }
+                    
+                    }
+                
+                }
+                
+                $html .= '</span></div>';
+            }
+        
         }
-        if ( isset( $c['_cl_instagram_url'] ) ) {
-            $html .= ( $c['_cl_instagram_url'][0] ? '<a href="' . $c['_cl_instagram_url'][0] . '" target="_blank"><img src="' . plugins_url( '../img/instagram.png', __FILE__ ) . '" width="28" height="28" alt="" /></a>' : '' );
-        }
-        if ( isset( $c['_cl_twitter_url'] ) ) {
-            $html .= ( $c['_cl_twitter_url'][0] ? '<a href="' . $c['_cl_twitter_url'][0] . '" target="_blank"><img src="' . plugins_url( '../img/twitter.png', __FILE__ ) . '" width="28" height="28" alt="" /></a>' : '' );
-        }
-        if ( isset( $c['_cl_linkedin_url'] ) ) {
-            $html .= ( $c['_cl_linkedin_url'][0] ? '<a href="' . $c['_cl_linkedin_url'][0] . '" target="_blank"><img src="' . plugins_url( '../img/linkedin.png', __FILE__ ) . '" width="37" height="28" alt="" /></a>' : '' );
-        }
-        $html .= '</div>';
-        $html .= '</div>';
-        $html .= '</div>';
         $html .= '</div>';
         return $html;
     }

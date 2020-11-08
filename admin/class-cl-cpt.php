@@ -11,7 +11,7 @@ class ContactListCPT {
                             'singular_name' => __('Contact', 'contact-list'),
                             'add_new_item'  => __('Add New Contact', 'contact-list'),
                             'edit_item'     => __('Edit Contact', 'contact-list'),
-                            'not_found'     => __('No contacts found.', 'contact-list'),
+                            'not_found'     => ContactListHelpers::getText('text_sr_no_contacts_found', __('No contacts found.', 'contact-list')),
                             'all_items'     => __('All Contacts', 'contact-list'),
                           ],
                           'supports'           => array('title', 'thumbnail', 'page-attributes'),
