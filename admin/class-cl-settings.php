@@ -140,6 +140,29 @@ class ContactListSettings
             'field_name' => 'contact_image_shadow',
         )
         );
+        add_settings_field(
+            'contact-list-contact_show_groups',
+            __( 'Show groups on contact card', 'contact-list' ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+            'label_for'  => 'contact-list-contact_show_groups',
+            'field_name' => 'contact_show_groups',
+        )
+        );
+        add_settings_field(
+            'contact-list-contact_groups_title',
+            __( 'Title above the groups', 'contact-list' ),
+            array( $this, 'input_render' ),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+            'label_for'   => 'contact-list-contact_groups_title',
+            'field_name'  => 'contact_groups_title',
+            'placeholder' => 'Groups',
+        )
+        );
         $tab = 3;
         add_settings_section(
             'contact-list_tab_' . $tab,
@@ -257,6 +280,30 @@ class ContactListSettings
             'label_for'   => 'contact-list-search_all_contacts',
             'field_name'  => 'search_all_contacts',
             'placeholder' => __( 'Search all contacts...', 'contact-list' ),
+        )
+        );
+        add_settings_field(
+            'contact-list-text_select_country',
+            __( 'Select country', 'contact-list' ),
+            array( $this, 'input_render' ),
+            'contact-list',
+            'contact-list_section',
+            array(
+            'label_for'   => 'contact-list-text_select_country',
+            'field_name'  => 'text_select_country',
+            'placeholder' => __( 'Select country', 'contact-list' ),
+        )
+        );
+        add_settings_field(
+            'contact-list-text_select_state',
+            __( 'Select state', 'contact-list' ),
+            array( $this, 'input_render' ),
+            'contact-list',
+            'contact-list_section',
+            array(
+            'label_for'   => 'contact-list-text_select_state',
+            'field_name'  => 'text_select_state',
+            'placeholder' => __( 'Select state', 'contact-list' ),
         )
         );
         add_settings_field(

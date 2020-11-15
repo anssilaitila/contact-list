@@ -187,7 +187,7 @@ class ShortcodeContactList {
           sort($countries);
   
           $html .= '<select name="cl_country" class="select_v2">';
-          $html .= '<option value="">' . __('Select country', 'contact-list') . '</option>';
+          $html .= '<option value="">' . ContactListHelpers::getText('text_select_country', __('Select country', 'contact-list')) . '</option>';
   
           foreach ($countries as $country) {
             $html .= '<option value="' . $country . '" ' . (isset($_GET['cl_country']) && $_GET['cl_country'] == $country ? 'selected="selected"' : '') . '>' . $country . '</option>';
@@ -213,7 +213,7 @@ class ShortcodeContactList {
           sort($states);
   
           $html .= '<select name="cl_state" class="select_v2">';
-          $html .= '<option value="">' . __('Select state', 'contact-list') . '</option>';
+          $html .= '<option value="">' . ContactListHelpers::getText('text_select_state', __('Select state', 'contact-list')) . '</option>';
   
           foreach ($states as $state) {
             $html .= '<option value="' . $state . '" ' . (isset($_GET['cl_state']) && $_GET['cl_state'] == $state ? 'selected="selected"' : '') . '>' . $state . '</option>';

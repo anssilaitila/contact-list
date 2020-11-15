@@ -72,6 +72,16 @@ class ContactListHelpSupport {
         <li><?= __('Insert the shortcode', 'contact-list') ?>
           <span class="contact-list-shortcode contact-list-shortcode-7">[contact_list_simple]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-7"><?= __('Copy', 'contact-list') ?></button>
           <?= __('to the content editor of any page you wish the contact list to appear.', 'contact-list'); ?>
+          <ul class="contact-list-admin-ul">
+            <li><?= __('Show filters:', 'contact-list') ?>
+              <?php if (ContactListHelpers::isPremium() == 1): ?>  
+                <span class="contact-list-pro-only-inline-inactive">Pro</span>
+              <?php else: ?>
+                <a href="<?= get_admin_url() ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">Pro</a>
+              <?php endif; ?>
+              <span class="contact-list-shortcode contact-list-shortcode-18">[contact_list_simple show_filters=1]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-18"><?= __('Copy', 'contact-list') ?></button>
+            </li>
+          </ul>
         </li>
       </ol>
 

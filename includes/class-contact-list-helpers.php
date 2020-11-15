@@ -152,7 +152,7 @@ class ContactListHelpers
         $html .= '<div class="contact-list-contact-container">';
         $html .= '<div class="contact-list-main-left ' . (( $featured_img_url ? '' : 'cl-full-width' )) . '"><div class="contact-list-main-elements">';
         
-        if ( $showGroups ) {
+        if ( $showGroups && !isset( $s['contact_show_groups'] ) ) {
             $terms = get_the_terms( $id, 'contact-group' );
             
             if ( $terms ) {
@@ -216,6 +216,25 @@ class ContactListHelpers
         if ( isset( $c['_cl_phone_3'] ) ) {
             $phone_href = preg_replace( '/[^0-9]/', '', $c['_cl_phone_3'][0] );
             $html .= '<span class="contact-list-phone"><a href="tel:' . $phone_href . '">' . $c['_cl_phone_3'][0] . '</a></span>';
+        }
+        
+        
+        if ( isset( $s['contact_show_groups'] ) ) {
+            $terms = get_the_terms( $id, 'contact-group' );
+            
+            if ( $terms ) {
+                $html .= '<span class="contact-list-contact-groups-v2-title">' . ContactListHelpers::getText( 'contact_groups_title', __( 'Groups', 'contact-list' ) ) . '</span>';
+                $html .= '<div class="contact-list-contact-groups-v2">';
+                foreach ( $terms as $term ) {
+                    $t_id = $term->term_id;
+                    $custom_fields = get_option( "taxonomy_term_{$t_id}" );
+                    if ( !isset( $custom_fields['hide_group'] ) ) {
+                        $html .= '<span>' . $term->name . '</span>';
+                    }
+                }
+                $html .= '</div>';
+            }
+        
         }
         
         

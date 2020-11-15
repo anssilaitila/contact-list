@@ -51,11 +51,9 @@ See live demos at [contactlistpro.com](https://www.contactlistpro.com/contact-li
 
 = Features in the Free version: =
 * Obfuscated emails to prevent spam
-* Simple and clean user interface
-* No options to set, ready to use right away
 * Contacts may belong to groups
 * Fast search targeting all contacts
-* Filter contacts by country, state and category
+* Filter contacts by country, state and category (country and state can be renamed and used for any kind of information)
 * 1 custom field
 * Choose a layout from 4 different ones
 * All sent mail is logged
@@ -92,6 +90,10 @@ Contact author [here](https://www.contactlistpro.com/support/).
 6. Contact management
 
 == Changelog ==
+
+= 2.9.22 =
+* 2 more options on Layout-tab: "Show groups on contact card" and "Title above the groups"
+* Texts for dropdowns "Select country" and "Select state" can now be renamed
 
 = 2.9.21 =
 * New tab in settings: Simple list
