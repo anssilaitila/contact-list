@@ -708,7 +708,7 @@ class ContactListHelpers
         return $html;
     }
     
-    public static function initLayout( $s )
+    public static function initLayout( $s, $atts )
     {
         $html = '';
         
@@ -733,10 +733,17 @@ class ContactListHelpers
         
         }
         
-        if ( isset( $s['card_height'] ) && $s['card_height'] ) {
-            $html .= '<style>.contact-list-2-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: ' . $s['card_height'] . 'px; } </style>';
-            $html .= '<style>.contact-list-3-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: ' . $s['card_height'] . 'px; } </style>';
-            $html .= '<style>.contact-list-4-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: ' . $s['card_height'] . 'px; } </style>';
+        if ( isset( $s['card_height'] ) && $s['card_height'] || isset( $atts['card_height'] ) ) {
+            $card_height = 380;
+            
+            if ( isset( $atts['card_height'] ) ) {
+            } elseif ( isset( $s['card_height'] ) && $s['card_height'] ) {
+                $card_height = $s['card_height'];
+            }
+            
+            $html .= '<style>.contact-list-2-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: ' . $card_height . 'px; } </style>';
+            $html .= '<style>.contact-list-3-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: ' . $card_height . 'px; } </style>';
+            $html .= '<style>.contact-list-4-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: ' . $card_height . 'px; } </style>';
             $html .= '<style> @media (max-width: 820px) { .contact-list-2-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: auto; } } </style>';
             $html .= '<style> @media (max-width: 820px) { .contact-list-3-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: auto; } } </style>';
             $html .= '<style> @media (max-width: 820px) { .contact-list-4-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: auto; } } </style>';

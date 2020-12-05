@@ -5,6 +5,7 @@ class ShortcodeContactListSimple
     public static function view( $atts )
     {
         $s = get_option( 'contact_list_settings' );
+        $exclude = [];
         $html = '';
         $html .= '<div class="contact-list-simple-container" />';
         $html .= '<div class="contact-list-simple-text-contact" style="display: none;">' . __( 'contact', 'contact-list' ) . '</div>';
@@ -39,21 +40,22 @@ class ShortcodeContactListSimple
             );
         }
         
-        if ( isset( $_GET['cl_country'] ) && $_GET['cl_country'] ) {
+        if ( isset( $_GET[CONTACT_LIST_CAT1] ) && $_GET[CONTACT_LIST_CAT1] ) {
             $meta_query[] = array(
                 'key'     => '_cl_country',
-                'value'   => $_GET['cl_country'],
+                'value'   => $_GET[CONTACT_LIST_CAT1],
                 'compare' => 'LIKE',
             );
         }
-        if ( isset( $_GET['cl_state'] ) && $_GET['cl_state'] ) {
+        if ( isset( $_GET[CONTACT_LIST_CAT2] ) && $_GET[CONTACT_LIST_CAT2] ) {
             $meta_query[] = array(
                 'key'     => '_cl_state',
-                'value'   => $_GET['cl_state'],
+                'value'   => $_GET[CONTACT_LIST_CAT2],
                 'compare' => 'LIKE',
             );
         }
         $tax_query = [];
+        
         if ( isset( $_GET['cl_cat'] ) && $_GET['cl_cat'] ) {
             $tax_query = array(
                 'relation' => 'AND',
@@ -63,11 +65,22 @@ class ShortcodeContactListSimple
                 'terms'    => $_GET['cl_cat'],
             ),
             );
+        } elseif ( isset( $atts['group'] ) && $atts['group'] ) {
+            $tax_query = array(
+                'relation' => 'AND',
+                array(
+                'taxonomy' => 'contact-group',
+                'field'    => 'slug',
+                'terms'    => $atts['group'],
+            ),
+            );
         }
+        
         $wp_query = new WP_Query( array(
             'post_type'      => 'contact',
             'post_status'    => 'publish',
             'posts_per_page' => -1,
+            'post__not_in'   => $exclude,
             'meta_query'     => $meta_query,
             'tax_query'      => $tax_query,
             'orderby'        => $order_by,

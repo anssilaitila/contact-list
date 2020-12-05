@@ -2,6 +2,23 @@
 
 class ContactListPublicHelpers
 {
+    public static function proFeaturePublicMarkup()
+    {
+        $html = '';
+        $html .= '<div class="contact-list-public-pro-feature">';
+        $html .= '<span class="contact-list-public-pro-feature-title">';
+        $html .= __( 'This feature is available in the Pro version.', 'contact-list' );
+        $html .= '</span>';
+        $html .= '<span>';
+        $html .= __( 'You can use the shortcodes', 'contact-list' ) . ' [contact_list] ' . __( 'and', 'contact-list' ) . ' [contact_list_simple].';
+        $html .= '</span>';
+        $html .= '<span>';
+        $html .= __( 'More info on shortcodes at', 'contact-list' ) . ' <a href="https://www.contactlistpro.com/support/shortcodes/" target="_blank">contactlistpro.com</a>.';
+        $html .= '</span>';
+        $html .= '</div>';
+        return $html;
+    }
+    
     public static function searchFormMarkup( $atts, $s )
     {
         $html = '';
@@ -18,15 +35,27 @@ class ContactListPublicHelpers
             while ( $wp_query_for_filter->have_posts() ) {
                 $wp_query_for_filter->the_post();
                 $c = get_post_custom();
+                
                 if ( isset( $c['_cl_country'] ) && $c['_cl_country'] && !in_array( $c['_cl_country'][0], $countries ) ) {
                     $countries[] = $c['_cl_country'][0];
+                    $countries_for_dd[] = $c['_cl_country'][0];
                 }
+                
+                
+                if ( isset( $c['_cl_country'][0] ) ) {
+                    $country = ( isset( $countries[$c['_cl_country'][0]] ) ? $countries[$c['_cl_country'][0]] : [] );
+                    if ( isset( $c['_cl_state'] ) && $c['_cl_state'] && !in_array( $c['_cl_state'][0], $country ) ) {
+                        $countries[$c['_cl_country'][0]][] = $c['_cl_state'][0];
+                    }
+                }
+            
             }
-            sort( $countries );
-            $html .= '<select name="cl_country" class="select_v2">';
+            $link_country_and_state = 0;
+            sort( $countries_for_dd );
+            $html .= '<select name="' . CONTACT_LIST_CAT1 . '" class="select_v2 contact-list-cat1-sel" data-link-country-and-state="' . $link_country_and_state . '">';
             $html .= '<option value="">' . ContactListHelpers::getText( 'text_select_country', __( 'Select country', 'contact-list' ) ) . '</option>';
-            foreach ( $countries as $country ) {
-                $html .= '<option value="' . $country . '" ' . (( isset( $_GET['cl_country'] ) && $_GET['cl_country'] == $country ? 'selected="selected"' : '' )) . '>' . $country . '</option>';
+            foreach ( $countries_for_dd as $country ) {
+                $html .= '<option value="' . $country . '" ' . (( isset( $_GET[CONTACT_LIST_CAT1] ) && $_GET[CONTACT_LIST_CAT1] == $country ? 'selected="selected"' : '' )) . '>' . $country . '</option>';
             }
             $html .= '</select>';
             $filter_active = 1;
@@ -43,11 +72,15 @@ class ContactListPublicHelpers
                 }
             }
             sort( $states );
-            $html .= '<select name="cl_state" class="select_v2">';
-            $html .= '<option value="">' . ContactListHelpers::getText( 'text_select_state', __( 'Select state', 'contact-list' ) ) . '</option>';
-            foreach ( $states as $state ) {
-                $html .= '<option value="' . $state . '" ' . (( isset( $_GET['cl_state'] ) && $_GET['cl_state'] == $state ? 'selected="selected"' : '' )) . '>' . $state . '</option>';
+            $html .= '<select name="' . CONTACT_LIST_CAT2 . '" class="select_v2 contact-list-cat2-sel" data-select-value="' . ContactListHelpers::getText( 'text_select_state', __( 'Select state', 'contact-list' ) ) . '">';
+            
+            if ( !isset( $s['link_country_and_state'] ) ) {
+                $html .= '<option value="">' . ContactListHelpers::getText( 'text_select_state', __( 'Select state', 'contact-list' ) ) . '</option>';
+                foreach ( $states as $state ) {
+                    $html .= '<option value="' . $state . '" ' . (( isset( $_GET[CONTACT_LIST_CAT2] ) && $_GET[CONTACT_LIST_CAT2] == $state ? 'selected="selected"' : '' )) . '>' . $state . '</option>';
+                }
             }
+            
             $html .= '</select>';
             $filter_active = 1;
         }
@@ -231,6 +264,17 @@ class ContactListPublicHelpers
             }
         
         }
+        
+        if ( isset( $s['simple_list_show_send_message'] ) ) {
+            $html .= '<div class="contact-list-simple-list-col cl-align-right"><span>';
+            if ( isset( $c['_cl_email'] ) || isset( $c['_cl_notify_emails'] ) ) {
+                if ( !isset( $s['hide_send_email_button'] ) ) {
+                    $html .= '<span class="contact-list-send-email contact-list-simple-send-email cl-dont-print"><a href="" data-id="' . $id . '" data-name="' . $contact_fullname . '">' . __( 'Send message', 'contact-list' ) . ' &raquo;</a></span>';
+                }
+            }
+            $html .= '</span></div>';
+        }
+        
         $html .= '</div>';
         return $html;
     }

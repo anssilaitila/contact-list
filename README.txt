@@ -2,7 +2,7 @@
 Contributors: anssilaitila, freemius
 Tags: staff list, employee list, business directory, church directory, address book
 Requires at least: 4.0.0
-Tested up to: 5.5
+Tested up to: 5.6
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -90,6 +90,15 @@ Contact author [here](https://www.contactlistpro.com/support/).
 6. Contact management
 
 == Changelog ==
+
+= 2.9.23 - 2020-12-05 =
+* New feature (Pro): Exclude contacts using parameter exclude="123,456,789" (for all shortcodes, comma separated list of contact id's)
+* New feature (Free & Pro): Simple list added to printable list options
+* New parameter (Pro): group-parameter for simple list to show contacts from a specific group: [contact_list_simple group=GROUP_SLUG]
+* New parameter (Pro): card_height-parameter can now be defined for each shortcode like so: [contact_list card_height=200]
+* New option (Pro): Show send message -button for simple list
+* New feature (Pro): Category dropdown (search filter) now supports subcategories and shows the number of contacts (can be reverted back to the previous, simpler version from the settings)
+* New feature/option (Pro): Link country and state (on Layout-tab in the settings). Country and state (or whatever you are using them for) can now be linked, meaning that a country must be selected first, and then the available states for that country will be displayed in the state dropdown.
 
 = 2.9.22 =
 * 2 more options on Layout-tab: "Show groups on contact card" and "Title above the groups"

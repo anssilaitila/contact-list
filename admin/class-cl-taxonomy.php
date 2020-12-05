@@ -91,8 +91,20 @@ class ContactListTaxonomy {
 
     switch ($column_name) {
       case 'shortcode':
-        $content = '<span class="contact-list-shortcode-admin-list contact-list-shortcode-' . $term->slug . '" title="[contact_list_groups group=' . $term->slug . ']">[contact_list_groups group=' . $term->slug . ']</span>' . 
-          '<button class="contact-list-copy contact-list-copy-admin-list" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-' . $term->slug . '">' . __('Copy', 'contact-list') . '</button>';
+        $content = 
+        
+          '<div class="contact-list-shortcode-admin-list-container">' . 
+          '<button class="contact-list-copy contact-list-copy-admin-list contact-list-copy-admin-list-left" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-g-' . $term->slug . '">' . __('Copy', 'contact-list') . '</button>' .
+          '<span class="contact-list-shortcode-admin-list contact-list-shortcode-admin-list-right contact-list-shortcode-g-' . $term->slug . '" title="[contact_list_groups group=' . $term->slug . ']">[contact_list_groups group=' . $term->slug . ']</span>' . 
+          '<hr class="clear" />' . 
+          '</div>' . 
+
+          '<div class="contact-list-shortcode-admin-list-container">' . 
+          '<button class="contact-list-copy contact-list-copy-admin-list contact-list-copy-admin-list-left" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-sl-' . $term->slug . '">' . __('Copy', 'contact-list') . '</button>' .
+          '<span class="contact-list-shortcode-admin-list contact-list-shortcode-admin-list-right contact-list-shortcode-sl-' . $term->slug . '" title="[contact_list_simple group=' . $term->slug . ']">[contact_list_simple group=' . $term->slug . ']</span>' .
+          '<hr class="clear" />' . 
+          '</div>';
+
         break;
       default:
         break;

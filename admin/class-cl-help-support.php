@@ -81,10 +81,42 @@ class ContactListHelpSupport {
               <?php endif; ?>
               <span class="contact-list-shortcode contact-list-shortcode-18">[contact_list_simple show_filters=1]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-18"><?= __('Copy', 'contact-list') ?></button>
             </li>
+            <li><?= __('Show contacts from a specific group:', 'contact-list') ?>
+              <?php if (ContactListHelpers::isPremium() == 1): ?>  
+                <span class="contact-list-pro-only-inline-inactive">Pro</span>
+              <?php else: ?>
+                <a href="<?= get_admin_url() ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">Pro</a>
+              <?php endif; ?>
+              <span class="contact-list-shortcode contact-list-shortcode-99">[contact_list_simple group=GROUP_SLUG]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-99"><?= __('Copy', 'contact-list') ?></button>
+            </li>
           </ul>
         </li>
       </ol>
 
+      <h2>
+        <?= __('Parameters for all shortcodes', 'contact-list'); ?>
+        <?php if (ContactListHelpers::isPremium() == 1): ?>  
+          <span class="contact-list-pro-only-inline-inactive">Pro</span>
+        <?php else: ?>
+          <a href="<?= get_admin_url() ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">Pro</a>
+        <?php endif; ?>        
+      </h2>
+
+      <ol>
+        <li>
+          <?= __('Card height in pixels', 'contact-list') ?>
+          <ul class="contact-list-admin-ul">
+            <li>card_height=200</li>
+          </ul>
+        </li>
+        <li>
+          <?= __('Exclude certain contacts (comma separated list of contact id\'s)', 'contact-list') ?>
+          <ul class="contact-list-admin-ul">
+            <li>exclude="123,456,789"</li>
+          </ul>
+        </li>
+      </ol>
+      
       <h2>
         <?= __('Contacts with groups', 'contact-list'); ?>
         <?php if (ContactListHelpers::isPremium() == 1): ?>  

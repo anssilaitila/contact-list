@@ -55,6 +55,15 @@ class ContactListPrintable {
               </select>
               <hr class="clear" />
             </div>
+
+            <div>
+              <h3><?= __('Select view:', 'contact-list') ?></h3>
+              <select name="cl_view" class="select_v2">
+                <option value=""><?= __('Default list', 'contact-list') ?></option>
+                <option value="simple_list" <?= (isset($_GET['cl_view']) && $_GET['cl_view'] == 'simple_list') ? 'selected' : '' ?>><?= __('Simple list', 'contact-list') ?></option>
+              </select>
+              <hr class="clear" />
+            </div>
             
             <div>
               <h3><?= __('Change card height:', 'contact-list') ?></h3>
@@ -160,12 +169,24 @@ class ContactListPrintable {
   
             ));
             
+            $html .= '<link rel="stylesheet" href="' . CONTACT_LIST_URI . 'dist/font-awesome-4.7.0/css/font-awesome.min.css">';
+
             if ($wp_query->have_posts()):
-                    
-              $html .= '<div class="contact-list-ajax-results">';
-              $html .= ContactListHelpers::contactListMarkup($wp_query);
-              $html .= '</div>';
-      
+
+              if (isset($_GET['cl_view']) && $_GET['cl_view'] == 'simple_list'):
+
+                $html .= '<div class="contact-list-simple-ajax-results">';
+                $html .= ContactListPublicHelpers::contactListSimpleMarkup($wp_query);
+                $html .= '</div>';
+                
+              else:
+
+                $html .= '<div class="contact-list-ajax-results">';
+                $html .= ContactListHelpers::contactListMarkup($wp_query);
+                $html .= '</div>';
+                
+              endif;
+    
             endif;
   
             $html .= '</div>';

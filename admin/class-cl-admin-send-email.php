@@ -97,6 +97,7 @@ class ContactListAdminSendEmail {
                 $url = get_admin_url() . 'edit-tags.php?taxonomy=contact-group&post_type=contact';
                 $text = sprintf(
                   wp_kses(
+                    /* translators: %s: link to group management */
                     __('You may add groups from <a href="%s">group management</a>.', 'contact-list'),
                     array('a' => array('href' => array()))
                   ),
@@ -130,6 +131,7 @@ class ContactListAdminSendEmail {
               $url = get_admin_url() . 'edit.php?post_type=' . CONTACT_CPT;
               $text = sprintf(
                 wp_kses(
+                  /* translators: %s: link to contact management */
                   __('You may add contacts or assign them to groups from <a href="%s">contact management</a>.', 'contact-list'),
                   array('a' => array('href' => array()))
                 ),

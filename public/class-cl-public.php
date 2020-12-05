@@ -100,6 +100,7 @@ class Contact_List_Public
         add_shortcode( 'contact_list_form', array( 'Contact_List_Public', 'contact_list_form' ) );
         add_shortcode( 'contact_list_search', array( 'Contact_List_Public', 'contact_list_search' ) );
         add_shortcode( 'contact_list_simple', array( 'Contact_List_Public', 'contact_list_simple' ) );
+        add_shortcode( 'contact_list_simple_groups', array( 'Contact_List_Public', 'contact_list_simple_groups' ) );
     }
     
     /**
@@ -127,7 +128,7 @@ class Contact_List_Public
         $atts = array_change_key_case( (array) $atts, CASE_LOWER );
         $html = '';
         if ( ContactListHelpers::isPremium() == 0 ) {
-            $html .= '<div class="contact-list-pro-feature">' . __( 'This feature is available in the Pro version.' ) . '</div>';
+            $html .= ContactListPublicHelpers::proFeaturePublicMarkup();
         }
         return $html;
     }
@@ -141,7 +142,7 @@ class Contact_List_Public
     {
         $html = '';
         if ( ContactListHelpers::isPremium() == 0 ) {
-            $html .= '<div class="contact-list-pro-feature">' . __( 'This feature is available in the Pro version.' ) . '</div>';
+            $html .= ContactListPublicHelpers::proFeaturePublicMarkup();
         }
         return $html;
     }
@@ -150,7 +151,7 @@ class Contact_List_Public
     {
         $html = '';
         if ( ContactListHelpers::isPremium() == 0 ) {
-            $html .= '<div class="contact-list-pro-feature">' . __( 'This feature is available in the Pro version.' ) . '</div>';
+            $html .= ContactListPublicHelpers::proFeaturePublicMarkup();
         }
         return $html;
     }
@@ -159,6 +160,15 @@ class Contact_List_Public
     {
         $html = '';
         $html .= ShortcodeContactListSimple::view( $atts );
+        return $html;
+    }
+    
+    public static function contact_list_simple_groups( $atts = array(), $content = null, $tag = '' )
+    {
+        $html = '';
+        if ( ContactListHelpers::isPremium() == 0 ) {
+            $html .= ContactListPublicHelpers::proFeaturePublicMarkup();
+        }
         return $html;
     }
 

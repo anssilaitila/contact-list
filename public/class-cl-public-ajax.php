@@ -4,6 +4,8 @@ class ContactListPublicAjax {
 
   public function cl_get_contacts() {
 
+    $html = '';
+
     $meta_query = array('relation' => 'AND');
   
     $meta_query []= array(
@@ -36,18 +38,18 @@ class ContactListPublicAjax {
   
     }
 
-    if (isset($_POST['cl_country']) && $_POST['cl_country']) {
+    if (isset($_POST[CONTACT_LIST_CAT1]) && $_POST[CONTACT_LIST_CAT1]) {
         $meta_query[] = array(
       			'key'		=> '_cl_country',
-      			'value'		=> $_POST['cl_country'],
+      			'value'		=> $_POST[CONTACT_LIST_CAT1],
       			'compare'	=> 'LIKE'
     		);
     }
 
-    if (isset($_POST['cl_state']) && $_POST['cl_state']) {
+    if (isset($_POST[CONTACT_LIST_CAT2]) && $_POST[CONTACT_LIST_CAT2]) {
         $meta_query[] = array(
       			'key'		=> '_cl_state',
-      			'value'		=> $_POST['cl_state'],
+      			'value'		=> $_POST[CONTACT_LIST_CAT2],
       			'compare'	=> 'LIKE'
     		);
     }
@@ -75,7 +77,6 @@ class ContactListPublicAjax {
       'post_type' => CONTACT_CPT,
       'post_status' => 'publish',
       'posts_per_page' => (int) $posts_per_page,
-      'paged' => $paged,
   
       'meta_query' => $meta_query,          
       'tax_query' => $tax_query,          
@@ -99,6 +100,8 @@ class ContactListPublicAjax {
 
   public function cl_get_contacts_simple() {
 
+    $html = '';
+
     $meta_query = array('relation' => 'AND');
   
     $meta_query []= array(
@@ -131,18 +134,18 @@ class ContactListPublicAjax {
   
     }
 
-    if (isset($_POST['cl_country']) && $_POST['cl_country']) {
+    if (isset($_POST[CONTACT_LIST_CAT1]) && $_POST[CONTACT_LIST_CAT1]) {
         $meta_query[] = array(
       			'key'		=> '_cl_country',
-      			'value'		=> $_POST['cl_country'],
+      			'value'		=> $_POST[CONTACT_LIST_CAT1],
       			'compare'	=> 'LIKE'
     		);
     }
 
-    if (isset($_POST['cl_state']) && $_POST['cl_state']) {
+    if (isset($_POST[CONTACT_LIST_CAT2]) && $_POST[CONTACT_LIST_CAT2]) {
         $meta_query[] = array(
       			'key'		=> '_cl_state',
-      			'value'		=> $_POST['cl_state'],
+      			'value'		=> $_POST[CONTACT_LIST_CAT2],
       			'compare'	=> 'LIKE'
     		);
     }
@@ -170,7 +173,6 @@ class ContactListPublicAjax {
       'post_type' => CONTACT_CPT,
       'post_status' => 'publish',
       'posts_per_page' => (int) $posts_per_page,
-      'paged' => $paged,
   
       'meta_query' => $meta_query,          
       'tax_query' => $tax_query,          

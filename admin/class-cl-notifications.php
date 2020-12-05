@@ -36,8 +36,8 @@ class ContactListNotifications {
   
     }
 
-  	$cl_offer_notice = get_option('contact_list_offer_notice');
-  	$should_show_offer_notice = ($cl_offer_notice !== 'dismissed');
+  	$cl_offer_show_notice = get_option('contact_list_offer_show_notice');
+  	$should_show_offer_notice = $cl_offer_show_notice;
 
     if (1 && $should_show_offer_notice && cl_fs()->is_not_paying() && current_user_can('administrator')) {
       
@@ -75,9 +75,11 @@ class ContactListNotifications {
   	$user_id = $current_user->ID;
   	$cl_statuses_option = get_option('cl_statuses', array());
 
+    // Rating notice
+    
     if (!get_option('contact_list_rating_notice_date')) {
 
-      $dt = new DateTime('+2 weeks');
+      $dt = new DateTime('+8 weeks');
 
       if ($dt !== false && !array_sum($dt::getLastErrors())) {
         $notify_date = $dt;
@@ -115,8 +117,45 @@ class ContactListNotifications {
   		}
   	}
 
+    // Offer notice
+
+    if (!get_option('contact_list_offer_notice_date')) {
+
+      $dt = new DateTime('+4 weeks');
+
+      if ($dt !== false && !array_sum($dt::getLastErrors())) {
+        $notify_date = $dt;
+        update_option('contact_list_offer_notice_date', $notify_date, false);
+      }
+
+    } else {
+
+      $notify_date = get_option('contact_list_offer_notice_date');
+
+      if ($notify_date instanceof DateTime) {
+        $dt_now = new DateTime('now');
+        
+        if ($notify_date <= $dt_now) {
+          update_option('contact_list_offer_show_notice', 1, false);
+        }
+
+      }
+      
+    }
+
   	if (isset($_GET['cl_ignore_offer_notice'])) {
 			update_option('contact_list_offer_notice', 'dismissed', false);
+			update_option('contact_list_offer_show_notice', 0, false);
+			$cl_statuses_option['offer_notice_dismissed'] = $this->cl_get_current_time();
+			update_option('cl_statuses', $cl_statuses_option, false);
+
+      $dt = new DateTime('+26 weeks');
+
+      if ($dt !== false && !array_sum($dt::getLastErrors())) {
+        $notify_date = $dt;
+        update_option('contact_list_offer_notice_date', $notify_date, false);
+      }
+
     }
     
   }
