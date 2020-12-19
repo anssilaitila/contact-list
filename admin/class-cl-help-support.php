@@ -49,17 +49,17 @@ class ContactListHelpSupport {
                 <li><?= __('Order by last name:', 'contact-list') ?>
                   <span class="contact-list-shortcode contact-list-shortcode-15">[contact_list order_by=last_name]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-15"><?= __('Copy', 'contact-list') ?></button>
                 </li>
-                <li><?= __('Layout "2 cards on the same row"', 'contact-list') ?>:
-                  <span class="contact-list-shortcode contact-list-shortcode-3">[contact_list layout=2-cards-on-the-same-row]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-3"><?= __('Copy', 'contact-list') ?></button>
+                <li><?= __('Layout "2 columns"', 'contact-list') ?>:
+                  <span class="contact-list-shortcode contact-list-shortcode-3">[contact_list layout=2-columns]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-3"><?= __('Copy', 'contact-list') ?></button>
                 </li>
-                <li><?= __('Layout "3 cards on the same row"', 'contact-list') ?> (<?= __('without contact images', 'contact-list') ?>):
-                  <span class="contact-list-shortcode contact-list-shortcode-4">[contact_list layout=3-cards-on-the-same-row]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-4"><?= __('Copy', 'contact-list') ?></button>
+                <li><?= __('Layout "3 columns"', 'contact-list') ?> (<?= __('without contact images', 'contact-list') ?>):
+                  <span class="contact-list-shortcode contact-list-shortcode-4">[contact_list layout=3-columns]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-4"><?= __('Copy', 'contact-list') ?></button>
                 </li>
-                <li><?= __('Layout "4 cards on the same row"', 'contact-list') ?> (<?= __('without contact images', 'contact-list') ?>):
-                  <span class="contact-list-shortcode contact-list-shortcode-5">[contact_list layout=4-cards-on-the-same-row]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-5"><?= __('Copy', 'contact-list') ?></button>
+                <li><?= __('Layout "4 columns"', 'contact-list') ?> (<?= __('without contact images', 'contact-list') ?>):
+                  <span class="contact-list-shortcode contact-list-shortcode-5">[contact_list layout=4-columns]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-5"><?= __('Copy', 'contact-list') ?></button>
                 </li>
                 <li><?= __('Multiple parameters:', 'contact-list') ?>
-                  <span class="contact-list-shortcode contact-list-shortcode-6">[contact_list layout=2-cards-on-the-same-row hide_search=1]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-6"><?= __('Copy', 'contact-list') ?></button>
+                  <span class="contact-list-shortcode contact-list-shortcode-6">[contact_list layout=2-columns hide_search=1]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-6"><?= __('Copy', 'contact-list') ?></button>
                 </li>
             </ul>
         </li>

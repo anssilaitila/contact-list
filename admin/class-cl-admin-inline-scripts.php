@@ -7,7 +7,7 @@ class ContactListAdminInlineScripts {
       ?>
 
       <?php $current_screen = get_current_screen(); ?>
-
+       
       <?php if (isset($current_screen->id) && ($current_screen->id === 'edit-contact' || $current_screen->id === 'edit-contact-group')): ?>
   
         <link rel="stylesheet" href="<?= CONTACT_LIST_URI ?>dist/tipso.min.css">
@@ -18,7 +18,7 @@ class ContactListAdminInlineScripts {
           
           jQuery(function ($) {
 
-            $('.contact-list-copy').on('click', function (e) {
+            jQuery(document).on('click', '.contact-list-copy', function (e) {
               e.preventDefault();
             });
               

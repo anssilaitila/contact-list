@@ -1,17 +1,17 @@
-=== WordPress Staff List, Address Book and Business Directory Plugin - Contact List ===
+=== WordPress Business Directory, Staff Directory and Address Book Plugin - Contact List ===
 Contributors: anssilaitila, freemius
-Tags: staff list, employee list, business directory, church directory, address book
+Tags: business directory, staff directory, address book, chamber of commerce, company directory
 Requires at least: 4.0.0
 Tested up to: 5.6
-Stable tag: trunk
+Stable tag: 2.9.24
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Create staff list or any contact list for your site. Import existing data easily.
+A full-featured directory plugin for creating a business directory, staff directory or an address book. Usable for chamber of commerce, company directory and many more...
 
 == Description ==
-= The most user friendly contact manager for WordPress =
-Using Contact List you can list any contact data including i.e. name, email, phone and social media links. Contacts may also have necessary custom fields.
+= The most user friendly business directory for WordPress =
+Create an address book or a company directory with ease. With this directory plugin you can list any contact data including i.e. name, email, phone and social media links. Contacts or businesses may also have necessary custom fields.
 
 Send email directly to contacts using a built-in form on the front-end (featuring reCAPTCHA). Contact's email address can be completely hidden in the Pro version but still email can be sent to the contact.
 
@@ -20,8 +20,13 @@ Send email directly to contacts using a built-in form on the front-end (featurin
 See live demos at [contactlistpro.com](https://www.contactlistpro.com/contact-list/).
 
 = Some use cases for this plugin: =
-* Staff list
+* Address book
+* Business directory
+* Online directory
+* Member directory
 * Contact directory
+* Business listing
+* Yellow pages directory
 * List of any kind of contacts like companies or offices
 * Phone book
 * Faculty and Staff Directory
@@ -31,6 +36,8 @@ See live demos at [contactlistpro.com](https://www.contactlistpro.com/contact-li
 * Employee Directory
 * Medical Personnel Directory
 * Team Members Directory
+* Staff list
+* Chamber of commerce
 * Send newsletter or any email to a specific group of people
 
 = Fields for each contact: =
@@ -49,7 +56,7 @@ See live demos at [contactlistpro.com](https://www.contactlistpro.com/contact-li
 * Photo / image
 * Multiple custom fields
 
-= Features in the Free version: =
+= Contact List Free features: =
 * Obfuscated emails to prevent spam
 * Contacts may belong to groups
 * Fast search targeting all contacts
@@ -59,7 +66,7 @@ See live demos at [contactlistpro.com](https://www.contactlistpro.com/contact-li
 * All sent mail is logged
 * Printable contact list
 
-= More features in the Pro version: =
+= Contact List Pro features: =
 * Multiple different shortcodes/views for various use cases
 * Support for pagination
 * Contact database may be built with publicly available form
@@ -67,8 +74,8 @@ See live demos at [contactlistpro.com](https://www.contactlistpro.com/contact-li
 * Settings available for customization
 * Send email to all contacts or contacts in a specific group
 * reCAPTCHA can be activated to public contact forms
-* Import contacts from CSV file
-* Export contacts to a CSV file
+* Excel import: Import contacts from CSV file
+* Excel export: Export contacts to a CSV file
 * Customize fields in any way: change titles and hide specific fields from public form or admin area
 * Request contacts to update their existing contact info simply clicking a button
 * More features on the way based on user feedback
@@ -90,6 +97,12 @@ Contact author [here](https://www.contactlistpro.com/support/).
 6. Contact management
 
 == Changelog ==
+
+= 2.9.24 - 2020-12-19 =
+* New field: City. Works together with country and state.
+* Pro: Fields country, state and city can now be renamed in the settings
+* You can now add multiple instances of [contact_list_groups group=GROUP_SLUG] and [contact_list_search] to the same page, and they all work as they should
+* Bug fixes
 
 = 2.9.23 - 2020-12-05 =
 * New feature (Pro): Exclude contacts using parameter exclude="123,456,789" (for all shortcodes, comma separated list of contact id's)
@@ -291,6 +304,99 @@ Contact author [here](https://www.contactlistpro.com/support/).
 
 = 2.5.0 =
 * New licensing model / 2019-12-04
+
+= 2.4.0 =
+* Contacts can now be sorted by custom order
+* Image field added for contacts
+* User submitted contacts can now be automatically published (see options)
+
+= 2.3.11 =
+* Bug fix
+* New option: "Show contacts from subgroups in the main group view". If this is checked, all contacts belonging to any subgroups are listed below the main group contacts. If not, there are links to any subgroups under the main group title.
+
+= 2.3.10 =
+* Bug fix
+* Some new options
+* Custom fields added to CSV import
+
+= 2.3.9 =
+* New feature: CSV import
+
+= 2.3.8 =
+* Bug fix
+
+= 2.3.7 =
+* Bug fixes
+* 4 custom fields added
+
+= 2.3.6 =
+* "Back"-link made fully customizable
+* Finnish translations added
+
+= 2.3.5 =
+* More texts made translatable
+* Some more options
+
+= 2.3.4 =
+* Plugin made translatable
+
+= 2.3.3 =
+* New feature: Send email to contacts
+
+= 2.3.2 =
+* New setting: you may now define whether the contacts are sorted by last name or first name
+
+= 2.3.1 =
+* New feature: display group checkboxes on the public form (may be activated in the settings)
+
+= 2.3.0 =
+* New feature: email notify when a new contact is added (may be activated in the settings)
+
+= 2.2.1 =
+* Updated Help / Support page
+* Minor bug fixes
+
+= 2.2.0 =
+* New shortcodes for displaying contacts from specific group and for a single contact (see Help / Support page)
+
+= 2.1.1 =
+* Missing fields added to settings page: email and social media urls
+* Groups list view modified so that there's not limitation regarding the depth of group/subgroup hierarchy anymore
+
+= 2.1.0 =
+* Settings page added: You may now define alternative field titles and texts to be used throughout the plugin
+* Groups list view made more simple: There is now only one search form, targeting all contacts in every group
+
+= 2.0.1 =
+* Fixes relating to the new shortcode views
+
+= 2.0.0 =
+* New feature: Contacts may now optionally belong to group(s)
+* New feature: Possibility to embed a form to any page to allow visitors to add new contacts (with spam prevention)
+* New shortcodes for embeddable form and groups list (see Help / Support -page)
+
+= 1.1.0 =
+* New field for contacts added: Additional information (wysiwyg-editor)
+
+= 1.0.6 =
+* Added feedback form to Help / Support page
+
+= 1.0.5 =
+* Public contact list is now sorted by last name (and if necessary by first name) + admin view is sortable the same way (last name column is clickable).
+
+= 1.0.4 =
+* Support page updated
+
+= 1.0.3 =
+* Added 4 fields for contact address
+
+= 1.0.2 =
+* Bug fixes
+* Housekeeping
+* Testing on Gutenberg
+
+= 1.0.1 =
+* Social media icons added
 
 = 1.0.0 =
 * Initial release / 2018-07-13

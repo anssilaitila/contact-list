@@ -19,7 +19,7 @@ class ContactListPublicHelpers
         return $html;
     }
     
-    public static function searchFormMarkup( $atts, $s )
+    public static function searchFormMarkup( $atts, $s, $exclude = array() )
     {
         $html = '';
         $filter_active = 0;
@@ -27,11 +27,13 @@ class ContactListPublicHelpers
             'post_type'      => 'contact',
             'post_status'    => 'publish',
             'posts_per_page' => -1,
+            'post__not_in'   => $exclude,
         ) );
         $html .= '<form method="get" action="./" class="contact-list-ajax-form">';
         
         if ( isset( $s['show_country_select_in_search'] ) && $s['show_country_select_in_search'] ) {
             $countries = [];
+            $states = [];
             while ( $wp_query_for_filter->have_posts() ) {
                 $wp_query_for_filter->the_post();
                 $c = get_post_custom();
@@ -44,15 +46,23 @@ class ContactListPublicHelpers
                 
                 if ( isset( $c['_cl_country'][0] ) ) {
                     $country = ( isset( $countries[$c['_cl_country'][0]] ) ? $countries[$c['_cl_country'][0]] : [] );
+                    
                     if ( isset( $c['_cl_state'] ) && $c['_cl_state'] && !in_array( $c['_cl_state'][0], $country ) ) {
                         $countries[$c['_cl_country'][0]][] = $c['_cl_state'][0];
+                        $state = $c['_cl_state'][0];
+                        $states[] = $state;
+                        $states_for_dd[] = $state;
+                        if ( isset( $c['_cl_city'] ) && $c['_cl_city'] && !in_array( $c['_cl_city'][0], $state ) ) {
+                            $states[$state][] = $c['_cl_city'][0];
+                        }
                     }
+                
                 }
             
             }
             $link_country_and_state = 0;
             sort( $countries_for_dd );
-            $html .= '<select name="' . CONTACT_LIST_CAT1 . '" class="select_v2 contact-list-cat1-sel" data-link-country-and-state="' . $link_country_and_state . '">';
+            $html .= '<select name="' . CONTACT_LIST_CAT1 . '" class="cl_select_v2 contact-list-cat1-sel" data-link-country-and-state="' . $link_country_and_state . '">';
             $html .= '<option value="">' . ContactListHelpers::getText( 'text_select_country', __( 'Select country', 'contact-list' ) ) . '</option>';
             foreach ( $countries_for_dd as $country ) {
                 $html .= '<option value="' . $country . '" ' . (( isset( $_GET[CONTACT_LIST_CAT1] ) && $_GET[CONTACT_LIST_CAT1] == $country ? 'selected="selected"' : '' )) . '>' . $country . '</option>';
@@ -72,7 +82,7 @@ class ContactListPublicHelpers
                 }
             }
             sort( $states );
-            $html .= '<select name="' . CONTACT_LIST_CAT2 . '" class="select_v2 contact-list-cat2-sel" data-select-value="' . ContactListHelpers::getText( 'text_select_state', __( 'Select state', 'contact-list' ) ) . '">';
+            $html .= '<select name="' . CONTACT_LIST_CAT2 . '" class="cl_select_v2 contact-list-cat2-sel" data-select-value="' . ContactListHelpers::getText( 'text_select_state', __( 'Select state', 'contact-list' ) ) . '" data-current-value="' . (( isset( $_GET[CONTACT_LIST_CAT2] ) ? $_GET[CONTACT_LIST_CAT2] : '' )) . '">';
             
             if ( !isset( $s['link_country_and_state'] ) ) {
                 $html .= '<option value="">' . ContactListHelpers::getText( 'text_select_state', __( 'Select state', 'contact-list' ) ) . '</option>';
@@ -86,23 +96,64 @@ class ContactListPublicHelpers
         }
         
         
-        if ( isset( $s['show_category_select_in_search'] ) && $s['show_category_select_in_search'] ) {
-            $groups = get_terms( array(
-                'taxonomy'   => 'contact-group',
-                'hide_empty' => true,
-            ) );
-            $html .= '<select name="cl_cat" class="select_v2">';
-            $html .= '<option value="">' . ContactListHelpers::getText( 'text_select_category', __( 'Select category', 'contact-list' ) ) . '</option>';
-            $atts_group = ( isset( $atts['group'] ) ? $atts['group'] : '' );
-            $current_cat = ( isset( $_GET['cl_cat'] ) ? $_GET['cl_cat'] : $atts_group );
-            foreach ( $groups as $g ) {
-                $t_id = $g->term_id;
-                $custom_fields = get_option( "taxonomy_term_{$t_id}" );
-                if ( !isset( $custom_fields['hide_group'] ) ) {
-                    $html .= '<option value="' . $g->slug . '" ' . (( $current_cat == $g->slug ? 'selected="selected"' : '' )) . '>' . $g->name . '</option>';
+        if ( isset( $s['show_city_select_in_search'] ) && $s['show_city_select_in_search'] ) {
+            $cities = [];
+            while ( $wp_query_for_filter->have_posts() ) {
+                $wp_query_for_filter->the_post();
+                $c = get_post_custom();
+                if ( isset( $c['_cl_city'] ) && $c['_cl_city'] && !in_array( $c['_cl_city'][0], $cities ) ) {
+                    $cities[] = $c['_cl_city'][0];
                 }
             }
+            sort( $cities );
+            $html .= '<select name="' . CONTACT_LIST_CAT3 . '" class="cl_select_v2 contact-list-cat3-sel" data-select-value="' . ContactListHelpers::getText( 'text_select_city', __( 'Select city', 'contact-list' ) ) . '" data-current-value="' . (( isset( $_GET[CONTACT_LIST_CAT3] ) ? $_GET[CONTACT_LIST_CAT3] : '' )) . '">';
+            
+            if ( !isset( $s['link_country_and_state'] ) ) {
+                $html .= '<option value="">' . ContactListHelpers::getText( 'text_select_city', __( 'Select city', 'contact-list' ) ) . '</option>';
+                foreach ( $cities as $city ) {
+                    $html .= '<option value="' . $city . '" ' . (( isset( $_GET[CONTACT_LIST_CAT3] ) && $_GET[CONTACT_LIST_CAT3] == $city ? 'selected="selected"' : '' )) . '>' . $city . '</option>';
+                }
+            }
+            
             $html .= '</select>';
+            $filter_active = 1;
+        }
+        
+        
+        if ( isset( $s['show_category_select_in_search'] ) && $s['show_category_select_in_search'] ) {
+            
+            if ( ContactListHelpers::isPremium() == 0 || isset( $s['simpler_category_dropdown'] ) ) {
+                $groups = get_terms( array(
+                    'taxonomy'   => 'contact-group',
+                    'hide_empty' => true,
+                ) );
+                $html .= '<select name="cl_cat" class="cl_select_v2">';
+                $html .= '<option value="">' . ContactListHelpers::getText( 'text_select_category', __( 'Select category', 'contact-list' ) ) . '</option>';
+                foreach ( $groups as $g ) {
+                    $t_id = $g->term_id;
+                    $custom_fields = get_option( "taxonomy_term_{$t_id}" );
+                    if ( !isset( $custom_fields['hide_group'] ) ) {
+                        $html .= '<option value="' . $g->slug . '" ' . (( isset( $_GET['cl_cat'] ) && $_GET['cl_cat'] == $g->slug ? 'selected="selected"' : '' )) . '>' . $g->name . '</option>';
+                    }
+                }
+                $html .= '</select>';
+            } else {
+                $taxonomy_slug = 'contact-group';
+                $html .= wp_dropdown_categories( [
+                    'show_option_all' => ' ',
+                    'hide_empty'      => 1,
+                    'hierarchical'    => 1,
+                    'show_count'      => 1,
+                    'orderby'         => 'name',
+                    'name'            => 'cl_cat',
+                    'value_field'     => 'slug',
+                    'taxonomy'        => $taxonomy_slug,
+                    'echo'            => 0,
+                    'class'           => 'cl_select_v2',
+                    'show_option_all' => ContactListHelpers::getText( 'text_select_category', __( 'Select category', 'contact-list' ) ),
+                ] );
+            }
+            
             $filter_active = 1;
         }
         

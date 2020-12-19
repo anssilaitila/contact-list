@@ -351,8 +351,19 @@ class ContactListSettings
         )
         );
         add_settings_field(
+            'contact-list-show_city_select_in_search',
+            __( 'Show city select in search', 'contact-list' ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+            'label_for'  => 'contact-list-show_city_select_in_search',
+            'field_name' => 'show_city_select_in_search',
+        )
+        );
+        add_settings_field(
             'contact-list-' . $only_pro . 'link_country_and_state',
-            __( 'Link country and state', 'contact-list' ),
+            __( 'Link country, state and city', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -589,6 +600,18 @@ class ContactListSettings
         )
         );
         add_settings_field(
+            'contact-list-' . $only_pro . 'text_select_city',
+            __( 'Select city', 'contact-list' ),
+            array( $this, 'input_render' ),
+            'contact-list',
+            'contact-list_section',
+            array(
+            'label_for'   => 'contact-list-' . $only_pro . 'text_select_city',
+            'field_name'  => $only_pro . 'text_select_city',
+            'placeholder' => __( 'Select city', 'contact-list' ),
+        )
+        );
+        add_settings_field(
             'contact-list-text_select_category',
             __( 'Select category', 'contact-list' ),
             array( $this, 'input_render' ),
@@ -801,6 +824,42 @@ class ContactListSettings
             array(
             'label_for'  => 'contact-list-' . $only_pro . 'hide_address_title',
             'field_name' => $only_pro . 'hide_address_title',
+        )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'country_title',
+            __( 'Country', 'contact-list' ),
+            array( $this, 'input_render' ),
+            'contact-list',
+            'contact-list_section',
+            array(
+            'label_for'   => 'contact-list-' . $only_pro . 'country_title',
+            'field_name'  => $only_pro . 'country_title',
+            'placeholder' => __( 'Country', 'contact-list' ),
+        )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'state_title',
+            __( 'State', 'contact-list' ),
+            array( $this, 'input_render' ),
+            'contact-list',
+            'contact-list_section',
+            array(
+            'label_for'   => 'contact-list-' . $only_pro . 'state_title',
+            'field_name'  => $only_pro . 'state_title',
+            'placeholder' => __( 'State', 'contact-list' ),
+        )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'city_title',
+            __( 'City', 'contact-list' ),
+            array( $this, 'input_render' ),
+            'contact-list',
+            'contact-list_section',
+            array(
+            'label_for'   => 'contact-list-' . $only_pro . 'city_title',
+            'field_name'  => $only_pro . 'city_title',
+            'placeholder' => __( 'City', 'contact-list' ),
         )
         );
         add_settings_field(
@@ -1447,7 +1506,7 @@ class ContactListSettings
                 ?>
           <div class="general-info">
             <?php 
-                echo  __( 'This means that a country must be selected first, and the state dropdown is populated after that based on the real values of the states available for the selected country.', 'contact-list' ) ;
+                echo  __( 'This means that the country must be selected first, and the state dropdown is populated after that based on the real values of the states available for the selected country. Same way the city dropdown is populated after the state is selected.', 'contact-list' ) ;
                 ?>
           </div>
       <?php 
@@ -1630,19 +1689,19 @@ class ContactListSettings
           <option value="2-cards-on-the-same-row" <?php 
             echo  ( $layout == '2-cards-on-the-same-row' ? 'selected' : '' ) ;
             ?>><?php 
-            echo  __( '2 cards on the same row', 'contact-list' ) ;
+            echo  __( '2 columns', 'contact-list' ) ;
             ?></option>
           <option value="3-cards-on-the-same-row" <?php 
             echo  ( $layout == '3-cards-on-the-same-row' ? 'selected' : '' ) ;
             ?>><?php 
-            echo  __( '3 cards on the same row', 'contact-list' ) ;
+            echo  __( '3 columns', 'contact-list' ) ;
             ?> (<?php 
             echo  __( 'without contact images', 'contact-list' ) ;
             ?>)</option>
           <option value="4-cards-on-the-same-row" <?php 
             echo  ( $layout == '4-cards-on-the-same-row' ? 'selected' : '' ) ;
             ?>><?php 
-            echo  __( '4 cards on the same row', 'contact-list' ) ;
+            echo  __( '4 columns', 'contact-list' ) ;
             ?> (<?php 
             echo  __( 'without contact images', 'contact-list' ) ;
             ?>)</option>

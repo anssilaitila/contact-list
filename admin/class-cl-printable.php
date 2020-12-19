@@ -39,7 +39,7 @@ class ContactListPrintable {
 
             <div>
               <h3><?= __('Select category:', 'contact-list') ?></h3>
-              <select name="cl_cat" class="select_v2">
+              <select name="cl_cat" class="cl_select_v2">
                 <option value=""><?= __('All contacts', 'contact-list') ?></option>
         
                 <?php
@@ -58,7 +58,7 @@ class ContactListPrintable {
 
             <div>
               <h3><?= __('Select view:', 'contact-list') ?></h3>
-              <select name="cl_view" class="select_v2">
+              <select name="cl_view" class="cl_select_v2">
                 <option value=""><?= __('Default list', 'contact-list') ?></option>
                 <option value="simple_list" <?= (isset($_GET['cl_view']) && $_GET['cl_view'] == 'simple_list') ? 'selected' : '' ?>><?= __('Simple list', 'contact-list') ?></option>
               </select>

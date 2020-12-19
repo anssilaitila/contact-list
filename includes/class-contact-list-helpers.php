@@ -100,11 +100,11 @@ class ContactListHelpers
         return $html;
     }
     
-    public static function listAllContactsForSearchMarkup( $wp_query )
+    public static function listAllContactsForSearchMarkup( $wp_query, $elem_class = 'cuid-none' )
     {
         $html = '';
         $html .= '<div id="contact-list-search">';
-        $html .= '<ul id="all-contacts" class="contact-list-all-contacts-list">';
+        $html .= '<ul id="all-contacts" class="contact-list-all-contacts-list cl-all-contacts-' . $elem_class . '">';
         if ( $wp_query->have_posts() ) {
             while ( $wp_query->have_posts() ) {
                 $wp_query->the_post();
@@ -113,7 +113,7 @@ class ContactListHelpers
             }
         }
         $html .= '</ul><hr class="clear" />';
-        $html .= '<div id="contact-list-nothing-found">';
+        $html .= '<div id="contact-list-nothing-found" class="contact-list-nothing-found-' . $elem_class . '">';
         $html .= ContactListHelpers::getText( 'text_sr_no_contacts_found', __( 'No contacts found.', 'contact-list' ) );
         $html .= '</div>';
         $html .= '</div>';
@@ -256,11 +256,19 @@ class ContactListHelpers
                 $html .= '<span class="contact-list-address-line-4">' . $c['_cl_address_line_4'][0] . '</span>';
             }
             
-            if ( isset( $c['_cl_country'] ) && $c['_cl_country'][0] || isset( $c['_cl_state'] ) && $c['_cl_state'][0] ) {
+            if ( isset( $c['_cl_country'] ) && $c['_cl_country'][0] || isset( $c['_cl_state'] ) && $c['_cl_state'][0] || isset( $c['_cl_city'] ) && $c['_cl_city'][0] ) {
                 $html .= '<span class="contact-list-address-country-and-state">';
+                if ( isset( $c['_cl_city'] ) && $c['_cl_city'][0] ) {
+                    $html .= $c['_cl_city'][0];
+                }
+                
                 if ( isset( $c['_cl_state'] ) && $c['_cl_state'][0] ) {
+                    if ( isset( $c['_cl_city'] ) && $c['_cl_city'][0] ) {
+                        $html .= ', ';
+                    }
                     $html .= $c['_cl_state'][0];
                 }
+                
                 
                 if ( isset( $c['_cl_country'] ) && $c['_cl_country'][0] ) {
                     if ( isset( $c['_cl_state'] ) && $c['_cl_state'][0] ) {
@@ -708,7 +716,35 @@ class ContactListHelpers
         return $html;
     }
     
-    public static function initLayout( $s, $atts )
+    public static function getLayout( $s, $atts )
+    {
+        $layout = '';
+        
+        if ( isset( $atts['layout'] ) ) {
+            $layout = $atts['layout'];
+            
+            if ( $layout == '2-columns' ) {
+                $layout = '2-cards-on-the-same-row';
+            } elseif ( $layout == '3-columns' ) {
+                $layout = '3-cards-on-the-same-row';
+            } elseif ( $layout == '4-columns' ) {
+                $layout = '4-cards-on-the-same-row';
+            }
+        
+        } elseif ( isset( $s['layout'] ) && $s['layout'] ) {
+            $layout = $s['layout'];
+        }
+        
+        return $layout;
+    }
+    
+    public static function createElemClass()
+    {
+        $elem_class = 'cuid-' . uniqid();
+        return $elem_class;
+    }
+    
+    public static function initLayout( $s, $atts, $elem_class = 'cuid-none' )
     {
         $html = '';
         
@@ -741,12 +777,12 @@ class ContactListHelpers
                 $card_height = $s['card_height'];
             }
             
-            $html .= '<style>.contact-list-2-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: ' . $card_height . 'px; } </style>';
-            $html .= '<style>.contact-list-3-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: ' . $card_height . 'px; } </style>';
-            $html .= '<style>.contact-list-4-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: ' . $card_height . 'px; } </style>';
-            $html .= '<style> @media (max-width: 820px) { .contact-list-2-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: auto; } } </style>';
-            $html .= '<style> @media (max-width: 820px) { .contact-list-3-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: auto; } } </style>';
-            $html .= '<style> @media (max-width: 820px) { .contact-list-4-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: auto; } } </style>';
+            $html .= '<style>.' . $elem_class . '.contact-list-2-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: ' . $card_height . 'px; } </style>';
+            $html .= '<style>.' . $elem_class . '.contact-list-3-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: ' . $card_height . 'px; } </style>';
+            $html .= '<style>.' . $elem_class . '.contact-list-4-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: ' . $card_height . 'px; } </style>';
+            $html .= '<style> @media (max-width: 820px) { .' . $elem_class . '.contact-list-2-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: auto; } } </style>';
+            $html .= '<style> @media (max-width: 820px) { .' . $elem_class . '.contact-list-3-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: auto; } } </style>';
+            $html .= '<style> @media (max-width: 820px) { .' . $elem_class . '.contact-list-4-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: auto; } } </style>';
         }
         
         return $html;

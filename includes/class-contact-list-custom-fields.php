@@ -139,6 +139,14 @@ class myCustomFields {
             "scope"         => array( "contact" ),
             "capability"    => "edit_posts"
         ),
+        array(
+            "name"          => "city",
+            "title"         => "City",
+            "description"   => "",
+            "type"          => "city",
+            "scope"         => array( "contact" ),
+            "capability"    => "edit_posts"
+        ),
 
         array(
             "name"          => "address_line_1",
@@ -312,11 +320,15 @@ class myCustomFields {
             float: left;
           }
           .form-wrap .form-field-type-country {
-            width: 50%;
+            width: 33%;
             float: left;
           }
           .form-wrap .form-field-type-state {
-            width: 50%;
+            width: 33%;
+            float: left;
+          }
+          .form-wrap .form-field-type-city {
+            width: 33%;
             float: left;
           }
           .form-wrap .form-field-type-title {

@@ -54,6 +54,13 @@ class ShortcodeContactListSimple
                 'compare' => 'LIKE',
             );
         }
+        if ( isset( $_GET[CONTACT_LIST_CAT3] ) && $_GET[CONTACT_LIST_CAT3] ) {
+            $meta_query[] = array(
+                'key'     => '_cl_city',
+                'value'   => $_GET[CONTACT_LIST_CAT3],
+                'compare' => 'LIKE',
+            );
+        }
         $tax_query = [];
         
         if ( isset( $_GET['cl_cat'] ) && $_GET['cl_cat'] ) {

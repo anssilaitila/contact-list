@@ -59,7 +59,7 @@ class Contact_List_Public
     {
         wp_enqueue_style(
             $this->plugin_name,
-            CONTACT_LIST_URI . 'dist/css/main.css',
+            CONTACT_LIST_URI . 'dist/css/p.css',
             array(),
             $this->version,
             'all'
@@ -79,7 +79,7 @@ class Contact_List_Public
         );
         wp_register_script(
             $this->plugin_name,
-            CONTACT_LIST_URI . 'dist/js/main.js',
+            CONTACT_LIST_URI . 'dist/js/p.js',
             array( 'jquery' ),
             $this->version,
             false
