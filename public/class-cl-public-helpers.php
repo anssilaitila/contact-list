@@ -52,7 +52,7 @@ class ContactListPublicHelpers
                         $state = $c['_cl_state'][0];
                         $states[] = $state;
                         $states_for_dd[] = $state;
-                        if ( isset( $c['_cl_city'] ) && $c['_cl_city'] && !in_array( $c['_cl_city'][0], $state ) ) {
+                        if ( isset( $c['_cl_city'] ) && $c['_cl_city'] && !in_array( $c['_cl_city'][0], $states ) ) {
                             $states[$state][] = $c['_cl_city'][0];
                         }
                     }
@@ -61,11 +61,15 @@ class ContactListPublicHelpers
             
             }
             $link_country_and_state = 0;
-            sort( $countries_for_dd );
+            if ( isset( $countries_for_dd ) && is_array( $countries_for_dd ) ) {
+                sort( $countries_for_dd );
+            }
             $html .= '<select name="' . CONTACT_LIST_CAT1 . '" class="cl_select_v2 contact-list-cat1-sel" data-link-country-and-state="' . $link_country_and_state . '">';
             $html .= '<option value="">' . ContactListHelpers::getText( 'text_select_country', __( 'Select country', 'contact-list' ) ) . '</option>';
-            foreach ( $countries_for_dd as $country ) {
-                $html .= '<option value="' . $country . '" ' . (( isset( $_GET[CONTACT_LIST_CAT1] ) && $_GET[CONTACT_LIST_CAT1] == $country ? 'selected="selected"' : '' )) . '>' . $country . '</option>';
+            if ( isset( $countries_for_dd ) && is_array( $countries_for_dd ) ) {
+                foreach ( $countries_for_dd as $country ) {
+                    $html .= '<option value="' . $country . '" ' . (( isset( $_GET[CONTACT_LIST_CAT1] ) && $_GET[CONTACT_LIST_CAT1] == $country ? 'selected="selected"' : '' )) . '>' . $country . '</option>';
+                }
             }
             $html .= '</select>';
             $filter_active = 1;
@@ -81,13 +85,17 @@ class ContactListPublicHelpers
                     $states[] = $c['_cl_state'][0];
                 }
             }
-            sort( $states );
+            if ( isset( $states ) && is_array( $states ) ) {
+                sort( $states );
+            }
             $html .= '<select name="' . CONTACT_LIST_CAT2 . '" class="cl_select_v2 contact-list-cat2-sel" data-select-value="' . ContactListHelpers::getText( 'text_select_state', __( 'Select state', 'contact-list' ) ) . '" data-current-value="' . (( isset( $_GET[CONTACT_LIST_CAT2] ) ? $_GET[CONTACT_LIST_CAT2] : '' )) . '">';
             
             if ( !isset( $s['link_country_and_state'] ) ) {
                 $html .= '<option value="">' . ContactListHelpers::getText( 'text_select_state', __( 'Select state', 'contact-list' ) ) . '</option>';
-                foreach ( $states as $state ) {
-                    $html .= '<option value="' . $state . '" ' . (( isset( $_GET[CONTACT_LIST_CAT2] ) && $_GET[CONTACT_LIST_CAT2] == $state ? 'selected="selected"' : '' )) . '>' . $state . '</option>';
+                if ( isset( $states ) && is_array( $states ) ) {
+                    foreach ( $states as $state ) {
+                        $html .= '<option value="' . $state . '" ' . (( isset( $_GET[CONTACT_LIST_CAT2] ) && $_GET[CONTACT_LIST_CAT2] == $state ? 'selected="selected"' : '' )) . '>' . $state . '</option>';
+                    }
                 }
             }
             
@@ -105,13 +113,17 @@ class ContactListPublicHelpers
                     $cities[] = $c['_cl_city'][0];
                 }
             }
-            sort( $cities );
+            if ( isset( $cities ) && is_array( $cities ) ) {
+                sort( $cities );
+            }
             $html .= '<select name="' . CONTACT_LIST_CAT3 . '" class="cl_select_v2 contact-list-cat3-sel" data-select-value="' . ContactListHelpers::getText( 'text_select_city', __( 'Select city', 'contact-list' ) ) . '" data-current-value="' . (( isset( $_GET[CONTACT_LIST_CAT3] ) ? $_GET[CONTACT_LIST_CAT3] : '' )) . '">';
             
             if ( !isset( $s['link_country_and_state'] ) ) {
                 $html .= '<option value="">' . ContactListHelpers::getText( 'text_select_city', __( 'Select city', 'contact-list' ) ) . '</option>';
-                foreach ( $cities as $city ) {
-                    $html .= '<option value="' . $city . '" ' . (( isset( $_GET[CONTACT_LIST_CAT3] ) && $_GET[CONTACT_LIST_CAT3] == $city ? 'selected="selected"' : '' )) . '>' . $city . '</option>';
+                if ( isset( $cities ) && is_array( $cities ) ) {
+                    foreach ( $cities as $city ) {
+                        $html .= '<option value="' . $city . '" ' . (( isset( $_GET[CONTACT_LIST_CAT3] ) && $_GET[CONTACT_LIST_CAT3] == $city ? 'selected="selected"' : '' )) . '>' . $city . '</option>';
+                    }
                 }
             }
             
