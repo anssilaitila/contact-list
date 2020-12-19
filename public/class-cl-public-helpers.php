@@ -46,14 +46,21 @@ class ContactListPublicHelpers
                 
                 if ( isset( $c['_cl_country'][0] ) ) {
                     $country = ( isset( $countries[$c['_cl_country'][0]] ) ? $countries[$c['_cl_country'][0]] : [] );
-                    
                     if ( isset( $c['_cl_state'] ) && $c['_cl_state'] && !in_array( $c['_cl_state'][0], $country ) ) {
                         $countries[$c['_cl_country'][0]][] = $c['_cl_state'][0];
+                    }
+                    
+                    if ( isset( $c['_cl_state'] ) && $c['_cl_state'] && isset( $c['_cl_city'] ) && $c['_cl_city'] ) {
                         $state = $c['_cl_state'][0];
-                        $states[] = $state;
-                        $states_for_dd[] = $state;
-                        if ( isset( $c['_cl_city'] ) && $c['_cl_city'] && !in_array( $c['_cl_city'][0], $states ) ) {
-                            $states[$state][] = $c['_cl_city'][0];
+                        $city = $c['_cl_city'][0];
+                        
+                        if ( !in_array( $c['_cl_state'][0], $states ) ) {
+                            $states[] = $state;
+                            $states[$state] = [];
+                        }
+                        
+                        if ( !in_array( $city, $states[$state] ) ) {
+                            $states[$state][] = $city;
                         }
                     }
                 
