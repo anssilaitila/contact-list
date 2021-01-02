@@ -3,7 +3,7 @@ Contributors: anssilaitila, freemius
 Tags: business directory, staff directory, address book, chamber of commerce, company directory
 Requires at least: 4.0.0
 Tested up to: 5.6
-Stable tag: 2.9.24
+Stable tag: 2.9.25
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,7 +15,7 @@ Create an address book or a company directory with ease. With this directory plu
 
 Send email directly to contacts using a built-in form on the front-end (featuring reCAPTCHA). Contact's email address can be completely hidden in the Pro version but still email can be sent to the contact.
 
-**14 days free trial available for Pro version, no credit card required.**
+**7-day free trial available for Pro version, no credit card required.**
 
 See live demos at [contactlistpro.com](https://www.contactlistpro.com/contact-list/).
 
@@ -49,7 +49,7 @@ See live demos at [contactlistpro.com](https://www.contactlistpro.com/contact-li
 * LinkedIn URL
 * Twitter URL
 * Facebook URL
-* Address (incl. country and state)
+* Address (incl. country, state and city in separate fields)
 * Custom fields
 * WYSIWYG editor
 * Category
@@ -87,6 +87,36 @@ Contact author [here](https://www.contactlistpro.com/support/).
 1. Activate the plugin from WordPress plugin directory or manually upload it to your site
 2. See the Help / Support page for further instructions
 
+== Frequently Asked Questions ==
+
+= Can I use the plugin for business listing? =
+
+Yes! Contact List is suitable for listing any kind of contact information. Basically you can use it for any kind of online directory.
+
+= Can I use it for listing company staff? =
+
+Yes! Contact List is the perfect WP staff list plugin for creating any kind of member directory. 
+
+= Do you offer support? =
+
+Of course! We offer support in the forums here on WordPress.org and if you have a paid subscription we offer priority email support.
+
+= Does Contact List Free or Contact List Pro work with some other plugin? =
+
+You may contact us directly [here](https://www.contactlistpro.com/support/) if there's any kind of compatibility issue with some other plugin. We will then do our best to solve that issue.
+
+= Can the visitors add contacts? =
+
+That kind of contact form is a feature in the Pro version. Using that form you can collect contact data with a publicly available form from anyone who has access to the page that the form is on.
+
+= Can I use the plugin as a contact manager? =
+
+Yes, you can use it as a contact manager. You don't necessarily have to add any publicly available list of contacts on your site, you can just use the admin tools to manage contacts.
+
+= Is this a business directory, staff directory, yellow pages directory or what? =
+
+You can use the Contact List plugin for any purpose that suits your needs. That could be yellow pages, business listing, member directory, staff list or pretty much anything you can think of. The basic idea is to present a user friendly list of contacts on your site. :)
+
 == Screenshots ==
 
 1. List of contacts on your site
@@ -97,6 +127,9 @@ Contact author [here](https://www.contactlistpro.com/support/).
 6. Contact management
 
 == Changelog ==
+
+= 2.9.25 - 2021-01-02 =
+* Minor improvements and bug fixes
 
 = 2.9.24 - 2020-12-19 =
 * New field: City. Works together with country and state.

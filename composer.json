@@ -9,6 +9,7 @@
     "wp-coding-standards/wpcs": "^1.0"
   },
   "require": {
-    "phpmd/phpmd": "^2.8"
+    "phpmd/phpmd": "^2.8",
+    "htmlburger/carbon-fields": "^3.2"
   }
 }
