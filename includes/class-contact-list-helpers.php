@@ -2,6 +2,41 @@
 
 class ContactListHelpers
 {
+    public static function addFeaturedImage(
+        $contact_id,
+        $upload,
+        $uploaded_type,
+        $filename
+    )
+    {
+        
+        if ( $contact_id && $upload && $uploaded_type && $filename ) {
+            if ( !function_exists( 'wp_crop_image' ) ) {
+                include ABSPATH . 'wp-admin/includes/image.php';
+            }
+            switch ( $uploaded_type ) {
+                case 'image/jpeg':
+                case 'image/png':
+                case 'image/gif':
+                    $image_url = $upload['file'];
+                    // Prepare an array of post data for the attachment.
+                    $attachment = array(
+                        'guid'           => $image_url,
+                        'post_mime_type' => $uploaded_type,
+                        'post_title'     => $filename,
+                        'post_content'   => '',
+                        'post_status'    => 'inherit',
+                    );
+                    $attach_id = wp_insert_attachment( $attachment, $image_url, $contact_id );
+                    $attach_data = wp_generate_attachment_metadata( $attach_id, $image_url );
+                    wp_update_attachment_metadata( $attach_id, $attach_data );
+                    set_post_thumbnail( $contact_id, $attach_id );
+                    break;
+            }
+        }
+    
+    }
+    
     public static function getText( $text_id, $default_text )
     {
         $s = get_option( 'contact_list_settings' );
@@ -65,7 +100,7 @@ class ContactListHelpers
         $html .= '<div class="cl-modal-container">';
         $html .= '<div class="cl-modal">';
         $html .= '<div class="close-modal-container">';
-        $html .= '<a href="" class="cl-close-modal">x</a>';
+        $html .= '<a href="" class="cl-close-modal">&#10006;</a>';
         $html .= '</div>';
         $html .= '<h3>' . __( 'Send message', 'contact-list' ) . '</h3>';
         $html .= '<form class="contact-list-send-single">';
@@ -202,19 +237,19 @@ class ContactListHelpers
         }
         
         if ( isset( $c['_cl_phone'] ) ) {
-            $phone_href = preg_replace( '/[^0-9]/', '', $c['_cl_phone'][0] );
+            $phone_href = preg_replace( '/[^0-9\\,]/', '', $c['_cl_phone'][0] );
             $html .= '<span class="contact-list-phone"><a href="tel:' . $phone_href . '">' . $c['_cl_phone'][0] . '</a></span>';
         }
         
         
         if ( isset( $c['_cl_phone_2'] ) ) {
-            $phone_href = preg_replace( '/[^0-9]/', '', $c['_cl_phone_2'][0] );
+            $phone_href = preg_replace( '/[^0-9\\,]/', '', $c['_cl_phone_2'][0] );
             $html .= '<span class="contact-list-phone"><a href="tel:' . $phone_href . '">' . $c['_cl_phone_2'][0] . '</a></span>';
         }
         
         
         if ( isset( $c['_cl_phone_3'] ) ) {
-            $phone_href = preg_replace( '/[^0-9]/', '', $c['_cl_phone_3'][0] );
+            $phone_href = preg_replace( '/[^0-9\\,]/', '', $c['_cl_phone_3'][0] );
             $html .= '<span class="contact-list-phone"><a href="tel:' . $phone_href . '">' . $c['_cl_phone_3'][0] . '</a></span>';
         }
         

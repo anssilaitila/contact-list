@@ -1190,6 +1190,17 @@ class ContactListSettings
         )
         );
         add_settings_field(
+            'contact-list-' . $only_pro . 'pf_hide_photo',
+            __( 'Hide', 'contact-list' ) . ' ' . __( 'photo', 'contact-list' ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_public_form',
+            array(
+            'label_for'  => 'contact-list-' . $only_pro . 'pf_hide_photo',
+            'field_name' => $only_pro . 'pf_hide_photo',
+        )
+        );
+        add_settings_field(
             'contact-list-' . $only_pro . 'pf_hide_address',
             __( 'Hide', 'contact-list' ) . ' ' . __( 'address', 'contact-list' ),
             array( $this, 'checkbox_render' ),
@@ -1820,7 +1831,7 @@ class ContactListSettings
             $url = get_admin_url() . 'edit.php?post_type=contact';
             $text = sprintf( wp_kses(
                 /* translators: %s: link to contact management */
-                __( 'Insert contacts from <a href="%s" target="_blank">contact management</a>.', 'contact-list' ),
+                __( 'Insert contacts from the <a href="%s" target="_blank">contact management</a>.', 'contact-list' ),
                 array(
                     'a' => array(
                     'href'   => array(),
@@ -1831,7 +1842,7 @@ class ContactListSettings
             echo  $text ;
             echo  '</span></li>' ;
             echo  '<li><span>' ;
-            $text = wp_kses( __( 'Insert the shortcode <span class="contact-list-mini-shortcode">[contact_list]</span> or <span class="contact-list-mini-shortcode">[contact_list_simple]</span> to the content editor of any page.', 'contact-list' ), array(
+            $text = wp_kses( __( 'Insert the shortcode <span class="contact-list-mini-shortcode">[contact_list]</span> or <span class="contact-list-mini-shortcode">[contact_list_simple]</span> to the content editor of any page or post.', 'contact-list' ), array(
                 'span' => array(
                 'class' => array(),
             ),

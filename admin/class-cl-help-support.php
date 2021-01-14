@@ -15,6 +15,8 @@ class ContactListHelpSupport {
 
   public function register_support_page_callback() {
     ?>
+    
+    <?php $num = 0 ?>
 
     <link rel="stylesheet" href="<?= CONTACT_LIST_URI ?>dist/tipso.min.css">
     <script src="<?= CONTACT_LIST_URI ?>dist/tipso.min.js"></script>
@@ -28,184 +30,49 @@ class ContactListHelpSupport {
           <p><?= __('Any feedback is welcome. You may contact the author at', 'contact-list') . ' <a href="https://www.contactlistpro.com/support/" target="_blank">contactlistpro.com/support/</a> ' . __('or by email:', 'contact-list') ?> <a href="javascript:location='mailto:\u0063\u006f\u006e\u0074\u0061\u0063\u0074\u0040\u0074\u0061\u006d\u006d\u0065\u0072\u0073\u006f\u0066\u0074\u002e\u0063\u006f\u006d';void 0"><script type="text/javascript">document.write('\u0063\u006f\u006e\u0074\u0061\u0063\u0074\u0040\u0074\u0061\u006d\u006d\u0065\u0072\u0073\u006f\u0066\u0074\u002e\u0063\u006f\u006d')</script></a></p>
       </div>
 
-      <span class="contact-list-shortcodes-link"><?= __('A complete list of available shortcodes can be found at', 'contact-list') ?> <a href="https://www.contactlistpro.com/support/shortcodes/" target="_blank">https://www.contactlistpro.com/support/shortcodes/</a></span>
-
-      <h2><?= __('Default contact list', 'contact-list'); ?></h2>
-
-      <ol>
-        <li><?= __('Add the contacts via the All Contacts page.', 'contact-list'); ?></li>
-        <li><?= __('Insert the shortcode', 'contact-list') ?>
-          <span class="contact-list-shortcode contact-list-shortcode-1" data-tooltip-class="contact-list-shortcode-1">[contact_list]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-1"><?= __('Copy', 'contact-list') ?></button>
-          <?= __('to the content editor of any page you wish the contact list to appear.', 'contact-list'); ?>
-        </li>
-        <li><?= __('Additional parameters', 'contact-list'); ?>
-            <ul class="contact-list-admin-ul">
-                <li><?= __('Hide search form:', 'contact-list') ?>
-                  <span class="contact-list-shortcode contact-list-shortcode-2">[contact_list hide_search=1]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-2"><?= __('Copy', 'contact-list') ?></button>
-                </li>
-                <li><?= __('Order by first name:', 'contact-list') ?>
-                  <span class="contact-list-shortcode contact-list-shortcode-14">[contact_list order_by=first_name]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-14"><?= __('Copy', 'contact-list') ?></button>
-                </li>
-                <li><?= __('Order by last name:', 'contact-list') ?>
-                  <span class="contact-list-shortcode contact-list-shortcode-15">[contact_list order_by=last_name]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-15"><?= __('Copy', 'contact-list') ?></button>
-                </li>
-                <li><?= __('Layout "2 columns"', 'contact-list') ?>:
-                  <span class="contact-list-shortcode contact-list-shortcode-3">[contact_list layout=2-columns]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-3"><?= __('Copy', 'contact-list') ?></button>
-                </li>
-                <li><?= __('Layout "3 columns"', 'contact-list') ?> (<?= __('without contact images', 'contact-list') ?>):
-                  <span class="contact-list-shortcode contact-list-shortcode-4">[contact_list layout=3-columns]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-4"><?= __('Copy', 'contact-list') ?></button>
-                </li>
-                <li><?= __('Layout "4 columns"', 'contact-list') ?> (<?= __('without contact images', 'contact-list') ?>):
-                  <span class="contact-list-shortcode contact-list-shortcode-5">[contact_list layout=4-columns]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-5"><?= __('Copy', 'contact-list') ?></button>
-                </li>
-                <li><?= __('Multiple parameters:', 'contact-list') ?>
-                  <span class="contact-list-shortcode contact-list-shortcode-6">[contact_list layout=2-columns hide_search=1]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-6"><?= __('Copy', 'contact-list') ?></button>
-                </li>
+      <div class="contact-list-admin-section">
+        <h2><?= __('Instructions for basic usage', 'contact-list') ?></h2>
+        <ol>
+          <li>
+            <?php
+            $url = get_admin_url() . 'edit.php?post_type=contact';
+            $text = sprintf(
+              wp_kses(
+                /* translators: %s: link to file management */
+                __('Add the contacts from the <a href="%s" target="_blank">contact management</a>. You can add categories, country, state and city directly to the contact.', 'contact-list'),
+                array('a' => array('href' => array(), 'target' => array()))
+              ),
+              esc_url($url) 
+            );
+            echo $text;
+            ?>
+          </li>
+          <li>
+            <?= __('Insert either one of these shortcodes to any page or post:', 'contact-list'); ?><br />
+        
+            <ul class="contact-list-admin-ul-v2">
+              <li><?= __('The default contact list:', 'contact-list') ?><br /><?php $num++ ?><span class="contact-list-shortcode contact-list-shortcode-only contact-list-shortcode-<?= $num ?>" data-tooltip-class="contact-list-shortcode-<?= $num ?>">[contact_list]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-<?= $num ?>"><?= __('Copy', 'contact-list') ?></button></li>
+              <li><?= __('A simpler list of contacts:', 'contact-list') ?><br /><?php $num++ ?><span class="contact-list-shortcode contact-list-shortcode-only contact-list-shortcode-<?= $num ?>" data-tooltip-class="contact-list-shortcode-<?= $num ?>">[contact_list_simple]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-<?= $num ?>"><?= __('Copy', 'contact-list') ?></button></li>
             </ul>
-        </li>
-      </ol>
-
-      <h2><?= __('Simple contact list', 'contact-list'); ?></h2>
-
-      <ol>
-        <li><?= __('Add the contacts via the All Contacts page.', 'contact-list'); ?></li>
-        <li><?= __('Insert the shortcode', 'contact-list') ?>
-          <span class="contact-list-shortcode contact-list-shortcode-7">[contact_list_simple]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-7"><?= __('Copy', 'contact-list') ?></button>
-          <?= __('to the content editor of any page you wish the contact list to appear.', 'contact-list'); ?>
-          <ul class="contact-list-admin-ul">
-            <li><?= __('Show filters:', 'contact-list') ?>
-              <?php if (ContactListHelpers::isPremium() == 1): ?>  
-                <span class="contact-list-pro-only-inline-inactive">Pro</span>
-              <?php else: ?>
-                <a href="<?= get_admin_url() ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">Pro</a>
-              <?php endif; ?>
-              <span class="contact-list-shortcode contact-list-shortcode-18">[contact_list_simple show_filters=1]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-18"><?= __('Copy', 'contact-list') ?></button>
-            </li>
-            <li><?= __('Show contacts from a specific group:', 'contact-list') ?>
-              <?php if (ContactListHelpers::isPremium() == 1): ?>  
-                <span class="contact-list-pro-only-inline-inactive">Pro</span>
-              <?php else: ?>
-                <a href="<?= get_admin_url() ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">Pro</a>
-              <?php endif; ?>
-              <span class="contact-list-shortcode contact-list-shortcode-99">[contact_list_simple group=GROUP_SLUG]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-99"><?= __('Copy', 'contact-list') ?></button>
-            </li>
-          </ul>
-        </li>
-      </ol>
-
-      <h2>
-        <?= __('Parameters for all shortcodes', 'contact-list'); ?>
-        <?php if (ContactListHelpers::isPremium() == 1): ?>  
-          <span class="contact-list-pro-only-inline-inactive">Pro</span>
-        <?php else: ?>
-          <a href="<?= get_admin_url() ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">Pro</a>
-        <?php endif; ?>        
-      </h2>
-
-      <ol>
-        <li>
-          <?= __('Card height in pixels', 'contact-list') ?>
-          <ul class="contact-list-admin-ul">
-            <li>card_height=200</li>
-          </ul>
-        </li>
-        <li>
-          <?= __('Exclude certain contacts (comma separated list of contact id\'s)', 'contact-list') ?>
-          <ul class="contact-list-admin-ul">
-            <li>exclude="123,456,789"</li>
-          </ul>
-        </li>
-      </ol>
-      
-      <h2>
-        <?= __('Contacts with groups', 'contact-list'); ?>
-        <?php if (ContactListHelpers::isPremium() == 1): ?>  
-          <span class="contact-list-pro-only-inline-inactive">Pro</span>
-        <?php else: ?>
-          <a href="<?= get_admin_url() ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">Pro</a>
-        <?php endif; ?>
-      </h2>
-      <ol>
-        <li><?= __('Add the groups via the Groups page. There may be groups under groups (hierarchial groups, 2 or more levels).', 'contact-list'); ?></li>
-        <li><?= __('Add the contacts via the All Contacts page. You may select the appropriate group(s) at this point.', 'contact-list'); ?></li>
-        <li><?= __('Insert the shortcode', 'contact-list') ?>
-          <span class="contact-list-shortcode contact-list-shortcode-8">[contact_list_groups]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-8"><?= __('Copy', 'contact-list') ?></button>        
-          <?= __('to the content editor of any page you wish the group list to appear. When a user selects a group, then a list of contacts belonging to that group is displayed. Also, if there are subgroups under that group, those will be displayed.', 'contact-list'); ?></li>
-        <li><?= __('Additional parameters', 'contact-list'); ?>
-            <ul class="contact-list-admin-ul">
-                <li><?= __('Order by first name:', 'contact-list') ?>
-                  <span class="contact-list-shortcode contact-list-shortcode-16">[contact_list_groups order_by=first_name]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-16"><?= __('Copy', 'contact-list') ?></button>
-                </li>
-                <li><?= __('Order by last name:', 'contact-list') ?>
-                  <span class="contact-list-shortcode contact-list-shortcode-17">[contact_list_groups order_by=last_name]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-17"><?= __('Copy', 'contact-list') ?></button>
-                </li>
-            </ul>
-        </li>
-      </ol>
-
-      <h2>
-        <?= __('Contacts from specific group', 'contact-list'); ?>
-        <?php if (ContactListHelpers::isPremium() == 1): ?>  
-          <span class="contact-list-pro-only-inline-inactive">Pro</span>
-        <?php else: ?>
-          <a href="<?= get_admin_url() ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">Pro</a>
-        <?php endif; ?>
-      </h2>
-      <ol>
-        <li><?= __('Insert the shortcode', 'contact-list') ?>
-          <span class="contact-list-shortcode contact-list-shortcode-9">[contact_list_groups group=GROUP_SLUG]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-9"><?= __('Copy', 'contact-list') ?></button>        
-          <?= __('to the content editor of any page you wish the contact list to appear. Replace GROUP_SLUG with the appropriate slug that can be found from group management.', 'contact-list'); ?>
-        </li>
-        <li><?= __('Additional parameters', 'contact-list'); ?>
-          <ul class="contact-list-admin-ul">
-            <li><?= __('Show filters', 'contact-list') ?>: <span class="contact-list-shortcode contact-list-shortcode-13">[contact_list_groups group=GROUP_SLUG show_filters=1]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-13"><?= __('Copy', 'contact-list') ?></button></li>
-          </ul>
-        </li>
-      </ol>
-
-      <h2>
-        <?= __('Single contact', 'contact-list'); ?>
-        <?php if (ContactListHelpers::isPremium() == 1): ?>  
-          <span class="contact-list-pro-only-inline-inactive">Pro</span>
-        <?php else: ?>
-          <a href="<?= get_admin_url() ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">Pro</a>
-        <?php endif; ?>
-      </h2>
-      <ol>
-        <li><?= __('Insert the shortcode', 'contact-list') ?>
-          <span class="contact-list-shortcode contact-list-shortcode-10">[contact_list contact=CONTACT_ID]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-10"><?= __('Copy', 'contact-list') ?></button>
-          <?= __('to the content editor of any page you wish the contact to appear. Replace CONTACT_ID with the appropriate id that can be found from contact management. There\'s a column "ID" in the All Contacts -page, which contains the numeric value.' , 'contact-list'); ?></li>
-      </ol>
-
-      <h2>
-        <?= __('Allow visitors to add new contacts', 'contact-list'); ?>
-        <?php if (ContactListHelpers::isPremium() == 1): ?>  
-          <span class="contact-list-pro-only-inline-inactive">Pro</span>
-        <?php else: ?>
-          <a href="<?= get_admin_url() ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">Pro</a>
-        <?php endif; ?>
-      </h2>
-      <ol>
-        <li><?= __('Insert the shortcode', 'contact-list') ?> 
-          <span class="contact-list-shortcode contact-list-shortcode-11">[contact_list_form]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-11"><?= __('Copy', 'contact-list') ?></button>
-          <?= __('to the page you wish the form to appear on.', 'contact-list'); ?></li>
-        <li><?= __('When a user submits the form, a new contact is saved to the contacts. The status of that contact is "Pending Review" and a site administrator must publish/edit/delete the contact.', 'contact-list'); ?></li>
-      </ol>
-
-      <h3>
-        <?= __('Only a search form that searches from all contacts', 'contact-list'); ?>
-        <?php if (ContactListHelpers::isPremium() == 1): ?>  
-          <span class="contact-list-pro-only-inline-inactive">Pro</span>
-        <?php else: ?>
-          <a href="<?= get_admin_url() ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">Pro</a>
-        <?php endif; ?>
-      </h2>
-      <ol>
-        <li><?= __('Insert the shortcode', 'contact-list') ?> 
-          <span class="contact-list-shortcode contact-list-shortcode-12">[contact_list_search]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-12"><?= __('Copy', 'contact-list') ?></button>
-          <?= __('to the page you wish the view to appear on.', 'contact-list'); ?></li>
-      </ol>
-
+  
+            <strong>
+            <?php
+            $url = get_admin_url() . 'edit.php?post_type=contact&page=contact-list-shortcodes';
+            $text = sprintf(
+              wp_kses(
+                /* translators: %s: link to the list of available shortcodes */
+                __('A complete list of available shortcodes can be found <a href="%s">here</a>.', 'contact-list'),
+                array('a' => array('href' => array(), 'target' => array()))
+              ),
+              esc_url($url) 
+            );
+            echo $text;
+            ?>
+            </strong>
+            
+          </li>
+        </ol>
+      </div>
 
       <script src="<?= CONTACT_LIST_URI ?>dist/clipboard.min.js"></script>
   

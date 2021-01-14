@@ -112,6 +112,7 @@ class Contact_List
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-admin-inline-styles.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-admin-inline-scripts.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-settings.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-shortcodes.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-help-support.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-import-export.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-printable.php';
@@ -171,6 +172,7 @@ class Contact_List
         $plugin_admin_inline_styles = new ContactListAdminInlineStyles();
         $plugin_admin_inline_scripts = new ContactListAdminInlineScripts();
         $plugin_settings = new ContactListSettings();
+        $plugin_shortcodes = new ContactListShortcodes();
         $plugin_help_support = new ContactListHelpSupport();
         $plugin_import_export = new ContactListImportExport();
         $plugin_printable = new ContactListPrintable();
@@ -253,6 +255,8 @@ class Contact_List
         $this->loader->add_action( 'admin_menu', $plugin_settings, 'add_settings_link' );
         $this->loader->add_action( 'admin_menu', $plugin_settings, 'contact_list_add_admin_menu' );
         $this->loader->add_action( 'admin_init', $plugin_settings, 'contact_list_settings_init' );
+        // Shortcodes
+        $this->loader->add_action( 'admin_menu', $plugin_shortcodes, 'register_shortcodes_page' );
         // Help & support
         $this->loader->add_action( 'admin_menu', $plugin_help_support, 'register_support_page' );
         // Notifications

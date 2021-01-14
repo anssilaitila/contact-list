@@ -255,7 +255,7 @@ class ContactListPublicHelpers
             $html .= '<div class="contact-list-simple-list-col"><span>';
             
             if ( isset( $c['_cl_phone'] ) ) {
-                $phone_href = preg_replace( '/[^0-9]/', '', $c['_cl_phone'][0] );
+                $phone_href = preg_replace( '/[^0-9\\,]/', '', $c['_cl_phone'][0] );
                 $html .= '<a href="tel:' . $phone_href . '">' . $c['_cl_phone'][0] . '</a>';
             }
             

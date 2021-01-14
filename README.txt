@@ -3,7 +3,7 @@ Contributors: anssilaitila, freemius
 Tags: business directory, staff directory, address book, chamber of commerce, company directory
 Requires at least: 4.0.0
 Tested up to: 5.6
-Stable tag: 2.9.25
+Stable tag: 2.9.26
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -127,6 +127,10 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 6. Contact management
 
 == Changelog ==
+
+= 2.9.26 - 2021-01-14 =
+* Photo added to public contact form
+* CSS fixes
 
 = 2.9.25 - 2021-01-02 =
 * Minor improvements and bug fixes
