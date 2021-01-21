@@ -164,6 +164,7 @@ class Contact_List
      */
     private function define_admin_hooks()
     {
+        $s = get_option( 'contact_list_settings' );
         $plugin_admin = new Contact_List_Admin( $this->get_plugin_name(), $this->get_version() );
         $plugin_admin_send_email = new ContactListAdminSendEmail();
         $plugin_admin_mail_log = new ContactListAdminMailLog();
@@ -253,6 +254,9 @@ class Contact_List
         $this->loader->add_action( 'admin_menu', $plugin_admin_mail_log, 'register_mail_log_page' );
         // Settings
         $this->loader->add_action( 'admin_menu', $plugin_settings, 'add_settings_link' );
+        if ( !isset( $s['hide_affiliation_link'] ) ) {
+            $this->loader->add_action( 'admin_menu', $plugin_settings, 'add_affiliation_link' );
+        }
         $this->loader->add_action( 'admin_menu', $plugin_settings, 'contact_list_add_admin_menu' );
         $this->loader->add_action( 'admin_init', $plugin_settings, 'contact_list_settings_init' );
         // Shortcodes

@@ -191,6 +191,7 @@ class ContactListPublicHelpers
     
     public static function contactListSimpleMarkup( $wp_query, $include_children = 0 )
     {
+        $s = get_option( 'contact_list_settings' );
         $html = '';
         $html .= '<div class="contact-list-search">';
         $html .= '<div class="contact-list-simple-list">';
@@ -207,6 +208,73 @@ class ContactListPublicHelpers
         $html .= '</div>';
         $html .= '</div>';
         wp_reset_postdata();
+        return $html;
+    }
+    
+    public static function contactListSimpleMarkupTitles()
+    {
+        $s = get_option( 'contact_list_settings' );
+        $html = '';
+        $html .= '<div class="contact-list-simple-list-row">';
+        $contact_fullname = '';
+        $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-name"><span>' . __( 'Name', 'contact-list' ) . '</span></div>';
+        $html .= '<div class="contact-list-simple-list-col"><span>';
+        $html .= ContactListHelpers::getText( 'job_title_title', __( 'Job title', 'contact-list' ) );
+        $html .= '</span></div>';
+        
+        if ( !isset( $s['simple_list_hide_email'] ) ) {
+            $html .= '<div class="contact-list-simple-list-col"><span>';
+            $html .= ContactListHelpers::getText( 'email_title', __( 'Email', 'contact-list' ) );
+            $html .= '</span></div>';
+        }
+        
+        
+        if ( !isset( $s['simple_list_hide_phone_1'] ) ) {
+            $html .= '<div class="contact-list-simple-list-col"><span>';
+            $html .= ContactListHelpers::getText( 'phone_title', __( 'Phone', 'contact-list' ) );
+            $html .= '</span></div>';
+        }
+        
+        
+        if ( isset( $s['simple_list_show_city'] ) ) {
+            $html .= '<div class="contact-list-simple-list-col">';
+            $html .= ContactListHelpers::getText( 'city_title', __( 'City', 'contact-list' ) );
+            $html .= '</div>';
+        }
+        
+        
+        if ( !isset( $s['simple_list_hide_some_links'] ) ) {
+            $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-some">';
+            $html .= __( 'Social media', 'contact-list' );
+            $html .= '</div>';
+        }
+        
+        $custom_fields = [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ];
+        foreach ( $custom_fields as $n ) {
+            
+            if ( isset( $s['simple_list_show_custom_field_' . $n] ) ) {
+                $html .= '<div class="contact-list-simple-list-col"><span>';
+                $cf_field_title = ( isset( $s['custom_field_' . $n . '_title'] ) && $s['custom_field_' . $n . '_title'] ? $s['custom_field_' . $n . '_title'] : '' );
+                $html .= $cf_field_title;
+                $html .= '</span></div>';
+            }
+        
+        }
+        
+        if ( isset( $s['simple_list_show_send_message'] ) ) {
+            $html .= '<div class="contact-list-simple-list-col cl-align-right"><span>';
+            $html .= '';
+            $html .= '</span></div>';
+        }
+        
+        $html .= '</div>';
         return $html;
     }
     
@@ -259,6 +327,15 @@ class ContactListPublicHelpers
                 $html .= '<a href="tel:' . $phone_href . '">' . $c['_cl_phone'][0] . '</a>';
             }
             
+            $html .= '</span></div>';
+        }
+        
+        
+        if ( isset( $s['simple_list_show_city'] ) ) {
+            $html .= '<div class="contact-list-simple-list-col"><span>';
+            if ( isset( $c['_cl_city'] ) ) {
+                $html .= $c['_cl_city'][0];
+            }
             $html .= '</span></div>';
         }
         

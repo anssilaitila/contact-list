@@ -1,9 +1,9 @@
 === WordPress Business Directory, Staff Directory and Address Book Plugin - Contact List ===
 Contributors: anssilaitila, freemius
-Tags: business directory, staff directory, address book, chamber of commerce, company directory
+Tags: business directory, business listing, staff directory, staff list, address book, company directory, church directory, contact directory, directory, contacts, directory plugin, chamber of commerce
 Requires at least: 4.0.0
 Tested up to: 5.6
-Stable tag: 2.9.26
+Stable tag: 2.9.27
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -18,6 +18,33 @@ Send email directly to contacts using a built-in form on the front-end (featurin
 **7-day free trial available for Pro version, no credit card required.**
 
 See live demos at [contactlistpro.com](https://www.contactlistpro.com/contact-list/).
+
+= Contact List Free features: =
+* <strong>Send email directly to contacts from the frontend form</strong>
+* <strong>2 different views: a complete list of all contact data and a simpler table type view</strong>
+* Obfuscated emails to prevent spam
+* Contacts may belong to groups
+* Fast search targeting all contacts
+* Filter contacts by country, state, city and category (country and state can be renamed and used for any kind of information)
+* <strong>Country and state dropdowns are generated automatically from contact data</strong>
+* 1 custom field
+* Choose a layout from 4 different ones
+* All sent mail is logged
+* Printable contact list
+
+= Contact List Pro features: =
+* Multiple different shortcodes/views for various use cases
+* Support for pagination
+* Contact database may be built with publicly available form
+* 6 custom fields and WYSIWYG editor
+* Settings available for customization
+* Send email to all contacts or contacts in a specific group
+* reCAPTCHA can be activated to public contact forms
+* Excel import: <strong>Import contacts from CSV file</strong>
+* Excel export: <strong>Export contacts to a CSV file</strong>
+* Customize fields in any way: change titles and hide specific fields from public form or admin area
+* Request contacts to update their existing contact info simply clicking a button
+* <strong>More features on the way based on user feedback</strong>
 
 = Some use cases for this plugin: =
 * Address book
@@ -55,30 +82,6 @@ See live demos at [contactlistpro.com](https://www.contactlistpro.com/contact-li
 * Category
 * Photo / image
 * Multiple custom fields
-
-= Contact List Free features: =
-* Obfuscated emails to prevent spam
-* Contacts may belong to groups
-* Fast search targeting all contacts
-* Filter contacts by country, state and category (country and state can be renamed and used for any kind of information)
-* 1 custom field
-* Choose a layout from 4 different ones
-* All sent mail is logged
-* Printable contact list
-
-= Contact List Pro features: =
-* Multiple different shortcodes/views for various use cases
-* Support for pagination
-* Contact database may be built with publicly available form
-* 6 custom fields and WYSIWYG editor
-* Settings available for customization
-* Send email to all contacts or contacts in a specific group
-* reCAPTCHA can be activated to public contact forms
-* Excel import: Import contacts from CSV file
-* Excel export: Export contacts to a CSV file
-* Customize fields in any way: change titles and hide specific fields from public form or admin area
-* Request contacts to update their existing contact info simply clicking a button
-* More features on the way based on user feedback
 
 Contact author [here](https://www.contactlistpro.com/support/).
 
@@ -127,6 +130,13 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 6. Contact management
 
 == Changelog ==
+
+= 2.9.27 - 2021-01-20 =
+* (Free and Pro) Affiliation program introduced. Also a new setting (Pro): "Hide affiliation link"
+* (Pro) Fix to the import tool: line endings in the CSV file are now detected in a more reliable way
+* (Pro) New setting for simple list: "Show titles for columns"
+* (Pro) New setting for simple list: "Show city"
+* (Pro) 2 new settings for sent emails: "Email footer text" and "Remove email footer completely"
 
 = 2.9.26 - 2021-01-14 =
 * Photo added to public contact form

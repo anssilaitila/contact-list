@@ -186,6 +186,8 @@ class ContactListAdminSendEmail {
 
   public function cl_send_mail() {
 
+    $s = get_option('contact_list_settings');
+
     $subject = isset($_POST['subject']) ? $_POST['subject'] : '';
     $sender_name = isset($_POST['sender_name']) ? $_POST['sender_name'] : '';
     $sender_email = isset($_POST['sender_email']) ? $_POST['sender_email'] : '';
@@ -194,7 +196,10 @@ class ContactListAdminSendEmail {
     $reply_to = isset($_POST['reply_to']) ? $_POST['reply_to'] : '';
 
     $body = isset($_POST['body']) ? $_POST['body'] : '';
-    $body .= '<br /><br />-- <br />' . __('This mail was sent using Contact List Pro', 'contact-list');
+
+    if (!isset($s['remove_email_footer'])) {
+      $body .= '<br /><br />-- <br />' . ContactListHelpers::getText('text_email_footer', __('This mail was sent using Contact List Pro', 'contact-list'));
+    }
 
     $headers = ['Content-Type: text/html; charset=UTF-8'];
     

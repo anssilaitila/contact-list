@@ -112,6 +112,17 @@ class ContactListSettings
             'field_name' => 'hide_send_email_button',
         )
         );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'hide_affiliation_link',
+            __( 'Hide affiliation link', 'contact-list' ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_section_general',
+            array(
+            'label_for'  => 'contact-list-' . $only_pro . 'hide_affiliation_link',
+            'field_name' => $only_pro . 'hide_affiliation_link',
+        )
+        );
         $tab = 2;
         add_settings_section(
             'contact-list_tab_' . $tab,
@@ -319,6 +330,29 @@ class ContactListSettings
             'label_for'   => 'contact-list-' . $only_pro . 'recipient_email',
             'field_name'  => $only_pro . 'recipient_email',
             'placeholder' => '',
+        )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'remove_email_footer',
+            __( 'Remove email footer completely', 'contact-list' ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+            'label_for'  => 'contact-list-' . $only_pro . 'remove_email_footer',
+            'field_name' => $only_pro . 'remove_email_footer',
+        )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'text_email_footer',
+            __( 'Email footer text', 'contact-list' ),
+            array( $this, 'input_render' ),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+            'label_for'   => 'contact-list-' . $only_pro . 'text_email_footer',
+            'field_name'  => $only_pro . 'text_email_footer',
+            'placeholder' => 'This mail was sent using Contact List Pro',
         )
         );
         $tab = 4;
@@ -1261,6 +1295,17 @@ class ContactListSettings
             'contact-list'
         );
         add_settings_field(
+            'contact-list-' . $only_pro . 'simple_list_show_titles_for_columns',
+            __( 'Show titles for columns', 'contact-list' ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_simple_list',
+            array(
+            'label_for'  => 'contact-list-' . $only_pro . 'simple_list_show_titles_for_columns',
+            'field_name' => $only_pro . 'simple_list_show_titles_for_columns',
+        )
+        );
+        add_settings_field(
             'contact-list-simple_list_hide_job_title',
             __( 'Hide', 'contact-list' ) . ' ' . __( 'job title', 'contact-list' ),
             array( $this, 'checkbox_render' ),
@@ -1313,6 +1358,17 @@ class ContactListSettings
             array(
             'label_for'  => 'contact-list-simple_list_hide_some_links',
             'field_name' => 'simple_list_hide_some_links',
+        )
+        );
+        add_settings_field(
+            'contact-list-simple_list_show_city',
+            __( 'Show', 'contact-list' ) . ' ' . __( 'city', 'contact-list' ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_simple_list',
+            array(
+            'label_for'  => 'contact-list-simple_list_show_city',
+            'field_name' => 'simple_list_show_city',
         )
         );
         $custom_fields = [ 1 ];
@@ -1923,28 +1979,28 @@ class ContactListSettings
 
       <div class="contact-list-settings-tabs-container">
         <ul class="contact-list-settings-tabs">
-          <li class="active" data-settings-container="contact-list-settings-tab-1"><span><?php 
+          <li class="contact-list-settings-tab-1-title" data-settings-container="contact-list-settings-tab-1"><span><?php 
         echo  __( 'General settings', 'contact-list' ) ;
         ?></span></li>
-          <li data-settings-container="contact-list-settings-tab-2"><span><?php 
+          <li class="contact-list-settings-tab-2-title" data-settings-container="contact-list-settings-tab-2"><span><?php 
         echo  __( 'Layout', 'contact-list' ) ;
         ?></span></li>
-          <li data-settings-container="contact-list-settings-tab-3"><span><?php 
+          <li class="contact-list-settings-tab-3-title" data-settings-container="contact-list-settings-tab-3"><span><?php 
         echo  __( 'reCAPTCHA and email', 'contact-list' ) ;
         ?></span></li>
-          <li data-settings-container="contact-list-settings-tab-4"><span><?php 
+          <li class="contact-list-settings-tab-4-title" data-settings-container="contact-list-settings-tab-4"><span><?php 
         echo  __( 'Search form', 'contact-list' ) ;
         ?></span></li>
-          <li data-settings-container="contact-list-settings-tab-5"><span><?php 
+          <li class="contact-list-settings-tab-5-title" data-settings-container="contact-list-settings-tab-5"><span><?php 
         echo  __( 'Custom fields', 'contact-list' ) ;
         ?></span></li>
-          <li data-settings-container="contact-list-settings-tab-6"><span><?php 
+          <li class="contact-list-settings-tab-6-title" data-settings-container="contact-list-settings-tab-6"><span><?php 
         echo  __( 'Field titles and texts', 'contact-list' ) ;
         ?></span></li>
-          <li data-settings-container="contact-list-settings-tab-7"><span><?php 
+          <li class="contact-list-settings-tab-7-title" data-settings-container="contact-list-settings-tab-7"><span><?php 
         echo  __( 'Hide form elements', 'contact-list' ) ;
         ?></span></li>
-          <li data-settings-container="contact-list-settings-tab-8"><span><?php 
+          <li class="contact-list-settings-tab-8-title" data-settings-container="contact-list-settings-tab-8"><span><?php 
         echo  __( 'Simple list', 'contact-list' ) ;
         ?></span></li>
           <hr class="clear" />
@@ -1970,6 +2026,14 @@ class ContactListSettings
 
     </form>
     <?php 
+    }
+    
+    public function add_affiliation_link()
+    {
+        global  $submenu ;
+        $permalink = './options-general.php?page=contact-list-affiliation';
+        $menuitem = 'edit.php?post_type=' . CONTACT_CPT;
+        $submenu[$menuitem][] = array( __( 'Affiliation&nbsp;&nbsp;➤', 'contact-list' ), 'manage_options', $permalink );
     }
     
     public function add_settings_link()
