@@ -3,7 +3,7 @@ Contributors: anssilaitila, freemius
 Tags: business directory, business listing, staff directory, staff list, address book, company directory, church directory, contact directory, directory, contacts, directory plugin, chamber of commerce
 Requires at least: 4.0.0
 Tested up to: 5.6
-Stable tag: 2.9.27
+Stable tag: 2.9.28
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -130,6 +130,9 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 6. Contact management
 
 == Changelog ==
+
+= 2.9.28 - 2021-02-01 =
+* (Free and Pro): Support for alt text added to contact image and social media icons
 
 = 2.9.27 - 2021-01-20 =
 * (Free and Pro) Affiliation program introduced. Also a new setting (Pro): "Hide affiliation link"
