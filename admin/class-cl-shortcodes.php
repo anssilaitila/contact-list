@@ -24,7 +24,7 @@ class ContactListShortcodes {
       <h1><?= __('Available shortcodes for Contact List', 'contact-list'); ?></h1>
 
       <div class="contact-list-examples">
-        <p><?= __('If you have an idea for a new shortcode or parameter, you may contact the author at', 'contact-list') . ' <a href="https://www.contactlistpro.com/support/" target="_blank">contactlistpro.com/support/</a> ' . __('or by email:', 'contact-list') ?> <a href="javascript:location='mailto:\u0063\u006f\u006e\u0074\u0061\u0063\u0074\u0040\u0074\u0061\u006d\u006d\u0065\u0072\u0073\u006f\u0066\u0074\u002e\u0063\u006f\u006d';void 0"><script type="text/javascript">document.write('\u0063\u006f\u006e\u0074\u0061\u0063\u0074\u0040\u0074\u0061\u006d\u006d\u0065\u0072\u0073\u006f\u0066\u0074\u002e\u0063\u006f\u006d')</script></a></p>
+        <p><?= __('If you have an idea for a new shortcode or parameter, you may contact the author at', 'contact-list') . ' <a href="https://www.contactlistpro.com/support/" target="_blank">contactlistpro.com/support/</a>.'; ?></p>
       </div>
 
       <div class="contact-list-admin-section contact-list-admin-section-shortcodes">
@@ -89,6 +89,14 @@ class ContactListShortcodes {
                   <a href="<?= get_admin_url() ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">Pro</a>
                 <?php endif; ?>
                 <span class="contact-list-shortcode contact-list-shortcode-99">[contact_list_simple group=GROUP_SLUG]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-99"><?= __('Copy', 'contact-list') ?></button>
+              </li>
+              <li><?= __('Limit contacts per page:', 'contact-list') ?>
+                <?php if (ContactListHelpers::isPremium() == 1): ?>  
+                  <span class="contact-list-pro-only-inline-inactive">Pro</span>
+                <?php else: ?>
+                  <a href="<?= get_admin_url() ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">Pro</a>
+                <?php endif; ?>
+                <span class="contact-list-shortcode contact-list-shortcode-199">[contact_list_simple contacts_per_page=20]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-199"><?= __('Copy', 'contact-list') ?></button>
               </li>
             </ul>
           </li>

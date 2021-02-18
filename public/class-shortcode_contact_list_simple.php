@@ -83,10 +83,13 @@ class ShortcodeContactListSimple
             );
         }
         
+        $paged = ( get_query_var( 'paged' ) ? absint( get_query_var( 'paged' ) ) : 1 );
+        $posts_per_page = -1;
         $wp_query = new WP_Query( array(
             'post_type'      => 'contact',
             'post_status'    => 'publish',
-            'posts_per_page' => -1,
+            'posts_per_page' => $posts_per_page,
+            'paged'          => $paged,
             'post__not_in'   => $exclude,
             'meta_query'     => $meta_query,
             'tax_query'      => $tax_query,
