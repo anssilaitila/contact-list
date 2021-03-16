@@ -53,7 +53,7 @@ class ContactListPublicSendMail {
     }
     
     if ($sender_email) {
-      $body .= " <" . $sender_email . ">";
+      $body .= " &lt;" . $sender_email . "&gt;";
     }
 
     if ($sender_name || $sender_email) {
@@ -125,32 +125,36 @@ class ContactListPublicSendMail {
     $all_emails = explode(',', $recipient_emails);
     $mail_cnt = sizeof($all_emails);
 
-    if ($resp && $recipient_emails) {
-      
-      $report = 'Mail successfully processed using <strong>wp_mail</strong>.<br /><br /><strong>Mail sent to:</strong><br />' . str_replace(',', ', ', $recipient_emails);
-      
-      $wpdb->insert($wpdb->prefix . 'cl_sent_mail_log', array(
-         'subject' => $subject,
-         'sender_name' => $sender_name,
-         'reply_to' => $reply_to,
-         'report' => $report,
-         'sender_email' => $from,
-         'mail_cnt' => $mail_cnt
-      ));
+    if (!isset($s['disable_mail_log'])) {
 
-    } else {
-
-      $report = '<span style="color: crimson;">ERROR processing mail using <strong>wp_mail</strong>.<br /><br /><strong>Mail WAS NOT sent to:</strong><br />' . ($recipient_emails ? str_replace(',', ', ', $recipient_emails) : '(no recipient emails defined)') . '</span>';
-
-      $wpdb->insert($wpdb->prefix . 'cl_sent_mail_log', array(
-         'subject' => $subject,
-         'sender_name' => $sender_name,
-         'reply_to' => $reply_to,
-         'report' => $report,
-         'sender_email' => $from,
-         'mail_cnt' => 0
-      ));
-
+      if ($resp && $recipient_emails) {
+        
+        $report = 'Mail successfully processed using <strong>wp_mail</strong>.<br /><br /><strong>Mail sent to:</strong><br />' . str_replace(',', ', ', $recipient_emails);
+        
+        $wpdb->insert($wpdb->prefix . 'cl_sent_mail_log', array(
+           'subject' => $subject,
+           'sender_name' => $sender_name,
+           'reply_to' => $reply_to,
+           'report' => $report,
+           'sender_email' => $from,
+           'mail_cnt' => $mail_cnt
+        ));
+  
+      } else {
+  
+        $report = '<span style="color: crimson;">ERROR processing mail using <strong>wp_mail</strong>.<br /><br /><strong>Mail WAS NOT sent to:</strong><br />' . ($recipient_emails ? str_replace(',', ', ', $recipient_emails) : '(no recipient emails defined)') . '</span>';
+  
+        $wpdb->insert($wpdb->prefix . 'cl_sent_mail_log', array(
+           'subject' => $subject,
+           'sender_name' => $sender_name,
+           'reply_to' => $reply_to,
+           'report' => $report,
+           'sender_email' => $from,
+           'mail_cnt' => 0
+        ));
+  
+      }
+    
     }
     
     wp_die();

@@ -112,17 +112,6 @@ class ContactListSettings
             'field_name' => 'hide_send_email_button',
         )
         );
-        add_settings_field(
-            'contact-list-' . $only_pro . 'hide_affiliation_link',
-            __( 'Hide affiliation link', 'contact-list' ),
-            array( $this, 'checkbox_render' ),
-            'contact-list',
-            'contact-list_section_general',
-            array(
-            'label_for'  => 'contact-list-' . $only_pro . 'hide_affiliation_link',
-            'field_name' => $only_pro . 'hide_affiliation_link',
-        )
-        );
         $tab = 2;
         add_settings_section(
             'contact-list_tab_' . $tab,
@@ -353,6 +342,17 @@ class ContactListSettings
             'label_for'   => 'contact-list-' . $only_pro . 'text_email_footer',
             'field_name'  => $only_pro . 'text_email_footer',
             'placeholder' => 'This mail was sent using Contact List Pro',
+        )
+        );
+        add_settings_field(
+            'contact-list-disable_mail_log',
+            __( 'Disable mail log', 'contact-list' ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+            'label_for'  => 'contact-list-disable_mail_log',
+            'field_name' => 'disable_mail_log',
         )
         );
         $tab = 4;
@@ -2026,14 +2026,6 @@ class ContactListSettings
 
     </form>
     <?php 
-    }
-    
-    public function add_affiliation_link()
-    {
-        global  $submenu ;
-        $permalink = './options-general.php?page=contact-list-affiliation';
-        $menuitem = 'edit.php?post_type=' . CONTACT_CPT;
-        $submenu[$menuitem][] = array( __( 'Affiliation&nbsp;&nbsp;➤', 'contact-list' ), 'manage_options', $permalink );
     }
     
     public function add_settings_link()

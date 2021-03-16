@@ -211,7 +211,7 @@ class ContactListAdminSendEmail {
 
     $resp = wp_mail($recipient_emails, $subject, $body, $headers);
 
-    if ($resp) {
+    if ($resp && !isset($s['disable_mail_log'])) {
 
       global $wpdb;
       
@@ -257,7 +257,7 @@ class ContactListAdminSendEmail {
   
       $resp = wp_mail($s['recipient_email'], $subject, $body_html, $headers);
   
-      if ($resp) {
+      if ($resp && !isset($s['disable_mail_log'])) {
   
         global $wpdb;
         

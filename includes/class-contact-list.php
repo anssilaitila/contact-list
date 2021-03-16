@@ -121,6 +121,7 @@ class Contact_List
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-cpt.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-taxonomy.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-admin-maintenance.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-admin-operations.php';
         /**
          * The class responsible for defining all actions that occur in the public-facing
          * side of the site.
@@ -170,6 +171,7 @@ class Contact_List
         $plugin_admin_mail_log = new ContactListAdminMailLog();
         $plugin_admin_list = new ContactListAdminList();
         $plugin_admin_maintenance = new ContactListAdminMaintenance();
+        $plugin_admin_operations = new ContactListAdminOperations();
         $plugin_admin_inline_styles = new ContactListAdminInlineStyles();
         $plugin_admin_inline_scripts = new ContactListAdminInlineScripts();
         $plugin_settings = new ContactListSettings();
@@ -234,6 +236,8 @@ class Contact_List
         );
         // Maintenance
         $this->loader->add_action( 'plugins_loaded', $plugin_admin_maintenance, 'actions' );
+        // Admin operations
+        $this->loader->add_filter( 'admin_init', $plugin_admin_operations, 'operations' );
         // Import & export
         $this->loader->add_action( 'admin_menu', $plugin_import_export, 'register_import_page' );
         $this->loader->add_action( 'admin_menu', $plugin_import_export, 'register_export_page' );
@@ -251,12 +255,11 @@ class Contact_List
         );
         $this->loader->add_action( 'phpmailer_init', $plugin_admin_send_email, 'wp_mail_returnpath_phpmailer_init' );
         // Mail log
-        $this->loader->add_action( 'admin_menu', $plugin_admin_mail_log, 'register_mail_log_page' );
+        if ( !isset( $s['disable_mail_log'] ) ) {
+            $this->loader->add_action( 'admin_menu', $plugin_admin_mail_log, 'register_mail_log_page' );
+        }
         // Settings
         $this->loader->add_action( 'admin_menu', $plugin_settings, 'add_settings_link' );
-        if ( !isset( $s['hide_affiliation_link'] ) ) {
-            $this->loader->add_action( 'admin_menu', $plugin_settings, 'add_affiliation_link' );
-        }
         $this->loader->add_action( 'admin_menu', $plugin_settings, 'contact_list_add_admin_menu' );
         $this->loader->add_action( 'admin_init', $plugin_settings, 'contact_list_settings_init' );
         // Shortcodes

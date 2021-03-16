@@ -95,20 +95,33 @@ class ShortcodeContactListSimple
             'tax_query'      => $tax_query,
             'orderby'        => $order_by,
         ) );
+        $wp_query_for_filter = new WP_Query( array(
+            'post_type'      => 'contact',
+            'post_status'    => 'publish',
+            'posts_per_page' => -1,
+            'post__not_in'   => $exclude,
+            'meta_query'     => $meta_query,
+            'tax_query'      => $tax_query,
+            'orderby'        => $order_by,
+        ) );
         if ( !isset( $atts['hide_search'] ) ) {
             $html .= '<input type="text" class="contact-list-simple-search-contacts" placeholder="' . (( isset( $s['search_contacts'] ) && $s['search_contacts'] ? $s['search_contacts'] : __( 'Search contacts...', 'contact-list' ) )) . '">';
         }
-        $html .= '<div class="contact-list-simple-contacts-found"></div>';
+        
+        if ( $wp_query_for_filter->have_posts() ) {
+            $html .= '<div class="contact-list-simple-all-contacts-container">';
+            $html .= '<div class="contact-list-simple-contacts-found"></div>';
+            $html .= ContactListPublicHelpers::contactListSimpleMarkup( $wp_query_for_filter );
+            $html .= '</div>';
+        }
+        
         
         if ( $wp_query->have_posts() ) {
-            $html .= '<div class="contact-list-simple-ajax-results">';
+            $html .= '<div class="contact-list-simple-paginated-container contact-list-simple-ajax-results">';
             $html .= ContactListPublicHelpers::contactListSimpleMarkup( $wp_query );
             $html .= '</div>';
         }
         
-        if ( $wp_query->found_posts == 0 ) {
-            $html .= '<p>' . ContactListHelpers::getText( 'text_sr_no_contacts_found', __( 'No contacts found.', 'contact-list' ) ) . '</p>';
-        }
         $html .= '</div>';
         wp_reset_postdata();
         return $html;

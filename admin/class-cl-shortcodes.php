@@ -178,6 +178,7 @@ class ContactListShortcodes {
           <li><?= __('Additional parameters', 'contact-list'); ?>
             <ul>
               <li><?= __('Show filters', 'contact-list') ?>: <span class="contact-list-shortcode contact-list-shortcode-13">[contact_list_groups group=GROUP_SLUG show_filters=1]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-13"><?= __('Copy', 'contact-list') ?></button></li>
+              <li><?= esc_html__('Show contacts that belong to all of these groups (comma separated group slugs)', 'contact-list') ?> <span class="cl-new-feature-inline"><?= __('New', 'shared-files') ?></span>: <span class="contact-list-shortcode contact-list-shortcode-1399">[contact_list_groups groups__and="group-slug-1,group-slug-2"]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-1399"><?= __('Copy', 'contact-list') ?></button></li>
             </ul>
           </li>
         </ol>

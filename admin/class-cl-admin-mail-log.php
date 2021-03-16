@@ -114,7 +114,16 @@ class ContactListAdminMailLog {
         <?php endforeach; ?>
 
       <?php else: ?>
-      
+
+        <?php if (isset($_GET['mail_log_emptied'])): ?>        
+          <?php echo '<h2 style="color: green;">' . esc_html__('Mail log successfully emptied.', 'contact-list') . '</h2>'; ?>
+        <?php else: ?>
+          <form method="post" onsubmit="return confirm('<?php echo esc_attr__('Are you sure that you want to empty the mail log?', 'shared-files') ?>\n<?php echo esc_attr__('This action is irreversible.', 'shared-files') ?>')">
+          <input type="hidden" name="_contact_list_empty_mail_log" value="1" />
+          <input type="submit" value="Empty mail log" class="contact-list-empty-mail-log" />
+          </form>
+        <?php endif; ?>
+            
         <?php
           global $wpdb;
           $table_name = $wpdb->prefix . 'cl_sent_mail_log';

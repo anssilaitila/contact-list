@@ -44,7 +44,7 @@ class ContactListHelpers
         if ( isset( $s[$text_id] ) && $s[$text_id] ) {
             $text = $s[$text_id];
         }
-        return $text;
+        return esc_html( $text );
     }
     
     public static function proFeatureMarkup()

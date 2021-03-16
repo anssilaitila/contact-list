@@ -15,7 +15,7 @@
  * @wordpress-plugin
  * Plugin Name:       Contact List
  * Description:       Easily display contact information on your site with this simple plugin.
- * Version:           2.9.29
+ * Version:           2.9.30
  * Author:            Tammersoft
  * Author URI:        https://www.tammersoft.com
  * License:           GPL-2.0+
@@ -42,30 +42,27 @@ if ( function_exists( 'cl_fs' ) ) {
             if ( !isset( $cl_fs ) ) {
                 // Include Freemius SDK.
                 require_once dirname( __FILE__ ) . '/freemius/start.php';
-                $has_affiliation = ( isset( $s['hide_affiliation_link'] ) ? false : 'selected' );
                 $cl_fs = fs_dynamic_init( array(
-                    'id'              => '5106',
-                    'slug'            => 'contact-list',
-                    'premium_slug'    => 'contact-list-pro',
-                    'type'            => 'plugin',
-                    'public_key'      => 'pk_9808753bcf234f1feef91bd833ab6',
-                    'is_premium'      => false,
-                    'premium_suffix'  => 'Pro',
-                    'has_addons'      => false,
-                    'has_paid_plans'  => true,
-                    'trial'           => array(
+                    'id'             => '5106',
+                    'slug'           => 'contact-list',
+                    'premium_slug'   => 'contact-list-pro',
+                    'type'           => 'plugin',
+                    'public_key'     => 'pk_9808753bcf234f1feef91bd833ab6',
+                    'is_premium'     => false,
+                    'premium_suffix' => 'Pro',
+                    'has_addons'     => false,
+                    'has_paid_plans' => true,
+                    'trial'          => array(
                     'days'               => 7,
                     'is_require_payment' => false,
                 ),
-                    'has_affiliation' => $has_affiliation,
-                    'menu'            => array(
-                    'slug'    => 'contact-list',
-                    'contact' => false,
-                    'parent'  => array(
+                    'menu'           => array(
+                    'slug'   => 'contact-list',
+                    'parent' => array(
                     'slug' => 'options-general.php',
                 ),
                 ),
-                    'is_live'         => true,
+                    'is_live'        => true,
                 ) );
             }
             
@@ -120,7 +117,7 @@ if ( function_exists( 'cl_fs' ) ) {
         $order_by = $s['order_by'];
     }
     define( 'ORDER_BY', $order_by );
-    define( 'CONTACT_LIST_VERSION', '2.9.29' );
+    define( 'CONTACT_LIST_VERSION', '2.9.30' );
     define( 'CONTACT_LIST_URI', plugin_dir_url( __FILE__ ) );
     define( 'CONTACT_LIST_PATH', plugin_dir_path( __FILE__ ) );
     define( 'CONTACT_CPT', 'contact' );
