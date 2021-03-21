@@ -198,6 +198,17 @@ class ContactListSettings
         )
         );
         add_settings_field(
+            'contact-list-show_contact_images_always',
+            __( 'Show contact images when using 3 or 4 columns view', 'contact-list' ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+            'label_for'  => 'contact-list-show_contact_images_always',
+            'field_name' => 'show_contact_images_always',
+        )
+        );
+        add_settings_field(
             'contact-list-contact_groups_title',
             __( 'Title above the groups', 'contact-list' ),
             array( $this, 'input_render' ),

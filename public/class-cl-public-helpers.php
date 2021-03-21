@@ -38,19 +38,19 @@ class ContactListPublicHelpers
                 $wp_query_for_filter->the_post();
                 $c = get_post_custom();
                 
-                if ( isset( $c['_cl_country'] ) && $c['_cl_country'] && !in_array( $c['_cl_country'][0], $countries ) ) {
+                if ( isset( $c['_cl_country'][0] ) && $c['_cl_country'][0] && !in_array( $c['_cl_country'][0], $countries ) ) {
                     $countries[] = $c['_cl_country'][0];
                     $countries_for_dd[] = $c['_cl_country'][0];
                 }
                 
                 
-                if ( isset( $c['_cl_country'][0] ) ) {
+                if ( isset( $c['_cl_country'][0] ) && $c['_cl_country'][0] ) {
                     $country = ( isset( $countries[$c['_cl_country'][0]] ) ? $countries[$c['_cl_country'][0]] : [] );
-                    if ( isset( $c['_cl_state'] ) && $c['_cl_state'] && !in_array( $c['_cl_state'][0], $country ) ) {
+                    if ( isset( $c['_cl_state'][0] ) && $c['_cl_state'][0] && !in_array( $c['_cl_state'][0], $country ) ) {
                         $countries[$c['_cl_country'][0]][] = $c['_cl_state'][0];
                     }
                     
-                    if ( isset( $c['_cl_state'] ) && $c['_cl_state'] && isset( $c['_cl_city'] ) && $c['_cl_city'] ) {
+                    if ( isset( $c['_cl_state'][0] ) && $c['_cl_state'][0] && isset( $c['_cl_city'][0] ) && $c['_cl_city'][0] ) {
                         $state = $c['_cl_state'][0];
                         $city = $c['_cl_city'][0];
                         
@@ -219,40 +219,40 @@ class ContactListPublicHelpers
         $html = '';
         $html .= '<div class="contact-list-simple-list-row">';
         $contact_fullname = '';
-        $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-name"><span>' . __( 'Name', 'contact-list' ) . '</span></div>';
+        $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-name contact-list-simple-list-col-title"><span>' . __( 'Name', 'contact-list' ) . '</span></div>';
         
         if ( !isset( $s['simple_list_hide_job_title'] ) ) {
-            $html .= '<div class="contact-list-simple-list-col"><span>';
+            $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-title"><span>';
             $html .= ContactListHelpers::getText( 'job_title_title', __( 'Job title', 'contact-list' ) );
             $html .= '</span></div>';
         }
         
         
         if ( !isset( $s['simple_list_hide_email'] ) ) {
-            $html .= '<div class="contact-list-simple-list-col"><span>';
+            $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-title"><span>';
             $html .= ContactListHelpers::getText( 'email_title', __( 'Email', 'contact-list' ) );
             $html .= '</span></div>';
         }
         
         
         if ( !isset( $s['simple_list_hide_phone_1'] ) ) {
-            $html .= '<div class="contact-list-simple-list-col"><span>';
+            $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-title"><span>';
             $html .= ContactListHelpers::getText( 'phone_title', __( 'Phone', 'contact-list' ) );
             $html .= '</span></div>';
         }
         
         
         if ( isset( $s['simple_list_show_city'] ) ) {
-            $html .= '<div class="contact-list-simple-list-col">';
+            $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-title"><span>';
             $html .= ContactListHelpers::getText( 'city_title', __( 'City', 'contact-list' ) );
-            $html .= '</div>';
+            $html .= '</span></div>';
         }
         
         
         if ( !isset( $s['simple_list_hide_some_links'] ) ) {
-            $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-some">';
+            $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-some contact-list-simple-list-col-title"><span>';
             $html .= __( 'Social media', 'contact-list' );
-            $html .= '</div>';
+            $html .= '</span></div>';
         }
         
         $custom_fields = [
@@ -266,7 +266,7 @@ class ContactListPublicHelpers
         foreach ( $custom_fields as $n ) {
             
             if ( isset( $s['simple_list_show_custom_field_' . $n] ) ) {
-                $html .= '<div class="contact-list-simple-list-col"><span>';
+                $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-title"><span>';
                 $cf_field_title = ( isset( $s['custom_field_' . $n . '_title'] ) && $s['custom_field_' . $n . '_title'] ? $s['custom_field_' . $n . '_title'] : '' );
                 $html .= esc_html( $cf_field_title );
                 $html .= '</span></div>';
@@ -408,7 +408,6 @@ class ContactListPublicHelpers
                             $html .= '</div>';
                         } else {
                             $html .= '<div class="contact-list-custom-field-simple-list contact-list-custom-field-' . $n . '">';
-                            $html .= ( isset( $s['custom_field_' . $n . '_title'] ) && $s['custom_field_' . $n . '_title'] ? '<strong>' . esc_html( $s['custom_field_' . $n . '_title'] ) . '</strong>' : '' );
                             $html .= esc_html( $cf_value );
                             $html .= '</div>';
                         }

@@ -131,6 +131,7 @@ class Contact_List
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cl-public-ajax.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cl-public-helpers.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cl-public-simple-groups-helpers.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cl-public-load.php';
         /**
          * The class responsible for defining custom fields for the custom post type
          */
@@ -314,8 +315,10 @@ class Contact_List
         $plugin_public = new Contact_List_Public( $this->get_plugin_name(), $this->get_version() );
         $plugin_public_send_mail = new ContactListPublicSendMail();
         $plugin_public_ajax = new ContactListPublicAjax();
+        $plugin_public_load = new ContactListPublicLoad();
         $this->loader->add_action( 'admin_enqueue_scripts', $plugin_public, 'enqueue_styles' );
         $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
+        $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public_load, 'public_inline_styles' );
         $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
         $this->loader->add_action( 'init', $plugin_public, 'register_shortcodes' );
         // Send mail

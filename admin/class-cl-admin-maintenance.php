@@ -26,6 +26,7 @@ class ContactListAdminMaintenance {
         'show_state_select_in_search'     => 'on',
         'show_city_select_in_search'      => 'on',
         'show_category_select_in_search'  => 'on',
+        'show_contact_images_always'      => 'on'
       ];
     
       add_option('contact_list_settings', $default_settings);
