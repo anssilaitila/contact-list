@@ -958,7 +958,7 @@ msgstr "URL de Instagram"
 #: includes/class-contact-list-helpers.php:670
 #: public/class-shortcode_contact_list_form__premium_only.php:173
 msgid "Address"
-msgstr "Habla a"
+msgstr "Dirección"
 
 # automatic translation
 #: admin/class-cl-settings.php:530
@@ -1060,7 +1060,7 @@ msgstr "teléfono"
 #: admin/class-cl-settings.php:696
 #: admin/class-cl-settings.php:811
 msgid "address"
-msgstr "habla a"
+msgstr "dirección"
 
 # automatic translation
 #: admin/class-cl-settings.php:705

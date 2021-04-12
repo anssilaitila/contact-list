@@ -101,6 +101,7 @@ class Contact_List_Public
         add_shortcode( 'contact_list_search', array( 'Contact_List_Public', 'contact_list_search' ) );
         add_shortcode( 'contact_list_simple', array( 'Contact_List_Public', 'contact_list_simple' ) );
         add_shortcode( 'contact_list_simple_groups', array( 'Contact_List_Public', 'contact_list_simple_groups' ) );
+        add_shortcode( 'contact_list_send_email', array( 'Contact_List_Public', 'contact_list_send_email' ) );
     }
     
     /**
@@ -164,6 +165,15 @@ class Contact_List_Public
     }
     
     public static function contact_list_simple_groups( $atts = array(), $content = null, $tag = '' )
+    {
+        $html = '';
+        if ( ContactListHelpers::isPremium() == 0 ) {
+            $html .= ContactListPublicHelpers::proFeaturePublicMarkup();
+        }
+        return $html;
+    }
+    
+    public static function contact_list_send_email( $atts = array(), $content = null, $tag = '' )
     {
         $html = '';
         if ( ContactListHelpers::isPremium() == 0 ) {

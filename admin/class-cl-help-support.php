@@ -74,6 +74,30 @@ class ContactListHelpSupport {
         </ol>
       </div>
 
+      <div class="contact-list-admin-section">
+      
+        <h2><?= esc_html__('Ratings & Reviews', 'contact-list') ?></h2>
+      
+        <p>
+          <?php
+          $text = sprintf(
+            wp_kses(
+              __('If you like <strong>Contact List</strong> please consider leaving a ★★★★★ rating.', 'contact-list'),
+              array('strong' => array())
+            )
+          );
+          echo $text;
+          ?>
+      
+        </p>
+        <p>
+          <?= esc_html__('A huge thanks in advance!', 'contact-list'); ?>
+        </p>
+      
+        <a href="https://wordpress.org/support/view/plugin-reviews/contact-list?filter=5#postform" target="_blank" class="button-primary"><?= esc_html__('Leave a rating', 'contact-list'); ?></a>
+        
+      </div>
+
       <script src="<?= CONTACT_LIST_URI ?>dist/clipboard.min.js"></script>
   
       <script>

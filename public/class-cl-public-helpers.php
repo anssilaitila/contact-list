@@ -314,13 +314,13 @@ class ContactListPublicHelpers
         if ( !isset( $s['simple_list_hide_email'] ) ) {
             $html .= '<div class="contact-list-simple-list-col"><span>';
             
-            if ( isset( $c['_cl_email'] ) ) {
+            if ( isset( $c['_cl_email'][0] ) ) {
                 $mailto = $c['_cl_email'][0];
                 $mailto_obs = '';
                 for ( $i = 0 ;  $i < strlen( $mailto ) ;  $i++ ) {
                     $mailto_obs .= '&#' . ord( $mailto[$i] ) . ';';
                 }
-                if ( isset( $c['_cl_email'] ) && !isset( $s['hide_contact_email'] ) ) {
+                if ( isset( $c['_cl_email'][0] ) && is_email( $c['_cl_email'][0] ) && !isset( $s['hide_contact_email'] ) ) {
                     $html .= ( $c['_cl_email'][0] ? '<a href="mailto:' . esc_attr( $mailto_obs ) . '">' . esc_html( $mailto_obs ) . '</a>' : '' );
                 }
             }
@@ -423,7 +423,7 @@ class ContactListPublicHelpers
         
         if ( isset( $s['simple_list_show_send_message'] ) ) {
             $html .= '<div class="contact-list-simple-list-col cl-align-right"><span>';
-            if ( isset( $c['_cl_email'] ) || isset( $c['_cl_notify_emails'] ) ) {
+            if ( isset( $c['_cl_email'][0] ) && is_email( $c['_cl_email'][0] ) || isset( $c['_cl_notify_emails'] ) && $c['_cl_notify_emails'] ) {
                 if ( !isset( $s['hide_send_email_button'] ) ) {
                     $html .= '<span class="contact-list-send-email contact-list-simple-send-email cl-dont-print"><a href="" data-id="' . esc_attr( $id ) . '" data-name="' . esc_attr( $contact_fullname ) . '">' . __( 'Send message', 'contact-list' ) . ' &raquo;</a></span>';
                 }

@@ -298,6 +298,18 @@ class ContactListSettings
         )
         );
         add_settings_field(
+            'contact-list-' . $only_pro . 'sender_email_group_send',
+            __( 'Sender email for messages sent using the shortcode [contact_list_send_email]', 'contact-list' ),
+            array( $this, 'input_render' ),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+            'label_for'   => 'contact-list-' . $only_pro . 'sender_email_group_send',
+            'field_name'  => $only_pro . 'sender_email_group_send',
+            'placeholder' => '',
+        )
+        );
+        add_settings_field(
             'contact-list-' . $only_pro . 'set_return_path',
             __( 'Set Return-Path to same as sender email', 'contact-list' ),
             array( $this, 'checkbox_render' ),
@@ -1256,6 +1268,50 @@ class ContactListSettings
             'field_name' => $only_pro . 'pf_hide_address',
         )
         );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'pf_hide_country',
+            __( 'Hide country', 'contact-list' ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_public_form',
+            array(
+            'label_for'  => 'contact-list-' . $only_pro . 'pf_hide_country',
+            'field_name' => $only_pro . 'pf_hide_country',
+        )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'pf_hide_state',
+            __( 'Hide state', 'contact-list' ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_public_form',
+            array(
+            'label_for'  => 'contact-list-' . $only_pro . 'pf_hide_state',
+            'field_name' => $only_pro . 'pf_hide_state',
+        )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'pf_hide_city',
+            __( 'Hide city', 'contact-list' ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_public_form',
+            array(
+            'label_for'  => 'contact-list-' . $only_pro . 'pf_hide_city',
+            'field_name' => $only_pro . 'pf_hide_city',
+        )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'pf_hide_address_lines',
+            __( 'Hide address lines 1-4', 'contact-list' ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_public_form',
+            array(
+            'label_for'  => 'contact-list-' . $only_pro . 'pf_hide_address_lines',
+            'field_name' => $only_pro . 'pf_hide_address_lines',
+        )
+        );
         $custom_fields = [
             1,
             2,
@@ -1887,39 +1943,33 @@ class ContactListSettings
     
     public function contact_list_settings_general_section_callback()
     {
-        
-        if ( ContactListHelpers::isPremium() == 1 ) {
-            echo  '' ;
-        } else {
-            echo  '<div class="contact-list-how-to-get-started">' ;
-            echo  '<h2>' . __( 'How to get started', 'contact-list' ) . '</h2>' ;
-            echo  '<ol>' ;
-            echo  '<li><span>' ;
-            $url = get_admin_url() . 'edit.php?post_type=contact';
-            $text = sprintf( wp_kses(
-                /* translators: %s: link to contact management */
-                __( 'Insert contacts from the <a href="%s" target="_blank">contact management</a>.', 'contact-list' ),
-                array(
-                    'a' => array(
-                    'href'   => array(),
-                    'target' => array(),
-                ),
-                )
-            ), esc_url( $url ) );
-            echo  $text ;
-            echo  '</span></li>' ;
-            echo  '<li><span>' ;
-            $text = wp_kses( __( 'Insert the shortcode <span class="contact-list-mini-shortcode">[contact_list]</span> or <span class="contact-list-mini-shortcode">[contact_list_simple]</span> to the content editor of any page or post.', 'contact-list' ), array(
-                'span' => array(
-                'class' => array(),
+        echo  '<div class="contact-list-how-to-get-started">' ;
+        echo  '<h2>' . __( 'How to get started', 'contact-list' ) . '</h2>' ;
+        echo  '<ol>' ;
+        echo  '<li><span>' ;
+        $url = get_admin_url() . 'edit.php?post_type=contact';
+        $text = sprintf( wp_kses(
+            /* translators: %s: link to contact management */
+            __( 'Insert contacts from the <a href="%s" target="_blank">contact management</a>.', 'contact-list' ),
+            array(
+                'a' => array(
+                'href'   => array(),
+                'target' => array(),
             ),
-            ) );
-            echo  $text ;
-            echo  '</span></li>' ;
-            echo  '</ol>' ;
-            echo  '</div>' ;
-        }
-    
+            )
+        ), esc_url( $url ) );
+        echo  $text ;
+        echo  '</span></li>' ;
+        echo  '<li><span>' ;
+        $text = wp_kses( __( 'Insert the shortcode <span class="contact-list-mini-shortcode">[contact_list]</span> or <span class="contact-list-mini-shortcode">[contact_list_simple]</span> to the content editor of any page or post.', 'contact-list' ), array(
+            'span' => array(
+            'class' => array(),
+        ),
+        ) );
+        echo  $text ;
+        echo  '</span></li>' ;
+        echo  '</ol>' ;
+        echo  '</div>' ;
     }
     
     public function contact_list_settings_tab_2_callback()

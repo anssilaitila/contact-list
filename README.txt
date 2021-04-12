@@ -3,7 +3,7 @@ Contributors: anssilaitila, freemius
 Tags: business directory, business listing, staff directory, staff list, address book, company directory, church directory, contact directory, directory, contacts, directory plugin, chamber of commerce
 Requires at least: 4.0.0
 Tested up to: 5.7
-Stable tag: 2.9.31
+Stable tag: 2.9.32
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -130,6 +130,11 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 6. Contact management
 
 == Changelog ==
+
+= 2.9.32 - 2021-04-12 =
+* Pro: New shortcode [contact_list_send_email group=GROUP_SLUG]. Can be used to send email to a group from the frontend.
+* Pro: Missing country, state and city added to shortcode [contact_list_form] (can be hidden from the settings)
+* Bug fixes
 
 = 2.9.31 - 2021-03-17 =
 * (Pro) Fix regarding the shortcode [contact_list_groups groups__and="groups-slug-1,group-slug-2"]: now only the contacts belonging to all of these groups are listed

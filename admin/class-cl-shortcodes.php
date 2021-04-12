@@ -16,6 +16,8 @@ class ContactListShortcodes {
   public function register_shortcodes_page_callback() {
     ?>
 
+    <?php $num = 1000; ?>
+
     <link rel="stylesheet" href="<?= CONTACT_LIST_URI ?>dist/tipso.min.css">
     <script src="<?= CONTACT_LIST_URI ?>dist/tipso.min.js"></script>
     
@@ -90,7 +92,7 @@ class ContactListShortcodes {
                 <?php endif; ?>
                 <span class="contact-list-shortcode contact-list-shortcode-99">[contact_list_simple group=GROUP_SLUG]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-99"><?= __('Copy', 'contact-list') ?></button>
               </li>
-              <li><?= __('Limit contacts per page:', 'contact-list') ?>
+              <li><?= __('Limit contacts per page (activates pagination):', 'contact-list') ?>
                 <?php if (ContactListHelpers::isPremium() == 1): ?>  
                   <span class="contact-list-pro-only-inline-inactive">Pro</span>
                 <?php else: ?>
@@ -178,7 +180,7 @@ class ContactListShortcodes {
           <li><?= __('Additional parameters', 'contact-list'); ?>
             <ul>
               <li><?= __('Show filters', 'contact-list') ?>: <span class="contact-list-shortcode contact-list-shortcode-13">[contact_list_groups group=GROUP_SLUG show_filters=1]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-13"><?= __('Copy', 'contact-list') ?></button></li>
-              <li><?= esc_html__('Show contacts that belong to all of these groups (comma separated group slugs)', 'contact-list') ?> <span class="cl-new-feature-inline"><?= __('New', 'shared-files') ?></span>: <span class="contact-list-shortcode contact-list-shortcode-1399">[contact_list_groups groups__and="group-slug-1,group-slug-2"]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-1399"><?= __('Copy', 'contact-list') ?></button></li>
+              <li><?= esc_html__('Show contacts that belong to all of these groups (comma separated group slugs)', 'contact-list') ?>: <span class="contact-list-shortcode contact-list-shortcode-139">[contact_list_groups groups__and="group-slug-1,group-slug-2"]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-139"><?= __('Copy', 'contact-list') ?></button></li>
             </ul>
           </li>
         </ol>
@@ -239,7 +241,27 @@ class ContactListShortcodes {
         </ol>
         
       </div>
-
+      
+      <div class="contact-list-admin-section contact-list-admin-section-shortcodes">
+      
+        <h2>
+          <?= __('Send email to a group', 'contact-list'); ?>
+          <?php if (ContactListHelpers::isPremium() == 1): ?>  
+            <span class="contact-list-pro-only-inline-inactive">Pro</span>
+          <?php else: ?>
+            <a href="<?= get_admin_url() ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">Pro</a>
+          <?php endif; ?>
+          <span class="cl-new-feature-inline"><?= __('New', 'shared-files') ?></span>
+        </h2>
+        
+        <?php $num++ ?>
+        <ol>
+          <li><?= __('Insert the shortcode', 'contact-list') ?> 
+            <span class="contact-list-shortcode contact-list-shortcode-<?= $num ?>">[contact_list_send_email group=GROUP_SLUG]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-<?= $num ?>"><?= __('Copy', 'contact-list') ?></button>
+            <?= __('to the page you wish the view to appear on.', 'contact-list'); ?></li>
+        </ol>
+        
+      </div>
 
       <script src="<?= CONTACT_LIST_URI ?>dist/clipboard.min.js"></script>
   

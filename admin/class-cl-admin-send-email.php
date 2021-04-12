@@ -56,13 +56,13 @@ class ContactListAdminSendEmail {
 
       <form method="post" class="send_email_form" action="" target="send_email">
 
-          <h1><?= __('Send email to contacts', 'contact-list'); ?></h1>
+          <h1><?= esc_html__('Send email to contacts', 'contact-list'); ?></h1>
 
           <div>
             
               <br />
             
-              <span class="restrict-recipients-title"><?= __('Restrict recipients to specific group', 'contact-list') ?>:</span>
+              <span class="restrict-recipients-title"><?= esc_html__('Restrict recipients to specific group', 'contact-list') ?>:</span>
 
               <?php
               $taxonomies = get_terms(array(
@@ -92,7 +92,7 @@ class ContactListAdminSendEmail {
               
                 echo '<div class="contact-list-admin-no-groups-found">';
 
-                echo __('No groups found.', 'contact-list') . ' ';
+                echo esc_html__('No groups found.', 'contact-list') . ' ';
 
                 $url = get_admin_url() . 'edit-tags.php?taxonomy=contact-group&post_type=contact';
                 $text = sprintf(
@@ -113,7 +113,7 @@ class ContactListAdminSendEmail {
 
           </div>
 
-          <span class="recipients-title"><?= __('Recipients', 'contact-list') ?> (<?= __('total of', 'contact-list') ?> <?= sizeof($recipient_emails) ?> <?= __('contacts with email addresses', 'contact-list'); ?>):</span>
+          <span class="recipients-title"><?= esc_html__('Recipients', 'contact-list') ?> (<?= esc_html__('total of', 'contact-list') ?> <?= sizeof($recipient_emails) ?> <?= esc_html__('contacts with email addresses', 'contact-list'); ?>):</span>
 
 
           <?php if (sizeof($recipient_emails) > 0): ?>
@@ -147,7 +147,7 @@ class ContactListAdminSendEmail {
           <hr class="style-one" />
 
           <label>
-            <span><?= __('Subject', 'contact-list'); ?></span>
+            <span><?= esc_html__('Subject', 'contact-list'); ?></span>
             <input name="subject" type="text" value="" required />
           </label>
 
@@ -155,23 +155,23 @@ class ContactListAdminSendEmail {
           <?php $user = get_userdata($user_id); ?>
           
           <label>
-            <span><?= __('Sender name', 'contact-list'); ?></span>
+            <span><?= esc_html__('Sender name', 'contact-list'); ?></span>
             <input name="sender_name" type="text" value="" required />
           </label>
 
           <label>
-            <span><?= __('Sender email', 'contact-list'); ?></span>
+            <span><?= esc_html__('Sender email', 'contact-list'); ?></span>
             <input name="sender_email" type="email" value="" required />
           </label>
     
           <label>
-            <span><?= __('Message', 'contact-list'); ?></span>
+            <span><?= esc_html__('Message', 'contact-list'); ?></span>
             <textarea name="body" required></textarea>
           </label>
 
           <div class="send_email_target_div"></div>
   
-          <input type="submit" value="<?= __('Send', 'contact-list'); ?>" <?php if (sizeof($recipient_emails) == 0 || ContactListHelpers::isPremium() == 0) echo 'disabled' ?> />
+          <input type="submit" value="<?= esc_attr__('Send', 'contact-list'); ?>" <?php if (sizeof($recipient_emails) == 0 || ContactListHelpers::isPremium() == 0) echo 'disabled' ?> />
           <hr class="style-one" />
             
           <?php if (ContactListHelpers::isPremium() == 0): ?>  
@@ -195,7 +195,7 @@ class ContactListAdminSendEmail {
 
     $reply_to = isset($_POST['reply_to']) ? $_POST['reply_to'] : '';
 
-    $body = isset($_POST['body']) ? $_POST['body'] : '';
+    $body = isset($_POST['body']) ? nl2br( esc_html( stripslashes( $_POST['body'] ) ) ) : '';
 
     if (!isset($s['remove_email_footer'])) {
       $body .= '<br /><br />-- <br />' . ContactListHelpers::getText('text_email_footer', __('This mail was sent using Contact List Pro', 'contact-list'));
@@ -204,7 +204,7 @@ class ContactListAdminSendEmail {
     $headers = ['Content-Type: text/html; charset=UTF-8'];
     
     if ($sender_name && $sender_email && is_email($sender_email)) {
-      $headers[] .= 'From: ' . $sender_name . ' <' . $sender_email . '>';
+      $headers[] .= 'From: ' . esc_attr( $sender_name ) . ' <' . sanitize_email( $sender_email ) . '>';
     }
 
     $recipient_emails = isset($_POST['recipient_emails']) ? $_POST['recipient_emails'] : '';

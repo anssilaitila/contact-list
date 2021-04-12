@@ -208,15 +208,17 @@ class ContactListHelpers
         
         if ( isset( $s['last_name_before_first_name'] ) ) {
             $contact_fullname = $c['_cl_last_name'][0] . (( isset( $c['_cl_first_name'] ) ? ' ' . $c['_cl_first_name'][0] : '' ));
-            $html .= '<div style="display: none;">' . (( isset( $c['_cl_first_name'] ) ? $c['_cl_first_name'][0] . ' ' : '' )) . $c['_cl_last_name'][0] . '</div>';
+            $text = (( isset( $c['_cl_first_name'] ) ? $c['_cl_first_name'][0] . ' ' : '' )) . $c['_cl_last_name'][0];
+            $html .= '<div style="display: none;">' . esc_html( $text ) . '</div>';
         } else {
             $contact_fullname = (( isset( $c['_cl_first_name'] ) ? $c['_cl_first_name'][0] . ' ' : '' )) . $c['_cl_last_name'][0];
-            $html .= '<div style="display: none;">' . $c['_cl_last_name'][0] . (( isset( $c['_cl_first_name'] ) ? ' ' . $c['_cl_first_name'][0] : '' )) . '</div>';
+            $text = $c['_cl_last_name'][0] . (( isset( $c['_cl_first_name'] ) ? ' ' . $c['_cl_first_name'][0] : '' ));
+            $html .= '<div style="display: none;">' . esc_html( $text ) . '</div>';
         }
         
-        $html .= '<span class="contact-list-contact-name">' . $contact_fullname . '</span>';
+        $html .= '<span class="contact-list-contact-name">' . esc_html( $contact_fullname ) . '</span>';
         if ( isset( $c['_cl_job_title'] ) ) {
-            $html .= '<span class="contact-list-job-title">' . $c['_cl_job_title'][0] . '</span>';
+            $html .= '<span class="contact-list-job-title">' . esc_html( $c['_cl_job_title'][0] ) . '</span>';
         }
         
         if ( isset( $c['_cl_email'] ) ) {
@@ -225,32 +227,32 @@ class ContactListHelpers
             for ( $i = 0 ;  $i < strlen( $mailto ) ;  $i++ ) {
                 $mailto_obs .= '&#' . ord( $mailto[$i] ) . ';';
             }
-            if ( isset( $c['_cl_email'] ) && !isset( $s['hide_contact_email'] ) ) {
+            if ( isset( $c['_cl_email'][0] ) && is_email( $c['_cl_email'][0] ) && !isset( $s['hide_contact_email'] ) ) {
                 $html .= '<span class="contact-list-email">' . (( $c['_cl_email'][0] ? '<a href="mailto:' . $mailto_obs . '">' . $mailto_obs . '</a>' : '' )) . '</span>';
             }
         }
         
-        if ( isset( $c['_cl_email'] ) || isset( $c['_cl_notify_emails'] ) ) {
+        if ( isset( $c['_cl_email'][0] ) && is_email( $c['_cl_email'][0] ) || isset( $c['_cl_notify_emails'] ) && $c['_cl_notify_emails'] ) {
             if ( !isset( $s['hide_send_email_button'] ) ) {
-                $html .= '<span class="contact-list-send-email cl-dont-print"><a href="" data-id="' . $id . '" data-name="' . $contact_fullname . '">' . __( 'Send message', 'contact-list' ) . ' &raquo;</a></span>';
+                $html .= '<span class="contact-list-send-email cl-dont-print"><a href="" data-id="' . $id . '" data-name="' . $contact_fullname . '">' . esc_html__( 'Send message', 'contact-list' ) . ' &raquo;</a></span>';
             }
         }
         
         if ( isset( $c['_cl_phone'] ) ) {
             $phone_href = preg_replace( '/[^0-9\\,]/', '', $c['_cl_phone'][0] );
-            $html .= '<span class="contact-list-phone"><a href="tel:' . $phone_href . '">' . $c['_cl_phone'][0] . '</a></span>';
+            $html .= '<span class="contact-list-phone"><a href="tel:' . $phone_href . '">' . esc_html( $c['_cl_phone'][0] ) . '</a></span>';
         }
         
         
         if ( isset( $c['_cl_phone_2'] ) ) {
             $phone_href = preg_replace( '/[^0-9\\,]/', '', $c['_cl_phone_2'][0] );
-            $html .= '<span class="contact-list-phone"><a href="tel:' . $phone_href . '">' . $c['_cl_phone_2'][0] . '</a></span>';
+            $html .= '<span class="contact-list-phone"><a href="tel:' . $phone_href . '">' . esc_html( $c['_cl_phone_2'][0] ) . '</a></span>';
         }
         
         
         if ( isset( $c['_cl_phone_3'] ) ) {
             $phone_href = preg_replace( '/[^0-9\\,]/', '', $c['_cl_phone_3'][0] );
-            $html .= '<span class="contact-list-phone"><a href="tel:' . $phone_href . '">' . $c['_cl_phone_3'][0] . '</a></span>';
+            $html .= '<span class="contact-list-phone"><a href="tel:' . $phone_href . '">' . esc_html( $c['_cl_phone_3'][0] ) . '</a></span>';
         }
         
         
@@ -276,32 +278,32 @@ class ContactListHelpers
         if ( isset( $c['_cl_address_line_1'] ) || isset( $c['_cl_country'] ) || isset( $c['_cl_state'] ) ) {
             $html .= '<div class="contact-list-address">';
             if ( !isset( $s['hide_address_title'] ) ) {
-                $html .= '<span class="contact-list-address-title">' . (( isset( $s['address_title'] ) && $s['address_title'] ? $s['address_title'] : __( 'Address', 'contact-list' ) )) . '</span>';
+                $html .= '<span class="contact-list-address-title">' . (( isset( $s['address_title'] ) && $s['address_title'] ? $s['address_title'] : esc_html__( 'Address', 'contact-list' ) )) . '</span>';
             }
             if ( isset( $c['_cl_address_line_1'] ) ) {
-                $html .= '<span class="contact-list-address-line-1">' . $c['_cl_address_line_1'][0] . '</span>';
+                $html .= '<span class="contact-list-address-line-1">' . esc_html( $c['_cl_address_line_1'][0] ) . '</span>';
             }
             if ( isset( $c['_cl_address_line_2'] ) ) {
-                $html .= '<span class="contact-list-address-line-2">' . $c['_cl_address_line_2'][0] . '</span>';
+                $html .= '<span class="contact-list-address-line-2">' . esc_html( $c['_cl_address_line_2'][0] ) . '</span>';
             }
             if ( isset( $c['_cl_address_line_3'] ) ) {
-                $html .= '<span class="contact-list-address-line-3">' . $c['_cl_address_line_3'][0] . '</span>';
+                $html .= '<span class="contact-list-address-line-3">' . esc_html( $c['_cl_address_line_3'][0] ) . '</span>';
             }
             if ( isset( $c['_cl_address_line_4'] ) ) {
-                $html .= '<span class="contact-list-address-line-4">' . $c['_cl_address_line_4'][0] . '</span>';
+                $html .= '<span class="contact-list-address-line-4">' . esc_html( $c['_cl_address_line_4'][0] ) . '</span>';
             }
             
             if ( isset( $c['_cl_country'] ) && $c['_cl_country'][0] || isset( $c['_cl_state'] ) && $c['_cl_state'][0] || isset( $c['_cl_city'] ) && $c['_cl_city'][0] ) {
                 $html .= '<span class="contact-list-address-country-and-state">';
                 if ( isset( $c['_cl_city'] ) && $c['_cl_city'][0] ) {
-                    $html .= $c['_cl_city'][0];
+                    $html .= esc_html( $c['_cl_city'][0] );
                 }
                 
                 if ( isset( $c['_cl_state'] ) && $c['_cl_state'][0] ) {
                     if ( isset( $c['_cl_city'] ) && $c['_cl_city'][0] ) {
                         $html .= ', ';
                     }
-                    $html .= $c['_cl_state'][0];
+                    $html .= esc_html( $c['_cl_state'][0] );
                 }
                 
                 
@@ -309,7 +311,7 @@ class ContactListHelpers
                     if ( isset( $c['_cl_state'] ) && $c['_cl_state'][0] ) {
                         $html .= ', ';
                     }
-                    $html .= $c['_cl_country'][0];
+                    $html .= esc_html( $c['_cl_country'][0] );
                 }
                 
                 $html .= '</span>';
@@ -368,7 +370,7 @@ class ContactListHelpers
         if ( isset( $c['_cl_description'] ) ) {
             $html .= '<div class="contact-list-description">';
             if ( !isset( $s['hide_additional_info_title'] ) ) {
-                $html .= '<span class="contact-list-description-title">' . (( isset( $s['additional_info_title'] ) && $s['additional_info_title'] ? $s['additional_info_title'] : __( 'Additional information', 'contact-list' ) )) . '</span>';
+                $html .= '<span class="contact-list-description-title">' . (( isset( $s['additional_info_title'] ) && $s['additional_info_title'] ? $s['additional_info_title'] : esc_html__( 'Additional information', 'contact-list' ) )) . '</span>';
             }
             $html .= $c['_cl_description'][0] . '</div>';
         }
@@ -376,16 +378,16 @@ class ContactListHelpers
         $html .= '</div>';
         $html .= '<div class="contact-list-some-elements">';
         if ( isset( $c['_cl_facebook_url'] ) ) {
-            $html .= ( $c['_cl_facebook_url'][0] ? '<a href="' . $c['_cl_facebook_url'][0] . '" target="_blank"><img src="' . plugins_url( '../img/facebook.png', __FILE__ ) . '" width="28" height="28" alt="' . __( 'Facebook', 'contact-list' ) . '" /></a>' : '' );
+            $html .= ( $c['_cl_facebook_url'][0] ? '<a href="' . $c['_cl_facebook_url'][0] . '" target="_blank"><img src="' . plugins_url( '../img/facebook.png', __FILE__ ) . '" width="28" height="28" alt="' . esc_html__( 'Facebook', 'contact-list' ) . '" /></a>' : '' );
         }
         if ( isset( $c['_cl_instagram_url'] ) ) {
-            $html .= ( $c['_cl_instagram_url'][0] ? '<a href="' . $c['_cl_instagram_url'][0] . '" target="_blank"><img src="' . plugins_url( '../img/instagram.png', __FILE__ ) . '" width="28" height="28" alt="' . __( 'Instagram', 'contact-list' ) . '" /></a>' : '' );
+            $html .= ( $c['_cl_instagram_url'][0] ? '<a href="' . $c['_cl_instagram_url'][0] . '" target="_blank"><img src="' . plugins_url( '../img/instagram.png', __FILE__ ) . '" width="28" height="28" alt="' . esc_html__( 'Instagram', 'contact-list' ) . '" /></a>' : '' );
         }
         if ( isset( $c['_cl_twitter_url'] ) ) {
-            $html .= ( $c['_cl_twitter_url'][0] ? '<a href="' . $c['_cl_twitter_url'][0] . '" target="_blank"><img src="' . plugins_url( '../img/twitter.png', __FILE__ ) . '" width="28" height="28" alt="' . __( 'Twitter', 'contact-list' ) . '" /></a>' : '' );
+            $html .= ( $c['_cl_twitter_url'][0] ? '<a href="' . $c['_cl_twitter_url'][0] . '" target="_blank"><img src="' . plugins_url( '../img/twitter.png', __FILE__ ) . '" width="28" height="28" alt="' . esc_html__( 'Twitter', 'contact-list' ) . '" /></a>' : '' );
         }
         if ( isset( $c['_cl_linkedin_url'] ) ) {
-            $html .= ( $c['_cl_linkedin_url'][0] ? '<a href="' . $c['_cl_linkedin_url'][0] . '" target="_blank"><img src="' . plugins_url( '../img/linkedin.png', __FILE__ ) . '" width="37" height="28" alt="' . __( 'LinkedIn', 'contact-list' ) . '" /></a>' : '' );
+            $html .= ( $c['_cl_linkedin_url'][0] ? '<a href="' . $c['_cl_linkedin_url'][0] . '" target="_blank"><img src="' . plugins_url( '../img/linkedin.png', __FILE__ ) . '" width="37" height="28" alt="' . esc_html__( 'LinkedIn', 'contact-list' ) . '" /></a>' : '' );
         }
         $html .= '<hr class="clear" /></div>';
         $html .= '</div>';
@@ -544,7 +546,6 @@ class ContactListHelpers
   </style>
     ';
         $html .= '<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">';
-        $html .= '<link rel="stylesheet" href="/wp-content/plugins/contact-list/public/contact-list-request-update.css?ver=2.4.0" type="text/css" media="all" />';
         //  $html .= $contact_id;
         $s = get_option( 'contact_list_settings' );
         //  if (isset($_POST['_CL_UPDATE']) && wp_verify_nonce($_REQUEST['_wpnonce'], '_CL_UPDATE') && !$_POST['email'] && $_POST['this_is_empty']==''):
