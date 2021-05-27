@@ -425,9 +425,11 @@ class myCustomFields {
 
                 if (ContactListHelpers::isPremium() == 1) {
                   $output = true;
-                } elseif ($customField['name'] == 'phone_2' || $customField['name'] == 'phone_3' || $customField['name'] == 'custom_field_2' || $customField['name'] == 'custom_field_3' || $customField['name'] == 'custom_field_4' || $customField['name'] == 'custom_field_5' || $customField['name'] == 'custom_field_6' || $customField['name'] == 'description') {
-                  $output = false;
-                } elseif ($customField['name'] == 'additional_info') {
+                } elseif ($customField['name'] == 'phone_2' || $customField['name'] == 'phone_3' || $customField['name'] == 'custom_field_2' || $customField['name'] == 'custom_field_3' || $customField['name'] == 'custom_field_4' || $customField['name'] == 'custom_field_5' || $customField['name'] == 'custom_field_6' || $customField['name'] == 'description' || $customField['name'] == 'website_url') {
+                  $output = true;
+                  $customField['name'] = '_FREE_' . $customField['name'];
+                } elseif ($customField['name'] == 'description') {
+                  $customField['name'] = '_FREE_' . $customField['name'];
                   $additional_info_notify = 1;
                 }  
 
@@ -435,6 +437,22 @@ class myCustomFields {
                 if ($output) { ?>
 
                     <div class="form-field form-required form-field-type-<?= $customField['type'] ?>">
+
+                      <?php if (substr($customField['name'], 0, strlen('_FREE_')) === '_FREE_'): ?>
+                      
+                        <div class="contact-list-field-in-pro-container">
+
+                          <?php if ($customField['name'] != '_FREE_description'): ?>
+                            <label><b><?= __($customField['title'], 'contact-list') ?></b></label>
+                          <?php endif; ?>
+                      
+                          <a href="<?= get_admin_url() ?>options-general.php?page=contact-list-pricing">
+                            <div class="contact-list-settings-pro-feature-overlay"><span>Pro</span></div>
+                          </a>
+                      
+                        </div>
+                          
+                      <?php else: ?>
 
                         <?php
                         switch ( $customField[ 'type' ] ) {
@@ -477,12 +495,8 @@ class myCustomFields {
 
                             case "title":
 
-                                if ($customField['name'] == 'additional_info' && $additional_info_notify) {
-                                  echo ContactListHelpers::proFeatureMarkupV2( __('More fields available in the Pro version.', 'contact-list') );
-                                } else {
-                                  $options_field = $customField['name'] . '_title';
-                                  echo '<h3>' . (isset($options[$options_field]) && $options[$options_field] ? $options[$options_field] : __($customField['title'], 'contact-list')) . '</h3>';
-                                }
+                                $options_field = $customField['name'] . '_title';
+                                echo '<h3>' . (isset($options[$options_field]) && $options[$options_field] ? $options[$options_field] : __($customField['title'], 'contact-list')) . '</h3>';
                                 break;
 
                             case "country":
@@ -510,7 +524,11 @@ class myCustomFields {
                             }
                         }
                         ?>
+
+                        <?php endif; ?>
+
                         <?php if ($customField['description']) echo '<p>' . $customField['description'] . '</p>'; ?>
+
                     </div>
                 <?php
                 }

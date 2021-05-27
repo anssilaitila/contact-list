@@ -14,13 +14,14 @@ class ContactListCPT {
                             'not_found'     => ContactListHelpers::getText('text_sr_no_contacts_found', __('No contacts found.', 'contact-list')),
                             'all_items'     => __('All Contacts', 'contact-list'),
                           ],
-                          'supports'           => array('title', 'thumbnail', 'page-attributes'),
-                          'public'             => false,
-                          'show_ui'            => true,
-                          'has_archive'        => false,
-                          'publicly_queryable' => false,
-                          'menu_icon'          => 'dashicons-id',
-                          'capability_type'    => 'post'
+                          'supports'            => array('title', 'thumbnail', 'page-attributes'),
+                          'public'              => false,
+                          'show_ui'             => true,
+                          'has_archive'         => false,
+                          'publicly_queryable'  => false,
+                          'menu_icon'           => 'dashicons-id',
+                          'capability_type'     => 'post',
+                          'exclude_from_search' => true
                        ]
     );
 

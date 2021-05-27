@@ -1771,7 +1771,13 @@ class ContactListSettings
                     'dot-circle-o',
                     'play',
                     'chevron-right',
-                    'caret-right'
+                    'caret-right',
+                    'globe',
+                    'cloud-download',
+                    'check',
+                    'check-circle',
+                    'info',
+                    'info-circle'
                 ];
                 ?>
             

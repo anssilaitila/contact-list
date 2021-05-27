@@ -58,6 +58,12 @@ class ContactListAdminSendEmail {
 
           <h1><?= esc_html__('Send email to contacts', 'contact-list'); ?></h1>
 
+          <?php if (ContactListHelpers::isPremium() == 0): ?>  
+            <hr class="style-one" />
+              <?= ContactListHelpers::proFeatureMarkup(); ?>
+            <hr class="style-one" />
+          <?php endif; ?>
+
           <div>
             
               <br />
@@ -173,10 +179,6 @@ class ContactListAdminSendEmail {
   
           <input type="submit" value="<?= esc_attr__('Send', 'contact-list'); ?>" <?php if (sizeof($recipient_emails) == 0 || ContactListHelpers::isPremium() == 0) echo 'disabled' ?> />
           <hr class="style-one" />
-            
-          <?php if (ContactListHelpers::isPremium() == 0): ?>  
-            <?= ContactListHelpers::proFeatureMarkup(); ?>
-          <?php endif; ?>
           
       </form>
 

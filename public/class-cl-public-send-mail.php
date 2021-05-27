@@ -60,7 +60,8 @@ class ContactListPublicSendMail {
       $body .= "<br /><br />";
     }
 
-    $body .= isset($_POST['body']) ? $_POST['body'] : '';
+//    $body .= isset($_POST['body']) ? $_POST['body'] : '';
+    $body .= isset($_POST['body']) ? nl2br( esc_html( stripslashes( $_POST['body'] ) ) ) : '';
 
     if (!isset($s['remove_email_footer'])) {
       $body .= "<br /><br />-- <br />" . ContactListHelpers::getText('text_email_footer', __('This mail was sent using Contact List Pro', 'contact-list'));

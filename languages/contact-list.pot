@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Contact List plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Contact List 2.9.32\n"
+"Project-Id-Version: Contact List 2.9.33\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/contact-list-pro\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2021-04-12T22:40:37+03:00\n"
+"POT-Creation-Date: 2021-05-23T17:42:49+03:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: contact-list\n"
@@ -140,14 +140,14 @@ msgid "Message sent"
 msgstr ""
 
 #: admin/class-cl-admin-mail-log.php:79
-#: admin/class-cl-admin-send-email.php:163
+#: admin/class-cl-admin-send-email.php:169
 #: includes/class-contact-list-helpers.php:142
 #: public/class-shortcode_contact_list_send_email__premium_only.php:132
 msgid "Sender email"
 msgstr ""
 
 #: admin/class-cl-admin-mail-log.php:87
-#: admin/class-cl-admin-send-email.php:158
+#: admin/class-cl-admin-send-email.php:164
 #: includes/class-contact-list-helpers.php:139
 #: public/class-shortcode_contact_list_send_email__premium_only.php:127
 msgid "Sender name"
@@ -160,7 +160,7 @@ msgstr ""
 
 #: admin/class-cl-admin-mail-log.php:99
 #: admin/class-cl-admin-mail-log.php:138
-#: admin/class-cl-admin-send-email.php:150
+#: admin/class-cl-admin-send-email.php:156
 #: public/class-shortcode_contact_list_send_email__premium_only.php:122
 msgid "Subject"
 msgstr ""
@@ -186,7 +186,7 @@ msgid "Sender"
 msgstr ""
 
 #: admin/class-cl-admin-mail-log.php:139
-#: admin/class-cl-admin-send-email.php:116
+#: admin/class-cl-admin-send-email.php:122
 msgid "Recipients"
 msgstr ""
 
@@ -207,29 +207,29 @@ msgstr ""
 msgid "Send email"
 msgstr ""
 
-#: admin/class-cl-admin-send-email.php:65
+#: admin/class-cl-admin-send-email.php:71
 msgid "Restrict recipients to specific group"
 msgstr ""
 
-#: admin/class-cl-admin-send-email.php:95
+#: admin/class-cl-admin-send-email.php:101
 #: admin/class-cl-taxonomy.php:18
 msgid "No groups found."
 msgstr ""
 
 #. translators: %s: link to group management
-#: admin/class-cl-admin-send-email.php:101
+#: admin/class-cl-admin-send-email.php:107
 msgid "You may add groups from <a href=\"%s\">group management</a>."
 msgstr ""
 
-#: admin/class-cl-admin-send-email.php:116
+#: admin/class-cl-admin-send-email.php:122
 msgid "total of"
 msgstr ""
 
-#: admin/class-cl-admin-send-email.php:116
+#: admin/class-cl-admin-send-email.php:122
 msgid "contacts with email addresses"
 msgstr ""
 
-#: admin/class-cl-admin-send-email.php:128
+#: admin/class-cl-admin-send-email.php:134
 #: admin/class-cl-cpt.php:14
 #: admin/class-cl-settings.php:593
 #: includes/class-contact-list-helpers.php:196
@@ -245,25 +245,25 @@ msgid "No contacts found."
 msgstr ""
 
 #. translators: %s: link to contact management
-#: admin/class-cl-admin-send-email.php:135
+#: admin/class-cl-admin-send-email.php:141
 #: public/class-shortcode_contact_list_send_email__premium_only.php:74
 msgid "You may add contacts or assign them to groups from <a href=\"%s\">contact management</a>."
 msgstr ""
 
-#: admin/class-cl-admin-send-email.php:168
+#: admin/class-cl-admin-send-email.php:174
 #: includes/class-contact-list-helpers.php:148
 #: public/class-shortcode_contact_list_send_email__premium_only.php:138
 msgid "Message"
 msgstr ""
 
-#: admin/class-cl-admin-send-email.php:174
+#: admin/class-cl-admin-send-email.php:180
 #: includes/class-contact-list-helpers.php:163
-#: public/class-shortcode_contact_list_send_email__premium_only.php:148
+#: public/class-shortcode_contact_list_send_email__premium_only.php:153
 msgid "Send"
 msgstr ""
 
-#: admin/class-cl-admin-send-email.php:201
-#: public/class-cl-public-send-mail.php:66
+#: admin/class-cl-admin-send-email.php:203
+#: public/class-cl-public-send-mail.php:67
 msgid "This mail was sent using Contact List Pro"
 msgstr ""
 
@@ -1232,7 +1232,7 @@ msgid "Shortcodes"
 msgstr ""
 
 #: admin/class-cl-shortcodes.php:29
-msgid "If you have an idea for a new shortcode or parameter, you may contact the author at"
+msgid "For support using the plugin please contact us at"
 msgstr ""
 
 #: admin/class-cl-shortcodes.php:34
@@ -1421,10 +1421,6 @@ msgstr ""
 msgid "Contact Details"
 msgstr ""
 
-#: includes/class-contact-list-custom-fields.php:481
-msgid "More fields available in the Pro version."
-msgstr ""
-
 #: includes/class-contact-list-helpers.php:61
 #: public/class-cl-public-helpers.php:11
 msgid "This feature is available in the Pro version."
@@ -1609,4 +1605,12 @@ msgstr ""
 
 #: public/class-shortcode_contact_list_send_email__premium_only.php:133
 msgid "This email will be the reply-to address."
+msgstr ""
+
+#: public/class-shortcode_contact_list_send_email__premium_only.php:150
+msgid "Message sent to recipient(s)."
+msgstr ""
+
+#: public/class-shortcode_contact_list_send_email__premium_only.php:151
+msgid "Sending in progress, please wait..."
 msgstr ""

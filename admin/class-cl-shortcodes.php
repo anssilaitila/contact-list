@@ -26,7 +26,7 @@ class ContactListShortcodes {
       <h1><?= __('Available shortcodes for Contact List', 'contact-list'); ?></h1>
 
       <div class="contact-list-examples">
-        <p><?= __('If you have an idea for a new shortcode or parameter, you may contact the author at', 'contact-list') . ' <a href="https://www.contactlistpro.com/support/" target="_blank">contactlistpro.com/support/</a>.'; ?></p>
+        <p><?= __('For support using the plugin please contact us at', 'contact-list') . ' <a href="https://www.contactlistpro.com/support/" target="_blank">contactlistpro.com/support/</a>.'; ?></p>
       </div>
 
       <div class="contact-list-admin-section contact-list-admin-section-shortcodes">
