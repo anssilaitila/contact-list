@@ -920,6 +920,18 @@ class ContactListSettings
         )
         );
         add_settings_field(
+            'contact-list-' . $only_pro . 'zip_code_title',
+            __( 'ZIP Code', 'contact-list' ),
+            array( $this, 'input_render' ),
+            'contact-list',
+            'contact-list_section',
+            array(
+            'label_for'   => 'contact-list-' . $only_pro . 'zip_code_title',
+            'field_name'  => $only_pro . 'zip_code_title',
+            'placeholder' => __( 'ZIP Code', 'contact-list' ),
+        )
+        );
+        add_settings_field(
             'contact-list-' . $only_pro . 'address_line_1_title',
             __( 'Address line 1', 'contact-list' ),
             array( $this, 'input_render' ),

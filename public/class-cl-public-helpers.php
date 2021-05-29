@@ -158,6 +158,10 @@ class ContactListPublicHelpers
                 $html .= '</select>';
             } else {
                 $taxonomy_slug = 'contact-group';
+                $taxonomy_selected = '';
+                if ( isset( $_GET['cl_cat'] ) && $_GET['cl_cat'] ) {
+                    $taxonomy_selected = $_GET['cl_cat'];
+                }
                 $html .= wp_dropdown_categories( [
                     'show_option_all' => ' ',
                     'hide_empty'      => 1,
@@ -169,6 +173,7 @@ class ContactListPublicHelpers
                     'taxonomy'        => $taxonomy_slug,
                     'echo'            => 0,
                     'class'           => 'cl_select_v2',
+                    'selected'        => $taxonomy_selected,
                     'show_option_all' => ContactListHelpers::getText( 'text_select_category', __( 'Select category', 'contact-list' ) ),
                 ] );
             }

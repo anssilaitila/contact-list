@@ -147,6 +147,14 @@ class myCustomFields {
             "scope"         => array( "contact" ),
             "capability"    => "edit_posts"
         ),
+        array(
+          "name"          => "zip_code",
+          "title"         => "ZIP Code",
+          "description"   => "",
+          "type"          => "city",
+          "scope"         => array( "contact" ),
+          "capability"    => "edit_posts"
+        ),
 
         array(
             "name"          => "address_line_1",
@@ -320,15 +328,15 @@ class myCustomFields {
             float: left;
           }
           .form-wrap .form-field-type-country {
-            width: 33%;
+            width: 25%;
             float: left;
           }
           .form-wrap .form-field-type-state {
-            width: 33%;
+            width: 25%;
             float: left;
           }
           .form-wrap .form-field-type-city {
-            width: 33%;
+            width: 25%;
             float: left;
           }
           .form-wrap .form-field-type-title {
@@ -425,7 +433,7 @@ class myCustomFields {
 
                 if (ContactListHelpers::isPremium() == 1) {
                   $output = true;
-                } elseif ($customField['name'] == 'phone_2' || $customField['name'] == 'phone_3' || $customField['name'] == 'custom_field_2' || $customField['name'] == 'custom_field_3' || $customField['name'] == 'custom_field_4' || $customField['name'] == 'custom_field_5' || $customField['name'] == 'custom_field_6' || $customField['name'] == 'description' || $customField['name'] == 'website_url') {
+                } elseif ($customField['name'] == 'phone_2' || $customField['name'] == 'phone_3' || $customField['name'] == 'custom_field_2' || $customField['name'] == 'custom_field_3' || $customField['name'] == 'custom_field_4' || $customField['name'] == 'custom_field_5' || $customField['name'] == 'custom_field_6' || $customField['name'] == 'description' || $customField['name'] == 'zip_code') {
                   $output = true;
                   $customField['name'] = '_FREE_' . $customField['name'];
                 } elseif ($customField['name'] == 'description') {

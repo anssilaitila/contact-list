@@ -295,9 +295,21 @@ class ContactListHelpers
             
             if ( isset( $c['_cl_country'] ) && $c['_cl_country'][0] || isset( $c['_cl_state'] ) && $c['_cl_state'][0] || isset( $c['_cl_city'] ) && $c['_cl_city'][0] ) {
                 $html .= '<span class="contact-list-address-country-and-state">';
+                $zip_code_exists = 0;
+                
+                if ( isset( $c['_cl_zip_code'] ) && $c['_cl_zip_code'][0] ) {
+                    $html .= esc_html( $c['_cl_zip_code'][0] );
+                    $zip_code_exists = 1;
+                }
+                
+                
                 if ( isset( $c['_cl_city'] ) && $c['_cl_city'][0] ) {
+                    if ( $zip_code_exists ) {
+                        $html .= ' ';
+                    }
                     $html .= esc_html( $c['_cl_city'][0] );
                 }
+                
                 
                 if ( isset( $c['_cl_state'] ) && $c['_cl_state'][0] ) {
                     if ( isset( $c['_cl_city'] ) && $c['_cl_city'][0] ) {

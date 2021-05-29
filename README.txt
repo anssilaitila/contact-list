@@ -3,7 +3,7 @@ Contributors: anssilaitila, freemius
 Tags: business directory, business listing, staff directory, staff list, address book, company directory, church directory, contact directory, directory, contacts, directory plugin, chamber of commerce
 Requires at least: 4.0.0
 Tested up to: 5.7
-Stable tag: 2.9.33
+Stable tag: 2.9.34
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -130,6 +130,11 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 6. Contact management
 
 == Changelog ==
+
+= 2.9.34 - 2021-05-29 =
+* (Pro) New field: ZIP Code (can be renamed from the settings)
+* (Pro) City and ZIP Code added to Import & Export
+* (Free and Pro) Bug fixes
 
 = 2.9.33 - 2021-05-23 =
 * (Free and Pro) New icons added to custom fields
