@@ -681,6 +681,18 @@ class ContactListSettings
         )
         );
         add_settings_field(
+            'contact-list-' . $only_pro . 'category_title',
+            __( 'Category (on simple list)', 'contact-list' ),
+            array( $this, 'input_render' ),
+            'contact-list',
+            'contact-list_section',
+            array(
+            'label_for'   => 'contact-list-' . $only_pro . 'category_title',
+            'field_name'  => $only_pro . 'category_title',
+            'placeholder' => __( 'Category', 'contact-list' ),
+        )
+        );
+        add_settings_field(
             'contact-list-text_filter_contacts',
             __( 'Filter contacts', 'contact-list' ),
             array( $this, 'input_render' ),
@@ -1484,6 +1496,17 @@ class ContactListSettings
             )
             );
         }
+        add_settings_field(
+            'contact-list-' . $only_pro . 'simple_list_show_category',
+            __( 'Show', 'contact-list' ) . ' ' . __( 'category', 'contact-list' ) . ' / ' . __( 'group', 'contact-list' ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_simple_list',
+            array(
+            'label_for'  => 'contact-list-' . $only_pro . 'simple_list_show_category',
+            'field_name' => $only_pro . 'simple_list_show_category',
+        )
+        );
     }
     
     public function additional_information_render( $args )

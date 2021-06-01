@@ -279,6 +279,13 @@ class ContactListPublicHelpers
         
         }
         
+        if ( isset( $s['simple_list_show_category'] ) ) {
+            $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-title"><span>';
+            $html .= ContactListHelpers::getText( 'category_title', __( 'Category', 'contact-list' ) );
+            $html .= '</span></div>';
+        }
+        
+        
         if ( isset( $s['simple_list_show_send_message'] ) ) {
             $html .= '<div class="contact-list-simple-list-col cl-align-right"><span>';
             $html .= '';
@@ -409,11 +416,11 @@ class ContactListPublicHelpers
                         
                         if ( $s['custom_field_' . $n . '_icon'] ) {
                             $html .= '<div class="contact-list-custom-field-simple-list contact-list-custom-field-' . $n . ' contact-list-custom-field-with-icon">';
-                            $html .= '<i class="fa ' . esc_attr( $s['custom_field_' . $n . '_icon'] ) . '" aria-hidden="true"></i><span>' . esc_html( $cf_value ) . '</span>';
+                            $html .= '<i class="fa ' . esc_attr( $s['custom_field_' . $n . '_icon'] ) . '" aria-hidden="true"></i><span>' . balanceTags( wp_kses_post( $cf_value ) ) . '</span>';
                             $html .= '</div>';
                         } else {
                             $html .= '<div class="contact-list-custom-field-simple-list contact-list-custom-field-' . $n . '">';
-                            $html .= esc_html( $cf_value );
+                            $html .= balanceTags( wp_kses_post( $cf_value ) );
                             $html .= '</div>';
                         }
                     
@@ -425,6 +432,26 @@ class ContactListPublicHelpers
             }
         
         }
+        
+        if ( isset( $s['simple_list_show_category'] ) ) {
+            $html .= '<div class="contact-list-simple-list-col"><span>';
+            $terms = get_the_terms( $id, 'contact-group' );
+            
+            if ( $terms ) {
+                $html .= '<div class="contact-list-simple-contact-groups">';
+                foreach ( $terms as $term ) {
+                    $t_id = $term->term_id;
+                    $custom_fields = get_option( "taxonomy_term_{$t_id}" );
+                    if ( !isset( $custom_fields['hide_group'] ) ) {
+                        $html .= '<span>' . esc_html( $term->name ) . '</span>';
+                    }
+                }
+                $html .= '</div>';
+            }
+            
+            $html .= '</span></div>';
+        }
+        
         
         if ( isset( $s['simple_list_show_send_message'] ) ) {
             $html .= '<div class="contact-list-simple-list-col cl-align-right"><span>';
