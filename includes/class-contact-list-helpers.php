@@ -320,9 +320,13 @@ class ContactListHelpers
                 
                 
                 if ( isset( $c['_cl_country'] ) && $c['_cl_country'][0] ) {
+                    
                     if ( isset( $c['_cl_state'] ) && $c['_cl_state'][0] ) {
                         $html .= ', ';
+                    } elseif ( isset( $c['_cl_city'] ) && $c['_cl_city'][0] ) {
+                        $html .= ', ';
                     }
+                    
                     $html .= esc_html( $c['_cl_country'][0] );
                 }
                 

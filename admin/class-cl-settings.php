@@ -378,6 +378,17 @@ class ContactListSettings
             'field_name' => 'disable_mail_log',
         )
         );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'disable_recaptcha_from_mail_log',
+            __( 'Disable logging for reCAPTCHA errors', 'contact-list' ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+            'label_for'  => 'contact-list-' . $only_pro . 'disable_recaptcha_from_mail_log',
+            'field_name' => $only_pro . 'disable_recaptcha_from_mail_log',
+        )
+        );
         $tab = 4;
         add_settings_section(
             'contact-list_tab_' . $tab,

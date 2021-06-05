@@ -233,7 +233,13 @@ class ContactListAdminSendEmail {
 
     }
     
-    wp_die();
+    if ($resp) {
+      echo 'OK';
+    } else {
+      echo 'ERROR';
+    }
+    
+    die();
   }
 
   public function new_contact_send_email($post_id, $post, $update) {
