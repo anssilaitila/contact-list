@@ -74,14 +74,7 @@ class ContactListAdminList {
       if ($email) {
         echo $email;
 
-        $valid_period = 60 * 60 * 24 * 2; // 60 minutes * 24 * 2
-        $expiry = current_time('timestamp', 1) + $valid_period;
-        $url = site_url('/_cl_update-contact/' . $post_ID . '/');
-        $url = add_query_arg('valid', $expiry, $url);
-        $url = add_query_arg('sc', md5($post_ID . $expiry . get_option('contact-list-sc')), $url);
-        $update_url = $url;
-
-        echo '<button class="contact-list-request-update contact-list-request-update-' . $post_ID . '" data-contact-id="' . $post_ID . '" data-email="' . get_post_meta($post_ID, '_cl_email', true) . '" data-site-url="' . get_site_url() . '" data-update-url="' . $update_url . '">' . __('Request update') . '</button><div class="contact-list-request-update-info contact-list-request-update-info-' . $post_ID . '"></div>';
+        echo '<button class="contact-list-request-update contact-list-request-update-' . $post_ID . '" data-contact-id="' . $post_ID . '">' . esc_html__('Request update') . '</button><div class="contact-list-request-update-info contact-list-request-update-info-' . $post_ID . '"></div>';
       }
 
     }

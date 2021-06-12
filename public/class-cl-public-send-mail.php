@@ -113,6 +113,9 @@ class ContactListPublicSendMail {
   
       $context = stream_context_create($options);
       $result = file_get_contents($url, false, $context);
+
+      $msg = $url . "\n\n" . $recaptcha_response . "\n\n" . $s['recaptcha_secret_key'] . "\n\n" . $context . "\n\n" . $result;
+      ContactListHelpers::writeLog('recaptcha check', $msg);
       
       if ($result) {
         $recaptcha_validation = json_decode($result);
@@ -156,6 +159,9 @@ class ContactListPublicSendMail {
           ));
         
         }
+
+        $msg = $url . "\n\n" . $recaptcha_response . "\n\n" . $s['recaptcha_secret_key'] . "\n\n" . $context . "\n\n" . $result;
+        ContactListHelpers::writeLog('RECAPTCHA ERROR: No data returned', $msg);
 
         echo 'Invalid reCAPTCHA challenge';
         die();

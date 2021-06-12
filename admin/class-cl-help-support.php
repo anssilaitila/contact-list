@@ -98,6 +98,82 @@ class ContactListHelpSupport {
         
       </div>
 
+      <script>
+        jQuery(function ($) {
+          $('.contact-list-toggle-debug-info').on('click', function() {
+            if ($('.contact-list-debug-info-container').is(':hidden')) {
+              $('.contact-list-debug-info-container').show();
+              $(this).text("<?= esc_js( __('Close', 'shared-files') ) ?>");
+            } else {
+              $('.contact-list-debug-info-container').hide();
+              $(this).text("<?= esc_js( __('Open', 'shared-files') ) ?>");
+            }
+          });
+        });
+      </script>
+
+      <div class="contact-list-admin-section">
+      
+        <h2><?= esc_html__('Debug Info', 'contact-list'); ?> <button class="contact-list-toggle-debug-info"><?= esc_html__('Open', 'contact-list'); ?></button></h2>
+      
+        <div class="contact-list-debug-info-container">
+      
+          <div class="contact-list-info-small">
+            <p><?= esc_html__('This section contains some debug info, which may be useful when trying to solve abnormal behaviour of the plugin.', 'contact-list') ?></a></p>
+          </div>
+      
+          <?php
+          global $wpdb;
+          $table_name = $wpdb->prefix . 'contact_list_log';
+          $msg = $wpdb->get_results("SELECT * FROM $table_name ORDER BY created_at DESC LIMIT 200");
+          ?>
+          
+          <table class="contact-list-mail-log" style="min-width: 400px;">
+
+          <tr>
+            <th><?= esc_html__('Date', 'contact-list') ?></th>
+            <th><?= esc_html__('Title', 'contact-list') ?></th>
+            <th><?= esc_html__('Message', 'contact-list') ?></th>
+          </tr>
+          
+          <?php if (sizeof($msg) > 0): ?>
+
+            <?php foreach ($msg as $row): ?>
+              <tr>
+
+                <td style="white-space: nowrap;">
+                  <?= $row->created_at ?>
+                </td>
+
+                <td>
+                  <?= $row->title ?><br />
+                </td>
+
+                <td>
+                  <?php if (isset($row->message)): ?>
+                    <?= nl2br( $row->message ) ?>
+                  <?php endif; ?>
+                </td>
+
+              </tr>
+            <?php endforeach; ?>
+
+          <?php else: ?>
+
+            <tr>
+              <td colspan="3">
+                <?= __('No data logged yet.', 'contact-list') ?>
+              </td>
+            </tr>
+
+          <?php endif; ?>
+      
+      
+      
+        </div>
+        
+      </div>
+
       <script src="<?= CONTACT_LIST_URI ?>dist/clipboard.min.js"></script>
   
       <script>

@@ -410,7 +410,17 @@ class ContactListPublicHelpers
                             }
                             $cf_value = '<a href="mailto:' . esc_attr( $mailto_obs ) . '">' . esc_html( $mailto_obs ) . '</a>';
                         } else {
-                            $cf_value = preg_replace( $url, '<a href="http$2://$4" target="_blank" title="$0">$0</a>', $cf_value );
+                            $link_title = '';
+                            if ( isset( $s['custom_field_' . $n . '_link_text'] ) && $s['custom_field_' . $n . '_link_text'] ) {
+                                $link_title = $s['custom_field_' . $n . '_link_text'];
+                            }
+                            
+                            if ( $link_title ) {
+                                $cf_value = preg_replace( $url, '<a href="http$2://$4" target="_blank" title="$0">' . $link_title . '</a>', $cf_value );
+                            } else {
+                                $cf_value = preg_replace( $url, '<a href="http$2://$4" target="_blank" title="$0">$0</a>', $cf_value );
+                            }
+                        
                         }
                         
                         

@@ -3,7 +3,7 @@ Contributors: anssilaitila, freemius
 Tags: business directory, business listing, staff directory, staff list, address book, company directory, church directory, contact directory, directory, contacts, directory plugin, chamber of commerce
 Requires at least: 4.0.0
 Tested up to: 5.7
-Stable tag: 2.9.36
+Stable tag: 2.9.37
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -130,6 +130,15 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 6. Contact management
 
 == Changelog ==
+
+= 2.9.37 - 2021-06-12 =
+- (Pro) Mail sent when "Request Update" is clicked is now customizable (Settings / reCAPTCHA and email)
+- (Pro) Contacts created using the shortcode [contact_list_form] now receive (optionally) a message containing a "permanent update URL" (Settings / reCAPTCHA and email)
+- (Pro) New setting: "Hide phone numbers from public card"
+- (Pro) Custom fields can now be used as search filters (Settings / Search form)
+- (Free and Pro) A new setting for all available custom fields: "Link text (only applicable if the custom field content is a URL)" (Settings / Custom fields)
+- (Free and Pro) You can now choose any Font Awesome icon for the available custom fields (Settings / Custom fields)
+- (Free and Pro) Minor tweaks and fixes
 
 = 2.9.36 - 2021-06-05 =
 * (Pro) reCAPTCHA errors are now logged to the mail log

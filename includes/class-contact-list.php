@@ -247,6 +247,7 @@ class Contact_List
         // Send email
         $this->loader->add_action( 'admin_menu', $plugin_admin_send_email, 'register_send_email_page' );
         $this->loader->add_action( 'wp_ajax_cl_send_mail', $plugin_admin_send_email, 'cl_send_mail' );
+        $this->loader->add_action( 'wp_ajax_cl_request_update', $plugin_admin_send_email, 'cl_request_update' );
         $this->loader->add_action(
             'wp_insert_post',
             $plugin_admin_send_email,

@@ -2,6 +2,15 @@
 
 class ContactListHelpers
 {
+    public static function writeLog( $title = '', $message = '' )
+    {
+        global  $wpdb ;
+        $wpdb->insert( $wpdb->prefix . 'contact_list_log', array(
+            'title'   => $title,
+            'message' => $message,
+        ) );
+    }
+    
     public static function addFeaturedImage(
         $contact_id,
         $upload,
@@ -238,21 +247,25 @@ class ContactListHelpers
             }
         }
         
-        if ( isset( $c['_cl_phone'] ) ) {
-            $phone_href = preg_replace( '/[^0-9\\,]/', '', $c['_cl_phone'][0] );
-            $html .= '<span class="contact-list-phone"><a href="tel:' . $phone_href . '">' . esc_html( $c['_cl_phone'][0] ) . '</a></span>';
-        }
+        if ( !isset( $s['hide_phone_numbers_from_public_card'] ) ) {
+            
+            if ( isset( $c['_cl_phone'] ) ) {
+                $phone_href = preg_replace( '/[^0-9\\,]/', '', $c['_cl_phone'][0] );
+                $html .= '<span class="contact-list-phone"><a href="tel:' . $phone_href . '">' . esc_html( $c['_cl_phone'][0] ) . '</a></span>';
+            }
+            
+            
+            if ( isset( $c['_cl_phone_2'] ) ) {
+                $phone_href = preg_replace( '/[^0-9\\,]/', '', $c['_cl_phone_2'][0] );
+                $html .= '<span class="contact-list-phone"><a href="tel:' . $phone_href . '">' . esc_html( $c['_cl_phone_2'][0] ) . '</a></span>';
+            }
+            
+            
+            if ( isset( $c['_cl_phone_3'] ) ) {
+                $phone_href = preg_replace( '/[^0-9\\,]/', '', $c['_cl_phone_3'][0] );
+                $html .= '<span class="contact-list-phone"><a href="tel:' . $phone_href . '">' . esc_html( $c['_cl_phone_3'][0] ) . '</a></span>';
+            }
         
-        
-        if ( isset( $c['_cl_phone_2'] ) ) {
-            $phone_href = preg_replace( '/[^0-9\\,]/', '', $c['_cl_phone_2'][0] );
-            $html .= '<span class="contact-list-phone"><a href="tel:' . $phone_href . '">' . esc_html( $c['_cl_phone_2'][0] ) . '</a></span>';
-        }
-        
-        
-        if ( isset( $c['_cl_phone_3'] ) ) {
-            $phone_href = preg_replace( '/[^0-9\\,]/', '', $c['_cl_phone_3'][0] );
-            $html .= '<span class="contact-list-phone"><a href="tel:' . $phone_href . '">' . esc_html( $c['_cl_phone_3'][0] ) . '</a></span>';
         }
         
         
@@ -361,7 +374,17 @@ class ContactListHelpers
                     }
                     $cf_value = '<a href="mailto:' . $mailto_obs . '">' . $mailto_obs . '</a>';
                 } else {
-                    $cf_value = preg_replace( $url, '<a href="http$2://$4" target="_blank" title="$0">$0</a>', $cf_value );
+                    $link_title = '';
+                    if ( isset( $s['custom_field_' . $n . '_link_text'] ) && $s['custom_field_' . $n . '_link_text'] ) {
+                        $link_title = $s['custom_field_' . $n . '_link_text'];
+                    }
+                    
+                    if ( $link_title ) {
+                        $cf_value = preg_replace( $url, '<a href="http$2://$4" target="_blank" title="$0">' . $link_title . '</a>', $cf_value );
+                    } else {
+                        $cf_value = preg_replace( $url, '<a href="http$2://$4" target="_blank" title="$0">$0</a>', $cf_value );
+                    }
+                
                 }
                 
                 
