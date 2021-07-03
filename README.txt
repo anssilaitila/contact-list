@@ -3,7 +3,7 @@ Contributors: anssilaitila, freemius
 Tags: business directory, business listing, staff directory, staff list, address book, company directory, church directory, contact directory, directory, contacts, directory plugin, chamber of commerce
 Requires at least: 4.0.0
 Tested up to: 5.7
-Stable tag: 2.9.37
+Stable tag: 2.9.38
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,7 +15,7 @@ Create an address book or a company directory with ease. With this directory plu
 
 Send email directly to contacts using a built-in form on the front-end (featuring reCAPTCHA). Contact's email address can be completely hidden in the Pro version but still email can be sent to the contact.
 
-**7-day free trial available for Pro version, no credit card required.**
+**7-day free trial available for the Pro version**
 
 See live demos at [contactlistpro.com](https://www.contactlistpro.com/contact-list/).
 
@@ -130,6 +130,13 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 6. Contact management
 
 == Changelog ==
+
+= 2.9.38 - 2021-07-03 =
+- (Pro) More fields added to the form used by features "request update" and "permanent update URL"
+- (Pro) Label for button "Send message" can now be renamed (Settings / Field titles and texts)
+- (Pro) Address line 1 added to simple list (Settings / Simple list)
+- (Free and Pro) Improved version of pagination
+- (Free and Pro) Various tweaks and fixes
 
 = 2.9.37 - 2021-06-12 =
 - (Pro) Mail sent when "Request Update" is clicked is now customizable (Settings / reCAPTCHA and email)

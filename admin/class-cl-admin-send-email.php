@@ -243,6 +243,17 @@ class ContactListAdminSendEmail
         if ( $sender_name && $sender_email && is_email( $sender_email ) ) {
             $headers[] .= 'From: ' . esc_attr( $sender_name ) . ' <' . sanitize_email( $sender_email ) . '>';
         }
+        $reply_to_headers = '';
+        
+        if ( $sender_name && is_email( $reply_to ) ) {
+            $reply_to_headers = $sender_name . ' <' . $reply_to . '>';
+        } elseif ( is_email( $reply_to ) ) {
+            $reply_to_headers = '<' . $reply_to . '>';
+        }
+        
+        if ( $reply_to_headers ) {
+            $headers[] = 'Reply-To: ' . $reply_to_headers;
+        }
         $recipient_emails = ( isset( $_POST['recipient_emails'] ) ? $_POST['recipient_emails'] : '' );
         $resp = wp_mail(
             $recipient_emails,

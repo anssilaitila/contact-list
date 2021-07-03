@@ -135,6 +135,9 @@ class ShortcodeContactList
                 'post_status'    => 'publish',
                 'posts_per_page' => -1,
                 'post__not_in'   => $exclude,
+                'meta_query'     => $meta_query,
+                'tax_query'      => $tax_query,
+                'orderby'        => $order_by,
             ) );
             if ( !isset( $atts['hide_search'] ) ) {
                 $html .= '<input type="text" id="search-contacts" placeholder="' . (( isset( $s['search_contacts'] ) && $s['search_contacts'] ? $s['search_contacts'] : __( 'Search contacts...', 'contact-list' ) )) . '">';
@@ -142,28 +145,25 @@ class ShortcodeContactList
             if ( !isset( $atts['hide_filters'] ) ) {
                 $html .= ContactListPublicHelpers::searchFormMarkup( $atts, $s, $exclude );
             }
-            $html .= '<div id="contact-list-contacts-found"></div>';
+            //      $html .= '<div id="contact-list-contacts-found"></div>';
+            
+            if ( $wp_query_for_filter->have_posts() ) {
+                $html .= '<div class="contact-list-basic-nothing-found">';
+                $html .= ContactListHelpers::getText( 'text_sr_no_contacts_found', __( 'No contacts found.', 'contact-list' ) );
+                $html .= '</div>';
+                $html .= '<div class="contact-list-basic-all-contacts-container">';
+                $html .= '<div class="contact-list-basic-contacts-found"></div>';
+                $html .= ContactListHelpers::contactListMarkup( $wp_query_for_filter );
+                $html .= '</div>';
+            }
+            
             
             if ( $wp_query->have_posts() ) {
                 $html .= '<div class="contact-list-ajax-results">';
                 $html .= ContactListHelpers::contactListMarkup( $wp_query );
                 $html .= '</div>';
-                $pagination_args = array(
-                    'base'         => str_replace( 999999999, '%#%', esc_url( get_pagenum_link( 999999999 ) ) ),
-                    'total'        => $wp_query->max_num_pages,
-                    'current'      => max( 1, get_query_var( 'paged' ) ),
-                    'format'       => '?paged=%#%',
-                    'show_all'     => true,
-                    'type'         => 'plain',
-                    'prev_next'    => false,
-                    'add_args'     => false,
-                    'add_fragment' => '',
-                );
                 $html .= '<hr class="clear" />';
-                $html .= '<div class="contact-list-pagination">';
-                if ( paginate_links( $pagination_args ) ) {
-                    $html .= '<span class="contact-list-more-contacts">' . __( 'More contacts:', 'contact-list' ) . '</span>' . paginate_links( $pagination_args );
-                }
+                $html .= ContactListPublicHelpers::pagination( $wp_query );
             }
             
             if ( $wp_query->found_posts == 0 ) {

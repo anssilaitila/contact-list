@@ -2,18 +2,91 @@
 
 class ContactListPublicHelpers
 {
+    public static function pagination( $wp_query )
+    {
+        $html = '';
+        if ( $wp_query->max_num_pages <= 1 ) {
+            return;
+        }
+        $paged = ( get_query_var( 'paged' ) ? absint( get_query_var( 'paged' ) ) : 1 );
+        $max = intval( $wp_query->max_num_pages );
+        if ( $paged >= 1 ) {
+            $links[] = $paged;
+        }
+        /** Add the pages around the current page to the array */
+        
+        if ( $paged >= 3 ) {
+            $links[] = $paged - 1;
+            $links[] = $paged - 2;
+        }
+        
+        
+        if ( $paged + 2 <= $max ) {
+            $links[] = $paged + 2;
+            $links[] = $paged + 1;
+        }
+        
+        $html .= '<div class="contact-list-navigation"><ul>' . "\n";
+        if ( get_previous_posts_link() ) {
+            $html .= sprintf( '<li>%s</li>' . "\n", get_previous_posts_link( esc_html__( 'Previous contacts', 'contact-list' ) ) );
+        }
+        
+        if ( !in_array( 1, $links ) ) {
+            $class = ( 1 == $paged ? ' class="active"' : '' );
+            $html .= sprintf(
+                '<li%s><a href="%s">%s</a></li>' . "\n",
+                $class,
+                esc_url( get_pagenum_link( 1 ) ),
+                '1'
+            );
+            if ( !in_array( 2, $links ) ) {
+                $html .= '<li>…</li>';
+            }
+        }
+        
+        sort( $links );
+        foreach ( (array) $links as $link ) {
+            $class = ( $paged == $link ? ' class="active"' : '' );
+            $html .= sprintf(
+                '<li%s><a href="%s">%s</a></li>' . "\n",
+                $class,
+                esc_url( get_pagenum_link( $link ) ),
+                $link
+            );
+        }
+        
+        if ( !in_array( $max, $links ) ) {
+            if ( !in_array( $max - 1, $links ) ) {
+                $html .= '<li>…</li>' . "\n";
+            }
+            $class = ( $paged == $max ? ' class="active"' : '' );
+            $html .= sprintf(
+                '<li%s><a href="%s">%s</a></li>' . "\n",
+                $class,
+                esc_url( get_pagenum_link( $max ) ),
+                $max
+            );
+        }
+        
+        if ( get_next_posts_link( null, 999999999 ) ) {
+            $html .= sprintf( '<li>%s</li>' . "\n", get_next_posts_link( esc_html__( 'Next contacts', 'contact-list' ), 999999999 ) );
+        }
+        $html .= '</ul></div>' . "\n";
+        return $html;
+    }
+    
     public static function proFeaturePublicMarkup()
     {
         $html = '';
         $html .= '<div class="contact-list-public-pro-feature">';
         $html .= '<span class="contact-list-public-pro-feature-title">';
-        $html .= __( 'This feature is available in the Pro version.', 'contact-list' );
+        $html .= esc_html__( 'This feature is available in the Pro version.', 'contact-list' );
         $html .= '</span>';
         $html .= '<span>';
-        $html .= __( 'You can use the shortcodes', 'contact-list' ) . ' [contact_list] ' . __( 'and', 'contact-list' ) . ' [contact_list_simple].';
+        $html .= esc_html__( 'You can use the shortcodes', 'contact-list' ) . ' [contact_list] ' . __( 'and', 'contact-list' ) . ' [contact_list_simple].';
         $html .= '</span>';
         $html .= '<span>';
-        $html .= __( 'More info on shortcodes at', 'contact-list' ) . ' <a href="https://www.contactlistpro.com/support/shortcodes/" target="_blank">contactlistpro.com</a>.';
+        $html .= esc_html__( 'More info on shortcodes at', 'contact-list' ) . ' <a href="https://www.contactlistpro.com/support/shortcodes/" target="_blank">contactlistpro.com</a>.';
         $html .= '</span>';
         $html .= '</div>';
         return $html;
@@ -224,7 +297,7 @@ class ContactListPublicHelpers
         $html = '';
         $html .= '<div class="contact-list-simple-list-row">';
         $contact_fullname = '';
-        $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-name contact-list-simple-list-col-title"><span>' . __( 'Name', 'contact-list' ) . '</span></div>';
+        $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-name contact-list-simple-list-col-title"><span>' . ContactListHelpers::getText( 'name_title', __( 'Name', 'contact-list' ) ) . '</span></div>';
         
         if ( !isset( $s['simple_list_hide_job_title'] ) ) {
             $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-title"><span>';
@@ -243,6 +316,13 @@ class ContactListPublicHelpers
         if ( !isset( $s['simple_list_hide_phone_1'] ) ) {
             $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-title"><span>';
             $html .= ContactListHelpers::getText( 'phone_title', __( 'Phone', 'contact-list' ) );
+            $html .= '</span></div>';
+        }
+        
+        
+        if ( isset( $s['simple_list_show_address_line_1'] ) ) {
+            $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-title"><span>';
+            $html .= ContactListHelpers::getText( 'address_title', __( 'Address', 'contact-list' ) );
             $html .= '</span></div>';
         }
         
@@ -301,7 +381,7 @@ class ContactListPublicHelpers
         $s = get_option( 'contact_list_settings' );
         $c = get_post_custom( $id );
         $html = '';
-        $html .= '<div class="contact-list-simple-list-row">';
+        $html .= '<div class="contact-list-simple-list-row contact-list-simple-list-row-data">';
         $contact_fullname = '';
         
         if ( isset( $s['last_name_before_first_name'] ) ) {
@@ -349,6 +429,15 @@ class ContactListPublicHelpers
                 $html .= '<a href="tel:' . esc_attr( $phone_href ) . '">' . esc_html( $c['_cl_phone'][0] ) . '</a>';
             }
             
+            $html .= '</span></div>';
+        }
+        
+        
+        if ( isset( $s['simple_list_show_address_line_1'] ) ) {
+            $html .= '<div class="contact-list-simple-list-col"><span>';
+            if ( isset( $c['_cl_address_line_1'] ) ) {
+                $html .= esc_html( $c['_cl_address_line_1'][0] );
+            }
             $html .= '</span></div>';
         }
         
@@ -467,7 +556,7 @@ class ContactListPublicHelpers
             $html .= '<div class="contact-list-simple-list-col cl-align-right"><span>';
             if ( isset( $c['_cl_email'][0] ) && is_email( $c['_cl_email'][0] ) || isset( $c['_cl_notify_emails'] ) && $c['_cl_notify_emails'] ) {
                 if ( !isset( $s['hide_send_email_button'] ) ) {
-                    $html .= '<span class="contact-list-send-email contact-list-simple-send-email cl-dont-print"><a href="" data-id="' . esc_attr( $id ) . '" data-name="' . esc_attr( $contact_fullname ) . '">' . __( 'Send message', 'contact-list' ) . ' &raquo;</a></span>';
+                    $html .= '<span class="contact-list-send-email contact-list-simple-send-email cl-dont-print"><a href="" data-id="' . esc_attr( $id ) . '" data-name="' . esc_attr( $contact_fullname ) . '">' . ContactListHelpers::getTextV2( 'text_send_message', 'Send message' ) . ' &raquo;</a></span>';
                 }
             }
             $html .= '</span></div>';

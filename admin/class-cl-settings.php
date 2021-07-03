@@ -876,6 +876,18 @@ class ContactListSettings
         )
         );
         add_settings_field(
+            'contact-list-' . $only_pro . 'text_send_message',
+            __( 'Send message', 'contact-list' ),
+            array( $this, 'input_render' ),
+            'contact-list',
+            'contact-list_section',
+            array(
+            'label_for'   => 'contact-list-' . $only_pro . 'text_send_message',
+            'field_name'  => $only_pro . 'text_send_message',
+            'placeholder' => '',
+        )
+        );
+        add_settings_field(
             'contact-list-text_select_country',
             __( 'Select country', 'contact-list' ),
             array( $this, 'input_render' ),
@@ -1101,6 +1113,18 @@ class ContactListSettings
             'label_for'   => 'contact-list-last_name_title',
             'field_name'  => 'last_name_title',
             'placeholder' => __( 'Last name', 'contact-list' ),
+        )
+        );
+        add_settings_field(
+            'contact-list-name_title',
+            __( 'Name (simple list title)', 'contact-list' ),
+            array( $this, 'input_render' ),
+            'contact-list',
+            'contact-list_section',
+            array(
+            'label_for'   => 'contact-list-name_title',
+            'field_name'  => 'name_title',
+            'placeholder' => __( 'Name', 'contact-list' ),
         )
         );
         add_settings_field(
@@ -1775,6 +1799,17 @@ class ContactListSettings
             array(
             'label_for'  => 'contact-list-simple_list_show_city',
             'field_name' => 'simple_list_show_city',
+        )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'simple_list_show_address_line_1',
+            __( 'Show address line 1', 'contact-list' ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_simple_list',
+            array(
+            'label_for'  => 'contact-list-' . $only_pro . 'simple_list_show_address_line_1',
+            'field_name' => $only_pro . 'simple_list_show_address_line_1',
         )
         );
         $custom_fields = [ 1 ];
@@ -2558,6 +2593,7 @@ class ContactListSettings
     {
         echo  '<h2 style="margin-top: 20px;">' . esc_html__( 'Public form elements', 'contact-list' ) . '</h2>' ;
         echo  '<p>' . esc_html__( 'You may customize the public form (the one displayed using the [contact_list_form] shortcode) using these settings.', 'contact-list' ) . '</p>' ;
+        echo  '<p>' . esc_html__( 'These choices also affect the form which is used by contacts themselves to update their info (by features "request update" and "permanent update URL")', 'contact-list' ) . '</p>' ;
     }
     
     public function contact_list_settings_simple_list_callback()
@@ -2636,7 +2672,7 @@ class ContactListSettings
         global  $submenu ;
         $permalink = './options-general.php?page=contact-list';
         $menuitem = 'edit.php?post_type=' . CONTACT_CPT;
-        $submenu[$menuitem][] = array( __( 'Settings&nbsp;&nbsp;➤', 'contact-list' ), 'manage_options', $permalink );
+        $submenu[$menuitem][] = array( esc_html__( 'Settings', 'contact-list' ) . '&nbsp;&nbsp;➤', 'manage_options', $permalink );
     }
     
     public function add_upgrade_link()
@@ -2645,7 +2681,7 @@ class ContactListSettings
         $permalink = './options-general.php?page=contact-list-pricing';
         $menuitem = 'edit.php?post_type=' . CONTACT_CPT;
         $submenu[$menuitem][] = array(
-            __( 'Upgrade&nbsp;&nbsp;➤', 'contact-list' ),
+            esc_html__( 'Upgrade', 'contact-list' ) . '&nbsp;&nbsp;➤',
             'manage_options',
             $permalink,
             '',
@@ -2667,6 +2703,7 @@ class ContactListSettings
             $table_name_log = $wpdb->prefix . 'contact_list_log';
             $wpdb->query( "CREATE TABLE IF NOT EXISTS " . $table_name_log . " (\n        id              BIGINT(20) NOT NULL auto_increment,\n        title           VARCHAR(255) NOT NULL,\n        message         TEXT NOT NULL,\n        created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n        PRIMARY KEY (id)\n      ) " . $charset_collate . ";" );
             update_option( 'contact_list_version', CONTACT_LIST_VERSION );
+            ContactListHelpers::writeLog( 'Plugin updated to version ' . CONTACT_LIST_VERSION, '' );
         }
     
     }

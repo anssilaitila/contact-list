@@ -44,7 +44,7 @@ class ContactListQuery {
 
       if ($contact_id) {
 
-        $html = ContactListHelpers::updateContactMarkup($contact_id);
+        $html = ContactListUpdateContact::updateContactMarkup($contact_id);
         print_r($html);
         die();
 
