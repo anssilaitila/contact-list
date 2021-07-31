@@ -163,7 +163,7 @@ class ShortcodeContactList
                 $html .= ContactListHelpers::contactListMarkup( $wp_query );
                 $html .= '</div>';
                 $html .= '<hr class="clear" />';
-                $html .= ContactListPublicHelpers::pagination( $wp_query );
+                $html .= ContactListPublicPagination::getPagination( 1, $wp_query, 'default' );
             }
             
             if ( $wp_query->found_posts == 0 ) {

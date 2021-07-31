@@ -58,6 +58,22 @@ class ContactListShortcodes {
                   <li><?= __('Layout "4 columns"', 'contact-list') ?> (<?= __('without contact images', 'contact-list') ?>):
                     <span class="contact-list-shortcode contact-list-shortcode-5">[contact_list layout=4-columns]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-5"><?= __('Copy', 'contact-list') ?></button>
                   </li>
+
+                  <?php if ( cl_fs()->is_free_plan() || cl_fs()->is_plan_or_trial('pro') || cl_fs()->is_plan_or_trial('business') ): ?>
+
+                    <li><?= __('Filter by custom field values, any number of fields', 'contact-list') ?>: <span class="cl-new-feature-inline"><?= __('New', 'shared-files') ?></span>
+                    
+                      <?php if (ContactListHelpers::isPremium() == 1): ?>  
+                        <span class="contact-list-pro-only-inline-inactive">Professional</span>
+                      <?php else: ?>
+                        <a href="<?= get_admin_url() ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">Professional</a>
+                      <?php endif; ?>
+                    
+                      <span class="contact-list-shortcode contact-list-shortcode-001">[contact_list custom_field_1="Value 1" custom_field_2="Value 2"]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-001"><?= __('Copy', 'contact-list') ?></button>
+                    </li>
+                    
+                  <?php endif; ?>
+                    
                   <li><?= __('Multiple parameters:', 'contact-list') ?>
                     <span class="contact-list-shortcode contact-list-shortcode-6">[contact_list layout=2-columns hide_search=1]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-6"><?= __('Copy', 'contact-list') ?></button>
                   </li>
@@ -78,28 +94,42 @@ class ContactListShortcodes {
             <ul>
               <li><?= __('Show filters:', 'contact-list') ?>
                 <?php if (ContactListHelpers::isPremium() == 1): ?>  
-                  <span class="contact-list-pro-only-inline-inactive">Pro</span>
+                  <span class="contact-list-pro-only-inline-inactive">Any Plan</span>
                 <?php else: ?>
-                  <a href="<?= get_admin_url() ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">Pro</a>
+                  <a href="<?= get_admin_url() ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">Any Plan</a>
                 <?php endif; ?>
                 <span class="contact-list-shortcode contact-list-shortcode-18">[contact_list_simple show_filters=1]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-18"><?= __('Copy', 'contact-list') ?></button>
               </li>
               <li><?= __('Show contacts from a specific group:', 'contact-list') ?>
                 <?php if (ContactListHelpers::isPremium() == 1): ?>  
-                  <span class="contact-list-pro-only-inline-inactive">Pro</span>
+                  <span class="contact-list-pro-only-inline-inactive">Any Plan</span>
                 <?php else: ?>
-                  <a href="<?= get_admin_url() ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">Pro</a>
+                  <a href="<?= get_admin_url() ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">Any Plan</a>
                 <?php endif; ?>
                 <span class="contact-list-shortcode contact-list-shortcode-99">[contact_list_simple group=GROUP_SLUG]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-99"><?= __('Copy', 'contact-list') ?></button>
               </li>
               <li><?= __('Limit contacts per page (activates pagination):', 'contact-list') ?>
                 <?php if (ContactListHelpers::isPremium() == 1): ?>  
-                  <span class="contact-list-pro-only-inline-inactive">Pro</span>
+                  <span class="contact-list-pro-only-inline-inactive">Any Plan</span>
                 <?php else: ?>
-                  <a href="<?= get_admin_url() ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">Pro</a>
+                  <a href="<?= get_admin_url() ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">Any Plan</a>
                 <?php endif; ?>
                 <span class="contact-list-shortcode contact-list-shortcode-199">[contact_list_simple contacts_per_page=20]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-199"><?= __('Copy', 'contact-list') ?></button>
               </li>
+
+              <?php if ( cl_fs()->is_free_plan() || cl_fs()->is_plan_or_trial('pro') || cl_fs()->is_plan_or_trial('business') ): ?>
+
+                <li><?= __('Filter by custom field values, any number of fields', 'contact-list') ?>: <span class="cl-new-feature-inline"><?= __('New', 'shared-files') ?></span>
+                  <?php if (ContactListHelpers::isPremium() == 1): ?>  
+                    <span class="contact-list-pro-only-inline-inactive">Professional</span>
+                  <?php else: ?>
+                    <a href="<?= get_admin_url() ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">Professional</a>
+                  <?php endif; ?>
+                  <span class="contact-list-shortcode contact-list-shortcode-002">[contact_list_simple custom_field_1="Value 1" custom_field_2="Value 2"]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-002"><?= __('Copy', 'contact-list') ?></button>
+                </li>
+                
+              <?php endif; ?>
+
             </ul>
           </li>
         </ol>
@@ -111,9 +141,9 @@ class ContactListShortcodes {
         <h2>
           <?= __('Parameters for all shortcodes', 'contact-list'); ?>
           <?php if (ContactListHelpers::isPremium() == 1): ?>  
-            <span class="contact-list-pro-only-inline-inactive">Pro</span>
+            <span class="contact-list-pro-only-inline-inactive">Any Plan</span>
           <?php else: ?>
-            <a href="<?= get_admin_url() ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">Pro</a>
+            <a href="<?= get_admin_url() ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">Any Plan</a>
           <?php endif; ?>        
         </h2>
   
@@ -139,9 +169,9 @@ class ContactListShortcodes {
         <h2>
           <?= __('Contacts with groups', 'contact-list'); ?>
           <?php if (ContactListHelpers::isPremium() == 1): ?>  
-            <span class="contact-list-pro-only-inline-inactive">Pro</span>
+            <span class="contact-list-pro-only-inline-inactive">Any Plan</span>
           <?php else: ?>
-            <a href="<?= get_admin_url() ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">Pro</a>
+            <a href="<?= get_admin_url() ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">Any Plan</a>
           <?php endif; ?>
         </h2>
         <ol>
@@ -167,9 +197,9 @@ class ContactListShortcodes {
         <h2>
           <?= __('Contacts from specific group', 'contact-list'); ?>
           <?php if (ContactListHelpers::isPremium() == 1): ?>  
-            <span class="contact-list-pro-only-inline-inactive">Pro</span>
+            <span class="contact-list-pro-only-inline-inactive">Any Plan</span>
           <?php else: ?>
-            <a href="<?= get_admin_url() ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">Pro</a>
+            <a href="<?= get_admin_url() ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">Any Plan</a>
           <?php endif; ?>
         </h2>
         <ol>
@@ -192,9 +222,9 @@ class ContactListShortcodes {
         <h2>
           <?= __('Single contact', 'contact-list'); ?>
           <?php if (ContactListHelpers::isPremium() == 1): ?>  
-            <span class="contact-list-pro-only-inline-inactive">Pro</span>
+            <span class="contact-list-pro-only-inline-inactive">Any Plan</span>
           <?php else: ?>
-            <a href="<?= get_admin_url() ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">Pro</a>
+            <a href="<?= get_admin_url() ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">Any Plan</a>
           <?php endif; ?>
         </h2>
         <ol>
@@ -210,9 +240,9 @@ class ContactListShortcodes {
         <h2>
           <?= __('Allow visitors to add new contacts', 'contact-list'); ?>
           <?php if (ContactListHelpers::isPremium() == 1): ?>  
-            <span class="contact-list-pro-only-inline-inactive">Pro</span>
+            <span class="contact-list-pro-only-inline-inactive">Any Plan</span>
           <?php else: ?>
-            <a href="<?= get_admin_url() ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">Pro</a>
+            <a href="<?= get_admin_url() ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">Any Plan</a>
           <?php endif; ?>
         </h2>
         <ol>
@@ -229,9 +259,9 @@ class ContactListShortcodes {
         <h2>
           <?= __('Only a search form that searches from all contacts', 'contact-list'); ?>
           <?php if (ContactListHelpers::isPremium() == 1): ?>  
-            <span class="contact-list-pro-only-inline-inactive">Pro</span>
+            <span class="contact-list-pro-only-inline-inactive">Any Plan</span>
           <?php else: ?>
-            <a href="<?= get_admin_url() ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">Pro</a>
+            <a href="<?= get_admin_url() ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">Any Plan</a>
           <?php endif; ?>
         </h2>
         <ol>
@@ -247,9 +277,9 @@ class ContactListShortcodes {
         <h2>
           <?= __('Send email to a group', 'contact-list'); ?>
           <?php if (ContactListHelpers::isPremium() == 1): ?>  
-            <span class="contact-list-pro-only-inline-inactive">Pro</span>
+            <span class="contact-list-pro-only-inline-inactive">Any Plan</span>
           <?php else: ?>
-            <a href="<?= get_admin_url() ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">Pro</a>
+            <a href="<?= get_admin_url() ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">Any Plan</a>
           <?php endif; ?>
           <span class="cl-new-feature-inline"><?= __('New', 'shared-files') ?></span>
         </h2>

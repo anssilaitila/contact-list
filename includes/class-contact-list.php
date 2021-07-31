@@ -133,6 +133,7 @@ class Contact_List
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cl-public-simple-groups-helpers.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cl-public-load.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cl-public-update-contact.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cl-public-pagination.php';
         /**
          * The class responsible for defining custom fields for the custom post type
          */

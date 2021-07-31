@@ -102,6 +102,23 @@ class ContactListHelpers
         return $html;
     }
     
+    public static function modalContactMarkup( $id )
+    {
+        $s = get_option( 'contact_list_settings' );
+        $html = '';
+        $html .= '<div class="cl-modal-container cl-modal-container-contact cl-modal-container-' . $id . '">';
+        $html .= '<div class="cl-modal">';
+        $html .= '<div class="close-modal-container">';
+        $html .= '<a href="" class="cl-close-modal">&#10006;</a>';
+        $html .= '</div>';
+        $html .= '<ul>';
+        $html .= ContactListHelpers::singleContactMarkup( $id );
+        $html .= '</ul>';
+        $html .= '</div>';
+        $html .= '</div>';
+        return $html;
+    }
+    
     public static function modalSendMessageMarkup()
     {
         $s = get_option( 'contact_list_settings' );
@@ -122,7 +139,7 @@ class ContactListHelpers
         // remove www
         $site_url = preg_replace( '/^www\\./', '', $urlParts['host'] );
         $html = '';
-        $html .= '<div class="cl-modal-container">';
+        $html .= '<div class="cl-modal-container cl-modal-container-send-message">';
         $html .= '<div class="cl-modal">';
         $html .= '<div class="close-modal-container">';
         $html .= '<a href="" class="cl-close-modal">&#10006;</a>';

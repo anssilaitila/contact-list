@@ -58,6 +58,17 @@ class ContactListSettings
         )
         );
         add_settings_field(
+            'contact-list-pagination_type',
+            __( 'Pagination type', 'contact-list' ),
+            array( $this, 'pagination_type_render' ),
+            'contact-list',
+            'contact-list_section_general',
+            array(
+            'label_for'  => 'contact-list-pagination_type',
+            'field_name' => 'pagination_type',
+        )
+        );
+        add_settings_field(
             'contact-list-' . $only_pro . 'group_select',
             __( 'Display group checkboxes on public form', 'contact-list' ),
             array( $this, 'checkbox_render' ),
@@ -1164,6 +1175,30 @@ class ContactListSettings
         )
         );
         add_settings_field(
+            'contact-list-' . $only_pro . 'phone_2_title',
+            __( 'Phone 2', 'contact-list' ),
+            array( $this, 'input_render' ),
+            'contact-list',
+            'contact-list_section',
+            array(
+            'label_for'   => 'contact-list-' . $only_pro . 'phone_2_title',
+            'field_name'  => $only_pro . 'phone_2_title',
+            'placeholder' => __( 'Phone 2', 'contact-list' ),
+        )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'phone_3_title',
+            __( 'Phone 3', 'contact-list' ),
+            array( $this, 'input_render' ),
+            'contact-list',
+            'contact-list_section',
+            array(
+            'label_for'   => 'contact-list-' . $only_pro . 'phone_3_title',
+            'field_name'  => $only_pro . 'phone_3_title',
+            'placeholder' => __( 'Phone 3', 'contact-list' ),
+        )
+        );
+        add_settings_field(
             'contact-list-linkedin_url_title',
             __( 'LinkedIn URL', 'contact-list' ),
             array( $this, 'input_render' ),
@@ -1566,6 +1601,28 @@ class ContactListSettings
         )
         );
         add_settings_field(
+            'contact-list-' . $only_pro . 'pf_show_phone_2',
+            __( 'Show phone 2', 'contact-list' ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_public_form',
+            array(
+            'label_for'  => 'contact-list-' . $only_pro . 'pf_show_phone_2',
+            'field_name' => $only_pro . 'pf_show_phone_2',
+        )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'pf_show_phone_3',
+            __( 'Show phone 3', 'contact-list' ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_public_form',
+            array(
+            'label_for'  => 'contact-list-' . $only_pro . 'pf_show_phone_3',
+            'field_name' => $only_pro . 'pf_show_phone_3',
+        )
+        );
+        add_settings_field(
             'contact-list-' . $only_pro . 'pf_hide_linkedin_url',
             __( 'Hide', 'contact-list' ) . ' ' . __( 'LinkedIn URL', 'contact-list' ),
             array( $this, 'checkbox_render' ),
@@ -1719,21 +1776,40 @@ class ContactListSettings
         )
         );
         add_settings_section(
-            'contact-list_simple_list',
+            'contact-list_simple_list_settings',
             '',
-            array( $this, 'contact_list_settings_simple_list_callback' ),
+            array( $this, 'contact_list_settings_simple_list_settings_callback' ),
             'contact-list'
         );
+        if ( cl_fs()->is_free_plan() || cl_fs()->is_plan_or_trial( 'pro' ) || cl_fs()->is_plan_or_trial( 'business' ) ) {
+            add_settings_field(
+                'contact-list-' . $only_pro . 'simple_list_modal',
+                __( 'Contact names are links to the contact card lightbox', 'contact-list' ),
+                array( $this, 'checkbox_render' ),
+                'contact-list',
+                'contact-list_simple_list_settings',
+                array(
+                'label_for'  => 'contact-list-' . $only_pro . 'simple_list_modal',
+                'field_name' => $only_pro . 'simple_list_modal',
+            )
+            );
+        }
         add_settings_field(
             'contact-list-' . $only_pro . 'simple_list_show_titles_for_columns',
             __( 'Show titles for columns', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
-            'contact-list_simple_list',
+            'contact-list_simple_list_settings',
             array(
             'label_for'  => 'contact-list-' . $only_pro . 'simple_list_show_titles_for_columns',
             'field_name' => $only_pro . 'simple_list_show_titles_for_columns',
         )
+        );
+        add_settings_section(
+            'contact-list_simple_list',
+            '',
+            array( $this, 'contact_list_settings_simple_list_callback' ),
+            'contact-list'
         );
         add_settings_field(
             'contact-list-simple_list_hide_job_title',
@@ -1900,7 +1976,7 @@ class ContactListSettings
           <a href="<?php 
                 echo  get_admin_url() ;
                 ?>options-general.php?page=contact-list-pricing">
-            <div class="contact-list-settings-pro-feature-overlay"><span>Pro</span></div>
+            <div class="contact-list-settings-pro-feature-overlay"><div>Any Plan</div></div>
           </a>
   
         <?php 
@@ -1986,7 +2062,7 @@ class ContactListSettings
           <a href="<?php 
                 echo  get_admin_url() ;
                 ?>options-general.php?page=contact-list-pricing">
-            <div class="contact-list-settings-pro-feature-overlay"><span>Pro</span></div>
+            <div class="contact-list-settings-pro-feature-overlay"><div>Any Plan</div></div>
           </a>
  
         <?php 
@@ -2030,6 +2106,9 @@ class ContactListSettings
       <?php 
             $free_class = '';
             ?>
+      <?php 
+            $plan_required = 'Any Plan';
+            ?>
     
       <?php 
             
@@ -2041,6 +2120,19 @@ class ContactListSettings
         <?php 
                 $free_class = 'contact-list-setting-container-free';
                 ?>
+        
+        <?php 
+                
+                if ( $field_name == '_FREE_simple_list_modal' ) {
+                    ?>
+          <?php 
+                    $plan_required = 'Professional';
+                    ?>
+        <?php 
+                }
+                
+                ?>
+        
       <?php 
             }
             
@@ -2058,7 +2150,9 @@ class ContactListSettings
           <a href="<?php 
                 echo  get_admin_url() ;
                 ?>options-general.php?page=contact-list-pricing">
-            <div class="contact-list-settings-pro-feature-overlay"><span>Pro</span></div>
+            <div class="contact-list-settings-pro-feature-overlay"><div><?php 
+                echo  $plan_required ;
+                ?></div></div>
           </a>
  
         <?php 
@@ -2193,7 +2287,7 @@ class ContactListSettings
           <a href="<?php 
                 echo  get_admin_url() ;
                 ?>options-general.php?page=contact-list-pricing">
-            <div class="contact-list-settings-pro-feature-overlay"><span>Pro</span></div>
+            <div class="contact-list-settings-pro-feature-overlay"><div>Any Plan</div></div>
           </a>
  
         <?php 
@@ -2517,6 +2611,50 @@ class ContactListSettings
     
     }
     
+    public function pagination_type_render( $args )
+    {
+        
+        if ( $args['field_name'] ) {
+            $options = get_option( 'contact_list_settings' );
+            $val = '';
+            if ( isset( $options[$args['field_name']] ) ) {
+                $val = $options[$args['field_name']];
+            }
+            ?>    
+      <select name="contact_list_settings[<?php 
+            echo  $args['field_name'] ;
+            ?>]">
+          <option value="" <?php 
+            echo  ( $val == '' ? 'original' : '' ) ;
+            ?>><?php 
+            echo  esc_html__( 'Original', 'contact-list' ) ;
+            ?></option>
+          <option value="improved" <?php 
+            echo  ( $val == 'improved' ? 'selected' : '' ) ;
+            ?>><?php 
+            echo  esc_html__( 'Improved', 'contact-list' ) ;
+            ?></option>
+      </select>
+  
+      <div class="email-info">
+        <?php 
+            echo  esc_html__( 'Original type means that the page links are in the following url format:', 'contact-list' ) ;
+            ?><br />
+        <strong>sample-page-name/page/1/, sample-page-name/page/2/, ...</strong><br /><br />
+        <?php 
+            echo  esc_html__( 'Improved type works via GET parameters:', 'contact-list' ) ;
+            ?><br />
+        <strong>sample-page-name/?_page=1, sample-page-name/?_page=2, ...</strong><br /><br />
+        <?php 
+            echo  esc_html__( 'Improved type must be used, if the shortcode is on the front page or various other types of pages of the site. If you are getting 404 from the page links, use the Improved type.', 'contact-list' ) ;
+            ?><br />
+      </div>
+  
+      <?php 
+        }
+    
+    }
+    
     public function contact_list_settings_general_section_callback()
     {
         echo  '<div class="contact-list-how-to-get-started">' ;
@@ -2596,10 +2734,15 @@ class ContactListSettings
         echo  '<p>' . esc_html__( 'These choices also affect the form which is used by contacts themselves to update their info (by features "request update" and "permanent update URL")', 'contact-list' ) . '</p>' ;
     }
     
-    public function contact_list_settings_simple_list_callback()
+    public function contact_list_settings_simple_list_settings_callback()
     {
         echo  '</div>' ;
         echo  '<div class="contact-list-settings-tab-8">' ;
+        echo  '<p style="font-size: 16px; font-weight: 600; margin-bottom: 10px;">' . esc_html__( 'General settings', 'contact-list' ) . '</p>' ;
+    }
+    
+    public function contact_list_settings_simple_list_callback()
+    {
         echo  '<p style="font-size: 16px; font-weight: 600; margin-bottom: 10px;">' . esc_html__( 'Fields in simple list', 'contact-list' ) . '</p>' ;
     }
     
@@ -2637,7 +2780,7 @@ class ContactListSettings
         echo  esc_html__( 'Field titles and texts', 'contact-list' ) ;
         ?></span></li>
           <li class="contact-list-settings-tab-7-title" data-settings-container="contact-list-settings-tab-7"><span><?php 
-        echo  esc_html__( 'Hide form elements', 'contact-list' ) ;
+        echo  esc_html__( 'Hide / show form elements', 'contact-list' ) ;
         ?></span></li>
           <li class="contact-list-settings-tab-8-title" data-settings-container="contact-list-settings-tab-8"><span><?php 
         echo  esc_html__( 'Simple list', 'contact-list' ) ;

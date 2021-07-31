@@ -2,8 +2,8 @@
 Contributors: anssilaitila, freemius
 Tags: business directory, business listing, staff directory, staff list, address book, company directory, church directory, contact directory, directory, contacts, directory plugin, chamber of commerce
 Requires at least: 4.0.0
-Tested up to: 5.7
-Stable tag: 2.9.38
+Tested up to: 5.8
+Stable tag: 2.9.39
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -131,21 +131,28 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 
 == Changelog ==
 
+= 2.9.39 - 2021-07-31 =
+* (Professional + Business) New feature / setting: Open simple list contact details in a lightbox (Settings / Simple list)
+* (Professional + Business) New parameters for shortcodes – you can now filter contacts by all custom field values like so: [contact_list custom_field_1="Management"], [contact_list_simple custom_field_2="People" custom_field_3="Workers"], etc.
+* (All plans) Missing fields Phone 2 and Phone 3 added to [contact_list_form] (can be renamed and activated from the settings)
+* (All plans) Improved version of the pagination. The pagination now works with shortcodes on the front page, single post, archive pages etc. (can be activated from the settings, first tab)
+* (Free + All plans) Minor tweaks and fixes
+
 = 2.9.38 - 2021-07-03 =
-- (Pro) More fields added to the form used by features "request update" and "permanent update URL"
-- (Pro) Label for button "Send message" can now be renamed (Settings / Field titles and texts)
-- (Pro) Address line 1 added to simple list (Settings / Simple list)
-- (Free and Pro) Improved version of pagination
-- (Free and Pro) Various tweaks and fixes
+* (Pro) More fields added to the form used by features "request update" and "permanent update URL"
+* (Pro) Label for button "Send message" can now be renamed (Settings / Field titles and texts)
+* (Pro) Address line 1 added to simple list (Settings / Simple list)
+* (Free and Pro) Improved version of pagination
+* (Free and Pro) Various tweaks and fixes
 
 = 2.9.37 - 2021-06-12 =
-- (Pro) Mail sent when "Request Update" is clicked is now customizable (Settings / reCAPTCHA and email)
-- (Pro) Contacts created using the shortcode [contact_list_form] now receive (optionally) a message containing a "permanent update URL" (Settings / reCAPTCHA and email)
-- (Pro) New setting: "Hide phone numbers from public card"
-- (Pro) Custom fields can now be used as search filters (Settings / Search form)
-- (Free and Pro) A new setting for all available custom fields: "Link text (only applicable if the custom field content is a URL)" (Settings / Custom fields)
-- (Free and Pro) You can now choose any Font Awesome icon for the available custom fields (Settings / Custom fields)
-- (Free and Pro) Minor tweaks and fixes
+* (Pro) Mail sent when "Request Update" is clicked is now customizable (Settings / reCAPTCHA and email)
+* (Pro) Contacts created using the shortcode [contact_list_form] now receive (optionally) a message containing a "permanent update URL" (Settings / reCAPTCHA and email)
+* (Pro) New setting: "Hide phone numbers from public card"
+* (Pro) Custom fields can now be used as search filters (Settings / Search form)
+* (Free and Pro) A new setting for all available custom fields: "Link text (only applicable if the custom field content is a URL)" (Settings / Custom fields)
+* (Free and Pro) You can now choose any Font Awesome icon for the available custom fields (Settings / Custom fields)
+* (Free and Pro) Minor tweaks and fixes
 
 = 2.9.36 - 2021-06-05 =
 * (Pro) reCAPTCHA errors are now logged to the mail log

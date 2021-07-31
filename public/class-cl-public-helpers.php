@@ -392,7 +392,12 @@ class ContactListPublicHelpers
             $html .= '<div style="display: none;">' . esc_html( $c['_cl_last_name'][0] ) . (( isset( $c['_cl_first_name'] ) ? ' ' . esc_html( $c['_cl_first_name'][0] ) : '' )) . '</div>';
         }
         
-        $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-name"><span>' . esc_html( $contact_fullname ) . '</span></div>';
+        $simple_list_modal = 0;
+        if ( isset( $s['simple_list_modal'] ) ) {
+        }
+        if ( !$simple_list_modal ) {
+            $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-name"><span>' . esc_html( $contact_fullname ) . '</span></div>';
+        }
         
         if ( !isset( $s['simple_list_hide_job_title'] ) ) {
             $html .= '<div class="contact-list-simple-list-col"><span>';

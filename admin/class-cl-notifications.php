@@ -22,7 +22,7 @@ class ContactListNotifications {
             <div class='contact-list-notice-text'>
                 <p style='padding-top: 4px;'>" . sprintf( __( "It's great to see that you've been using the %sContact List%s plugin for a while now. Hopefully you're happy with it!&nbsp; If so, would you consider leaving a positive review? It really helps to support the plugin and helps others to discover it too!" ), '<strong style=\'font-weight: 700;\'>', '</strong>' ) . "</p>
                 <p class='links'>
-                    <a class='cl_notice_dismiss' href='https://wordpress.org/support/plugin/contact-list/reviews/?rate=5#new-post' target='_blank'>" . __('Sure, I\'d love to!', 'contact-list') . "</a>
+                    <a class='cl_notice_dismiss' href='https://wordpress.org/support/plugin/contact-list/reviews/#new-post' target='_blank'>" . __('Sure, I\'d love to!', 'contact-list') . "</a>
                     &middot;
                     <a class='cl_notice_dismiss' href='" . esc_url($dismiss_url) . "'>" . __('No thanks') . "</a>
                     &middot;
@@ -39,13 +39,13 @@ class ContactListNotifications {
   	$cl_offer_show_notice = get_option('contact_list_offer_show_notice');
   	$should_show_offer_notice = $cl_offer_show_notice;
 
-    if (0 && $should_show_offer_notice && cl_fs()->is_not_paying() && current_user_can('administrator')) {
+    if ($should_show_offer_notice && cl_fs()->is_not_paying() && current_user_can('administrator')) {
       
 			echo "
         <div class='cl_notice cl_review_notice cl_new_user_sale_notice'>
             <img src='". CONTACT_LIST_URI . 'img/sale.jpg' ."' alt='" . __('Contact List', 'contact-list') . "'>
             <div class='contact-list-notice-text'>
-                <p><b style='font-weight: 700;'>Exclusive offer!</b> For a limited time we're offering <b style='font-weight: 700;'>25% off</b> our Pro version to all users of our free <b style='font-weight: 700;'>Contact List</b> plugin. Use the promotional code <b style='font-weight: 700;'>XXXXXX</b> to redeem this offer.</p>
+                <p><b style='font-weight: 700;'>Exclusive offer!</b> For a limited time we're offering <b style='font-weight: 700;'>10% off</b> our PRO version to all users of our free <b style='font-weight: 700;'>Contact List</b> plugin. Use the promotional code <b style='font-weight: 700;'>SALENOW10</b> to redeem this offer.</p>
                 <p class='cl-links'>
                     <a class='cl_notice_dismiss cl_offer_btn' href='" . cl_fs()->get_upgrade_url() . "' target='_blank'><b>" . __( 'Upgrade now!' ) . "</b></a>
                     <a class='cl_notice_dismiss' style='margin-left: 5px;' href='" . esc_url( add_query_arg( 'cl_ignore_offer_notice', 'always' ) ) . "'>" . __( 'I\'m not interested') . "</a>
