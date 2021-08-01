@@ -103,10 +103,10 @@ class ContactListHelpSupport {
           $('.contact-list-toggle-debug-info').on('click', function() {
             if ($('.contact-list-debug-info-container').is(':hidden')) {
               $('.contact-list-debug-info-container').show();
-              $(this).text("<?= esc_js( __('Close', 'shared-files') ) ?>");
+              $(this).text("<?= esc_js( __('Close', 'contact-list') ) ?>");
             } else {
               $('.contact-list-debug-info-container').hide();
-              $(this).text("<?= esc_js( __('Open', 'shared-files') ) ?>");
+              $(this).text("<?= esc_js( __('Open', 'contact-list') ) ?>");
             }
           });
         });

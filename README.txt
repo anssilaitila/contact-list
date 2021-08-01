@@ -3,7 +3,7 @@ Contributors: anssilaitila, freemius
 Tags: business directory, business listing, staff directory, staff list, address book, company directory, church directory, contact directory, directory, contacts, directory plugin, chamber of commerce
 Requires at least: 4.0.0
 Tested up to: 5.8
-Stable tag: 2.9.39
+Stable tag: 2.9.40
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -33,6 +33,7 @@ See live demos at [contactlistpro.com](https://www.contactlistpro.com/contact-li
 * Printable contact list
 
 = Contact List Pro features: =
+* Front-end contact editor: allow any user roles to edit contacts from the front-end
 * Multiple different shortcodes/views for various use cases
 * Support for pagination
 * Contact database may be built with publicly available form
@@ -130,6 +131,11 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 6. Contact management
 
 == Changelog ==
+
+= 2.9.40 - 2021-08-01 =
+* (Professional + Business) New feature: Front-end contact editor. Can be used with shortcodes [contact_list edit=1] and [contact_list_simple edit=1]. User roles must be first activated from the plugin settings (Contact edit tab).
+* (All plans) New setting: "Move zip code after state"
+* (Free + All plans) Minor tweaks and fixes
 
 = 2.9.39 - 2021-07-31 =
 * (Professional + Business) New feature / setting: Open simple list contact details in a lightbox (Settings / Simple list)

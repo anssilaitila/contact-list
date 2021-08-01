@@ -160,7 +160,7 @@ class ShortcodeContactList
             
             if ( $wp_query->have_posts() ) {
                 $html .= '<div class="contact-list-ajax-results">';
-                $html .= ContactListHelpers::contactListMarkup( $wp_query );
+                $html .= ContactListHelpers::contactListMarkup( $wp_query, 0, $atts );
                 $html .= '</div>';
                 $html .= '<hr class="clear" />';
                 $html .= ContactListPublicPagination::getPagination( 1, $wp_query, 'default' );

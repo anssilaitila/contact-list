@@ -134,6 +134,7 @@ class Contact_List
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cl-public-load.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cl-public-update-contact.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cl-public-pagination.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cl-public-frontend-contact-edit.php';
         /**
          * The class responsible for defining custom fields for the custom post type
          */
@@ -320,6 +321,7 @@ class Contact_List
         $plugin_public_ajax = new ContactListPublicAjax();
         $plugin_public_load = new ContactListPublicLoad();
         $plugin_public_update_contact = new ContactListUpdateContact();
+        $plugin_public_frontend_contact_edit = new ContactListFrontendContactEdit();
         $this->loader->add_action( 'admin_enqueue_scripts', $plugin_public, 'enqueue_styles' );
         $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
         $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public_load, 'public_inline_styles' );
@@ -334,6 +336,8 @@ class Contact_List
         $this->loader->add_action( 'wp_ajax_nopriv_cl_get_contacts_simple', $plugin_public_ajax, 'cl_get_contacts_simple' );
         $this->loader->add_action( 'wp_ajax_cl_get_contacts_simple', $plugin_public_ajax, 'cl_get_contacts_simple' );
         $this->loader->add_action( 'wp_footer', $plugin_public_ajax, 'my_ajax_without_file' );
+        // Front-end contact update
+        $this->loader->add_filter( 'request', $plugin_public_frontend_contact_edit, 'contact_update' );
     }
     
     /**

@@ -198,7 +198,7 @@ class ContactListHelpers
         return $html;
     }
     
-    public static function contactListMarkup( $wp_query, $include_children = 0 )
+    public static function contactListMarkup( $wp_query, $include_children = 0, $atts = array() )
     {
         $html = '';
         $html .= '<div id="contact-list-search">';
@@ -207,7 +207,7 @@ class ContactListHelpers
             while ( $wp_query->have_posts() ) {
                 $wp_query->the_post();
                 $id = get_the_id();
-                $html .= ContactListHelpers::singleContactMarkup( $id );
+                $html .= ContactListHelpers::singleContactMarkup( $id, 0, $atts );
             }
         }
         $html .= '</ul><hr class="clear" />';
@@ -219,7 +219,7 @@ class ContactListHelpers
         return $html;
     }
     
-    public static function singleContactMarkup( $id, $showGroups = 0 )
+    public static function singleContactMarkup( $id, $showGroups = 0, $atts = array() )
     {
         $s = get_option( 'contact_list_settings' );
         $c = get_post_custom( $id );
@@ -339,18 +339,19 @@ class ContactListHelpers
                 $html .= '<span class="contact-list-address-line-4">' . esc_html( $c['_cl_address_line_4'][0] ) . '</span>';
             }
             
-            if ( isset( $c['_cl_country'] ) && $c['_cl_country'][0] || isset( $c['_cl_state'] ) && $c['_cl_state'][0] || isset( $c['_cl_city'] ) && $c['_cl_city'][0] ) {
+            if ( isset( $c['_cl_country'] ) && $c['_cl_country'][0] || isset( $c['_cl_state'] ) && $c['_cl_state'][0] || isset( $c['_cl_city'] ) && $c['_cl_city'][0] || isset( $c['_cl_zip_code'] ) && $c['_cl_zip_code'][0] ) {
                 $html .= '<span class="contact-list-address-country-and-state">';
-                $zip_code_exists = 0;
+                $zip_code_first = 0;
+                $zip_code_last = 0;
                 
-                if ( isset( $c['_cl_zip_code'] ) && $c['_cl_zip_code'][0] ) {
+                if ( !isset( $s['move_zip_after_state'] ) && isset( $c['_cl_zip_code'] ) && $c['_cl_zip_code'][0] ) {
                     $html .= esc_html( $c['_cl_zip_code'][0] );
-                    $zip_code_exists = 1;
+                    $zip_code_first = 1;
                 }
                 
                 
                 if ( isset( $c['_cl_city'] ) && $c['_cl_city'][0] ) {
-                    if ( $zip_code_exists ) {
+                    if ( $zip_code_first ) {
                         $html .= ' ';
                     }
                     $html .= esc_html( $c['_cl_city'][0] );
@@ -362,6 +363,15 @@ class ContactListHelpers
                         $html .= ', ';
                     }
                     $html .= esc_html( $c['_cl_state'][0] );
+                }
+                
+                
+                if ( isset( $s['move_zip_after_state'] ) && isset( $c['_cl_zip_code'] ) && $c['_cl_zip_code'][0] ) {
+                    if ( isset( $c['_cl_state'] ) && $c['_cl_state'][0] ) {
+                        $html .= ' ';
+                    }
+                    $html .= esc_html( $c['_cl_zip_code'][0] );
+                    $zip_code_last = 1;
                 }
                 
                 

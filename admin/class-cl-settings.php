@@ -209,6 +209,17 @@ class ContactListSettings
         )
         );
         add_settings_field(
+            'contact-list-' . $only_pro . 'move_zip_after_state',
+            __( 'Move zip code after state', 'contact-list' ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+            'label_for'  => 'contact-list-' . $only_pro . 'move_zip_after_state',
+            'field_name' => $only_pro . 'move_zip_after_state',
+        )
+        );
+        add_settings_field(
             'contact-list-show_contact_images_always',
             __( 'Show contact images when using 3 or 4 columns view', 'contact-list' ),
             array( $this, 'checkbox_render' ),
@@ -1933,6 +1944,31 @@ class ContactListSettings
             'field_name' => $only_pro . 'simple_list_show_category',
         )
         );
+        $tab = 9;
+        add_settings_section(
+            'contact-list_tab_' . $tab,
+            '',
+            array( $this, 'contact_list_settings_tab_' . $tab . '_callback' ),
+            'contact-list'
+        );
+        global  $wp_roles ;
+        $roles = $wp_roles->get_names();
+        foreach ( $roles as $key => $value ) {
+            if ( $key && $value ) {
+                add_settings_field(
+                    'contact-list-' . $only_pro . 'can_edit_contacts_' . $key,
+                    $value,
+                    array( $this, 'checkbox_render' ),
+                    'contact-list',
+                    'contact-list_tab_' . $tab,
+                    array(
+                    'label_for'   => 'contact-list-' . $only_pro . 'can_edit_contacts_' . $key,
+                    'field_name'  => $only_pro . 'can_edit_contacts_' . $key,
+                    'placeholder' => '',
+                )
+                );
+            }
+        }
     }
     
     public function textarea_render( $args )
@@ -1976,7 +2012,7 @@ class ContactListSettings
           <a href="<?php 
                 echo  get_admin_url() ;
                 ?>options-general.php?page=contact-list-pricing">
-            <div class="contact-list-settings-pro-feature-overlay"><div>Any Plan</div></div>
+            <div class="contact-list-settings-pro-feature-overlay"><div>All Plans</div></div>
           </a>
   
         <?php 
@@ -2007,6 +2043,15 @@ class ContactListSettings
       <?php 
         }
     
+    }
+    
+    public function contact_list_settings_tab_9_callback()
+    {
+        echo  '</div>' ;
+        echo  '<div class="contact-list-settings-tab-9">' ;
+        echo  '<h2>' . esc_html__( 'Contact edit settings', 'contact-list' ) . '</h2>' ;
+        echo  '<p>' . esc_html__( 'These settings are valid for shortcodes [contact_list edit=1] and [contact_list_simple edit=1].', 'contact-list' ) . '</p>' ;
+        echo  '<p>' . esc_html__( 'The following user roles have the permissions to edit any contact:', 'contact-list' ) . '</p>' ;
     }
     
     public function additional_information_render( $args )
@@ -2062,7 +2107,7 @@ class ContactListSettings
           <a href="<?php 
                 echo  get_admin_url() ;
                 ?>options-general.php?page=contact-list-pricing">
-            <div class="contact-list-settings-pro-feature-overlay"><div>Any Plan</div></div>
+            <div class="contact-list-settings-pro-feature-overlay"><div>All Plans</div></div>
           </a>
  
         <?php 
@@ -2107,7 +2152,7 @@ class ContactListSettings
             $free_class = '';
             ?>
       <?php 
-            $plan_required = 'Any Plan';
+            $plan_required = 'All Plans';
             ?>
     
       <?php 
@@ -2124,6 +2169,12 @@ class ContactListSettings
         <?php 
                 
                 if ( $field_name == '_FREE_simple_list_modal' ) {
+                    ?>
+          <?php 
+                    $plan_required = 'Professional';
+                    ?>
+        <?php 
+                } elseif ( substr( $field_name, 0, strlen( '_FREE_can_edit_contacts_' ) ) === '_FREE_can_edit_contacts_' ) {
                     ?>
           <?php 
                     $plan_required = 'Professional';
@@ -2287,7 +2338,7 @@ class ContactListSettings
           <a href="<?php 
                 echo  get_admin_url() ;
                 ?>options-general.php?page=contact-list-pricing">
-            <div class="contact-list-settings-pro-feature-overlay"><div>Any Plan</div></div>
+            <div class="contact-list-settings-pro-feature-overlay"><div>All Plans</div></div>
           </a>
  
         <?php 
@@ -2724,7 +2775,7 @@ class ContactListSettings
         echo  '</div>' ;
         echo  '<div class="contact-list-settings-tab-7">' ;
         echo  '<p style="font-size: 16px; font-weight: 600; margin-bottom: 10px;">' . esc_html__( 'Admin form elements', 'contact-list' ) . '</p>' ;
-        echo  '<p>' . esc_html__( 'You may customize the admin form (the one displayed in the WP admin area) using these settings.', 'contact-list' ) . '</p>' ;
+        echo  '<p>' . esc_html__( 'You may customize the admin form (the one displayed in the WP admin area and the front-end editor) using these settings.', 'contact-list' ) . '</p>' ;
     }
     
     public function contact_list_settings_public_form_callback()
@@ -2785,6 +2836,19 @@ class ContactListSettings
           <li class="contact-list-settings-tab-8-title" data-settings-container="contact-list-settings-tab-8"><span><?php 
         echo  esc_html__( 'Simple list', 'contact-list' ) ;
         ?></span></li>
+
+          <?php 
+        
+        if ( cl_fs()->is_free_plan() || cl_fs()->is_plan_or_trial( 'pro' ) || cl_fs()->is_plan_or_trial( 'business' ) ) {
+            ?>
+            <li class="contact-list-settings-tab-9-title" data-settings-container="contact-list-settings-tab-9"><span><?php 
+            echo  esc_html__( 'Contact edit', 'contact-list' ) ;
+            ?></span></li>
+          <?php 
+        }
+        
+        ?>
+          
           <hr class="clear" />
         </ul>
       </div>

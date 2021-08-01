@@ -267,7 +267,12 @@ class ContactListPublicHelpers
         return $html;
     }
     
-    public static function contactListSimpleMarkup( $wp_query, $include_children = 0 )
+    public static function contactListSimpleMarkup(
+        $wp_query,
+        $include_children = 0,
+        $atts = array(),
+        $generate_modals = 0
+    )
     {
         $s = get_option( 'contact_list_settings' );
         $html = '';
@@ -278,7 +283,7 @@ class ContactListPublicHelpers
             while ( $wp_query->have_posts() ) {
                 $wp_query->the_post();
                 $id = get_the_id();
-                $html .= ContactListPublicHelpers::singleContactSimpleMarkup( $id );
+                $html .= ContactListPublicHelpers::singleContactSimpleMarkup( $id, 0, $atts );
             }
         }
         $html .= '</div>';
@@ -286,12 +291,14 @@ class ContactListPublicHelpers
         $html .= '<div class="contact-list-simple-nothing-found">';
         $html .= ContactListHelpers::getText( 'text_sr_no_contacts_found', __( 'No contacts found.', 'contact-list' ) );
         $html .= '</div>';
+        if ( isset( $s['simple_list_modal'] ) && $generate_modals ) {
+        }
         $html .= '</div>';
         wp_reset_postdata();
         return $html;
     }
     
-    public static function contactListSimpleMarkupTitles()
+    public static function contactListSimpleMarkupTitles( $atts )
     {
         $s = get_option( 'contact_list_settings' );
         $html = '';
@@ -376,7 +383,7 @@ class ContactListPublicHelpers
         return $html;
     }
     
-    public static function singleContactSimpleMarkup( $id, $showGroups = 0 )
+    public static function singleContactSimpleMarkup( $id, $showGroups = 0, $atts = array() )
     {
         $s = get_option( 'contact_list_settings' );
         $c = get_post_custom( $id );
