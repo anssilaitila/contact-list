@@ -5,6 +5,10 @@ class ContactListPublicAjax
     public function cl_get_contacts()
     {
         $html = '';
+        $atts = [];
+        if ( isset( $_POST['cl_atts'] ) && $_POST['cl_atts'] ) {
+            $atts = unserialize( stripslashes( $_POST['cl_atts'] ) );
+        }
         $meta_query = array(
             'relation' => 'AND',
         );
@@ -80,7 +84,12 @@ class ContactListPublicAjax
         ) );
         
         if ( $wp_query->have_posts() ) {
-            $html .= ContactListHelpers::contactListMarkup( $wp_query );
+            $html .= ContactListHelpers::contactListMarkup(
+                $wp_query,
+                0,
+                $atts,
+                0
+            );
             $html .= '<hr class="clear" />';
         }
         
@@ -93,6 +102,10 @@ class ContactListPublicAjax
     public function cl_get_contacts_simple()
     {
         $html = '';
+        $atts = [];
+        if ( isset( $_POST['cl_atts'] ) && $_POST['cl_atts'] ) {
+            $atts = unserialize( stripslashes( $_POST['cl_atts'] ) );
+        }
         $meta_query = array(
             'relation' => 'AND',
         );
@@ -168,7 +181,7 @@ class ContactListPublicAjax
         ) );
         
         if ( $wp_query->have_posts() ) {
-            $html .= ContactListPublicHelpers::contactListSimpleMarkup( $wp_query );
+            $html .= ContactListPublicHelpers::contactListSimpleMarkup( $wp_query, 0, $atts );
             $html .= '<hr class="clear" />';
         }
         

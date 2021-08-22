@@ -2,6 +2,13 @@
 
 class ContactListHelpers
 {
+    public static function getSearchDropdownClass( $title = '', $message = '' )
+    {
+        $s = get_option( 'contact_list_settings' );
+        $dd_class = 'cl_select_v2';
+        return $dd_class;
+    }
+    
     public static function writeLog( $title = '', $message = '' )
     {
         global  $wpdb ;
@@ -106,10 +113,10 @@ class ContactListHelpers
     {
         $s = get_option( 'contact_list_settings' );
         $html = '';
-        $html .= '<div class="cl-modal-container cl-modal-container-contact cl-modal-container-' . $id . '">';
+        $html .= '<div class="cl-modal-container cl-modal-container-contact cl-modal-container-contact-details-' . $id . ' cl-modal-container-' . $id . '" data-contact-id="' . $id . '">';
         $html .= '<div class="cl-modal">';
         $html .= '<div class="close-modal-container">';
-        $html .= '<a href="" class="cl-close-modal">&#10006;</a>';
+        $html .= '<a href="" class="cl-close-modal" data-contact-id="' . $id . '">&#10006;</a>';
         $html .= '</div>';
         $html .= '<ul>';
         $html .= ContactListHelpers::singleContactMarkup( $id );
@@ -198,7 +205,12 @@ class ContactListHelpers
         return $html;
     }
     
-    public static function contactListMarkup( $wp_query, $include_children = 0, $atts = array() )
+    public static function contactListMarkup(
+        $wp_query,
+        $include_children = 0,
+        $atts = array(),
+        $output_modals = 0
+    )
     {
         $html = '';
         $html .= '<div id="contact-list-search">';
@@ -238,7 +250,7 @@ class ContactListHelpers
                     $t_id = $term->term_id;
                     $custom_fields = get_option( "taxonomy_term_{$t_id}" );
                     if ( !isset( $custom_fields['hide_group'] ) ) {
-                        $html .= '<span>' . $term->name . '</span>';
+                        $html .= '<span>' . esc_html( $term->name ) . '</span>';
                     }
                 }
                 $html .= '</div>';
@@ -249,21 +261,21 @@ class ContactListHelpers
         $contact_fullname = '';
         
         if ( isset( $s['last_name_before_first_name'] ) ) {
-            $contact_fullname = $c['_cl_last_name'][0] . (( isset( $c['_cl_first_name'] ) ? ' ' . $c['_cl_first_name'][0] : '' ));
-            $text = (( isset( $c['_cl_first_name'] ) ? $c['_cl_first_name'][0] . ' ' : '' )) . $c['_cl_last_name'][0];
+            $contact_fullname = $c['_cl_last_name'][0] . (( isset( $c['_cl_first_name'][0] ) ? ' ' . $c['_cl_first_name'][0] : '' ));
+            $text = (( isset( $c['_cl_first_name'][0] ) ? $c['_cl_first_name'][0] . ' ' : '' )) . $c['_cl_last_name'][0];
             $html .= '<div style="display: none;">' . esc_html( $text ) . '</div>';
         } else {
-            $contact_fullname = (( isset( $c['_cl_first_name'] ) ? $c['_cl_first_name'][0] . ' ' : '' )) . $c['_cl_last_name'][0];
-            $text = $c['_cl_last_name'][0] . (( isset( $c['_cl_first_name'] ) ? ' ' . $c['_cl_first_name'][0] : '' ));
+            $contact_fullname = (( isset( $c['_cl_first_name'][0] ) ? $c['_cl_first_name'][0] . ' ' : '' )) . $c['_cl_last_name'][0];
+            $text = $c['_cl_last_name'][0] . (( isset( $c['_cl_first_name'][0] ) ? ' ' . $c['_cl_first_name'][0] : '' ));
             $html .= '<div style="display: none;">' . esc_html( $text ) . '</div>';
         }
         
         $html .= '<span class="contact-list-contact-name">' . esc_html( $contact_fullname ) . '</span>';
-        if ( isset( $c['_cl_job_title'] ) ) {
+        if ( isset( $c['_cl_job_title'][0] ) && $c['_cl_job_title'][0] ) {
             $html .= '<span class="contact-list-job-title">' . esc_html( $c['_cl_job_title'][0] ) . '</span>';
         }
         
-        if ( isset( $c['_cl_email'] ) ) {
+        if ( isset( $c['_cl_email'][0] ) && $c['_cl_email'][0] ) {
             $mailto = $c['_cl_email'][0];
             $mailto_obs = '';
             for ( $i = 0 ;  $i < strlen( $mailto ) ;  $i++ ) {
@@ -282,21 +294,21 @@ class ContactListHelpers
         
         if ( !isset( $s['hide_phone_numbers_from_public_card'] ) ) {
             
-            if ( isset( $c['_cl_phone'] ) ) {
+            if ( isset( $c['_cl_phone'][0] ) && $c['_cl_phone'][0] ) {
                 $phone_href = preg_replace( '/[^0-9\\,]/', '', $c['_cl_phone'][0] );
-                $html .= '<span class="contact-list-phone"><a href="tel:' . $phone_href . '">' . esc_html( $c['_cl_phone'][0] ) . '</a></span>';
+                $html .= '<span class="contact-list-phone contact-list-phone-1"><a href="tel:' . $phone_href . '">' . esc_html( $c['_cl_phone'][0] ) . '</a></span>';
             }
             
             
-            if ( isset( $c['_cl_phone_2'] ) ) {
+            if ( isset( $c['_cl_phone_2'][0] ) && $c['_cl_phone_2'][0] ) {
                 $phone_href = preg_replace( '/[^0-9\\,]/', '', $c['_cl_phone_2'][0] );
-                $html .= '<span class="contact-list-phone"><a href="tel:' . $phone_href . '">' . esc_html( $c['_cl_phone_2'][0] ) . '</a></span>';
+                $html .= '<span class="contact-list-phone contact-list-phone-2"><a href="tel:' . $phone_href . '">' . esc_html( $c['_cl_phone_2'][0] ) . '</a></span>';
             }
             
             
-            if ( isset( $c['_cl_phone_3'] ) ) {
+            if ( isset( $c['_cl_phone_3'][0] ) && $c['_cl_phone_3'][0] ) {
                 $phone_href = preg_replace( '/[^0-9\\,]/', '', $c['_cl_phone_3'][0] );
-                $html .= '<span class="contact-list-phone"><a href="tel:' . $phone_href . '">' . esc_html( $c['_cl_phone_3'][0] ) . '</a></span>';
+                $html .= '<span class="contact-list-phone contact-list-phone-3"><a href="tel:' . $phone_href . '">' . esc_html( $c['_cl_phone_3'][0] ) . '</a></span>';
             }
         
         }
@@ -321,36 +333,36 @@ class ContactListHelpers
         }
         
         
-        if ( isset( $c['_cl_address_line_1'] ) || isset( $c['_cl_country'] ) || isset( $c['_cl_state'] ) ) {
+        if ( isset( $c['_cl_address_line_1'][0] ) || isset( $c['_cl_country'][0] ) || isset( $c['_cl_state'][0] ) ) {
             $html .= '<div class="contact-list-address">';
             if ( !isset( $s['hide_address_title'] ) ) {
                 $html .= '<span class="contact-list-address-title">' . (( isset( $s['address_title'] ) && $s['address_title'] ? $s['address_title'] : esc_html__( 'Address', 'contact-list' ) )) . '</span>';
             }
-            if ( isset( $c['_cl_address_line_1'] ) ) {
+            if ( isset( $c['_cl_address_line_1'][0] ) && $c['_cl_address_line_1'][0] ) {
                 $html .= '<span class="contact-list-address-line-1">' . esc_html( $c['_cl_address_line_1'][0] ) . '</span>';
             }
-            if ( isset( $c['_cl_address_line_2'] ) ) {
+            if ( isset( $c['_cl_address_line_2'][0] ) && $c['_cl_address_line_2'][0] ) {
                 $html .= '<span class="contact-list-address-line-2">' . esc_html( $c['_cl_address_line_2'][0] ) . '</span>';
             }
-            if ( isset( $c['_cl_address_line_3'] ) ) {
+            if ( isset( $c['_cl_address_line_3'][0] ) && $c['_cl_address_line_3'][0] ) {
                 $html .= '<span class="contact-list-address-line-3">' . esc_html( $c['_cl_address_line_3'][0] ) . '</span>';
             }
-            if ( isset( $c['_cl_address_line_4'] ) ) {
+            if ( isset( $c['_cl_address_line_4'][0] ) && $c['_cl_address_line_4'][0] ) {
                 $html .= '<span class="contact-list-address-line-4">' . esc_html( $c['_cl_address_line_4'][0] ) . '</span>';
             }
             
-            if ( isset( $c['_cl_country'] ) && $c['_cl_country'][0] || isset( $c['_cl_state'] ) && $c['_cl_state'][0] || isset( $c['_cl_city'] ) && $c['_cl_city'][0] || isset( $c['_cl_zip_code'] ) && $c['_cl_zip_code'][0] ) {
+            if ( isset( $c['_cl_country'][0] ) && $c['_cl_country'][0] || isset( $c['_cl_state'][0] ) && $c['_cl_state'][0] || isset( $c['_cl_city'][0] ) && $c['_cl_city'][0] || isset( $c['_cl_zip_code'][0] ) && $c['_cl_zip_code'][0] ) {
                 $html .= '<span class="contact-list-address-country-and-state">';
                 $zip_code_first = 0;
                 $zip_code_last = 0;
                 
-                if ( !isset( $s['move_zip_after_state'] ) && isset( $c['_cl_zip_code'] ) && $c['_cl_zip_code'][0] ) {
+                if ( !isset( $s['move_zip_after_state'] ) && isset( $c['_cl_zip_code'][0] ) && $c['_cl_zip_code'][0] ) {
                     $html .= esc_html( $c['_cl_zip_code'][0] );
                     $zip_code_first = 1;
                 }
                 
                 
-                if ( isset( $c['_cl_city'] ) && $c['_cl_city'][0] ) {
+                if ( isset( $c['_cl_city'][0] ) && $c['_cl_city'][0] ) {
                     if ( $zip_code_first ) {
                         $html .= ' ';
                     }
@@ -358,16 +370,16 @@ class ContactListHelpers
                 }
                 
                 
-                if ( isset( $c['_cl_state'] ) && $c['_cl_state'][0] ) {
-                    if ( isset( $c['_cl_city'] ) && $c['_cl_city'][0] ) {
+                if ( isset( $c['_cl_state'][0] ) && $c['_cl_state'][0] ) {
+                    if ( isset( $c['_cl_city'][0] ) && $c['_cl_city'][0] ) {
                         $html .= ', ';
                     }
                     $html .= esc_html( $c['_cl_state'][0] );
                 }
                 
                 
-                if ( isset( $s['move_zip_after_state'] ) && isset( $c['_cl_zip_code'] ) && $c['_cl_zip_code'][0] ) {
-                    if ( isset( $c['_cl_state'] ) && $c['_cl_state'][0] ) {
+                if ( isset( $s['move_zip_after_state'] ) && isset( $c['_cl_zip_code'][0] ) && $c['_cl_zip_code'][0] ) {
+                    if ( isset( $c['_cl_state'][0] ) && $c['_cl_state'][0] ) {
                         $html .= ' ';
                     }
                     $html .= esc_html( $c['_cl_zip_code'][0] );
@@ -375,11 +387,11 @@ class ContactListHelpers
                 }
                 
                 
-                if ( isset( $c['_cl_country'] ) && $c['_cl_country'][0] ) {
+                if ( isset( $c['_cl_country'][0] ) && $c['_cl_country'][0] ) {
                     
-                    if ( isset( $c['_cl_state'] ) && $c['_cl_state'][0] ) {
+                    if ( isset( $c['_cl_state'][0] ) && $c['_cl_state'][0] ) {
                         $html .= ', ';
-                    } elseif ( isset( $c['_cl_city'] ) && $c['_cl_city'][0] ) {
+                    } elseif ( isset( $c['_cl_city'][0] ) && $c['_cl_city'][0] ) {
                         $html .= ', ';
                     }
                     
@@ -404,9 +416,12 @@ class ContactListHelpers
             if ( $n == 1 ) {
                 $html .= '<div class="contact-list-custom-fields-container">';
             }
+            if ( isset( $s['custom_field_' . $n . '_hide_from_contact_card'] ) ) {
+                continue;
+            }
             $url = '@(http)?(s)?(://)?(([a-zA-Z])([-\\w]+\\.)+([^\\s\\.]+[^\\s]*)+[^,.\\s])@';
             
-            if ( isset( $c['_cl_custom_field_' . $n] ) ) {
+            if ( isset( $c['_cl_custom_field_' . $n][0] ) && $c['_cl_custom_field_' . $n][0] ) {
                 $cf_value = $c['_cl_custom_field_' . $n][0];
                 
                 if ( is_email( $cf_value ) ) {
@@ -431,7 +446,7 @@ class ContactListHelpers
                 }
                 
                 
-                if ( $s['custom_field_' . $n . '_icon'] ) {
+                if ( isset( $s['custom_field_' . $n . '_icon'] ) && $s['custom_field_' . $n . '_icon'] ) {
                     $html .= '<div class="contact-list-custom-field-' . $n . ' contact-list-custom-field-with-icon">';
                     $html .= '<i class="fa ' . $s['custom_field_' . $n . '_icon'] . '" aria-hidden="true"></i><span>' . $cf_value . '</span>';
                     $html .= '</div>';
@@ -449,7 +464,7 @@ class ContactListHelpers
             }
         }
         
-        if ( isset( $c['_cl_description'] ) ) {
+        if ( isset( $c['_cl_description'][0] ) && $c['_cl_description'][0] ) {
             $html .= '<div class="contact-list-description">';
             if ( !isset( $s['hide_additional_info_title'] ) ) {
                 $html .= '<span class="contact-list-description-title">' . (( isset( $s['additional_info_title'] ) && $s['additional_info_title'] ? $s['additional_info_title'] : esc_html__( 'Additional information', 'contact-list' ) )) . '</span>';
@@ -459,17 +474,17 @@ class ContactListHelpers
         
         $html .= '</div>';
         $html .= '<div class="contact-list-some-elements">';
-        if ( isset( $c['_cl_facebook_url'] ) ) {
-            $html .= ( $c['_cl_facebook_url'][0] ? '<a href="' . $c['_cl_facebook_url'][0] . '" target="_blank"><img src="' . plugins_url( '../img/facebook.png', __FILE__ ) . '" width="28" height="28" alt="' . esc_html__( 'Facebook', 'contact-list' ) . '" /></a>' : '' );
+        if ( isset( $c['_cl_facebook_url'][0] ) && $c['_cl_facebook_url'][0] ) {
+            $html .= ( $c['_cl_facebook_url'][0] ? '<a href="' . $c['_cl_facebook_url'][0] . '" target="_blank"><img src="' . plugins_url( '../img/facebook.svg', __FILE__ ) . '"  alt="' . esc_html__( 'Facebook', 'contact-list' ) . '" /></a>' : '' );
         }
-        if ( isset( $c['_cl_instagram_url'] ) ) {
-            $html .= ( $c['_cl_instagram_url'][0] ? '<a href="' . $c['_cl_instagram_url'][0] . '" target="_blank"><img src="' . plugins_url( '../img/instagram.png', __FILE__ ) . '" width="28" height="28" alt="' . esc_html__( 'Instagram', 'contact-list' ) . '" /></a>' : '' );
+        if ( isset( $c['_cl_instagram_url'][0] ) && $c['_cl_instagram_url'][0] ) {
+            $html .= ( $c['_cl_instagram_url'][0] ? '<a href="' . $c['_cl_instagram_url'][0] . '" target="_blank"><img src="' . plugins_url( '../img/instagram.svg', __FILE__ ) . '" alt="' . esc_html__( 'Instagram', 'contact-list' ) . '" /></a>' : '' );
         }
-        if ( isset( $c['_cl_twitter_url'] ) ) {
-            $html .= ( $c['_cl_twitter_url'][0] ? '<a href="' . $c['_cl_twitter_url'][0] . '" target="_blank"><img src="' . plugins_url( '../img/twitter.png', __FILE__ ) . '" width="28" height="28" alt="' . esc_html__( 'Twitter', 'contact-list' ) . '" /></a>' : '' );
+        if ( isset( $c['_cl_twitter_url'][0] ) && $c['_cl_twitter_url'][0] ) {
+            $html .= ( $c['_cl_twitter_url'][0] ? '<a href="' . $c['_cl_twitter_url'][0] . '" target="_blank"><img src="' . plugins_url( '../img/twitter.svg', __FILE__ ) . '" alt="' . esc_html__( 'Twitter', 'contact-list' ) . '" /></a>' : '' );
         }
-        if ( isset( $c['_cl_linkedin_url'] ) ) {
-            $html .= ( $c['_cl_linkedin_url'][0] ? '<a href="' . $c['_cl_linkedin_url'][0] . '" target="_blank"><img src="' . plugins_url( '../img/linkedin.png', __FILE__ ) . '" width="37" height="28" alt="' . esc_html__( 'LinkedIn', 'contact-list' ) . '" /></a>' : '' );
+        if ( isset( $c['_cl_linkedin_url'][0] ) && $c['_cl_linkedin_url'][0] ) {
+            $html .= ( $c['_cl_linkedin_url'][0] ? '<a href="' . $c['_cl_linkedin_url'][0] . '" target="_blank"><img src="' . plugins_url( '../img/linkedin.svg', __FILE__ ) . '" alt="' . esc_html__( 'LinkedIn', 'contact-list' ) . '" /></a>' : '' );
         }
         $html .= '<hr class="clear" /></div>';
         $html .= '</div>';
@@ -547,12 +562,12 @@ class ContactListHelpers
                 $card_height = $s['card_height'];
             }
             
-            $html .= '<style>.' . $elem_class . '.contact-list-2-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: ' . $card_height . 'px; } </style>';
-            $html .= '<style>.' . $elem_class . '.contact-list-3-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: ' . $card_height . 'px; } </style>';
-            $html .= '<style>.' . $elem_class . '.contact-list-4-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: ' . $card_height . 'px; } </style>';
-            $html .= '<style> @media (max-width: 820px) { .' . $elem_class . '.contact-list-2-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: auto; } } </style>';
-            $html .= '<style> @media (max-width: 820px) { .' . $elem_class . '.contact-list-3-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: auto; } } </style>';
-            $html .= '<style> @media (max-width: 820px) { .' . $elem_class . '.contact-list-4-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: auto; } } </style>';
+            $html .= '<style>.' . esc_attr( $elem_class ) . '.contact-list-2-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: ' . esc_attr( $card_height ) . 'px; } </style>';
+            $html .= '<style>.' . esc_attr( $elem_class ) . '.contact-list-3-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: ' . esc_attr( $card_height ) . 'px; } </style>';
+            $html .= '<style>.' . esc_attr( $elem_class ) . '.contact-list-4-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: ' . esc_attr( $card_height ) . 'px; } </style>';
+            $html .= '<style> @media (max-width: 820px) { .' . esc_attr( $elem_class ) . '.contact-list-2-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: auto; } } </style>';
+            $html .= '<style> @media (max-width: 820px) { .' . esc_attr( $elem_class ) . '.contact-list-3-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: auto; } } </style>';
+            $html .= '<style> @media (max-width: 820px) { .' . esc_attr( $elem_class ) . '.contact-list-4-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: auto; } } </style>';
         }
         
         return $html;

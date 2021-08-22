@@ -95,6 +95,7 @@ class ContactListPublicHelpers
     public static function searchFormMarkup( $atts, $s, $exclude = array() )
     {
         $html = '';
+        $group_slug = '';
         $filter_active = 0;
         $wp_query_for_filter = new WP_Query( array(
             'post_type'      => 'contact',
@@ -103,6 +104,9 @@ class ContactListPublicHelpers
             'post__not_in'   => $exclude,
         ) );
         $html .= '<form method="get" action="./" class="contact-list-ajax-form">';
+        if ( isset( $atts ) ) {
+            $html .= '<input type="hidden" name="cl_atts" value=\'' . serialize( $atts ) . '\'>';
+        }
         
         if ( isset( $s['show_country_select_in_search'] ) && $s['show_country_select_in_search'] ) {
             $countries = [];
@@ -144,7 +148,7 @@ class ContactListPublicHelpers
             if ( isset( $countries_for_dd ) && is_array( $countries_for_dd ) ) {
                 sort( $countries_for_dd );
             }
-            $html .= '<select name="' . CONTACT_LIST_CAT1 . '" class="cl_select_v2 contact-list-cat1-sel" data-link-country-and-state="' . $link_country_and_state . '">';
+            $html .= '<select name="' . CONTACT_LIST_CAT1 . '" class="' . ContactListHelpers::getSearchDropdownClass() . ' contact-list-cat1-sel" data-link-country-and-state="' . $link_country_and_state . '">';
             $html .= '<option value="">' . ContactListHelpers::getText( 'text_select_country', __( 'Select country', 'contact-list' ) ) . '</option>';
             if ( isset( $countries_for_dd ) && is_array( $countries_for_dd ) ) {
                 foreach ( $countries_for_dd as $country ) {
@@ -168,7 +172,7 @@ class ContactListPublicHelpers
             if ( isset( $states ) && is_array( $states ) ) {
                 sort( $states );
             }
-            $html .= '<select name="' . CONTACT_LIST_CAT2 . '" class="cl_select_v2 contact-list-cat2-sel" data-select-value="' . ContactListHelpers::getText( 'text_select_state', __( 'Select state', 'contact-list' ) ) . '" data-current-value="' . (( isset( $_GET[CONTACT_LIST_CAT2] ) ? $_GET[CONTACT_LIST_CAT2] : '' )) . '">';
+            $html .= '<select name="' . CONTACT_LIST_CAT2 . '" class="' . ContactListHelpers::getSearchDropdownClass() . ' contact-list-cat2-sel" data-select-value="' . ContactListHelpers::getText( 'text_select_state', __( 'Select state', 'contact-list' ) ) . '" data-current-value="' . (( isset( $_GET[CONTACT_LIST_CAT2] ) ? $_GET[CONTACT_LIST_CAT2] : '' )) . '">';
             
             if ( !isset( $s['link_country_and_state'] ) ) {
                 $html .= '<option value="">' . ContactListHelpers::getText( 'text_select_state', __( 'Select state', 'contact-list' ) ) . '</option>';
@@ -196,7 +200,7 @@ class ContactListPublicHelpers
             if ( isset( $cities ) && is_array( $cities ) ) {
                 sort( $cities );
             }
-            $html .= '<select name="' . CONTACT_LIST_CAT3 . '" class="cl_select_v2 contact-list-cat3-sel" data-select-value="' . ContactListHelpers::getText( 'text_select_city', __( 'Select city', 'contact-list' ) ) . '" data-current-value="' . (( isset( $_GET[CONTACT_LIST_CAT3] ) ? $_GET[CONTACT_LIST_CAT3] : '' )) . '">';
+            $html .= '<select name="' . CONTACT_LIST_CAT3 . '" class="' . ContactListHelpers::getSearchDropdownClass() . ' contact-list-cat3-sel" data-select-value="' . ContactListHelpers::getText( 'text_select_city', __( 'Select city', 'contact-list' ) ) . '" data-current-value="' . (( isset( $_GET[CONTACT_LIST_CAT3] ) ? $_GET[CONTACT_LIST_CAT3] : '' )) . '">';
             
             if ( !isset( $s['link_country_and_state'] ) ) {
                 $html .= '<option value="">' . ContactListHelpers::getText( 'text_select_city', __( 'Select city', 'contact-list' ) ) . '</option>';
@@ -214,12 +218,13 @@ class ContactListPublicHelpers
         
         if ( isset( $s['show_category_select_in_search'] ) && $s['show_category_select_in_search'] ) {
             
-            if ( ContactListHelpers::isPremium() == 0 || isset( $s['simpler_category_dropdown'] ) ) {
+            if ( $group_slug && (cl_fs()->is_plan_or_trial( 'pro' ) || cl_fs()->is_plan_or_trial( 'business' )) ) {
+            } elseif ( ContactListHelpers::isPremium() == 0 || isset( $s['simpler_category_dropdown'] ) ) {
                 $groups = get_terms( array(
                     'taxonomy'   => 'contact-group',
                     'hide_empty' => true,
                 ) );
-                $html .= '<select name="cl_cat" class="cl_select_v2">';
+                $html .= '<select name="cl_cat" class="' . ContactListHelpers::getSearchDropdownClass() . '">';
                 $html .= '<option value="">' . ContactListHelpers::getText( 'text_select_category', __( 'Select category', 'contact-list' ) ) . '</option>';
                 foreach ( $groups as $g ) {
                     $t_id = $g->term_id;
@@ -230,25 +235,6 @@ class ContactListPublicHelpers
                 }
                 $html .= '</select>';
             } else {
-                $taxonomy_slug = 'contact-group';
-                $taxonomy_selected = '';
-                if ( isset( $_GET['cl_cat'] ) && $_GET['cl_cat'] ) {
-                    $taxonomy_selected = $_GET['cl_cat'];
-                }
-                $html .= wp_dropdown_categories( [
-                    'show_option_all' => ' ',
-                    'hide_empty'      => 1,
-                    'hierarchical'    => 1,
-                    'show_count'      => 1,
-                    'orderby'         => 'name',
-                    'name'            => 'cl_cat',
-                    'value_field'     => 'slug',
-                    'taxonomy'        => $taxonomy_slug,
-                    'echo'            => 0,
-                    'class'           => 'cl_select_v2',
-                    'selected'        => $taxonomy_selected,
-                    'show_option_all' => ContactListHelpers::getText( 'text_select_category', __( 'Select category', 'contact-list' ) ),
-                ] );
             }
             
             $filter_active = 1;
@@ -468,16 +454,16 @@ class ContactListPublicHelpers
             $html .= '<div class="contact-list-simple-list-some-icons-container">';
             $html .= '<div class="contact-list-simple-list-some-icons">';
             if ( isset( $c['_cl_facebook_url'] ) ) {
-                $html .= ( $c['_cl_facebook_url'][0] ? '<a href="' . esc_url( $c['_cl_facebook_url'][0] ) . '" target="_blank"><img src="' . plugins_url( '../img/facebook.png', __FILE__ ) . '" width="28" height="28" alt="' . __( 'Facebook', 'contact-list' ) . '" /></a>' : '' );
+                $html .= ( $c['_cl_facebook_url'][0] ? '<a href="' . esc_url( $c['_cl_facebook_url'][0] ) . '" target="_blank"><img src="' . plugins_url( '../img/facebook.svg', __FILE__ ) . '" alt="' . __( 'Facebook', 'contact-list' ) . '" /></a>' : '' );
             }
             if ( isset( $c['_cl_instagram_url'] ) ) {
-                $html .= ( $c['_cl_instagram_url'][0] ? '<a href="' . esc_url( $c['_cl_instagram_url'][0] ) . '" target="_blank"><img src="' . plugins_url( '../img/instagram.png', __FILE__ ) . '" width="28" height="28" alt="' . __( 'Instagram', 'contact-list' ) . '" /></a>' : '' );
+                $html .= ( $c['_cl_instagram_url'][0] ? '<a href="' . esc_url( $c['_cl_instagram_url'][0] ) . '" target="_blank"><img src="' . plugins_url( '../img/instagram.svg', __FILE__ ) . '" alt="' . __( 'Instagram', 'contact-list' ) . '" /></a>' : '' );
             }
             if ( isset( $c['_cl_twitter_url'] ) ) {
-                $html .= ( $c['_cl_twitter_url'][0] ? '<a href="' . esc_url( $c['_cl_twitter_url'][0] ) . '" target="_blank"><img src="' . plugins_url( '../img/twitter.png', __FILE__ ) . '" width="28" height="28" alt="' . __( 'Twitter', 'contact-list' ) . '" /></a>' : '' );
+                $html .= ( $c['_cl_twitter_url'][0] ? '<a href="' . esc_url( $c['_cl_twitter_url'][0] ) . '" target="_blank"><img src="' . plugins_url( '../img/twitter.svg', __FILE__ ) . '" alt="' . __( 'Twitter', 'contact-list' ) . '" /></a>' : '' );
             }
             if ( isset( $c['_cl_linkedin_url'] ) ) {
-                $html .= ( $c['_cl_linkedin_url'][0] ? '<a href="' . esc_url( $c['_cl_linkedin_url'][0] ) . '" target="_blank"><img src="' . plugins_url( '../img/linkedin.png', __FILE__ ) . '" width="37" height="28" alt="' . __( 'LinkedIn', 'contact-list' ) . '" /></a>' : '' );
+                $html .= ( $c['_cl_linkedin_url'][0] ? '<a href="' . esc_url( $c['_cl_linkedin_url'][0] ) . '" target="_blank"><img src="' . plugins_url( '../img/linkedin.svg', __FILE__ ) . '" alt="' . __( 'LinkedIn', 'contact-list' ) . '" /></a>' : '' );
             }
             $html .= '</div>';
             $html .= '</div>';

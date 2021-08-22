@@ -5,8 +5,8 @@ class ContactListHelpSupport {
   public function register_support_page() {
     add_submenu_page(
       'edit.php?post_type=' . CONTACT_CPT,
-      __('How to use Contact List', 'contact-list'),
-      __('Help / Support', 'contact-list'),
+      esc_html__('How to use Contact List', 'contact-list'),
+      esc_html__('Help / Support', 'contact-list'),
       'manage_options',
       'contact-list-support',
       [ $this, 'register_support_page_callback' ]
@@ -23,15 +23,15 @@ class ContactListHelpSupport {
     
     <div class="wrap">
 
-      <h1><?= __('How to use Contact List', 'contact-list'); ?></h1>
+      <h1><?= esc_html__('How to use Contact List', 'contact-list'); ?></h1>
 
       <div class="contact-list-examples">
-          <p><?= __('Some examples on how you can use different views available at', 'contact-list') ?> <a href="https://www.contactlistpro.com/contact-list/" target="_blank"><?= __('contactlistpro.com', 'contact-list') ?></a>.</p>
-          <p><?= __('Any kind of feedback is welcome. You may contact the author at', 'contact-list') . ' <a href="https://www.contactlistpro.com/support/" target="_blank">contactlistpro.com/support/</a>.'; ?></p>
+          <p><?= esc_html__('Some examples on how you can use different views available at', 'contact-list') ?> <a href="https://www.contactlistpro.com/contact-list/" target="_blank"><?= esc_html__('contactlistpro.com', 'contact-list') ?></a>.</p>
+          <p><?= esc_html__('Any kind of feedback is welcome. You may contact the author at', 'contact-list') . ' <a href="https://www.contactlistpro.com/support/" target="_blank">contactlistpro.com/support/</a>.'; ?></p>
       </div>
 
       <div class="contact-list-admin-section">
-        <h2><?= __('Instructions for basic usage', 'contact-list') ?></h2>
+        <h2><?= esc_html__('Instructions for basic usage', 'contact-list') ?></h2>
         <ol>
           <li>
             <?php
@@ -48,11 +48,11 @@ class ContactListHelpSupport {
             ?>
           </li>
           <li>
-            <?= __('Insert either one of these shortcodes to any page or post:', 'contact-list'); ?><br />
+            <?= esc_html__('Insert either one of these shortcodes to any page or post:', 'contact-list'); ?><br />
         
             <ul class="contact-list-admin-ul-v2">
-              <li><?= __('The default contact list:', 'contact-list') ?><br /><?php $num++ ?><span class="contact-list-shortcode contact-list-shortcode-only contact-list-shortcode-<?= $num ?>" data-tooltip-class="contact-list-shortcode-<?= $num ?>">[contact_list]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-<?= $num ?>"><?= __('Copy', 'contact-list') ?></button></li>
-              <li><?= __('A simpler list of contacts:', 'contact-list') ?><br /><?php $num++ ?><span class="contact-list-shortcode contact-list-shortcode-only contact-list-shortcode-<?= $num ?>" data-tooltip-class="contact-list-shortcode-<?= $num ?>">[contact_list_simple]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-<?= $num ?>"><?= __('Copy', 'contact-list') ?></button></li>
+              <li><?= esc_html__('The default contact list:', 'contact-list') ?><br /><?php $num++ ?><span class="contact-list-shortcode contact-list-shortcode-only contact-list-shortcode-<?= $num ?>" data-tooltip-class="contact-list-shortcode-<?= $num ?>">[contact_list]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-<?= $num ?>"><?= esc_html__('Copy', 'contact-list') ?></button></li>
+              <li><?= esc_html__('A simpler list of contacts:', 'contact-list') ?><br /><?php $num++ ?><span class="contact-list-shortcode contact-list-shortcode-only contact-list-shortcode-<?= $num ?>" data-tooltip-class="contact-list-shortcode-<?= $num ?>">[contact_list_simple]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-<?= $num ?>"><?= esc_html__('Copy', 'contact-list') ?></button></li>
             </ul>
   
             <strong>
@@ -162,7 +162,7 @@ class ContactListHelpSupport {
 
             <tr>
               <td colspan="3">
-                <?= __('No data logged yet.', 'contact-list') ?>
+                <?= esc_html__('No data logged yet.', 'contact-list') ?>
               </td>
             </tr>
 
@@ -186,7 +186,7 @@ class ContactListHelpSupport {
         let clipboardtarget = jQuery(e.trigger).data('clipboard-target');
 
         jQuery(clipboardtarget).tipso({
-          content: "<?= __('Shortcode copied to clipboard!', 'contact-list') ?>",
+          content: "<?= esc_js( __('Shortcode copied to clipboard!', 'contact-list') ) ?>",
           width: 240
         });
 

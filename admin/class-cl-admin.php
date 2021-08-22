@@ -54,8 +54,13 @@ class Contact_List_Admin {
 
   }
 
-  public function enqueue_styles() {
+  public function enqueue_styles($hook) {
     wp_enqueue_style($this->plugin_name, CONTACT_LIST_URI . 'dist/css/a.css', array(), $this->version, 'all');
+
+    if ($hook == 'contact_page_contact-list-printable') {
+      wp_enqueue_style($this->plugin_name . '-public', CONTACT_LIST_URI . 'dist/css/p.css', array(), $this->version, 'all');
+    }
+
   }
 
   public function enqueue_scripts() {

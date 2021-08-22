@@ -25,7 +25,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-order_by',
-            __( 'Sort contact list by', 'contact-list' ),
+            esc_html__( 'Sort contact list by', 'contact-list' ),
             array( $this, 'select_render' ),
             'contact-list',
             'contact-list_section_general',
@@ -36,7 +36,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-last_name_before_first_name',
-            __( 'Show last name before first name', 'contact-list' ),
+            esc_html__( 'Show last name before first name', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_section_general',
@@ -47,7 +47,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'contacts_per_page',
-            __( 'Contacts per page (activates pagination)', 'contact-list' ),
+            esc_html__( 'Contacts per page (activates pagination)', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_section_general',
@@ -59,7 +59,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-pagination_type',
-            __( 'Pagination type', 'contact-list' ),
+            esc_html__( 'Pagination type', 'contact-list' ),
             array( $this, 'pagination_type_render' ),
             'contact-list',
             'contact-list_section_general',
@@ -70,7 +70,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'group_select',
-            __( 'Display group checkboxes on public form', 'contact-list' ),
+            esc_html__( 'Display group checkboxes on public form', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_section_general',
@@ -81,7 +81,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'show_contacts_from_subgroup',
-            __( 'Show contacts from subgroups in the main group view', 'contact-list' ),
+            esc_html__( 'Show contacts from subgroups in the main group view', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_section_general',
@@ -92,7 +92,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'automatically_publish_contacts',
-            __( 'Automatically publish user submitted contacts', 'contact-list' ),
+            esc_html__( 'Automatically publish user submitted contacts', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_section_general',
@@ -103,7 +103,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-focus_on_search_field',
-            __( 'Focus on search field on page load', 'contact-list' ),
+            esc_html__( 'Focus on search field on page load', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_section_general',
@@ -114,7 +114,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-hide_send_email_button',
-            __( 'Hide Send message -button from the public list', 'contact-list' ),
+            esc_html__( 'Hide Send message -button from the public list', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_section_general',
@@ -132,7 +132,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-layout',
-            __( 'Layout', 'contact-list' ),
+            esc_html__( 'Layout', 'contact-list' ),
             array( $this, 'layout_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -143,7 +143,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-card_height',
-            __( 'Card height in pixels', 'contact-list' ),
+            esc_html__( 'Card height in pixels', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -155,7 +155,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-card_background',
-            __( 'Card background', 'contact-list' ),
+            esc_html__( 'Card background', 'contact-list' ),
             array( $this, 'card_background_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -166,7 +166,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-card_border',
-            __( 'Card border', 'contact-list' ),
+            esc_html__( 'Card border', 'contact-list' ),
             array( $this, 'card_border_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -177,7 +177,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-contact_image_style',
-            __( 'Contact image style', 'contact-list' ),
+            esc_html__( 'Contact image style', 'contact-list' ),
             array( $this, 'contact_image_style_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -188,7 +188,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-contact_image_shadow',
-            __( 'Display shadow below contact image', 'contact-list' ),
+            esc_html__( 'Display shadow below contact image', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -199,7 +199,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-contact_show_groups',
-            __( 'Show groups on contact card', 'contact-list' ),
+            esc_html__( 'Show groups on contact card', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -210,7 +210,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'move_zip_after_state',
-            __( 'Move zip code after state', 'contact-list' ),
+            esc_html__( 'Move zip code after state', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -221,7 +221,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-show_contact_images_always',
-            __( 'Show contact images when using 3 or 4 columns view', 'contact-list' ),
+            esc_html__( 'Show contact images when using 3 or 4 columns view', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -232,7 +232,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-contact_groups_title',
-            __( 'Title above the groups', 'contact-list' ),
+            esc_html__( 'Title above the groups', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -244,7 +244,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'hide_phone_numbers_from_public_card',
-            __( 'Hide phone numbers from public card', 'contact-list' ),
+            esc_html__( 'Hide phone numbers from public card', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -262,7 +262,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-hide_contact_email',
-            __( 'Hide contact email address from contact card', 'contact-list' ),
+            esc_html__( 'Hide contact email address from contact card', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -273,7 +273,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'activate_recaptcha',
-            __( 'Activate reCAPTCHA', 'contact-list' ),
+            esc_html__( 'Activate reCAPTCHA', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -284,7 +284,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'recaptcha_key',
-            __( 'reCAPTCHA site key', 'contact-list' ),
+            esc_html__( 'reCAPTCHA site key', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -296,7 +296,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'recaptcha_secret',
-            __( 'reCAPTCHA secret key', 'contact-list' ),
+            esc_html__( 'reCAPTCHA secret key', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -308,7 +308,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'email_sender_contact_card',
-            __( 'Sender email for messages sent from contact card', 'contact-list' ),
+            esc_html__( 'Sender email for messages sent from contact card', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -320,7 +320,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'email_sender_name_contact_card',
-            __( 'Sender name for messages sent from contact card', 'contact-list' ),
+            esc_html__( 'Sender name for messages sent from contact card', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -332,7 +332,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'sender_email_group_send',
-            __( 'Sender email for messages sent using the shortcode [contact_list_send_email]', 'contact-list' ),
+            esc_html__( 'Sender email for messages sent using the shortcode [contact_list_send_email]', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -344,7 +344,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'set_return_path',
-            __( 'Set Return-Path to same as sender email', 'contact-list' ),
+            esc_html__( 'Set Return-Path to same as sender email', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -356,7 +356,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'send_email',
-            __( 'Send an email notify when a contact is added via the public form', 'contact-list' ),
+            esc_html__( 'Send an email notify when a contact is added via the public form', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -367,7 +367,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'recipient_email',
-            __( 'Notification recipient email', 'contact-list' ),
+            esc_html__( 'Notification recipient email', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -379,7 +379,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'remove_email_footer',
-            __( 'Remove email footer completely', 'contact-list' ),
+            esc_html__( 'Remove email footer completely', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -390,7 +390,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'text_email_footer',
-            __( 'Email footer text', 'contact-list' ),
+            esc_html__( 'Email footer text', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -402,7 +402,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-disable_mail_log',
-            __( 'Disable mail log', 'contact-list' ),
+            esc_html__( 'Disable mail log', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -413,7 +413,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'disable_recaptcha_from_mail_log',
-            __( 'Disable logging for reCAPTCHA errors', 'contact-list' ),
+            esc_html__( 'Disable logging for reCAPTCHA errors', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -424,7 +424,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'request_update_mail_subject',
-            __( 'Request update: mail subject', 'contact-list' ),
+            esc_html__( 'Request update: mail subject', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -436,7 +436,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'request_update_mail_content',
-            __( 'Request update: mail content', 'contact-list' ),
+            esc_html__( 'Request update: mail content', 'contact-list' ),
             array( $this, 'textarea_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -448,7 +448,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'request_update_link_text',
-            __( 'Request update: update link text', 'contact-list' ),
+            esc_html__( 'Request update: update link text', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -460,7 +460,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'send_permanent_update_url',
-            __( 'Send a permanent update URL to contacts created using the shortcode [contact_list_form]', 'contact-list' ),
+            esc_html__( 'Send a permanent update URL to contacts created using the shortcode [contact_list_form]', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -471,7 +471,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'permanent_update_url_mail_subject',
-            __( 'Permanent update URL: mail subject', 'contact-list' ),
+            esc_html__( 'Permanent update URL: mail subject', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -483,7 +483,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'permanent_update_url_mail_content',
-            __( 'Permanent update URL: mail content', 'contact-list' ),
+            esc_html__( 'Permanent update URL: mail content', 'contact-list' ),
             array( $this, 'textarea_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -495,7 +495,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'permanent_update_url_link_text',
-            __( 'Permanent update URL: update link text', 'contact-list' ),
+            esc_html__( 'Permanent update URL: update link text', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -514,7 +514,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-show_country_select_in_search',
-            __( 'Show country select in search', 'contact-list' ),
+            esc_html__( 'Show country select in search', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -525,7 +525,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-show_state_select_in_search',
-            __( 'Show state select in search', 'contact-list' ),
+            esc_html__( 'Show state select in search', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -536,7 +536,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-show_city_select_in_search',
-            __( 'Show city select in search', 'contact-list' ),
+            esc_html__( 'Show city select in search', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -547,7 +547,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'link_country_and_state',
-            __( 'Link country, state and city', 'contact-list' ),
+            esc_html__( 'Link country, state and city', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -558,7 +558,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-show_category_select_in_search',
-            __( 'Show category / group select in search', 'contact-list' ),
+            esc_html__( 'Show category / group select in search', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -569,7 +569,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'show_cf_1_select_in_search',
-            __( 'Show custom field 1 select', 'contact-list' ),
+            esc_html__( 'Show custom field 1 select', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -580,7 +580,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'show_cf_2_select_in_search',
-            __( 'Show custom field 2 select', 'contact-list' ),
+            esc_html__( 'Show custom field 2 select', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -591,7 +591,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'show_cf_3_select_in_search',
-            __( 'Show custom field 3 select', 'contact-list' ),
+            esc_html__( 'Show custom field 3 select', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -602,7 +602,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'show_cf_4_select_in_search',
-            __( 'Show custom field 4 select', 'contact-list' ),
+            esc_html__( 'Show custom field 4 select', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -613,7 +613,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'show_cf_5_select_in_search',
-            __( 'Show custom field 5 select', 'contact-list' ),
+            esc_html__( 'Show custom field 5 select', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -624,7 +624,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'show_cf_6_select_in_search',
-            __( 'Show custom field 6 select', 'contact-list' ),
+            esc_html__( 'Show custom field 6 select', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -635,13 +635,24 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'simpler_category_dropdown',
-            __( 'Simpler version of category dropdown (without subcategories and numbers of contacts)', 'contact-list' ),
+            esc_html__( 'Simpler version of category dropdown (without subcategories and numbers of contacts)', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
             array(
             'label_for'  => 'contact-list-' . $only_pro . 'simpler_category_dropdown',
             'field_name' => $only_pro . 'simpler_category_dropdown',
+        )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'search_dropdown_width_auto',
+            esc_html__( 'Search dropdown width defined based on contents (instead of fixed width)', 'contact-list' ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+            'label_for'  => 'contact-list-' . $only_pro . 'search_dropdown_width_auto',
+            'field_name' => $only_pro . 'search_dropdown_width_auto',
         )
         );
         $tab = 5;
@@ -653,19 +664,32 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-custom_field_1_title',
-            __( 'Custom field 1 title', 'contact-list' ),
+            esc_html__( 'Custom field 1 title', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
             array(
             'label_for'   => 'contact-list-custom_field_1_title',
             'field_name'  => 'custom_field_1_title',
-            'placeholder' => __( 'Custom field 1', 'contact-list' ),
+            'placeholder' => esc_attr__( 'Custom field 1', 'contact-list' ),
         )
         );
+        if ( cl_fs()->is_free_plan() || cl_fs()->is_plan_or_trial( 'pro' ) || cl_fs()->is_plan_or_trial( 'business' ) ) {
+            add_settings_field(
+                'contact-list-' . $only_pro . 'custom_field_1_hide_from_contact_card',
+                esc_html__( 'Hide from contact card', 'contact-list' ),
+                array( $this, 'checkbox_render' ),
+                'contact-list',
+                'contact-list_tab_' . $tab,
+                array(
+                'label_for'  => 'contact-list-' . $only_pro . 'custom_field_1_hide_from_contact_card',
+                'field_name' => $only_pro . 'custom_field_1_hide_from_contact_card',
+            )
+            );
+        }
         add_settings_field(
             'contact-list-custom_field_1_link_text',
-            __( 'Link text (only applicable if the custom field content is a URL)', 'contact-list' ),
+            esc_html__( 'Link text (only applicable if the custom field content is a URL)', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -677,7 +701,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-custom_field_1_icon',
-            __( 'Icon for custom field 1', 'contact-list' ),
+            esc_html__( 'Icon for custom field 1', 'contact-list' ),
             array( $this, 'icon_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -689,19 +713,32 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'custom_field_2_title',
-            __( 'Custom field 2 title', 'contact-list' ),
+            esc_html__( 'Custom field 2 title', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
             array(
             'label_for'   => 'contact-list-' . $only_pro . 'custom_field_2_title',
             'field_name'  => $only_pro . 'custom_field_2_title',
-            'placeholder' => __( 'Custom field 2', 'contact-list' ),
+            'placeholder' => esc_attr__( 'Custom field 2', 'contact-list' ),
         )
         );
+        if ( cl_fs()->is_free_plan() || cl_fs()->is_plan_or_trial( 'pro' ) || cl_fs()->is_plan_or_trial( 'business' ) ) {
+            add_settings_field(
+                'contact-list-' . $only_pro . 'custom_field_2_hide_from_contact_card',
+                esc_html__( 'Hide from contact card', 'contact-list' ),
+                array( $this, 'checkbox_render' ),
+                'contact-list',
+                'contact-list_tab_' . $tab,
+                array(
+                'label_for'  => 'contact-list-' . $only_pro . 'custom_field_2_hide_from_contact_card',
+                'field_name' => $only_pro . 'custom_field_2_hide_from_contact_card',
+            )
+            );
+        }
         add_settings_field(
             'contact-list-' . $only_pro . 'custom_field_2_link_text',
-            __( 'Link text (only applicable if the custom field content is a URL)', 'contact-list' ),
+            esc_html__( 'Link text (only applicable if the custom field content is a URL)', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -713,7 +750,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'custom_field_2_icon',
-            __( 'Icon for custom field 2', 'contact-list' ),
+            esc_html__( 'Icon for custom field 2', 'contact-list' ),
             array( $this, 'icon_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -725,19 +762,32 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'custom_field_3_title',
-            __( 'Custom field 3 title', 'contact-list' ),
+            esc_html__( 'Custom field 3 title', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
             array(
             'label_for'   => 'contact-list-' . $only_pro . 'custom_field_3_title',
             'field_name'  => $only_pro . 'custom_field_3_title',
-            'placeholder' => __( 'Custom field 3', 'contact-list' ),
+            'placeholder' => esc_attr__( 'Custom field 3', 'contact-list' ),
         )
         );
+        if ( cl_fs()->is_free_plan() || cl_fs()->is_plan_or_trial( 'pro' ) || cl_fs()->is_plan_or_trial( 'business' ) ) {
+            add_settings_field(
+                'contact-list-' . $only_pro . 'custom_field_3_hide_from_contact_card',
+                esc_html__( 'Hide from contact card', 'contact-list' ),
+                array( $this, 'checkbox_render' ),
+                'contact-list',
+                'contact-list_tab_' . $tab,
+                array(
+                'label_for'  => 'contact-list-' . $only_pro . 'custom_field_3_hide_from_contact_card',
+                'field_name' => $only_pro . 'custom_field_3_hide_from_contact_card',
+            )
+            );
+        }
         add_settings_field(
             'contact-list-' . $only_pro . 'custom_field_3_link_text',
-            __( 'Link text (only applicable if the custom field content is a URL)', 'contact-list' ),
+            esc_html__( 'Link text (only applicable if the custom field content is a URL)', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -749,7 +799,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'custom_field_3_icon',
-            __( 'Icon for custom field 3', 'contact-list' ),
+            esc_html__( 'Icon for custom field 3', 'contact-list' ),
             array( $this, 'icon_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -761,19 +811,32 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'custom_field_4_title',
-            __( 'Custom field 4 title', 'contact-list' ),
+            esc_html__( 'Custom field 4 title', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
             array(
             'label_for'   => 'contact-list-' . $only_pro . 'custom_field_4_title',
             'field_name'  => $only_pro . 'custom_field_4_title',
-            'placeholder' => __( 'Custom field 4', 'contact-list' ),
+            'placeholder' => esc_attr__( 'Custom field 4', 'contact-list' ),
         )
         );
+        if ( cl_fs()->is_free_plan() || cl_fs()->is_plan_or_trial( 'pro' ) || cl_fs()->is_plan_or_trial( 'business' ) ) {
+            add_settings_field(
+                'contact-list-' . $only_pro . 'custom_field_4_hide_from_contact_card',
+                esc_html__( 'Hide from contact card', 'contact-list' ),
+                array( $this, 'checkbox_render' ),
+                'contact-list',
+                'contact-list_tab_' . $tab,
+                array(
+                'label_for'  => 'contact-list-' . $only_pro . 'custom_field_4_hide_from_contact_card',
+                'field_name' => $only_pro . 'custom_field_4_hide_from_contact_card',
+            )
+            );
+        }
         add_settings_field(
             'contact-list-' . $only_pro . 'custom_field_4_link_text',
-            __( 'Link text (only applicable if the custom field content is a URL)', 'contact-list' ),
+            esc_html__( 'Link text (only applicable if the custom field content is a URL)', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -785,7 +848,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'custom_field_4_icon',
-            __( 'Icon for custom field 4', 'contact-list' ),
+            esc_html__( 'Icon for custom field 4', 'contact-list' ),
             array( $this, 'icon_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -797,19 +860,32 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'custom_field_5_title',
-            __( 'Custom field 5 title', 'contact-list' ),
+            esc_html__( 'Custom field 5 title', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
             array(
             'label_for'   => 'contact-list-' . $only_pro . 'custom_field_5_title',
             'field_name'  => $only_pro . 'custom_field_5_title',
-            'placeholder' => __( 'Custom field 5', 'contact-list' ),
+            'placeholder' => esc_attr__( 'Custom field 5', 'contact-list' ),
         )
         );
+        if ( cl_fs()->is_free_plan() || cl_fs()->is_plan_or_trial( 'pro' ) || cl_fs()->is_plan_or_trial( 'business' ) ) {
+            add_settings_field(
+                'contact-list-' . $only_pro . 'custom_field_5_hide_from_contact_card',
+                esc_html__( 'Hide from contact card', 'contact-list' ),
+                array( $this, 'checkbox_render' ),
+                'contact-list',
+                'contact-list_tab_' . $tab,
+                array(
+                'label_for'  => 'contact-list-' . $only_pro . 'custom_field_5_hide_from_contact_card',
+                'field_name' => $only_pro . 'custom_field_5_hide_from_contact_card',
+            )
+            );
+        }
         add_settings_field(
             'contact-list-' . $only_pro . 'custom_field_5_link_text',
-            __( 'Link text (only applicable if the custom field content is a URL)', 'contact-list' ),
+            esc_html__( 'Link text (only applicable if the custom field content is a URL)', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -821,7 +897,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'custom_field_5_icon',
-            __( 'Icon for custom field 5', 'contact-list' ),
+            esc_html__( 'Icon for custom field 5', 'contact-list' ),
             array( $this, 'icon_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -833,19 +909,32 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'custom_field_6_title',
-            __( 'Custom field 6 title', 'contact-list' ),
+            esc_html__( 'Custom field 6 title', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
             array(
             'label_for'   => 'contact-list-' . $only_pro . 'custom_field_6_title',
             'field_name'  => $only_pro . 'custom_field_6_title',
-            'placeholder' => __( 'Custom field 6', 'contact-list' ),
+            'placeholder' => esc_attr__( 'Custom field 6', 'contact-list' ),
         )
         );
+        if ( cl_fs()->is_free_plan() || cl_fs()->is_plan_or_trial( 'pro' ) || cl_fs()->is_plan_or_trial( 'business' ) ) {
+            add_settings_field(
+                'contact-list-' . $only_pro . 'custom_field_6_hide_from_contact_card',
+                esc_html__( 'Hide from contact card', 'contact-list' ),
+                array( $this, 'checkbox_render' ),
+                'contact-list',
+                'contact-list_tab_' . $tab,
+                array(
+                'label_for'  => 'contact-list-' . $only_pro . 'custom_field_6_hide_from_contact_card',
+                'field_name' => $only_pro . 'custom_field_6_hide_from_contact_card',
+            )
+            );
+        }
         add_settings_field(
             'contact-list-' . $only_pro . 'custom_field_6_link_text',
-            __( 'Link text (only applicable if the custom field content is a URL)', 'contact-list' ),
+            esc_html__( 'Link text (only applicable if the custom field content is a URL)', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -857,7 +946,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'custom_field_6_icon',
-            __( 'Icon for custom field 6', 'contact-list' ),
+            esc_html__( 'Icon for custom field 6', 'contact-list' ),
             array( $this, 'icon_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -875,31 +964,31 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-search_contacts',
-            __( 'Search contacts...', 'contact-list' ),
+            esc_html__( 'Search contacts...', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_section',
             array(
             'label_for'   => 'contact-list-search_contacts',
             'field_name'  => 'search_contacts',
-            'placeholder' => __( 'Search contacts...', 'contact-list' ),
+            'placeholder' => esc_attr__( 'Search contacts...', 'contact-list' ),
         )
         );
         add_settings_field(
             'contact-list-search_all_contacts',
-            __( 'Search all contacts...', 'contact-list' ),
+            esc_html__( 'Search all contacts...', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_section',
             array(
             'label_for'   => 'contact-list-search_all_contacts',
             'field_name'  => 'search_all_contacts',
-            'placeholder' => __( 'Search all contacts...', 'contact-list' ),
+            'placeholder' => esc_attr__( 'Search all contacts...', 'contact-list' ),
         )
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'text_send_message',
-            __( 'Send message', 'contact-list' ),
+            esc_html__( 'Send message', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_section',
@@ -911,43 +1000,43 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-text_select_country',
-            __( 'Select country', 'contact-list' ),
+            esc_html__( 'Select country', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_section',
             array(
             'label_for'   => 'contact-list-text_select_country',
             'field_name'  => 'text_select_country',
-            'placeholder' => __( 'Select country', 'contact-list' ),
+            'placeholder' => esc_attr__( 'Select country', 'contact-list' ),
         )
         );
         add_settings_field(
             'contact-list-text_select_state',
-            __( 'Select state', 'contact-list' ),
+            esc_html__( 'Select state', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_section',
             array(
             'label_for'   => 'contact-list-text_select_state',
             'field_name'  => 'text_select_state',
-            'placeholder' => __( 'Select state', 'contact-list' ),
+            'placeholder' => esc_attr__( 'Select state', 'contact-list' ),
         )
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'text_select_city',
-            __( 'Select city', 'contact-list' ),
+            esc_html__( 'Select city', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_section',
             array(
             'label_for'   => 'contact-list-' . $only_pro . 'text_select_city',
             'field_name'  => $only_pro . 'text_select_city',
-            'placeholder' => __( 'Select city', 'contact-list' ),
+            'placeholder' => esc_attr__( 'Select city', 'contact-list' ),
         )
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'text_select_custom_field_1',
-            __( 'Select custom field 1', 'contact-list' ),
+            esc_html__( 'Select custom field 1', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_section',
@@ -959,7 +1048,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'text_select_custom_field_2',
-            __( 'Select custom field 2', 'contact-list' ),
+            esc_html__( 'Select custom field 2', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_section',
@@ -971,7 +1060,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'text_select_custom_field_3',
-            __( 'Select custom field 3', 'contact-list' ),
+            esc_html__( 'Select custom field 3', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_section',
@@ -983,7 +1072,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'text_select_custom_field_4',
-            __( 'Select custom field 4', 'contact-list' ),
+            esc_html__( 'Select custom field 4', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_section',
@@ -995,7 +1084,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'text_select_custom_field_5',
-            __( 'Select custom field 5', 'contact-list' ),
+            esc_html__( 'Select custom field 5', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_section',
@@ -1007,7 +1096,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'text_select_custom_field_6',
-            __( 'Select custom field 6', 'contact-list' ),
+            esc_html__( 'Select custom field 6', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_section',
@@ -1019,259 +1108,259 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-text_select_category',
-            __( 'Select category', 'contact-list' ),
+            esc_html__( 'Select category', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_section',
             array(
             'label_for'   => 'contact-list-text_select_category',
             'field_name'  => 'text_select_category',
-            'placeholder' => __( 'Select category', 'contact-list' ),
+            'placeholder' => esc_attr__( 'Select category', 'contact-list' ),
         )
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'category_title',
-            __( 'Category (on simple list)', 'contact-list' ),
+            esc_html__( 'Category (on simple list)', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_section',
             array(
             'label_for'   => 'contact-list-' . $only_pro . 'category_title',
             'field_name'  => $only_pro . 'category_title',
-            'placeholder' => __( 'Category', 'contact-list' ),
+            'placeholder' => esc_attr__( 'Category', 'contact-list' ),
         )
         );
         add_settings_field(
             'contact-list-text_filter_contacts',
-            __( 'Filter contacts', 'contact-list' ),
+            esc_html__( 'Filter contacts', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_section',
             array(
             'label_for'   => 'contact-list-text_filter_contacts',
             'field_name'  => 'text_filter_contacts',
-            'placeholder' => __( 'Filter contacts', 'contact-list' ),
+            'placeholder' => esc_attr__( 'Filter contacts', 'contact-list' ),
         )
         );
         add_settings_field(
             'contact-list-text_sr_contact',
-            __( 'Search results: "contact"', 'contact-list' ),
+            esc_html__( 'Search results: "contact"', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_section',
             array(
             'label_for'   => 'contact-list-text_sr_contact',
             'field_name'  => 'text_sr_contact',
-            'placeholder' => __( 'contact', 'contact-list' ),
+            'placeholder' => esc_attr__( 'contact', 'contact-list' ),
         )
         );
         add_settings_field(
             'contact-list-text_sr_contacts',
-            __( 'Search results: "contacts"', 'contact-list' ),
+            esc_html__( 'Search results: "contacts"', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_section',
             array(
             'label_for'   => 'contact-list-text_sr_contacts',
             'field_name'  => 'text_sr_contacts',
-            'placeholder' => __( 'contacts', 'contact-list' ),
+            'placeholder' => esc_attr__( 'contacts', 'contact-list' ),
         )
         );
         add_settings_field(
             'contact-list-text_sr_found',
-            __( 'Search results: "found"', 'contact-list' ),
+            esc_html__( 'Search results: "found"', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_section',
             array(
             'label_for'   => 'contact-list-text_sr_found',
             'field_name'  => 'text_sr_found',
-            'placeholder' => __( 'found', 'contact-list' ),
+            'placeholder' => esc_attr__( 'found', 'contact-list' ),
         )
         );
         add_settings_field(
             'contact-list-text_sr_no_contacts_found',
-            __( 'Search results: "No contacts found."', 'contact-list' ),
+            esc_html__( 'Search results: "No contacts found."', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_section',
             array(
             'label_for'   => 'contact-list-text_sr_no_contacts_found',
             'field_name'  => 'text_sr_no_contacts_found',
-            'placeholder' => __( 'No contacts found.', 'contact-list' ),
+            'placeholder' => esc_attr__( 'No contacts found.', 'contact-list' ),
         )
         );
         add_settings_field(
             'contact-list-back_link_title',
-            __( '"Back"-link title', 'contact-list' ),
+            esc_html__( '"Back"-link title', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_section',
             array(
             'label_for'   => 'contact-list-back_link_title',
             'field_name'  => 'back_link_title',
-            'placeholder' => __( '<< Back', 'contact-list' ),
+            'placeholder' => esc_attr__( '<< Back', 'contact-list' ),
         )
         );
         add_settings_field(
             'contact-list-first_name_title',
-            __( 'First name', 'contact-list' ),
+            esc_html__( 'First name', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_section',
             array(
             'label_for'   => 'contact-list-first_name_title',
             'field_name'  => 'first_name_title',
-            'placeholder' => __( 'First name', 'contact-list' ),
+            'placeholder' => esc_attr__( 'First name', 'contact-list' ),
         )
         );
         add_settings_field(
             'contact-list-last_name_title',
-            __( 'Last name', 'contact-list' ),
+            esc_html__( 'Last name', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_section',
             array(
             'label_for'   => 'contact-list-last_name_title',
             'field_name'  => 'last_name_title',
-            'placeholder' => __( 'Last name', 'contact-list' ),
+            'placeholder' => esc_attr__( 'Last name', 'contact-list' ),
         )
         );
         add_settings_field(
             'contact-list-name_title',
-            __( 'Name (simple list title)', 'contact-list' ),
+            esc_html__( 'Name (simple list title)', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_section',
             array(
             'label_for'   => 'contact-list-name_title',
             'field_name'  => 'name_title',
-            'placeholder' => __( 'Name', 'contact-list' ),
+            'placeholder' => esc_attr__( 'Name', 'contact-list' ),
         )
         );
         add_settings_field(
             'contact-list-job_title_title',
-            __( 'Job title', 'contact-list' ),
+            esc_html__( 'Job title', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_section',
             array(
             'label_for'   => 'contact-list-job_title_title',
             'field_name'  => 'job_title_title',
-            'placeholder' => __( 'Job title', 'contact-list' ),
+            'placeholder' => esc_attr__( 'Job title', 'contact-list' ),
         )
         );
         add_settings_field(
             'contact-list-email_title',
-            __( 'Email', 'contact-list' ),
+            esc_html__( 'Email', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_section',
             array(
             'label_for'   => 'contact-list-email_title',
             'field_name'  => 'email_title',
-            'placeholder' => __( 'Email', 'contact-list' ),
+            'placeholder' => esc_attr__( 'Email', 'contact-list' ),
         )
         );
         add_settings_field(
             'contact-list-phone_title',
-            __( 'Phone', 'contact-list' ),
+            esc_html__( 'Phone', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_section',
             array(
             'label_for'   => 'contact-list-phone_title',
             'field_name'  => 'phone_title',
-            'placeholder' => __( 'Phone', 'contact-list' ),
+            'placeholder' => esc_attr__( 'Phone', 'contact-list' ),
         )
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'phone_2_title',
-            __( 'Phone 2', 'contact-list' ),
+            esc_html__( 'Phone 2', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_section',
             array(
             'label_for'   => 'contact-list-' . $only_pro . 'phone_2_title',
             'field_name'  => $only_pro . 'phone_2_title',
-            'placeholder' => __( 'Phone 2', 'contact-list' ),
+            'placeholder' => esc_attr__( 'Phone 2', 'contact-list' ),
         )
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'phone_3_title',
-            __( 'Phone 3', 'contact-list' ),
+            esc_html__( 'Phone 3', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_section',
             array(
             'label_for'   => 'contact-list-' . $only_pro . 'phone_3_title',
             'field_name'  => $only_pro . 'phone_3_title',
-            'placeholder' => __( 'Phone 3', 'contact-list' ),
+            'placeholder' => esc_attr__( 'Phone 3', 'contact-list' ),
         )
         );
         add_settings_field(
             'contact-list-linkedin_url_title',
-            __( 'LinkedIn URL', 'contact-list' ),
+            esc_html__( 'LinkedIn URL', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_section',
             array(
             'label_for'   => 'contact-list-linkedin_url_title',
             'field_name'  => 'linkedin_url_title',
-            'placeholder' => __( 'LinkedIn URL', 'contact-list' ),
+            'placeholder' => esc_attr__( 'LinkedIn URL', 'contact-list' ),
         )
         );
         add_settings_field(
             'contact-list-twitter_url_title',
-            __( 'Twitter URL', 'contact-list' ),
+            esc_html__( 'Twitter URL', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_section',
             array(
             'label_for'   => 'contact-list-twitter_url_title',
             'field_name'  => 'twitter_url_title',
-            'placeholder' => __( 'Twitter URL', 'contact-list' ),
+            'placeholder' => esc_attr__( 'Twitter URL', 'contact-list' ),
         )
         );
         add_settings_field(
             'contact-list-facebook_url_title',
-            __( 'Facebook URL', 'contact-list' ),
+            esc_html__( 'Facebook URL', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_section',
             array(
             'label_for'   => 'contact-list-facebook_url_title',
             'field_name'  => 'facebook_url_title',
-            'placeholder' => __( 'Facebook URL', 'contact-list' ),
+            'placeholder' => esc_attr__( 'Facebook URL', 'contact-list' ),
         )
         );
         add_settings_field(
             'contact-list-instagram_url_title',
-            __( 'Instagram URL', 'contact-list' ),
+            esc_html__( 'Instagram URL', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_section',
             array(
             'label_for'   => 'contact-list-instagram_url_title',
             'field_name'  => 'instagram_url_title',
-            'placeholder' => __( 'Instagram URL', 'contact-list' ),
+            'placeholder' => esc_attr__( 'Instagram URL', 'contact-list' ),
         )
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'address_title',
-            __( 'Address', 'contact-list' ),
+            esc_html__( 'Address', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_section',
             array(
             'label_for'   => 'contact-list-' . $only_pro . 'address_title',
             'field_name'  => $only_pro . 'address_title',
-            'placeholder' => __( 'Address', 'contact-list' ),
+            'placeholder' => esc_attr__( 'Address', 'contact-list' ),
         )
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'hide_address_title',
-            __( 'Hide', 'contact-list' ) . ' "' . __( 'Address', 'contact-list' ) . '"' . __( '-title', 'contact-list' ),
+            esc_html__( 'Hide "Address"-title', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_section',
@@ -1282,115 +1371,115 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'country_title',
-            __( 'Country', 'contact-list' ),
+            esc_html__( 'Country', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_section',
             array(
             'label_for'   => 'contact-list-' . $only_pro . 'country_title',
             'field_name'  => $only_pro . 'country_title',
-            'placeholder' => __( 'Country', 'contact-list' ),
+            'placeholder' => esc_attr__( 'Country', 'contact-list' ),
         )
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'state_title',
-            __( 'State', 'contact-list' ),
+            esc_html__( 'State', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_section',
             array(
             'label_for'   => 'contact-list-' . $only_pro . 'state_title',
             'field_name'  => $only_pro . 'state_title',
-            'placeholder' => __( 'State', 'contact-list' ),
+            'placeholder' => esc_attr__( 'State', 'contact-list' ),
         )
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'city_title',
-            __( 'City', 'contact-list' ),
+            esc_html__( 'City', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_section',
             array(
             'label_for'   => 'contact-list-' . $only_pro . 'city_title',
             'field_name'  => $only_pro . 'city_title',
-            'placeholder' => __( 'City', 'contact-list' ),
+            'placeholder' => esc_attr__( 'City', 'contact-list' ),
         )
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'zip_code_title',
-            __( 'ZIP Code', 'contact-list' ),
+            esc_html__( 'ZIP Code', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_section',
             array(
             'label_for'   => 'contact-list-' . $only_pro . 'zip_code_title',
             'field_name'  => $only_pro . 'zip_code_title',
-            'placeholder' => __( 'ZIP Code', 'contact-list' ),
+            'placeholder' => esc_attr__( 'ZIP Code', 'contact-list' ),
         )
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'address_line_1_title',
-            __( 'Address line 1', 'contact-list' ),
+            esc_html__( 'Address line 1', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_section',
             array(
             'label_for'   => 'contact-list-' . $only_pro . 'address_line_1_title',
             'field_name'  => $only_pro . 'address_line_1_title',
-            'placeholder' => __( 'Address line 1', 'contact-list' ),
+            'placeholder' => esc_attr__( 'Address line 1', 'contact-list' ),
         )
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'address_line_2_title',
-            __( 'Address line 2', 'contact-list' ),
+            esc_html__( 'Address line 2', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_section',
             array(
             'label_for'   => 'contact-list-' . $only_pro . 'address_line_2_title',
             'field_name'  => $only_pro . 'address_line_2_title',
-            'placeholder' => __( 'Address line 2', 'contact-list' ),
+            'placeholder' => esc_attr__( 'Address line 2', 'contact-list' ),
         )
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'address_line_3_title',
-            __( 'Address line 3', 'contact-list' ),
+            esc_html__( 'Address line 3', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_section',
             array(
             'label_for'   => 'contact-list-' . $only_pro . 'address_line_3_title',
             'field_name'  => $only_pro . 'address_line_3_title',
-            'placeholder' => __( 'Address line 3', 'contact-list' ),
+            'placeholder' => esc_attr__( 'Address line 3', 'contact-list' ),
         )
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'address_line_4_title',
-            __( 'Address line 4', 'contact-list' ),
+            esc_html__( 'Address line 4', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_section',
             array(
             'label_for'   => 'contact-list-' . $only_pro . 'address_line_4_title',
             'field_name'  => $only_pro . 'address_line_4_title',
-            'placeholder' => __( 'Address line 4', 'contact-list' ),
+            'placeholder' => esc_attr__( 'Address line 4', 'contact-list' ),
         )
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'additional_information_title',
-            __( 'Additional information', 'contact-list' ),
+            esc_html__( 'Additional information', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_section',
             array(
             'label_for'   => 'contact-list-' . $only_pro . 'additional_information_title',
             'field_name'  => $only_pro . 'additional_info_title',
-            'placeholder' => __( 'Additional information', 'contact-list' ),
+            'placeholder' => esc_attr__( 'Additional information', 'contact-list' ),
         )
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'hide_additional_information_title',
-            __( 'Hide', 'contact-list' ) . ' "' . __( 'Additional information', 'contact-list' ) . '"' . __( '-title', 'contact-list' ),
+            esc_html__( 'Hide "Additional information"-title', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_section',
@@ -1401,26 +1490,26 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'thank_you_page_title',
-            __( 'Thank you page / title', 'contact-list' ),
+            esc_html__( 'Thank you page / title', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_section',
             array(
             'label_for'   => 'contact-list-' . $only_pro . 'thank_you_page_title',
             'field_name'  => $only_pro . 'thank_you_page_title',
-            'placeholder' => __( 'Thank you', 'contact-list' ),
+            'placeholder' => esc_attr__( 'Thank you', 'contact-list' ),
         )
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'thank_you_page_content',
-            __( 'Thank you page / content', 'contact-list' ),
+            esc_html__( 'Thank you page / content', 'contact-list' ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_section',
             array(
             'label_for'   => 'contact-list-' . $only_pro . 'thank_you_page_content',
             'field_name'  => $only_pro . 'thank_you_page_content',
-            'placeholder' => __( 'The form was successfully processed and the contents will be reviewed by site administrator before publishing.', 'contact-list' ),
+            'placeholder' => esc_attr__( 'The form was successfully processed and the contents will be reviewed by site administrator before publishing.', 'contact-list' ),
         )
         );
         add_settings_section(
@@ -1431,7 +1520,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-af_hide_first_name',
-            __( 'Hide', 'contact-list' ) . ' ' . __( 'first name', 'contact-list' ),
+            esc_html__( 'Hide first name', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_admin_form',
@@ -1442,7 +1531,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-af_hide_job_title',
-            __( 'Hide', 'contact-list' ) . ' ' . __( 'job title', 'contact-list' ),
+            esc_html__( 'Hide job title', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_admin_form',
@@ -1453,7 +1542,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-af_hide_email',
-            __( 'Hide', 'contact-list' ) . ' ' . __( 'email', 'contact-list' ),
+            esc_html__( 'Hide email', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_admin_form',
@@ -1464,7 +1553,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-af_hide_phone',
-            __( 'Hide', 'contact-list' ) . ' ' . __( 'phone', 'contact-list' ),
+            esc_html__( 'Hide phone', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_admin_form',
@@ -1475,7 +1564,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-af_hide_linkedin_url',
-            __( 'Hide', 'contact-list' ) . ' ' . __( 'LinkedIn URL', 'contact-list' ),
+            esc_html__( 'Hide LinkedIn URL', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_admin_form',
@@ -1486,7 +1575,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-af_hide_twitter_url',
-            __( 'Hide', 'contact-list' ) . ' ' . __( 'Twitter URL', 'contact-list' ),
+            esc_html__( 'Hide Twitter URL', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_admin_form',
@@ -1497,7 +1586,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-af_hide_facebook_url',
-            __( 'Hide', 'contact-list' ) . ' ' . __( 'Facebook URL', 'contact-list' ),
+            esc_html__( 'Hide Facebook URL', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_admin_form',
@@ -1508,7 +1597,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-af_hide_instagram_url',
-            __( 'Hide', 'contact-list' ) . ' ' . __( 'Instagram URL', 'contact-list' ),
+            esc_html__( 'Hide Instagram URL', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_admin_form',
@@ -1519,7 +1608,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-af_hide_address',
-            __( 'Hide', 'contact-list' ) . ' ' . __( 'address', 'contact-list' ),
+            esc_html__( 'Hide address', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_admin_form',
@@ -1530,7 +1619,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-af_hide_custom_fields',
-            __( 'Hide', 'contact-list' ) . ' ' . __( 'custom fields', 'contact-list' ),
+            esc_html__( 'Hide custom fields', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_admin_form',
@@ -1541,7 +1630,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-af_hide_groups',
-            __( 'Hide', 'contact-list' ) . ' ' . __( 'groups', 'contact-list' ),
+            esc_html__( 'Hide groups', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_admin_form',
@@ -1552,7 +1641,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-af_hide_additional_info',
-            __( 'Hide', 'contact-list' ) . ' ' . __( 'additional information', 'contact-list' ),
+            esc_html__( 'Hide additional information', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_admin_form',
@@ -1569,7 +1658,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'pf_hide_first_name',
-            __( 'Hide', 'contact-list' ) . ' ' . __( 'first name', 'contact-list' ),
+            esc_html__( 'Hide first name', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_public_form',
@@ -1580,7 +1669,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'pf_hide_job_title',
-            __( 'Hide', 'contact-list' ) . ' ' . __( 'job title', 'contact-list' ),
+            esc_html__( 'Hide job title', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_public_form',
@@ -1591,7 +1680,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'pf_hide_email',
-            __( 'Hide', 'contact-list' ) . ' ' . __( 'email', 'contact-list' ),
+            esc_html__( 'Hide email', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_public_form',
@@ -1602,7 +1691,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'pf_hide_phone',
-            __( 'Hide', 'contact-list' ) . ' ' . __( 'phone', 'contact-list' ),
+            esc_html__( 'Hide phone', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_public_form',
@@ -1613,7 +1702,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'pf_show_phone_2',
-            __( 'Show phone 2', 'contact-list' ),
+            esc_html__( 'Show phone 2', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_public_form',
@@ -1624,7 +1713,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'pf_show_phone_3',
-            __( 'Show phone 3', 'contact-list' ),
+            esc_html__( 'Show phone 3', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_public_form',
@@ -1635,7 +1724,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'pf_hide_linkedin_url',
-            __( 'Hide', 'contact-list' ) . ' ' . __( 'LinkedIn URL', 'contact-list' ),
+            esc_html__( 'Hide LinkedIn URL', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_public_form',
@@ -1646,7 +1735,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'pf_hide_twitter_url',
-            __( 'Hide', 'contact-list' ) . ' ' . __( 'Twitter URL', 'contact-list' ),
+            esc_html__( 'Hide Twitter URL', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_public_form',
@@ -1657,7 +1746,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'pf_hide_facebook_url',
-            __( 'Hide', 'contact-list' ) . ' ' . __( 'Facebook URL', 'contact-list' ),
+            esc_html__( 'Hide Facebook URL', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_public_form',
@@ -1668,7 +1757,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'pf_hide_instagram_url',
-            __( 'Hide', 'contact-list' ) . ' ' . __( 'Instagram URL', 'contact-list' ),
+            esc_html__( 'Hide Instagram URL', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_public_form',
@@ -1679,7 +1768,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'pf_hide_photo',
-            __( 'Hide', 'contact-list' ) . ' ' . __( 'photo', 'contact-list' ),
+            esc_html__( 'Hide photo', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_public_form',
@@ -1690,7 +1779,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'pf_hide_address',
-            __( 'Hide', 'contact-list' ) . ' ' . __( 'address', 'contact-list' ),
+            esc_html__( 'Hide address', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_public_form',
@@ -1701,7 +1790,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'pf_hide_country',
-            __( 'Hide country', 'contact-list' ),
+            esc_html__( 'Hide country', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_public_form',
@@ -1712,7 +1801,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'pf_hide_state',
-            __( 'Hide state', 'contact-list' ),
+            esc_html__( 'Hide state', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_public_form',
@@ -1723,7 +1812,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'pf_hide_city',
-            __( 'Hide city', 'contact-list' ),
+            esc_html__( 'Hide city', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_public_form',
@@ -1734,7 +1823,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'pf_hide_address_lines',
-            __( 'Hide address lines 1-4', 'contact-list' ),
+            esc_html__( 'Hide address lines 1-4', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_public_form',
@@ -1754,7 +1843,7 @@ class ContactListSettings
         foreach ( $custom_fields as $n ) {
             add_settings_field(
                 'contact-list-' . $only_pro . 'pf_hide_custom_field_' . $n,
-                __( 'Hide custom field', 'contact-list' ) . ' ' . $n,
+                esc_html__( 'Hide custom field', 'contact-list' ) . ' ' . $n,
                 array( $this, 'checkbox_render' ),
                 'contact-list',
                 'contact-list_public_form',
@@ -1766,7 +1855,7 @@ class ContactListSettings
         }
         add_settings_field(
             'contact-list-' . $only_pro . 'pf_hide_groups',
-            __( 'Hide', 'contact-list' ) . ' ' . __( 'groups', 'contact-list' ),
+            esc_html__( 'Hide groups', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_public_form',
@@ -1777,7 +1866,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'pf_hide_additional_info',
-            __( 'Hide', 'contact-list' ) . ' ' . __( 'additional_information', 'contact-list' ),
+            esc_html__( 'Hide additional_information', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_public_form',
@@ -1795,7 +1884,7 @@ class ContactListSettings
         if ( cl_fs()->is_free_plan() || cl_fs()->is_plan_or_trial( 'pro' ) || cl_fs()->is_plan_or_trial( 'business' ) ) {
             add_settings_field(
                 'contact-list-' . $only_pro . 'simple_list_modal',
-                __( 'Contact names are links to the contact card lightbox', 'contact-list' ),
+                esc_html__( 'Contact names are links to the contact card lightbox', 'contact-list' ),
                 array( $this, 'checkbox_render' ),
                 'contact-list',
                 'contact-list_simple_list_settings',
@@ -1807,7 +1896,7 @@ class ContactListSettings
         }
         add_settings_field(
             'contact-list-' . $only_pro . 'simple_list_show_titles_for_columns',
-            __( 'Show titles for columns', 'contact-list' ),
+            esc_html__( 'Show titles for columns', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_simple_list_settings',
@@ -1824,7 +1913,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-simple_list_hide_job_title',
-            __( 'Hide', 'contact-list' ) . ' ' . __( 'job title', 'contact-list' ),
+            esc_html__( 'Hide job title', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_simple_list',
@@ -1835,7 +1924,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-simple_list_hide_email',
-            __( 'Hide', 'contact-list' ) . ' ' . __( 'email', 'contact-list' ),
+            esc_html__( 'Hide email', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_simple_list',
@@ -1846,7 +1935,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'simple_list_show_send_message',
-            __( 'Show', 'contact-list' ) . ' ' . __( 'send message -button', 'contact-list' ),
+            esc_html__( 'Show send message -button', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_simple_list',
@@ -1857,7 +1946,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-simple_list_hide_phone_1',
-            __( 'Hide', 'contact-list' ) . ' ' . __( 'phone', 'contact-list' ) . ' 1',
+            esc_html__( 'Hide phone', 'contact-list' ) . ' 1',
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_simple_list',
@@ -1868,7 +1957,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-simple_list_hide_some_links',
-            __( 'Hide', 'contact-list' ) . ' ' . __( 'social media links', 'contact-list' ),
+            esc_html__( 'Hide social media links', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_simple_list',
@@ -1879,7 +1968,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-simple_list_show_city',
-            __( 'Show', 'contact-list' ) . ' ' . __( 'city', 'contact-list' ),
+            esc_html__( 'Show city', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_simple_list',
@@ -1890,7 +1979,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'simple_list_show_address_line_1',
-            __( 'Show address line 1', 'contact-list' ),
+            esc_html__( 'Show address line 1', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_simple_list',
@@ -1903,7 +1992,7 @@ class ContactListSettings
         foreach ( $custom_fields as $n ) {
             add_settings_field(
                 'contact-list-simple_list_show_custom_field_' . $n,
-                __( 'Show', 'contact-list' ) . ' ' . __( 'custom field', 'contact-list' ) . ' ' . $n,
+                esc_html__( 'Show custom field', 'contact-list' ) . ' ' . $n,
                 array( $this, 'checkbox_render' ),
                 'contact-list',
                 'contact-list_simple_list',
@@ -1923,7 +2012,7 @@ class ContactListSettings
         foreach ( $custom_fields as $n ) {
             add_settings_field(
                 'contact-list-' . $only_pro . 'simple_list_show_custom_field_' . $n,
-                __( 'Show', 'contact-list' ) . ' ' . __( 'custom field', 'contact-list' ) . ' ' . $n,
+                esc_html__( 'Show custom field', 'contact-list' ) . ' ' . $n,
                 array( $this, 'checkbox_render' ),
                 'contact-list',
                 'contact-list_simple_list',
@@ -1935,7 +2024,7 @@ class ContactListSettings
         }
         add_settings_field(
             'contact-list-' . $only_pro . 'simple_list_show_category',
-            __( 'Show', 'contact-list' ) . ' ' . __( 'category', 'contact-list' ) . ' / ' . __( 'group', 'contact-list' ),
+            esc_html__( 'Show category / group', 'contact-list' ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_simple_list',
@@ -2175,6 +2264,12 @@ class ContactListSettings
                     ?>
         <?php 
                 } elseif ( substr( $field_name, 0, strlen( '_FREE_can_edit_contacts_' ) ) === '_FREE_can_edit_contacts_' ) {
+                    ?>
+          <?php 
+                    $plan_required = 'Professional';
+                    ?>
+        <?php 
+                } elseif ( $field_name == '_FREE_custom_field_1_hide_from_contact_card' || $field_name == '_FREE_custom_field_2_hide_from_contact_card' || $field_name == '_FREE_custom_field_3_hide_from_contact_card' || $field_name == '_FREE_custom_field_4_hide_from_contact_card' || $field_name == '_FREE_custom_field_5_hide_from_contact_card' || $field_name == '_FREE_custom_field_6_hide_from_contact_card' ) {
                     ?>
           <?php 
                     $plan_required = 'Professional';
@@ -2807,7 +2902,7 @@ class ContactListSettings
     <form action="options.php" method="post" class="contact-list-settings-form">
 
       <h1><?php 
-        echo  __( 'Contact List Settings', 'contact-list' ) ;
+        echo  esc_html__( 'Contact List Settings', 'contact-list' ) ;
         ?></h1>
 
       <div class="contact-list-settings-tabs-container">

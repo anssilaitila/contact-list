@@ -1,17 +1,17 @@
-=== WordPress Business Directory, Staff Directory and Address Book Plugin - Contact List ===
+=== Business Directory, Staff Directory and Address Book Plugin - Contact List ===
 Contributors: anssilaitila, freemius
-Tags: business directory, business listing, staff directory, staff list, address book, company directory, church directory, contact directory, directory, contacts, directory plugin, chamber of commerce
+Tags: business directory, business listing, staff directory, staff list, address book, directory plugin, company directory, church directory, contact directory, directory, contacts, chamber of commerce
 Requires at least: 4.0.0
 Tested up to: 5.8
-Stable tag: 2.9.40
+Stable tag: 2.9.42
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-A full-featured directory plugin for creating a business directory, staff directory or an address book. Usable for chamber of commerce, company directory and many more...
+Easy business directory plugin for listing any contacts on your WP site. Search and filter contacts, send messages, print lists & more.
 
 == Description ==
 = The most user friendly business directory for WordPress =
-Create an address book or a company directory with ease. With this directory plugin you can list any contact data including i.e. name, email, phone and social media links. Contacts or businesses may also have necessary custom fields.
+Create an address book or a company directory with ease. With this business directory plugin you can list any contact data including i.e. name, email, phone and social media links. Contacts or businesses may also have necessary custom fields.
 
 Send email directly to contacts using a built-in form on the front-end (featuring reCAPTCHA). Contact's email address can be completely hidden in the Pro version but still email can be sent to the contact.
 
@@ -20,13 +20,13 @@ Send email directly to contacts using a built-in form on the front-end (featurin
 See live demos at [contactlistpro.com](https://www.contactlistpro.com/contact-list/).
 
 = Contact List Free features: =
-* <strong>Send email directly to contacts from the frontend form</strong>
-* <strong>2 different views: a complete list of all contact data and a simpler table type view</strong>
+* Send email directly to contacts from the frontend form
+* 2 different views: a complete list of all contact data and a simpler table type view
 * Obfuscated emails to prevent spam
 * Contacts may belong to groups
 * Fast search targeting all contacts
 * Filter contacts by country, state, city and category (country and state can be renamed and used for any kind of information)
-* <strong>Country and state dropdowns are generated automatically from contact data</strong>
+* Country and state dropdowns are generated automatically from contact data
 * 1 custom field
 * Choose a layout from 4 different ones
 * All sent mail is logged
@@ -36,16 +36,19 @@ See live demos at [contactlistpro.com](https://www.contactlistpro.com/contact-li
 * Front-end contact editor: allow any user roles to edit contacts from the front-end
 * Multiple different shortcodes/views for various use cases
 * Support for pagination
+* Show contact details in a lightbox
 * Contact database may be built with publicly available form
 * 6 custom fields and WYSIWYG editor
+* Use custom fields as filters
 * Settings available for customization
 * Send email to all contacts or contacts in a specific group
 * reCAPTCHA can be activated to public contact forms
-* Excel import: <strong>Import contacts from a CSV file</strong>
-* Excel export: <strong>Export contacts to a CSV file</strong>
+* Excel import: Import contacts from a CSV file
+* Excel export: Export contacts to a CSV file
 * Customize fields in any way: change titles and hide specific fields from public form or admin area
 * Request contacts to update their existing contact info simply clicking a button
-* <strong>More features on the way based on user feedback</strong>
+* Create any kind of business directory or address book
+* More features on the way based on user feedback
 
 = Some use cases for this plugin: =
 * Address book
@@ -131,6 +134,22 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 6. Contact management
 
 == Changelog ==
+
+= 2.9.42 - 2021-08-22 =
+* (Professional + Business) Front-end editor is now usable also after filtering contacts
+* (Professional + Business) New shortcode parameter: [contact_list group=GROUP_SLUG] (shows contacts in the defined group, and the group filter contains only that group and it's subgroups)
+* (All plans) New setting (Search form tab): Search dropdown width defined based on contents (instead of fixed width)
+* (Free + All plans) Fixed an issue where field titles were occasionally displayed on the contact card when no value was defined
+* (Free + All plans) Printable list layout fixed
+* (Free + All plans) Missing translatable texts added
+* (Free + All plans) Various tweaks and fixes
+
+= 2.9.41 - 2021-08-11 =
+* (Professional + Business) Individual custom fields can now be hidden from the contact card (you may still use those custom fields as search filters)
+* (All plans) Individual CSS classes added to phone numbers 1-3 on contact card
+* (Free + All plans) Social media icons replaced with high quality SVG versions
+* (Free + All plans) Fix: Custom field titles are now always hidden from the contact card if no custom field value is defined
+* (Free + All plans) Minor tweaks and fixes
 
 = 2.9.40 - 2021-08-01 =
 * (Professional + Business) New feature: Front-end contact editor. Can be used with shortcodes [contact_list edit=1] and [contact_list_simple edit=1]. User roles must be first activated from the plugin settings (Contact edit tab).

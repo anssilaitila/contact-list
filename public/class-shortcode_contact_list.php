@@ -8,6 +8,7 @@ class ShortcodeContactList
         $layout = ContactListHelpers::getLayout( $s, $atts );
         $elem_class = ContactListHelpers::createElemClass();
         $exclude = [];
+        $group_slug = '';
         $html = '';
         $html .= ContactListHelpers::initLayout( $s, $atts, $elem_class );
         if ( !isset( $s['hide_send_email_button'] ) ) {
@@ -105,6 +106,7 @@ class ShortcodeContactList
                 );
             }
             $tax_query = [];
+            
             if ( isset( $_GET['cl_cat'] ) && $_GET['cl_cat'] ) {
                 $tax_query = array(
                     'relation' => 'AND',
@@ -114,7 +116,9 @@ class ShortcodeContactList
                     'terms'    => $_GET['cl_cat'],
                 ),
                 );
+            } elseif ( $group_slug ) {
             }
+            
             $paged = ( get_query_var( 'paged' ) ? absint( get_query_var( 'paged' ) ) : 1 );
             $posts_per_page = -1;
             if ( isset( $s['contacts_per_page'] ) && $s['contacts_per_page'] ) {
@@ -153,14 +157,24 @@ class ShortcodeContactList
                 $html .= '</div>';
                 $html .= '<div class="contact-list-basic-all-contacts-container">';
                 $html .= '<div class="contact-list-basic-contacts-found"></div>';
-                $html .= ContactListHelpers::contactListMarkup( $wp_query_for_filter );
+                $html .= ContactListHelpers::contactListMarkup(
+                    $wp_query_for_filter,
+                    0,
+                    $atts,
+                    1
+                );
                 $html .= '</div>';
             }
             
             
             if ( $wp_query->have_posts() ) {
                 $html .= '<div class="contact-list-ajax-results">';
-                $html .= ContactListHelpers::contactListMarkup( $wp_query, 0, $atts );
+                $html .= ContactListHelpers::contactListMarkup(
+                    $wp_query,
+                    0,
+                    $atts,
+                    0
+                );
                 $html .= '</div>';
                 $html .= '<hr class="clear" />';
                 $html .= ContactListPublicPagination::getPagination( 1, $wp_query, 'default' );

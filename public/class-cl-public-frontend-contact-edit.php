@@ -2,7 +2,15 @@
 
 class ContactListFrontendContactEdit
 {
-    public static function editContact( $contact_id )
+    public static function editContactButton( $contact_id )
+    {
+        $s = get_option( 'contact_list_settings' );
+        $can_edit_contacts = 0;
+        $html = '';
+        return $html;
+    }
+    
+    public static function editContactModal( $contact_id )
     {
         $s = get_option( 'contact_list_settings' );
         $can_edit_contacts = 0;

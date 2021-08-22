@@ -5,8 +5,8 @@ class ContactListPrintable {
   public function register_printable_page() {
     add_submenu_page(
       'edit.php?post_type=' . CONTACT_CPT,
-      __('Printable list', 'contact-list'),
-      __('Printable list', 'contact-list'),
+      esc_html__('Printable list', 'contact-list'),
+      esc_html__('Printable list', 'contact-list'),
       'manage_options',
       'contact-list-printable',
       [ $this, 'register_printable_page_callback' ]
@@ -18,10 +18,10 @@ class ContactListPrintable {
     
     <div class="wrap">
 
-        <h1 class="cl-dont-print"><?= __('Printable list', 'contact-list') ?></h1>
+        <h1 class="cl-dont-print"><?= esc_html__('Printable list', 'contact-list') ?></h1>
 
         <p class="cl-dont-print">
-          <?= __('When you print this page, only the list of contacts is printed.', 'contact-list') ?>
+          <?= esc_html__('When you print this page, only the list of contacts is printed.', 'contact-list') ?>
         </p>
 
         <p class="cl-dont-print">
@@ -38,9 +38,9 @@ class ContactListPrintable {
             ?>
 
             <div>
-              <h3><?= __('Select category:', 'contact-list') ?></h3>
-              <select name="cl_cat" class="cl_select_v2">
-                <option value=""><?= __('All contacts', 'contact-list') ?></option>
+              <h3><?= esc_html__('Select category:', 'contact-list') ?></h3>
+              <select name="cl_cat" class="<?= ContactListHelpers::getSearchDropdownClass() ?>">
+                <option value=""><?= esc_html__('All contacts', 'contact-list') ?></option>
         
                 <?php
                 foreach ($groups as $g) {
@@ -57,24 +57,24 @@ class ContactListPrintable {
             </div>
 
             <div>
-              <h3><?= __('Select view:', 'contact-list') ?></h3>
-              <select name="cl_view" class="cl_select_v2">
-                <option value=""><?= __('Default list', 'contact-list') ?></option>
-                <option value="simple_list" <?= (isset($_GET['cl_view']) && $_GET['cl_view'] == 'simple_list') ? 'selected' : '' ?>><?= __('Simple list', 'contact-list') ?></option>
+              <h3><?= esc_html__('Select view:', 'contact-list') ?></h3>
+              <select name="cl_view" class="<?= ContactListHelpers::getSearchDropdownClass() ?>">
+                <option value=""><?= esc_attr__('Default list', 'contact-list') ?></option>
+                <option value="simple_list" <?= (isset($_GET['cl_view']) && $_GET['cl_view'] == 'simple_list') ? 'selected' : '' ?>><?= esc_attr__('Simple list', 'contact-list') ?></option>
               </select>
               <hr class="clear" />
             </div>
             
             <div>
-              <h3><?= __('Change card height:', 'contact-list') ?></h3>
-              <input name="card_height" value="<?= (isset($_GET) && isset($_GET['card_height'])) ? $_GET['card_height'] : 340 ?>" style="width: 60px; text-align: right;" /> px
+              <h3><?= esc_html__('Change card height:', 'contact-list') ?></h3>
+              <input name="card_height" value="<?= isset($_GET['card_height']) ? esc_attr( $_GET['card_height'] ) : 340 ?>" style="width: 60px; text-align: right;" /> px
             </div>
             
             <div style="background: #fff; margin-top: 20px; padding: 10px 20px;">
-              <input type="submit" class="contact-list-admin-button" style="font-size: 15px; padding: 5px 10px; font-weight: 600; border: 1px solid #bbb;" value="<?= __('Show contacts', 'contact-list') ?>" style="margin-left: 6px;" />
+              <input type="submit" class="contact-list-admin-button" style="font-size: 15px; padding: 5px 10px; font-weight: 600; border: 1px solid #bbb;" value="<?= esc_attr__('Show contacts', 'contact-list') ?>" style="margin-left: 6px;" />
               <?php if (isset($_GET['search'])): ?>
                 <span class="cl-dont-print">
-                  <button onclick="window.print();" class="contact-list-admin-button" style="font-size: 15px; padding: 5px 20px; font-weight: 600; background: mediumseagreen; border: 1px solid mediumseagreen; color: white; text-shadow: 1px 1px 0 #000;" ><?= __('Print contacts', 'contact-list') ?></button>
+                  <button onclick="window.print();" class="contact-list-admin-button" style="font-size: 15px; padding: 5px 20px; font-weight: 600; background: mediumseagreen; border: 1px solid mediumseagreen; color: white; text-shadow: 1px 1px 0 #000;" ><?= esc_html__('Print contacts', 'contact-list') ?></button>
                 </span>
               <?php endif; ?>
             </div>
@@ -104,8 +104,8 @@ class ContactListPrintable {
               }
             }
           
-            if (isset($_GET) && isset($_GET['card_height'])) {
-              $html .= '<style>.contact-list-2-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: ' . $_GET['card_height'] . 'px !important; } </style>';  
+            if (isset($_GET['card_height'])) {
+              $html .= '<style>.contact-list-2-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: ' . esc_attr( $_GET['card_height'] ) . 'px !important; } </style>';  
               $html .= '<style> @media (max-width: 820px) { .contact-list-2-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: auto; } } </style>';  
             } else {
               $html .= '<style>.contact-list-2-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: 340px !important; }</style>';
@@ -195,7 +195,7 @@ class ContactListPrintable {
             
           } else {
             
-            echo '<span style="font-size: 1.1rem;">' .  __('First click on the Show contacts -button to get the contacts.', 'contact-list') . '</span>';
+            echo '<span style="font-size: 1.1rem;">' .  esc_html__('First click on the Show contacts -button to get the contacts.', 'contact-list') . '</span>';
             
           }
         ?>

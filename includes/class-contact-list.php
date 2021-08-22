@@ -186,7 +186,7 @@ class Contact_List
         $plugin_query = new ContactListQuery();
         $plugin_cpt = new ContactListCPT();
         $plugin_taxonomy = new ContactListTaxonomy();
-        $plugin_custom_fields = new myCustomFields();
+        $plugin_custom_fields = new ContactListCustomFields();
         $plugin_notifications = new ContactListNotifications();
         $this->loader->add_action( 'plugins_loaded', $plugin_settings, 'update_db_check' );
         $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );

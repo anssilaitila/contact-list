@@ -10,264 +10,270 @@
  * @subpackage Contact_List/includes
  */
 
-class myCustomFields {
+class ContactListCustomFields {
 
-    public $prefix = '_cl_';
-    public $postTypes = array( "contact" );
-
-    public $customFields = array(
-        array(
-            "name"          => "first_name",
-            "title"         => "First name",
-            "description"   => "",
-            "type"          => "text",
-            "scope"         => array( "contact" ),
-            "capability"    => "edit_posts"
-        ),
-        array(
-            "name"          => "last_name",
-            "title"         => "Last Name",
-            "description"   => "",
-            "type"          => "text",
-            "scope"         => array( "contact" ),
-            "capability"    => "edit_posts"
-        ),
-        array(
-            "name"          => "job_title",
-            "title"         => "Job title",
-            "description"   => "",
-            "type"          => "text",
-            "scope"         => array( "contact" ),
-            "capability"    => "edit_posts"
-        ),
-        array(
-            "name"          => "phone",
-            "title"         => "Phone 1",
-            "description"   => "",
-            "type"          => "text",
-            "scope"         => array( "contact" ),
-            "capability"    => "edit_posts"
-        ),
-        array(
-            "name"          => "phone_2",
-            "title"         => "Phone 2",
-            "description"   => "",
-            "type"          => "text",
-            "scope"         => array( "contact" ),
-            "capability"    => "edit_posts"
-        ),
-        array(
-            "name"          => "phone_3",
-            "title"         => "Phone 3",
-            "description"   => "",
-            "type"          => "text",
-            "scope"         => array( "contact" ),
-            "capability"    => "edit_posts"
-        ),
-        array(
-            "name"          => "email",
-            "title"         => "Email",
-            "description"   => "",
-            "type"          => "text",
-            "scope"         => array( "contact" ),
-            "capability"    => "edit_posts"
-        ),
-        array(
-          'name'          => 'notify_emails',
-          'title'         => 'Notify emails',
-          'description'   => '',
-          'type'          => 'text',
-          'scope'         => array(CONTACT_CPT),
-          'capability'    => 'edit_posts',
-          'descr'         => 'Email addresses defined here (comma separated) also receive the emails that are sent to the primary email address using the front-end form.'
-        ),
-        array(
-            "name"          => "linkedin_url",
-            "title"         => "LinkedIn URL",
-            "description"   => "",
-            "type"          => "text",
-            "scope"         => array( "contact" ),
-            "capability"    => "edit_posts"
-        ),
-        array(
-            "name"          => "twitter_url",
-            "title"         => "Twitter URL",
-            "description"   => "",
-            "type"          => "text",
-            "scope"         => array( "contact" ),
-            "capability"    => "edit_posts"
-        ),
-        array(
-            "name"          => "facebook_url",
-            "title"         => "Facebook URL",
-            "description"   => "",
-            "type"          => "text",
-            "scope"         => array( "contact" ),
-            "capability"    => "edit_posts"
-        ),
-        array(
-            "name"          => "instagram_url",
-            "title"         => "Instagram URL",
-            "description"   => "",
-            "type"          => "text",
-            "scope"         => array( "contact" ),
-            "capability"    => "edit_posts"
-        ),
-
-        array(
-            "name"          => "address",
-            "title"         => "Address",
-            "description"   => "",
-            "type"          => "title",
-            "scope"         => array( "contact" ),
-            "capability"    => "edit_posts"
-        ),
-
-        array(
-            "name"          => "country",
-            "title"         => "Country",
-            "description"   => "",
-            "type"          => "country",
-            "scope"         => array( "contact" ),
-            "capability"    => "edit_posts"
-        ),
-        array(
-            "name"          => "state",
-            "title"         => "State",
-            "description"   => "",
-            "type"          => "state",
-            "scope"         => array( "contact" ),
-            "capability"    => "edit_posts"
-        ),
-        array(
-            "name"          => "city",
-            "title"         => "City",
-            "description"   => "",
-            "type"          => "city",
-            "scope"         => array( "contact" ),
-            "capability"    => "edit_posts"
-        ),
-        array(
-          "name"          => "zip_code",
-          "title"         => "ZIP Code",
-          "description"   => "",
-          "type"          => "city",
-          "scope"         => array( "contact" ),
-          "capability"    => "edit_posts"
-        ),
-
-        array(
-            "name"          => "address_line_1",
-            "title"         => "Address Line 1",
-            "description"   => "",
-            "type"          => "text",
-            "scope"         => array( "contact" ),
-            "capability"    => "edit_posts"
-        ),
-        array(
-            "name"          => "address_line_2",
-            "title"         => "Address Line 2",
-            "description"   => "",
-            "type"          => "text",
-            "scope"         => array( "contact" ),
-            "capability"    => "edit_posts"
-        ),
-        array(
-            "name"          => "address_line_3",
-            "title"         => "Address Line 3",
-            "description"   => "",
-            "type"          => "text",
-            "scope"         => array( "contact" ),
-            "capability"    => "edit_posts"
-        ),
-        array(
-            "name"          => "address_line_4",
-            "title"         => "Address Line 4",
-            "description"   => "",
-            "type"          => "text",
-            "scope"         => array( "contact" ),
-            "capability"    => "edit_posts"
-        ),
-
-        array(
-            "name"          => "custom_fields",
-            "title"         => "Custom fields",
-            "description"   => "",
-            "type"          => "title",
-            "scope"         => array( "contact" ),
-            "capability"    => "edit_posts"
-        ),
-
-        array(
-            "name"          => "custom_field_1",
-            "title"         => "Custom field 1",
-            "description"   => "",
-            "type"          => "text",
-            "scope"         => array( "contact" ),
-            "capability"    => "edit_posts"
-        ),
-        array(
-            "name"          => "custom_field_2",
-            "title"         => "Custom field 2",
-            "description"   => "",
-            "type"          => "text",
-            "scope"         => array( "contact" ),
-            "capability"    => "edit_posts"
-        ),
-        array(
-            "name"          => "custom_field_3",
-            "title"         => "Custom field 3",
-            "description"   => "",
-            "type"          => "text",
-            "scope"         => array( "contact" ),
-            "capability"    => "edit_posts"
-        ),
-        array(
-            "name"          => "custom_field_4",
-            "title"         => "Custom field 4",
-            "description"   => "",
-            "type"          => "text",
-            "scope"         => array( "contact" ),
-            "capability"    => "edit_posts"
-        ),
-        array(
-            "name"          => "custom_field_5",
-            "title"         => "Custom field 5",
-            "description"   => "",
-            "type"          => "text",
-            "scope"         => array( "contact" ),
-            "capability"    => "edit_posts"
-        ),
-        array(
-            "name"          => "custom_field_6",
-            "title"         => "Custom field 6",
-            "description"   => "",
-            "type"          => "text",
-            "scope"         => array( "contact" ),
-            "capability"    => "edit_posts"
-        ),
-        
-        array(
-            "name"          => "additional_info",
-            "title"         => "Additional information",
-            "description"   => "",
-            "type"          => "title",
-            "scope"         => array( "contact" ),
-            "capability"    => "edit_posts"
-        ),
-        
-        array(
-            "name"          => "description",
-            "title"         => "Description",
-            "description"   => "",
-            "type"          => "wysiwyg_v2",
-            "scope"         => array( "contact" ),
-            "capability"    => "edit_posts"
-        ),
-
-    );
+    public $prefix = '';
+    public $postTypes = [];
+    public $customFields = [];
 
     function __construct() {
+      
+        $this->prefix = '_cl_';
+        
+        $this->postTypes = array( 'contact' );
+
+        $this->customFields = array(
+          array(
+              'name'          => 'first_name',
+              'title'         => __('First name', 'contact-list'),
+              'description'   => '',
+              'type'          => 'text',
+              'scope'         => array( 'contact' ),
+              'capability'    => 'edit_posts'
+          ),
+          array(
+              'name'          => 'last_name',
+              'title'         => __('Last Name', 'contact-list'),
+              'description'   => '',
+              'type'          => 'text',
+              'scope'         => array( 'contact' ),
+              'capability'    => 'edit_posts'
+          ),
+          array(
+              'name'          => 'job_title',
+              'title'         => __('Job title', 'contact-list'),
+              'description'   => '',
+              'type'          => 'text',
+              'scope'         => array( 'contact' ),
+              'capability'    => 'edit_posts'
+          ),
+          array(
+              'name'          => 'phone',
+              'title'         => __('Phone 1', 'contact-list'),
+              'description'   => '',
+              'type'          => 'text',
+              'scope'         => array( 'contact' ),
+              'capability'    => 'edit_posts'
+          ),
+          array(
+              'name'          => 'phone_2',
+              'title'         => __('Phone 2', 'contact-list'),
+              'description'   => '',
+              'type'          => 'text',
+              'scope'         => array( 'contact' ),
+              'capability'    => 'edit_posts'
+          ),
+          array(
+              'name'          => 'phone_3',
+              'title'         => __('Phone 3', 'contact-list'),
+              'description'   => '',
+              'type'          => 'text',
+              'scope'         => array( 'contact' ),
+              'capability'    => 'edit_posts'
+          ),
+          array(
+              'name'          => 'email',
+              'title'         => __('Email', 'contact-list'),
+              'description'   => '',
+              'type'          => 'text',
+              'scope'         => array( 'contact' ),
+              'capability'    => 'edit_posts'
+          ),
+          array(
+              'name'          => 'notify_emails',
+              'title'         => __('Notify emails', 'contact-list'),
+              'description'   => '',
+              'type'          => 'text',
+              'scope'         => array(CONTACT_CPT),
+              'capability'    => 'edit_posts',
+              'descr'         => 'Email addresses defined here (comma separated) also receive the emails that are sent to the primary email address using the front-end form.'
+          ),
+          array(
+              'name'          => 'linkedin_url',
+              'title'         => __('LinkedIn URL', 'contact-list'),
+              'description'   => '',
+              'type'          => 'text',
+              'scope'         => array( 'contact' ),
+              'capability'    => 'edit_posts'
+          ),
+          array(
+              'name'          => 'twitter_url',
+              'title'         => __('Twitter URL', 'contact-list'),
+              'description'   => '',
+              'type'          => 'text',
+              'scope'         => array( 'contact' ),
+              'capability'    => 'edit_posts'
+          ),
+          array(
+              'name'          => 'facebook_url',
+              'title'         => __('Facebook URL', 'contact-list'),
+              'description'   => '',
+              'type'          => 'text',
+              'scope'         => array( 'contact' ),
+              'capability'    => 'edit_posts'
+          ),
+          array(
+              'name'          => 'instagram_url',
+              'title'         => __('Instagram URL', 'contact-list'),
+              'description'   => '',
+              'type'          => 'text',
+              'scope'         => array( 'contact' ),
+              'capability'    => 'edit_posts'
+          ),
+        
+          array(
+              'name'          => 'address',
+              'title'         => __('Address', 'contact-list'),
+              'description'   => '',
+              'type'          => 'title',
+              'scope'         => array( 'contact' ),
+              'capability'    => 'edit_posts'
+          ),
+        
+          array(
+              'name'          => 'country',
+              'title'         => __('Country', 'contact-list'),
+              'description'   => '',
+              'type'          => 'country',
+              'scope'         => array( 'contact' ),
+              'capability'    => 'edit_posts'
+          ),
+          array(
+              'name'          => 'state',
+              'title'         => __('State', 'contact-list'),
+              'description'   => '',
+              'type'          => 'state',
+              'scope'         => array( 'contact' ),
+              'capability'    => 'edit_posts'
+          ),
+          array(
+              'name'          => 'city',
+              'title'         => __('City', 'contact-list'),
+              'description'   => '',
+              'type'          => 'city',
+              'scope'         => array( 'contact' ),
+              'capability'    => 'edit_posts'
+          ),
+          array(
+              'name'          => 'zip_code',
+              'title'         => __('ZIP Code', 'contact-list'),
+              'description'   => '',
+              'type'          => 'city',
+              'scope'         => array( 'contact' ),
+              'capability'    => 'edit_posts'
+          ),
+        
+          array(
+              'name'          => 'address_line_1',
+              'title'         => __('Address Line 1', 'contact-list'),
+              'description'   => '',
+              'type'          => 'text',
+              'scope'         => array( 'contact' ),
+              'capability'    => 'edit_posts'
+          ),
+          array(
+              'name'          => 'address_line_2',
+              'title'         => __('Address Line 2', 'contact-list'),
+              'description'   => '',
+              'type'          => 'text',
+              'scope'         => array( 'contact' ),
+              'capability'    => 'edit_posts'
+          ),
+          array(
+              'name'          => 'address_line_3',
+              'title'         => __('Address Line 3', 'contact-list'),
+              'description'   => '',
+              'type'          => 'text',
+              'scope'         => array( 'contact' ),
+              'capability'    => 'edit_posts'
+          ),
+          array(
+              'name'          => 'address_line_4',
+              'title'         => __('Address Line 4', 'contact-list'),
+              'description'   => '',
+              'type'          => 'text',
+              'scope'         => array( 'contact' ),
+              'capability'    => 'edit_posts'
+          ),
+        
+          array(
+              'name'          => 'custom_fields',
+              'title'         => __('Custom fields', 'contact-list'),
+              'description'   => '',
+              'type'          => 'title',
+              'scope'         => array( 'contact' ),
+              'capability'    => 'edit_posts'
+          ),
+        
+          array(
+              'name'          => 'custom_field_1',
+              'title'         => __('Custom field 1', 'contact-list'),
+              'description'   => '',
+              'type'          => 'text',
+              'scope'         => array( 'contact' ),
+              'capability'    => 'edit_posts'
+          ),
+          array(
+              'name'          => 'custom_field_2',
+              'title'         => __('Custom field 2', 'contact-list'),
+              'description'   => '',
+              'type'          => 'text',
+              'scope'         => array( 'contact' ),
+              'capability'    => 'edit_posts'
+          ),
+          array(
+              'name'          => 'custom_field_3',
+              'title'         => __('Custom field 3', 'contact-list'),
+              'description'   => '',
+              'type'          => 'text',
+              'scope'         => array( 'contact' ),
+              'capability'    => 'edit_posts'
+          ),
+          array(
+              'name'          => 'custom_field_4',
+              'title'         => __('Custom field 4', 'contact-list'),
+              'description'   => '',
+              'type'          => 'text',
+              'scope'         => array( 'contact' ),
+              'capability'    => 'edit_posts'
+          ),
+          array(
+              'name'          => 'custom_field_5',
+              'title'         => __('Custom field 5', 'contact-list'),
+              'description'   => '',
+              'type'          => 'text',
+              'scope'         => array( 'contact' ),
+              'capability'    => 'edit_posts'
+          ),
+          array(
+              'name'          => 'custom_field_6',
+              'title'         => __('Custom field 6', 'contact-list'),
+              'description'   => '',
+              'type'          => 'text',
+              'scope'         => array( 'contact' ),
+              'capability'    => 'edit_posts'
+          ),
+          
+          array(
+              'name'          => 'additional_info',
+              'title'         => __('Additional information', 'contact-list'),
+              'description'   => '',
+              'type'          => 'title',
+              'scope'         => array( 'contact' ),
+              'capability'    => 'edit_posts'
+          ),
+          
+          array(
+              'name'          => 'description',
+              'title'         => __('Description', 'contact-list'),
+              'description'   => '',
+              'type'          => 'wysiwyg_v2',
+              'scope'         => array( 'contact' ),
+              'capability'    => 'edit_posts'
+          ),
+        
+        );
+      
         add_action('admin_menu', array($this, 'createCustomFields'));
         add_action('save_post', array($this, 'saveCustomFields'), 1, 2);
         add_action('do_meta_boxes', array($this, 'removeDefaultCustomFields'), 10, 3);
@@ -291,7 +297,7 @@ class myCustomFields {
 
         if (function_exists('add_meta_box')) {
             foreach ($this->postTypes as $postType) {
-                add_meta_box('my-custom-fields', __('Contact Details', 'contact-list'), array($this, 'displayCustomFields'), $postType, 'normal', 'high');
+                add_meta_box('my-custom-fields', esc_html__('Contact Details', 'contact-list'), array($this, 'displayCustomFields'), $postType, 'normal', 'high');
             }
         }
     }
@@ -451,7 +457,7 @@ class myCustomFields {
                         <div class="contact-list-field-in-pro-container">
 
                           <?php if ($customField['name'] != '_FREE_description'): ?>
-                            <label><b><?= __($customField['title'], 'contact-list') ?></b></label>
+                            <label><b><?= esc_html( $customField['title'] ) ?></b></label>
                           <?php endif; ?>
                       
                           <a href="<?= get_admin_url() ?>options-general.php?page=contact-list-pricing">
@@ -464,9 +470,10 @@ class myCustomFields {
 
                         <?php
                         switch ( $customField[ 'type' ] ) {
+                          
                             case "checkbox": {
                                 // Checkbox
-                                echo '<label for="' . $this->prefix . $customField[ 'name' ] .'" style="display:inline;"><b>' . __($customField['title'], 'contact-list') . '</b></label>';
+                                echo '<label for="' . $this->prefix . $customField[ 'name' ] .'" style="display:inline;"><b>' . esc_html( $customField['title'] ) . '</b></label>';
                                 echo '<input type="checkbox" name="' . $this->prefix . $customField['name'] . '" id="' . $this->prefix . $customField['name'] . '" value="yes"';
                                 if ( get_post_meta( $post->ID, $this->prefix . $customField['name'], true ) == "yes" )
                                     echo ' checked="checked"';
@@ -478,7 +485,7 @@ class myCustomFields {
 
                             case "wysiwyg": {
                                 // Text area
-                                echo '<label for="' . $this->prefix . $customField[ 'name' ] .'"><b>' . __($customField['title'], 'contact-list') . '</b></label>';
+                                echo '<label for="' . $this->prefix . $customField[ 'name' ] .'"><b>' . esc_html( $customField['title'] ) . '</b></label>';
                                 echo '<textarea name="' . $this->prefix . $customField[ 'name' ] . '" id="' . $this->prefix . $customField[ 'name' ] . '" columns="30" rows="3">' . htmlspecialchars( get_post_meta( $post->ID, $this->prefix . $customField[ 'name' ], true ) ) . '</textarea>';
                                 // WYSIWYG
                                 if ( $customField[ 'type' ] == "wysiwyg" ) { ?>
@@ -504,25 +511,25 @@ class myCustomFields {
                             case "title":
 
                                 $options_field = $customField['name'] . '_title';
-                                echo '<h3>' . (isset($options[$options_field]) && $options[$options_field] ? $options[$options_field] : __($customField['title'], 'contact-list')) . '</h3>';
+                                echo '<h3>' . (isset($options[$options_field]) && $options[$options_field] ? $options[$options_field] : esc_html( $customField['title'] ) ) . '</h3>';
                                 break;
 
                             case "country":
                                 $options_field = $customField['name'] . '_title';
-                                echo '<label for="' . $this->prefix . $customField[ 'name' ] .'"><b>' . (isset($options[$options_field]) && $options[$options_field] ? $options[$options_field] : __($customField['title'], 'contact-list')) . '</b></label>';
+                                echo '<label for="' . $this->prefix . $customField[ 'name' ] .'"><b>' . (isset($options[$options_field]) && $options[$options_field] ? $options[$options_field] : esc_html( $customField['title'] ) ) . '</b></label>';
                                 echo '<input type="text" name="' . $this->prefix . $customField[ 'name' ] . '" id="' . $this->prefix . $customField[ 'name' ] . '" value="' . htmlspecialchars( get_post_meta( $post->ID, $this->prefix . $customField[ 'name' ], true ) ) . '" />';
                                 break;
 
                             case "state":
                                 $options_field = $customField['name'] . '_title';
-                                echo '<label for="' . $this->prefix . $customField[ 'name' ] .'"><b>' . (isset($options[$options_field]) && $options[$options_field] ? $options[$options_field] : __($customField['title'], 'contact-list')) . '</b></label>';
+                                echo '<label for="' . $this->prefix . $customField[ 'name' ] .'"><b>' . (isset($options[$options_field]) && $options[$options_field] ? $options[$options_field] : esc_html( $customField['title'] ) ) . '</b></label>';
                                 echo '<input type="text" name="' . $this->prefix . $customField[ 'name' ] . '" id="' . $this->prefix . $customField[ 'name' ] . '" value="' . htmlspecialchars( get_post_meta( $post->ID, $this->prefix . $customField[ 'name' ], true ) ) . '" />';
                                 break;
 
                             default: {
                                 // Plain text field
                                 $options_field = $customField['name'] . '_title';
-                                echo '<label for="' . $this->prefix . $customField[ 'name' ] .'"><b>' . (isset($options[$options_field]) && $options[$options_field] ? $options[$options_field] : __($customField['title'], 'contact-list')) . '</b></label>';
+                                echo '<label for="' . $this->prefix . $customField[ 'name' ] .'"><b>' . (isset($options[$options_field]) && $options[$options_field] ? $options[$options_field] : esc_html( $customField['title'] ) ) . '</b></label>';
                                 echo '<input type="text" name="' . $this->prefix . $customField[ 'name' ] . '" id="' . $this->prefix . $customField[ 'name' ] . '" value="' . htmlspecialchars( get_post_meta( $post->ID, $this->prefix . $customField[ 'name' ], true ) ) . '" />';
                                 if (isset($customField['descr'])) {
                                   echo '<div style="background: rgb(251, 251, 251); border: 1px solid #eee; padding: 5px 7px; margin-top: 8px; width: 90%; font-size: 11px;">' . $customField['descr'] . '</div>';
