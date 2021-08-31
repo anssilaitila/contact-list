@@ -2,6 +2,13 @@
 
 class ContactListHelpers
 {
+    public static function sanitize_attr_value( $str )
+    {
+        $str = sanitize_text_field( $str );
+        $str = htmlspecialchars( $str );
+        return $str;
+    }
+    
     public static function getSearchDropdownClass( $title = '', $message = '' )
     {
         $s = get_option( 'contact_list_settings' );
@@ -13,8 +20,8 @@ class ContactListHelpers
     {
         global  $wpdb ;
         $wpdb->insert( $wpdb->prefix . 'contact_list_log', array(
-            'title'   => $title,
-            'message' => $message,
+            'title'   => sanitize_text_field( $title ),
+            'message' => sanitize_textarea_field( $message ),
         ) );
     }
     
@@ -27,6 +34,7 @@ class ContactListHelpers
     {
         
         if ( $contact_id && $upload && $uploaded_type && $filename ) {
+            $contact_id = intval( $contact_id );
             if ( !function_exists( 'wp_crop_image' ) ) {
                 include ABSPATH . 'wp-admin/includes/image.php';
             }
@@ -37,9 +45,9 @@ class ContactListHelpers
                     $image_url = $upload['file'];
                     // Prepare an array of post data for the attachment.
                     $attachment = array(
-                        'guid'           => $image_url,
-                        'post_mime_type' => $uploaded_type,
-                        'post_title'     => $filename,
+                        'guid'           => esc_url_raw( $image_url ),
+                        'post_mime_type' => sanitize_text_field( $uploaded_type ),
+                        'post_title'     => sanitize_text_field( $filename ),
                         'post_content'   => '',
                         'post_status'    => 'inherit',
                     );
@@ -56,11 +64,11 @@ class ContactListHelpers
     public static function getText( $text_id, $default_text )
     {
         $s = get_option( 'contact_list_settings' );
-        $text = $default_text;
+        $text = sanitize_text_field( $default_text );
         if ( isset( $s[$text_id] ) && $s[$text_id] ) {
-            $text = $s[$text_id];
+            $text = sanitize_text_field( $s[$text_id] );
         }
-        return esc_html( $text );
+        return $text;
     }
     
     public static function getTextV2( $text_id, $translatable_text )
@@ -70,10 +78,10 @@ class ContactListHelpers
         // Text defined in the settings
         
         if ( isset( $s[$text_id] ) && $s[$text_id] ) {
-            $text = esc_html( $s[$text_id] );
+            $text = sanitize_text_field( $s[$text_id] );
             // Default text
         } else {
-            $text = esc_html__( $translatable_text, 'contact-list' );
+            $text = sanitize_text_field( __( $translatable_text, 'contact-list' ) );
         }
         
         return $text;
@@ -83,8 +91,8 @@ class ContactListHelpers
     {
         $html = '';
         $html .= '<div class="contact-list-pro-feature">';
-        $html .= '<span>' . __( 'This feature is available in the Pro version.', 'contact-list' ) . '</span>';
-        $html .= '<a href="' . get_admin_url() . 'options-general.php?page=contact-list-pricing">' . __( 'Upgrade here', 'contact-list' ) . '</a>';
+        $html .= '<span>' . sanitize_text_field( __( 'This feature is available in the Pro version.', 'contact-list' ) ) . '</span>';
+        $html .= '<a href="' . esc_url_raw( get_admin_url() ) . 'options-general.php?page=contact-list-pricing">' . sanitize_text_field( __( 'Upgrade here', 'contact-list' ) ) . '</a>';
         $html .= '</div>';
         return $html;
     }
@@ -93,8 +101,8 @@ class ContactListHelpers
     {
         $html = '';
         $html .= '<div class="contact-list-pro-feature">';
-        $html .= '<span>' . $text . '</span>';
-        $html .= '<a href="' . get_admin_url() . 'options-general.php?page=contact-list-pricing">' . esc_html__( 'Upgrade here', 'contact-list' ) . '</a>';
+        $html .= '<span>' . sanitize_text_field( $text ) . '</span>';
+        $html .= '<a href="' . esc_url_raw( get_admin_url() ) . 'options-general.php?page=contact-list-pricing">' . sanitize_text_field( __( 'Upgrade here', 'contact-list' ) ) . '</a>';
         $html .= '</div>';
         return $html;
     }
@@ -103,25 +111,8 @@ class ContactListHelpers
     {
         $html = '';
         $html .= '<div class="contact-list-pro-feature">';
-        $html .= '<span>' . esc_html__( 'More settings available in the Pro version.', 'contact-list' ) . '</span>';
-        $html .= '<a href="' . get_admin_url() . 'options-general.php?page=contact-list-pricing">' . esc_html__( 'Upgrade here', 'contact-list' ) . '</a>';
-        $html .= '</div>';
-        return $html;
-    }
-    
-    public static function modalContactMarkup( $id )
-    {
-        $s = get_option( 'contact_list_settings' );
-        $html = '';
-        $html .= '<div class="cl-modal-container cl-modal-container-contact cl-modal-container-contact-details-' . $id . ' cl-modal-container-' . $id . '" data-contact-id="' . $id . '">';
-        $html .= '<div class="cl-modal">';
-        $html .= '<div class="close-modal-container">';
-        $html .= '<a href="" class="cl-close-modal" data-contact-id="' . $id . '">&#10006;</a>';
-        $html .= '</div>';
-        $html .= '<ul>';
-        $html .= ContactListHelpers::singleContactMarkup( $id );
-        $html .= '</ul>';
-        $html .= '</div>';
+        $html .= '<span>' . sanitize_text_field( __( 'More settings available in the Pro version.', 'contact-list' ) ) . '</span>';
+        $html .= '<a href="' . esc_url_raw( get_admin_url() ) . 'options-general.php?page=contact-list-pricing">' . sanitize_text_field( __( 'Upgrade here', 'contact-list' ) ) . '</a>';
         $html .= '</div>';
         return $html;
     }
@@ -129,13 +120,7 @@ class ContactListHelpers
     public static function modalSendMessageMarkup()
     {
         $s = get_option( 'contact_list_settings' );
-        
-        if ( isset( $s['activate_recaptcha'] ) ) {
-            wp_enqueue_script( 'contact-list-recaptcha', 'https://www.google.com/recaptcha/api.js' );
-            // async defer
-        }
-        
-        $input = get_site_url();
+        $input = esc_url_raw( get_site_url() );
         // in case scheme relative URI is passed, e.g., //www.google.com/
         $input = trim( $input, '/' );
         // If scheme not included, prepend it
@@ -153,55 +138,28 @@ class ContactListHelpers
         $html .= '</div>';
         $html .= '<h3>' . ContactListHelpers::getTextV2( 'text_send_message', 'Send message' ) . '</h3>';
         $html .= '<form class="contact-list-send-single">';
-        $recaptcha_active = ( isset( $s['activate_recaptcha'] ) ? 1 : 0 );
-        $html .= '<input type="hidden" name="recaptcha_active" value="' . $recaptcha_active . '" />';
-        if ( $recaptcha_active && isset( $s['recaptcha_site_key'] ) ) {
-            $html .= '<div class="g-recaptcha recaptcha-container" data-sitekey="' . $s['recaptcha_site_key'] . '"></div>';
-        }
-        $html .= '<label for="sender_name">' . esc_html__( 'Sender name', 'contact-list' ) . '</label>';
-        $html .= '<input class="contact-list-sender-name" name="sender_name" value="" placeholder="' . esc_html__( 'Your name', 'contact-list' ) . '" />';
-        $html .= '<label for="sender_email">' . esc_html__( 'Sender email', 'contact-list' ) . '</label>';
-        $html .= '<input class="contact-list-sender-email" name="sender_email" value="" placeholder="' . esc_html__( 'Your email', 'contact-list' ) . '" />';
-        $html .= '<label for="recipient">' . esc_html__( 'Recipient', 'contact-list' ) . '</label>';
+        $html .= '<label for="sender_name">' . sanitize_text_field( __( 'Sender name', 'contact-list' ) ) . '</label>';
+        $html .= '<input class="contact-list-sender-name" name="sender_name" value="" placeholder="' . ContactListHelpers::sanitize_attr_value( __( 'Your name', 'contact-list' ) ) . '" />';
+        $html .= '<label for="sender_email">' . sanitize_text_field( __( 'Sender email', 'contact-list' ) ) . '</label>';
+        $html .= '<input class="contact-list-sender-email" name="sender_email" value="" placeholder="' . ContactListHelpers::sanitize_attr_value( __( 'Your email', 'contact-list' ) ) . '" />';
+        $html .= '<label for="recipient">' . sanitize_text_field( __( 'Recipient', 'contact-list' ) ) . '</label>';
         $html .= '<span><span id="recipient" class="contact-list-recipient"></span></span>';
-        $html .= '<label for="message">' . esc_html__( 'Message', 'contact-list' ) . '</label>';
+        $html .= '<label for="message">' . sanitize_text_field( __( 'Message', 'contact-list' ) ) . '</label>';
         $html .= '<textarea name="message" class="contact-list-message" placeholder=""></textarea>';
         $html .= '<div class="contact-list-message-error"></div>';
         $html .= '<input name="contact_id" type="hidden" value="" class="contact-list-contact-id" />';
-        $html .= '<input name="site_url" type="hidden" value="' . $site_url . '" />';
-        $html .= '<input name="txt_please_msg_first" type="hidden" value="' . esc_html__( 'Please write message first.', 'contact-list' ) . '" />';
-        $html .= '<input name="txt_msg_sent_to" type="hidden" value="' . esc_html__( 'Message sent to recipient.', 'contact-list' ) . '" />';
-        $html .= '<input name="txt_sending_please_wait" type="hidden" value="' . esc_html__( 'Please wait...', 'contact-list' ) . '" />';
-        $html .= '<input name="txt_new_msg_from" type="hidden" value="' . esc_html__( 'New message from', 'contact-list' ) . '" />';
-        $html .= '<input name="txt_sent_by" type="hidden" value="' . esc_html__( 'sent by', 'contact-list' ) . '" />';
-        $html .= '<input name="txt_recaptcha_validation_error" type="hidden" value="' . esc_html__( 'Please check the &quot;I\'m not a robot&quot;-checkbox first.', 'contact-list' ) . '" />';
-        $html .= '<input name="txt_please_sender_details_first" type="hidden" value="' . esc_html__( 'Please enter sender information first (name and email).', 'contact-list' ) . '" />';
-        $html .= '<input type="submit" name="send_message" class="contact-list-send-single-submit" value="' . esc_html__( 'Send', 'contact-list' ) . '" />';
+        $html .= '<input name="site_url" type="hidden" value="' . esc_url_raw( $site_url ) . '" />';
+        $html .= '<input name="txt_please_msg_first" type="hidden" value="' . ContactListHelpers::sanitize_attr_value( __( 'Please write message first.', 'contact-list' ) ) . '" />';
+        $html .= '<input name="txt_msg_sent_to" type="hidden" value="' . ContactListHelpers::sanitize_attr_value( __( 'Message sent to recipient.', 'contact-list' ) ) . '" />';
+        $html .= '<input name="txt_sending_please_wait" type="hidden" value="' . ContactListHelpers::sanitize_attr_value( __( 'Please wait...', 'contact-list' ) ) . '" />';
+        $html .= '<input name="txt_new_msg_from" type="hidden" value="' . ContactListHelpers::sanitize_attr_value( __( 'New message from', 'contact-list' ) ) . '" />';
+        $html .= '<input name="txt_sent_by" type="hidden" value="' . ContactListHelpers::sanitize_attr_value( __( 'sent by', 'contact-list' ) ) . '" />';
+        $html .= '<input name="txt_please_sender_details_first" type="hidden" value="' . ContactListHelpers::sanitize_attr_value( __( 'Please enter sender information first (name and email).', 'contact-list' ) ) . '" />';
+        $html .= '<input type="submit" name="send_message" class="contact-list-send-single-submit" value="' . ContactListHelpers::sanitize_attr_value( __( 'Send', 'contact-list' ) ) . '" />';
         $html .= '<div class="contact-list-sending-message"></div>';
         $html .= '</form>';
         $html .= '</div>';
         $html .= '</div>';
-        return $html;
-    }
-    
-    public static function listAllContactsForSearchMarkup( $wp_query, $elem_class = 'cuid-none' )
-    {
-        $html = '';
-        $html .= '<div id="contact-list-search">';
-        $html .= '<ul id="all-contacts" class="contact-list-all-contacts-list cl-all-contacts-' . $elem_class . '">';
-        if ( $wp_query->have_posts() ) {
-            while ( $wp_query->have_posts() ) {
-                $wp_query->the_post();
-                $id = get_the_id();
-                $html .= ContactListHelpers::singleContactMarkup( $id, 1 );
-            }
-        }
-        $html .= '</ul><hr class="clear" />';
-        $html .= '<div id="contact-list-nothing-found" class="contact-list-nothing-found-' . $elem_class . '">';
-        $html .= ContactListHelpers::getText( 'text_sr_no_contacts_found', __( 'No contacts found.', 'contact-list' ) );
-        $html .= '</div>';
-        $html .= '</div>';
-        wp_reset_postdata();
         return $html;
     }
     
@@ -218,7 +176,7 @@ class ContactListHelpers
         if ( $wp_query->have_posts() ) {
             while ( $wp_query->have_posts() ) {
                 $wp_query->the_post();
-                $id = get_the_id();
+                $id = intval( get_the_id() );
                 $html .= ContactListHelpers::singleContactMarkup( $id, 0, $atts );
             }
         }
@@ -233,12 +191,17 @@ class ContactListHelpers
     
     public static function singleContactMarkup( $id, $showGroups = 0, $atts = array() )
     {
+        $id = intval( $id );
         $s = get_option( 'contact_list_settings' );
         $c = get_post_custom( $id );
-        $featured_img_url = get_the_post_thumbnail_url( $id, 'contact-list-contact' );
+        $featured_img_url = esc_url_raw( get_the_post_thumbnail_url( $id, 'contact-list-contact' ) );
+        $card_height_markup = '';
+        if ( isset( $s['card_height'] ) && $s['card_height'] ) {
+            $card_height_markup .= 'style="height: ' . intval( $s['card_height'] ) . 'px;"';
+        }
         $html = '';
         $html .= '<li id="cl-' . $id . '">';
-        $html .= '<div class="contact-list-contact-container">';
+        $html .= '<div class="contact-list-contact-container" ' . $card_height_markup . '>';
         $html .= '<div class="contact-list-main-left ' . (( $featured_img_url ? '' : 'cl-full-width' )) . '"><div class="contact-list-main-elements">';
         
         if ( $showGroups && !isset( $s['contact_show_groups'] ) ) {
@@ -247,10 +210,10 @@ class ContactListHelpers
             if ( $terms ) {
                 $html .= '<div class="contact-list-contact-groups">';
                 foreach ( $terms as $term ) {
-                    $t_id = $term->term_id;
+                    $t_id = intval( $term->term_id );
                     $custom_fields = get_option( "taxonomy_term_{$t_id}" );
                     if ( !isset( $custom_fields['hide_group'] ) ) {
-                        $html .= '<span>' . esc_html( $term->name ) . '</span>';
+                        $html .= '<span>' . sanitize_text_field( $term->name ) . '</span>';
                     }
                 }
                 $html .= '</div>';
@@ -263,56 +226,44 @@ class ContactListHelpers
         if ( isset( $s['last_name_before_first_name'] ) ) {
             $contact_fullname = $c['_cl_last_name'][0] . (( isset( $c['_cl_first_name'][0] ) ? ' ' . $c['_cl_first_name'][0] : '' ));
             $text = (( isset( $c['_cl_first_name'][0] ) ? $c['_cl_first_name'][0] . ' ' : '' )) . $c['_cl_last_name'][0];
-            $html .= '<div style="display: none;">' . esc_html( $text ) . '</div>';
+            $html .= '<div class="contact-list-hidden-name">' . sanitize_text_field( $text ) . '</div>';
         } else {
             $contact_fullname = (( isset( $c['_cl_first_name'][0] ) ? $c['_cl_first_name'][0] . ' ' : '' )) . $c['_cl_last_name'][0];
             $text = $c['_cl_last_name'][0] . (( isset( $c['_cl_first_name'][0] ) ? ' ' . $c['_cl_first_name'][0] : '' ));
-            $html .= '<div style="display: none;">' . esc_html( $text ) . '</div>';
+            $html .= '<div class="contact-list-hidden-name">' . sanitize_text_field( $text ) . '</div>';
         }
         
-        $html .= '<span class="contact-list-contact-name">' . esc_html( $contact_fullname ) . '</span>';
+        $html .= '<span class="contact-list-contact-name">' . sanitize_text_field( $contact_fullname ) . '</span>';
         if ( isset( $c['_cl_job_title'][0] ) && $c['_cl_job_title'][0] ) {
-            $html .= '<span class="contact-list-job-title">' . esc_html( $c['_cl_job_title'][0] ) . '</span>';
+            $html .= '<span class="contact-list-job-title">' . sanitize_text_field( $c['_cl_job_title'][0] ) . '</span>';
         }
         
-        if ( isset( $c['_cl_email'][0] ) && $c['_cl_email'][0] ) {
-            $mailto = $c['_cl_email'][0];
+        if ( isset( $c['_cl_email'][0] ) && is_email( $c['_cl_email'][0] ) ) {
+            $mailto = sanitize_email( $c['_cl_email'][0] );
             $mailto_obs = '';
             for ( $i = 0 ;  $i < strlen( $mailto ) ;  $i++ ) {
                 $mailto_obs .= '&#' . ord( $mailto[$i] ) . ';';
             }
             if ( isset( $c['_cl_email'][0] ) && is_email( $c['_cl_email'][0] ) && !isset( $s['hide_contact_email'] ) ) {
-                $html .= '<span class="contact-list-email">' . (( $c['_cl_email'][0] ? '<a href="mailto:' . $mailto_obs . '">' . $mailto_obs . '</a>' : '' )) . '</span>';
+                $html .= '<span class="contact-list-email">' . (( $c['_cl_email'][0] ? '<a href="mailto:' . sanitize_text_field( $mailto_obs ) . '">' . sanitize_text_field( $mailto_obs ) . '</a>' : '' )) . '</span>';
             }
         }
         
         if ( isset( $c['_cl_email'][0] ) && is_email( $c['_cl_email'][0] ) || isset( $c['_cl_notify_emails'] ) && $c['_cl_notify_emails'] ) {
             if ( !isset( $s['hide_send_email_button'] ) ) {
-                $html .= '<span class="contact-list-send-email cl-dont-print"><a href="" data-id="' . $id . '" data-name="' . $contact_fullname . '">' . ContactListHelpers::getTextV2( 'text_send_message', 'Send message' ) . ' &raquo;</a></span>';
+                $html .= '<span class="contact-list-send-email cl-dont-print"><a href="" data-id="' . $id . '" data-name="' . ContactListHelpers::sanitize_attr_value( $contact_fullname ) . '">' . ContactListHelpers::getTextV2( 'text_send_message', 'Send message' ) . ' &raquo;</a></span>';
             }
         }
-        
-        if ( !isset( $s['hide_phone_numbers_from_public_card'] ) ) {
+        $hide_phone_numbers = 0;
+        if ( !$hide_phone_numbers ) {
             
             if ( isset( $c['_cl_phone'][0] ) && $c['_cl_phone'][0] ) {
-                $phone_href = preg_replace( '/[^0-9\\,]/', '', $c['_cl_phone'][0] );
-                $html .= '<span class="contact-list-phone contact-list-phone-1"><a href="tel:' . $phone_href . '">' . esc_html( $c['_cl_phone'][0] ) . '</a></span>';
-            }
-            
-            
-            if ( isset( $c['_cl_phone_2'][0] ) && $c['_cl_phone_2'][0] ) {
-                $phone_href = preg_replace( '/[^0-9\\,]/', '', $c['_cl_phone_2'][0] );
-                $html .= '<span class="contact-list-phone contact-list-phone-2"><a href="tel:' . $phone_href . '">' . esc_html( $c['_cl_phone_2'][0] ) . '</a></span>';
-            }
-            
-            
-            if ( isset( $c['_cl_phone_3'][0] ) && $c['_cl_phone_3'][0] ) {
-                $phone_href = preg_replace( '/[^0-9\\,]/', '', $c['_cl_phone_3'][0] );
-                $html .= '<span class="contact-list-phone contact-list-phone-3"><a href="tel:' . $phone_href . '">' . esc_html( $c['_cl_phone_3'][0] ) . '</a></span>';
+                $phone_org = sanitize_text_field( $c['_cl_phone'][0] );
+                $phone_href = preg_replace( '/[^0-9\\,]/', '', $phone_org );
+                $html .= '<span class="contact-list-phone contact-list-phone-1"><a href="tel:' . $phone_href . '">' . $phone_org . '</a></span>';
             }
         
         }
-        
         
         if ( isset( $s['contact_show_groups'] ) ) {
             $terms = get_the_terms( $id, 'contact-group' );
@@ -321,10 +272,10 @@ class ContactListHelpers
                 $html .= '<span class="contact-list-contact-groups-v2-title">' . ContactListHelpers::getText( 'contact_groups_title', __( 'Groups', 'contact-list' ) ) . '</span>';
                 $html .= '<div class="contact-list-contact-groups-v2">';
                 foreach ( $terms as $term ) {
-                    $t_id = $term->term_id;
+                    $t_id = intval( $term->term_id );
                     $custom_fields = get_option( "taxonomy_term_{$t_id}" );
                     if ( !isset( $custom_fields['hide_group'] ) ) {
-                        $html .= '<span>' . $term->name . '</span>';
+                        $html .= '<span>' . sanitize_text_field( $term->name ) . '</span>';
                     }
                 }
                 $html .= '</div>';
@@ -336,19 +287,19 @@ class ContactListHelpers
         if ( isset( $c['_cl_address_line_1'][0] ) || isset( $c['_cl_country'][0] ) || isset( $c['_cl_state'][0] ) ) {
             $html .= '<div class="contact-list-address">';
             if ( !isset( $s['hide_address_title'] ) ) {
-                $html .= '<span class="contact-list-address-title">' . (( isset( $s['address_title'] ) && $s['address_title'] ? $s['address_title'] : esc_html__( 'Address', 'contact-list' ) )) . '</span>';
+                $html .= '<span class="contact-list-address-title">' . (( isset( $s['address_title'] ) && $s['address_title'] ? sanitize_text_field( $s['address_title'] ) : sanitize_text_field( __( 'Address', 'contact-list' ) ) )) . '</span>';
             }
             if ( isset( $c['_cl_address_line_1'][0] ) && $c['_cl_address_line_1'][0] ) {
-                $html .= '<span class="contact-list-address-line-1">' . esc_html( $c['_cl_address_line_1'][0] ) . '</span>';
+                $html .= '<span class="contact-list-address-line-1">' . sanitize_text_field( $c['_cl_address_line_1'][0] ) . '</span>';
             }
             if ( isset( $c['_cl_address_line_2'][0] ) && $c['_cl_address_line_2'][0] ) {
-                $html .= '<span class="contact-list-address-line-2">' . esc_html( $c['_cl_address_line_2'][0] ) . '</span>';
+                $html .= '<span class="contact-list-address-line-2">' . sanitize_text_field( $c['_cl_address_line_2'][0] ) . '</span>';
             }
             if ( isset( $c['_cl_address_line_3'][0] ) && $c['_cl_address_line_3'][0] ) {
-                $html .= '<span class="contact-list-address-line-3">' . esc_html( $c['_cl_address_line_3'][0] ) . '</span>';
+                $html .= '<span class="contact-list-address-line-3">' . sanitize_text_field( $c['_cl_address_line_3'][0] ) . '</span>';
             }
             if ( isset( $c['_cl_address_line_4'][0] ) && $c['_cl_address_line_4'][0] ) {
-                $html .= '<span class="contact-list-address-line-4">' . esc_html( $c['_cl_address_line_4'][0] ) . '</span>';
+                $html .= '<span class="contact-list-address-line-4">' . sanitize_text_field( $c['_cl_address_line_4'][0] ) . '</span>';
             }
             
             if ( isset( $c['_cl_country'][0] ) && $c['_cl_country'][0] || isset( $c['_cl_state'][0] ) && $c['_cl_state'][0] || isset( $c['_cl_city'][0] ) && $c['_cl_city'][0] || isset( $c['_cl_zip_code'][0] ) && $c['_cl_zip_code'][0] ) {
@@ -357,7 +308,7 @@ class ContactListHelpers
                 $zip_code_last = 0;
                 
                 if ( !isset( $s['move_zip_after_state'] ) && isset( $c['_cl_zip_code'][0] ) && $c['_cl_zip_code'][0] ) {
-                    $html .= esc_html( $c['_cl_zip_code'][0] );
+                    $html .= sanitize_text_field( $c['_cl_zip_code'][0] );
                     $zip_code_first = 1;
                 }
                 
@@ -366,7 +317,7 @@ class ContactListHelpers
                     if ( $zip_code_first ) {
                         $html .= ' ';
                     }
-                    $html .= esc_html( $c['_cl_city'][0] );
+                    $html .= sanitize_text_field( $c['_cl_city'][0] );
                 }
                 
                 
@@ -374,7 +325,7 @@ class ContactListHelpers
                     if ( isset( $c['_cl_city'][0] ) && $c['_cl_city'][0] ) {
                         $html .= ', ';
                     }
-                    $html .= esc_html( $c['_cl_state'][0] );
+                    $html .= sanitize_text_field( $c['_cl_state'][0] );
                 }
                 
                 
@@ -395,7 +346,7 @@ class ContactListHelpers
                         $html .= ', ';
                     }
                     
-                    $html .= esc_html( $c['_cl_country'][0] );
+                    $html .= sanitize_text_field( $c['_cl_country'][0] );
                 }
                 
                 $html .= '</span>';
@@ -404,14 +355,7 @@ class ContactListHelpers
             $html .= '</div>';
         }
         
-        $custom_fields = [
-            1,
-            2,
-            3,
-            4,
-            5,
-            6
-        ];
+        $custom_fields = [ 1 ];
         foreach ( $custom_fields as $n ) {
             if ( $n == 1 ) {
                 $html .= '<div class="contact-list-custom-fields-container">';
@@ -425,16 +369,16 @@ class ContactListHelpers
                 $cf_value = $c['_cl_custom_field_' . $n][0];
                 
                 if ( is_email( $cf_value ) ) {
-                    $mailto = $cf_value;
+                    $mailto = sanitize_email( $cf_value );
                     $mailto_obs = '';
                     for ( $i = 0 ;  $i < strlen( $mailto ) ;  $i++ ) {
                         $mailto_obs .= '&#' . ord( $mailto[$i] ) . ';';
                     }
-                    $cf_value = '<a href="mailto:' . $mailto_obs . '">' . $mailto_obs . '</a>';
+                    $cf_value = '<a href="mailto:' . sanitize_text_field( $mailto_obs ) . '">' . sanitize_text_field( $mailto_obs ) . '</a>';
                 } else {
                     $link_title = '';
                     if ( isset( $s['custom_field_' . $n . '_link_text'] ) && $s['custom_field_' . $n . '_link_text'] ) {
-                        $link_title = $s['custom_field_' . $n . '_link_text'];
+                        $link_title = sanitize_text_field( $s['custom_field_' . $n . '_link_text'] );
                     }
                     
                     if ( $link_title ) {
@@ -448,12 +392,12 @@ class ContactListHelpers
                 
                 if ( isset( $s['custom_field_' . $n . '_icon'] ) && $s['custom_field_' . $n . '_icon'] ) {
                     $html .= '<div class="contact-list-custom-field-' . $n . ' contact-list-custom-field-with-icon">';
-                    $html .= '<i class="fa ' . $s['custom_field_' . $n . '_icon'] . '" aria-hidden="true"></i><span>' . $cf_value . '</span>';
+                    $html .= '<i class="fa ' . sanitize_html_class( $s['custom_field_' . $n . '_icon'] ) . '" aria-hidden="true"></i><span>' . wp_kses_post( $cf_value ) . '</span>';
                     $html .= '</div>';
                 } else {
                     $html .= '<div class="contact-list-custom-field-' . $n . '">';
-                    $html .= ( isset( $s['custom_field_' . $n . '_title'] ) && $s['custom_field_' . $n . '_title'] ? '<strong>' . $s['custom_field_' . $n . '_title'] . '</strong>' : '' );
-                    $html .= $cf_value;
+                    $html .= ( isset( $s['custom_field_' . $n . '_title'] ) && $s['custom_field_' . $n . '_title'] ? '<strong>' . sanitize_text_field( $s['custom_field_' . $n . '_title'] ) . '</strong>' : '' );
+                    $html .= wp_kses_post( $cf_value );
                     $html .= '</div>';
                 }
             
@@ -467,24 +411,24 @@ class ContactListHelpers
         if ( isset( $c['_cl_description'][0] ) && $c['_cl_description'][0] ) {
             $html .= '<div class="contact-list-description">';
             if ( !isset( $s['hide_additional_info_title'] ) ) {
-                $html .= '<span class="contact-list-description-title">' . (( isset( $s['additional_info_title'] ) && $s['additional_info_title'] ? $s['additional_info_title'] : esc_html__( 'Additional information', 'contact-list' ) )) . '</span>';
+                $html .= '<span class="contact-list-description-title">' . (( isset( $s['additional_info_title'] ) && $s['additional_info_title'] ? sanitize_text_field( $s['additional_info_title'] ) : sanitize_text_field( __( 'Additional information', 'contact-list' ) ) )) . '</span>';
             }
-            $html .= $c['_cl_description'][0] . '</div>';
+            $html .= wp_kses_post( $c['_cl_description'][0] ) . '</div>';
         }
         
         $html .= '</div>';
         $html .= '<div class="contact-list-some-elements">';
         if ( isset( $c['_cl_facebook_url'][0] ) && $c['_cl_facebook_url'][0] ) {
-            $html .= ( $c['_cl_facebook_url'][0] ? '<a href="' . $c['_cl_facebook_url'][0] . '" target="_blank"><img src="' . plugins_url( '../img/facebook.svg', __FILE__ ) . '"  alt="' . esc_html__( 'Facebook', 'contact-list' ) . '" /></a>' : '' );
+            $html .= ( $c['_cl_facebook_url'][0] ? '<a href="' . esc_url_raw( $c['_cl_facebook_url'][0] ) . '" target="_blank"><img src="' . esc_url_raw( plugins_url( '../img/facebook.svg', __FILE__ ) ) . '"  alt="' . ContactListHelpers::sanitize_attr_value( __( 'Facebook', 'contact-list' ) ) . '" /></a>' : '' );
         }
         if ( isset( $c['_cl_instagram_url'][0] ) && $c['_cl_instagram_url'][0] ) {
-            $html .= ( $c['_cl_instagram_url'][0] ? '<a href="' . $c['_cl_instagram_url'][0] . '" target="_blank"><img src="' . plugins_url( '../img/instagram.svg', __FILE__ ) . '" alt="' . esc_html__( 'Instagram', 'contact-list' ) . '" /></a>' : '' );
+            $html .= ( $c['_cl_instagram_url'][0] ? '<a href="' . esc_url_raw( $c['_cl_instagram_url'][0] ) . '" target="_blank"><img src="' . esc_url_raw( plugins_url( '../img/instagram.svg', __FILE__ ) ) . '" alt="' . ContactListHelpers::sanitize_attr_value( __( 'Instagram', 'contact-list' ) ) . '" /></a>' : '' );
         }
         if ( isset( $c['_cl_twitter_url'][0] ) && $c['_cl_twitter_url'][0] ) {
-            $html .= ( $c['_cl_twitter_url'][0] ? '<a href="' . $c['_cl_twitter_url'][0] . '" target="_blank"><img src="' . plugins_url( '../img/twitter.svg', __FILE__ ) . '" alt="' . esc_html__( 'Twitter', 'contact-list' ) . '" /></a>' : '' );
+            $html .= ( $c['_cl_twitter_url'][0] ? '<a href="' . esc_url_raw( $c['_cl_twitter_url'][0] ) . '" target="_blank"><img src="' . esc_url_raw( plugins_url( '../img/twitter.svg', __FILE__ ) ) . '" alt="' . ContactListHelpers::sanitize_attr_value( __( 'Twitter', 'contact-list' ) ) . '" /></a>' : '' );
         }
         if ( isset( $c['_cl_linkedin_url'][0] ) && $c['_cl_linkedin_url'][0] ) {
-            $html .= ( $c['_cl_linkedin_url'][0] ? '<a href="' . $c['_cl_linkedin_url'][0] . '" target="_blank"><img src="' . plugins_url( '../img/linkedin.svg', __FILE__ ) . '" alt="' . esc_html__( 'LinkedIn', 'contact-list' ) . '" /></a>' : '' );
+            $html .= ( $c['_cl_linkedin_url'][0] ? '<a href="' . esc_url_raw( $c['_cl_linkedin_url'][0] ) . '" target="_blank"><img src="' . esc_url_raw( plugins_url( '../img/linkedin.svg', __FILE__ ) ) . '" alt="' . ContactListHelpers::sanitize_attr_value( __( 'LinkedIn', 'contact-list' ) ) . '" /></a>' : '' );
         }
         $html .= '<hr class="clear" /></div>';
         $html .= '</div>';
@@ -492,7 +436,7 @@ class ContactListHelpers
         if ( $featured_img_url ) {
             $featured_img_id = get_post_thumbnail_id( $id );
             $featured_img_alt = get_post_meta( $featured_img_id, '_wp_attachment_image_alt', true );
-            $html .= '<div class="contact-list-main-right"><div class="contact-list-image ' . (( isset( $s['contact_image_style'] ) && $s['contact_image_style'] ? 'contact-list-image-' . $s['contact_image_style'] : '' )) . ' ' . (( isset( $s['contact_image_shadow'] ) && $s['contact_image_shadow'] ? 'contact-list-image-shadow' : '' )) . '"><img src="' . $featured_img_url . '" alt="' . esc_html( $featured_img_alt ) . '" /></div></div>';
+            $html .= '<div class="contact-list-main-right"><div class="contact-list-image ' . (( isset( $s['contact_image_style'] ) && $s['contact_image_style'] ? 'contact-list-image-' . ContactListHelpers::sanitize_attr_value( $s['contact_image_style'] ) : '' )) . ' ' . (( isset( $s['contact_image_shadow'] ) && $s['contact_image_shadow'] ? 'contact-list-image-shadow' : '' )) . '"><img src="' . esc_url_raw( $featured_img_url ) . '" alt="' . ContactListHelpers::sanitize_attr_value( $featured_img_alt ) . '" /></div></div>';
         }
         
         $html .= '<hr class="clear" />';
@@ -527,50 +471,6 @@ class ContactListHelpers
     {
         $elem_class = 'cuid-' . uniqid();
         return $elem_class;
-    }
-    
-    public static function initLayout( $s, $atts, $elem_class = 'cuid-none' )
-    {
-        $html = '';
-        
-        if ( isset( $s['card_background'] ) && $s['card_background'] ) {
-            $html .= '<style>.contact-list-container #contact-list-search ul li { margin-bottom: 5px; } </style>';
-            
-            if ( $s['card_background'] == 'white' ) {
-                $html .= '<style>.contact-list-contact-container { background: #fff; } </style>';
-            } elseif ( $s['card_background'] == 'light_gray' ) {
-                $html .= '<style>.contact-list-contact-container { background: #f7f7f7; } </style>';
-            }
-        
-        }
-        
-        if ( isset( $s['card_border'] ) && $s['card_border'] ) {
-            
-            if ( $s['card_border'] == 'black' ) {
-                $html .= '<style>.contact-list-contact-container { border: 1px solid #333; border-radius: 10px; padding: 10px; } </style>';
-            } elseif ( $s['card_border'] == 'gray' ) {
-                $html .= '<style>.contact-list-contact-container { border: 1px solid #bbb; border-radius: 10px; padding: 10px; } </style>';
-            }
-        
-        }
-        
-        if ( isset( $s['card_height'] ) && $s['card_height'] || isset( $atts['card_height'] ) ) {
-            $card_height = 380;
-            
-            if ( isset( $atts['card_height'] ) ) {
-            } elseif ( isset( $s['card_height'] ) && $s['card_height'] ) {
-                $card_height = $s['card_height'];
-            }
-            
-            $html .= '<style>.' . esc_attr( $elem_class ) . '.contact-list-2-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: ' . esc_attr( $card_height ) . 'px; } </style>';
-            $html .= '<style>.' . esc_attr( $elem_class ) . '.contact-list-3-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: ' . esc_attr( $card_height ) . 'px; } </style>';
-            $html .= '<style>.' . esc_attr( $elem_class ) . '.contact-list-4-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: ' . esc_attr( $card_height ) . 'px; } </style>';
-            $html .= '<style> @media (max-width: 820px) { .' . esc_attr( $elem_class ) . '.contact-list-2-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: auto; } } </style>';
-            $html .= '<style> @media (max-width: 820px) { .' . esc_attr( $elem_class ) . '.contact-list-3-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: auto; } } </style>';
-            $html .= '<style> @media (max-width: 820px) { .' . esc_attr( $elem_class ) . '.contact-list-4-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: auto; } } </style>';
-        }
-        
-        return $html;
     }
     
     public static function isPremium()

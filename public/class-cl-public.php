@@ -55,7 +55,7 @@ class Contact_List_Public
      *
      * @since    1.0.0
      */
-    public function enqueue_styles()
+    public function enqueue_styles( $hook )
     {
         wp_enqueue_style(
             $this->plugin_name,
@@ -71,7 +71,7 @@ class Contact_List_Public
      *
      * @since    1.0.0
      */
-    public function enqueue_scripts()
+    public function enqueue_scripts( $hook )
     {
         $s = get_option( 'contact_list_settings' );
         $settings = array(
@@ -79,7 +79,7 @@ class Contact_List_Public
         );
         wp_register_script(
             $this->plugin_name,
-            CONTACT_LIST_URI . 'dist/js/p.js',
+            esc_url( CONTACT_LIST_URI ) . 'dist/js/p.js',
             array( 'jquery' ),
             $this->version,
             false

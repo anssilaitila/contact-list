@@ -8,9 +8,9 @@ class ShortcodeContactListSimple
         $exclude = [];
         $html = '';
         $html .= '<div class="contact-list-simple-container" />';
-        $html .= '<div class="contact-list-simple-text-contact" style="display: none;">' . __( 'contact', 'contact-list' ) . '</div>';
-        $html .= '<div class="contact-list-simple-text-contacts" style="display: none;">' . __( 'contacts', 'contact-list' ) . '</div>';
-        $html .= '<div class="contact-list-simple-text-found" style="display: none;">' . __( 'found', 'contact-list' ) . '</div>';
+        $html .= '<div class="contact-list-simple-text-contact" style="display: none;">' . sanitize_text_field( __( 'contact', 'contact-list' ) ) . '</div>';
+        $html .= '<div class="contact-list-simple-text-contacts" style="display: none;">' . sanitize_text_field( __( 'contacts', 'contact-list' ) ) . '</div>';
+        $html .= '<div class="contact-list-simple-text-found" style="display: none;">' . sanitize_text_field( __( 'found', 'contact-list' ) ) . '</div>';
         $meta_query = array(
             'relation' => 'AND',
         );
@@ -26,7 +26,7 @@ class ShortcodeContactListSimple
             'title'            => 'ASC',
         );
         
-        if ( ORDER_BY == '_cl_first_name' ) {
+        if ( CONTACT_LIST_ORDER_BY == '_cl_first_name' ) {
             $meta_query[] = array(
                 'first_name_clause' => array(
                 'key'     => '_cl_first_name',
@@ -43,21 +43,21 @@ class ShortcodeContactListSimple
         if ( isset( $_GET[CONTACT_LIST_CAT1] ) && $_GET[CONTACT_LIST_CAT1] ) {
             $meta_query[] = array(
                 'key'     => '_cl_country',
-                'value'   => $_GET[CONTACT_LIST_CAT1],
+                'value'   => sanitize_text_field( $_GET[CONTACT_LIST_CAT1] ),
                 'compare' => 'LIKE',
             );
         }
         if ( isset( $_GET[CONTACT_LIST_CAT2] ) && $_GET[CONTACT_LIST_CAT2] ) {
             $meta_query[] = array(
                 'key'     => '_cl_state',
-                'value'   => $_GET[CONTACT_LIST_CAT2],
+                'value'   => sanitize_text_field( $_GET[CONTACT_LIST_CAT2] ),
                 'compare' => 'LIKE',
             );
         }
         if ( isset( $_GET[CONTACT_LIST_CAT3] ) && $_GET[CONTACT_LIST_CAT3] ) {
             $meta_query[] = array(
                 'key'     => '_cl_city',
-                'value'   => $_GET[CONTACT_LIST_CAT3],
+                'value'   => sanitize_text_field( $_GET[CONTACT_LIST_CAT3] ),
                 'compare' => 'LIKE',
             );
         }
@@ -69,7 +69,7 @@ class ShortcodeContactListSimple
                 array(
                 'taxonomy' => 'contact-group',
                 'field'    => 'slug',
-                'terms'    => $_GET['cl_cat'],
+                'terms'    => sanitize_title( $_GET['cl_cat'] ),
             ),
             );
         } elseif ( isset( $atts['group'] ) && $atts['group'] ) {
@@ -78,7 +78,7 @@ class ShortcodeContactListSimple
                 array(
                 'taxonomy' => 'contact-group',
                 'field'    => 'slug',
-                'terms'    => $atts['group'],
+                'terms'    => sanitize_title( $atts['group'] ),
             ),
             );
         }
@@ -105,7 +105,7 @@ class ShortcodeContactListSimple
             'orderby'        => $order_by,
         ) );
         if ( !isset( $atts['hide_search'] ) ) {
-            $html .= '<input type="text" class="contact-list-simple-search-contacts" placeholder="' . (( isset( $s['search_contacts'] ) && $s['search_contacts'] ? $s['search_contacts'] : __( 'Search contacts...', 'contact-list' ) )) . '">';
+            $html .= '<input type="text" class="contact-list-simple-search-contacts" placeholder="' . (( isset( $s['search_contacts'] ) && $s['search_contacts'] ? ContactListHelpers::sanitize_attr_value( $s['search_contacts'] ) : ContactListHelpers::sanitize_attr_value( __( 'Search contacts...', 'contact-list' ) ) )) . '">';
         }
         
         if ( $wp_query_for_filter->have_posts() ) {

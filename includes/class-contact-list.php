@@ -130,11 +130,8 @@ class Contact_List
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cl-public-send-mail.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cl-public-ajax.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cl-public-helpers.php';
-        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cl-public-simple-groups-helpers.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cl-public-load.php';
-        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cl-public-update-contact.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cl-public-pagination.php';
-        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cl-public-frontend-contact-edit.php';
         /**
          * The class responsible for defining custom fields for the custom post type
          */
@@ -249,16 +246,6 @@ class Contact_List
         $this->loader->add_action( 'admin_menu', $plugin_printable, 'register_printable_page' );
         // Send email
         $this->loader->add_action( 'admin_menu', $plugin_admin_send_email, 'register_send_email_page' );
-        $this->loader->add_action( 'wp_ajax_cl_send_mail', $plugin_admin_send_email, 'cl_send_mail' );
-        $this->loader->add_action( 'wp_ajax_cl_request_update', $plugin_admin_send_email, 'cl_request_update' );
-        $this->loader->add_action(
-            'wp_insert_post',
-            $plugin_admin_send_email,
-            'new_contact_send_email',
-            10,
-            3
-        );
-        $this->loader->add_action( 'phpmailer_init', $plugin_admin_send_email, 'wp_mail_returnpath_phpmailer_init' );
         // Mail log
         if ( !isset( $s['disable_mail_log'] ) ) {
             $this->loader->add_action( 'admin_menu', $plugin_admin_mail_log, 'register_mail_log_page' );
@@ -287,14 +274,7 @@ class Contact_List
             '99',
             1
         );
-        $this->loader->add_filter( 'request', $plugin_query, 'alter_the_query' );
         // Inline styles
-        $this->loader->add_action(
-            'admin_head',
-            $plugin_admin_inline_styles,
-            'inline_styles',
-            100
-        );
         $this->loader->add_action(
             'admin_head',
             $plugin_admin_inline_scripts,
@@ -320,12 +300,10 @@ class Contact_List
         $plugin_public_send_mail = new ContactListPublicSendMail();
         $plugin_public_ajax = new ContactListPublicAjax();
         $plugin_public_load = new ContactListPublicLoad();
-        $plugin_public_update_contact = new ContactListUpdateContact();
-        $plugin_public_frontend_contact_edit = new ContactListFrontendContactEdit();
-        $this->loader->add_action( 'admin_enqueue_scripts', $plugin_public, 'enqueue_styles' );
         $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
         $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public_load, 'public_inline_styles' );
         $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+        $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public_load, 'public_inline_scripts' );
         $this->loader->add_action( 'init', $plugin_public, 'register_shortcodes' );
         // Send mail
         $this->loader->add_action( 'wp_ajax_nopriv_cl_send_mail_public', $plugin_public_send_mail, 'cl_send_mail_public' );
@@ -335,9 +313,6 @@ class Contact_List
         $this->loader->add_action( 'wp_ajax_cl_get_contacts', $plugin_public_ajax, 'cl_get_contacts' );
         $this->loader->add_action( 'wp_ajax_nopriv_cl_get_contacts_simple', $plugin_public_ajax, 'cl_get_contacts_simple' );
         $this->loader->add_action( 'wp_ajax_cl_get_contacts_simple', $plugin_public_ajax, 'cl_get_contacts_simple' );
-        $this->loader->add_action( 'wp_footer', $plugin_public_ajax, 'my_ajax_without_file' );
-        // Front-end contact update
-        $this->loader->add_filter( 'request', $plugin_public_frontend_contact_edit, 'contact_update' );
     }
     
     /**

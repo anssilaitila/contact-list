@@ -2,64 +2,64 @@
 
 class ContactListAdminInlineScripts {
 
-  public function inline_scripts() {
+  public static function inline_scripts($context) {
 
-      ?>
-
-      <?php $current_screen = get_current_screen(); ?>
-       
-      <?php if (isset($current_screen->id) && ($current_screen->id === 'edit-contact' || $current_screen->id === 'edit-contact-group')): ?>
-  
-        <link rel="stylesheet" href="<?= CONTACT_LIST_URI ?>dist/tipso.min.css">
-        <script src="<?= CONTACT_LIST_URI ?>dist/tipso.min.js"></script>
-        <script src="<?= CONTACT_LIST_URI ?>dist/clipboard.min.js"></script>
+    $js = '';
     
-        <script>
-          
-          jQuery(function ($) {
+    if ($context == 'mail-log') {
 
-            jQuery(document).on('click', '.contact-list-copy', function (e) {
-              e.preventDefault();
-            });
-              
-            var clipboard = new ClipboardJS('.contact-list-copy');
+      $js .= "jQuery( document ).ready( function($) {
         
-            clipboard.on('success', function(e) {
+        $('.contact-list-empty-mail-log-form').submit(function() {
 
-              e.clearSelection();
-      
-              let clipboardtarget = jQuery(e.trigger).data('clipboard-target');
-      
-              jQuery(clipboardtarget).tipso({
-                content: "<?= __('Shortcode copied to clipboard!', 'contact-list') ?>",
-                width: 240
-              });
-      
-              jQuery(clipboardtarget).tipso('show');
-              
-              setTimeout(function () {
-                showpanel(clipboardtarget);
-              }, 2000);
-              
-              function showpanel(clipboardtarget) {
-                jQuery(clipboardtarget).tipso('hide');
-                jQuery(clipboardtarget).tipso('destroy');
-              }
-              
-            });
-        
-            clipboard.on('error', function(e) {
-  //          console.log(e);
-            });
-      
-          });
+          return confirm('" . esc_js( __('Are you sure that you want to empty the mail log?', 'contact-list') ) . ' ' . esc_js( __('This action is irreversible.', 'contact-list') ) . "');
+
+        });
+
+      });";
+
+    }
+
+    return $js;
+
+  }
   
-        </script>
-      
-      <?php endif; ?>
-      
-      <?php
 
+  public static function contact_edit_scripts() {
+
+    $js = '';
+
+    $js .= "jQuery( document ).ready( function($) {
+      $('#post').submit(function() {
+        if ($('#_cl_last_name').val().length == 0) {
+          alert('" . esc_js( __('Please insert at least last name first.', 'contact-list') ) . "');
+          return false;
+        }
+      });
+    });";
+    
+    return $js;
+
+  }
+
+  public static function help_support_scripts() {
+  
+    $js = '';
+  
+    $js .= "jQuery(function ($) {
+      $('.contact-list-toggle-debug-info').on('click', function() {
+        if ($('.contact-list-debug-info-container').is(':hidden')) {
+          $('.contact-list-debug-info-container').show();
+          $(this).text('" . esc_js( __('Close', 'contact-list') ) . "');
+        } else {
+          $('.contact-list-debug-info-container').hide();
+          $(this).text('" . esc_js( __('Open', 'contact-list') ) . "');
+        }
+      });
+    });";
+    
+    return $js;
+  
   }
 
 }

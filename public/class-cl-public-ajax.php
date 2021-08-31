@@ -7,7 +7,7 @@ class ContactListPublicAjax
         $html = '';
         $atts = [];
         if ( isset( $_POST['cl_atts'] ) && $_POST['cl_atts'] ) {
-            $atts = unserialize( stripslashes( $_POST['cl_atts'] ) );
+            $atts = sanitize_text_field( unserialize( stripslashes( $_POST['cl_atts'] ) ) );
         }
         $meta_query = array(
             'relation' => 'AND',
@@ -24,7 +24,7 @@ class ContactListPublicAjax
             'title'            => 'ASC',
         );
         
-        if ( ORDER_BY == '_cl_first_name' ) {
+        if ( CONTACT_LIST_ORDER_BY == '_cl_first_name' ) {
             $meta_query[] = array(
                 'first_name_clause' => array(
                 'key'     => '_cl_first_name',
@@ -41,21 +41,21 @@ class ContactListPublicAjax
         if ( isset( $_POST[CONTACT_LIST_CAT1] ) && $_POST[CONTACT_LIST_CAT1] ) {
             $meta_query[] = array(
                 'key'     => '_cl_country',
-                'value'   => $_POST[CONTACT_LIST_CAT1],
+                'value'   => sanitize_text_field( $_POST[CONTACT_LIST_CAT1] ),
                 'compare' => 'LIKE',
             );
         }
         if ( isset( $_POST[CONTACT_LIST_CAT2] ) && $_POST[CONTACT_LIST_CAT2] ) {
             $meta_query[] = array(
                 'key'     => '_cl_state',
-                'value'   => $_POST[CONTACT_LIST_CAT2],
+                'value'   => sanitize_text_field( $_POST[CONTACT_LIST_CAT2] ),
                 'compare' => 'LIKE',
             );
         }
         if ( isset( $_POST[CONTACT_LIST_CAT3] ) && $_POST[CONTACT_LIST_CAT3] ) {
             $meta_query[] = array(
                 'key'     => '_cl_city',
-                'value'   => $_POST[CONTACT_LIST_CAT3],
+                'value'   => sanitize_text_field( $_POST[CONTACT_LIST_CAT3] ),
                 'compare' => 'LIKE',
             );
         }
@@ -66,16 +66,16 @@ class ContactListPublicAjax
                 array(
                 'taxonomy' => 'contact-group',
                 'field'    => 'slug',
-                'terms'    => $_POST['cl_cat'],
+                'terms'    => sanitize_title( $_POST['cl_cat'] ),
             ),
             );
         }
         $posts_per_page = -1;
         if ( isset( $s['contacts_per_page'] ) && $s['contacts_per_page'] ) {
-            $posts_per_page = $s['contacts_per_page'];
+            $posts_per_page = intval( $s['contacts_per_page'] );
         }
         $wp_query = new WP_Query( array(
-            'post_type'      => CONTACT_CPT,
+            'post_type'      => CONTACT_LIST_CPT,
             'post_status'    => 'publish',
             'posts_per_page' => (int) $posts_per_page,
             'meta_query'     => $meta_query,
@@ -96,7 +96,41 @@ class ContactListPublicAjax
         if ( $wp_query->found_posts == 0 ) {
             $html .= '<p>' . ContactListHelpers::getText( 'text_sr_no_contacts_found', __( 'No contacts found.', 'contact-list' ) ) . '</p>';
         }
-        echo  $html ;
+        $html_allowed_tags = [
+            'div'  => [
+            'id'    => [],
+            'class' => [],
+            'style' => [],
+        ],
+            'ul'   => [
+            'id'    => [],
+            'class' => [],
+        ],
+            'li'   => [
+            'id'    => [],
+            'class' => [],
+        ],
+            'span' => [
+            'class' => [],
+        ],
+            'a'    => [
+            'href'      => [],
+            'data-id'   => [],
+            'data-name' => [],
+        ],
+            'hr'   => [
+            'class' => [],
+        ],
+            'img'  => [
+            'src' => [],
+            'alt' => [],
+        ],
+            'i'    => [
+            'class'       => [],
+            'aria-hidden' => [],
+        ],
+        ];
+        echo  wp_kses( $html, $html_allowed_tags ) ;
     }
     
     public function cl_get_contacts_simple()
@@ -104,7 +138,7 @@ class ContactListPublicAjax
         $html = '';
         $atts = [];
         if ( isset( $_POST['cl_atts'] ) && $_POST['cl_atts'] ) {
-            $atts = unserialize( stripslashes( $_POST['cl_atts'] ) );
+            $atts = sanitize_text_field( unserialize( stripslashes( $_POST['cl_atts'] ) ) );
         }
         $meta_query = array(
             'relation' => 'AND',
@@ -121,7 +155,7 @@ class ContactListPublicAjax
             'title'            => 'ASC',
         );
         
-        if ( ORDER_BY == '_cl_first_name' ) {
+        if ( CONTACT_LIST_ORDER_BY == '_cl_first_name' ) {
             $meta_query[] = array(
                 'first_name_clause' => array(
                 'key'     => '_cl_first_name',
@@ -138,21 +172,21 @@ class ContactListPublicAjax
         if ( isset( $_POST[CONTACT_LIST_CAT1] ) && $_POST[CONTACT_LIST_CAT1] ) {
             $meta_query[] = array(
                 'key'     => '_cl_country',
-                'value'   => $_POST[CONTACT_LIST_CAT1],
+                'value'   => sanitize_text_field( $_POST[CONTACT_LIST_CAT1] ),
                 'compare' => 'LIKE',
             );
         }
         if ( isset( $_POST[CONTACT_LIST_CAT2] ) && $_POST[CONTACT_LIST_CAT2] ) {
             $meta_query[] = array(
                 'key'     => '_cl_state',
-                'value'   => $_POST[CONTACT_LIST_CAT2],
+                'value'   => sanitize_text_field( $_POST[CONTACT_LIST_CAT2] ),
                 'compare' => 'LIKE',
             );
         }
         if ( isset( $_POST[CONTACT_LIST_CAT3] ) && $_POST[CONTACT_LIST_CAT3] ) {
             $meta_query[] = array(
                 'key'     => '_cl_city',
-                'value'   => $_POST[CONTACT_LIST_CAT3],
+                'value'   => sanitize_text_field( $_POST[CONTACT_LIST_CAT3] ),
                 'compare' => 'LIKE',
             );
         }
@@ -163,16 +197,16 @@ class ContactListPublicAjax
                 array(
                 'taxonomy' => 'contact-group',
                 'field'    => 'slug',
-                'terms'    => $_POST['cl_cat'],
+                'terms'    => sanitize_title( $_POST['cl_cat'] ),
             ),
             );
         }
         $posts_per_page = -1;
         if ( isset( $s['contacts_per_page'] ) && $s['contacts_per_page'] ) {
-            $posts_per_page = $s['contacts_per_page'];
+            $posts_per_page = intval( $s['contacts_per_page'] );
         }
         $wp_query = new WP_Query( array(
-            'post_type'      => CONTACT_CPT,
+            'post_type'      => CONTACT_LIST_CPT,
             'post_status'    => 'publish',
             'posts_per_page' => (int) $posts_per_page,
             'meta_query'     => $meta_query,
@@ -188,21 +222,31 @@ class ContactListPublicAjax
         if ( $wp_query->found_posts == 0 ) {
             $html .= '<p>' . ContactListHelpers::getText( 'text_sr_no_contacts_found', __( 'No contacts found.', 'contact-list' ) ) . '</p>';
         }
-        echo  $html ;
-    }
-    
-    public function my_ajax_without_file()
-    {
-        ?>
-  
-      <script type="text/javascript" >
-      jQuery(document).ready(function($) {
-        ajaxurl = "<?php 
-        echo  admin_url( 'admin-ajax.php' ) ;
-        ?>"; // get ajaxurl
-      });
-      </script> 
-      <?php 
+        $html_allowed_tags = [
+            'div'  => [
+            'class' => [],
+        ],
+            'span' => [
+            'class' => [],
+        ],
+            'a'    => [
+            'href'            => [],
+            'class'           => [],
+            'data-contact-id' => [],
+        ],
+            'hr'   => [
+            'class' => [],
+        ],
+            'img'  => [
+            'src' => [],
+            'alt' => [],
+        ],
+            'i'    => [
+            'class'       => [],
+            'aria-hidden' => [],
+        ],
+        ];
+        echo  wp_kses( $html, $html_allowed_tags ) ;
     }
 
 }

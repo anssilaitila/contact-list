@@ -10,11 +10,11 @@ class ShortcodeContactList
         $exclude = [];
         $group_slug = '';
         $html = '';
-        $html .= ContactListHelpers::initLayout( $s, $atts, $elem_class );
+        //    $html .= ContactListHelpers::initLayout($s, $atts, $elem_class);
         if ( !isset( $s['hide_send_email_button'] ) ) {
             $html .= ContactListHelpers::modalSendMessageMarkup();
         }
-        $html .= '<div class="contact-list-container ' . $elem_class . ' ' . (( $layout ? 'contact-list-' . $layout : '' )) . '">';
+        $html .= '<div class="contact-list-container ' . sanitize_html_class( $elem_class ) . ' ' . (( $layout ? 'contact-list-' . sanitize_html_class( $layout ) : '' )) . '">';
         
         if ( isset( $atts['contact'] ) || isset( $_GET['contact_id'] ) ) {
             
@@ -29,7 +29,7 @@ class ShortcodeContactList
                 $html .= '<div id="contact-list-search">';
                 $html .= '<ul id="all-contacts">';
                 $wpb_all_query = new WP_Query( array(
-                    'post_type'      => CONTACT_CPT,
+                    'post_type'      => CONTACT_LIST_CPT,
                     'post_status'    => 'publish',
                     'posts_per_page' => 1,
                     'p'              => $contact,
@@ -38,17 +38,17 @@ class ShortcodeContactList
                 if ( $wpb_all_query->have_posts() ) {
                     while ( $wpb_all_query->have_posts() ) {
                         $wpb_all_query->the_post();
-                        $id = get_the_id();
+                        $id = intval( get_the_id() );
                         $html .= ContactListHelpers::singleContactMarkup( $id );
                     }
                 } else {
-                    $html .= '<p style="background: #f00; color: #fff; padding: 1rem; text-align: center;">' . __( 'Contact not found', 'contact-list' ) . ' (ID: ' . $contact . ')</p>';
+                    $html .= '<p style="background: #f00; color: #fff; padding: 1rem; text-align: center;">' . sanitize_text_field( __( 'Contact not found', 'contact-list' ) ) . ' (ID: ' . intval( $contact ) . ')</p>';
                 }
                 
                 $html .= '</ul>';
                 $html .= '</div><hr class="clear" />';
             } else {
-                $html .= '<p style="background: #f00; color: #fff; padding: 1rem; text-align: center;">' . __( 'Contact not found', 'contact-list' ) . ' (ID: ' . $contact . ')</p>';
+                $html .= '<p style="background: #f00; color: #fff; padding: 1rem; text-align: center;">' . sanitize_text_field( __( 'Contact not found', 'contact-list' ) ) . ' (ID: ' . intval( $contact ) . ')</p>';
             }
         
         } else {
@@ -70,7 +70,7 @@ class ShortcodeContactList
                 'title'            => 'ASC',
             );
             
-            if ( ORDER_BY == '_cl_first_name' && !isset( $atts['order_by'] ) || isset( $atts['order_by'] ) && $atts['order_by'] == 'first_name' ) {
+            if ( CONTACT_LIST_ORDER_BY == '_cl_first_name' && !isset( $atts['order_by'] ) || isset( $atts['order_by'] ) && $atts['order_by'] == 'first_name' ) {
                 $meta_query[] = array(
                     'first_name_clause' => array(
                     'key'     => '_cl_first_name',
@@ -87,21 +87,21 @@ class ShortcodeContactList
             if ( isset( $_GET[CONTACT_LIST_CAT1] ) && $_GET[CONTACT_LIST_CAT1] ) {
                 $meta_query[] = array(
                     'key'     => '_cl_country',
-                    'value'   => $_GET[CONTACT_LIST_CAT1],
+                    'value'   => sanitize_text_field( $_GET[CONTACT_LIST_CAT1] ),
                     'compare' => 'LIKE',
                 );
             }
             if ( isset( $_GET[CONTACT_LIST_CAT2] ) && $_GET[CONTACT_LIST_CAT2] ) {
                 $meta_query[] = array(
                     'key'     => '_cl_state',
-                    'value'   => $_GET[CONTACT_LIST_CAT2],
+                    'value'   => sanitize_text_field( $_GET[CONTACT_LIST_CAT2] ),
                     'compare' => 'LIKE',
                 );
             }
             if ( isset( $_GET[CONTACT_LIST_CAT3] ) && $_GET[CONTACT_LIST_CAT3] ) {
                 $meta_query[] = array(
                     'key'     => '_cl_city',
-                    'value'   => $_GET[CONTACT_LIST_CAT3],
+                    'value'   => sanitize_text_field( $_GET[CONTACT_LIST_CAT3] ),
                     'compare' => 'LIKE',
                 );
             }
@@ -113,7 +113,7 @@ class ShortcodeContactList
                     array(
                     'taxonomy' => 'contact-group',
                     'field'    => 'slug',
-                    'terms'    => $_GET['cl_cat'],
+                    'terms'    => sanitize_title( $_GET['cl_cat'] ),
                 ),
                 );
             } elseif ( $group_slug ) {
@@ -122,12 +122,12 @@ class ShortcodeContactList
             $paged = ( get_query_var( 'paged' ) ? absint( get_query_var( 'paged' ) ) : 1 );
             $posts_per_page = -1;
             if ( isset( $s['contacts_per_page'] ) && $s['contacts_per_page'] ) {
-                $posts_per_page = $s['contacts_per_page'];
+                $posts_per_page = intval( $s['contacts_per_page'] );
             }
             $wp_query = new WP_Query( array(
                 'post_type'      => 'contact',
                 'post_status'    => 'publish',
-                'posts_per_page' => (int) $posts_per_page,
+                'posts_per_page' => $posts_per_page,
                 'paged'          => $paged,
                 'post__not_in'   => $exclude,
                 'meta_query'     => $meta_query,
@@ -143,13 +143,15 @@ class ShortcodeContactList
                 'tax_query'      => $tax_query,
                 'orderby'        => $order_by,
             ) );
+            
             if ( !isset( $atts['hide_search'] ) ) {
-                $html .= '<input type="text" id="search-contacts" placeholder="' . (( isset( $s['search_contacts'] ) && $s['search_contacts'] ? $s['search_contacts'] : __( 'Search contacts...', 'contact-list' ) )) . '">';
+                $placeholder = ( isset( $s['search_contacts'] ) && $s['search_contacts'] ? ContactListHelpers::sanitize_attr_value( $s['search_contacts'] ) : ContactListHelpers::sanitize_attr_value( __( 'Search contacts...', 'contact-list' ) ) );
+                $html .= '<input type="text" id="search-contacts" placeholder="' . $placeholder . '">';
             }
+            
             if ( !isset( $atts['hide_filters'] ) ) {
                 $html .= ContactListPublicHelpers::searchFormMarkup( $atts, $s, $exclude );
             }
-            //      $html .= '<div id="contact-list-contacts-found"></div>';
             
             if ( $wp_query_for_filter->have_posts() ) {
                 $html .= '<div class="contact-list-basic-nothing-found">';

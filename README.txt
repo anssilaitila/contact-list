@@ -3,7 +3,7 @@ Contributors: anssilaitila, freemius
 Tags: business directory, business listing, staff directory, staff list, address book, directory plugin, company directory, church directory, contact directory, directory, contacts, chamber of commerce
 Requires at least: 4.0.0
 Tested up to: 5.8
-Stable tag: 2.9.42
+Stable tag: 2.9.43
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -134,6 +134,9 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 6. Contact management
 
 == Changelog ==
+
+= 2.9.43 - 2021-08-26 =
+* Bug fixes
 
 = 2.9.42 - 2021-08-22 =
 * (Professional + Business) Front-end editor is now usable also after filtering contacts
