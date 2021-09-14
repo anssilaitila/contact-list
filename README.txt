@@ -3,7 +3,7 @@ Contributors: anssilaitila, freemius
 Tags: business directory, business listing, staff directory, staff list, address book, directory plugin, company directory, church directory, contact directory, directory, contacts, chamber of commerce
 Requires at least: 4.0.0
 Tested up to: 5.8
-Stable tag: 2.9.43
+Stable tag: 2.9.44
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -135,8 +135,15 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 
 == Changelog ==
 
-= 2.9.43 - 2021-08-26 =
+= 2.9.44 - 2021-09-14 =
+* (All plans) Fix: Email notify is now sent when adding new contacts using the shortcode [contact_list_form] and the setting "Automatically publish user submitted contacts" is active
+* (Free + All plans) Various tweaks and fixes
+
+= 2.9.43 - 2021-08-31 =
 * Bug fixes
+
+= 2.9.42.1 - 2021-08-23 =
+* Fix: Search filter on shortcode [contact_list group=GROUP_SLUG] now shows the subcategories / subgroups properly
 
 = 2.9.42 - 2021-08-22 =
 * (Professional + Business) Front-end editor is now usable also after filtering contacts

@@ -2614,6 +2614,7 @@ class ContactListSettings
                 echo  esc_html__( 'Custom', 'contact-list' ) ;
                 ?></label>
 
+              <div style="margin-top: 5px; margin-bottom: 16px;">
               <?php 
                 $url = 'https://fontawesome.com/v4.7/cheatsheet/';
                 echo  sprintf( wp_kses(
@@ -2627,6 +2628,7 @@ class ContactListSettings
                     )
                 ), esc_url( $url ) ) ;
                 ?>
+              </div>
               
             </div>
 
@@ -2651,7 +2653,7 @@ class ContactListSettings
             $options = get_option( 'contact_list_settings' );
             $layout = '';
             if ( isset( $options[$args['field_name']] ) ) {
-                $layout = $options[$args['field_name']];
+                $layout = sanitize_text_field( $options[$args['field_name']] );
             }
             ?>    
       <select name="contact_list_settings[<?php 
@@ -2692,7 +2694,7 @@ class ContactListSettings
             $options = get_option( 'contact_list_settings' );
             $card_background = '';
             if ( isset( $options[$args['field_name']] ) ) {
-                $card_background = $options[$args['field_name']];
+                $card_background = sanitize_text_field( $options[$args['field_name']] );
             }
             ?>    
       <select name="contact_list_settings[<?php 
@@ -2724,7 +2726,7 @@ class ContactListSettings
             $options = get_option( 'contact_list_settings' );
             $card_border = '';
             if ( isset( $options[$args['field_name']] ) ) {
-                $card_border = $options[$args['field_name']];
+                $card_border = sanitize_text_field( $options[$args['field_name']] );
             }
             ?>    
       <select name="contact_list_settings[<?php 
@@ -2756,7 +2758,7 @@ class ContactListSettings
             $options = get_option( 'contact_list_settings' );
             $card_image_style = '';
             if ( isset( $options[$args['field_name']] ) ) {
-                $card_image_style = $options[$args['field_name']];
+                $card_image_style = sanitize_text_field( $options[$args['field_name']] );
             }
             ?>    
       <select name="contact_list_settings[<?php 
@@ -2788,7 +2790,7 @@ class ContactListSettings
             $options = get_option( 'contact_list_settings' );
             $val = '';
             if ( isset( $options[$args['field_name']] ) ) {
-                $val = $options[$args['field_name']];
+                $val = sanitize_text_field( $options[$args['field_name']] );
             }
             ?>    
       <select name="contact_list_settings[<?php 

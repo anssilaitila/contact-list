@@ -85,6 +85,14 @@ class Contact_List_Admin
                 'all'
             );
             wp_add_inline_style( $this->plugin_name, $contact_edit_css );
+        } elseif ( $current_screen_id === 'edit-contact' ) {
+            wp_enqueue_style(
+                $this->plugin_name . '-tipso',
+                CONTACT_LIST_URI . 'dist/tipso.min.css',
+                array(),
+                $this->version,
+                'all'
+            );
         } elseif ( $hook == 'contact_page_contact-list-printable' ) {
             // WP admin / Contact List / Printable list
             $printable_inline_css = ContactListAdminInlineStyles::printableListStyles();
@@ -115,13 +123,16 @@ class Contact_List_Admin
         if ( isset( $current_screen->id ) ) {
             $current_screen_id = $current_screen->id;
         }
-        wp_enqueue_script(
-            $this->plugin_name,
-            CONTACT_LIST_URI . 'dist/js/a.js',
-            array( 'jquery' ),
-            $this->version,
-            false
-        );
+        $is_premium = 0;
+        if ( !$is_premium ) {
+            wp_enqueue_script(
+                $this->plugin_name,
+                CONTACT_LIST_URI . 'dist/js/a.js',
+                array( 'jquery' ),
+                $this->version,
+                false
+            );
+        }
         
         if ( $hook === 'edit-tags.php' || $hook === 'contact_page_contact-list-shortcodes' ) {
             wp_enqueue_script(
@@ -153,8 +164,21 @@ class Contact_List_Admin
                 $this->version,
                 true
             );
-            $inline_js = ContactListAdminInlineScripts::help_support_scripts();
-            wp_add_inline_script( $this->plugin_name, $inline_js );
+        } elseif ( $current_screen_id === 'edit-contact' ) {
+            wp_enqueue_script(
+                $this->plugin_name . '-tipso',
+                CONTACT_LIST_URI . 'dist/tipso.min.js',
+                array( 'jquery' ),
+                $this->version,
+                true
+            );
+            wp_enqueue_script(
+                $this->plugin_name . '-clipboard',
+                '/wp-includes/js/clipboard.js',
+                array( 'jquery' ),
+                $this->version,
+                true
+            );
         } elseif ( $current_screen_id == 'contact' && ($hook === 'post-new.php' || 'post.php') ) {
             $inline_js = ContactListAdminInlineScripts::contact_edit_scripts();
             wp_add_inline_script( $this->plugin_name, $inline_js );

@@ -67,9 +67,15 @@ class ContactListAdminList
         
         if ( $column_name == 'email' ) {
             $email = sanitize_email( get_post_meta( $post_ID, '_cl_email', true ) );
+            
             if ( $email ) {
                 echo  esc_html( $email ) ;
+                $is_premium = 0;
+                if ( !$is_premium ) {
+                    echo  '<button class="contact-list-request-update contact-list-request-update-free contact-list-request-update-' . esc_attr( $post_ID ) . '" data-contact-id="' . esc_attr( $post_ID ) . '" disabled>' . esc_html__( 'Request update', 'contact-list' ) . '</button><div class="contact-list-request-update-info contact-list-request-update-info-' . esc_attr( $post_ID ) . '"></div>' ;
+                }
             }
+        
         }
         
         

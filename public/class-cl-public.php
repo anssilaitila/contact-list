@@ -64,6 +64,13 @@ class Contact_List_Public
             $this->version,
             'all'
         );
+        wp_enqueue_style(
+            $this->plugin_name . '-font-awesome',
+            CONTACT_LIST_URI . 'dist/font-awesome-4.7.0/css/font-awesome.min.css',
+            array(),
+            $this->version,
+            'all'
+        );
     }
     
     /**
@@ -77,13 +84,16 @@ class Contact_List_Public
         $settings = array(
             'focus_on_search_field' => ( isset( $s['focus_on_search_field'] ) && $s['focus_on_search_field'] ? 1 : 0 ),
         );
-        wp_register_script(
-            $this->plugin_name,
-            esc_url( CONTACT_LIST_URI ) . 'dist/js/p.js',
-            array( 'jquery' ),
-            $this->version,
-            false
-        );
+        $is_premium = 0;
+        if ( !$is_premium ) {
+            wp_register_script(
+                $this->plugin_name,
+                esc_url( CONTACT_LIST_URI ) . 'dist/js/p.js',
+                array( 'jquery' ),
+                $this->version,
+                false
+            );
+        }
         wp_localize_script( $this->plugin_name, 'contact_list_settings', $settings );
         wp_enqueue_script( $this->plugin_name );
     }

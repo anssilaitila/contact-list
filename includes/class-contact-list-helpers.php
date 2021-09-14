@@ -196,9 +196,12 @@ class ContactListHelpers
         $c = get_post_custom( $id );
         $featured_img_url = esc_url_raw( get_the_post_thumbnail_url( $id, 'contact-list-contact' ) );
         $card_height_markup = '';
-        if ( isset( $s['card_height'] ) && $s['card_height'] ) {
-            $card_height_markup .= 'style="height: ' . intval( $s['card_height'] ) . 'px;"';
+        
+        if ( isset( $atts['card_height'] ) ) {
+            $card_height_markup .= 'style="height: ' . intval( $atts['card_height'] ) . 'px;"';
+        } elseif ( isset( $s['card_height'] ) && $s['card_height'] ) {
         }
+        
         $html = '';
         $html .= '<li id="cl-' . $id . '">';
         $html .= '<div class="contact-list-contact-container" ' . $card_height_markup . '>';
@@ -333,7 +336,7 @@ class ContactListHelpers
                     if ( isset( $c['_cl_state'][0] ) && $c['_cl_state'][0] ) {
                         $html .= ' ';
                     }
-                    $html .= esc_html( $c['_cl_zip_code'][0] );
+                    $html .= sanitize_text_field( $c['_cl_zip_code'][0] );
                     $zip_code_last = 1;
                 }
                 
@@ -434,8 +437,8 @@ class ContactListHelpers
         $html .= '</div>';
         
         if ( $featured_img_url ) {
-            $featured_img_id = get_post_thumbnail_id( $id );
-            $featured_img_alt = get_post_meta( $featured_img_id, '_wp_attachment_image_alt', true );
+            $featured_img_id = intval( get_post_thumbnail_id( $id ) );
+            $featured_img_alt = sanitize_text_field( get_post_meta( $featured_img_id, '_wp_attachment_image_alt', true ) );
             $html .= '<div class="contact-list-main-right"><div class="contact-list-image ' . (( isset( $s['contact_image_style'] ) && $s['contact_image_style'] ? 'contact-list-image-' . ContactListHelpers::sanitize_attr_value( $s['contact_image_style'] ) : '' )) . ' ' . (( isset( $s['contact_image_shadow'] ) && $s['contact_image_shadow'] ? 'contact-list-image-shadow' : '' )) . '"><img src="' . esc_url_raw( $featured_img_url ) . '" alt="' . ContactListHelpers::sanitize_attr_value( $featured_img_alt ) . '" /></div></div>';
         }
         
@@ -450,7 +453,7 @@ class ContactListHelpers
         $layout = '';
         
         if ( isset( $atts['layout'] ) ) {
-            $layout = $atts['layout'];
+            $layout = sanitize_text_field( $atts['layout'] );
             
             if ( $layout == '2-columns' ) {
                 $layout = '2-cards-on-the-same-row';
@@ -461,7 +464,7 @@ class ContactListHelpers
             }
         
         } elseif ( isset( $s['layout'] ) && $s['layout'] ) {
-            $layout = $s['layout'];
+            $layout = sanitize_text_field( $s['layout'] );
         }
         
         return $layout;

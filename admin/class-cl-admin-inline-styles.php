@@ -42,8 +42,6 @@ class ContactListAdminInlineStyles {
     
   }
 
-// if (isset($_GET['search'])) {
-
   public static function printableListStyles() {
   
     $s = get_option('contact_list_settings');

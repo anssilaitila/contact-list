@@ -6,9 +6,6 @@ class ContactListPublicAjax
     {
         $html = '';
         $atts = [];
-        if ( isset( $_POST['cl_atts'] ) && $_POST['cl_atts'] ) {
-            $atts = sanitize_text_field( unserialize( stripslashes( $_POST['cl_atts'] ) ) );
-        }
         $meta_query = array(
             'relation' => 'AND',
         );
@@ -114,9 +111,11 @@ class ContactListPublicAjax
             'class' => [],
         ],
             'a'    => [
-            'href'      => [],
-            'data-id'   => [],
-            'data-name' => [],
+            'href'            => [],
+            'data-id'         => [],
+            'data-name'       => [],
+            'class'           => [],
+            'data-contact-id' => [],
         ],
             'hr'   => [
             'class' => [],

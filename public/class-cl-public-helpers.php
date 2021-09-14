@@ -226,7 +226,7 @@ class ContactListPublicHelpers
                 $html .= '<select name="cl_cat" class="' . sanitize_html_class( ContactListHelpers::getSearchDropdownClass() ) . '">';
                 $html .= '<option value="">' . ContactListHelpers::getText( 'text_select_category', __( 'Select category', 'contact-list' ) ) . '</option>';
                 foreach ( $groups as $g ) {
-                    $t_id = $g->term_id;
+                    $t_id = intval( $g->term_id );
                     $custom_fields = get_option( "taxonomy_term_{$t_id}" );
                     if ( !isset( $custom_fields['hide_group'] ) ) {
                         $html .= '<option value="' . sanitize_title( $g->slug ) . '" ' . (( isset( $_GET['cl_cat'] ) && $_GET['cl_cat'] == $g->slug ? 'selected="selected"' : '' )) . '>' . sanitize_text_field( $g->name ) . '</option>';
@@ -286,9 +286,11 @@ class ContactListPublicHelpers
         
         if ( isset( $s['last_name_before_first_name'] ) ) {
             $contact_fullname = $c['_cl_last_name'][0] . (( isset( $c['_cl_first_name'] ) ? ' ' . $c['_cl_first_name'][0] : '' ));
+            $contact_fullname = sanitize_text_field( $contact_fullname );
             $html .= '<div class="contact-list-hidden-name">' . (( isset( $c['_cl_first_name'] ) ? sanitize_text_field( $c['_cl_first_name'][0] ) . ' ' : '' )) . sanitize_text_field( $c['_cl_last_name'][0] ) . '</div>';
         } else {
             $contact_fullname = (( isset( $c['_cl_first_name'] ) ? $c['_cl_first_name'][0] . ' ' : '' )) . $c['_cl_last_name'][0];
+            $contact_fullname = sanitize_text_field( $contact_fullname );
             $html .= '<div class="contact-list-hidden-name">' . sanitize_text_field( $c['_cl_last_name'][0] ) . (( isset( $c['_cl_first_name'] ) ? ' ' . sanitize_text_field( $c['_cl_first_name'][0] ) : '' )) . '</div>';
         }
         
@@ -310,7 +312,7 @@ class ContactListPublicHelpers
             $html .= '<div class="contact-list-simple-list-col"><span>';
             
             if ( isset( $c['_cl_email'][0] ) ) {
-                $mailto = $c['_cl_email'][0];
+                $mailto = sanitize_email( $c['_cl_email'][0] );
                 $mailto_obs = '';
                 for ( $i = 0 ;  $i < strlen( $mailto ) ;  $i++ ) {
                     $mailto_obs .= '&#' . ord( $mailto[$i] ) . ';';
@@ -377,7 +379,7 @@ class ContactListPublicHelpers
                     $url = '@(http)?(s)?(://)?(([a-zA-Z])([-\\w]+\\.)+([^\\s\\.]+[^\\s]*)+[^,.\\s])@';
                     
                     if ( isset( $c['_cl_custom_field_' . $n] ) ) {
-                        $cf_value = $c['_cl_custom_field_' . $n][0];
+                        $cf_value = sanitize_text_field( $c['_cl_custom_field_' . $n][0] );
                         
                         if ( is_email( $cf_value ) ) {
                             $mailto = $cf_value;

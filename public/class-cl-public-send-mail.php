@@ -26,7 +26,13 @@ class ContactListPublicSendMail
         $body .= ( isset( $_POST['body'] ) ? nl2br( sanitize_textarea_field( stripslashes( $_POST['body'] ) ) ) : '' );
         $is_premium = 0;
         if ( !$is_premium ) {
-            $body .= "<br /><br />-- <br />" . sanitize_text_field( __( 'Sent by Contact List for WordPress', 'contact-list' ) );
+            $body .= '<table cellpadding="0" cellspacing="0" border="0" style="width: 100%; margin-top: 20px;">
+                <tr>
+                  <td style="border-top: 1px solid #eee; color: #bbb; padding-top: 3px; width: 100%;">
+                    ' . sanitize_text_field( __( 'Sent by Contact List for WordPress', 'contact-list' ) ) . '
+                  </td>
+                </tr>
+                </table>';
         }
         $recipient_emails = '';
         $recipient_emails_array = [];

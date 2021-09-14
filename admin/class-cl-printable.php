@@ -117,7 +117,7 @@ class ContactListPrintable {
         
             $meta_query []= array(
               'first_name_clause' => array(
-                'key' => '_cl_first_name',
+                'key'     => '_cl_first_name',
                 'compare' => 'EXISTS',
               )
             );
