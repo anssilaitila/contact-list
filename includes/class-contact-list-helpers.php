@@ -359,10 +359,8 @@ class ContactListHelpers
         }
         
         $custom_fields = [ 1 ];
+        $html .= '<div class="contact-list-custom-fields-container">';
         foreach ( $custom_fields as $n ) {
-            if ( $n == 1 ) {
-                $html .= '<div class="contact-list-custom-fields-container">';
-            }
             if ( isset( $s['custom_field_' . $n . '_hide_from_contact_card'] ) ) {
                 continue;
             }
@@ -383,13 +381,16 @@ class ContactListHelpers
                     if ( isset( $s['custom_field_' . $n . '_link_text'] ) && $s['custom_field_' . $n . '_link_text'] ) {
                         $link_title = sanitize_text_field( $s['custom_field_' . $n . '_link_text'] );
                     }
+                    $disable_automatic_linking = 0;
+                    if ( !$disable_automatic_linking ) {
+                        
+                        if ( $link_title ) {
+                            $cf_value = preg_replace( $url, '<a href="http$2://$4" target="_blank" title="$0">' . $link_title . '</a>', $cf_value );
+                        } else {
+                            $cf_value = preg_replace( $url, '<a href="http$2://$4" target="_blank" title="$0">$0</a>', $cf_value );
+                        }
                     
-                    if ( $link_title ) {
-                        $cf_value = preg_replace( $url, '<a href="http$2://$4" target="_blank" title="$0">' . $link_title . '</a>', $cf_value );
-                    } else {
-                        $cf_value = preg_replace( $url, '<a href="http$2://$4" target="_blank" title="$0">$0</a>', $cf_value );
                     }
-                
                 }
                 
                 
@@ -405,11 +406,9 @@ class ContactListHelpers
                 }
             
             }
-            
-            if ( $n == 6 ) {
-                $html .= '</div>';
-            }
+        
         }
+        $html .= '</div>';
         
         if ( isset( $c['_cl_description'][0] ) && $c['_cl_description'][0] ) {
             $html .= '<div class="contact-list-description">';

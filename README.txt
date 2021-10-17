@@ -1,13 +1,13 @@
-=== Business Directory, Staff Directory and Address Book Plugin - Contact List ===
+=== Contact List – Easy Business Directory, Staff Directory and Address Book Plugin ===
 Contributors: anssilaitila, freemius
 Tags: business directory, business listing, staff directory, staff list, address book, directory plugin, company directory, church directory, contact directory, directory, contacts, chamber of commerce
 Requires at least: 4.0.0
 Tested up to: 5.8
-Stable tag: 2.9.44
+Stable tag: 2.9.45
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Easy business directory plugin for listing any contacts on your WP site. Search and filter contacts, send messages, print lists & more.
+A full-featured directory plugin for creating a business directory, staff directory or an address book. Usable for chamber of commerce, company directory and many more...
 
 == Description ==
 = The most user friendly business directory for WordPress =
@@ -134,6 +134,10 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 6. Contact management
 
 == Changelog ==
+
+= 2.9.45 - 2021-10-17 =
+* (All plans) New setting: Disable automatic linking of partial custom field content that look like urls
+* (Free + All plans) Contact card html markup fix
 
 = 2.9.44 - 2021-09-14 =
 * (All plans) Fix: Email notify is now sent when adding new contacts using the shortcode [contact_list_form] and the setting "Automatically publish user submitted contacts" is active

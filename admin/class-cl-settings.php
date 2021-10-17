@@ -685,6 +685,17 @@ class ContactListSettings
             'contact-list'
         );
         add_settings_field(
+            'contact-list-' . $only_pro . 'disable_automatic_linking',
+            sanitize_text_field( __( 'Disable automatic linking of partial custom field content that look like urls', 'contact-list' ) ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+            'label_for'  => 'contact-list-' . $only_pro . 'disable_automatic_linking',
+            'field_name' => $only_pro . 'disable_automatic_linking',
+        )
+        );
+        add_settings_field(
             'contact-list-custom_field_1_title',
             sanitize_text_field( __( 'Custom field 1 title', 'contact-list' ) ),
             array( $this, 'input_render' ),
