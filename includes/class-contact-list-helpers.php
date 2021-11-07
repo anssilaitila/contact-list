@@ -243,12 +243,8 @@ class ContactListHelpers
         
         if ( isset( $c['_cl_email'][0] ) && is_email( $c['_cl_email'][0] ) ) {
             $mailto = sanitize_email( $c['_cl_email'][0] );
-            $mailto_obs = '';
-            for ( $i = 0 ;  $i < strlen( $mailto ) ;  $i++ ) {
-                $mailto_obs .= '&#' . ord( $mailto[$i] ) . ';';
-            }
             if ( isset( $c['_cl_email'][0] ) && is_email( $c['_cl_email'][0] ) && !isset( $s['hide_contact_email'] ) ) {
-                $html .= '<span class="contact-list-email">' . (( $c['_cl_email'][0] ? '<a href="mailto:' . sanitize_text_field( $mailto_obs ) . '">' . sanitize_text_field( $mailto_obs ) . '</a>' : '' )) . '</span>';
+                $html .= '<span class="contact-list-email">' . (( $c['_cl_email'][0] ? '<a href="' . esc_url_raw( 'mailto:' . antispambot( $mailto ) ) . '">' . sanitize_text_field( antispambot( $mailto ) ) . '</a>' : '' )) . '</span>';
             }
         }
         
@@ -371,10 +367,7 @@ class ContactListHelpers
                 
                 if ( is_email( $cf_value ) ) {
                     $mailto = sanitize_email( $cf_value );
-                    $mailto_obs = '';
-                    for ( $i = 0 ;  $i < strlen( $mailto ) ;  $i++ ) {
-                        $mailto_obs .= '&#' . ord( $mailto[$i] ) . ';';
-                    }
+                    $mailto_obs = antispambot( $mailto );
                     $cf_value = '<a href="mailto:' . sanitize_text_field( $mailto_obs ) . '">' . sanitize_text_field( $mailto_obs ) . '</a>';
                 } else {
                     $link_title = '';

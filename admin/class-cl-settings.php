@@ -84,6 +84,18 @@ class ContactListSettings
         )
         );
         add_settings_field(
+            'contact-list-' . $only_pro . 'breadcrumbs_home_title',
+            sanitize_text_field( __( 'Title for home in breadcrumbs', 'contact-list' ) ),
+            array( $this, 'input_render' ),
+            'contact-list',
+            'contact-list_section_general',
+            array(
+            'label_for'   => 'contact-list-' . $only_pro . 'breadcrumbs_home_title',
+            'field_name'  => $only_pro . 'breadcrumbs_home_title',
+            'placeholder' => 'Home',
+        )
+        );
+        add_settings_field(
             'contact-list-' . $only_pro . 'group_select',
             sanitize_text_field( __( 'Display group checkboxes on public form', 'contact-list' ) ),
             array( $this, 'checkbox_render' ),
