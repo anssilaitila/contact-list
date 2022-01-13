@@ -217,13 +217,14 @@ class ContactListPublicHelpers
         
         
         if ( isset( $s['show_category_select_in_search'] ) && $s['show_category_select_in_search'] ) {
+            $category_select_shown = 0;
             
-            if ( ContactListHelpers::isPremium() == 0 || isset( $s['simpler_category_dropdown'] ) ) {
+            if ( !$category_select_shown && (ContactListHelpers::isPremium() == 0 || isset( $s['simpler_category_dropdown'] )) ) {
                 $groups = get_terms( array(
                     'taxonomy'   => 'contact-group',
                     'hide_empty' => true,
                 ) );
-                $html .= '<select name="cl_cat" class="' . sanitize_html_class( ContactListHelpers::getSearchDropdownClass() ) . '">';
+                $html .= '<select name="cl_cat" class="' . esc_attr( ContactListHelpers::getSearchDropdownClass() ) . '">';
                 $html .= '<option value="">' . ContactListHelpers::getText( 'text_select_category', __( 'Select category', 'contact-list' ) ) . '</option>';
                 foreach ( $groups as $g ) {
                     $t_id = intval( $g->term_id );
@@ -233,7 +234,7 @@ class ContactListPublicHelpers
                     }
                 }
                 $html .= '</select>';
-            } else {
+            } elseif ( !$category_select_shown ) {
             }
             
             $filter_active = 1;

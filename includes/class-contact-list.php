@@ -300,12 +300,13 @@ class Contact_List
         $plugin_public_send_mail = new ContactListPublicSendMail();
         $plugin_public_ajax = new ContactListPublicAjax();
         $plugin_public_load = new ContactListPublicLoad();
+        $plugin_admin_send_email = new ContactListAdminSendEmail();
         $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
         $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public_load, 'public_inline_styles' );
         $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
         $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public_load, 'public_inline_scripts' );
         $this->loader->add_action( 'init', $plugin_public, 'register_shortcodes' );
-        // Send mail
+        // Send mail to a single contact
         $this->loader->add_action( 'wp_ajax_nopriv_cl_send_mail_public', $plugin_public_send_mail, 'cl_send_mail_public' );
         $this->loader->add_action( 'wp_ajax_cl_send_mail_public', $plugin_public_send_mail, 'cl_send_mail_public' );
         // Ajax query

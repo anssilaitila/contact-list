@@ -298,6 +298,19 @@ class ContactListSettings
             'field_name' => 'hide_contact_email',
         )
         );
+        if ( cl_fs()->is_free_plan() || cl_fs()->is_plan_or_trial( 'pro' ) || cl_fs()->is_plan_or_trial( 'business' ) ) {
+            add_settings_field(
+                'contact-list-' . $only_pro . 'send_as_bcc_to_group',
+                sanitize_text_field( __( 'Send messages to groups as Bcc', 'contact-list' ) ),
+                array( $this, 'checkbox_render' ),
+                'contact-list',
+                'contact-list_tab_' . $tab,
+                array(
+                'label_for'  => 'contact-list-' . $only_pro . 'send_as_bcc_to_group',
+                'field_name' => $only_pro . 'send_as_bcc_to_group',
+            )
+            );
+        }
         add_settings_field(
             'contact-list-' . $only_pro . 'activate_recaptcha',
             sanitize_text_field( __( 'Activate reCAPTCHA', 'contact-list' ) ),
@@ -602,6 +615,17 @@ class ContactListSettings
         )
         );
         add_settings_field(
+            'contact-list-' . $only_pro . 'simpler_category_dropdown',
+            sanitize_text_field( __( 'Simpler version of category dropdown (without subcategories and numbers of contacts)', 'contact-list' ) ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+            'label_for'  => 'contact-list-' . $only_pro . 'simpler_category_dropdown',
+            'field_name' => $only_pro . 'simpler_category_dropdown',
+        )
+        );
+        add_settings_field(
             'contact-list-' . $only_pro . 'show_cf_1_select_in_search',
             sanitize_text_field( __( 'Show custom field 1 select', 'contact-list' ) ),
             array( $this, 'checkbox_render' ),
@@ -665,17 +689,6 @@ class ContactListSettings
             array(
             'label_for'  => 'contact-list-' . $only_pro . 'show_cf_6_select_in_search',
             'field_name' => $only_pro . 'show_cf_6_select_in_search',
-        )
-        );
-        add_settings_field(
-            'contact-list-' . $only_pro . 'simpler_category_dropdown',
-            sanitize_text_field( __( 'Simpler version of category dropdown (without subcategories and numbers of contacts)', 'contact-list' ) ),
-            array( $this, 'checkbox_render' ),
-            'contact-list',
-            'contact-list_tab_' . $tab,
-            array(
-            'label_for'  => 'contact-list-' . $only_pro . 'simpler_category_dropdown',
-            'field_name' => $only_pro . 'simpler_category_dropdown',
         )
         );
         add_settings_field(
@@ -2327,6 +2340,12 @@ class ContactListSettings
         <?php 
                 
                 if ( $field_name == '_FREE_simple_list_modal' ) {
+                    ?>
+          <?php 
+                    $plan_required = 'Professional';
+                    ?>
+        <?php 
+                } elseif ( $field_name == '_FREE_send_as_bcc_to_group' ) {
                     ?>
           <?php 
                     $plan_required = 'Professional';

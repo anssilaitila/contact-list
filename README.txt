@@ -3,7 +3,7 @@ Contributors: anssilaitila, freemius
 Tags: business directory, business listing, staff directory, staff list, address book, directory plugin, company directory, church directory, contact directory, directory, contacts, chamber of commerce
 Requires at least: 4.0.0
 Tested up to: 5.8
-Stable tag: 2.9.46
+Stable tag: 2.9.48
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -134,6 +134,13 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 6. Contact management
 
 == Changelog ==
+
+= 2.9.48 - 2022-01-13 =
+* (Free + All plans) Fix: Category dropdown is now normally shown in the search form
+
+= 2.9.47 - 2022-01-02 =
+* (Professional + Business): New setting: Send messages to groups as Bcc (reCAPTCHA and email tab)
+* (Free + All plans) Minor tweaks and fixes
 
 = 2.9.46 - 2021-11-07 =
 * (All plans) Back links replaced with breadcrumbs on [contact_list_groups]
