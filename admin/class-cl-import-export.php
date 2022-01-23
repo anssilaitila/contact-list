@@ -136,6 +136,14 @@ class ContactListImportExport
             ?></li>
                 <li><?php 
             echo  esc_html__( 'Instagram URL', 'contact-list' ) ;
+            ?></li>
+                <li><?php 
+            echo  esc_html__( 'Phone 2', 'contact-list' ) ;
+            ?> <span class="new-feature-inline"><?php 
+            echo  esc_html__( 'New', 'contact-list' ) ;
+            ?></span></li>
+                <li><?php 
+            echo  esc_html__( 'Phone 3', 'contact-list' ) ;
             ?> <span class="new-feature-inline"><?php 
             echo  esc_html__( 'New', 'contact-list' ) ;
             ?></span></li>
@@ -261,6 +269,14 @@ class ContactListImportExport
             ?></span></li>
               <li><?php 
             echo  esc_html__( 'Instagram URL', 'contact-list' ) ;
+            ?></li>
+              <li><?php 
+            echo  esc_html__( 'Phone 2', 'contact-list' ) ;
+            ?> <span class="new-feature-inline"><?php 
+            echo  esc_html__( 'New', 'contact-list' ) ;
+            ?></span></li>
+              <li><?php 
+            echo  esc_html__( 'Phone 3', 'contact-list' ) ;
             ?> <span class="new-feature-inline"><?php 
             echo  esc_html__( 'New', 'contact-list' ) ;
             ?></span></li>

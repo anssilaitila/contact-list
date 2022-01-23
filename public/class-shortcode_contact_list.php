@@ -10,7 +10,6 @@ class ShortcodeContactList
         $exclude = [];
         $group_slug = '';
         $html = '';
-        //    $html .= ContactListHelpers::initLayout($s, $atts, $elem_class);
         if ( !isset( $s['hide_send_email_button'] ) ) {
             $html .= ContactListHelpers::modalSendMessageMarkup();
         }

@@ -41,7 +41,7 @@ class ContactListShortcodes
 
       <div class="contact-list-examples">
         <p><?php 
-        echo  esc_html__( 'For support using the plugin please contact us at', 'contact-list' ) . ' <a href="https://www.contactlistpro.com/support/" target="_blank">contactlistpro.com/support/</a>.' ;
+        echo  esc_html__( 'For support using the plugin please contact us at', 'contact-list' ) . ' <a href="https://www.contactlistpro.com/support/?utm_source=plugin-shortcodes" target="_blank">contactlistpro.com/support/</a>.' ;
         ?></p>
       </div>
 

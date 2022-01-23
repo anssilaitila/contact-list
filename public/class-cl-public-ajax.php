@@ -94,37 +94,38 @@ class ContactListPublicAjax
             $html .= '<p>' . ContactListHelpers::getText( 'text_sr_no_contacts_found', __( 'No contacts found.', 'contact-list' ) ) . '</p>';
         }
         $html_allowed_tags = [
-            'div'  => [
+            'div'    => [
             'id'    => [],
             'class' => [],
             'style' => [],
         ],
-            'ul'   => [
+            'ul'     => [
             'id'    => [],
             'class' => [],
         ],
-            'li'   => [
+            'li'     => [
             'id'    => [],
             'class' => [],
         ],
-            'span' => [
+            'span'   => [
             'class' => [],
         ],
-            'a'    => [
+            'strong' => [],
+            'a'      => [
             'href'            => [],
             'data-id'         => [],
             'data-name'       => [],
             'class'           => [],
             'data-contact-id' => [],
         ],
-            'hr'   => [
+            'hr'     => [
             'class' => [],
         ],
-            'img'  => [
+            'img'    => [
             'src' => [],
             'alt' => [],
         ],
-            'i'    => [
+            'i'      => [
             'class'       => [],
             'aria-hidden' => [],
         ],

@@ -2136,6 +2136,17 @@ class ContactListSettings
                 );
             }
         }
+        add_settings_field(
+            'contact-list-' . $only_pro . 'can_add_contacts',
+            sanitize_text_field( __( 'Allow the roles above also to add new contacts', 'contact-list' ) ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+            'label_for'  => 'contact-list-' . $only_pro . 'can_add_contacts',
+            'field_name' => $only_pro . 'can_add_contacts',
+        )
+        );
     }
     
     public function textarea_render( $args )
@@ -2346,6 +2357,12 @@ class ContactListSettings
                     ?>
         <?php 
                 } elseif ( $field_name == '_FREE_send_as_bcc_to_group' ) {
+                    ?>
+          <?php 
+                    $plan_required = 'Professional';
+                    ?>
+        <?php 
+                } elseif ( $field_name == '_FREE_can_add_contacts' ) {
                     ?>
           <?php 
                     $plan_required = 'Professional';

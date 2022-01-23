@@ -2,8 +2,8 @@
 Contributors: anssilaitila, freemius
 Tags: business directory, business listing, staff directory, staff list, address book, directory plugin, company directory, church directory, contact directory, directory, contacts, chamber of commerce
 Requires at least: 4.0.0
-Tested up to: 5.8
-Stable tag: 2.9.48
+Tested up to: 5.9
+Stable tag: 2.9.49
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -134,6 +134,13 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 6. Contact management
 
 == Changelog ==
+
+= 2.9.49 - 2022-01-23 =
+* (Professional + Business) It is now possible to add new contacts from the front end, must be activated first from the plugin settings (Contact edit tab)
+* (All plans) Fields phone 2 and phone 3 added to the import & export tools
+* (All plans) Fix: phone 2 and phone 3 are now saved when editing the contact using the front end editor
+* (All plans) Fix: reply-to address is now correctly set when sending mail using shortcode [contact_list_send_email group=GROUP_SLUG]
+* (Free + All plans) Fix: The strong tag is no more missing from the contact card after searching or filtering contacts
 
 = 2.9.48 - 2022-01-13 =
 * (Free + All plans) Fix: Category dropdown is now normally shown in the search form
