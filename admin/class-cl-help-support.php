@@ -23,8 +23,31 @@ class ContactListHelpSupport {
       <h1><?php echo esc_html__('How to use Contact List', 'contact-list'); ?></h1>
 
       <div class="contact-list-examples">
+
           <p><?php echo esc_html__('Some examples on how you can use different views available at', 'contact-list') ?> <a href="https://www.contactlistpro.com/contact-list/?utm_source=plugin-examples" target="_blank"><?php echo esc_html__('contactlistpro.com', 'contact-list') ?></a>.</p>
-          <p><?php echo esc_html__('Any kind of feedback is welcome. You may contact the author at', 'contact-list') . ' <a href="https://www.contactlistpro.com/support/?utm_source=plugin-feedback" target="_blank">contactlistpro.com/support/</a>.'; ?></p>
+
+        <?php if (contact_list_fs()->can_use_premium_code()): ?>
+
+          <p><?php echo esc_html__('Any kind of feedback is welcome. You may contact the author at', 'contact-list') ?> <a href="https://www.contactlistpro.com/support/?utm_source=plugin-feedback" target="_blank">contactlistpro.com/support/</a>.</p>
+          
+        <?php else: ?>
+
+          <p>
+          <?php
+          $url = 'https://wordpress.org/support/plugin/contact-list/';
+          echo sprintf(
+            wp_kses(
+              /* translators: %s: link to the support forum */
+              __('Any kind of feedback is welcome. You may contact the author at <a href="%s" target="_blank">the support forum</a>.', 'contact-list'),
+              array('a' => array('href' => array(), 'target' => array()))
+            ),
+            esc_url($url) 
+          );
+          ?>
+          </p>
+                
+        <?php endif; ?>
+
       </div>
 
       <div class="contact-list-admin-section">

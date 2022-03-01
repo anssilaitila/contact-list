@@ -40,9 +40,41 @@ class ContactListShortcodes
         ?></h1>
 
       <div class="contact-list-examples">
-        <p><?php 
-        echo  esc_html__( 'For support using the plugin please contact us at', 'contact-list' ) . ' <a href="https://www.contactlistpro.com/support/?utm_source=plugin-shortcodes" target="_blank">contactlistpro.com/support/</a>.' ;
-        ?></p>
+
+        <?php 
+        
+        if ( contact_list_fs()->can_use_premium_code() ) {
+            ?>
+
+          <p><?php 
+            echo  esc_html__( 'For support using the plugin please contact us at', 'contact-list' ) ;
+            ?> <a href="https://www.contactlistpro.com/support/?utm_source=plugin-shortcodes" target="_blank">contactlistpro.com/support/</a>.</p>
+          
+        <?php 
+        } else {
+            ?>
+
+          <p>
+          <?php 
+            $url = 'https://wordpress.org/support/plugin/contact-list/';
+            echo  sprintf( wp_kses(
+                /* translators: %s: link to the support forum */
+                __( 'For support using the plugin please contact us at <a href="%s" target="_blank">the support forum</a>.', 'contact-list' ),
+                array(
+                    'a' => array(
+                    'href'   => array(),
+                    'target' => array(),
+                ),
+                )
+            ), esc_url( $url ) ) ;
+            ?>
+          </p>
+        
+        <?php 
+        }
+        
+        ?>
+
       </div>
 
       <div class="contact-list-admin-section contact-list-admin-section-shortcodes">
@@ -115,7 +147,7 @@ class ContactListShortcodes
 
                   <?php 
         
-        if ( cl_fs()->is_free_plan() || cl_fs()->is_plan_or_trial( 'pro' ) || cl_fs()->is_plan_or_trial( 'business' ) ) {
+        if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'pro' ) || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
             ?>
 
                     <li><?php 
@@ -235,7 +267,7 @@ class ContactListShortcodes
 
               <?php 
         
-        if ( cl_fs()->is_free_plan() || cl_fs()->is_plan_or_trial( 'pro' ) || cl_fs()->is_plan_or_trial( 'business' ) ) {
+        if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'pro' ) || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
             ?>
 
                 <li><?php 
@@ -266,7 +298,7 @@ class ContactListShortcodes
 
       <?php 
         
-        if ( cl_fs()->is_free_plan() || cl_fs()->is_plan_or_trial( 'pro' ) || cl_fs()->is_plan_or_trial( 'business' ) ) {
+        if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'pro' ) || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
             ?>
 
         <div class="contact-list-admin-section contact-list-admin-section-shortcodes">      

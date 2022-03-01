@@ -15,7 +15,7 @@
  * @wordpress-plugin
  * Plugin Name:       Contact List
  * Description:       Easily display contact information on your site with this simple plugin.
- * Version:           2.9.49
+ * Version:           2.9.50
  * Author:            Tammersoft
  * Author URI:        https://www.tammersoft.com
  * License:           GPL-2.0+
@@ -28,21 +28,23 @@ if ( !defined( 'WPINC' ) ) {
     die;
 }
 
-if ( function_exists( 'cl_fs' ) ) {
-    cl_fs()->set_basename( false, __FILE__ );
+if ( function_exists( 'contact_list_fs' ) ) {
+    contact_list_fs()->set_basename( false, __FILE__ );
 } else {
     
-    if ( !function_exists( 'cl_fs' ) ) {
+    if ( !function_exists( 'contact_list_fs' ) ) {
         // Create a helper function for easy SDK access.
-        function cl_fs()
+        function contact_list_fs()
         {
-            global  $cl_fs ;
+            global  $contact_list_fs ;
             $s = get_option( 'contact_list_settings' );
             
-            if ( !isset( $cl_fs ) ) {
+            if ( !isset( $contact_list_fs ) ) {
                 // Include Freemius SDK.
                 require_once dirname( __FILE__ ) . '/freemius/start.php';
-                $cl_fs = fs_dynamic_init( array(
+                $settings_contact = false;
+                $settings_support = true;
+                $contact_list_fs = fs_dynamic_init( array(
                     'id'             => '5106',
                     'slug'           => 'contact-list',
                     'premium_slug'   => 'contact-list-pro',
@@ -57,8 +59,10 @@ if ( function_exists( 'cl_fs' ) ) {
                     'is_require_payment' => true,
                 ),
                     'menu'           => array(
-                    'slug'   => 'contact-list',
-                    'parent' => array(
+                    'slug'    => 'contact-list',
+                    'contact' => $settings_contact,
+                    'support' => $settings_support,
+                    'parent'  => array(
                     'slug' => 'options-general.php',
                 ),
                 ),
@@ -66,27 +70,45 @@ if ( function_exists( 'cl_fs' ) ) {
                 ) );
             }
             
-            return $cl_fs;
+            return $contact_list_fs;
         }
         
         // Init Freemius.
-        cl_fs();
+        contact_list_fs();
         // Signal that SDK was initiated.
-        do_action( 'cl_fs_loaded' );
+        do_action( 'contact_list_fs_loaded' );
     }
     
-    function cl_fs_custom_connect_message( $message, $user_first_name )
+    function contact_list_fs_custom_connect_message( $message, $user_first_name )
     {
         return sprintf( __( 'Hey %1$s' ) . ',<br>' . __( 'never miss an important update -- opt-in to our security and feature updates notifications, and non-sensitive diagnostic tracking with freemius.com.' ), $user_first_name );
     }
     
-    cl_fs()->add_filter(
+    contact_list_fs()->add_filter(
         'connect_message',
-        'cl_fs_custom_connect_message',
+        'contact_list_fs_custom_connect_message',
         10,
         6
     );
-    function cl_fs_custom_connect_message_on_update(
+    function freemius_custom_is_submenu_visible( $is_visible, $menu_id )
+    {
+        
+        if ( $menu_id == 'contact' ) {
+            return contact_list_fs()->can_use_premium_code();
+        } elseif ( $menu_id == 'support' ) {
+            return !contact_list_fs()->can_use_premium_code();
+        }
+        
+        return $is_visible;
+    }
+    
+    contact_list_fs()->add_filter(
+        'is_submenu_visible',
+        'freemius_custom_is_submenu_visible',
+        10,
+        2
+    );
+    function contact_list_fs_custom_connect_message_on_update(
         $message,
         $user_first_name,
         $plugin_title,
@@ -105,13 +127,13 @@ if ( function_exists( 'cl_fs' ) ) {
         );
     }
     
-    cl_fs()->add_filter(
+    contact_list_fs()->add_filter(
         'connect_message_on_update',
-        'cl_fs_custom_connect_message_on_update',
+        'contact_list_fs_custom_connect_message_on_update',
         10,
         6
     );
-    cl_fs()->add_filter( 'show_deactivation_feedback_form', '__return_false' );
+    contact_list_fs()->add_filter( 'show_deactivation_feedback_form', '__return_false' );
     $s = get_option( 'contact_list_settings' );
     $order_by = '_cl_last_name';
     if ( isset( $s['order_by'] ) && $s['order_by'] ) {
@@ -119,7 +141,7 @@ if ( function_exists( 'cl_fs' ) ) {
     }
     //  define('CONTACT_LIST_PLUGIN_NAME', 'contact-list');
     define( 'CONTACT_LIST_ORDER_BY', $order_by );
-    define( 'CONTACT_LIST_VERSION', '2.9.49' );
+    define( 'CONTACT_LIST_VERSION', '2.9.50' );
     define( 'CONTACT_LIST_URI', plugin_dir_url( __FILE__ ) );
     define( 'CONTACT_LIST_PATH', plugin_dir_path( __FILE__ ) );
     define( 'CONTACT_LIST_CPT', 'contact' );

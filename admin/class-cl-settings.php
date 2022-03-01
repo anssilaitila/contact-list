@@ -298,7 +298,7 @@ class ContactListSettings
             'field_name' => 'hide_contact_email',
         )
         );
-        if ( cl_fs()->is_free_plan() || cl_fs()->is_plan_or_trial( 'pro' ) || cl_fs()->is_plan_or_trial( 'business' ) ) {
+        if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'pro' ) || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
             add_settings_field(
                 'contact-list-' . $only_pro . 'send_as_bcc_to_group',
                 sanitize_text_field( __( 'Send messages to groups as Bcc', 'contact-list' ) ),
@@ -732,7 +732,7 @@ class ContactListSettings
             'placeholder' => sanitize_text_field( __( 'Custom field 1', 'contact-list' ) ),
         )
         );
-        if ( cl_fs()->is_free_plan() || cl_fs()->is_plan_or_trial( 'pro' ) || cl_fs()->is_plan_or_trial( 'business' ) ) {
+        if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'pro' ) || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
             add_settings_field(
                 'contact-list-' . $only_pro . 'custom_field_1_hide_from_contact_card',
                 sanitize_text_field( __( 'Hide from contact card', 'contact-list' ) ),
@@ -782,7 +782,7 @@ class ContactListSettings
             'placeholder' => $placeholder,
         )
         );
-        if ( cl_fs()->is_free_plan() || cl_fs()->is_plan_or_trial( 'pro' ) || cl_fs()->is_plan_or_trial( 'business' ) ) {
+        if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'pro' ) || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
             add_settings_field(
                 'contact-list-' . $only_pro . 'custom_field_2_hide_from_contact_card',
                 sanitize_text_field( __( 'Hide from contact card', 'contact-list' ) ),
@@ -832,7 +832,7 @@ class ContactListSettings
             'placeholder' => $placeholder,
         )
         );
-        if ( cl_fs()->is_free_plan() || cl_fs()->is_plan_or_trial( 'pro' ) || cl_fs()->is_plan_or_trial( 'business' ) ) {
+        if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'pro' ) || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
             add_settings_field(
                 'contact-list-' . $only_pro . 'custom_field_3_hide_from_contact_card',
                 sanitize_text_field( __( 'Hide from contact card', 'contact-list' ) ),
@@ -882,7 +882,7 @@ class ContactListSettings
             'placeholder' => $placeholder,
         )
         );
-        if ( cl_fs()->is_free_plan() || cl_fs()->is_plan_or_trial( 'pro' ) || cl_fs()->is_plan_or_trial( 'business' ) ) {
+        if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'pro' ) || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
             add_settings_field(
                 'contact-list-' . $only_pro . 'custom_field_4_hide_from_contact_card',
                 sanitize_text_field( __( 'Hide from contact card', 'contact-list' ) ),
@@ -932,7 +932,7 @@ class ContactListSettings
             'placeholder' => $placeholder,
         )
         );
-        if ( cl_fs()->is_free_plan() || cl_fs()->is_plan_or_trial( 'pro' ) || cl_fs()->is_plan_or_trial( 'business' ) ) {
+        if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'pro' ) || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
             add_settings_field(
                 'contact-list-' . $only_pro . 'custom_field_5_hide_from_contact_card',
                 sanitize_text_field( __( 'Hide from contact card', 'contact-list' ) ),
@@ -982,7 +982,7 @@ class ContactListSettings
             'placeholder' => $placeholder,
         )
         );
-        if ( cl_fs()->is_free_plan() || cl_fs()->is_plan_or_trial( 'pro' ) || cl_fs()->is_plan_or_trial( 'business' ) ) {
+        if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'pro' ) || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
             add_settings_field(
                 'contact-list-' . $only_pro . 'custom_field_6_hide_from_contact_card',
                 sanitize_text_field( __( 'Hide from contact card', 'contact-list' ) ),
@@ -1959,7 +1959,7 @@ class ContactListSettings
             array( $this, 'contact_list_settings_simple_list_settings_callback' ),
             'contact-list'
         );
-        if ( cl_fs()->is_free_plan() || cl_fs()->is_plan_or_trial( 'pro' ) || cl_fs()->is_plan_or_trial( 'business' ) ) {
+        if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'pro' ) || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
             add_settings_field(
                 'contact-list-' . $only_pro . 'simple_list_modal',
                 sanitize_text_field( __( 'Contact names are links to the contact card lightbox', 'contact-list' ) ),
@@ -3014,7 +3014,7 @@ class ContactListSettings
 
           <?php 
         
-        if ( cl_fs()->is_free_plan() || cl_fs()->is_plan_or_trial( 'pro' ) || cl_fs()->is_plan_or_trial( 'business' ) ) {
+        if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'pro' ) || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
             ?>
             <li class="contact-list-settings-tab-9-title" data-settings-container="contact-list-settings-tab-9"><span><?php 
             echo  esc_html__( 'Contact edit', 'contact-list' ) ;

@@ -31,7 +31,7 @@ class Contact_List_Deactivator {
 	 */
 	public static function deactivate() {
 
-    cl_fs()->add_action('after_uninstall', 'cl_fs_uninstall_cleanup');
+    contact_list_fs()->add_action('after_uninstall', 'contact_list_fs_uninstall_cleanup');
 
 	}
 
