@@ -104,16 +104,15 @@ class ShortcodeContactList
                     'compare' => 'LIKE',
                 );
             }
-            $tax_query = [];
+            $tax_query = [
+                'relation' => 'AND',
+            ];
             
             if ( isset( $_GET['cl_cat'] ) && $_GET['cl_cat'] ) {
-                $tax_query = array(
-                    'relation' => 'AND',
-                    array(
+                $tax_query[] = array(
                     'taxonomy' => 'contact-group',
                     'field'    => 'slug',
                     'terms'    => sanitize_title( $_GET['cl_cat'] ),
-                ),
                 );
             } elseif ( $group_slug ) {
             }

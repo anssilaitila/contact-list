@@ -3,7 +3,7 @@ Contributors: anssilaitila, freemius
 Tags: business directory, business listing, staff directory, staff list, address book, directory plugin, company directory, church directory, contact directory, directory, contacts, chamber of commerce
 Requires at least: 4.0.0
 Tested up to: 5.9
-Stable tag: 2.9.50
+Stable tag: 2.9.51
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -134,6 +134,14 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 6. Contact management
 
 == Changelog ==
+
+= 2.9.51 - 2022-03-02 =
+* (All plans) New parameter to hide the breadcrumbs: [contact_list_groups hide_breadcrumbs=1]
+* (All plans) New parameter to exclude groups (from search filter and actual contacts): [contact_list exclude_groups="group-slug-1,group-slug-2,group-slug-3"]
+* (All plans) Extra backslashes removed from subject when sending email using [contact_list_send_email]
+* (All plans) Reset button added to [contact_list_send_email]
+* (Free + All plans) Fixed a small jump of the contact list when changing the search filters for the first time
+* Some corrections to the French translations
 
 = 2.9.50 - 2022-03-01 =
 * Various tweaks and fixes

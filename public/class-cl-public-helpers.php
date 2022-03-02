@@ -220,9 +220,11 @@ class ContactListPublicHelpers
             $category_select_shown = 0;
             
             if ( !$category_select_shown && (ContactListHelpers::isPremium() == 0 || isset( $s['simpler_category_dropdown'] )) ) {
+                $exclude_groups = [];
                 $groups = get_terms( array(
                     'taxonomy'   => 'contact-group',
                     'hide_empty' => true,
+                    'exclude'    => $exclude_groups,
                 ) );
                 $html .= '<select name="cl_cat" class="' . esc_attr( ContactListHelpers::getSearchDropdownClass() ) . '">';
                 $html .= '<option value="">' . ContactListHelpers::getText( 'text_select_category', __( 'Select category', 'contact-list' ) ) . '</option>';
