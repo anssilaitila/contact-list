@@ -15,7 +15,7 @@
  * @wordpress-plugin
  * Plugin Name:       Contact List
  * Description:       Easily display contact information on your site with this simple plugin.
- * Version:           2.9.51
+ * Version:           2.9.52
  * Author:            Tammersoft
  * Author URI:        https://www.tammersoft.com
  * License:           GPL-2.0+
@@ -90,7 +90,7 @@ if ( function_exists( 'contact_list_fs' ) ) {
         10,
         6
     );
-    function freemius_custom_is_submenu_visible( $is_visible, $menu_id )
+    function contact_list_freemius_custom_is_submenu_visible( $is_visible, $menu_id )
     {
         
         if ( $menu_id == 'contact' ) {
@@ -104,7 +104,7 @@ if ( function_exists( 'contact_list_fs' ) ) {
     
     contact_list_fs()->add_filter(
         'is_submenu_visible',
-        'freemius_custom_is_submenu_visible',
+        'contact_list_freemius_custom_is_submenu_visible',
         10,
         2
     );
@@ -141,7 +141,7 @@ if ( function_exists( 'contact_list_fs' ) ) {
     }
     //  define('CONTACT_LIST_PLUGIN_NAME', 'contact-list');
     define( 'CONTACT_LIST_ORDER_BY', $order_by );
-    define( 'CONTACT_LIST_VERSION', '2.9.51' );
+    define( 'CONTACT_LIST_VERSION', '2.9.52' );
     define( 'CONTACT_LIST_URI', plugin_dir_url( __FILE__ ) );
     define( 'CONTACT_LIST_PATH', plugin_dir_path( __FILE__ ) );
     define( 'CONTACT_LIST_CPT', 'contact' );

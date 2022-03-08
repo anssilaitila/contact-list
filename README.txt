@@ -3,7 +3,7 @@ Contributors: anssilaitila, freemius
 Tags: business directory, business listing, staff directory, staff list, address book, directory plugin, company directory, church directory, contact directory, directory, contacts, chamber of commerce
 Requires at least: 4.0.0
 Tested up to: 5.9
-Stable tag: 2.9.51
+Stable tag: 2.9.52
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -134,6 +134,9 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 6. Contact management
 
 == Changelog ==
+
+= 2.9.52 - 2022-03-08 =
+* (Free + All plans) PHP error fix (happened during plugin activation if the plugin Shared Files is also installed)
 
 = 2.9.51 - 2022-03-02 =
 * (All plans) New parameter to hide the breadcrumbs: [contact_list_groups hide_breadcrumbs=1]
