@@ -128,7 +128,7 @@ class ContactListHelpSupport {
           <?php
 
           global $wpdb;
-          $msg = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}contact_list_log ORDER BY created_at DESC LIMIT 200");
+          $msg = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}contact_list_log ORDER BY id DESC LIMIT 200");
 
           ?>
           

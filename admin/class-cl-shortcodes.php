@@ -75,6 +75,44 @@ class ContactListShortcodes
         
         ?>
 
+        <div class="contact-list-all-paid-plans">
+        
+          <?php 
+        
+        if ( ContactListHelpers::isPremium() == 1 ) {
+            ?>
+        
+            <span class="contact-list-pro-only-inline-inactive" style="margin-left: 0; margin-right: 1px;">All Plans</span>
+        
+            <?php 
+            echo  esc_html__( 'means that the shortcode / parameter exists in all of the paid plans.', 'contact-list' ) ;
+            ?>
+        
+          <?php 
+        } else {
+            ?>
+        
+            <a href="<?php 
+            echo  esc_url( get_admin_url() ) ;
+            ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline" style="margin-left: 0; margin-right: 1px;">All Plans</a>
+        
+            <?php 
+            echo  wp_kses(
+                /* translators: %s: link to the support forum */
+                __( 'means that the shortcode / parameter exists in all of the <strong>paid</strong> plans.', 'contact-list' ),
+                array(
+                    'strong' => array(),
+                )
+            ) ;
+            ?>
+        
+          <?php 
+        }
+        
+        ?>
+        
+        </div>
+
       </div>
 
       <div class="contact-list-admin-section contact-list-admin-section-shortcodes">
@@ -444,6 +482,16 @@ class ContactListShortcodes
         echo  esc_html__( 'Copy', 'contact-list' ) ;
         ?></button>
                 </li>
+                <li><?php 
+        echo  esc_html__( 'Hide group title:', 'contact-list' ) ;
+        ?> <span class="cl-new-feature-inline"> <?php 
+        echo  esc_html__( 'New', 'contact-list' ) ;
+        ?></span>
+                  <span class="contact-list-shortcode contact-list-shortcode-1888">[contact_list_groups group="sample-group" hide_group_title=1]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-1888"><?php 
+        echo  esc_html__( 'Copy', 'contact-list' ) ;
+        ?></button>
+                </li>
+
             </ul>
 
           </li>

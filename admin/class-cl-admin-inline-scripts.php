@@ -46,7 +46,7 @@ class ContactListAdminInlineScripts {
   
     $js = '';
   
-    $js .= "jQuery(function ($) {
+    $js .= "jQuery( document ).ready( function($) {
       $('.contact-list-toggle-debug-info').on('click', function() {
         if ($('.contact-list-debug-info-container').is(':hidden')) {
           $('.contact-list-debug-info-container').show();

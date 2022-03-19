@@ -49,6 +49,19 @@ class ContactListSettings
             'field_name' => 'order_by',
         )
         );
+        if ( ContactListHelpers::isPremium() == 0 ) {
+            add_settings_field(
+                'contact-list-' . $only_pro . '_AD_sort_by_custom_field_values',
+                sanitize_text_field( __( 'Sort by custom fields', 'contact-list' ) ),
+                array( $this, 'checkbox_render' ),
+                'contact-list',
+                'contact-list_section_general',
+                array(
+                'label_for'  => 'contact-list-' . $only_pro . '_AD_sort_by_custom_field_values',
+                'field_name' => $only_pro . '_AD_sort_by_custom_field_values',
+            )
+            );
+        }
         add_settings_field(
             'contact-list-last_name_before_first_name',
             sanitize_text_field( __( 'Show last name before first name', 'contact-list' ) ),
@@ -2439,33 +2452,63 @@ class ContactListSettings
     {
         
         if ( $args['field_name'] ) {
-            $options = get_option( 'contact_list_settings' );
+            $s = get_option( 'contact_list_settings' );
             $order_by = '_cl_last_name';
-            if ( isset( $options[$args['field_name']] ) ) {
-                $order_by = $options[$args['field_name']];
+            if ( isset( $s[$args['field_name']] ) ) {
+                $order_by = $s[$args['field_name']];
             }
+            $cl_sortable_fields = [
+                '_cl_last_name'  => sanitize_text_field( __( 'Last name', 'contact-list' ) ),
+                '_cl_first_name' => sanitize_text_field( __( 'First name', 'contact-list' ) ),
+            ];
+            $cl_settings_fields = [
+                '_cl_last_name'  => 'last_name_title',
+                '_cl_first_name' => 'first_name_title',
+            ];
             ?>    
 
       <select name="contact_list_settings[<?php 
             echo  esc_attr( $args['field_name'] ) ;
             ?>]">
-          <option value="_cl_last_name"><?php 
-            echo  ( isset( $options['_cl_last_name'] ) ? esc_html( $options['_cl_last_name'] ) : esc_html__( 'Last name', 'contact-list' ) ) ;
-            ?></option>
-          <option value="_cl_first_name" <?php 
-            echo  ( $order_by == '_cl_first_name' ? 'selected' : '' ) ;
-            ?>><?php 
-            echo  ( isset( $options['_cl_first_name'] ) ? esc_html( $options['_cl_first_name'] ) : esc_html__( 'First name', 'contact-list' ) ) ;
-            ?></option>
-      </select>
 
-      <div class="email-info">
-        <b><?php 
-            echo  esc_html__( 'Note:' ) ;
-            ?></b> <?php 
-            echo  esc_html__( 'If "First name" is selected, only the contacts with the first name defined are listed.', 'contact-list' ) ;
+        <?php 
+            foreach ( $cl_sortable_fields as $key => $value ) {
+                ?>
+
+          <?php 
+                $custom_name_field = $cl_settings_fields[$key];
+                ?>
+          <?php 
+                $field_title = $value;
+                ?>
+          
+          <?php 
+                
+                if ( isset( $s[$custom_name_field] ) && $s[$custom_name_field] ) {
+                    ?>
+            <?php 
+                    $field_title = sanitize_text_field( $s[$custom_name_field] );
+                    ?>
+          <?php 
+                }
+                
+                ?>
+        
+          <option value="<?php 
+                echo  esc_attr( $key ) ;
+                ?>" <?php 
+                if ( $order_by == $key ) {
+                    ?> selected <?php 
+                }
+                ?>><?php 
+                echo  esc_html__( $field_title ) ;
+                ?></option>
+
+        <?php 
+            }
             ?>
-      </div>
+
+      </select>
 
       <?php 
         }

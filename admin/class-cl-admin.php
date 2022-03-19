@@ -164,6 +164,8 @@ class Contact_List_Admin
                 $this->version,
                 true
             );
+            $inline_js = ContactListAdminInlineScripts::help_support_scripts();
+            wp_add_inline_script( $this->plugin_name, $inline_js );
         } elseif ( $current_screen_id === 'edit-contact' ) {
             wp_enqueue_script(
                 $this->plugin_name . '-tipso',

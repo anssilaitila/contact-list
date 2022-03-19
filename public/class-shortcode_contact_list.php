@@ -69,7 +69,7 @@ class ShortcodeContactList
                 'title'            => 'ASC',
             );
             
-            if ( CONTACT_LIST_ORDER_BY == '_cl_first_name' && !isset( $atts['order_by'] ) || isset( $atts['order_by'] ) && $atts['order_by'] == 'first_name' ) {
+            if ( isset( $atts['order_by'] ) && $atts['order_by'] == 'first_name' ) {
                 $meta_query[] = array(
                     'first_name_clause' => array(
                     'key'     => '_cl_first_name',
@@ -80,6 +80,18 @@ class ShortcodeContactList
                     'menu_order'        => 'ASC',
                     'first_name_clause' => 'ASC',
                     'title'             => 'ASC',
+                );
+            } elseif ( CONTACT_LIST_ORDER_BY != '_cl_last_name' && !isset( $atts['order_by'] ) ) {
+                $meta_query[] = array(
+                    'custom_clause' => array(
+                    'key'     => CONTACT_LIST_ORDER_BY,
+                    'compare' => 'EXISTS',
+                ),
+                );
+                $order_by = array(
+                    'menu_order'    => 'ASC',
+                    'custom_clause' => 'ASC',
+                    'title'         => 'ASC',
                 );
             }
             

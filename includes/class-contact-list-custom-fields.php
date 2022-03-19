@@ -416,7 +416,7 @@ class ContactListCustomFields
                           <a href="<?php 
                     echo  esc_url( get_admin_url() ) ;
                     ?>options-general.php?page=contact-list-pricing">
-                            <div class="contact-list-settings-pro-feature-overlay"><span>Pro</span></div>
+                            <div class="contact-list-settings-pro-feature-overlay"><span>All Plans</span></div>
                           </a>
                       
                         </div>
@@ -541,7 +541,8 @@ class ContactListCustomFields
                     
                     update_post_meta( $post_id, $custom_field_name, $value );
                 } else {
-                    delete_post_meta( $post_id, $custom_field_name );
+                    //          delete_post_meta($post_id, $custom_field_name);
+                    update_post_meta( $post_id, $custom_field_name, '' );
                 }
             
             }

@@ -237,6 +237,7 @@ class Contact_List
         );
         // Maintenance
         $this->loader->add_action( 'plugins_loaded', $plugin_admin_maintenance, 'actions' );
+        $this->loader->add_action( 'init', $plugin_admin_maintenance, 'update_db_check_v2' );
         // Admin operations
         $this->loader->add_filter( 'admin_init', $plugin_admin_operations, 'operations' );
         // Import & export
