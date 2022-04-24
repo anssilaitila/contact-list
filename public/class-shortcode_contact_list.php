@@ -7,6 +7,15 @@ class ShortcodeContactList
         $s = get_option( 'contact_list_settings' );
         $layout = ContactListHelpers::getLayout( $s, $atts );
         $elem_class = ContactListHelpers::createElemClass();
+        $embed_id = ( isset( $atts['embed_id'] ) ? sanitize_title( $atts['embed_id'] ) : 'default' );
+        $pagination_active = 0;
+        
+        if ( isset( $_GET['_paged'] ) && $_GET['_paged'] == $embed_id ) {
+            $pagination_active = 1;
+        } elseif ( get_query_var( 'paged' ) ) {
+            $pagination_active = 1;
+        }
+        
         $exclude = [];
         $group_slug = '';
         $html = '';
@@ -129,7 +138,16 @@ class ShortcodeContactList
             } elseif ( $group_slug ) {
             }
             
-            $paged = ( get_query_var( 'paged' ) ? absint( get_query_var( 'paged' ) ) : 1 );
+            $paged = 1;
+            if ( $pagination_active ) {
+                
+                if ( isset( $_GET['_page'] ) && $_GET['_page'] ) {
+                    $paged = (int) $_GET['_page'];
+                } elseif ( get_query_var( 'paged' ) ) {
+                    $paged = absint( get_query_var( 'paged' ) );
+                }
+            
+            }
             $posts_per_page = -1;
             if ( isset( $s['contacts_per_page'] ) && $s['contacts_per_page'] ) {
                 $posts_per_page = intval( $s['contacts_per_page'] );

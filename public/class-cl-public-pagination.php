@@ -43,7 +43,7 @@ class ContactListPublicPagination {
     } else {
 
       $html .= ContactListPublicHelpers::pagination($wp_query);    
-      
+
     }
 
     return $html;

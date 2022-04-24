@@ -5,6 +5,15 @@ class ShortcodeContactListSimple
     public static function view( $atts )
     {
         $s = get_option( 'contact_list_settings' );
+        $embed_id = ( isset( $atts['embed_id'] ) ? sanitize_title( $atts['embed_id'] ) : 'default' );
+        $pagination_active = 0;
+        
+        if ( isset( $_GET['_paged'] ) && $_GET['_paged'] == $embed_id ) {
+            $pagination_active = 1;
+        } elseif ( get_query_var( 'paged' ) ) {
+            $pagination_active = 1;
+        }
+        
         $exclude = [];
         $html = '';
         $html .= '<div class="contact-list-simple-container" />';
@@ -83,7 +92,17 @@ class ShortcodeContactListSimple
             );
         }
         
-        $paged = ( get_query_var( 'paged' ) ? absint( get_query_var( 'paged' ) ) : 1 );
+        $paged = 1;
+        if ( $pagination_active ) {
+            
+            if ( isset( $_GET['_page'] ) && $_GET['_page'] ) {
+                $paged = (int) $_GET['_page'];
+            } elseif ( get_query_var( 'paged' ) ) {
+                $paged = absint( get_query_var( 'paged' ) );
+            }
+        
+        }
+        //    $paged = (get_query_var('paged')) ? absint(get_query_var('paged')) : 1;
         $posts_per_page = -1;
         $wp_query = new WP_Query( array(
             'post_type'      => 'contact',
