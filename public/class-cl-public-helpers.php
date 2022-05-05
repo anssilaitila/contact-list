@@ -122,9 +122,10 @@ class ContactListPublicHelpers
                 
                 
                 if ( isset( $c['_cl_country'][0] ) && $c['_cl_country'][0] ) {
-                    $country = ( isset( $countries[$c['_cl_country'][0]] ) ? sanitize_text_field( $countries[$c['_cl_country'][0]] ) : [] );
+                    $country_temp = sanitize_text_field( $c['_cl_country'][0] );
+                    $country = ( isset( $countries[$country_temp] ) ? $countries[$country_temp] : [] );
                     if ( isset( $c['_cl_state'][0] ) && $c['_cl_state'][0] && is_array( $country ) && !in_array( $c['_cl_state'][0], $country ) ) {
-                        $countries[$c['_cl_country'][0]][] = sanitize_text_field( $c['_cl_state'][0] );
+                        $countries[$country_temp][] = sanitize_text_field( $c['_cl_state'][0] );
                     }
                     
                     if ( isset( $c['_cl_state'][0] ) && $c['_cl_state'][0] && isset( $c['_cl_city'][0] ) && $c['_cl_city'][0] ) {
