@@ -537,6 +537,13 @@ class ContactListShortcodes
         ?>: <span class="contact-list-shortcode contact-list-shortcode-139">[contact_list_groups groups__and="group-slug-1,group-slug-2"]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-139"><?php 
         echo  esc_html__( 'Copy', 'contact-list' ) ;
         ?></button></li>
+              <li><?php 
+        echo  esc_html__( 'Show contacts that belong to any of these groups (comma separated group slugs)', 'contact-list' ) ;
+        ?>: <span class="cl-new-feature-inline"> <?php 
+        echo  esc_html__( 'New', 'contact-list' ) ;
+        ?></span> <span class="contact-list-shortcode contact-list-shortcode-139">[contact_list_groups groups__or="group-slug-1,group-slug-2"]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-139"><?php 
+        echo  esc_html__( 'Copy', 'contact-list' ) ;
+        ?></button></li>
             </ul>
           </li>
         </ol>

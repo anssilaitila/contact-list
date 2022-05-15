@@ -2,8 +2,8 @@
 Contributors: anssilaitila, freemius
 Tags: business directory, business listing, staff directory, staff list, address book, directory plugin, company directory, church directory, contact directory, directory, contacts, chamber of commerce
 Requires at least: 4.0.0
-Tested up to: 5.9
-Stable tag: 2.9.55
+Tested up to: 6.0
+Stable tag: 2.9.56
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -134,6 +134,13 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 6. Contact management
 
 == Changelog ==
+
+= 2.9.56 - 2022-05-15 =
+* (All plans) Phone 2 & 3 added to simple list (see plugin settings, Simple list tab)
+* (All plans) New shortcode parameter: Show contacts that belong to any of these groups (comma separated group slugs), [contact_list_groups groups__or="group-slug-1,group-slug-2"]
+* (All plans) Fix: automatically generated custom field search filter titles are now correctly formed based on the actual custom field title
+* (All plans) Fix: The shortcode [contact_list_groups] is now correctly sorted by the setting 'Sort contact list by'
+* (Free + All plans) New setting: Contact image size (see plugin settings, Layout tab)
 
 = 2.9.55 - 2022-05-04 =
 * Fixed an issue where all available states were not shown on the search filter using shortcode [contact_list]

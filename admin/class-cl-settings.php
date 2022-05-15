@@ -216,6 +216,17 @@ class ContactListSettings
         )
         );
         add_settings_field(
+            'contact-list-contact_image_size',
+            sanitize_text_field( __( 'Contact image size', 'contact-list' ) ),
+            array( $this, 'contact_image_size_render' ),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+            'label_for'  => 'contact-list-contact_image_size',
+            'field_name' => 'contact_image_size',
+        )
+        );
+        add_settings_field(
             'contact-list-contact_image_style',
             sanitize_text_field( __( 'Contact image style', 'contact-list' ) ),
             array( $this, 'contact_image_style_render' ),
@@ -2047,6 +2058,28 @@ class ContactListSettings
         )
         );
         add_settings_field(
+            'contact-list-' . $only_pro . 'simple_list_show_phone_2',
+            sanitize_text_field( __( 'Show phone 2', 'contact-list' ) ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_simple_list',
+            array(
+            'label_for'  => 'contact-list-' . $only_pro . 'simple_list_show_phone_2',
+            'field_name' => $only_pro . 'simple_list_show_phone_2',
+        )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'simple_list_show_phone_3',
+            sanitize_text_field( __( 'Show phone 3', 'contact-list' ) ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_simple_list',
+            array(
+            'label_for'  => 'contact-list-' . $only_pro . 'simple_list_show_phone_3',
+            'field_name' => $only_pro . 'simple_list_show_phone_3',
+        )
+        );
+        add_settings_field(
             'contact-list-simple_list_hide_some_links',
             sanitize_text_field( __( 'Hide social media links', 'contact-list' ) ),
             array( $this, 'checkbox_render' ),
@@ -2814,6 +2847,38 @@ class ContactListSettings
             echo  ( $card_background == 'light_gray' ? 'selected' : '' ) ;
             ?>><?php 
             echo  esc_html__( 'Light gray', 'contact-list' ) ;
+            ?></option>
+      </select>
+      <?php 
+        }
+    
+    }
+    
+    public function contact_image_size_render( $args )
+    {
+        
+        if ( $args['field_name'] ) {
+            $options = get_option( 'contact_list_settings' );
+            $contact_image_size = '';
+            if ( isset( $options[$args['field_name']] ) ) {
+                $contact_image_size = sanitize_text_field( $options[$args['field_name']] );
+            }
+            ?>    
+      <select name="contact_list_settings[<?php 
+            echo  esc_attr( $args['field_name'] ) ;
+            ?>]">
+          <option value=""><?php 
+            echo  esc_html__( 'Default', 'contact-list' ) ;
+            ?></option>
+          <option value="small" <?php 
+            echo  ( $contact_image_size == 'small' ? 'selected' : '' ) ;
+            ?>><?php 
+            echo  esc_html__( 'Small', 'contact-list' ) ;
+            ?></option>
+          <option value="large" <?php 
+            echo  ( $contact_image_size == 'large' ? 'selected' : '' ) ;
+            ?>><?php 
+            echo  esc_html__( 'Large', 'contact-list' ) ;
             ?></option>
       </select>
       <?php 

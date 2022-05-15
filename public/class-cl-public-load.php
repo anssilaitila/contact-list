@@ -37,6 +37,14 @@ class ContactListPublicLoad {
     $s = get_option('contact_list_settings');
 
     $css = '';
+
+    if ( isset($s['contact_image_size']) && $s['contact_image_size'] == 'small' ) {
+      $css .= '.contact-list-main-left { width: 86%; }';
+      $css .= '.contact-list-main-right { width: 14%; }';
+    } elseif ( isset($s['contact_image_size']) && $s['contact_image_size'] == 'large' ) {
+      $css .= '.contact-list-main-left { width: 66%; }';
+      $css .= '.contact-list-main-right { width: 34%; }';
+    }
     
     if (isset($s['show_contact_images_always'])) {
     

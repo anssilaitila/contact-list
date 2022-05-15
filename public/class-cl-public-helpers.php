@@ -340,6 +340,32 @@ class ContactListPublicHelpers
         }
         
         
+        if ( isset( $s['simple_list_show_phone_2'] ) ) {
+            $html .= '<div class="contact-list-simple-list-col"><span>';
+            
+            if ( isset( $c['_cl_phone_2'] ) ) {
+                $phone_org = sanitize_text_field( $c['_cl_phone_2'][0] );
+                $phone_href = preg_replace( '/[^0-9\\,]/', '', $phone_org );
+                $html .= '<a href="tel:' . $phone_href . '">' . $phone_org . '</a>';
+            }
+            
+            $html .= '</span></div>';
+        }
+        
+        
+        if ( isset( $s['simple_list_show_phone_3'] ) ) {
+            $html .= '<div class="contact-list-simple-list-col"><span>';
+            
+            if ( isset( $c['_cl_phone_3'] ) ) {
+                $phone_org = sanitize_text_field( $c['_cl_phone_3'][0] );
+                $phone_href = preg_replace( '/[^0-9\\,]/', '', $phone_org );
+                $html .= '<a href="tel:' . $phone_href . '">' . $phone_org . '</a>';
+            }
+            
+            $html .= '</span></div>';
+        }
+        
+        
         if ( isset( $s['simple_list_show_city'] ) ) {
             $html .= '<div class="contact-list-simple-list-col"><span>';
             if ( isset( $c['_cl_city'] ) ) {
