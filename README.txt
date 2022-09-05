@@ -3,7 +3,7 @@ Contributors: anssilaitila, freemius
 Tags: business directory, business listing, staff directory, staff list, address book, directory plugin, company directory, church directory, contact directory, directory, contacts, chamber of commerce
 Requires at least: 4.0.0
 Tested up to: 6.0
-Stable tag: 2.9.56
+Stable tag: 2.9.57
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -102,7 +102,7 @@ Yes! Contact List is suitable for listing any kind of contact information. Basic
 
 = Can I use it for listing company staff? =
 
-Yes! Contact List is the perfect WP staff list plugin for creating any kind of member directory. 
+Yes! Contact List is the perfect WP staff list plugin for creating any kind of member directory.
 
 = Do you offer support? =
 
@@ -135,6 +135,9 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 
 == Changelog ==
 
+= 2.9.57 - 2022-09-05 =
+* (Free + All plans) Various tweaks and fixes
+
 = 2.9.56 - 2022-05-15 =
 * (All plans) Phone 2 & 3 added to simple list (see plugin settings, Simple list tab)
 * (All plans) New shortcode parameter: Show contacts that belong to any of these groups (comma separated group slugs), [contact_list_groups groups__or="group-slug-1,group-slug-2"]
@@ -151,7 +154,7 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 
 = 2.9.53 - 2022-03-19 =
 * (All plans) New setting: It is now possible to sort the contacts by custom field values
-* (All plans) New parameter hide_group_title: [contact_list_groups group="sample-group" hide_group_title=1] 
+* (All plans) New parameter hide_group_title: [contact_list_groups group="sample-group" hide_group_title=1]
 * (Free + All plans) Improvement: If the contacts are sorted by other field than last name, the sortable field values can also be empty now
 * (Free + All plans) Fix: the debug info section opens normally now
 
