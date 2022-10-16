@@ -2102,6 +2102,17 @@ class ContactListSettings
         )
         );
         add_settings_field(
+            'contact-list-' . $only_pro . 'simple_list_show_zip_code',
+            sanitize_text_field( __( 'Show zip code', 'contact-list' ) ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_simple_list',
+            array(
+            'label_for'  => 'contact-list-' . $only_pro . 'simple_list_show_zip_code',
+            'field_name' => $only_pro . 'simple_list_show_zip_code',
+        )
+        );
+        add_settings_field(
             'contact-list-' . $only_pro . 'simple_list_show_address_line_1',
             sanitize_text_field( __( 'Show address line 1', 'contact-list' ) ),
             array( $this, 'checkbox_render' ),

@@ -47,7 +47,7 @@ class ShortcodeContactList
                     while ( $wpb_all_query->have_posts() ) {
                         $wpb_all_query->the_post();
                         $id = intval( get_the_id() );
-                        $html .= ContactListHelpers::singleContactMarkup( $id );
+                        $html .= ContactListHelpers::singleContactMarkup( $id, 0, $atts );
                     }
                 } else {
                     $html .= '<p style="background: #f00; color: #fff; padding: 1rem; text-align: center;">' . sanitize_text_field( __( 'Contact not found', 'contact-list' ) ) . ' (ID: ' . intval( $contact ) . ')</p>';
