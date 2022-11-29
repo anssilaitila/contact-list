@@ -3,7 +3,7 @@ Contributors: anssilaitila, freemius
 Tags: business directory, business listing, staff directory, staff list, address book, directory plugin, company directory, church directory, contact directory, directory, contacts, chamber of commerce
 Requires at least: 4.0.0
 Tested up to: 6.1
-Stable tag: 2.9.60
+Stable tag: 2.9.61
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -34,6 +34,8 @@ See live demos at [contactlistpro.com](https://www.contactlistpro.com/contact-li
 
 = Contact List Pro features: =
 * Front-end contact editor: allow any user roles to edit contacts from the front-end
+* Separate pages for single contacts, e.g. /contact/firstname-lastname/
+* Show contacts in site search results
 * Multiple different shortcodes/views for various use cases
 * Support for pagination
 * Show contact details in a lightbox
@@ -133,6 +135,11 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 6. Contact management
 
 == Changelog ==
+
+= 2.9.61 - 2022-11-29 =
+* (Professional + Business) New tab in settings: Custom post type
+* (Professional + Business) Separate pages for single contacts, e.g. /contact/firstname-lastname/
+* (Professional + Business) Show contacts in site search results
 
 = 2.9.60 - 2022-11-15 =
 * Freemius WordPress SDK update (2.5.2)

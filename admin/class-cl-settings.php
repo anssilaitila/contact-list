@@ -2204,6 +2204,39 @@ class ContactListSettings
             'field_name' => $only_pro . 'can_add_contacts',
         )
         );
+        $tab = 10;
+        add_settings_section(
+            'contact-list_tab_' . $tab,
+            '',
+            array( $this, 'contact_list_settings_tab_' . $tab . '_callback' ),
+            'contact-list'
+        );
+        
+        if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'pro' ) || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
+            add_settings_field(
+                'contact-list-' . $only_pro . 'enable_single_contact_page',
+                sanitize_text_field( __( 'Enable single contact page', 'contact-list' ) ),
+                array( $this, 'checkbox_render' ),
+                'contact-list',
+                'contact-list_tab_' . $tab,
+                array(
+                'label_for'  => 'contact-list-' . $only_pro . 'enable_single_contact_page',
+                'field_name' => $only_pro . 'enable_single_contact_page',
+            )
+            );
+            add_settings_field(
+                'contact-list-' . $only_pro . 'show_contacts_in_site_search_results',
+                sanitize_text_field( __( 'Show single contacts in site search results', 'contact-list' ) ),
+                array( $this, 'checkbox_render' ),
+                'contact-list',
+                'contact-list_tab_' . $tab,
+                array(
+                'label_for'  => 'contact-list-' . $only_pro . 'show_contacts_in_site_search_results',
+                'field_name' => $only_pro . 'show_contacts_in_site_search_results',
+            )
+            );
+        }
+    
     }
     
     public function textarea_render( $args )
@@ -2420,6 +2453,18 @@ class ContactListSettings
                     ?>
         <?php 
                 } elseif ( $field_name == '_FREE_can_add_contacts' ) {
+                    ?>
+          <?php 
+                    $plan_required = 'Professional';
+                    ?>
+        <?php 
+                } elseif ( $field_name == '_FREE_enable_single_contact_page' ) {
+                    ?>
+          <?php 
+                    $plan_required = 'Professional';
+                    ?>
+        <?php 
+                } elseif ( $field_name == '_FREE_show_contacts_in_site_search_results' ) {
                     ?>
           <?php 
                     $plan_required = 'Professional';
@@ -3060,6 +3105,12 @@ class ContactListSettings
         echo  '<p>' . esc_html__( 'To select any Font Awesome icon, copy the icon ID to the current icon field from here:', 'contact-list' ) . ' ' . '<a href="https://fontawesome.com/v4.7/cheatsheet/" target="_blank">https://fontawesome.com/v4.7/cheatsheet/</a>' . '</p>' ;
     }
     
+    public function contact_list_settings_tab_10_callback()
+    {
+        echo  '</div>' ;
+        echo  '<div class="contact-list-settings-tab-10">' ;
+    }
+    
     public function contact_list_settings_section_callback()
     {
         echo  '</div>' ;
@@ -3137,6 +3188,18 @@ class ContactListSettings
             ?>
             <li class="contact-list-settings-tab-9-title" data-settings-container="contact-list-settings-tab-9"><span><?php 
             echo  esc_html__( 'Contact edit', 'contact-list' ) ;
+            ?></span></li>
+          <?php 
+        }
+        
+        ?>
+
+          <?php 
+        
+        if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'pro' ) || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
+            ?>
+            <li class="contact-list-settings-tab-10-title" data-settings-container="contact-list-settings-tab-10"><span><?php 
+            echo  esc_html__( 'Custom post type', 'contact-list' ) ;
             ?></span></li>
           <?php 
         }
