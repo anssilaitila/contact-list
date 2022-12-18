@@ -11,5 +11,10 @@
   "require": {
     "phpmd/phpmd": "^2.8",
     "htmlburger/carbon-fields": "^3.2"
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
   }
 }

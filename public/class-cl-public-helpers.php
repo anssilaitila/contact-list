@@ -80,13 +80,13 @@ class ContactListPublicHelpers
         $html = '';
         $html .= '<div class="contact-list-public-pro-feature">';
         $html .= '<span class="contact-list-public-pro-feature-title">';
-        $html .= sanitize_text_field( __( 'This feature is available in the Pro version.', 'contact-list' ) );
+        $html .= sanitize_text_field( __( 'This feature is available in the paid plans.', 'contact-list' ) );
         $html .= '</span>';
         $html .= '<span>';
-        $html .= sanitize_text_field( __( 'You can use the shortcodes', 'contact-list' ) ) . ' [contact_list] ' . sanitize_text_field( __( 'and', 'contact-list' ) ) . ' [contact_list_simple].';
+        $html .= sanitize_text_field( __( 'You can use the shortcodes', 'contact-list' ) ) . ' [[contact_list]] ' . sanitize_text_field( __( 'and', 'contact-list' ) ) . ' [[contact_list_simple]].';
         $html .= '</span>';
         $html .= '<span>';
-        $html .= sanitize_text_field( __( 'More info on shortcodes at', 'contact-list' ) ) . ' <a href="https://www.contactlistpro.com/support/shortcodes/" target="_blank">contactlistpro.com</a>.';
+        $html .= sanitize_text_field( __( 'More info on shortcodes', 'contact-list' ) ) . ' <a href="' . esc_url( get_admin_url( null, 'edit.php?post_type=contact&page=contact-list-shortcodes' ) ) . '" target="_blank">here</a>.';
         $html .= '</span>';
         $html .= '</div>';
         return $html;
@@ -243,9 +243,6 @@ class ContactListPublicHelpers
             $filter_active = 1;
         }
         
-        if ( $filter_active ) {
-            $html .= '<button type="submit" class="filter-contacts">' . ContactListHelpers::getText( 'text_filter_contacts', __( 'Filter contacts', 'contact-list' ) ) . '</button>';
-        }
         $html .= '<hr class="clear" /></form>';
         return $html;
     }

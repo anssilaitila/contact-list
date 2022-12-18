@@ -91,8 +91,8 @@ class ContactListHelpers
     {
         $html = '';
         $html .= '<div class="contact-list-pro-feature">';
-        $html .= '<span>' . sanitize_text_field( __( 'This feature is available in the Pro version.', 'contact-list' ) ) . '</span>';
-        $html .= '<a href="' . esc_url_raw( get_admin_url() ) . 'options-general.php?page=contact-list-pricing">' . sanitize_text_field( __( 'Upgrade here', 'contact-list' ) ) . '</a>';
+        $html .= '<span>' . sanitize_text_field( __( 'This feature is available in the paid plans.', 'contact-list' ) ) . '</span>';
+        $html .= '<a class="contact-list-admin-button-upgrade-link" href="' . esc_url_raw( get_admin_url() ) . 'options-general.php?page=contact-list-pricing">' . sanitize_text_field( __( 'Upgrade here', 'contact-list' ) ) . '</a>';
         $html .= '</div>';
         return $html;
     }
@@ -111,7 +111,7 @@ class ContactListHelpers
     {
         $html = '';
         $html .= '<div class="contact-list-pro-feature">';
-        $html .= '<span>' . sanitize_text_field( __( 'More settings available in the Pro version.', 'contact-list' ) ) . '</span>';
+        $html .= '<span>' . sanitize_text_field( __( 'More settings available in the paid plans.', 'contact-list' ) ) . '</span>';
         $html .= '<a href="' . esc_url_raw( get_admin_url() ) . 'options-general.php?page=contact-list-pricing">' . sanitize_text_field( __( 'Upgrade here', 'contact-list' ) ) . '</a>';
         $html .= '</div>';
         return $html;

@@ -38,6 +38,10 @@ class ContactListAdminInlineStyles {
     $css .= 'padding-top: 7px;';
     $css .= '}';
 
+    if (ContactListHelpers::isPremium() == 0) {
+      $css .= '.wp-list-table tr[data-slug="contact-list"] .upgrade a { color: #3db634; }';
+    }
+
     return $css;
     
   }

@@ -3,7 +3,7 @@ Contributors: anssilaitila, freemius
 Tags: business directory, business listing, staff directory, staff list, address book, directory plugin, company directory, church directory, contact directory, directory, contacts, chamber of commerce
 Requires at least: 4.0.0
 Tested up to: 6.1
-Stable tag: 2.9.61
+Stable tag: 2.9.62
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -135,6 +135,9 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 6. Contact management
 
 == Changelog ==
+
+= 2.9.62 - 2022-12-18 =
+* Various tweaks and fixes
 
 = 2.9.61 - 2022-11-29 =
 * (Professional + Business) New tab in settings: Custom post type

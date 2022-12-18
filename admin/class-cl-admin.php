@@ -134,7 +134,24 @@ class Contact_List_Admin
             );
         }
         
-        if ( $hook === 'edit-tags.php' || $hook === 'contact_page_contact-list-shortcodes' ) {
+        if ( $hook === 'edit-tags.php' ) {
+            wp_enqueue_script(
+                $this->plugin_name . '-tipso',
+                CONTACT_LIST_URI . 'dist/tipso.min.js',
+                array( 'jquery' ),
+                $this->version,
+                true
+            );
+            wp_enqueue_script(
+                $this->plugin_name . '-clipboard',
+                '/wp-includes/js/clipboard.js',
+                array( 'jquery' ),
+                $this->version,
+                true
+            );
+            $inline_js = ContactListAdminInlineScripts::inline_scripts();
+            wp_add_inline_script( $this->plugin_name, $inline_js );
+        } elseif ( $hook === 'contact_page_contact-list-shortcodes' ) {
             wp_enqueue_script(
                 $this->plugin_name . '-tipso',
                 CONTACT_LIST_URI . 'dist/tipso.min.js',
@@ -167,6 +184,8 @@ class Contact_List_Admin
             $inline_js = ContactListAdminInlineScripts::help_support_scripts();
             wp_add_inline_script( $this->plugin_name, $inline_js );
         } elseif ( $current_screen_id === 'edit-contact' ) {
+            $inline_js = ContactListAdminInlineScripts::inline_scripts();
+            wp_add_inline_script( $this->plugin_name, $inline_js );
             wp_enqueue_script(
                 $this->plugin_name . '-tipso',
                 CONTACT_LIST_URI . 'dist/tipso.min.js',

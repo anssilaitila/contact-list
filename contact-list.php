@@ -15,8 +15,8 @@
  * @wordpress-plugin
  * Plugin Name:       Contact List
  * Description:       Easily display contact information on your site with this simple plugin.
- * Version:           2.9.61
- * Author:            Tammersoft
+ * Version:           2.9.62
+ * Author:            Contact List PRO
  * Author URI:        https://www.contactlistpro.com
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
@@ -134,6 +134,12 @@ if ( function_exists( 'contact_list_fs' ) ) {
         6
     );
     contact_list_fs()->add_filter( 'show_deactivation_feedback_form', '__return_false' );
+    function contact_list_fs_custom_icon()
+    {
+        return dirname( __FILE__ ) . '/img/plugin-icon/icon.svg';
+    }
+    
+    contact_list_fs()->add_filter( 'plugin_icon', 'contact_list_fs_custom_icon' );
     $s = get_option( 'contact_list_settings' );
     $order_by = '_cl_last_name';
     if ( isset( $s['order_by'] ) && $s['order_by'] ) {
@@ -141,7 +147,7 @@ if ( function_exists( 'contact_list_fs' ) ) {
     }
     //  define('CONTACT_LIST_PLUGIN_NAME', 'contact-list');
     define( 'CONTACT_LIST_ORDER_BY', $order_by );
-    define( 'CONTACT_LIST_VERSION', '2.9.61' );
+    define( 'CONTACT_LIST_VERSION', '2.9.62' );
     define( 'CONTACT_LIST_URI', plugin_dir_url( __FILE__ ) );
     define( 'CONTACT_LIST_PATH', plugin_dir_path( __FILE__ ) );
     define( 'CONTACT_LIST_CPT', 'contact' );

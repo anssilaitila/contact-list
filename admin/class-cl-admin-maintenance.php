@@ -6,7 +6,7 @@ class ContactListAdminMaintenance
     {
         // START METADATA UPDATE
         $metadata_check_field_name = 'contact_list_metadata_fixed_1000';
-        $contact_list_metadata_fixed = get_site_option( $metadata_check_field_name );
+        $contact_list_metadata_fixed = get_option( $metadata_check_field_name );
         
         if ( !$contact_list_metadata_fixed ) {
             ContactListHelpers::writeLog( 'START contact metadata update check (save empty values) - ' . $metadata_check_field_name, '' );

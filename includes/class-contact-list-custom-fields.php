@@ -355,7 +355,6 @@ class ContactListCustomFields
             $scope = $customField['scope'];
             $output = false;
             $custom_fields_notify = 0;
-            $additional_info_notify = 0;
             foreach ( $scope as $scopeItem ) {
                 switch ( $scopeItem ) {
                     default:
@@ -376,12 +375,9 @@ class ContactListCustomFields
             // Premium-only fields are just ads for upgrading, not containing any real functionality
             if ( !$is_premium ) {
                 
-                if ( $customField['name'] == 'phone_2' || $customField['name'] == 'phone_3' || $customField['name'] == 'custom_field_2' || $customField['name'] == 'custom_field_3' || $customField['name'] == 'custom_field_4' || $customField['name'] == 'custom_field_5' || $customField['name'] == 'custom_field_6' || $customField['name'] == 'description' || $customField['name'] == 'zip_code' ) {
+                if ( $customField['name'] == 'phone_2' || $customField['name'] == 'phone_3' || $customField['name'] == 'custom_field_2' || $customField['name'] == 'custom_field_3' || $customField['name'] == 'custom_field_4' || $customField['name'] == 'custom_field_5' || $customField['name'] == 'custom_field_6' || $customField['name'] == 'zip_code' ) {
                     $output = true;
                     $customField['name'] = '_FREE_' . $customField['name'];
-                } elseif ( $customField['name'] == 'description' ) {
-                    $customField['name'] = '_FREE_' . $customField['name'];
-                    $additional_info_notify = 1;
                 }
             
             }
@@ -401,17 +397,9 @@ class ContactListCustomFields
                       
                         <div class="contact-list-field-in-pro-container">
 
-                          <?php 
-                    
-                    if ( $customField['name'] != '_FREE_description' ) {
-                        ?>
-                            <label><b><?php 
-                        echo  esc_html( $customField['title'] ) ;
-                        ?></b></label>
-                          <?php 
-                    }
-                    
-                    ?>
+                          <label><b><?php 
+                    echo  esc_html( $customField['title'] ) ;
+                    ?></b></label>
                       
                           <a href="<?php 
                     echo  esc_url( get_admin_url() ) ;

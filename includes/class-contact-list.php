@@ -276,12 +276,7 @@ class Contact_List
             1
         );
         // Inline styles
-        $this->loader->add_action(
-            'admin_head',
-            $plugin_admin_inline_scripts,
-            'inline_scripts',
-            100
-        );
+        //    $this->loader->add_action('admin_head', $plugin_admin_inline_scripts, 'inline_scripts', 100);
         // Upgrade link
         if ( ContactListHelpers::isPremium() == 0 ) {
             $this->loader->add_action( 'admin_menu', $plugin_settings, 'add_upgrade_link' );

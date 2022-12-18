@@ -1219,18 +1219,6 @@ class ContactListSettings
         )
         );
         add_settings_field(
-            'contact-list-text_filter_contacts',
-            sanitize_text_field( __( 'Filter contacts', 'contact-list' ) ),
-            array( $this, 'input_render' ),
-            'contact-list',
-            'contact-list_section',
-            array(
-            'label_for'   => 'contact-list-text_filter_contacts',
-            'field_name'  => 'text_filter_contacts',
-            'placeholder' => sanitize_text_field( __( 'Filter contacts', 'contact-list' ) ),
-        )
-        );
-        add_settings_field(
             'contact-list-text_sr_contact',
             sanitize_text_field( __( 'Search results: "contact"', 'contact-list' ) ),
             array( $this, 'input_render' ),
@@ -2530,6 +2518,58 @@ class ContactListSettings
       </div>
 
       <?php 
+            
+            if ( $field_name == 'activate_recaptcha' ) {
+                ?>
+
+          <div class="general-info">
+            <b><?php 
+                echo  esc_html__( 'Note:', 'contact-list' ) ;
+                ?></b>
+            <?php 
+                echo  esc_html__( 'The plugin currently supports reCAPTCHA v2 ("I\'m not a robot" checkbox). When you create your keys, you must choose this type. More information on this at', 'contact-list' ) ;
+                ?> <a href="https://developers.google.com/recaptcha/docs/versions" target="_blank">https://developers.google.com/recaptcha/docs/versions</a>.
+          </div>
+
+      <?php 
+            } elseif ( $field_name == 'link_country_and_state' ) {
+                ?>
+
+          <div class="general-info">
+            <?php 
+                echo  esc_html__( 'This means that the country must be selected first, and the state dropdown is populated after that based on the real values of the states available for the selected country. Same way the city dropdown is populated after the state is selected.', 'contact-list' ) ;
+                ?>
+          </div>
+
+      <?php 
+            } elseif ( $field_name == 'enable_single_contact_page' ) {
+                ?>
+          
+          <div class="general-info">
+            <?php 
+                echo  esc_html__( "Each contact will have their own page under slug 'contact', and as content the regular contact card, url being like so:", 'contact-list' ) ;
+                ?>
+            /contact/firstname-lastname/<br /><br />
+
+            <?php 
+                echo  esc_html__( "It's also possible to customize the template by having the file single-contact.php in your theme.", 'contact-list' ) ;
+                ?>
+
+          </div>
+
+      <?php 
+            } elseif ( $field_name == 'show_contacts_in_site_search_results' ) {
+                ?>
+          
+          <div class="general-info">
+            <?php 
+                echo  esc_html__( "Show the contacts in the site search results. Proper function requires also the single contact pages enabled.", 'contact-list' ) ;
+                ?>
+          </div>
+
+      <?php 
+            }
+            
             ?>
       
       <?php 
@@ -3255,7 +3295,7 @@ class ContactListSettings
     
     public function update_db_check()
     {
-        $installed_version = get_site_option( 'contact_list_version' );
+        $installed_version = get_option( 'contact_list_version' );
         
         if ( $installed_version != CONTACT_LIST_VERSION ) {
             global  $wpdb ;
