@@ -375,7 +375,7 @@ class ContactListCustomFields
             // Premium-only fields are just ads for upgrading, not containing any real functionality
             if ( !$is_premium ) {
                 
-                if ( $customField['name'] == 'phone_2' || $customField['name'] == 'phone_3' || $customField['name'] == 'custom_field_2' || $customField['name'] == 'custom_field_3' || $customField['name'] == 'custom_field_4' || $customField['name'] == 'custom_field_5' || $customField['name'] == 'custom_field_6' || $customField['name'] == 'zip_code' ) {
+                if ( $customField['name'] == 'phone_2' || $customField['name'] == 'phone_3' || $customField['name'] == 'custom_field_2' || $customField['name'] == 'custom_field_3' || $customField['name'] == 'custom_field_4' || $customField['name'] == 'custom_field_5' || $customField['name'] == 'custom_field_6' ) {
                     $output = true;
                     $customField['name'] = '_FREE_' . $customField['name'];
                 }

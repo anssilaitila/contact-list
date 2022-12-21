@@ -66,17 +66,18 @@ class ContactListAdminMaintenance
         
         if ( $s === false ) {
             $default_settings = [
-                'layout'                         => '2-cards-on-the-same-row',
-                'card_border'                    => 'black',
-                'contact_image_style'            => 'sepia',
-                'contact_image_shadow'           => 'on',
-                'card_background'                => 'white',
-                'show_country_select_in_search'  => 'on',
-                'show_state_select_in_search'    => 'on',
-                'show_city_select_in_search'     => 'on',
-                'show_category_select_in_search' => 'on',
-                'show_contact_images_always'     => 'on',
-                'pagination_type'                => 'improved',
+                'layout'                              => '2-cards-on-the-same-row',
+                'card_border'                         => 'black',
+                'contact_image_style'                 => 'sepia',
+                'contact_image_shadow'                => 'on',
+                'card_background'                     => 'white',
+                'show_country_select_in_search'       => 'on',
+                'show_state_select_in_search'         => 'on',
+                'show_city_select_in_search'          => 'on',
+                'show_category_select_in_search'      => 'on',
+                'show_contact_images_always'          => 'on',
+                'pagination_type'                     => 'improved',
+                'simple_list_show_titles_for_columns' => 'on',
             ];
             add_option( 'contact_list_settings', $default_settings );
         }

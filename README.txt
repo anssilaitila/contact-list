@@ -3,7 +3,7 @@ Contributors: anssilaitila, freemius
 Tags: business directory, business listing, staff directory, staff list, address book, directory plugin, company directory, church directory, contact directory, directory, contacts, chamber of commerce
 Requires at least: 4.0.0
 Tested up to: 6.1
-Stable tag: 2.9.62
+Stable tag: 2.9.63
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -135,6 +135,10 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 6. Contact management
 
 == Changelog ==
+
+= 2.9.63 - 2022-12-21 =
+* (All plans) You can now select any fields in any order to the simple list (see plugin settings, bottom of Simple list tab)
+* (Free + All plans) New setting for simple list: Show call button instead of phone number
 
 = 2.9.62 - 2022-12-18 =
 * Various tweaks and fixes
