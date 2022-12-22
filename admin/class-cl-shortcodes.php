@@ -334,6 +334,21 @@ class ContactListShortcodes
             echo  esc_html__( 'Copy', 'contact-list' ) ;
             ?></button>
                 </li>
+
+                <li><?php 
+            echo  esc_html__( 'Show these fields (check the fields from plugin settings, Simple list tab)', 'contact-list' ) ;
+            ?>: <span class="cl-new-feature-inline"> <?php 
+            echo  esc_html__( 'New', 'contact-list' ) ;
+            ?></span>
+                
+                  <?php 
+            echo  wp_kses( $plan_info_markup_professional, $plan_info_markup_allowed_tags ) ;
+            ?>
+                
+                  <span class="contact-list-shortcode contact-list-shortcode-0002">[contact_list_simple fields="full_name phone city category"]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-0002"><?php 
+            echo  esc_html__( 'Copy', 'contact-list' ) ;
+            ?></button>
+                </li>
                 
               <?php 
         }

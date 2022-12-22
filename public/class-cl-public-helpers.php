@@ -312,17 +312,9 @@ class ContactListPublicHelpers
             'category'       => sanitize_text_field( __( 'Category', 'contact-list' ) ),
             'send_message'   => sanitize_text_field( __( 'Send message', 'contact-list' ) ),
         ];
-        $simple_list_fields = explode( ' ', sanitize_text_field( $s['simple_list_custom_order'] ) );
+        $simple_list_fields = [];
         
         if ( sizeof( $simple_list_fields ) > 1 ) {
-            foreach ( $simple_list_fields as $f ) {
-                $field_name = sanitize_title( $f );
-                $default_title = $simple_list_fields_default_titles[$field_name];
-                $field_title = ContactListHelpers::getText( $field_name . '_title', $default_title );
-                $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-title contact-list-simple-list-col-title-' . $field_name . '"><span>';
-                $html .= $field_title;
-                $html .= '</span></div>';
-            }
         } else {
             $contact_fullname = '';
             $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-name contact-list-simple-list-col-title"><span>' . ContactListHelpers::getText( 'name_title', __( 'Name', 'contact-list' ) ) . '</span></div>';
@@ -460,23 +452,29 @@ class ContactListPublicHelpers
                         break;
                     case 'phone':
                         $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-' . $field_name . '"><span>';
-                        
-                        if ( isset( $c['_cl_phone'] ) ) {
-                            $phone_org = sanitize_text_field( $c['_cl_phone'][0] );
-                            $phone_href = preg_replace( '/[^0-9\\,]/', '', $phone_org );
+                        $show_data = 1;
+                        if ( isset( $s['simple_list_hide_phone_1'] ) ) {
+                            $show_data = 0;
+                        }
+                        if ( $override || $show_data ) {
                             
-                            if ( isset( $s['simple_list_call_button'] ) ) {
-                                $call_title = sanitize_text_field( __( 'Call', 'contact-list' ) );
-                                if ( isset( $s['simple_list_call_button_title'] ) ) {
-                                    $call_title = sanitize_text_field( $s['simple_list_call_button_title'] );
+                            if ( isset( $c['_cl_phone'] ) ) {
+                                $phone_org = sanitize_text_field( $c['_cl_phone'][0] );
+                                $phone_href = preg_replace( '/[^0-9\\,]/', '', $phone_org );
+                                
+                                if ( isset( $s['simple_list_call_button'] ) ) {
+                                    $call_title = sanitize_text_field( __( 'Call', 'contact-list' ) );
+                                    if ( isset( $s['simple_list_call_button_title'] ) ) {
+                                        $call_title = sanitize_text_field( $s['simple_list_call_button_title'] );
+                                    }
+                                    $html .= '<a href="tel:' . $phone_href . '" class="contact-list-simple-list-call-button">' . $call_title . '</a>';
+                                } else {
+                                    $html .= '<a href="tel:' . $phone_href . '">' . $phone_org . '</a>';
                                 }
-                                $html .= '<a href="tel:' . $phone_href . '" class="contact-list-simple-list-call-button">' . $call_title . '</a>';
-                            } else {
-                                $html .= '<a href="tel:' . $phone_href . '">' . $phone_org . '</a>';
+                            
                             }
                         
                         }
-                        
                         $html .= '</span></div>';
                         break;
                     case 'phone_2':
@@ -587,9 +585,9 @@ class ContactListPublicHelpers
                             $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-' . $field_name . '"><span>';
                             $html .= ContactListPublicHelpers::singleContactSimpleCustomFieldMarkup( 1, $c );
                             $html .= '</span></div>';
-                            break;
                         }
-                    
+                        
+                        break;
                     case 'custom_field_2':
                         break;
                     case 'custom_field_3':
@@ -642,9 +640,9 @@ class ContactListPublicHelpers
                                 $html .= '<span class="contact-list-send-email contact-list-simple-send-email cl-dont-print"><a href="" data-id="' . ContactListHelpers::sanitize_attr_value( $id ) . '" data-name="' . ContactListHelpers::sanitize_attr_value( $contact_fullname ) . '">' . ContactListHelpers::getTextV2( 'text_send_message', 'Send message' ) . ' &raquo;</a></span>';
                             }
                             $html .= '</span></div>';
-                            break;
                         }
-                    
+                        
+                        break;
                     case 'description':
                         $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-' . $field_name . '"><span>';
                         if ( isset( $c[$field_name_db] ) ) {
