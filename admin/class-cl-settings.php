@@ -1966,6 +1966,54 @@ class ContactListSettings
         )
         );
         add_settings_section(
+            'contact-list_public_form_required',
+            '',
+            array( $this, 'contact_list_settings_public_form_required' ),
+            'contact-list'
+        );
+        $pf_required_all_fields = [
+            'first_name'     => sanitize_text_field( __( 'First name', 'contact-list' ) ),
+            'last_name'      => sanitize_text_field( __( 'Last name', 'contact-list' ) ),
+            'job_title'      => sanitize_text_field( __( 'Job title', 'contact-list' ) ),
+            'email'          => sanitize_text_field( __( 'Email', 'contact-list' ) ),
+            'phone'          => sanitize_text_field( __( 'Phone 1', 'contact-list' ) ),
+            'phone_2'        => sanitize_text_field( __( 'Phone 2', 'contact-list' ) ),
+            'phone_3'        => sanitize_text_field( __( 'Phone 3', 'contact-list' ) ),
+            'linkedin_url'   => sanitize_text_field( __( 'LinkedIn URL', 'contact-list' ) ),
+            'twitter_url'    => sanitize_text_field( __( 'Twitter URL', 'contact-list' ) ),
+            'facebook_url'   => sanitize_text_field( __( 'Facebook URL', 'contact-list' ) ),
+            'instagram_url'  => sanitize_text_field( __( 'Instagram URL', 'contact-list' ) ),
+            'photo'          => sanitize_text_field( __( 'Photo', 'contact-list' ) ),
+            'city'           => sanitize_text_field( __( 'City', 'contact-list' ) ),
+            'state'          => sanitize_text_field( __( 'State', 'contact-list' ) ),
+            'country'        => sanitize_text_field( __( 'Country', 'contact-list' ) ),
+            'address_line_1' => sanitize_text_field( __( 'Address line 1', 'contact-list' ) ),
+            'address_line_2' => sanitize_text_field( __( 'Address line 2', 'contact-list' ) ),
+            'address_line_3' => sanitize_text_field( __( 'Address line 3', 'contact-list' ) ),
+            'address_line_4' => sanitize_text_field( __( 'Address line 4', 'contact-list' ) ),
+            'custom_field_1' => sanitize_text_field( __( 'Custom field 1', 'contact-list' ) ),
+            'custom_field_2' => sanitize_text_field( __( 'Custom field 2', 'contact-list' ) ),
+            'custom_field_3' => sanitize_text_field( __( 'Custom field 3', 'contact-list' ) ),
+            'custom_field_4' => sanitize_text_field( __( 'Custom field 4', 'contact-list' ) ),
+            'custom_field_5' => sanitize_text_field( __( 'Custom field 5', 'contact-list' ) ),
+            'custom_field_6' => sanitize_text_field( __( 'Custom field 6', 'contact-list' ) ),
+        ];
+        foreach ( $pf_required_all_fields as $key => $value ) {
+            $pf_required_field_name = $only_pro . 'pf_required_' . $key;
+            $pf_required_field_title = $value;
+            add_settings_field(
+                'contact-list-' . $pf_required_field_name,
+                $pf_required_field_title,
+                array( $this, 'checkbox_render' ),
+                'contact-list',
+                'contact-list_public_form_required',
+                array(
+                'label_for'  => 'contact-list-' . $pf_required_field_name,
+                'field_name' => $pf_required_field_name,
+            )
+            );
+        }
+        add_settings_section(
             'contact-list_simple_list_settings',
             '',
             array( $this, 'contact_list_settings_simple_list_settings_callback' ),
@@ -1991,6 +2039,17 @@ class ContactListSettings
             array(
             'label_for'  => 'contact-list-simple_list_call_button',
             'field_name' => 'simple_list_call_button',
+        )
+        );
+        add_settings_field(
+            'contact-list-simple_list_show_extra_call_button',
+            sanitize_text_field( __( 'Show call button in addition to the phone link', 'contact-list' ) ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_simple_list_settings',
+            array(
+            'label_for'  => 'contact-list-simple_list_show_extra_call_button',
+            'field_name' => 'simple_list_show_extra_call_button',
         )
         );
         $placeholder = sanitize_text_field( __( 'Call', 'contact-list' ) );
@@ -3405,6 +3464,11 @@ class ContactListSettings
     public function contact_list_settings_simple_list_callback()
     {
         echo  '<p style="font-size: 16px; font-weight: 600; margin-bottom: 10px;">' . esc_html__( 'Fields in simple list', 'contact-list' ) . '</p>' ;
+    }
+    
+    public function contact_list_settings_public_form_required()
+    {
+        echo  '<p style="font-size: 16px; font-weight: 600; margin-bottom: 10px;">' . esc_html__( 'Required fields for [contact_list_form]', 'contact-list' ) . '</p>' ;
     }
     
     public function contact_list_settings_simple_list_custom_order_callback()

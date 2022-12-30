@@ -130,8 +130,11 @@ class Contact_List
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cl-public-send-mail.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cl-public-ajax.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cl-public-helpers.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cl-public-helpers-default.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cl-public-helpers-simple.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cl-public-load.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cl-public-pagination.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cl-public-hooks.php';
         /**
          * The class responsible for defining custom fields for the custom post type
          */

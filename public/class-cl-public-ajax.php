@@ -81,7 +81,7 @@ class ContactListPublicAjax
         ) );
         
         if ( $wp_query->have_posts() ) {
-            $html .= ContactListHelpers::contactListMarkup(
+            $html .= ContactListPublicHelpersDefault::contactListMarkup(
                 $wp_query,
                 0,
                 $atts,
@@ -215,7 +215,7 @@ class ContactListPublicAjax
         ) );
         
         if ( $wp_query->have_posts() ) {
-            $html .= ContactListPublicHelpers::contactListSimpleMarkup( $wp_query, 0, $atts );
+            $html .= ContactListPublicHelpersSimple::contactListSimpleMarkup( $wp_query, 0, $atts );
             $html .= '<hr class="clear" />';
         }
         

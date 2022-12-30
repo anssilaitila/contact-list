@@ -130,7 +130,7 @@ class ShortcodeContactListSimple
         if ( $wp_query_for_filter->have_posts() ) {
             $html .= '<div class="contact-list-simple-all-contacts-container">';
             $html .= '<div class="contact-list-simple-contacts-found"></div>';
-            $html .= ContactListPublicHelpers::contactListSimpleMarkup(
+            $html .= ContactListPublicHelpersSimple::contactListSimpleMarkup(
                 $wp_query_for_filter,
                 0,
                 $atts,
@@ -142,7 +142,7 @@ class ShortcodeContactListSimple
         
         if ( $wp_query->have_posts() ) {
             $html .= '<div class="contact-list-simple-paginated-container contact-list-simple-ajax-results">';
-            $html .= ContactListPublicHelpers::contactListSimpleMarkup( $wp_query, 0, $atts );
+            $html .= ContactListPublicHelpersSimple::contactListSimpleMarkup( $wp_query, 0, $atts );
             $html .= '</div>';
         }
         

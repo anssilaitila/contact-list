@@ -160,13 +160,13 @@ class ContactListPrintable {
             if (isset($_GET['cl_view']) && $_GET['cl_view'] == 'simple_list'):
 
               $html .= '<div class="contact-list-simple-ajax-results">';
-              $html .= ContactListPublicHelpers::contactListSimpleMarkup($wp_query);
+              $html .= ContactListPublicHelpersSimple::contactListSimpleMarkup($wp_query);
               $html .= '</div>';
               
             else:
 
               $html .= '<div class="contact-list-ajax-results">';
-              $html .= ContactListHelpers::contactListMarkup($wp_query);
+              $html .= ContactListPublicHelpersDefault::contactListMarkup($wp_query);
               $html .= '</div>';
               
             endif;
