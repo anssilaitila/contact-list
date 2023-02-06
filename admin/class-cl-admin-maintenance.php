@@ -4,6 +4,7 @@ class ContactListAdminMaintenance
 {
     public function update_db_check_v2()
     {
+        $s = get_option( 'contact_list_settings' );
         // START METADATA UPDATE
         $metadata_check_field_name = 'contact_list_metadata_fixed_1000';
         $contact_list_metadata_fixed = get_option( $metadata_check_field_name );

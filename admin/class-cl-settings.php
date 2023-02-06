@@ -2324,6 +2324,74 @@ class ContactListSettings
             )
             );
         }
+        
+        $tab = 11;
+        add_settings_section(
+            'contact-list_tab_' . $tab,
+            '',
+            array( $this, 'contact_list_settings_tab_' . $tab . '_callback' ),
+            'contact-list'
+        );
+        
+        if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
+            add_settings_field(
+                'contact-list-' . $only_pro . 'cron_activate_import_contacts_daily',
+                sanitize_text_field( __( 'Activate automatic contact import cron job (once daily)', 'contact-list' ) ),
+                array( $this, 'checkbox_render' ),
+                'contact-list',
+                'contact-list_tab_' . $tab,
+                array(
+                'label_for'  => 'contact-list-' . $only_pro . 'cron_activate_import_contacts_daily',
+                'field_name' => $only_pro . 'cron_activate_import_contacts_daily',
+            )
+            );
+            add_settings_field(
+                'contact-list-' . $only_pro . 'cron_import_contacts_file',
+                sanitize_text_field( __( 'File and path of the importable file', 'contact-list' ) ),
+                array( $this, 'input_render' ),
+                'contact-list',
+                'contact-list_tab_' . $tab,
+                array(
+                'label_for'   => 'contact-list-' . $only_pro . 'cron_import_contacts_file',
+                'field_name'  => $only_pro . 'cron_import_contacts_file',
+                'placeholder' => 'wp-content/uploads/contacts.csv',
+            )
+            );
+            add_settings_field(
+                'contact-list-' . $only_pro . 'cron_import_contacts_status_email',
+                sanitize_text_field( __( 'Email address to receive report for each import', 'contact-list' ) ),
+                array( $this, 'input_render' ),
+                'contact-list',
+                'contact-list_tab_' . $tab,
+                array(
+                'label_for'   => 'contact-list-' . $only_pro . 'cron_import_contacts_status_email',
+                'field_name'  => $only_pro . 'cron_import_contacts_status_email',
+                'placeholder' => '',
+            )
+            );
+            add_settings_field(
+                'contact-list-' . $only_pro . 'cron_import_contacts_delete_all_before_import',
+                sanitize_text_field( __( 'Delete all (published) contacts before import', 'contact-list' ) ),
+                array( $this, 'checkbox_render' ),
+                'contact-list',
+                'contact-list_tab_' . $tab,
+                array(
+                'label_for'  => 'contact-list-' . $only_pro . 'cron_import_contacts_delete_all_before_import',
+                'field_name' => $only_pro . 'cron_import_contacts_delete_all_before_import',
+            )
+            );
+            add_settings_field(
+                'contact-list-' . $only_pro . 'cron_import_contacts_update_existing_by_email',
+                sanitize_text_field( __( 'Update existing contacts based on the contacts\' email address', 'contact-list' ) ),
+                array( $this, 'checkbox_render' ),
+                'contact-list',
+                'contact-list_tab_' . $tab,
+                array(
+                'label_for'  => 'contact-list-' . $only_pro . 'cron_import_contacts_update_existing_by_email',
+                'field_name' => $only_pro . 'cron_import_contacts_update_existing_by_email',
+            )
+            );
+        }
     
     }
     
@@ -2618,6 +2686,9 @@ class ContactListSettings
       <?php 
             $free_class = '';
             ?>
+      <?php 
+            $plan_required = 'All Plans';
+            ?>
     
       <?php 
             
@@ -2629,6 +2700,25 @@ class ContactListSettings
         <?php 
                 $free_class = 'contact-list-setting-container-free';
                 ?>
+
+        <?php 
+                
+                if ( $field_name == '_FREE_cron_import_contacts_file' ) {
+                    ?>
+          <?php 
+                    $plan_required = 'Business';
+                    ?>
+        <?php 
+                } elseif ( $field_name == '_FREE_cron_import_contacts_status_email' ) {
+                    ?>
+          <?php 
+                    $plan_required = 'Business';
+                    ?>
+        <?php 
+                }
+                
+                ?>
+
       <?php 
             }
             
@@ -2647,7 +2737,7 @@ class ContactListSettings
                 echo  esc_url( get_admin_url() ) ;
                 ?>options-general.php?page=contact-list-pricing">
             <div class="contact-list-settings-pro-feature-overlay"><div><?php 
-                echo  esc_html__( 'All Plans', 'contact-list' ) ;
+                echo  esc_html( $plan_required ) ;
                 ?></div></div>
           </a>
  
@@ -2671,8 +2761,37 @@ class ContactListSettings
             }
             
             ?>
-      
+
       </div>
+
+      <?php 
+            
+            if ( strpos( $field_name, 'cron_import_contacts_file' ) !== false ) {
+                ?>
+        <div class="email-info">
+          <strong>e.g. wp-content/uploads/contacts.csv</strong>
+          <?php 
+                echo  esc_html__( '(directly under your WordPress installation folder)', 'contact-list' ) ;
+                ?><br /><br />
+      
+          <?php 
+                $url = get_admin_url( null, './edit.php?post_type=' . CONTACT_LIST_CPT . '&page=contact-list-import' );
+                echo  sprintf( wp_kses(
+                    /* translators: %s: link to the Import contacts page at WP admin */
+                    __( 'After changing the settings, please check the import status from <a href="%s">here</a>.', 'contact-list' ),
+                    array(
+                        'a' => array(
+                        'href' => array(),
+                    ),
+                    )
+                ), esc_url( $url ) ) ;
+                ?>
+      
+        </div>
+      <?php 
+            }
+            
+            ?>
 
       <?php 
         }
@@ -2750,6 +2869,26 @@ class ContactListSettings
           <?php 
                     $plan_required = 'Professional';
                     ?>
+
+        <?php 
+                } elseif ( $field_name == '_FREE_cron_activate_import_contacts_daily' ) {
+                    ?>
+          <?php 
+                    $plan_required = 'Business';
+                    ?>
+        <?php 
+                } elseif ( $field_name == '_FREE_cron_import_contacts_delete_all_before_import' ) {
+                    ?>
+          <?php 
+                    $plan_required = 'Business';
+                    ?>
+        <?php 
+                } elseif ( $field_name == '_FREE_cron_import_contacts_update_existing_by_email' ) {
+                    ?>
+          <?php 
+                    $plan_required = 'Business';
+                    ?>
+
         <?php 
                 }
                 
@@ -3432,6 +3571,12 @@ class ContactListSettings
         echo  '<div class="contact-list-settings-tab-10">' ;
     }
     
+    public function contact_list_settings_tab_11_callback()
+    {
+        echo  '</div>' ;
+        echo  '<div class="contact-list-settings-tab-11">' ;
+    }
+    
     public function contact_list_settings_section_callback()
     {
         echo  '</div>' ;
@@ -3531,6 +3676,18 @@ class ContactListSettings
             ?>
             <li class="contact-list-settings-tab-10-title" data-settings-container="contact-list-settings-tab-10"><span><?php 
             echo  esc_html__( 'Custom post type', 'contact-list' ) ;
+            ?></span></li>
+          <?php 
+        }
+        
+        ?>
+
+          <?php 
+        
+        if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
+            ?>
+            <li class="contact-list-settings-tab-11-title" data-settings-container="contact-list-settings-tab-11"><span><?php 
+            echo  esc_html__( 'Import & export', 'contact-list' ) ;
             ?></span></li>
           <?php 
         }

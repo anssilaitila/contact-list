@@ -97,13 +97,9 @@ class ContactListShortcodes
             ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline" style="margin-left: 0; margin-right: 1px;">All Plans</a>
         
             <?php 
-            echo  wp_kses(
-                /* translators: %s: link to the support forum */
-                __( 'means that the shortcode / parameter exists in all of the <strong>paid</strong> plans.', 'contact-list' ),
-                array(
-                    'strong' => array(),
-                )
-            ) ;
+            echo  wp_kses( __( 'means that the shortcode / parameter exists in all of the <strong>paid</strong> plans.', 'contact-list' ), array(
+                'strong' => array(),
+            ) ) ;
             ?>
         
           <?php 
