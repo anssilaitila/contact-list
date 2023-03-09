@@ -56,7 +56,12 @@ class ContactListPublicAjax
                 'compare' => 'LIKE',
             );
         }
+        $atts_group = '';
+        if ( isset( $atts['group'] ) && $atts['group'] ) {
+            $atts_group = sanitize_title( $atts['group'] );
+        }
         $tax_query = [];
+        
         if ( isset( $_POST['cl_cat'] ) && $_POST['cl_cat'] ) {
             $tax_query = array(
                 'relation' => 'AND',
@@ -66,7 +71,17 @@ class ContactListPublicAjax
                 'terms'    => sanitize_title( $_POST['cl_cat'] ),
             ),
             );
+        } elseif ( $atts_group ) {
+            $tax_query = array(
+                'relation' => 'AND',
+                array(
+                'taxonomy' => 'contact-group',
+                'field'    => 'slug',
+                'terms'    => $atts_group,
+            ),
+            );
         }
+        
         $posts_per_page = -1;
         if ( isset( $s['contacts_per_page'] ) && $s['contacts_per_page'] ) {
             $posts_per_page = intval( $s['contacts_per_page'] );
@@ -137,9 +152,6 @@ class ContactListPublicAjax
     {
         $html = '';
         $atts = [];
-        if ( isset( $_POST['cl_atts'] ) && $_POST['cl_atts'] ) {
-            $atts = sanitize_text_field( unserialize( stripslashes( $_POST['cl_atts'] ) ) );
-        }
         $meta_query = array(
             'relation' => 'AND',
         );
@@ -190,7 +202,12 @@ class ContactListPublicAjax
                 'compare' => 'LIKE',
             );
         }
+        $atts_group = '';
+        if ( isset( $atts['group'] ) && $atts['group'] ) {
+            $atts_group = sanitize_title( $atts['group'] );
+        }
         $tax_query = [];
+        
         if ( isset( $_POST['cl_cat'] ) && $_POST['cl_cat'] ) {
             $tax_query = array(
                 'relation' => 'AND',
@@ -200,7 +217,17 @@ class ContactListPublicAjax
                 'terms'    => sanitize_title( $_POST['cl_cat'] ),
             ),
             );
+        } elseif ( $atts_group ) {
+            $tax_query = array(
+                'relation' => 'AND',
+                array(
+                'taxonomy' => 'contact-group',
+                'field'    => 'slug',
+                'terms'    => $atts_group,
+            ),
+            );
         }
+        
         $posts_per_page = -1;
         if ( isset( $s['contacts_per_page'] ) && $s['contacts_per_page'] ) {
             $posts_per_page = intval( $s['contacts_per_page'] );

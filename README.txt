@@ -3,7 +3,7 @@ Contributors: anssilaitila, freemius
 Tags: directory plugin, business directory, contact manager, address book, staff directory, staff list, company directory, church directory, contact directory, contacts, chamber of commerce
 Requires at least: 4.0.0
 Tested up to: 6.1
-Stable tag: 2.9.66
+Stable tag: 2.9.67
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -236,6 +236,12 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 6. Contact management
 
 == Changelog ==
+
+= 2.9.67 - 2023-02-12 =
+* (Professional + Business) Fix: [contact_list group=GROUP_SLUG] now preserve the set group after changing filters
+* (All plans) Fix: [contact_list_simple group=GROUP_SLUG] now preserve the set group after changing filters
+* (Free + All plans) New setting: Show titles above phone numbers on contact card (plugin settings, Layout tab)
+* (Free + All plans) Minor bug fixes
 
 = 2.9.66 - 2023-02-06 =
 * (Business) New feature: set up a scheduled daily contact import (see plugin settings, Import & Export tab)

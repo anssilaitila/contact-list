@@ -261,7 +261,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'move_zip_after_state',
-            sanitize_text_field( __( 'Move zip code after state', 'contact-list' ) ),
+            sanitize_text_field( __( 'Move zip code after state (format: City, State Zip)', 'contact-list' ) ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -294,8 +294,19 @@ class ContactListSettings
         )
         );
         add_settings_field(
+            'contact-list-show_titles_above_phone_numbers',
+            sanitize_text_field( __( 'Show titles above phone numbers on contact card', 'contact-list' ) ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+            'label_for'  => 'contact-list-show_titles_above_phone_numbers',
+            'field_name' => 'show_titles_above_phone_numbers',
+        )
+        );
+        add_settings_field(
             'contact-list-' . $only_pro . 'hide_phone_numbers_from_public_card',
-            sanitize_text_field( __( 'Hide phone numbers from public card', 'contact-list' ) ),
+            sanitize_text_field( __( 'Hide phone numbers from contact card', 'contact-list' ) ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,

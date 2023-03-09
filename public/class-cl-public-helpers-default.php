@@ -99,7 +99,12 @@ class ContactListPublicHelpersDefault
             if ( isset( $c['_cl_phone'][0] ) && $c['_cl_phone'][0] ) {
                 $phone_org = sanitize_text_field( $c['_cl_phone'][0] );
                 $phone_href = preg_replace( '/[^0-9\\,]/', '', $phone_org );
-                $html .= '<span class="contact-list-phone contact-list-phone-1"><a href="tel:' . $phone_href . '">' . $phone_org . '</a></span>';
+                $html .= '<span class="contact-list-phone contact-list-phone-1">';
+                if ( isset( $s['show_titles_above_phone_numbers'] ) ) {
+                    $html .= '<span class="contact-list-phone-title">' . ContactListHelpers::getText( 'phone_title', __( 'Phone', 'contact-list' ) ) . '</span>';
+                }
+                $html .= '<a href="tel:' . $phone_href . '">' . $phone_org . '</a>';
+                $html .= '</span>';
             }
         
         }
