@@ -312,6 +312,25 @@ class ContactListShortcodes
         ?></button>
 
               </li>
+              
+              <li>
+              
+                <?php 
+        echo  esc_html__( 'Exclude groups:', 'contact-list' ) ;
+        ?> <span class="cl-new-feature-inline"> <?php 
+        echo  esc_html__( 'New', 'contact-list' ) ;
+        ?></span>
+              
+                <?php 
+        echo  wp_kses( $plan_info_markup_all_plans, $plan_info_markup_allowed_tags ) ;
+        ?>
+              
+                <span class="contact-list-shortcode contact-list-shortcode-5-1-123">[contact_list_simple exclude_groups="group-slug-1,group-slug-2,group-slug-3"]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-5-1-123"><?php 
+        echo  esc_html__( 'Copy', 'contact-list' ) ;
+        ?></button>
+              
+              </li>
+
 
               <?php 
         
@@ -632,6 +651,7 @@ class ContactListShortcodes
 
         </h2>
         <ol>
+
           <li><?php 
         echo  esc_html__( 'Insert the shortcode', 'contact-list' ) ;
         ?> 
@@ -641,6 +661,21 @@ class ContactListShortcodes
             <?php 
         echo  esc_html__( 'to the page you wish the view to appear on.', 'contact-list' ) ;
         ?></li>
+
+          <li><?php 
+        echo  esc_html__( 'Additional parameters', 'contact-list' ) ;
+        ?>
+            <ul>
+              <li><?php 
+        echo  esc_html__( 'Limit contacts to a specific group', 'contact-list' ) ;
+        ?>: <span class="cl-new-feature-inline"> <?php 
+        echo  esc_html__( 'New', 'contact-list' ) ;
+        ?></span> <span class="contact-list-shortcode contact-list-shortcode-13324">[contact_list_search group=GROUP_SLUG]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-13324"><?php 
+        echo  esc_html__( 'Copy', 'contact-list' ) ;
+        ?></button></li>
+            </ul>
+          </li>
+
         </ol>
         
       </div>

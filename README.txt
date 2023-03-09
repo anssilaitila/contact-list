@@ -3,7 +3,7 @@ Contributors: anssilaitila, freemius
 Tags: directory plugin, business directory, contact manager, address book, staff directory, staff list, company directory, church directory, contact directory, contacts, chamber of commerce
 Requires at least: 4.0.0
 Tested up to: 6.1
-Stable tag: 2.9.67
+Stable tag: 2.9.68
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -27,7 +27,6 @@ All this is about the Contact List plugin!
 [Contact List Plugin Demos](https://www.contactlistpro.com/contact-list/)
 [Documentation](https://www.contactlistpro.com/docs/)
 [Support (free version)](https://wordpress.org/support/plugin/contact-list/)
-[Support (paid plans)](https://www.contactlistpro.com/support/)
 [Blog](https://www.contactlistpro.com/blog/)
 
 == Cases for Contact List Directory Plugin ==
@@ -237,9 +236,14 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 
 == Changelog ==
 
+= 2.9.68 - 2023-03-09 =
+* (Free + All plans) Fixed an issue where the phone column was not aligned correctly in simple list
+* (All plans) New parameter for search only shortcode: [contact_list_search group=GROUP_SLUG]
+* (All plans) New parameter to exclude groups from simple list: [contact_list_simple exclude_groups="group-slug-1,group-slug-2,group-slug-3"]
+
 = 2.9.67 - 2023-02-12 =
-* (Professional + Business) Fix: [contact_list group=GROUP_SLUG] now preserve the set group after changing filters
-* (All plans) Fix: [contact_list_simple group=GROUP_SLUG] now preserve the set group after changing filters
+* (Professional + Business) Fix: [contact_list group=GROUP_SLUG] now preserves the set group after changing filters
+* (All plans) Fix: [contact_list_simple group=GROUP_SLUG] now preserves the set group after changing filters
 * (Free + All plans) New setting: Show titles above phone numbers on contact card (plugin settings, Layout tab)
 * (Free + All plans) Minor bug fixes
 

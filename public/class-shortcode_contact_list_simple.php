@@ -73,23 +73,45 @@ class ShortcodeContactListSimple
         $tax_query = [];
         
         if ( isset( $_GET['cl_cat'] ) && $_GET['cl_cat'] ) {
-            $tax_query = array(
+            $tax_query = [
                 'relation' => 'AND',
-                array(
+            ];
+            $tax_query[] = [
                 'taxonomy' => 'contact-group',
                 'field'    => 'slug',
                 'terms'    => sanitize_title( $_GET['cl_cat'] ),
-            ),
-            );
+            ];
+            
+            if ( isset( $atts['exclude_groups'] ) && $atts['exclude_groups'] ) {
+                $terms = explode( ',', sanitize_text_field( $atts['exclude_groups'] ) );
+                $tax_query[] = [
+                    'taxonomy' => 'contact-group',
+                    'terms'    => $terms,
+                    'field'    => 'slug',
+                    'operator' => 'NOT IN',
+                ];
+            }
+        
         } elseif ( isset( $atts['group'] ) && $atts['group'] ) {
-            $tax_query = array(
+            $tax_query = [
                 'relation' => 'AND',
-                array(
+            ];
+            $tax_query[] = [
                 'taxonomy' => 'contact-group',
                 'field'    => 'slug',
                 'terms'    => sanitize_title( $atts['group'] ),
-            ),
-            );
+            ];
+        } elseif ( isset( $atts['exclude_groups'] ) && $atts['exclude_groups'] ) {
+            $terms = explode( ',', sanitize_text_field( $atts['exclude_groups'] ) );
+            $tax_query = [
+                'relation' => 'AND',
+            ];
+            $tax_query[] = [
+                'taxonomy' => 'contact-group',
+                'terms'    => $terms,
+                'field'    => 'slug',
+                'operator' => 'NOT IN',
+            ];
         }
         
         $paged = 1;

@@ -212,12 +212,13 @@ class ContactListPublicHelpersSimple
                         
                         break;
                     case 'phone':
-                        $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-' . $field_name . '"><span>';
                         $show_data = 1;
                         if ( isset( $s['simple_list_hide_phone_1'] ) ) {
                             $show_data = 0;
                         }
+                        
                         if ( $override || $show_data ) {
+                            $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-' . $field_name . '"><span>';
                             
                             if ( isset( $c['_cl_phone'] ) && $c['_cl_phone'][0] ) {
                                 $phone_org = sanitize_text_field( $c['_cl_phone'][0] );
@@ -234,9 +235,10 @@ class ContactListPublicHelpersSimple
                                 }
                             
                             }
-                        
+                            
+                            $html .= '</span></div>';
                         }
-                        $html .= '</span></div>';
+                        
                         
                         if ( isset( $s['simple_list_show_extra_call_button'] ) ) {
                             $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-' . $field_name . '-call-button"><span>';
