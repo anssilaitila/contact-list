@@ -180,12 +180,46 @@ class ContactListShortcodes
                   </li>
 
                   <li>
-                
+                  
                     <?php 
-        echo  esc_html__( 'Exclude groups (from search filter and actual contacts):', 'contact-list' ) ;
+        echo  esc_html__( 'Hide contacts first (contacts are shown when searched or any filter is selected):', 'contact-list' ) ;
         ?> <span class="cl-new-feature-inline"> <?php 
         echo  esc_html__( 'New', 'contact-list' ) ;
         ?></span>
+                  
+                    <?php 
+        echo  wp_kses( $plan_info_markup_all_plans, $plan_info_markup_allowed_tags ) ;
+        ?>
+                  
+                    <span class="contact-list-shortcode contact-list-shortcode-5-1222">[contact_list hide_contacts_first=1]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-5-1222"><?php 
+        echo  esc_html__( 'Copy', 'contact-list' ) ;
+        ?></button>
+                  
+                  </li>
+
+                  <li>
+                  
+                    <?php 
+        echo  esc_html__( 'Hide contacts first and show only a single default contact:', 'contact-list' ) ;
+        ?> <span class="cl-new-feature-inline"> <?php 
+        echo  esc_html__( 'New', 'contact-list' ) ;
+        ?></span>
+                  
+                    <?php 
+        echo  wp_kses( $plan_info_markup_all_plans, $plan_info_markup_allowed_tags ) ;
+        ?>
+                  
+                    <span class="contact-list-shortcode contact-list-shortcode-5-1333">[contact_list hide_contacts_first=1 default_contact_id=12345]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-5-1333"><?php 
+        echo  esc_html__( 'Copy', 'contact-list' ) ;
+        ?></button>
+                  
+                  </li>
+
+                  <li>
+                
+                    <?php 
+        echo  esc_html__( 'Exclude groups (from search filter and actual contacts):', 'contact-list' ) ;
+        ?>
     
                     <?php 
         echo  wp_kses( $plan_info_markup_all_plans, $plan_info_markup_allowed_tags ) ;

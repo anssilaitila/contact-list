@@ -9,6 +9,8 @@ class ShortcodeContactList
         $elem_class = ContactListHelpers::createElemClass();
         $embed_id = ( isset( $atts['embed_id'] ) ? sanitize_title( $atts['embed_id'] ) : 'default' );
         $pagination_active = 0;
+        $get_params_active = 0;
+        $hide_contacts_first = 0;
         
         if ( isset( $_GET['_paged'] ) && $_GET['_paged'] == $embed_id ) {
             $pagination_active = 1;
@@ -104,27 +106,36 @@ class ShortcodeContactList
                 );
             }
             
+            
             if ( isset( $_GET[CONTACT_LIST_CAT1] ) && $_GET[CONTACT_LIST_CAT1] ) {
                 $meta_query[] = array(
                     'key'     => '_cl_country',
                     'value'   => sanitize_text_field( $_GET[CONTACT_LIST_CAT1] ),
                     'compare' => 'LIKE',
                 );
+                $get_params_active = 1;
             }
+            
+            
             if ( isset( $_GET[CONTACT_LIST_CAT2] ) && $_GET[CONTACT_LIST_CAT2] ) {
                 $meta_query[] = array(
                     'key'     => '_cl_state',
                     'value'   => sanitize_text_field( $_GET[CONTACT_LIST_CAT2] ),
                     'compare' => 'LIKE',
                 );
+                $get_params_active = 1;
             }
+            
+            
             if ( isset( $_GET[CONTACT_LIST_CAT3] ) && $_GET[CONTACT_LIST_CAT3] ) {
                 $meta_query[] = array(
                     'key'     => '_cl_city',
                     'value'   => sanitize_text_field( $_GET[CONTACT_LIST_CAT3] ),
                     'compare' => 'LIKE',
                 );
+                $get_params_active = 1;
             }
+            
             $tax_query = [
                 'relation' => 'AND',
             ];
@@ -135,6 +146,7 @@ class ShortcodeContactList
                     'field'    => 'slug',
                     'terms'    => sanitize_title( $_GET['cl_cat'] ),
                 );
+                $get_params_active = 1;
             } elseif ( $group_slug ) {
             }
             
@@ -199,15 +211,50 @@ class ShortcodeContactList
             
             if ( $wp_query->have_posts() ) {
                 $html .= '<div class="contact-list-ajax-results">';
-                $html .= ContactListPublicHelpersDefault::contactListMarkup(
-                    $wp_query,
-                    0,
-                    $atts,
-                    0
-                );
+                $default_contact_id = 0;
+                
+                if ( $hide_contacts_first && !$get_params_active && $default_contact_id ) {
+                    $html .= '<div id="contact-list-search">';
+                    $html .= '<ul id="all-contacts">';
+                    $wpb_all_query = new WP_Query( array(
+                        'post_type'      => CONTACT_LIST_CPT,
+                        'post_status'    => 'publish',
+                        'posts_per_page' => 1,
+                        'p'              => $default_contact_id,
+                    ) );
+                    
+                    if ( $wpb_all_query->have_posts() ) {
+                        while ( $wpb_all_query->have_posts() ) {
+                            $wpb_all_query->the_post();
+                            $id = intval( get_the_id() );
+                            $html .= ContactListPublicHelpersDefault::singleContactMarkup( $id, 0, $atts );
+                        }
+                    } else {
+                        $html .= '<p style="background: #f00; color: #fff; padding: 1rem; text-align: center;">' . sanitize_text_field( __( 'Contact not found', 'contact-list' ) ) . ' (ID: ' . intval( $default_contact_id ) . ')</p>';
+                    }
+                    
+                    $html .= '</ul>';
+                    $html .= '</div><hr class="clear" />';
+                } elseif ( $hide_contacts_first && !$get_params_active ) {
+                    // ...
+                } else {
+                    $html .= ContactListPublicHelpersDefault::contactListMarkup(
+                        $wp_query,
+                        0,
+                        $atts,
+                        0
+                    );
+                }
+                
                 $html .= '</div>';
                 $html .= '<hr class="clear" />';
-                $html .= ContactListPublicPagination::getPagination( 1, $wp_query, 'default' );
+                
+                if ( $hide_contacts_first && !$get_params_active ) {
+                    // ...
+                } else {
+                    $html .= ContactListPublicPagination::getPagination( 1, $wp_query, 'default' );
+                }
+            
             }
             
             if ( $wp_query->found_posts == 0 ) {

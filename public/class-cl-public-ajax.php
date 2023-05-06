@@ -6,6 +6,7 @@ class ContactListPublicAjax
     {
         $html = '';
         $atts = [];
+        $post_params_active = 0;
         $meta_query = array(
             'relation' => 'AND',
         );
@@ -35,27 +36,36 @@ class ContactListPublicAjax
             );
         }
         
+        
         if ( isset( $_POST[CONTACT_LIST_CAT1] ) && $_POST[CONTACT_LIST_CAT1] ) {
             $meta_query[] = array(
                 'key'     => '_cl_country',
                 'value'   => sanitize_text_field( $_POST[CONTACT_LIST_CAT1] ),
                 'compare' => 'LIKE',
             );
+            $post_params_active = 1;
         }
+        
+        
         if ( isset( $_POST[CONTACT_LIST_CAT2] ) && $_POST[CONTACT_LIST_CAT2] ) {
             $meta_query[] = array(
                 'key'     => '_cl_state',
                 'value'   => sanitize_text_field( $_POST[CONTACT_LIST_CAT2] ),
                 'compare' => 'LIKE',
             );
+            $post_params_active = 1;
         }
+        
+        
         if ( isset( $_POST[CONTACT_LIST_CAT3] ) && $_POST[CONTACT_LIST_CAT3] ) {
             $meta_query[] = array(
                 'key'     => '_cl_city',
                 'value'   => sanitize_text_field( $_POST[CONTACT_LIST_CAT3] ),
                 'compare' => 'LIKE',
             );
+            $post_params_active = 1;
         }
+        
         $atts_group = '';
         if ( isset( $atts['group'] ) && $atts['group'] ) {
             $atts_group = sanitize_title( $atts['group'] );
@@ -71,6 +81,7 @@ class ContactListPublicAjax
                 'terms'    => sanitize_title( $_POST['cl_cat'] ),
             ),
             );
+            $post_params_active = 1;
         } elseif ( $atts_group ) {
             $tax_query = array(
                 'relation' => 'AND',

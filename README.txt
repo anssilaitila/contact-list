@@ -2,8 +2,8 @@
 Contributors: anssilaitila, freemius
 Tags: directory plugin, business directory, contact manager, address book, staff directory, staff list, company directory, church directory, contact directory, contacts, chamber of commerce
 Requires at least: 4.0.0
-Tested up to: 6.1
-Stable tag: 2.9.68
+Tested up to: 6.2
+Stable tag: 2.9.69
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -235,6 +235,11 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 6. Contact management
 
 == Changelog ==
+
+= 2.9.69 - 2023-05-06 =
+* (All plans) New parameter [contact_list hide_contacts_first=1]: Hide contacts first (contacts are shown when searched or any filter is selected)
+* (All plans) New parameter [contact_list hide_contacts_first=1 default_contact_id=12345]: Hide contacts first and show only a single default contact
+* (Free + All plans) Bug fixes
 
 = 2.9.68 - 2023-03-09 =
 * (Free + All plans) Fixed an issue where the phone column was not aligned correctly in simple list

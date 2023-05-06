@@ -23,27 +23,32 @@ class ContactListNotifications
         $user_id = intval( $current_user->ID );
         $cl_statuses_option = get_option( 'cl_statuses', array() );
         // Rating notice
+        /*
         
-        if ( !get_option( 'contact_list_rating_notice_date' ) ) {
-            $dt = new DateTime( '+8 weeks' );
-            
-            if ( $dt !== false && !array_sum( $dt::getLastErrors() ) ) {
+            if (!get_option('contact_list_rating_notice_date')) {
+        
+              $dt = new DateTime('+8 weeks');
+        
+              if ($dt !== false && !array_sum($dt::getLastErrors())) {
                 $notify_date = $dt;
-                update_option( 'contact_list_rating_notice_date', $notify_date, false );
-            }
+                update_option('contact_list_rating_notice_date', $notify_date, false);
+              }
         
-        } else {
-            $notify_date = get_option( 'contact_list_rating_notice_date' );
-            
-            if ( $notify_date instanceof DateTime ) {
-                $dt_now = new DateTime( 'now' );
-                if ( $notify_date <= $dt_now ) {
-                    update_option( 'contact_list_rating_show_notice', 1, false );
+            } else {
+        
+              $notify_date = get_option('contact_list_rating_notice_date');
+        
+              if ($notify_date instanceof DateTime) {
+                $dt_now = new DateTime('now');
+                
+                if ($notify_date <= $dt_now) {
+                  update_option('contact_list_rating_show_notice', 1, false);
                 }
+        
+              }
+              
             }
-        
-        }
-        
+        */
         if ( isset( $_GET['cl_ignore_rating_notice_notify'] ) ) {
             
             if ( (int) $_GET['cl_ignore_rating_notice_notify'] === 1 ) {
