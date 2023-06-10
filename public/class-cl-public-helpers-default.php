@@ -66,7 +66,48 @@ class ContactListPublicHelpersDefault
         
         $contact_fullname = '';
         
-        if ( isset( $s['last_name_before_first_name'] ) ) {
+        if ( isset( $s['contact_card_title'] ) && $s['contact_card_title'] ) {
+            $fields = array(
+                'first_name',
+                'last_name',
+                'job_title',
+                'email',
+                'phone',
+                'linkedin_url',
+                'twitter_url',
+                'facebook_url',
+                'address_line_1',
+                'address_line_2',
+                'address_line_3',
+                'address_line_4',
+                'custom_field_1',
+                'custom_field_2',
+                'custom_field_3',
+                'custom_field_4',
+                'custom_field_5',
+                'custom_field_6',
+                'groups',
+                'country',
+                'state',
+                'city',
+                'zip_code',
+                'instagram_url',
+                'phone_2',
+                'phone_3'
+            );
+            $contact_card_title = sanitize_text_field( $s['contact_card_title'] );
+            $contact_fullname = $contact_card_title;
+            foreach ( $fields as $f ) {
+                $search_for = '[' . $f . ']';
+                
+                if ( strpos( $contact_card_title, $search_for ) !== false ) {
+                    $field_name = '_cl_' . $f;
+                    $field_value = sanitize_text_field( $c[$field_name][0] );
+                    $contact_fullname = str_replace( $search_for, $field_value, $contact_fullname );
+                }
+            
+            }
+        } elseif ( isset( $s['last_name_before_first_name'] ) ) {
             $contact_fullname = $c['_cl_last_name'][0] . (( isset( $c['_cl_first_name'][0] ) ? ' ' . $c['_cl_first_name'][0] : '' ));
             $text = (( isset( $c['_cl_first_name'][0] ) ? $c['_cl_first_name'][0] . ' ' : '' )) . $c['_cl_last_name'][0];
             $html .= '<div class="contact-list-hidden-name">' . sanitize_text_field( $text ) . '</div>';

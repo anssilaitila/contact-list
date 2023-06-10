@@ -315,6 +315,25 @@ class ContactListSettings
             'field_name' => $only_pro . 'hide_phone_numbers_from_public_card',
         )
         );
+        $tab = 'contact_card';
+        add_settings_section(
+            'contact-list_tab_' . $tab,
+            '',
+            array( $this, 'contact_list_settings_tab_' . $tab . '_callback' ),
+            'contact-list'
+        );
+        add_settings_field(
+            'contact-list-contact_card_title',
+            sanitize_text_field( __( 'Contact card title', 'contact-list' ) ),
+            array( $this, 'textarea_render' ),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+            'label_for'   => 'contact-list-contact_card_title',
+            'field_name'  => 'contact_card_title',
+            'placeholder' => '[first_name] [last_name]',
+        )
+        );
         $tab = 3;
         add_settings_section(
             'contact-list_tab_' . $tab,
@@ -2357,6 +2376,17 @@ class ContactListSettings
             )
             );
             add_settings_field(
+                'contact-list-' . $only_pro . 'cron_import_ignore_first_line',
+                sanitize_text_field( __( "Don't import the first line of the CSV file", 'contact-list' ) ),
+                array( $this, 'checkbox_render' ),
+                'contact-list',
+                'contact-list_tab_' . $tab,
+                array(
+                'label_for'  => 'contact-list-' . $only_pro . 'cron_import_ignore_first_line',
+                'field_name' => $only_pro . 'cron_import_ignore_first_line',
+            )
+            );
+            add_settings_field(
                 'contact-list-' . $only_pro . 'cron_import_contacts_file',
                 sanitize_text_field( __( 'File and path of the importable file', 'contact-list' ) ),
                 array( $this, 'input_render' ),
@@ -2495,125 +2525,250 @@ class ContactListSettings
 
       <?php 
             
-            if ( $field_name == 'simple_list_custom_order' || $field_name == '_FREE_simple_list_custom_order' ) {
+            if ( $field_name == 'simple_list_custom_order' || $field_name == '_FREE_simple_list_custom_order' || $field_name == 'contact_card_title' ) {
                 ?>
       
         <?php 
-                $simple_list_fields = array(
-                    array(
-                    'name'  => 'full_name',
-                    'title' => sanitize_text_field( __( 'Full name', 'contact-list' ) ),
-                ),
-                    array(
-                    'name'  => 'first_name',
-                    'title' => sanitize_text_field( __( 'First name', 'contact-list' ) ),
-                ),
-                    array(
-                    'name'  => 'last_name',
-                    'title' => sanitize_text_field( __( 'Last Name', 'contact-list' ) ),
-                ),
-                    array(
-                    'name'  => 'job_title',
-                    'title' => sanitize_text_field( __( 'Job title', 'contact-list' ) ),
-                ),
-                    array(
-                    'name'  => 'phone',
-                    'title' => sanitize_text_field( __( 'Phone 1', 'contact-list' ) ),
-                ),
-                    array(
-                    'name'  => 'phone_2',
-                    'title' => sanitize_text_field( __( 'Phone 2', 'contact-list' ) ),
-                ),
-                    array(
-                    'name'  => 'phone_3',
-                    'title' => sanitize_text_field( __( 'Phone 3', 'contact-list' ) ),
-                ),
-                    array(
-                    'name'  => 'email',
-                    'title' => sanitize_text_field( __( 'Email', 'contact-list' ) ),
-                ),
-                    array(
-                    'name'  => 'some_icons',
-                    'title' => sanitize_text_field( __( 'Some icons', 'contact-list' ) ),
-                ),
-                    array(
-                    'name'  => 'country',
-                    'title' => sanitize_text_field( __( 'Country', 'contact-list' ) ),
-                ),
-                    array(
-                    'name'  => 'state',
-                    'title' => sanitize_text_field( __( 'State', 'contact-list' ) ),
-                ),
-                    array(
-                    'name'  => 'city',
-                    'title' => sanitize_text_field( __( 'City', 'contact-list' ) ),
-                ),
-                    array(
-                    'name'  => 'zip_code',
-                    'title' => sanitize_text_field( __( 'ZIP Code', 'contact-list' ) ),
-                ),
-                    array(
-                    'name'  => 'address_line_1',
-                    'title' => sanitize_text_field( __( 'Address Line 1', 'contact-list' ) ),
-                ),
-                    array(
-                    'name'  => 'address_line_2',
-                    'title' => sanitize_text_field( __( 'Address Line 2', 'contact-list' ) ),
-                ),
-                    array(
-                    'name'  => 'address_line_3',
-                    'title' => sanitize_text_field( __( 'Address Line 3', 'contact-list' ) ),
-                ),
-                    array(
-                    'name'  => 'address_line_4',
-                    'title' => sanitize_text_field( __( 'Address Line 4', 'contact-list' ) ),
-                ),
-                    array(
-                    'name'  => 'custom_field_1',
-                    'title' => sanitize_text_field( __( 'Custom field 1', 'contact-list' ) ),
-                ),
-                    array(
-                    'name'  => 'custom_field_2',
-                    'title' => sanitize_text_field( __( 'Custom field 2', 'contact-list' ) ),
-                ),
-                    array(
-                    'name'  => 'custom_field_3',
-                    'title' => sanitize_text_field( __( 'Custom field 3', 'contact-list' ) ),
-                ),
-                    array(
-                    'name'  => 'custom_field_4',
-                    'title' => sanitize_text_field( __( 'Custom field 4', 'contact-list' ) ),
-                ),
-                    array(
-                    'name'  => 'custom_field_5',
-                    'title' => sanitize_text_field( __( 'Custom field 5', 'contact-list' ) ),
-                ),
-                    array(
-                    'name'  => 'custom_field_6',
-                    'title' => sanitize_text_field( __( 'Custom field 6', 'contact-list' ) ),
-                ),
-                    array(
-                    'name'  => 'description',
-                    'title' => sanitize_text_field( __( 'Additional information', 'contact-list' ) ),
-                ),
-                    array(
-                    'name'  => 'category',
-                    'title' => sanitize_text_field( __( 'Category', 'contact-list' ) ),
-                ),
-                    array(
-                    'name'  => 'send_message',
-                    'title' => sanitize_text_field( __( 'Send message', 'contact-list' ) ),
-                )
-                );
+                
+                if ( $field_name == 'contact_card_title' ) {
+                    $simple_list_fields = array(
+                        array(
+                        'name'  => 'full_name',
+                        'title' => sanitize_text_field( __( 'Full name', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'first_name',
+                        'title' => sanitize_text_field( __( 'First name', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'last_name',
+                        'title' => sanitize_text_field( __( 'Last Name', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'job_title',
+                        'title' => sanitize_text_field( __( 'Job title', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'phone',
+                        'title' => sanitize_text_field( __( 'Phone 1', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'phone_2',
+                        'title' => sanitize_text_field( __( 'Phone 2', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'phone_3',
+                        'title' => sanitize_text_field( __( 'Phone 3', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'email',
+                        'title' => sanitize_text_field( __( 'Email', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'country',
+                        'title' => sanitize_text_field( __( 'Country', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'state',
+                        'title' => sanitize_text_field( __( 'State', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'city',
+                        'title' => sanitize_text_field( __( 'City', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'zip_code',
+                        'title' => sanitize_text_field( __( 'ZIP Code', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'address_line_1',
+                        'title' => sanitize_text_field( __( 'Address Line 1', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'address_line_2',
+                        'title' => sanitize_text_field( __( 'Address Line 2', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'address_line_3',
+                        'title' => sanitize_text_field( __( 'Address Line 3', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'address_line_4',
+                        'title' => sanitize_text_field( __( 'Address Line 4', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'custom_field_1',
+                        'title' => sanitize_text_field( __( 'Custom field 1', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'custom_field_2',
+                        'title' => sanitize_text_field( __( 'Custom field 2', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'custom_field_3',
+                        'title' => sanitize_text_field( __( 'Custom field 3', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'custom_field_4',
+                        'title' => sanitize_text_field( __( 'Custom field 4', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'custom_field_5',
+                        'title' => sanitize_text_field( __( 'Custom field 5', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'custom_field_6',
+                        'title' => sanitize_text_field( __( 'Custom field 6', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'description',
+                        'title' => sanitize_text_field( __( 'Additional information', 'contact-list' ) ),
+                    )
+                    );
+                } else {
+                    $simple_list_fields = array(
+                        array(
+                        'name'  => 'full_name',
+                        'title' => sanitize_text_field( __( 'Full name', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'first_name',
+                        'title' => sanitize_text_field( __( 'First name', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'last_name',
+                        'title' => sanitize_text_field( __( 'Last Name', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'job_title',
+                        'title' => sanitize_text_field( __( 'Job title', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'phone',
+                        'title' => sanitize_text_field( __( 'Phone 1', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'phone_2',
+                        'title' => sanitize_text_field( __( 'Phone 2', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'phone_3',
+                        'title' => sanitize_text_field( __( 'Phone 3', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'email',
+                        'title' => sanitize_text_field( __( 'Email', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'some_icons',
+                        'title' => sanitize_text_field( __( 'Some icons', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'country',
+                        'title' => sanitize_text_field( __( 'Country', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'state',
+                        'title' => sanitize_text_field( __( 'State', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'city',
+                        'title' => sanitize_text_field( __( 'City', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'zip_code',
+                        'title' => sanitize_text_field( __( 'ZIP Code', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'address_line_1',
+                        'title' => sanitize_text_field( __( 'Address Line 1', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'address_line_2',
+                        'title' => sanitize_text_field( __( 'Address Line 2', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'address_line_3',
+                        'title' => sanitize_text_field( __( 'Address Line 3', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'address_line_4',
+                        'title' => sanitize_text_field( __( 'Address Line 4', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'custom_field_1',
+                        'title' => sanitize_text_field( __( 'Custom field 1', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'custom_field_2',
+                        'title' => sanitize_text_field( __( 'Custom field 2', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'custom_field_3',
+                        'title' => sanitize_text_field( __( 'Custom field 3', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'custom_field_4',
+                        'title' => sanitize_text_field( __( 'Custom field 4', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'custom_field_5',
+                        'title' => sanitize_text_field( __( 'Custom field 5', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'custom_field_6',
+                        'title' => sanitize_text_field( __( 'Custom field 6', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'description',
+                        'title' => sanitize_text_field( __( 'Additional information', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'category',
+                        'title' => sanitize_text_field( __( 'Category', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'send_message',
+                        'title' => sanitize_text_field( __( 'Send message', 'contact-list' ) ),
+                    )
+                    );
+                }
+                
                 ?>
       
         <div class="general-info contact-list-general-info-custom-order">
 
-          <div class="contact-list-general-info-custom-order-row-1"><?php 
-                echo  esc_html__( 'Add any fields using the field IDs in any order, separated by a whitespace.', 'contact-list' ) ;
-                ?></div>
+          <?php 
+                
+                if ( $field_name == 'contact_card_title' ) {
+                    ?>
 
-          <div class="contact-list-general-info-custom-order-row-2">e.g. full_name city custom_field_1 some_icons send_message</div>
+            <div class="contact-list-general-info-custom-order-row-1"><?php 
+                    echo  esc_html__( 'Add any fields using the field IDs in any order, inside brackets:', 'contact-list' ) ;
+                    ?></div>
+          
+            <div class="contact-list-general-info-custom-order-row-2">e.g. [first_name] [last_name] [country]</div>
+
+            <div class="contact-list-general-info-custom-order-row-1"><?php 
+                    echo  esc_html__( 'You can also add any other content, that will be same for all contacts, like the text "from" here:', 'contact-list' ) ;
+                    ?></div>
+            
+            <div class="contact-list-general-info-custom-order-row-2">[first_name] [last_name] from [country]</div>
+            
+          <?php 
+                } else {
+                    ?>
+
+            <div class="contact-list-general-info-custom-order-row-1"><?php 
+                    echo  esc_html__( 'Add any fields using the field IDs in any order, separated by a whitespace.', 'contact-list' ) ;
+                    ?></div>
+  
+            <div class="contact-list-general-info-custom-order-row-2">e.g. full_name city custom_field_1 some_icons send_message</div>
+            
+          <?php 
+                }
+                
+                ?>
 
           <div class="contact-list-general-info-custom-order-row-3"><?php 
                 echo  esc_html__( 'Available fields are:', 'contact-list' ) ;
@@ -2883,6 +3038,12 @@ class ContactListSettings
 
         <?php 
                 } elseif ( $field_name == '_FREE_cron_activate_import_contacts_daily' ) {
+                    ?>
+          <?php 
+                    $plan_required = 'Business';
+                    ?>
+        <?php 
+                } elseif ( $field_name == '_FREE_cron_import_ignore_first_line' ) {
                     ?>
           <?php 
                     $plan_required = 'Business';
@@ -3556,6 +3717,12 @@ class ContactListSettings
         echo  '<div class="contact-list-settings-tab-2">' ;
     }
     
+    public function contact_list_settings_tab_contact_card_callback()
+    {
+        echo  '</div>' ;
+        echo  '<div class="contact-list-settings-tab-contact-card">' ;
+    }
+    
     public function contact_list_settings_tab_3_callback()
     {
         echo  '</div>' ;
@@ -3649,6 +3816,9 @@ class ContactListSettings
         ?></span></li>
           <li class="contact-list-settings-tab-2-title" data-settings-container="contact-list-settings-tab-2"><span><?php 
         echo  esc_html__( 'Layout', 'contact-list' ) ;
+        ?></span></li>
+          <li class="contact-list-settings-tab-contact-card-title" data-settings-container="contact-list-settings-tab-contact-card"><span><?php 
+        echo  esc_html__( 'Contact card', 'contact-list' ) ;
         ?></span></li>
           <li class="contact-list-settings-tab-3-title" data-settings-container="contact-list-settings-tab-3"><span><?php 
         echo  esc_html__( 'reCAPTCHA and email', 'contact-list' ) ;

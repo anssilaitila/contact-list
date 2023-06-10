@@ -3,7 +3,7 @@ Contributors: anssilaitila, freemius
 Tags: directory plugin, business directory, contact manager, address book, staff directory, staff list, company directory, church directory, contact directory, contacts, chamber of commerce
 Requires at least: 4.0.0
 Tested up to: 6.2
-Stable tag: 2.9.69
+Stable tag: 2.9.70
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -24,10 +24,13 @@ Contact List is a dedicated directory plugin to manage and create address books,
 
 All this is about the Contact List plugin!
 
-[Contact List Plugin Demos](https://www.contactlistpro.com/contact-list/)
-[Documentation](https://www.contactlistpro.com/docs/)
-[Support (free version)](https://wordpress.org/support/plugin/contact-list/)
-[Blog](https://www.contactlistpro.com/blog/)
+⭐ **[Support here ⁠– ask us anything!](https://wordpress.org/support/plugin/contact-list/)** ⭐
+
+See live demos at [contactlistpro.com](https://www.contactlistpro.com/contact-list/).
+
+**7-day free trial available for the Pro version**
+
+[Blog](https://www.contactlistpro.com/blog/) – including articles on how to use the plugin
 
 == Cases for Contact List Directory Plugin ==
 
@@ -236,6 +239,13 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 
 == Changelog ==
 
+= 2.9.70 - 2023-06-11 =
+* (Business) New setting for the daily import: Don't import the first line of the CSV file
+* (All plans) New setting for contact import: Update contacts by email addresses instead of adding new contacts
+* (All plans) New setting for contact import: Don't import the first line of the CSV file
+* (All plans) New setting for contact import: Delete ALL existing contacts before import
+* (Free + All plans) New setting: Contact card title. Add any fields or other content to be the contact card title (see plugin settings, Contact card tab)
+ 
 = 2.9.69 - 2023-05-06 =
 * (All plans) New parameter [contact_list hide_contacts_first=1]: Hide contacts first (contacts are shown when searched or any filter is selected)
 * (All plans) New parameter [contact_list hide_contacts_first=1 default_contact_id=12345]: Hide contacts first and show only a single default contact
