@@ -24,13 +24,11 @@ Contact List is a dedicated directory plugin to manage and create address books,
 
 All this is about the Contact List plugin!
 
-⭐ **[Support here ⁠– ask us anything!](https://wordpress.org/support/plugin/contact-list/)** ⭐
-
-See live demos at [contactlistpro.com](https://www.contactlistpro.com/contact-list/).
+* [Contact List Plugin Demos](https://www.contactlistpro.com/contact-list/)
+* [Documentation](https://www.contactlistpro.com/docs/)
+* [Blog](https://www.contactlistpro.com/blog/)
 
 **7-day free trial available for the Pro version**
-
-[Blog](https://www.contactlistpro.com/blog/) – including articles on how to use the plugin
 
 == Cases for Contact List Directory Plugin ==
 
