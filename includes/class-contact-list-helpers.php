@@ -155,6 +155,11 @@ class ContactListHelpers
         $html .= '<input name="txt_msg_sent_to" type="hidden" value="' . ContactListHelpers::sanitize_attr_value( __( 'Message sent to recipient.', 'contact-list' ) ) . '" />';
         $html .= '<input name="txt_sending_please_wait" type="hidden" value="' . ContactListHelpers::sanitize_attr_value( __( 'Please wait...', 'contact-list' ) ) . '" />';
         $html .= '<input name="txt_new_msg_from" type="hidden" value="' . ContactListHelpers::sanitize_attr_value( __( 'New message from', 'contact-list' ) ) . '" />';
+        $custom_subject = '';
+        if ( isset( $s['email_custom_subject_contact_card'] ) && $s['email_custom_subject_contact_card'] ) {
+            $custom_subject = sanitize_text_field( $s['email_custom_subject_contact_card'] );
+        }
+        $html .= '<input name="txt_custom_subject" type="hidden" value="' . ContactListHelpers::sanitize_attr_value( $custom_subject ) . '" />';
         $html .= '<input name="txt_sent_by" type="hidden" value="' . ContactListHelpers::sanitize_attr_value( __( 'sent by', 'contact-list' ) ) . '" />';
         $html .= '<input name="txt_please_sender_details_first" type="hidden" value="' . ContactListHelpers::sanitize_attr_value( __( 'Please enter sender information first (name and email).', 'contact-list' ) ) . '" />';
         $html .= ContactListPublicHooks::get_action_content( 'contact_list_send_message_modal_before_send_button' );

@@ -3,7 +3,7 @@ Contributors: anssilaitila, freemius
 Tags: directory plugin, business directory, contact manager, address book, staff directory, staff list, company directory, church directory, contact directory, contacts, chamber of commerce
 Requires at least: 4.0.0
 Tested up to: 6.2
-Stable tag: 2.9.70
+Stable tag: 2.9.71
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -236,6 +236,10 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 6. Contact management
 
 == Changelog ==
+
+= 2.9.71 - 2023-06-18 =
+* (All plans) New setting for using reCAPTCHA: Method used for reCAPCHA check in PHP (file_get_contents() or cURL)
+* (All plans) New setting: Subject for messages sent from contact card (see plugin settings, reCAPTCHA and email tab)
 
 = 2.9.70 - 2023-06-11 =
 * (Business) New setting for the daily import: Don't import the first line of the CSV file

@@ -377,6 +377,17 @@ class ContactListSettings
         )
         );
         add_settings_field(
+            'contact-list-' . $only_pro . 'recaptcha_method',
+            sanitize_text_field( __( 'Method used for reCAPCHA check in PHP', 'contact-list' ) ),
+            array( $this, 'recaptcha_method_render' ),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+            'label_for'  => 'contact-list-' . $only_pro . 'recaptcha_method',
+            'field_name' => $only_pro . 'recaptcha_method',
+        )
+        );
+        add_settings_field(
             'contact-list-' . $only_pro . 'recaptcha_key',
             sanitize_text_field( __( 'reCAPTCHA site key', 'contact-list' ) ),
             array( $this, 'input_render' ),
@@ -421,6 +432,18 @@ class ContactListSettings
             array(
             'label_for'   => 'contact-list-' . $only_pro . 'email_sender_name_contact_card',
             'field_name'  => $only_pro . 'email_sender_name_contact_card',
+            'placeholder' => '',
+        )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'email_custom_subject_contact_card',
+            sanitize_text_field( __( 'Subject for messages sent from contact card', 'contact-list' ) ),
+            array( $this, 'input_render' ),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+            'label_for'   => 'contact-list-' . $only_pro . 'email_custom_subject_contact_card',
+            'field_name'  => $only_pro . 'email_custom_subject_contact_card',
             'placeholder' => '',
         )
         );
@@ -2533,10 +2556,6 @@ class ContactListSettings
                 if ( $field_name == 'contact_card_title' ) {
                     $simple_list_fields = array(
                         array(
-                        'name'  => 'full_name',
-                        'title' => sanitize_text_field( __( 'Full name', 'contact-list' ) ),
-                    ),
-                        array(
                         'name'  => 'first_name',
                         'title' => sanitize_text_field( __( 'First name', 'contact-list' ) ),
                     ),
@@ -2619,10 +2638,6 @@ class ContactListSettings
                         array(
                         'name'  => 'custom_field_6',
                         'title' => sanitize_text_field( __( 'Custom field 6', 'contact-list' ) ),
-                    ),
-                        array(
-                        'name'  => 'description',
-                        'title' => sanitize_text_field( __( 'Additional information', 'contact-list' ) ),
                     )
                     );
                 } else {
@@ -3569,6 +3584,81 @@ class ContactListSettings
             echo  esc_html__( 'Large', 'contact-list' ) ;
             ?></option>
       </select>
+      <?php 
+        }
+    
+    }
+    
+    public function recaptcha_method_render( $args )
+    {
+        
+        if ( $field_name = $args['field_name'] ) {
+            $options = get_option( 'contact_list_settings' );
+            $sel = '';
+            if ( isset( $options[$args['field_name']] ) ) {
+                $sel = sanitize_text_field( $options[$args['field_name']] );
+            }
+            ?>    
+
+      <?php 
+            $free = 0;
+            ?>
+      <?php 
+            $free_class = '';
+            ?>
+      
+      <?php 
+            
+            if ( substr( $field_name, 0, strlen( '_FREE_' ) ) === '_FREE_' ) {
+                ?>
+        <?php 
+                $free = 1;
+                ?>
+        <?php 
+                $free_class = 'contact-list-setting-container-free';
+                ?>
+      <?php 
+            }
+            
+            ?>
+      
+      <div class="contact-list-setting-container <?php 
+            echo  esc_attr( $free_class ) ;
+            ?>">
+
+        <?php 
+            
+            if ( $free ) {
+                ?>
+        
+          <a href="<?php 
+                echo  esc_url( get_admin_url() ) ;
+                ?>options-general.php?page=contact-list-pricing">
+            <div class="contact-list-settings-pro-feature-overlay"><div>All Plans</div></div>
+          </a>
+        
+        <?php 
+            } else {
+                ?>
+
+          <select name="contact_list_settings[<?php 
+                echo  esc_attr( $args['field_name'] ) ;
+                ?>]">
+            <option value="file_get_contents" <?php 
+                echo  ( $sel == 'file_get_contents' ? 'selected' : '' ) ;
+                ?>>file_get_contents()</option>
+            <option value="curl" <?php 
+                echo  ( $sel == 'curl' ? 'selected' : '' ) ;
+                ?>>cURL</option>
+          </select>
+
+        <?php 
+            }
+            
+            ?> 
+          
+      </div>
+
       <?php 
         }
     
