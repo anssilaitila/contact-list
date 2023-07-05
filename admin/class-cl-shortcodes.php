@@ -23,7 +23,7 @@ class ContactListShortcodes
         ?>
 
     <?php 
-        $plan_info_markup_all_plans = '<a href="' . esc_url_raw( get_admin_url() ) . 'options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">All Plans</a>';
+        $plan_info_markup_all_plans = '<a href="' . esc_url_raw( get_admin_url() ) . 'options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">' . sanitize_text_field( __( 'Paid plans', 'contact-list' ) ) . '</a>';
         $plan_info_markup_professional = '<a href="' . esc_url_raw( get_admin_url() ) . 'options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">Professional</a>';
         $plan_info_markup_allowed_tags = array(
             'a' => array(
@@ -82,10 +82,12 @@ class ContactListShortcodes
         if ( ContactListHelpers::isPremium() == 1 ) {
             ?>
         
-            <span class="contact-list-pro-only-inline-inactive" style="margin-left: 0; margin-right: 1px;">All Plans</span>
+            <span class="contact-list-pro-only-inline-inactive" style="margin-left: 0; margin-right: 1px;"><?php 
+            echo  esc_html__( 'Paid plans', 'contact-list' ) ;
+            ?></span>
         
             <?php 
-            echo  esc_html__( 'means that the shortcode / parameter exists in all of the paid plans.', 'contact-list' ) ;
+            echo  esc_html__( 'means that the shortcode / parameter exists in all paid plans.', 'contact-list' ) ;
             ?>
         
           <?php 
@@ -94,10 +96,12 @@ class ContactListShortcodes
         
             <a href="<?php 
             echo  esc_url( get_admin_url() ) ;
-            ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline" style="margin-left: 0; margin-right: 1px;">All Plans</a>
+            ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline" style="margin-left: 0; margin-right: 1px;"><?php 
+            echo  esc_html__( 'Paid plans', 'contact-list' ) ;
+            ?></a>
         
             <?php 
-            echo  wp_kses( __( 'means that the shortcode / parameter exists in all of the <strong>paid</strong> plans.', 'contact-list' ), array(
+            echo  wp_kses( __( 'means that the shortcode / parameter exists in all <strong>paid</strong> plans.', 'contact-list' ), array(
                 'strong' => array(),
             ) ) ;
             ?>

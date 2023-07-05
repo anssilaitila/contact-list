@@ -81,6 +81,7 @@ class ContactListAdminMaintenance
                 'simple_list_show_titles_for_columns' => 'on',
             ];
             add_option( 'contact_list_settings', $default_settings );
+            update_option( 'contact_list_how_to_show_notice', 1, false );
         }
     
     }

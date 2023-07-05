@@ -106,7 +106,7 @@ class ContactListTaxonomy {
         
           '<div class="contact-list-shortcode-admin-list-container">' . 
 
-          '<button class="contact-list-copy contact-list-copy-admin-list contact-list-copy-admin-list-left" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-g-' . sanitize_title( $term->slug ) . '">' . sanitize_text_field( __('Copy', 'contact-list') ) . '</button>' .
+          '<button class="contact-list-copy contact-list-copy-paid-only contact-list-copy-admin-list contact-list-copy-admin-list-left" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-g-' . sanitize_title( $term->slug ) . '">' . sanitize_text_field( __('Copy', 'contact-list') ) . '</button>' .
 
           '<span class="contact-list-shortcode-admin-list contact-list-shortcode-admin-list-right contact-list-shortcode-g-' . sanitize_title( $term->slug ) . '" title="[contact_list_groups group=' . sanitize_title( $term->slug ) . ']">[contact_list_groups group=' . sanitize_title( $term->slug ) . ']</span>' . 
 
@@ -116,7 +116,7 @@ class ContactListTaxonomy {
 
           '<div class="contact-list-shortcode-admin-list-container">' . 
 
-          '<button class="contact-list-copy contact-list-copy-admin-list contact-list-copy-admin-list-left" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-sl-' . sanitize_title( $term->slug ) . '">' . sanitize_text_field( __('Copy', 'contact-list') ) . '</button>' .
+          '<button class="contact-list-copy contact-list-copy-paid-only contact-list-copy-admin-list contact-list-copy-admin-list-left" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-sl-' . sanitize_title( $term->slug ) . '">' . sanitize_text_field( __('Copy', 'contact-list') ) . '</button>' .
 
           '<span class="contact-list-shortcode-admin-list contact-list-shortcode-admin-list-right contact-list-shortcode-sl-' . sanitize_title( $term->slug ) . '" title="[contact_list_simple group=' . sanitize_title( $term->slug ) . ']">[contact_list_simple group=' . sanitize_title( $term->slug ) . ']</span>' .
 

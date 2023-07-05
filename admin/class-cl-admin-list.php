@@ -52,7 +52,7 @@ class ContactListAdminList
             $last_name = sanitize_text_field( get_post_meta( $post_ID, '_cl_last_name', true ) );
             echo  esc_html( $last_name ) ;
             echo  '<span class="contact-list-shortcode-admin-list contact-list-shortcode-admin-list-contact contact-list-shortcode-' . esc_attr( $post_ID ) . '" title="[contact_list contact=' . esc_attr( $post_ID ) . ']">[contact_list contact=' . esc_attr( $post_ID ) . ']</span>' ;
-            echo  '<button class="contact-list-copy contact-list-copy-admin-list" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-' . esc_attr( $post_ID ) . '">' . esc_html__( 'Copy', 'contact-list' ) . '</button>' ;
+            echo  '<button class="contact-list-copy contact-list-copy-paid-only contact-list-copy-admin-list" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-' . esc_attr( $post_ID ) . '">' . esc_html__( 'Copy', 'contact-list' ) . '</button>' ;
         }
         
         if ( $column_name == 'menu_order' ) {
