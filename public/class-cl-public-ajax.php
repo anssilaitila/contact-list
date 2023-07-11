@@ -119,44 +119,7 @@ class ContactListPublicAjax
         if ( $wp_query->found_posts == 0 ) {
             $html .= '<p>' . ContactListHelpers::getText( 'text_sr_no_contacts_found', __( 'No contacts found.', 'contact-list' ) ) . '</p>';
         }
-        $html_allowed_tags = [
-            'div'    => [
-            'id'    => [],
-            'class' => [],
-            'style' => [],
-        ],
-            'ul'     => [
-            'id'    => [],
-            'class' => [],
-        ],
-            'li'     => [
-            'id'    => [],
-            'class' => [],
-        ],
-            'span'   => [
-            'class' => [],
-        ],
-            'strong' => [],
-            'a'      => [
-            'href'            => [],
-            'data-id'         => [],
-            'data-name'       => [],
-            'class'           => [],
-            'data-contact-id' => [],
-        ],
-            'hr'     => [
-            'class' => [],
-        ],
-            'img'    => [
-            'src' => [],
-            'alt' => [],
-        ],
-            'i'      => [
-            'class'       => [],
-            'aria-hidden' => [],
-        ],
-        ];
-        echo  wp_kses( $html, $html_allowed_tags ) ;
+        echo  wp_kses_post( $html ) ;
     }
     
     public function cl_get_contacts_simple()

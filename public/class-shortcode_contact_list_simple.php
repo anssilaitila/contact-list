@@ -16,6 +16,9 @@ class ShortcodeContactListSimple
         
         $exclude = [];
         $html = '';
+        if ( isset( $s['simple_list_show_send_message'] ) ) {
+            $html .= ContactListHelpers::modalSendMessageMarkup();
+        }
         $html .= '<div class="contact-list-simple-container" />';
         $html .= '<div class="contact-list-simple-text-contact" style="display: none;">' . sanitize_text_field( __( 'contact', 'contact-list' ) ) . '</div>';
         $html .= '<div class="contact-list-simple-text-contacts" style="display: none;">' . sanitize_text_field( __( 'contacts', 'contact-list' ) ) . '</div>';

@@ -15,7 +15,7 @@
  * @wordpress-plugin
  * Plugin Name:       Contact List
  * Description:       Easily display contact information on your site with this simple plugin.
- * Version:           2.9.72
+ * Version:           2.9.73
  * Author:            Contact List PRO
  * Author URI:        https://www.contactlistpro.com
  * License:           GPL-2.0+
@@ -79,17 +79,6 @@ if ( function_exists( 'contact_list_fs' ) ) {
         do_action( 'contact_list_fs_loaded' );
     }
     
-    function contact_list_fs_custom_connect_message( $message, $user_first_name )
-    {
-        return sprintf( __( 'Hey %1$s' ) . ',<br>' . __( 'never miss an important update -- opt-in to our security and feature updates notifications, and non-sensitive diagnostic tracking with freemius.com.' ), $user_first_name );
-    }
-    
-    contact_list_fs()->add_filter(
-        'connect_message',
-        'contact_list_fs_custom_connect_message',
-        10,
-        6
-    );
     function contact_list_freemius_custom_is_submenu_visible( $is_visible, $menu_id )
     {
         
@@ -108,31 +97,6 @@ if ( function_exists( 'contact_list_fs' ) ) {
         10,
         2
     );
-    function contact_list_fs_custom_connect_message_on_update(
-        $message,
-        $user_first_name,
-        $plugin_title,
-        $user_login,
-        $site_link,
-        $freemius_link
-    )
-    {
-        return sprintf(
-            __( 'Hey %1$s' ) . ',<br>' . __( 'Please help us improve %2$s! If you opt-in, some data about your usage of %2$s will be sent to %5$s. If you skip this, that\'s okay! %2$s will still work just fine.' ),
-            $user_first_name,
-            '<b>' . $plugin_title . '</b>',
-            '<b>' . $user_login . '</b>',
-            $site_link,
-            $freemius_link
-        );
-    }
-    
-    contact_list_fs()->add_filter(
-        'connect_message_on_update',
-        'contact_list_fs_custom_connect_message_on_update',
-        10,
-        6
-    );
     contact_list_fs()->add_filter( 'show_deactivation_feedback_form', '__return_false' );
     function contact_list_fs_custom_icon()
     {
@@ -147,7 +111,7 @@ if ( function_exists( 'contact_list_fs' ) ) {
     }
     //  define('CONTACT_LIST_PLUGIN_NAME', 'contact-list');
     define( 'CONTACT_LIST_ORDER_BY', $order_by );
-    define( 'CONTACT_LIST_VERSION', '2.9.72' );
+    define( 'CONTACT_LIST_VERSION', '2.9.73' );
     define( 'CONTACT_LIST_URI', plugin_dir_url( __FILE__ ) );
     define( 'CONTACT_LIST_PATH', plugin_dir_path( __FILE__ ) );
     define( 'CONTACT_LIST_CPT', 'contact' );
