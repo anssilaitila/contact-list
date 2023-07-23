@@ -24,7 +24,6 @@ class ContactListShortcodes
 
     <?php 
         $plan_info_markup_all_plans = '<a href="' . esc_url_raw( get_admin_url() ) . 'options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">' . sanitize_text_field( __( 'Paid plans', 'contact-list' ) ) . '</a>';
-        $plan_info_markup_professional = '<a href="' . esc_url_raw( get_admin_url() ) . 'options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">Professional</a>';
         $plan_info_markup_allowed_tags = array(
             'a' => array(
             'href'  => array(),
@@ -235,41 +234,31 @@ class ContactListShortcodes
     
                   </li>
 
-                  <?php 
-        
-        if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'pro' ) || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
-            ?>
-
-                    <li><?php 
-            echo  esc_html__( 'Shows contacts in the defined group, and the group filter contains only that group and it\'s subgroups', 'contact-list' ) ;
-            ?>:
-                    
-                      <?php 
-            echo  wp_kses( $plan_info_markup_professional, $plan_info_markup_allowed_tags ) ;
-            ?>
-                      
-                      <span class="contact-list-shortcode contact-list-shortcode-000">[contact_list group=GROUP_SLUG]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-000"><?php 
-            echo  esc_html__( 'Copy', 'contact-list' ) ;
-            ?></button>
-                    </li>
-
-                    <li><?php 
-            echo  esc_html__( 'Filter by custom field values, any number of fields', 'contact-list' ) ;
-            ?>: 
-                    
-                      <?php 
-            echo  wp_kses( $plan_info_markup_professional, $plan_info_markup_allowed_tags ) ;
-            ?>
-                    
-                      <span class="contact-list-shortcode contact-list-shortcode-001">[contact_list custom_field_1="Value 1" custom_field_2="Value 2"]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-001"><?php 
-            echo  esc_html__( 'Copy', 'contact-list' ) ;
-            ?></button>
-                    </li>
-                    
-                  <?php 
-        }
-        
+                  <li><?php 
+        echo  esc_html__( 'Shows contacts in the defined group, and the group filter contains only that group and it\'s subgroups', 'contact-list' ) ;
+        ?>:
+                  
+                    <?php 
+        echo  wp_kses( $plan_info_markup_all_plans, $plan_info_markup_allowed_tags ) ;
         ?>
+                    
+                    <span class="contact-list-shortcode contact-list-shortcode-000">[contact_list group=GROUP_SLUG]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-000"><?php 
+        echo  esc_html__( 'Copy', 'contact-list' ) ;
+        ?></button>
+                  </li>
+
+                  <li><?php 
+        echo  esc_html__( 'Filter by custom field values, any number of fields', 'contact-list' ) ;
+        ?>: 
+                  
+                    <?php 
+        echo  wp_kses( $plan_info_markup_all_plans, $plan_info_markup_allowed_tags ) ;
+        ?>
+                  
+                    <span class="contact-list-shortcode contact-list-shortcode-001">[contact_list custom_field_1="Value 1" custom_field_2="Value 2"]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-001"><?php 
+        echo  esc_html__( 'Copy', 'contact-list' ) ;
+        ?></button>
+                  </li>
                     
                   <li><?php 
         echo  esc_html__( 'Multiple parameters:', 'contact-list' ) ;
@@ -370,43 +359,33 @@ class ContactListShortcodes
               </li>
 
 
-              <?php 
-        
-        if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'pro' ) || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
-            ?>
+              <li><?php 
+        echo  esc_html__( 'Filter by custom field values, any number of fields', 'contact-list' ) ;
+        ?>: 
 
-                <li><?php 
-            echo  esc_html__( 'Filter by custom field values, any number of fields', 'contact-list' ) ;
-            ?>: 
-
-                  <?php 
-            echo  wp_kses( $plan_info_markup_professional, $plan_info_markup_allowed_tags ) ;
-            ?>
-
-                  <span class="contact-list-shortcode contact-list-shortcode-002">[contact_list_simple custom_field_1="Value 1" custom_field_2="Value 2"]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-002"><?php 
-            echo  esc_html__( 'Copy', 'contact-list' ) ;
-            ?></button>
-                </li>
-
-                <li><?php 
-            echo  esc_html__( 'Show these fields (check the fields from plugin settings, Simple list tab)', 'contact-list' ) ;
-            ?>: <span class="cl-new-feature-inline"> <?php 
-            echo  esc_html__( 'New', 'contact-list' ) ;
-            ?></span>
-                
-                  <?php 
-            echo  wp_kses( $plan_info_markup_professional, $plan_info_markup_allowed_tags ) ;
-            ?>
-                
-                  <span class="contact-list-shortcode contact-list-shortcode-0002">[contact_list_simple fields="full_name phone city category"]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-0002"><?php 
-            echo  esc_html__( 'Copy', 'contact-list' ) ;
-            ?></button>
-                </li>
-                
-              <?php 
-        }
-        
+                <?php 
+        echo  wp_kses( $plan_info_markup_all_plans, $plan_info_markup_allowed_tags ) ;
         ?>
+
+                <span class="contact-list-shortcode contact-list-shortcode-002">[contact_list_simple custom_field_1="Value 1" custom_field_2="Value 2"]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-002"><?php 
+        echo  esc_html__( 'Copy', 'contact-list' ) ;
+        ?></button>
+              </li>
+
+              <li><?php 
+        echo  esc_html__( 'Show these fields (check the fields from plugin settings, Simple list tab)', 'contact-list' ) ;
+        ?>: <span class="cl-new-feature-inline"> <?php 
+        echo  esc_html__( 'New', 'contact-list' ) ;
+        ?></span>
+              
+                <?php 
+        echo  wp_kses( $plan_info_markup_all_plans, $plan_info_markup_allowed_tags ) ;
+        ?>
+              
+                <span class="contact-list-shortcode contact-list-shortcode-0002">[contact_list_simple fields="full_name phone city category"]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-0002"><?php 
+        echo  esc_html__( 'Copy', 'contact-list' ) ;
+        ?></button>
+              </li>
 
             </ul>
           </li>
@@ -414,46 +393,36 @@ class ContactListShortcodes
         
       </div>
 
-      <?php 
-        
-        if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'pro' ) || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
-            ?>
-
-        <div class="contact-list-admin-section contact-list-admin-section-shortcodes">      
-                      
-          <h2>
-            <?php 
-            echo  esc_html__( 'Enable front-end editor for all contacts' ) ;
-            ?>
-        
-            <?php 
-            echo  wp_kses( $plan_info_markup_professional, $plan_info_markup_allowed_tags ) ;
-            ?>
-        
-          </h2>
-        
-          <p><?php 
-            echo  esc_html__( 'Enable front-end edit using the following shortcodes (user roles must also be activated from the plugin settings):', 'contact-list' ) ;
-            ?></p>
-        
-          <ul>  
-           <li>
-              <span class="contact-list-shortcode contact-list-shortcode-003" data-tooltip-class="contact-list-shortcode-003">[contact_list edit=1]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-003"><?php 
-            echo  esc_html__( 'Copy', 'contact-list' ) ;
-            ?></button></span>
-           </li>
-           <li>
-              <span class="contact-list-shortcode contact-list-shortcode-004" data-tooltip-class="contact-list-shortcode-004">[contact_list_simple edit=1]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-004"><?php 
-            echo  esc_html__( 'Copy', 'contact-list' ) ;
-            ?></button></span>
-            </li>
-          </ul>
-        </div>
-        
-      <?php 
-        }
-        
+      <div class="contact-list-admin-section contact-list-admin-section-shortcodes">      
+                    
+        <h2>
+          <?php 
+        echo  esc_html__( 'Enable front-end editor for all contacts' ) ;
         ?>
+      
+          <?php 
+        echo  wp_kses( $plan_info_markup_all_plans, $plan_info_markup_allowed_tags ) ;
+        ?>
+      
+        </h2>
+      
+        <p><?php 
+        echo  esc_html__( 'Enable front-end edit using the following shortcodes (user roles must also be activated from the plugin settings):', 'contact-list' ) ;
+        ?></p>
+      
+        <ul>  
+         <li>
+            <span class="contact-list-shortcode contact-list-shortcode-003" data-tooltip-class="contact-list-shortcode-003">[contact_list edit=1]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-003"><?php 
+        echo  esc_html__( 'Copy', 'contact-list' ) ;
+        ?></button></span>
+         </li>
+         <li>
+            <span class="contact-list-shortcode contact-list-shortcode-004" data-tooltip-class="contact-list-shortcode-004">[contact_list_simple edit=1]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-004"><?php 
+        echo  esc_html__( 'Copy', 'contact-list' ) ;
+        ?></button></span>
+          </li>
+        </ul>
+      </div>
 
       <div class="contact-list-admin-section contact-list-admin-section-shortcodes">
 
