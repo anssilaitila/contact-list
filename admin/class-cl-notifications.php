@@ -4,15 +4,31 @@ class ContactListNotifications
 {
     public function notifications_html()
     {
-        $cl_rating_show_notice = get_option( 'contact_list_rating_show_notice' );
-        $cl_rating_notice_option = get_option( 'contact_list_rating_notice' );
-        $cl_rating_notice_waiting = get_transient( 'contact_list_rating_notice_waiting' );
-        $should_show_rating_notice = $cl_rating_show_notice && $cl_rating_notice_waiting !== 'waiting' && $cl_rating_notice_option !== 'dismissed';
+        $cl_rating_show_notice_now = get_option( 'contact_list_rating_show_notice_now_v2' );
+        $cl_rating_notice_status = get_option( 'contact_list_rating_notice_status_v2' );
+        $cl_rating_notice_later_seconds = get_transient( 'contact_list_rating_notice_later_seconds_v2' );
+        $should_show_rating_notice = 0;
+        if ( $cl_rating_show_notice_now && $cl_rating_notice_status != 'dismissed' ) {
+            
+            if ( $cl_rating_notice_status != 'later' ) {
+                $should_show_rating_notice = 1;
+            } elseif ( !$cl_rating_notice_later_seconds ) {
+                $should_show_rating_notice = 1;
+            }
+        
+        }
         
         if ( $should_show_rating_notice && current_user_can( 'administrator' ) ) {
             $dismiss_url = add_query_arg( 'cl_ignore_rating_notice_notify', '1' );
             $later_url = add_query_arg( 'cl_ignore_rating_notice_notify', 'later' );
-            echo  "\n        <div class='cl_notice cl_review_notice'>\n          <img src='" . esc_url( CONTACT_LIST_URI ) . 'img/cl-sunrise.jpg' . "' alt='" . esc_html__( 'Contact List', 'contact-list' ) . "'>\n          <div class='contact-list-notice-text'>\n            <p style='padding-top: 4px;'>" . sprintf( __( "It's great to see that you've been using the %sContact List%s plugin for a while now. Hopefully you're happy with it!&nbsp; If so, would you consider leaving a positive review? It really helps to support the plugin and helps others to discover it too!" ), '<strong style=\'font-weight: 700;\'>', '</strong>' ) . "</p>\n            <p class='links'>\n              <a class='cl_notice_dismiss' href='https://wordpress.org/support/plugin/contact-list/reviews/#new-post' target='_blank'>" . esc_html__( 'Sure, I\'d love to!', 'contact-list' ) . "</a>\n              &middot;\n              <a class='cl_notice_dismiss' href='" . esc_url( $dismiss_url ) . "'>" . esc_html__( 'No thanks', 'contact-list' ) . "</a>\n              &middot;\n              <a class='cl_notice_dismiss' href='" . esc_url( $dismiss_url ) . "'>" . esc_html__( 'I\'ve already given a review', 'contact-list' ) . "</a>\n              &middot;\n              <a class='cl_notice_dismiss' href='" . esc_url( $later_url ) . "'>" . esc_html__( 'Ask Me Later', 'contact-list' ) . "</a>\n            </p>\n          </div>\n          <a class='cl_notice_close' href='" . esc_url( $dismiss_url ) . "'>x</a>\n        </div>" ;
+            $contact_posts = wp_count_posts( 'contact' );
+            $contact_cnt = intval( $contact_posts->publish );
+            echo  "\n        <div class='cl_notice cl_review_notice'>\n          <div class='contact-list-notice-text'>\n            " . '<div style=\'margin-bottom: 8px;\'><p style=\'font-size: 15px;\'>' . sprintf(
+                __( "Hey, I noticed that you have created %s%d contacts%s with the Contact List plugin – that's awesome!" ),
+                '<strong style=\'font-weight: 700;\'>',
+                $contact_cnt,
+                '</strong>'
+            ) . '</p></div>' . '<div style=\'margin-bottom: 8px;\'><p style=\'font-size: 15px;\'>' . sprintf( __( "Could you please do me a BIG favour and give it a 5-star rating on WordPress? It will help to spread the word and boost our motivation." ) ) . '</p></div>' . '<p style=\'font-size: 15px;\'>– Anssi (Lead developer)</p>' . "\n            <p class='links'>\n              <a class='cl_notice_dismiss' style='border: 1px solid green; background: green; color: #fff; font-weight: 700; padding: 5px 10px; border-radius: 3px; text-decoration: none; margin-right: 10px;' href='https://wordpress.org/support/plugin/contact-list/reviews/#new-post' target='_blank'>" . esc_html__( 'Sure, I\'d love to!', 'contact-list' ) . "</a>\n              &middot;\n              <a class='cl_notice_dismiss' href='" . esc_url( $dismiss_url ) . "'>" . esc_html__( 'No thanks', 'contact-list' ) . "</a>\n              &middot;\n              <a class='cl_notice_dismiss' href='" . esc_url( $dismiss_url ) . "'>" . esc_html__( 'I\'ve already given a review', 'contact-list' ) . "</a>\n              &middot;\n              <a class='cl_notice_dismiss' href='" . esc_url( $later_url ) . "'>" . esc_html__( 'Ask Me Later', 'contact-list' ) . "</a>\n            </p>\n          </div>\n          <a class='cl_notice_close' href='" . esc_url( $dismiss_url ) . "'>x</a>\n        </div>" ;
         }
         
         $screen = get_current_screen();
@@ -84,50 +100,27 @@ class ContactListNotifications
     {
         global  $current_user ;
         $user_id = intval( $current_user->ID );
-        $cl_statuses_option = get_option( 'cl_statuses', array() );
+        $contact_posts = wp_count_posts( 'contact' );
+        $contact_cnt = intval( $contact_posts->publish );
         // Rating notice
-        /*
-        
-            if (!get_option('contact_list_rating_notice_date')) {
-        
-              $dt = new DateTime('+8 weeks');
-        
-              if ($dt !== false && !array_sum($dt::getLastErrors())) {
-                $notify_date = $dt;
-                update_option('contact_list_rating_notice_date', $notify_date, false);
-              }
-        
-            } else {
-        
-              $notify_date = get_option('contact_list_rating_notice_date');
-        
-              if ($notify_date instanceof DateTime) {
-                $dt_now = new DateTime('now');
-                
-                if ($notify_date <= $dt_now) {
-                  update_option('contact_list_rating_show_notice', 1, false);
-                }
-        
-              }
-              
-            }
-        */
+        $cl_rating_current_status = get_option( 'contact_list_rating_notice_status_v2' );
         
         if ( isset( $_GET['cl_ignore_rating_notice_notify'] ) ) {
             
             if ( (int) $_GET['cl_ignore_rating_notice_notify'] === 1 ) {
-                update_option( 'contact_list_rating_notice', 'dismissed', false );
-                $cl_statuses_option['rating_notice_dismissed'] = $this->cl_get_current_time();
-                update_option( 'cl_statuses', $cl_statuses_option, false );
+                update_option( 'contact_list_rating_notice_status_v2', 'dismissed', false );
             } elseif ( $_GET['cl_ignore_rating_notice_notify'] === 'later' ) {
-                set_transient( 'contact_list_rating_notice_waiting', 'waiting', 2 * WEEK_IN_SECONDS );
-                update_option( 'contact_list_rating_notice', 'pending', false );
+                update_option( 'contact_list_rating_notice_status_v2', 'later', false );
+                set_transient( 'contact_list_rating_notice_later_seconds_v2', '_later', 2 * WEEK_IN_SECONDS );
             }
         
-        } elseif ( isset( $_GET['contact_list_ignore_how_to_notify'] ) ) {
+        } elseif ( !$cl_rating_current_status && $contact_cnt > 50 ) {
+            update_option( 'contact_list_rating_show_notice_now_v2', 1, false );
+        }
+        
+        if ( isset( $_GET['contact_list_ignore_how_to_notify'] ) ) {
             update_option( 'contact_list_how_to_show_notice', 0, false );
         }
-    
     }
     
     public function cl_get_current_time()

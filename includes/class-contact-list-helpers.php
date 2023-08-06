@@ -132,6 +132,7 @@ class ContactListHelpers
         $site_url = preg_replace( '/^www\\./', '', $urlParts['host'] );
         $html = '';
         $html .= '<div class="cl-modal-container cl-modal-container-send-message">';
+        $html .= '<div class="cl-modal-inner">';
         $html .= '<div class="cl-modal">';
         $html .= '<div class="close-modal-container">';
         $html .= '<a href="" class="cl-close-modal">&#10006;</a>';
@@ -167,6 +168,7 @@ class ContactListHelpers
         $html .= '<div class="contact-list-sending-message"></div>';
         $html .= '</form>';
         $html .= ContactListPublicHooks::get_action_content( 'contact_list_send_message_modal_content_end' );
+        $html .= '</div>';
         $html .= '</div>';
         $html .= '</div>';
         return $html;

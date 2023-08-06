@@ -334,6 +334,44 @@ class ContactListSettings
             'placeholder' => '[first_name] [last_name]',
         )
         );
+        
+        if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'pro' ) || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
+            add_settings_field(
+                'contact-list-' . $only_pro . 'contact_card_show_modal_button',
+                sanitize_text_field( __( 'Show a button that opens the contact card lightbox', 'contact-list' ) ),
+                array( $this, 'checkbox_render' ),
+                'contact-list',
+                'contact-list_tab_' . $tab,
+                array(
+                'label_for'  => 'contact-list-' . $only_pro . 'contact_card_show_modal_button',
+                'field_name' => $only_pro . 'contact_card_show_modal_button',
+            )
+            );
+            add_settings_field(
+                'contact-list-' . $only_pro . 'text_contact_card_modal_button',
+                sanitize_text_field( __( 'Text for the button', 'contact-list' ) ),
+                array( $this, 'input_render' ),
+                'contact-list',
+                'contact-list_tab_' . $tab,
+                array(
+                'label_for'   => 'contact-list-' . $only_pro . 'text_contact_card_modal_button',
+                'field_name'  => $only_pro . 'text_contact_card_modal_button',
+                'placeholder' => sanitize_text_field( __( 'More info', 'contact-list' ) ),
+            )
+            );
+            add_settings_field(
+                'contact-list-' . $only_pro . 'contact_card_additional_info_only_in_modal',
+                sanitize_text_field( __( 'Hide additional information from default contact card, show only in lightbox', 'contact-list' ) ),
+                array( $this, 'checkbox_render' ),
+                'contact-list',
+                'contact-list_tab_' . $tab,
+                array(
+                'label_for'  => 'contact-list-' . $only_pro . 'contact_card_additional_info_only_in_modal',
+                'field_name' => $only_pro . 'contact_card_additional_info_only_in_modal',
+            )
+            );
+        }
+        
         $tab = 3;
         add_settings_section(
             'contact-list_tab_' . $tab,
@@ -352,17 +390,19 @@ class ContactListSettings
             'field_name' => 'hide_contact_email',
         )
         );
-        add_settings_field(
-            'contact-list-' . $only_pro . 'send_as_bcc_to_group',
-            sanitize_text_field( __( 'Send messages to groups as Bcc', 'contact-list' ) ),
-            array( $this, 'checkbox_render' ),
-            'contact-list',
-            'contact-list_tab_' . $tab,
-            array(
-            'label_for'  => 'contact-list-' . $only_pro . 'send_as_bcc_to_group',
-            'field_name' => $only_pro . 'send_as_bcc_to_group',
-        )
-        );
+        if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'pro' ) || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
+            add_settings_field(
+                'contact-list-' . $only_pro . 'send_as_bcc_to_group',
+                sanitize_text_field( __( 'Send messages to groups as Bcc', 'contact-list' ) ),
+                array( $this, 'checkbox_render' ),
+                'contact-list',
+                'contact-list_tab_' . $tab,
+                array(
+                'label_for'  => 'contact-list-' . $only_pro . 'send_as_bcc_to_group',
+                'field_name' => $only_pro . 'send_as_bcc_to_group',
+            )
+            );
+        }
         add_settings_field(
             'contact-list-' . $only_pro . 'activate_recaptcha',
             sanitize_text_field( __( 'Activate reCAPTCHA', 'contact-list' ) ),
@@ -807,17 +847,19 @@ class ContactListSettings
             'placeholder' => sanitize_text_field( __( 'Custom field 1', 'contact-list' ) ),
         )
         );
-        add_settings_field(
-            'contact-list-' . $only_pro . 'custom_field_1_hide_from_contact_card',
-            sanitize_text_field( __( 'Hide from contact card', 'contact-list' ) ),
-            array( $this, 'checkbox_render' ),
-            'contact-list',
-            'contact-list_tab_' . $tab,
-            array(
-            'label_for'  => 'contact-list-' . $only_pro . 'custom_field_1_hide_from_contact_card',
-            'field_name' => $only_pro . 'custom_field_1_hide_from_contact_card',
-        )
-        );
+        if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'pro' ) || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
+            add_settings_field(
+                'contact-list-' . $only_pro . 'custom_field_1_hide_from_contact_card',
+                sanitize_text_field( __( 'Hide from contact card', 'contact-list' ) ),
+                array( $this, 'checkbox_render' ),
+                'contact-list',
+                'contact-list_tab_' . $tab,
+                array(
+                'label_for'  => 'contact-list-' . $only_pro . 'custom_field_1_hide_from_contact_card',
+                'field_name' => $only_pro . 'custom_field_1_hide_from_contact_card',
+            )
+            );
+        }
         add_settings_field(
             'contact-list-custom_field_1_link_text',
             sanitize_text_field( __( 'Link text (only applicable if the custom field content is a URL)', 'contact-list' ) ),
@@ -855,17 +897,19 @@ class ContactListSettings
             'placeholder' => $placeholder,
         )
         );
-        add_settings_field(
-            'contact-list-' . $only_pro . 'custom_field_2_hide_from_contact_card',
-            sanitize_text_field( __( 'Hide from contact card', 'contact-list' ) ),
-            array( $this, 'checkbox_render' ),
-            'contact-list',
-            'contact-list_tab_' . $tab,
-            array(
-            'label_for'  => 'contact-list-' . $only_pro . 'custom_field_2_hide_from_contact_card',
-            'field_name' => $only_pro . 'custom_field_2_hide_from_contact_card',
-        )
-        );
+        if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'pro' ) || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
+            add_settings_field(
+                'contact-list-' . $only_pro . 'custom_field_2_hide_from_contact_card',
+                sanitize_text_field( __( 'Hide from contact card', 'contact-list' ) ),
+                array( $this, 'checkbox_render' ),
+                'contact-list',
+                'contact-list_tab_' . $tab,
+                array(
+                'label_for'  => 'contact-list-' . $only_pro . 'custom_field_2_hide_from_contact_card',
+                'field_name' => $only_pro . 'custom_field_2_hide_from_contact_card',
+            )
+            );
+        }
         add_settings_field(
             'contact-list-' . $only_pro . 'custom_field_2_link_text',
             sanitize_text_field( __( 'Link text (only applicable if the custom field content is a URL)', 'contact-list' ) ),
@@ -903,17 +947,19 @@ class ContactListSettings
             'placeholder' => $placeholder,
         )
         );
-        add_settings_field(
-            'contact-list-' . $only_pro . 'custom_field_3_hide_from_contact_card',
-            sanitize_text_field( __( 'Hide from contact card', 'contact-list' ) ),
-            array( $this, 'checkbox_render' ),
-            'contact-list',
-            'contact-list_tab_' . $tab,
-            array(
-            'label_for'  => 'contact-list-' . $only_pro . 'custom_field_3_hide_from_contact_card',
-            'field_name' => $only_pro . 'custom_field_3_hide_from_contact_card',
-        )
-        );
+        if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'pro' ) || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
+            add_settings_field(
+                'contact-list-' . $only_pro . 'custom_field_3_hide_from_contact_card',
+                sanitize_text_field( __( 'Hide from contact card', 'contact-list' ) ),
+                array( $this, 'checkbox_render' ),
+                'contact-list',
+                'contact-list_tab_' . $tab,
+                array(
+                'label_for'  => 'contact-list-' . $only_pro . 'custom_field_3_hide_from_contact_card',
+                'field_name' => $only_pro . 'custom_field_3_hide_from_contact_card',
+            )
+            );
+        }
         add_settings_field(
             'contact-list-' . $only_pro . 'custom_field_3_link_text',
             sanitize_text_field( __( 'Link text (only applicable if the custom field content is a URL)', 'contact-list' ) ),
@@ -951,17 +997,19 @@ class ContactListSettings
             'placeholder' => $placeholder,
         )
         );
-        add_settings_field(
-            'contact-list-' . $only_pro . 'custom_field_4_hide_from_contact_card',
-            sanitize_text_field( __( 'Hide from contact card', 'contact-list' ) ),
-            array( $this, 'checkbox_render' ),
-            'contact-list',
-            'contact-list_tab_' . $tab,
-            array(
-            'label_for'  => 'contact-list-' . $only_pro . 'custom_field_4_hide_from_contact_card',
-            'field_name' => $only_pro . 'custom_field_4_hide_from_contact_card',
-        )
-        );
+        if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'pro' ) || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
+            add_settings_field(
+                'contact-list-' . $only_pro . 'custom_field_4_hide_from_contact_card',
+                sanitize_text_field( __( 'Hide from contact card', 'contact-list' ) ),
+                array( $this, 'checkbox_render' ),
+                'contact-list',
+                'contact-list_tab_' . $tab,
+                array(
+                'label_for'  => 'contact-list-' . $only_pro . 'custom_field_4_hide_from_contact_card',
+                'field_name' => $only_pro . 'custom_field_4_hide_from_contact_card',
+            )
+            );
+        }
         add_settings_field(
             'contact-list-' . $only_pro . 'custom_field_4_link_text',
             sanitize_text_field( __( 'Link text (only applicable if the custom field content is a URL)', 'contact-list' ) ),
@@ -999,17 +1047,19 @@ class ContactListSettings
             'placeholder' => $placeholder,
         )
         );
-        add_settings_field(
-            'contact-list-' . $only_pro . 'custom_field_5_hide_from_contact_card',
-            sanitize_text_field( __( 'Hide from contact card', 'contact-list' ) ),
-            array( $this, 'checkbox_render' ),
-            'contact-list',
-            'contact-list_tab_' . $tab,
-            array(
-            'label_for'  => 'contact-list-' . $only_pro . 'custom_field_5_hide_from_contact_card',
-            'field_name' => $only_pro . 'custom_field_5_hide_from_contact_card',
-        )
-        );
+        if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'pro' ) || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
+            add_settings_field(
+                'contact-list-' . $only_pro . 'custom_field_5_hide_from_contact_card',
+                sanitize_text_field( __( 'Hide from contact card', 'contact-list' ) ),
+                array( $this, 'checkbox_render' ),
+                'contact-list',
+                'contact-list_tab_' . $tab,
+                array(
+                'label_for'  => 'contact-list-' . $only_pro . 'custom_field_5_hide_from_contact_card',
+                'field_name' => $only_pro . 'custom_field_5_hide_from_contact_card',
+            )
+            );
+        }
         add_settings_field(
             'contact-list-' . $only_pro . 'custom_field_5_link_text',
             sanitize_text_field( __( 'Link text (only applicable if the custom field content is a URL)', 'contact-list' ) ),
@@ -1047,17 +1097,19 @@ class ContactListSettings
             'placeholder' => $placeholder,
         )
         );
-        add_settings_field(
-            'contact-list-' . $only_pro . 'custom_field_6_hide_from_contact_card',
-            sanitize_text_field( __( 'Hide from contact card', 'contact-list' ) ),
-            array( $this, 'checkbox_render' ),
-            'contact-list',
-            'contact-list_tab_' . $tab,
-            array(
-            'label_for'  => 'contact-list-' . $only_pro . 'custom_field_6_hide_from_contact_card',
-            'field_name' => $only_pro . 'custom_field_6_hide_from_contact_card',
-        )
-        );
+        if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'pro' ) || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
+            add_settings_field(
+                'contact-list-' . $only_pro . 'custom_field_6_hide_from_contact_card',
+                sanitize_text_field( __( 'Hide from contact card', 'contact-list' ) ),
+                array( $this, 'checkbox_render' ),
+                'contact-list',
+                'contact-list_tab_' . $tab,
+                array(
+                'label_for'  => 'contact-list-' . $only_pro . 'custom_field_6_hide_from_contact_card',
+                'field_name' => $only_pro . 'custom_field_6_hide_from_contact_card',
+            )
+            );
+        }
         add_settings_field(
             'contact-list-' . $only_pro . 'custom_field_6_link_text',
             sanitize_text_field( __( 'Link text (only applicable if the custom field content is a URL)', 'contact-list' ) ),
@@ -2104,17 +2156,19 @@ class ContactListSettings
             'placeholder' => $placeholder,
         )
         );
-        add_settings_field(
-            'contact-list-' . $only_pro . 'simple_list_modal',
-            sanitize_text_field( __( 'Contact names are links to the contact card lightbox', 'contact-list' ) ),
-            array( $this, 'checkbox_render' ),
-            'contact-list',
-            'contact-list_simple_list_settings',
-            array(
-            'label_for'  => 'contact-list-' . $only_pro . 'simple_list_modal',
-            'field_name' => $only_pro . 'simple_list_modal',
-        )
-        );
+        if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'pro' ) || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
+            add_settings_field(
+                'contact-list-' . $only_pro . 'simple_list_modal',
+                sanitize_text_field( __( 'Contact names are links to the contact card lightbox', 'contact-list' ) ),
+                array( $this, 'checkbox_render' ),
+                'contact-list',
+                'contact-list_simple_list_settings',
+                array(
+                'label_for'  => 'contact-list-' . $only_pro . 'simple_list_modal',
+                'field_name' => $only_pro . 'simple_list_modal',
+            )
+            );
+        }
         add_settings_section(
             'contact-list_simple_list',
             '',
@@ -2336,28 +2390,32 @@ class ContactListSettings
             array( $this, 'contact_list_settings_tab_' . $tab . '_callback' ),
             'contact-list'
         );
-        add_settings_field(
-            'contact-list-' . $only_pro . 'enable_single_contact_page',
-            sanitize_text_field( __( 'Enable single contact page', 'contact-list' ) ),
-            array( $this, 'checkbox_render' ),
-            'contact-list',
-            'contact-list_tab_' . $tab,
-            array(
-            'label_for'  => 'contact-list-' . $only_pro . 'enable_single_contact_page',
-            'field_name' => $only_pro . 'enable_single_contact_page',
-        )
-        );
-        add_settings_field(
-            'contact-list-' . $only_pro . 'show_contacts_in_site_search_results',
-            sanitize_text_field( __( 'Show single contacts in site search results', 'contact-list' ) ),
-            array( $this, 'checkbox_render' ),
-            'contact-list',
-            'contact-list_tab_' . $tab,
-            array(
-            'label_for'  => 'contact-list-' . $only_pro . 'show_contacts_in_site_search_results',
-            'field_name' => $only_pro . 'show_contacts_in_site_search_results',
-        )
-        );
+        
+        if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'pro' ) || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
+            add_settings_field(
+                'contact-list-' . $only_pro . 'enable_single_contact_page',
+                sanitize_text_field( __( 'Enable single contact page', 'contact-list' ) ),
+                array( $this, 'checkbox_render' ),
+                'contact-list',
+                'contact-list_tab_' . $tab,
+                array(
+                'label_for'  => 'contact-list-' . $only_pro . 'enable_single_contact_page',
+                'field_name' => $only_pro . 'enable_single_contact_page',
+            )
+            );
+            add_settings_field(
+                'contact-list-' . $only_pro . 'show_contacts_in_site_search_results',
+                sanitize_text_field( __( 'Show single contacts in site search results', 'contact-list' ) ),
+                array( $this, 'checkbox_render' ),
+                'contact-list',
+                'contact-list_tab_' . $tab,
+                array(
+                'label_for'  => 'contact-list-' . $only_pro . 'show_contacts_in_site_search_results',
+                'field_name' => $only_pro . 'show_contacts_in_site_search_results',
+            )
+            );
+        }
+        
         $tab = 11;
         add_settings_section(
             'contact-list_tab_' . $tab,
@@ -2864,16 +2922,22 @@ class ContactListSettings
 
         <?php 
                 
-                if ( $field_name == '_FREE_cron_import_contacts_file' ) {
+                if ( $field_name == '_FREE_text_contact_card_modal_button' ) {
                     ?>
           <?php 
-                    $plan_required = 'Max';
+                    $plan_required = 'Professional';
+                    ?>
+        <?php 
+                } elseif ( $field_name == '_FREE_cron_import_contacts_file' ) {
+                    ?>
+          <?php 
+                    $plan_required = 'Business';
                     ?>
         <?php 
                 } elseif ( $field_name == '_FREE_cron_import_contacts_status_email' ) {
                     ?>
           <?php 
-                    $plan_required = 'Max';
+                    $plan_required = 'Business';
                     ?>
         <?php 
                 }
@@ -2986,31 +3050,86 @@ class ContactListSettings
         <?php 
                 $free_class = 'contact-list-setting-container-free';
                 ?>
-
+        
         <?php 
                 
-                if ( $field_name == '_FREE_cron_activate_import_contacts_daily' ) {
+                if ( $field_name == '_FREE_simple_list_modal' ) {
                     ?>
           <?php 
-                    $plan_required = 'Max';
+                    $plan_required = 'Professional';
+                    ?>
+        <?php 
+                } elseif ( $field_name == '_FREE_send_as_bcc_to_group' ) {
+                    ?>
+          <?php 
+                    $plan_required = 'Professional';
+                    ?>
+        <?php 
+                } elseif ( $field_name == '_FREE_can_add_contacts' ) {
+                    ?>
+          <?php 
+                    $plan_required = 'Professional';
+                    ?>
+        <?php 
+                } elseif ( $field_name == '_FREE_enable_single_contact_page' ) {
+                    ?>
+          <?php 
+                    $plan_required = 'Professional';
+                    ?>
+        <?php 
+                } elseif ( $field_name == '_FREE_show_contacts_in_site_search_results' ) {
+                    ?>
+          <?php 
+                    $plan_required = 'Professional';
+                    ?>
+        <?php 
+                } elseif ( $field_name == '_FREE_contact_card_show_modal_button' ) {
+                    ?>
+          <?php 
+                    $plan_required = 'Professional';
+                    ?>
+        <?php 
+                } elseif ( $field_name == '_FREE_contact_card_additional_info_only_in_modal' ) {
+                    ?>
+          <?php 
+                    $plan_required = 'Professional';
+                    ?>
+        <?php 
+                } elseif ( substr( $field_name, 0, strlen( '_FREE_can_edit_contacts_' ) ) === '_FREE_can_edit_contacts_' ) {
+                    ?>
+          <?php 
+                    $plan_required = 'Professional';
+                    ?>
+        <?php 
+                } elseif ( $field_name == '_FREE_custom_field_1_hide_from_contact_card' || $field_name == '_FREE_custom_field_2_hide_from_contact_card' || $field_name == '_FREE_custom_field_3_hide_from_contact_card' || $field_name == '_FREE_custom_field_4_hide_from_contact_card' || $field_name == '_FREE_custom_field_5_hide_from_contact_card' || $field_name == '_FREE_custom_field_6_hide_from_contact_card' ) {
+                    ?>
+          <?php 
+                    $plan_required = 'Professional';
+                    ?>
+
+        <?php 
+                } elseif ( $field_name == '_FREE_cron_activate_import_contacts_daily' ) {
+                    ?>
+          <?php 
+                    $plan_required = 'Business';
                     ?>
         <?php 
                 } elseif ( $field_name == '_FREE_cron_import_ignore_first_line' ) {
                     ?>
           <?php 
-                    $plan_required = 'Max';
+                    $plan_required = 'Business';
                     ?>
         <?php 
                 } elseif ( $field_name == '_FREE_cron_import_contacts_delete_all_before_import' ) {
                     ?>
           <?php 
-                    $plan_required = 'Max';
+                    $plan_required = 'Business';
                     ?>
         <?php 
                 } elseif ( $field_name == '_FREE_cron_import_contacts_update_existing_by_email' ) {
                     ?>
           <?php 
-                    $plan_required = 'Max';
+                    $plan_required = 'Business';
                     ?>
 
         <?php 
@@ -3063,7 +3182,7 @@ class ContactListSettings
 
       <?php 
             
-            if ( $field_name == 'activate_recaptcha' ) {
+            if ( $field_name == 'activate_recaptcha' || $field_name == '_FREE_activate_recaptcha' ) {
                 ?>
 
           <div class="general-info">
@@ -3076,7 +3195,7 @@ class ContactListSettings
           </div>
 
       <?php 
-            } elseif ( $field_name == 'link_country_and_state' ) {
+            } elseif ( $field_name == 'link_country_and_state' || $field_name == '_FREE_link_country_and_state' ) {
                 ?>
 
           <div class="general-info">
@@ -3086,7 +3205,7 @@ class ContactListSettings
           </div>
 
       <?php 
-            } elseif ( $field_name == 'enable_single_contact_page' ) {
+            } elseif ( $field_name == 'enable_single_contact_page' || $field_name == '_FREE_enable_single_contact_page' ) {
                 ?>
           
           <div class="general-info">
@@ -3102,12 +3221,22 @@ class ContactListSettings
           </div>
 
       <?php 
-            } elseif ( $field_name == 'show_contacts_in_site_search_results' ) {
+            } elseif ( $field_name == 'show_contacts_in_site_search_results' || $field_name == '_FREE_show_contacts_in_site_search_results' ) {
                 ?>
           
           <div class="general-info">
             <?php 
                 echo  esc_html__( "Show the contacts in the site search results. Proper function requires also the single contact pages enabled.", 'contact-list' ) ;
+                ?>
+          </div>
+
+      <?php 
+            } elseif ( $field_name == 'contact_card_show_modal_button' || $field_name == '_FREE_contact_card_show_modal_button' ) {
+                ?>
+          
+          <div class="general-info">
+            <?php 
+                echo  esc_html__( "Button is shown is additional info is added to the contact.", 'contact-list' ) ;
                 ?>
           </div>
 
@@ -3866,13 +3995,29 @@ class ContactListSettings
         echo  esc_html__( 'Simple list', 'contact-list' ) ;
         ?></span></li>
 
-          <li class="contact-list-settings-tab-9-title" data-settings-container="contact-list-settings-tab-9"><span><?php 
-        echo  esc_html__( 'Contact edit', 'contact-list' ) ;
-        ?></span></li>
+          <?php 
+        
+        if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'pro' ) || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
+            ?>
+            <li class="contact-list-settings-tab-9-title" data-settings-container="contact-list-settings-tab-9"><span><?php 
+            echo  esc_html__( 'Contact edit', 'contact-list' ) ;
+            ?></span></li>
+          <?php 
+        }
+        
+        ?>
 
-          <li class="contact-list-settings-tab-10-title" data-settings-container="contact-list-settings-tab-10"><span><?php 
-        echo  esc_html__( 'Custom post type', 'contact-list' ) ;
-        ?></span></li>
+          <?php 
+        
+        if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'pro' ) || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
+            ?>
+            <li class="contact-list-settings-tab-10-title" data-settings-container="contact-list-settings-tab-10"><span><?php 
+            echo  esc_html__( 'Custom post type', 'contact-list' ) ;
+            ?></span></li>
+          <?php 
+        }
+        
+        ?>
 
           <?php 
         

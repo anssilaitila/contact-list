@@ -2,8 +2,8 @@
 Contributors: anssilaitila, freemius
 Tags: directory plugin, business directory, contact manager, address book, staff directory, staff list, company directory, church directory, contact directory, contacts, chamber of commerce
 Requires at least: 4.0.0
-Tested up to: 6.2
-Stable tag: 2.9.74
+Tested up to: 6.3
+Stable tag: 2.9.76
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -236,6 +236,16 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 6. Contact management
 
 == Changelog ==
+
+= 2.9.76 - 2023-08-06 =
+* (Professional + Business) New feature: Show a button on the contact card that opens a lightbox (can be used to show longer description / additional info)
+* (Professional + Business) New setting: Show a button that opens the contact card lightbox (Contact card tab)
+* (Professional + Business) New setting: Text for the button
+* (Professional + Business) New setting: Hide additional information from default contact card, show only in lightbox
+* (Free + All plans) Fix: no more backslash before an apostrophe in email subject
+
+= 2.9.75 - 2023-07-25 =
+* Compatibility for WP 6.3
 
 = 2.9.74 - 2023-07-21 =
 * (Free + All plans) Minor tweaks and fixes

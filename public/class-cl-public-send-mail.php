@@ -9,7 +9,7 @@ class ContactListPublicSendMail
         $contact_id = ( isset( $_POST['contact_id'] ) ? intval( $_POST['contact_id'] ) : '' );
         $c = get_post_custom( $contact_id );
         // Preprocess & format mail data
-        $subject = ( isset( $_POST['subject'] ) ? sanitize_text_field( $_POST['subject'] ) : '' );
+        $subject = ( isset( $_POST['subject'] ) ? stripslashes( sanitize_text_field( $_POST['subject'] ) ) : '' );
         $sender_name = ( isset( $_POST['sender_name'] ) ? sanitize_text_field( $_POST['sender_name'] ) : '' );
         $sender_email = ( isset( $_POST['sender_email'] ) ? sanitize_email( $_POST['sender_email'] ) : '' );
         $mail_cnt = ( isset( $_POST['mail_cnt'] ) ? intval( $_POST['mail_cnt'] ) : '' );
@@ -29,7 +29,7 @@ class ContactListPublicSendMail
             $body .= '<table cellpadding="0" cellspacing="0" border="0" style="width: 100%; margin-top: 20px;">
                 <tr>
                   <td style="border-top: 1px solid #eee; color: #bbb; padding-top: 3px; width: 100%;">
-                    ' . sanitize_text_field( __( 'Sent by Contact List for WordPress', 'contact-list' ) ) . '
+                    ' . sanitize_text_field( __( 'Sent by', 'contact-list' ) ) . ' ' . '<a style="color: #ABC0E7; text-decoration: none;" href="https://www.contactlistpro.com/">' . sanitize_text_field( __( 'Contact List for WordPress', 'contact-list' ) ) . '</a>' . '
                   </td>
                 </tr>
                 </table>';
