@@ -84,18 +84,14 @@ class ContactListPublicHelpersDefault
         $s = get_option( 'contact_list_settings' );
         $c = get_post_custom( $id );
         $featured_img_url = esc_url_raw( get_the_post_thumbnail_url( $id, 'contact-list-contact' ) );
-        $card_height_markup = '';
-        if ( !$is_modal ) {
-            
-            if ( isset( $atts['card_height'] ) ) {
-                $card_height_markup .= 'style="height: ' . intval( $atts['card_height'] ) . 'px;"';
-            } elseif ( isset( $s['card_height'] ) && $s['card_height'] ) {
-            }
-        
+        $hide_right_column = 1;
+        $contact_card_class = 'contact-list-card-full-width';
+        if ( $featured_img_url || isset( $s['contact_card_right_column'] ) && $s['contact_card_right_column'] ) {
+            $contact_card_class = '';
         }
+        $file = CONTACT_LIST_PATH . '/templates/contact-card.php';
         // buffer the output
         ob_start();
-        $file = CONTACT_LIST_PATH . '/templates/contact-card.php';
         include $file;
         return ob_get_clean();
     }

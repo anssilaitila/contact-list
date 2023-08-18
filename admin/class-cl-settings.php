@@ -216,17 +216,6 @@ class ContactListSettings
         )
         );
         add_settings_field(
-            'contact-list-contact_image_size',
-            sanitize_text_field( __( 'Contact image size', 'contact-list' ) ),
-            array( $this, 'contact_image_size_render' ),
-            'contact-list',
-            'contact-list_tab_' . $tab,
-            array(
-            'label_for'  => 'contact-list-contact_image_size',
-            'field_name' => 'contact_image_size',
-        )
-        );
-        add_settings_field(
             'contact-list-contact_image_style',
             sanitize_text_field( __( 'Contact image style', 'contact-list' ) ),
             array( $this, 'contact_image_style_render' ),
@@ -332,6 +321,42 @@ class ContactListSettings
             'label_for'   => 'contact-list-contact_card_title',
             'field_name'  => 'contact_card_title',
             'placeholder' => '[first_name] [last_name]',
+        )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'contact_card_left_column',
+            sanitize_text_field( __( 'Contact card contents, left column', 'contact-list' ) ),
+            array( $this, 'textarea_render' ),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+            'label_for'   => 'contact-list-' . $only_pro . 'contact_card_left_column',
+            'field_name'  => '' . $only_pro . 'contact_card_left_column',
+            'placeholder' => '',
+        )
+        );
+        add_settings_field(
+            'contact-list-contact_card_left_column_width',
+            sanitize_text_field( __( 'Left column width (%)', 'contact-list' ) ),
+            array( $this, 'input_render' ),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+            'label_for'   => 'contact-list-contact_card_left_column_width',
+            'field_name'  => 'contact_card_left_column_width',
+            'placeholder' => '76',
+        )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'contact_card_right_column',
+            sanitize_text_field( __( 'Contact card contents, right column', 'contact-list' ) ),
+            array( $this, 'textarea_render' ),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+            'label_for'   => 'contact-list-' . $only_pro . 'contact_card_right_column',
+            'field_name'  => $only_pro . 'contact_card_right_column',
+            'placeholder' => '',
         )
         );
         
@@ -2860,6 +2885,124 @@ class ContactListSettings
             </table>
           </div>
         </div>
+        
+      <?php 
+            } elseif ( $field_name == 'contact_card_left_column' || $field_name == '_FREE_contact_card_left_column' ) {
+                ?>
+      
+        <?php 
+                $contact_card_fields = array(
+                    array(
+                    'name'  => 'full_name',
+                    'title' => sanitize_text_field( __( 'Name', 'contact-list' ) ),
+                ),
+                    array(
+                    'name'  => 'job_title',
+                    'title' => sanitize_text_field( __( 'Job title', 'contact-list' ) ),
+                ),
+                    array(
+                    'name'  => 'email',
+                    'title' => sanitize_text_field( __( 'Email', 'contact-list' ) ),
+                ),
+                    array(
+                    'name'  => 'send_message_button',
+                    'title' => sanitize_text_field( __( 'Send message button', 'contact-list' ) ),
+                ),
+                    array(
+                    'name'  => 'phone_numbers',
+                    'title' => sanitize_text_field( __( 'Phone numbers', 'contact-list' ) ),
+                ),
+                    array(
+                    'name'  => 'groups',
+                    'title' => sanitize_text_field( __( 'Group names', 'contact-list' ) ),
+                ),
+                    array(
+                    'name'  => 'address',
+                    'title' => sanitize_text_field( __( 'Address', 'contact-list' ) ),
+                ),
+                    array(
+                    'name'  => 'custom_fields',
+                    'title' => sanitize_text_field( __( 'Custom fields', 'contact-list' ) ),
+                ),
+                    array(
+                    'name'  => 'additional_info',
+                    'title' => sanitize_text_field( __( 'Additinal info', 'contact-list' ) ),
+                ),
+                    array(
+                    'name'  => 'some_icons',
+                    'title' => sanitize_text_field( __( 'Social media icons', 'contact-list' ) ),
+                ),
+                    array(
+                    'name'  => 'show_contact_button',
+                    'title' => sanitize_text_field( __( 'Show contact button', 'contact-list' ) ),
+                ),
+                    array(
+                    'name'  => 'featured_image',
+                    'title' => sanitize_text_field( __( 'Featured image', 'contact-list' ) ),
+                )
+                );
+                ?>
+      
+        <div class="general-info contact-list-general-info-custom-order">
+    
+          <div class="contact-list-general-info-custom-order-row-1"><?php 
+                echo  esc_html__( 'Add any fields using the field IDs in any order, inside double brackets like so:', 'contact-list' ) ;
+                ?></div>
+        
+          <div class="contact-list-general-info-custom-order-row-2">[[full_name]]<br />[[phone_numbers]]<br />[[address]]</div>
+          
+          <div class="contact-list-general-info-custom-order-row-3"><?php 
+                echo  esc_html__( 'Available fields are:', 'contact-list' ) ;
+                ?></div>
+      
+          <div class="contact-list-settings-simple-list-custom-order-container">
+            <table class="contact-list-settings-simple-list-custom-order">
+            <tr>
+              <th><?php 
+                echo  esc_html__( 'Field title', 'contact-list' ) ;
+                ?></th>
+              <th><?php 
+                echo  esc_html__( 'Field ID', 'contact-list' ) ;
+                ?></th>
+            </tr>
+            <?php 
+                foreach ( $contact_card_fields as $f ) {
+                    ?>
+              
+              <?php 
+                    $options_field = $f['name'] . '_title';
+                    $field_title = ( isset( $options[$options_field] ) && $options[$options_field] ? sanitize_text_field( $options[$options_field] ) : sanitize_text_field( $f['title'] ) );
+                    ?>
+      
+              <tr>
+                <td><?php 
+                    echo  esc_html( $field_title ) ;
+                    ?></td>
+                <td><?php 
+                    echo  esc_html( $f['name'] ) ;
+                    ?></td>
+              </tr>
+            <?php 
+                }
+                ?>
+            </table>
+          </div>
+        </div>
+
+      <?php 
+            } elseif ( $field_name == 'contact_card_right_column' || $field_name == '_FREE_contact_card_right_column' ) {
+                ?>
+
+        <div class="general-info contact-list-general-info-custom-order">
+        
+          <div class="contact-list-general-info-custom-order-row-1"><?php 
+                echo  esc_html__( 'Add any fields using the field IDs in any order, inside double brackets like so:', 'contact-list' ) ;
+                ?></div>
+        
+          <div class="contact-list-general-info-custom-order-row-2">[[featured_image]]<br/>[[groups]]</div>
+          
+        </div>
+
       
       <?php 
             }
@@ -3236,7 +3379,7 @@ class ContactListSettings
           
           <div class="general-info">
             <?php 
-                echo  esc_html__( "Button is shown is additional info is added to the contact.", 'contact-list' ) ;
+                echo  esc_html__( "Button is shown if additional info is added to the contact.", 'contact-list' ) ;
                 ?>
           </div>
 
@@ -3616,38 +3759,6 @@ class ContactListSettings
             echo  ( $card_background == 'light_gray' ? 'selected' : '' ) ;
             ?>><?php 
             echo  esc_html__( 'Light gray', 'contact-list' ) ;
-            ?></option>
-      </select>
-      <?php 
-        }
-    
-    }
-    
-    public function contact_image_size_render( $args )
-    {
-        
-        if ( $args['field_name'] ) {
-            $options = get_option( 'contact_list_settings' );
-            $contact_image_size = '';
-            if ( isset( $options[$args['field_name']] ) ) {
-                $contact_image_size = sanitize_text_field( $options[$args['field_name']] );
-            }
-            ?>    
-      <select name="contact_list_settings[<?php 
-            echo  esc_attr( $args['field_name'] ) ;
-            ?>]">
-          <option value=""><?php 
-            echo  esc_html__( 'Default', 'contact-list' ) ;
-            ?></option>
-          <option value="small" <?php 
-            echo  ( $contact_image_size == 'small' ? 'selected' : '' ) ;
-            ?>><?php 
-            echo  esc_html__( 'Small', 'contact-list' ) ;
-            ?></option>
-          <option value="large" <?php 
-            echo  ( $contact_image_size == 'large' ? 'selected' : '' ) ;
-            ?>><?php 
-            echo  esc_html__( 'Large', 'contact-list' ) ;
             ?></option>
       </select>
       <?php 

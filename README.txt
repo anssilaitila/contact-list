@@ -1,9 +1,9 @@
 === Contact List – Easy Contact Manager, Address Book and Business Directory Plugin ===
 Contributors: anssilaitila, freemius
 Tags: directory plugin, business directory, contact manager, address book, staff directory, staff list, company directory, church directory, contact directory, contacts, chamber of commerce
-Requires at least: 4.0.0
+Requires at least: 5.4.0
 Tested up to: 6.3
-Stable tag: 2.9.76
+Stable tag: 2.9.77
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -17,10 +17,11 @@ Looking for a simple yet comprehensive directory plugin for a WordPress website?
 
 Contact List is a dedicated directory plugin to manage and create address books, company/business directories, yellow pages, and numerous other member directories right inside WordPress without any bells and whistles. 
 
-* A simple method of listing contacts on a WordPress website.
-* Email contacts immediately from the front-end form.
-* Contact directories created by importing data from a CSV file or via a publicly accessible form.
-* CSV import & export.
+* A simple method of listing contacts on a WordPress website
+* Email contacts immediately from the front-end form
+* Contact directories created by importing data from a CSV file or via a publicly accessible form
+* CSV import & export
+* Customize the contact card completely, either via settings or by creating a custom template
 
 All this is about the Contact List plugin!
 
@@ -236,6 +237,12 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 6. Contact management
 
 == Changelog ==
+
+= 2.9.77 - 2023-08-08 =
+* (All plans) Customize the contact card contents: see plugin settings / Contact card tab
+* (All plans) Customize the contact card PHP template: see wp-content/plugins/contact-list-pro/templates/contact-card.php
+* (Free + All plans) New setting for contact card: Left column width (%)
+* (Free + All plans) Bug fixes
 
 = 2.9.76 - 2023-08-06 =
 * (Professional + Business) New feature: Show a button on the contact card that opens a lightbox (can be used to show longer description / additional info)

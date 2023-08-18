@@ -133,6 +133,7 @@ class Contact_List
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cl-public-helpers-default.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cl-public-helpers-simple.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cl-public-load.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cl-public-card.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cl-public-pagination.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cl-public-hooks.php';
         /**

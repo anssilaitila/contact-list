@@ -37,13 +37,26 @@ class ContactListPublicLoad {
     $s = get_option('contact_list_settings');
 
     $css = '';
+    
+    
+    if ( isset($s['contact_card_left_column_width']) && $s['contact_card_left_column_width'] ) {
+      
+      $left_width = intval( $s['contact_card_left_column_width'] );
+      $right_width = 100 - $left_width;
+      
+      $css .= '.contact-list-main-left { width: ' . $left_width . '%; }';
+      $css .= '.contact-list-main-right { width: ' . $right_width . '%; }';
 
-    if ( isset($s['contact_image_size']) && $s['contact_image_size'] == 'small' ) {
+    } elseif ( isset($s['contact_image_size']) && $s['contact_image_size'] == 'small' ) {
+
       $css .= '.contact-list-main-left { width: 86%; }';
       $css .= '.contact-list-main-right { width: 14%; }';
+
     } elseif ( isset($s['contact_image_size']) && $s['contact_image_size'] == 'large' ) {
+
       $css .= '.contact-list-main-left { width: 66%; }';
       $css .= '.contact-list-main-right { width: 34%; }';
+
     }
     
     if (isset($s['show_contact_images_always'])) {
@@ -72,15 +85,18 @@ class ContactListPublicLoad {
         $css .= '.contact-list-contact-container { border: 1px solid #bbb; border-radius: 10px; padding: 10px; }';
       }
     }
-        
-    if (isset($s['card_height']) && $s['card_height']) {
-      
-      $card_height = 380;
     
-      if (isset($s['card_height']) && $s['card_height']) {
-        $card_height = intval( $s['card_height'] );
-      }
-      
+    $card_height = 0;
+
+    if (isset($atts['card_height'])) {
+      $card_height = 380;
+      $card_height = intval( $atts['card_height'] );
+    } elseif (isset($s['card_height']) && $s['card_height']) {
+      $card_height = 380;
+      $card_height = intval( $s['card_height'] );
+    }
+    
+    if ($card_height) {
       $css .= '.contact-list-2-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: ' . intval( $card_height ) . 'px; }';  
       $css .= '.contact-list-3-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: ' . intval( $card_height ) . 'px; }';  
       $css .= '.contact-list-4-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: ' . intval( $card_height ) . 'px; }';  
@@ -95,4 +111,3 @@ class ContactListPublicLoad {
   }
 
 }
-
