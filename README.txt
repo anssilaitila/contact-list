@@ -1,13 +1,13 @@
-=== Contact List – Easy Contact Manager, Address Book and Business Directory Plugin ===
+=== Contact List – Premium Staff Listing, Business Directory & Address Book  ===
 Contributors: anssilaitila, freemius
-Tags: directory plugin, business directory, contact manager, address book, staff directory, staff list, company directory, church directory, contact directory, contacts, chamber of commerce
+Tags: directory plugin, business directory, listing, address book, staff list, staff directory, contact manager, company directory, church directory, contact directory, contacts, chamber of commerce
 Requires at least: 5.4.0
 Tested up to: 6.3
 Stable tag: 2.9.77
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-List any kind of contacts easily! Featuring fast search, custom filtering, send messages from the front end, custom fields, Excel import & export, reCAPTCHA & more.
+One-Stop Directory Solution! Quick searches, tailored filters, front-end messaging, custom fields, CSV import & export, reCAPTCHA & more.
 
 == Description ==
 
@@ -15,15 +15,13 @@ List any kind of contacts easily! Featuring fast search, custom filtering, send 
 
 Looking for a simple yet comprehensive directory plugin for a WordPress website? If the answer is YES, then you are in the right place!
 
-Contact List is a dedicated directory plugin to manage and create address books, company/business directories, yellow pages, and numerous other member directories right inside WordPress without any bells and whistles. 
+Contact List is a dedicated directory plugin to manage and create address books, company/business directories, yellow pages, and numerous other member directories right inside WordPress. 
 
 * A simple method of listing contacts on a WordPress website
 * Email contacts immediately from the front-end form
 * Contact directories created by importing data from a CSV file or via a publicly accessible form
 * CSV import & export
 * Customize the contact card completely, either via settings or by creating a custom template
-
-All this is about the Contact List plugin!
 
 * [Contact List Plugin Demos](https://www.contactlistpro.com/contact-list/)
 * [Documentation](https://www.contactlistpro.com/docs/)
@@ -62,17 +60,13 @@ Contact List simplifies the process of creating WordPress website directories of
 
 Contact List is a comprehensive directory plugin for building any kinds of directories a on WordPress website. Get the plugin downloaded first. The process is quite simple.
 
-* Go to your WordPress website from the backend. 
-* Click on *Plugins > Add New*. 
-* On the search line, type *"Contact List"*.
-* Click on *Install > Activate*.
-
 **Start** creating your WordPress contact directory page, **with 2 steps**:
 
 1. Add some contacts from WP admin > Contact List > All contacts. 
+
 2. Insert one of these shortcodes to any page or post on your site.
-    * [contact_list]
-    * [contact_list_simple]
+    * [contact_list] (default contact list)
+    * [contact_list_simple] (simple contact list)
 
 **That's it! You've added contact list to your site! It is super simple, isn't it?**
 
