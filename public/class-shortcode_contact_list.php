@@ -27,12 +27,6 @@ class ShortcodeContactList
         $html .= '<div class="contact-list-container ' . sanitize_html_class( $elem_class ) . ' ' . (( $layout ? 'contact-list-' . sanitize_html_class( $layout ) : '' )) . '">';
         
         if ( isset( $atts['contact'] ) || isset( $_GET['contact_id'] ) ) {
-            
-            if ( ContactListHelpers::isPremium() == 0 ) {
-                $html = ContactListPublicHelpers::proFeaturePublicMarkup();
-                return $html;
-            }
-            
             $contact = ( isset( $atts['contact'] ) ? (int) $atts['contact'] : (int) $_GET['contact_id'] );
             
             if ( $contact ) {

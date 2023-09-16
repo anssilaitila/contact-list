@@ -83,7 +83,7 @@ class ContactListImportExport
             echo  esc_html__( 'LinkedIn URL', 'contact-list' ) ;
             ?></li>
                 <li><?php 
-            echo  esc_html__( 'Twitter URL', 'contact-list' ) ;
+            echo  esc_html__( 'X URL', 'contact-list' ) ;
             ?></li>
                 <li><?php 
             echo  esc_html__( 'Facebook URL', 'contact-list' ) ;
@@ -140,14 +140,19 @@ class ContactListImportExport
             ?></li>
                 <li><?php 
             echo  esc_html__( 'Phone 2', 'contact-list' ) ;
-            ?> <span class="new-feature-inline"><?php 
-            echo  esc_html__( 'New', 'contact-list' ) ;
-            ?></span></li>
+            ?></li>
                 <li><?php 
             echo  esc_html__( 'Phone 3', 'contact-list' ) ;
-            ?> <span class="new-feature-inline"><?php 
-            echo  esc_html__( 'New', 'contact-list' ) ;
-            ?></span></li>
+            ?></li>
+                <li><?php 
+            echo  esc_html__( 'Prefix', 'contact-list' ) ;
+            ?></li>
+                <li><?php 
+            echo  esc_html__( 'Middle name', 'contact-list' ) ;
+            ?></li>
+                <li><?php 
+            echo  esc_html__( 'Suffix', 'contact-list' ) ;
+            ?></li>
             </ol>
           </p>
 
@@ -216,7 +221,7 @@ class ContactListImportExport
             echo  esc_html__( 'LinkedIn URL', 'contact-list' ) ;
             ?></li>
               <li><?php 
-            echo  esc_html__( 'Twitter URL', 'contact-list' ) ;
+            echo  esc_html__( 'X URL', 'contact-list' ) ;
             ?></li>
               <li><?php 
             echo  esc_html__( 'Facebook URL', 'contact-list' ) ;
@@ -273,14 +278,19 @@ class ContactListImportExport
             ?></li>
               <li><?php 
             echo  esc_html__( 'Phone 2', 'contact-list' ) ;
-            ?> <span class="new-feature-inline"><?php 
-            echo  esc_html__( 'New', 'contact-list' ) ;
-            ?></span></li>
+            ?></li>
               <li><?php 
             echo  esc_html__( 'Phone 3', 'contact-list' ) ;
-            ?> <span class="new-feature-inline"><?php 
-            echo  esc_html__( 'New', 'contact-list' ) ;
-            ?></span></li>
+            ?></li>
+              <li><?php 
+            echo  esc_html__( 'Prefix', 'contact-list' ) ;
+            ?></li>
+              <li><?php 
+            echo  esc_html__( 'Middle name', 'contact-list' ) ;
+            ?></li>
+              <li><?php 
+            echo  esc_html__( 'Suffix', 'contact-list' ) ;
+            ?></li>
             </ol>
           </p>
 

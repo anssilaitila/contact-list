@@ -626,10 +626,6 @@ class ContactListShortcodes
         echo  esc_html__( 'Single contact', 'contact-list' ) ;
         ?>
 
-          <?php 
-        echo  wp_kses( $plan_info_markup_all_plans, $plan_info_markup_allowed_tags ) ;
-        ?>
-
         </h2>
         <ol>
           <li><?php 

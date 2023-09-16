@@ -1506,14 +1506,14 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-twitter_url_title',
-            sanitize_text_field( __( 'Twitter URL', 'contact-list' ) ),
+            sanitize_text_field( __( 'X URL', 'contact-list' ) ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_section',
             array(
             'label_for'   => 'contact-list-twitter_url_title',
             'field_name'  => 'twitter_url_title',
-            'placeholder' => sanitize_text_field( __( 'Twitter URL', 'contact-list' ) ),
+            'placeholder' => sanitize_text_field( __( 'X URL', 'contact-list' ) ),
         )
         );
         add_settings_field(
@@ -1725,6 +1725,17 @@ class ContactListSettings
             'contact-list'
         );
         add_settings_field(
+            'contact-list-af_show_name_prefix',
+            sanitize_text_field( __( 'Show name prefix', 'contact-list' ) ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+            'label_for'  => 'contact-list-af_show_name_prefix',
+            'field_name' => 'af_show_name_prefix',
+        )
+        );
+        add_settings_field(
             'contact-list-af_hide_first_name',
             sanitize_text_field( __( 'Hide first name', 'contact-list' ) ),
             array( $this, 'checkbox_render' ),
@@ -1733,6 +1744,50 @@ class ContactListSettings
             array(
             'label_for'  => 'contact-list-af_hide_first_name',
             'field_name' => 'af_hide_first_name',
+        )
+        );
+        add_settings_field(
+            'contact-list-af_show_middle_name',
+            sanitize_text_field( __( 'Show middle name', 'contact-list' ) ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+            'label_for'  => 'contact-list-af_show_middle_name',
+            'field_name' => 'af_show_middle_name',
+        )
+        );
+        add_settings_field(
+            'contact-list-af_show_name_suffix',
+            sanitize_text_field( __( 'Show name suffix', 'contact-list' ) ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+            'label_for'  => 'contact-list-af_show_name_suffix',
+            'field_name' => 'af_show_name_suffix',
+        )
+        );
+        add_settings_field(
+            'contact-list-af_show_organization',
+            sanitize_text_field( __( 'Show organization', 'contact-list' ) ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+            'label_for'  => 'contact-list-af_show_organization',
+            'field_name' => 'af_show_organization',
+        )
+        );
+        add_settings_field(
+            'contact-list-af_show_department',
+            sanitize_text_field( __( 'Show department', 'contact-list' ) ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+            'label_for'  => 'contact-list-af_show_department',
+            'field_name' => 'af_show_department',
         )
         );
         add_settings_field(
@@ -1755,6 +1810,17 @@ class ContactListSettings
             array(
             'label_for'  => 'contact-list-af_hide_email',
             'field_name' => 'af_hide_email',
+        )
+        );
+        add_settings_field(
+            'contact-list-af_hide_notify_emails',
+            sanitize_text_field( __( 'Hide notify emails', 'contact-list' ) ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+            'label_for'  => 'contact-list-af_hide_notify_emails',
+            'field_name' => 'af_hide_notify_emails',
         )
         );
         add_settings_field(
@@ -1781,7 +1847,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-af_hide_twitter_url',
-            sanitize_text_field( __( 'Hide Twitter URL', 'contact-list' ) ),
+            sanitize_text_field( __( 'Hide X URL', 'contact-list' ) ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_admin_form',
@@ -1814,13 +1880,101 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-af_hide_address',
-            sanitize_text_field( __( 'Hide address', 'contact-list' ) ),
+            sanitize_text_field( __( 'Hide address lines 1-4', 'contact-list' ) ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_admin_form',
             array(
             'label_for'  => 'contact-list-af_hide_address',
             'field_name' => 'af_hide_address',
+        )
+        );
+        add_settings_field(
+            'contact-list-af_hide_address_line_1',
+            sanitize_text_field( __( 'Hide address line 1', 'contact-list' ) ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+            'label_for'  => 'contact-list-af_hide_address_line_1',
+            'field_name' => 'af_hide_address_line_1',
+        )
+        );
+        add_settings_field(
+            'contact-list-af_hide_address_line_2',
+            sanitize_text_field( __( 'Hide address line 2', 'contact-list' ) ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+            'label_for'  => 'contact-list-af_hide_address_line_2',
+            'field_name' => 'af_hide_address_line_2',
+        )
+        );
+        add_settings_field(
+            'contact-list-af_hide_address_line_3',
+            sanitize_text_field( __( 'Hide address line 3', 'contact-list' ) ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+            'label_for'  => 'contact-list-af_hide_address_line_3',
+            'field_name' => 'af_hide_address_line_3',
+        )
+        );
+        add_settings_field(
+            'contact-list-af_hide_address_line_4',
+            sanitize_text_field( __( 'Hide address line 4', 'contact-list' ) ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+            'label_for'  => 'contact-list-af_hide_address_line_4',
+            'field_name' => 'af_hide_address_line_4',
+        )
+        );
+        add_settings_field(
+            'contact-list-af_hide_country',
+            sanitize_text_field( __( 'Hide country', 'contact-list' ) ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+            'label_for'  => 'contact-list-af_hide_country',
+            'field_name' => 'af_hide_country',
+        )
+        );
+        add_settings_field(
+            'contact-list-af_hide_state',
+            sanitize_text_field( __( 'Hide state', 'contact-list' ) ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+            'label_for'  => 'contact-list-af_hide_state',
+            'field_name' => 'af_hide_state',
+        )
+        );
+        add_settings_field(
+            'contact-list-af_hide_city',
+            sanitize_text_field( __( 'Hide city', 'contact-list' ) ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+            'label_for'  => 'contact-list-af_hide_city',
+            'field_name' => 'af_hide_city',
+        )
+        );
+        add_settings_field(
+            'contact-list-af_hide_zip_code',
+            sanitize_text_field( __( 'Hide zip code', 'contact-list' ) ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+            'label_for'  => 'contact-list-af_hide_zip_code',
+            'field_name' => 'af_hide_zip_code',
         )
         );
         add_settings_field(
@@ -1863,6 +2017,17 @@ class ContactListSettings
             'contact-list'
         );
         add_settings_field(
+            'contact-list-' . $only_pro . 'pf_show_name_prefix',
+            sanitize_text_field( __( 'Show prefix', 'contact-list' ) ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_public_form',
+            array(
+            'label_for'  => 'contact-list-' . $only_pro . 'pf_show_name_prefix',
+            'field_name' => $only_pro . 'pf_show_name_prefix',
+        )
+        );
+        add_settings_field(
             'contact-list-' . $only_pro . 'pf_hide_first_name',
             sanitize_text_field( __( 'Hide first name', 'contact-list' ) ),
             array( $this, 'checkbox_render' ),
@@ -1871,6 +2036,28 @@ class ContactListSettings
             array(
             'label_for'  => 'contact-list-' . $only_pro . 'pf_hide_first_name',
             'field_name' => $only_pro . 'pf_hide_first_name',
+        )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'pf_show_middle_name',
+            sanitize_text_field( __( 'Show middle name', 'contact-list' ) ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_public_form',
+            array(
+            'label_for'  => 'contact-list-' . $only_pro . 'pf_show_middle_name',
+            'field_name' => $only_pro . 'pf_show_middle_name',
+        )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'pf_show_name_suffix',
+            sanitize_text_field( __( 'Show suffix', 'contact-list' ) ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_public_form',
+            array(
+            'label_for'  => 'contact-list-' . $only_pro . 'pf_show_name_suffix',
+            'field_name' => $only_pro . 'pf_show_name_suffix',
         )
         );
         add_settings_field(
@@ -1941,7 +2128,7 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'pf_hide_twitter_url',
-            sanitize_text_field( __( 'Hide Twitter URL', 'contact-list' ) ),
+            sanitize_text_field( __( 'Hide X URL', 'contact-list' ) ),
             array( $this, 'checkbox_render' ),
             'contact-list',
             'contact-list_public_form',
@@ -2096,7 +2283,7 @@ class ContactListSettings
             'phone_2'        => sanitize_text_field( __( 'Phone 2', 'contact-list' ) ),
             'phone_3'        => sanitize_text_field( __( 'Phone 3', 'contact-list' ) ),
             'linkedin_url'   => sanitize_text_field( __( 'LinkedIn URL', 'contact-list' ) ),
-            'twitter_url'    => sanitize_text_field( __( 'Twitter URL', 'contact-list' ) ),
+            'twitter_url'    => sanitize_text_field( __( 'X URL', 'contact-list' ) ),
             'facebook_url'   => sanitize_text_field( __( 'Facebook URL', 'contact-list' ) ),
             'instagram_url'  => sanitize_text_field( __( 'Instagram URL', 'contact-list' ) ),
             'photo'          => sanitize_text_field( __( 'Photo', 'contact-list' ) ),
@@ -2619,12 +2806,24 @@ class ContactListSettings
                 if ( $field_name == 'contact_card_title' ) {
                     $simple_list_fields = array(
                         array(
+                        'name'  => 'name_prefix',
+                        'title' => sanitize_text_field( __( 'Prefix', 'contact-list' ) ),
+                    ),
+                        array(
                         'name'  => 'first_name',
                         'title' => sanitize_text_field( __( 'First name', 'contact-list' ) ),
                     ),
                         array(
+                        'name'  => 'middle_name',
+                        'title' => sanitize_text_field( __( 'Middle name', 'contact-list' ) ),
+                    ),
+                        array(
                         'name'  => 'last_name',
                         'title' => sanitize_text_field( __( 'Last Name', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'name_suffix',
+                        'title' => sanitize_text_field( __( 'Suffix', 'contact-list' ) ),
                     ),
                         array(
                         'name'  => 'job_title',
@@ -2710,12 +2909,24 @@ class ContactListSettings
                         'title' => sanitize_text_field( __( 'Full name', 'contact-list' ) ),
                     ),
                         array(
+                        'name'  => 'name_prefix',
+                        'title' => sanitize_text_field( __( 'Prefix', 'contact-list' ) ),
+                    ),
+                        array(
                         'name'  => 'first_name',
                         'title' => sanitize_text_field( __( 'First name', 'contact-list' ) ),
                     ),
                         array(
+                        'name'  => 'middle_name',
+                        'title' => sanitize_text_field( __( 'Middle name', 'contact-list' ) ),
+                    ),
+                        array(
                         'name'  => 'last_name',
                         'title' => sanitize_text_field( __( 'Last Name', 'contact-list' ) ),
+                    ),
+                        array(
+                        'name'  => 'name_suffix',
+                        'title' => sanitize_text_field( __( 'Suffix', 'contact-list' ) ),
                     ),
                         array(
                         'name'  => 'job_title',
@@ -2884,6 +3095,11 @@ class ContactListSettings
                 ?>
             </table>
           </div>
+          
+          <div class="contact-list-settings-php-template-info"><b><?php 
+                echo  esc_html__( "It's also possible to customize the contact card PHP template in the paid plans:", "contact-list" ) ;
+                ?></b><br />wp-content/plugins/contact-list-pro/templates/contact-card.php</div>
+
         </div>
         
       <?php 
@@ -2987,6 +3203,11 @@ class ContactListSettings
                 ?>
             </table>
           </div>
+
+          <div class="contact-list-settings-php-template-info"><b><?php 
+                echo  esc_html__( "It's also possible to customize the contact card PHP template in the paid plans:", "contact-list" ) ;
+                ?></b><br />wp-content/plugins/contact-list-pro/templates/contact-card.php</div>
+
         </div>
 
       <?php 
@@ -4039,7 +4260,7 @@ class ContactListSettings
     
     public function contact_list_settings_public_form_callback()
     {
-        echo  '<h2 style="margin-top: 20px;">' . esc_html__( 'Public form elements', 'contact-list' ) . '</h2>' ;
+        echo  '<h2 style="margin-top: 20px;">' . esc_html__( 'Fields in [contact_list_form]', 'contact-list' ) . '</h2>' ;
         echo  '<p>' . esc_html__( 'You may customize the public form (the one displayed using the [contact_list_form] shortcode) using these settings.', 'contact-list' ) . '</p>' ;
         echo  '<p>' . esc_html__( 'These choices also affect the form which is used by contacts themselves to update their info (by features "request update" and "permanent update URL")', 'contact-list' ) . '</p>' ;
     }

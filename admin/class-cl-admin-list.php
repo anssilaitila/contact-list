@@ -24,7 +24,7 @@ class ContactListAdminList
             $defaults['linkedin_url'] = ( isset( $s['linkedin_url_title'] ) && $s['linkedin_url_title'] ? sanitize_text_field( $s['linkedin_url_title'] ) : '<img src="' . esc_url_raw( plugins_url( '../img/linkedin.svg', __FILE__ ) ) . '" width="28" height="28" alt="" />' );
         }
         if ( !isset( $s['af_hide_twitter_url'] ) ) {
-            $defaults['twitter_url'] = ( isset( $s['twitter_url_title'] ) && $s['twitter_url_title'] ? sanitize_text_field( $s['twitter_url_title'] ) : '<img src="' . esc_url_raw( plugins_url( '../img/twitter.svg', __FILE__ ) ) . '" width="28" height="28" alt="" />' );
+            $defaults['twitter_url'] = ( isset( $s['twitter_url_title'] ) && $s['twitter_url_title'] ? sanitize_text_field( $s['twitter_url_title'] ) : '<img src="' . esc_url_raw( plugins_url( '../img/x.svg', __FILE__ ) ) . '" width="28" height="28" alt="" />' );
         }
         if ( !isset( $s['af_hide_facebook_url'] ) ) {
             $defaults['facebook_url'] = ( isset( $s['facebook_url_title'] ) && $s['facebook_url_title'] ? sanitize_text_field( $s['facebook_url_title'] ) : '<img src="' . esc_url_raw( plugins_url( '../img/facebook.svg', __FILE__ ) ) . '" width="28" height="28" alt="" />' );
@@ -52,7 +52,7 @@ class ContactListAdminList
             $last_name = sanitize_text_field( get_post_meta( $post_ID, '_cl_last_name', true ) );
             echo  esc_html( $last_name ) ;
             echo  '<span class="contact-list-shortcode-admin-list contact-list-shortcode-admin-list-contact contact-list-shortcode-' . esc_attr( $post_ID ) . '" title="[contact_list contact=' . esc_attr( $post_ID ) . ']">[contact_list contact=' . esc_attr( $post_ID ) . ']</span>' ;
-            echo  '<button class="contact-list-copy contact-list-copy-paid-only contact-list-copy-admin-list" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-' . esc_attr( $post_ID ) . '">' . esc_html__( 'Copy', 'contact-list' ) . '</button>' ;
+            echo  '<button class="contact-list-copy contact-list-copy-admin-list" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-' . esc_attr( $post_ID ) . '">' . esc_html__( 'Copy', 'contact-list' ) . '</button>' ;
         }
         
         if ( $column_name == 'menu_order' ) {

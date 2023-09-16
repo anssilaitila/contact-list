@@ -85,51 +85,7 @@ class ContactListAdminInlineStyles {
   
     $css = '';        
 
-    $css = '
-    .form-wrap .form-field-type-text {
-      width: 50%;
-      float: left;
-    }
-    .form-wrap .form-field-type-country {
-      width: 25%;
-      float: left;
-    }
-    .form-wrap .form-field-type-state {
-      width: 25%;
-      float: left;
-    }
-    .form-wrap .form-field-type-city {
-      width: 25%;
-      float: left;
-    }
-    .form-wrap .form-field-type-title {
-      clear: both;
-      margin-bottom: 0;
-    }
-    .form-wrap .form-field-type-title h3 {
-      border-bottom: 1px solid #eee;
-      padding-top: 16px;
-      padding-bottom: 10px;
-      margin-right: 10px;
-      margin-bottom: 0;
-    }
-    hr.clear {
-        background: none;
-        border: 0;
-        clear: both;
-        display: block;
-        float: none;
-        font-size: 0;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        visibility: hidden;
-        width: 0;
-        height: 0;
-    }
-    ';
-
-    if (isset($options['af_hide_groups'])) {
+    if (isset($s['af_hide_groups'])) {
       
       $css .= '
             #contact-groupdiv {

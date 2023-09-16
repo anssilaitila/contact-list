@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Contact List 2.9.77\n"
+"Project-Id-Version: Contact List 2.9.78\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/trunk\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-08-08T18:32:46+03:00\n"
+"POT-Creation-Date: 2023-09-16T18:21:10+03:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: contact-list\n"
@@ -61,25 +61,25 @@ msgstr ""
 
 #: admin/class-cl-admin-list.php:10
 #: admin/class-cl-import-export.php:68
-#: admin/class-cl-import-export.php:201
+#: admin/class-cl-import-export.php:206
 #: admin/class-cl-settings.php:1399
 #: admin/class-cl-settings.php:1406
-#: admin/class-cl-settings.php:2091
-#: admin/class-cl-settings.php:2623
-#: admin/class-cl-settings.php:2714
-#: admin/class-cl-settings.php:3407
-#: includes/class-contact-list-custom-fields.php:24
-#: public/class-cl-public-helpers-simple.php:44
+#: admin/class-cl-settings.php:2278
+#: admin/class-cl-settings.php:2814
+#: admin/class-cl-settings.php:2917
+#: admin/class-cl-settings.php:3628
+#: includes/class-contact-list-custom-fields.php:32
+#: public/class-cl-public-helpers-simple.php:45
 msgid "First name"
 msgstr ""
 
 #: admin/class-cl-admin-list.php:12
 #: admin/class-cl-import-export.php:71
-#: admin/class-cl-import-export.php:204
+#: admin/class-cl-import-export.php:209
 #: admin/class-cl-settings.php:1411
 #: admin/class-cl-settings.php:1418
-#: admin/class-cl-settings.php:2092
-#: admin/class-cl-settings.php:3406
+#: admin/class-cl-settings.php:2279
+#: admin/class-cl-settings.php:3627
 msgid "Last name"
 msgstr ""
 
@@ -89,41 +89,41 @@ msgstr ""
 
 #: admin/class-cl-admin-list.php:15
 #: admin/class-cl-import-export.php:74
-#: admin/class-cl-import-export.php:207
+#: admin/class-cl-import-export.php:212
 #: admin/class-cl-settings.php:1435
 #: admin/class-cl-settings.php:1442
-#: admin/class-cl-settings.php:2093
-#: admin/class-cl-settings.php:2631
-#: admin/class-cl-settings.php:2722
-#: admin/class-cl-settings.php:2901
-#: includes/class-contact-list-custom-fields.php:40
-#: public/class-cl-public-helpers-simple.php:46
-#: public/class-cl-public-helpers-simple.php:79
+#: admin/class-cl-settings.php:2280
+#: admin/class-cl-settings.php:2830
+#: admin/class-cl-settings.php:2933
+#: admin/class-cl-settings.php:3117
+#: includes/class-contact-list-custom-fields.php:64
+#: public/class-cl-public-helpers-simple.php:49
+#: public/class-cl-public-helpers-simple.php:82
 msgid "Job title"
 msgstr ""
 
 #: admin/class-cl-admin-list.php:18
 #: admin/class-cl-import-export.php:77
-#: admin/class-cl-import-export.php:210
+#: admin/class-cl-import-export.php:215
 #: admin/class-cl-settings.php:1447
 #: admin/class-cl-settings.php:1454
-#: admin/class-cl-settings.php:2094
-#: admin/class-cl-settings.php:2647
-#: admin/class-cl-settings.php:2738
-#: admin/class-cl-settings.php:2905
-#: includes/class-contact-list-custom-fields.php:72
-#: public/class-cl-public-helpers-simple.php:50
-#: public/class-cl-public-helpers-simple.php:86
+#: admin/class-cl-settings.php:2281
+#: admin/class-cl-settings.php:2846
+#: admin/class-cl-settings.php:2949
+#: admin/class-cl-settings.php:3121
+#: includes/class-contact-list-custom-fields.php:96
+#: public/class-cl-public-helpers-simple.php:53
+#: public/class-cl-public-helpers-simple.php:89
 msgid "Email"
 msgstr ""
 
 #: admin/class-cl-admin-list.php:21
 #: admin/class-cl-import-export.php:80
-#: admin/class-cl-import-export.php:213
+#: admin/class-cl-import-export.php:218
 #: admin/class-cl-settings.php:1459
 #: admin/class-cl-settings.php:1466
-#: public/class-cl-public-card.php:213
-#: public/class-cl-public-helpers-simple.php:93
+#: public/class-cl-public-card.php:259
+#: public/class-cl-public-helpers-simple.php:96
 msgid "Phone"
 msgstr ""
 
@@ -163,11 +163,11 @@ msgstr ""
 #: admin/class-cl-shortcodes.php:601
 #: admin/class-cl-shortcodes.php:606
 #: admin/class-cl-shortcodes.php:613
-#: admin/class-cl-shortcodes.php:639
-#: admin/class-cl-shortcodes.php:666
-#: admin/class-cl-shortcodes.php:697
-#: admin/class-cl-shortcodes.php:712
-#: admin/class-cl-shortcodes.php:747
+#: admin/class-cl-shortcodes.php:635
+#: admin/class-cl-shortcodes.php:662
+#: admin/class-cl-shortcodes.php:693
+#: admin/class-cl-shortcodes.php:708
+#: admin/class-cl-shortcodes.php:743
 #: admin/class-cl-taxonomy.php:109
 #: admin/class-cl-taxonomy.php:119
 msgid "Copy"
@@ -297,8 +297,8 @@ msgstr ""
 #: public/class-cl-public-ajax.php:224
 #: public/class-cl-public-helpers-default.php:24
 #: public/class-cl-public-helpers-simple.php:30
-#: public/class-shortcode_contact_list.php:198
-#: public/class-shortcode_contact_list.php:261
+#: public/class-shortcode_contact_list.php:192
+#: public/class-shortcode_contact_list.php:255
 msgid "No contacts found."
 msgstr ""
 
@@ -426,7 +426,7 @@ msgstr ""
 
 #: admin/class-cl-import-export.php:21
 #: admin/class-cl-import-export.php:22
-#: admin/class-cl-import-export.php:170
+#: admin/class-cl-import-export.php:175
 msgid "Export contacts"
 msgstr ""
 
@@ -439,229 +439,241 @@ msgid "The columns should be in this order:"
 msgstr ""
 
 #: admin/class-cl-import-export.php:83
-#: admin/class-cl-import-export.php:216
+#: admin/class-cl-import-export.php:221
 #: admin/class-cl-settings.php:1497
 #: admin/class-cl-settings.php:1504
-#: admin/class-cl-settings.php:2098
-#: includes/class-contact-list-custom-fields.php:89
+#: admin/class-cl-settings.php:2285
+#: includes/class-contact-list-custom-fields.php:113
 msgid "LinkedIn URL"
 msgstr ""
 
 #: admin/class-cl-import-export.php:86
-#: admin/class-cl-import-export.php:219
+#: admin/class-cl-import-export.php:224
 #: admin/class-cl-settings.php:1509
 #: admin/class-cl-settings.php:1516
-#: admin/class-cl-settings.php:2099
-#: includes/class-contact-list-custom-fields.php:97
-msgid "Twitter URL"
+#: admin/class-cl-settings.php:2286
+#: includes/class-contact-list-custom-fields.php:121
+msgid "X URL"
 msgstr ""
 
 #: admin/class-cl-import-export.php:89
-#: admin/class-cl-import-export.php:222
+#: admin/class-cl-import-export.php:227
 #: admin/class-cl-settings.php:1521
 #: admin/class-cl-settings.php:1528
-#: admin/class-cl-settings.php:2100
-#: includes/class-contact-list-custom-fields.php:105
+#: admin/class-cl-settings.php:2287
+#: includes/class-contact-list-custom-fields.php:129
 msgid "Facebook URL"
 msgstr ""
 
 #: admin/class-cl-import-export.php:92
-#: admin/class-cl-import-export.php:225
+#: admin/class-cl-import-export.php:230
 #: admin/class-cl-settings.php:1622
-#: admin/class-cl-settings.php:2106
+#: admin/class-cl-settings.php:2293
 msgid "Address line 1"
 msgstr ""
 
 #: admin/class-cl-import-export.php:95
-#: admin/class-cl-import-export.php:228
+#: admin/class-cl-import-export.php:233
 #: admin/class-cl-settings.php:1635
-#: admin/class-cl-settings.php:2107
+#: admin/class-cl-settings.php:2294
 msgid "Address line 2"
 msgstr ""
 
 #: admin/class-cl-import-export.php:98
-#: admin/class-cl-import-export.php:231
+#: admin/class-cl-import-export.php:236
 #: admin/class-cl-settings.php:1648
-#: admin/class-cl-settings.php:2108
+#: admin/class-cl-settings.php:2295
 msgid "Address line 3"
 msgstr ""
 
 #: admin/class-cl-import-export.php:101
-#: admin/class-cl-import-export.php:234
+#: admin/class-cl-import-export.php:239
 #: admin/class-cl-settings.php:1661
-#: admin/class-cl-settings.php:2109
+#: admin/class-cl-settings.php:2296
 msgid "Address line 4"
 msgstr ""
 
 #: admin/class-cl-import-export.php:104
-#: admin/class-cl-import-export.php:237
+#: admin/class-cl-import-export.php:242
 #: admin/class-cl-settings.php:872
-#: admin/class-cl-settings.php:2110
-#: admin/class-cl-settings.php:2683
-#: admin/class-cl-settings.php:2778
-#: includes/class-contact-list-custom-fields.php:201
-#: public/class-cl-public-helpers-simple.php:60
+#: admin/class-cl-settings.php:2297
+#: admin/class-cl-settings.php:2882
+#: admin/class-cl-settings.php:2989
+#: includes/class-contact-list-custom-fields.php:225
+#: public/class-cl-public-helpers-simple.php:63
 msgid "Custom field 1"
 msgstr ""
 
 #: admin/class-cl-import-export.php:107
-#: admin/class-cl-import-export.php:240
-#: admin/class-cl-settings.php:2111
-#: admin/class-cl-settings.php:2687
-#: admin/class-cl-settings.php:2782
-#: includes/class-contact-list-custom-fields.php:209
-#: public/class-cl-public-helpers-simple.php:61
+#: admin/class-cl-import-export.php:245
+#: admin/class-cl-settings.php:2298
+#: admin/class-cl-settings.php:2886
+#: admin/class-cl-settings.php:2993
+#: includes/class-contact-list-custom-fields.php:233
+#: public/class-cl-public-helpers-simple.php:64
 msgid "Custom field 2"
 msgstr ""
 
 #: admin/class-cl-import-export.php:110
-#: admin/class-cl-import-export.php:243
-#: admin/class-cl-settings.php:2112
-#: admin/class-cl-settings.php:2691
-#: admin/class-cl-settings.php:2786
-#: includes/class-contact-list-custom-fields.php:217
-#: public/class-cl-public-helpers-simple.php:62
+#: admin/class-cl-import-export.php:248
+#: admin/class-cl-settings.php:2299
+#: admin/class-cl-settings.php:2890
+#: admin/class-cl-settings.php:2997
+#: includes/class-contact-list-custom-fields.php:241
+#: public/class-cl-public-helpers-simple.php:65
 msgid "Custom field 3"
 msgstr ""
 
 #: admin/class-cl-import-export.php:113
-#: admin/class-cl-import-export.php:246
-#: admin/class-cl-settings.php:2113
-#: admin/class-cl-settings.php:2695
-#: admin/class-cl-settings.php:2790
-#: includes/class-contact-list-custom-fields.php:225
-#: public/class-cl-public-helpers-simple.php:63
+#: admin/class-cl-import-export.php:251
+#: admin/class-cl-settings.php:2300
+#: admin/class-cl-settings.php:2894
+#: admin/class-cl-settings.php:3001
+#: includes/class-contact-list-custom-fields.php:249
+#: public/class-cl-public-helpers-simple.php:66
 msgid "Custom field 4"
 msgstr ""
 
 #: admin/class-cl-import-export.php:116
-#: admin/class-cl-import-export.php:249
-#: admin/class-cl-settings.php:2114
-#: admin/class-cl-settings.php:2699
-#: admin/class-cl-settings.php:2794
-#: includes/class-contact-list-custom-fields.php:233
-#: public/class-cl-public-helpers-simple.php:64
+#: admin/class-cl-import-export.php:254
+#: admin/class-cl-settings.php:2301
+#: admin/class-cl-settings.php:2898
+#: admin/class-cl-settings.php:3005
+#: includes/class-contact-list-custom-fields.php:257
+#: public/class-cl-public-helpers-simple.php:67
 msgid "Custom field 5"
 msgstr ""
 
 #: admin/class-cl-import-export.php:119
-#: admin/class-cl-import-export.php:252
-#: admin/class-cl-settings.php:2115
-#: admin/class-cl-settings.php:2703
-#: admin/class-cl-settings.php:2798
-#: includes/class-contact-list-custom-fields.php:241
-#: public/class-cl-public-helpers-simple.php:65
+#: admin/class-cl-import-export.php:257
+#: admin/class-cl-settings.php:2302
+#: admin/class-cl-settings.php:2902
+#: admin/class-cl-settings.php:3009
+#: includes/class-contact-list-custom-fields.php:265
+#: public/class-cl-public-helpers-simple.php:68
 msgid "Custom field 6"
 msgstr ""
 
 #: admin/class-cl-import-export.php:122
-#: admin/class-cl-import-export.php:255
+#: admin/class-cl-import-export.php:260
 #: admin/class-cl-taxonomy.php:17
-#: public/class-cl-public-card.php:227
+#: public/class-cl-public-card.php:273
 msgid "Groups"
 msgstr ""
 
 #: admin/class-cl-import-export.php:124
-#: admin/class-cl-import-export.php:257
+#: admin/class-cl-import-export.php:262
 msgid "Group names separated by the character \"|\", like so: Cats|Dogs|Parrots"
 msgstr ""
 
 #: admin/class-cl-import-export.php:127
-#: admin/class-cl-import-export.php:260
+#: admin/class-cl-import-export.php:265
 #: admin/class-cl-settings.php:1570
-#: admin/class-cl-settings.php:2105
-#: admin/class-cl-settings.php:2651
-#: admin/class-cl-settings.php:2746
-#: includes/class-contact-list-custom-fields.php:129
-#: public/class-cl-public-helpers-simple.php:52
+#: admin/class-cl-settings.php:2292
+#: admin/class-cl-settings.php:2850
+#: admin/class-cl-settings.php:2957
+#: includes/class-contact-list-custom-fields.php:153
+#: public/class-cl-public-helpers-simple.php:55
 msgid "Country"
 msgstr ""
 
 #: admin/class-cl-import-export.php:130
-#: admin/class-cl-import-export.php:263
+#: admin/class-cl-import-export.php:268
 #: admin/class-cl-settings.php:1583
-#: admin/class-cl-settings.php:2104
-#: admin/class-cl-settings.php:2655
-#: admin/class-cl-settings.php:2750
-#: includes/class-contact-list-custom-fields.php:137
-#: public/class-cl-public-helpers-simple.php:53
+#: admin/class-cl-settings.php:2291
+#: admin/class-cl-settings.php:2854
+#: admin/class-cl-settings.php:2961
+#: includes/class-contact-list-custom-fields.php:161
+#: public/class-cl-public-helpers-simple.php:56
 msgid "State"
 msgstr ""
 
 #: admin/class-cl-import-export.php:133
-#: admin/class-cl-import-export.php:266
+#: admin/class-cl-import-export.php:271
 #: admin/class-cl-settings.php:1596
-#: admin/class-cl-settings.php:2103
-#: admin/class-cl-settings.php:2659
-#: admin/class-cl-settings.php:2754
-#: includes/class-contact-list-custom-fields.php:145
-#: public/class-cl-public-helpers-simple.php:54
-#: public/class-cl-public-helpers-simple.php:113
+#: admin/class-cl-settings.php:2290
+#: admin/class-cl-settings.php:2858
+#: admin/class-cl-settings.php:2965
+#: includes/class-contact-list-custom-fields.php:169
+#: public/class-cl-public-helpers-simple.php:57
+#: public/class-cl-public-helpers-simple.php:116
 msgid "City"
 msgstr ""
 
 #: admin/class-cl-import-export.php:136
-#: admin/class-cl-import-export.php:269
+#: admin/class-cl-import-export.php:274
 #: admin/class-cl-settings.php:1609
-#: admin/class-cl-settings.php:2663
-#: admin/class-cl-settings.php:2758
-#: includes/class-contact-list-custom-fields.php:153
-#: public/class-cl-public-helpers-simple.php:55
-#: public/class-cl-public-helpers-simple.php:120
+#: admin/class-cl-settings.php:2862
+#: admin/class-cl-settings.php:2969
+#: includes/class-contact-list-custom-fields.php:177
+#: public/class-cl-public-helpers-simple.php:58
+#: public/class-cl-public-helpers-simple.php:123
 msgid "ZIP Code"
 msgstr ""
 
 #: admin/class-cl-import-export.php:139
-#: admin/class-cl-import-export.php:272
+#: admin/class-cl-import-export.php:277
 #: admin/class-cl-settings.php:1533
 #: admin/class-cl-settings.php:1540
-#: admin/class-cl-settings.php:2101
-#: includes/class-contact-list-custom-fields.php:113
+#: admin/class-cl-settings.php:2288
+#: includes/class-contact-list-custom-fields.php:137
 msgid "Instagram URL"
 msgstr ""
 
 #: admin/class-cl-import-export.php:142
-#: admin/class-cl-import-export.php:275
+#: admin/class-cl-import-export.php:280
 #: admin/class-cl-settings.php:1472
-#: admin/class-cl-settings.php:2096
-#: admin/class-cl-settings.php:2639
-#: admin/class-cl-settings.php:2730
-#: includes/class-contact-list-custom-fields.php:56
-#: public/class-cl-public-helpers-simple.php:48
+#: admin/class-cl-settings.php:2283
+#: admin/class-cl-settings.php:2838
+#: admin/class-cl-settings.php:2941
+#: includes/class-contact-list-custom-fields.php:80
+#: public/class-cl-public-helpers-simple.php:51
 msgid "Phone 2"
 msgstr ""
 
-#: admin/class-cl-import-export.php:144
-#: admin/class-cl-import-export.php:149
-#: admin/class-cl-import-export.php:277
-#: admin/class-cl-import-export.php:282
-#: admin/class-cl-shortcodes.php:191
-#: admin/class-cl-shortcodes.php:209
-#: admin/class-cl-shortcodes.php:359
-#: admin/class-cl-shortcodes.php:394
-#: admin/class-cl-shortcodes.php:547
-#: admin/class-cl-shortcodes.php:556
-#: admin/class-cl-shortcodes.php:611
-#: admin/class-cl-shortcodes.php:710
-msgid "New"
-msgstr ""
-
-#: admin/class-cl-import-export.php:147
-#: admin/class-cl-import-export.php:280
+#: admin/class-cl-import-export.php:145
+#: admin/class-cl-import-export.php:283
 #: admin/class-cl-settings.php:1485
-#: admin/class-cl-settings.php:2097
-#: admin/class-cl-settings.php:2643
-#: admin/class-cl-settings.php:2734
-#: includes/class-contact-list-custom-fields.php:64
-#: public/class-cl-public-helpers-simple.php:49
+#: admin/class-cl-settings.php:2284
+#: admin/class-cl-settings.php:2842
+#: admin/class-cl-settings.php:2945
+#: includes/class-contact-list-custom-fields.php:88
+#: public/class-cl-public-helpers-simple.php:52
 msgid "Phone 3"
 msgstr ""
 
-#: admin/class-cl-import-export.php:183
+#: admin/class-cl-import-export.php:148
+#: admin/class-cl-import-export.php:286
+#: admin/class-cl-settings.php:2810
+#: admin/class-cl-settings.php:2913
+#: includes/class-contact-list-custom-fields.php:24
+#: public/class-cl-public-helpers-simple.php:44
+msgid "Prefix"
+msgstr ""
+
+#: admin/class-cl-import-export.php:151
+#: admin/class-cl-import-export.php:289
+#: admin/class-cl-settings.php:2818
+#: admin/class-cl-settings.php:2921
+#: includes/class-contact-list-custom-fields.php:40
+#: public/class-cl-public-helpers-simple.php:46
+msgid "Middle name"
+msgstr ""
+
+#: admin/class-cl-import-export.php:154
+#: admin/class-cl-import-export.php:292
+#: admin/class-cl-settings.php:2826
+#: admin/class-cl-settings.php:2929
+#: includes/class-contact-list-custom-fields.php:56
+#: public/class-cl-public-helpers-simple.php:48
+msgid "Suffix"
+msgstr ""
+
+#: admin/class-cl-import-export.php:188
 msgid "You may export contacts to a csv file. There will be one contact per row, columns separated by comma."
 msgstr ""
 
-#: admin/class-cl-import-export.php:197
+#: admin/class-cl-import-export.php:202
 msgid "The columns are in this order:"
 msgstr ""
 
@@ -682,7 +694,7 @@ msgid "Ask Me Later"
 msgstr ""
 
 #: admin/class-cl-notifications.php:43
-#: admin/class-cl-settings.php:3955
+#: admin/class-cl-settings.php:4176
 msgid "How to get started"
 msgstr ""
 
@@ -735,12 +747,12 @@ msgid "Select view:"
 msgstr ""
 
 #: admin/class-cl-printable.php:64
-#: admin/class-cl-settings.php:3710
+#: admin/class-cl-settings.php:3931
 msgid "Default list"
 msgstr ""
 
 #: admin/class-cl-printable.php:65
-#: admin/class-cl-settings.php:4106
+#: admin/class-cl-settings.php:4327
 msgid "Simple list"
 msgstr ""
 
@@ -809,7 +821,7 @@ msgid "Hide Send message -button from the public list"
 msgstr ""
 
 #: admin/class-cl-settings.php:175
-#: admin/class-cl-settings.php:4085
+#: admin/class-cl-settings.php:4306
 msgid "Layout"
 msgstr ""
 
@@ -879,12 +891,12 @@ msgid "Show a button that opens the contact card lightbox"
 msgstr ""
 
 #: admin/class-cl-settings.php:377
-#: admin/class-cl-settings.php:2174
+#: admin/class-cl-settings.php:2361
 msgid "Text for the button"
 msgstr ""
 
 #: admin/class-cl-settings.php:384
-#: public/class-cl-public-card.php:399
+#: public/class-cl-public-card.php:445
 msgid "More info"
 msgstr ""
 
@@ -1112,7 +1124,7 @@ msgstr ""
 
 #: admin/class-cl-settings.php:1170
 #: admin/class-cl-settings.php:1177
-#: public/class-shortcode_contact_list.php:188
+#: public/class-shortcode_contact_list.php:182
 #: public/class-shortcode_contact_list_simple.php:152
 msgid "Search contacts..."
 msgstr ""
@@ -1123,8 +1135,8 @@ msgid "Search all contacts..."
 msgstr ""
 
 #: admin/class-cl-settings.php:1194
-#: admin/class-cl-settings.php:2810
-#: public/class-cl-public-helpers-simple.php:68
+#: admin/class-cl-settings.php:3021
+#: public/class-cl-public-helpers-simple.php:71
 msgid "Send message"
 msgstr ""
 
@@ -1190,7 +1202,7 @@ msgid "Search results: \"contact\""
 msgstr ""
 
 #: admin/class-cl-settings.php:1346
-#: public/class-shortcode_contact_list.php:65
+#: public/class-shortcode_contact_list.php:59
 #: public/class-shortcode_contact_list_simple.php:23
 msgid "contact"
 msgstr ""
@@ -1200,7 +1212,7 @@ msgid "Search results: \"contacts\""
 msgstr ""
 
 #: admin/class-cl-settings.php:1358
-#: public/class-shortcode_contact_list.php:66
+#: public/class-shortcode_contact_list.php:60
 #: public/class-shortcode_contact_list_simple.php:24
 msgid "contacts"
 msgstr ""
@@ -1210,7 +1222,7 @@ msgid "Search results: \"found\""
 msgstr ""
 
 #: admin/class-cl-settings.php:1370
-#: public/class-shortcode_contact_list.php:67
+#: public/class-shortcode_contact_list.php:61
 #: public/class-shortcode_contact_list_simple.php:25
 msgid "found"
 msgstr ""
@@ -1232,16 +1244,16 @@ msgid "Name (simple list title)"
 msgstr ""
 
 #: admin/class-cl-settings.php:1430
-#: admin/class-cl-settings.php:2897
-#: public/class-cl-public-helpers-simple.php:75
+#: admin/class-cl-settings.php:3113
+#: public/class-cl-public-helpers-simple.php:78
 msgid "Name"
 msgstr ""
 
 #: admin/class-cl-settings.php:1546
-#: admin/class-cl-settings.php:2921
-#: includes/class-contact-list-custom-fields.php:121
-#: public/class-cl-public-card.php:247
-#: public/class-cl-public-helpers-simple.php:106
+#: admin/class-cl-settings.php:3137
+#: includes/class-contact-list-custom-fields.php:145
+#: public/class-cl-public-card.php:293
+#: public/class-cl-public-helpers-simple.php:109
 msgid "Address"
 msgstr ""
 
@@ -1250,11 +1262,11 @@ msgid "Hide \"Address\"-title"
 msgstr ""
 
 #: admin/class-cl-settings.php:1674
-#: admin/class-cl-settings.php:2802
-#: admin/class-cl-settings.php:3033
-#: includes/class-contact-list-custom-fields.php:249
-#: public/class-cl-public-card.php:374
-#: public/class-cl-public-helpers-simple.php:66
+#: admin/class-cl-settings.php:3013
+#: admin/class-cl-settings.php:3254
+#: includes/class-contact-list-custom-fields.php:273
+#: public/class-cl-public-card.php:420
+#: public/class-cl-public-helpers-simple.php:69
 msgid "Additional information"
 msgstr ""
 
@@ -1271,570 +1283,631 @@ msgid "Thank you page / content"
 msgstr ""
 
 #: admin/class-cl-settings.php:1729
-#: admin/class-cl-settings.php:1867
-msgid "Hide first name"
+msgid "Show name prefix"
 msgstr ""
 
 #: admin/class-cl-settings.php:1740
-#: admin/class-cl-settings.php:1878
-#: admin/class-cl-settings.php:2205
-msgid "Hide job title"
+#: admin/class-cl-settings.php:2032
+msgid "Hide first name"
 msgstr ""
 
 #: admin/class-cl-settings.php:1751
-#: admin/class-cl-settings.php:1889
-#: admin/class-cl-settings.php:2216
-msgid "Hide email"
+#: admin/class-cl-settings.php:2043
+msgid "Show middle name"
 msgstr ""
 
 #: admin/class-cl-settings.php:1762
-#: admin/class-cl-settings.php:1900
-#: admin/class-cl-settings.php:2238
-msgid "Hide phone"
+msgid "Show name suffix"
 msgstr ""
 
 #: admin/class-cl-settings.php:1773
-#: admin/class-cl-settings.php:1933
-msgid "Hide LinkedIn URL"
+msgid "Show organization"
 msgstr ""
 
 #: admin/class-cl-settings.php:1784
-#: admin/class-cl-settings.php:1944
-msgid "Hide Twitter URL"
+msgid "Show department"
 msgstr ""
 
 #: admin/class-cl-settings.php:1795
-#: admin/class-cl-settings.php:1955
-msgid "Hide Facebook URL"
+#: admin/class-cl-settings.php:2065
+#: admin/class-cl-settings.php:2392
+msgid "Hide job title"
 msgstr ""
 
 #: admin/class-cl-settings.php:1806
-#: admin/class-cl-settings.php:1966
-msgid "Hide Instagram URL"
+#: admin/class-cl-settings.php:2076
+#: admin/class-cl-settings.php:2403
+msgid "Hide email"
 msgstr ""
 
 #: admin/class-cl-settings.php:1817
-#: admin/class-cl-settings.php:1988
-msgid "Hide address"
+msgid "Hide notify emails"
 msgstr ""
 
 #: admin/class-cl-settings.php:1828
-msgid "Hide custom fields"
+#: admin/class-cl-settings.php:2087
+#: admin/class-cl-settings.php:2425
+msgid "Hide phone"
 msgstr ""
 
 #: admin/class-cl-settings.php:1839
-#: admin/class-cl-settings.php:2064
-msgid "Hide groups"
+#: admin/class-cl-settings.php:2120
+msgid "Hide LinkedIn URL"
 msgstr ""
 
 #: admin/class-cl-settings.php:1850
-#: admin/class-cl-settings.php:2075
-msgid "Hide additional information"
+#: admin/class-cl-settings.php:2131
+msgid "Hide X URL"
 msgstr ""
 
-#: admin/class-cl-settings.php:1911
-#: admin/class-cl-settings.php:2249
-msgid "Show phone 2"
+#: admin/class-cl-settings.php:1861
+#: admin/class-cl-settings.php:2142
+msgid "Hide Facebook URL"
 msgstr ""
 
-#: admin/class-cl-settings.php:1922
-#: admin/class-cl-settings.php:2260
-msgid "Show phone 3"
+#: admin/class-cl-settings.php:1872
+#: admin/class-cl-settings.php:2153
+msgid "Hide Instagram URL"
 msgstr ""
 
-#: admin/class-cl-settings.php:1977
-msgid "Hide photo"
-msgstr ""
-
-#: admin/class-cl-settings.php:1999
-msgid "Hide country"
-msgstr ""
-
-#: admin/class-cl-settings.php:2010
-msgid "Hide state"
-msgstr ""
-
-#: admin/class-cl-settings.php:2021
-msgid "Hide city"
-msgstr ""
-
-#: admin/class-cl-settings.php:2032
+#: admin/class-cl-settings.php:1883
+#: admin/class-cl-settings.php:2219
 msgid "Hide address lines 1-4"
 msgstr ""
 
-#: admin/class-cl-settings.php:2052
+#: admin/class-cl-settings.php:1894
+msgid "Hide address line 1"
+msgstr ""
+
+#: admin/class-cl-settings.php:1905
+msgid "Hide address line 2"
+msgstr ""
+
+#: admin/class-cl-settings.php:1916
+msgid "Hide address line 3"
+msgstr ""
+
+#: admin/class-cl-settings.php:1927
+msgid "Hide address line 4"
+msgstr ""
+
+#: admin/class-cl-settings.php:1938
+#: admin/class-cl-settings.php:2186
+msgid "Hide country"
+msgstr ""
+
+#: admin/class-cl-settings.php:1949
+#: admin/class-cl-settings.php:2197
+msgid "Hide state"
+msgstr ""
+
+#: admin/class-cl-settings.php:1960
+#: admin/class-cl-settings.php:2208
+msgid "Hide city"
+msgstr ""
+
+#: admin/class-cl-settings.php:1971
+msgid "Hide zip code"
+msgstr ""
+
+#: admin/class-cl-settings.php:1982
+msgid "Hide custom fields"
+msgstr ""
+
+#: admin/class-cl-settings.php:1993
+#: admin/class-cl-settings.php:2251
+msgid "Hide groups"
+msgstr ""
+
+#: admin/class-cl-settings.php:2004
+#: admin/class-cl-settings.php:2262
+msgid "Hide additional information"
+msgstr ""
+
+#: admin/class-cl-settings.php:2021
+msgid "Show prefix"
+msgstr ""
+
+#: admin/class-cl-settings.php:2054
+msgid "Show suffix"
+msgstr ""
+
+#: admin/class-cl-settings.php:2098
+#: admin/class-cl-settings.php:2436
+msgid "Show phone 2"
+msgstr ""
+
+#: admin/class-cl-settings.php:2109
+#: admin/class-cl-settings.php:2447
+msgid "Show phone 3"
+msgstr ""
+
+#: admin/class-cl-settings.php:2164
+msgid "Hide photo"
+msgstr ""
+
+#: admin/class-cl-settings.php:2175
+msgid "Hide address"
+msgstr ""
+
+#: admin/class-cl-settings.php:2239
 msgid "Hide custom field"
 msgstr ""
 
-#: admin/class-cl-settings.php:2095
-#: admin/class-cl-settings.php:2635
-#: admin/class-cl-settings.php:2726
-#: includes/class-contact-list-custom-fields.php:48
-#: public/class-cl-public-helpers-simple.php:47
+#: admin/class-cl-settings.php:2282
+#: admin/class-cl-settings.php:2834
+#: admin/class-cl-settings.php:2937
+#: includes/class-contact-list-custom-fields.php:72
+#: public/class-cl-public-helpers-simple.php:50
 msgid "Phone 1"
 msgstr ""
 
-#: admin/class-cl-settings.php:2102
+#: admin/class-cl-settings.php:2289
 msgid "Photo"
 msgstr ""
 
-#: admin/class-cl-settings.php:2140
+#: admin/class-cl-settings.php:2327
 msgid "Show titles for columns"
 msgstr ""
 
-#: admin/class-cl-settings.php:2151
+#: admin/class-cl-settings.php:2338
 msgid "Show call button instead of phone number"
 msgstr ""
 
-#: admin/class-cl-settings.php:2162
+#: admin/class-cl-settings.php:2349
 msgid "Show call button in addition to the phone link"
 msgstr ""
 
-#: admin/class-cl-settings.php:2171
-#: public/class-cl-public-helpers-simple.php:228
-#: public/class-cl-public-helpers-simple.php:248
+#: admin/class-cl-settings.php:2358
+#: public/class-cl-public-helpers-simple.php:231
+#: public/class-cl-public-helpers-simple.php:251
 msgid "Call"
 msgstr ""
 
-#: admin/class-cl-settings.php:2187
+#: admin/class-cl-settings.php:2374
 msgid "Contact names are links to the contact card lightbox"
 msgstr ""
 
-#: admin/class-cl-settings.php:2227
+#: admin/class-cl-settings.php:2414
 msgid "Show send message -button"
 msgstr ""
 
-#: admin/class-cl-settings.php:2271
+#: admin/class-cl-settings.php:2458
 msgid "Hide social media links"
 msgstr ""
 
-#: admin/class-cl-settings.php:2282
+#: admin/class-cl-settings.php:2469
 msgid "Show city"
 msgstr ""
 
-#: admin/class-cl-settings.php:2293
+#: admin/class-cl-settings.php:2480
 msgid "Show zip code"
 msgstr ""
 
-#: admin/class-cl-settings.php:2304
+#: admin/class-cl-settings.php:2491
 msgid "Show address line 1"
 msgstr ""
 
-#: admin/class-cl-settings.php:2317
-#: admin/class-cl-settings.php:2337
+#: admin/class-cl-settings.php:2504
+#: admin/class-cl-settings.php:2524
 msgid "Show custom field"
 msgstr ""
 
-#: admin/class-cl-settings.php:2349
+#: admin/class-cl-settings.php:2536
 msgid "Show category / group"
 msgstr ""
 
-#: admin/class-cl-settings.php:2366
+#: admin/class-cl-settings.php:2553
 msgid "Custom order and fields (overrides the selections above)"
 msgstr ""
 
-#: admin/class-cl-settings.php:2402
+#: admin/class-cl-settings.php:2589
 msgid "Allow the roles above also to add new contacts"
 msgstr ""
 
-#: admin/class-cl-settings.php:2422
+#: admin/class-cl-settings.php:2609
 msgid "Enable single contact page"
 msgstr ""
 
-#: admin/class-cl-settings.php:2433
+#: admin/class-cl-settings.php:2620
 msgid "Show single contacts in site search results"
 msgstr ""
 
-#: admin/class-cl-settings.php:2455
+#: admin/class-cl-settings.php:2642
 msgid "Activate automatic contact import cron job (once daily)"
 msgstr ""
 
-#: admin/class-cl-settings.php:2466
+#: admin/class-cl-settings.php:2653
 msgid "Don't import the first line of the CSV file"
 msgstr ""
 
-#: admin/class-cl-settings.php:2477
+#: admin/class-cl-settings.php:2664
 msgid "File and path of the importable file"
 msgstr ""
 
-#: admin/class-cl-settings.php:2489
+#: admin/class-cl-settings.php:2676
 msgid "Email address to receive report for each import"
 msgstr ""
 
-#: admin/class-cl-settings.php:2501
+#: admin/class-cl-settings.php:2688
 msgid "Delete all (published) contacts before import"
 msgstr ""
 
-#: admin/class-cl-settings.php:2512
+#: admin/class-cl-settings.php:2699
 msgid "Update existing contacts based on the contacts' email address"
 msgstr ""
 
-#: admin/class-cl-settings.php:2567
+#: admin/class-cl-settings.php:2754
 msgid "All Plans"
 msgstr ""
 
-#: admin/class-cl-settings.php:2627
-#: admin/class-cl-settings.php:2718
-#: includes/class-contact-list-custom-fields.php:32
-#: public/class-cl-public-helpers-simple.php:45
+#: admin/class-cl-settings.php:2822
+#: admin/class-cl-settings.php:2925
+#: includes/class-contact-list-custom-fields.php:48
+#: public/class-cl-public-helpers-simple.php:47
 msgid "Last Name"
 msgstr ""
 
-#: admin/class-cl-settings.php:2667
-#: admin/class-cl-settings.php:2762
-#: includes/class-contact-list-custom-fields.php:161
-#: public/class-cl-public-helpers-simple.php:56
+#: admin/class-cl-settings.php:2866
+#: admin/class-cl-settings.php:2973
+#: includes/class-contact-list-custom-fields.php:185
+#: public/class-cl-public-helpers-simple.php:59
 msgid "Address Line 1"
 msgstr ""
 
-#: admin/class-cl-settings.php:2671
-#: admin/class-cl-settings.php:2766
-#: includes/class-contact-list-custom-fields.php:169
-#: public/class-cl-public-helpers-simple.php:57
+#: admin/class-cl-settings.php:2870
+#: admin/class-cl-settings.php:2977
+#: includes/class-contact-list-custom-fields.php:193
+#: public/class-cl-public-helpers-simple.php:60
 msgid "Address Line 2"
 msgstr ""
 
-#: admin/class-cl-settings.php:2675
-#: admin/class-cl-settings.php:2770
-#: includes/class-contact-list-custom-fields.php:177
-#: public/class-cl-public-helpers-simple.php:58
+#: admin/class-cl-settings.php:2874
+#: admin/class-cl-settings.php:2981
+#: includes/class-contact-list-custom-fields.php:201
+#: public/class-cl-public-helpers-simple.php:61
 msgid "Address Line 3"
 msgstr ""
 
-#: admin/class-cl-settings.php:2679
-#: admin/class-cl-settings.php:2774
-#: includes/class-contact-list-custom-fields.php:185
-#: public/class-cl-public-helpers-simple.php:59
+#: admin/class-cl-settings.php:2878
+#: admin/class-cl-settings.php:2985
+#: includes/class-contact-list-custom-fields.php:209
+#: public/class-cl-public-helpers-simple.php:62
 msgid "Address Line 4"
 msgstr ""
 
-#: admin/class-cl-settings.php:2710
+#: admin/class-cl-settings.php:2909
 #: public/class-cl-public-helpers-simple.php:43
 msgid "Full name"
 msgstr ""
 
-#: admin/class-cl-settings.php:2742
-#: public/class-cl-public-helpers-simple.php:51
+#: admin/class-cl-settings.php:2953
+#: public/class-cl-public-helpers-simple.php:54
 msgid "Some icons"
 msgstr ""
 
-#: admin/class-cl-settings.php:2806
-#: public/class-cl-public-helpers-simple.php:67
-#: public/class-cl-public-helpers-simple.php:145
+#: admin/class-cl-settings.php:3017
+#: public/class-cl-public-helpers-simple.php:70
+#: public/class-cl-public-helpers-simple.php:148
 msgid "Category"
 msgstr ""
 
-#: admin/class-cl-settings.php:2825
+#: admin/class-cl-settings.php:3036
 msgid "Add any fields using the field IDs in any order, inside brackets:"
 msgstr ""
 
-#: admin/class-cl-settings.php:2831
+#: admin/class-cl-settings.php:3042
 msgid "You can also add any other content, that will be same for all contacts, like the text \"from\" here:"
 msgstr ""
 
-#: admin/class-cl-settings.php:2841
+#: admin/class-cl-settings.php:3052
 msgid "Add any fields using the field IDs in any order, separated by a whitespace."
 msgstr ""
 
-#: admin/class-cl-settings.php:2852
-#: admin/class-cl-settings.php:2955
+#: admin/class-cl-settings.php:3063
+#: admin/class-cl-settings.php:3171
 msgid "Available fields are:"
 msgstr ""
 
-#: admin/class-cl-settings.php:2859
-#: admin/class-cl-settings.php:2962
+#: admin/class-cl-settings.php:3070
+#: admin/class-cl-settings.php:3178
 msgid "Field title"
 msgstr ""
 
-#: admin/class-cl-settings.php:2862
-#: admin/class-cl-settings.php:2965
+#: admin/class-cl-settings.php:3073
+#: admin/class-cl-settings.php:3181
 msgid "Field ID"
 msgstr ""
 
-#: admin/class-cl-settings.php:2909
+#: admin/class-cl-settings.php:3100
+#: admin/class-cl-settings.php:3208
+msgid "It's also possible to customize the contact card PHP template in the paid plans:"
+msgstr ""
+
+#: admin/class-cl-settings.php:3125
 msgid "Send message button"
 msgstr ""
 
-#: admin/class-cl-settings.php:2913
+#: admin/class-cl-settings.php:3129
 msgid "Phone numbers"
 msgstr ""
 
-#: admin/class-cl-settings.php:2917
+#: admin/class-cl-settings.php:3133
 msgid "Group names"
 msgstr ""
 
-#: admin/class-cl-settings.php:2925
-#: admin/class-cl-settings.php:4097
-#: includes/class-contact-list-custom-fields.php:193
+#: admin/class-cl-settings.php:3141
+#: admin/class-cl-settings.php:4318
+#: includes/class-contact-list-custom-fields.php:217
 msgid "Custom fields"
 msgstr ""
 
-#: admin/class-cl-settings.php:2929
+#: admin/class-cl-settings.php:3145
 msgid "Additinal info"
 msgstr ""
 
-#: admin/class-cl-settings.php:2933
+#: admin/class-cl-settings.php:3149
 msgid "Social media icons"
 msgstr ""
 
-#: admin/class-cl-settings.php:2937
+#: admin/class-cl-settings.php:3153
 msgid "Show contact button"
 msgstr ""
 
-#: admin/class-cl-settings.php:2941
+#: admin/class-cl-settings.php:3157
 msgid "Featured image"
 msgstr ""
 
-#: admin/class-cl-settings.php:2949
-#: admin/class-cl-settings.php:2999
+#: admin/class-cl-settings.php:3165
+#: admin/class-cl-settings.php:3220
 msgid "Add any fields using the field IDs in any order, inside double brackets like so:"
 msgstr ""
 
-#: admin/class-cl-settings.php:3021
+#: admin/class-cl-settings.php:3242
 msgid "Contact edit settings"
 msgstr ""
 
-#: admin/class-cl-settings.php:3022
+#: admin/class-cl-settings.php:3243
 msgid "These settings are valid for shortcodes [contact_list edit=1] and [contact_list_simple edit=1]."
 msgstr ""
 
-#: admin/class-cl-settings.php:3023
+#: admin/class-cl-settings.php:3244
 msgid "The following user roles have the permissions to edit any contact:"
 msgstr ""
 
-#: admin/class-cl-settings.php:3142
+#: admin/class-cl-settings.php:3363
 msgid "(directly under your WordPress installation folder)"
 msgstr ""
 
 #. translators: %s: link to the Import contacts page at WP admin
-#: admin/class-cl-settings.php:3149
+#: admin/class-cl-settings.php:3370
 msgid "After changing the settings, please check the import status from <a href=\"%s\">here</a>."
 msgstr ""
 
-#: admin/class-cl-settings.php:3333
+#: admin/class-cl-settings.php:3554
 msgid "Note:"
 msgstr ""
 
-#: admin/class-cl-settings.php:3336
+#: admin/class-cl-settings.php:3557
 msgid "The plugin currently supports reCAPTCHA v2 (\"I'm not a robot\" checkbox). When you create your keys, you must choose this type. More information on this at"
 msgstr ""
 
-#: admin/class-cl-settings.php:3346
+#: admin/class-cl-settings.php:3567
 msgid "This means that the country must be selected first, and the state dropdown is populated after that based on the real values of the states available for the selected country. Same way the city dropdown is populated after the state is selected."
 msgstr ""
 
-#: admin/class-cl-settings.php:3356
+#: admin/class-cl-settings.php:3577
 msgid "Each contact will have their own page under slug 'contact', and as content the regular contact card, url being like so:"
 msgstr ""
 
-#: admin/class-cl-settings.php:3361
+#: admin/class-cl-settings.php:3582
 msgid "It's also possible to customize the template by having the file single-contact.php in your theme."
 msgstr ""
 
-#: admin/class-cl-settings.php:3372
+#: admin/class-cl-settings.php:3593
 msgid "Show the contacts in the site search results. Proper function requires also the single contact pages enabled."
 msgstr ""
 
-#: admin/class-cl-settings.php:3382
+#: admin/class-cl-settings.php:3603
 msgid "Button is shown if additional info is added to the contact."
 msgstr ""
 
-#: admin/class-cl-settings.php:3519
+#: admin/class-cl-settings.php:3740
 msgid "Current icon (Font Awesome ID):"
 msgstr ""
 
-#: admin/class-cl-settings.php:3528
+#: admin/class-cl-settings.php:3749
 msgid "(none)"
 msgstr ""
 
-#: admin/class-cl-settings.php:3535
+#: admin/class-cl-settings.php:3756
 msgid "Choose icon:"
 msgstr ""
 
-#: admin/class-cl-settings.php:3567
+#: admin/class-cl-settings.php:3788
 msgid "none"
 msgstr ""
 
-#: admin/class-cl-settings.php:3661
+#: admin/class-cl-settings.php:3882
 msgid "Custom"
 msgstr ""
 
 #. translators: %s: link to file management
-#: admin/class-cl-settings.php:3669
+#: admin/class-cl-settings.php:3890
 msgid "All available icons are listed here <a href=\"%s\" target=\"_blank\">here</a>."
 msgstr ""
 
-#: admin/class-cl-settings.php:3715
+#: admin/class-cl-settings.php:3936
 msgid "2 columns"
 msgstr ""
 
-#: admin/class-cl-settings.php:3720
+#: admin/class-cl-settings.php:3941
 msgid "3 columns"
 msgstr ""
 
-#: admin/class-cl-settings.php:3722
-#: admin/class-cl-settings.php:3729
+#: admin/class-cl-settings.php:3943
+#: admin/class-cl-settings.php:3950
 #: admin/class-cl-shortcodes.php:170
 #: admin/class-cl-shortcodes.php:179
 msgid "without contact images"
 msgstr ""
 
-#: admin/class-cl-settings.php:3727
+#: admin/class-cl-settings.php:3948
 msgid "4 columns"
 msgstr ""
 
-#: admin/class-cl-settings.php:3751
+#: admin/class-cl-settings.php:3972
 msgid "Transparent"
 msgstr ""
 
-#: admin/class-cl-settings.php:3756
+#: admin/class-cl-settings.php:3977
 msgid "White"
 msgstr ""
 
-#: admin/class-cl-settings.php:3761
+#: admin/class-cl-settings.php:3982
 msgid "Light gray"
 msgstr ""
 
-#: admin/class-cl-settings.php:3858
-#: admin/class-cl-settings.php:3890
+#: admin/class-cl-settings.php:4079
+#: admin/class-cl-settings.php:4111
 msgid "None"
 msgstr ""
 
-#: admin/class-cl-settings.php:3863
+#: admin/class-cl-settings.php:4084
 msgid "Black"
 msgstr ""
 
-#: admin/class-cl-settings.php:3868
+#: admin/class-cl-settings.php:4089
 msgid "Gray"
 msgstr ""
 
-#: admin/class-cl-settings.php:3895
+#: admin/class-cl-settings.php:4116
 msgid "Sepia"
 msgstr ""
 
-#: admin/class-cl-settings.php:3900
+#: admin/class-cl-settings.php:4121
 msgid "Grayscale"
 msgstr ""
 
-#: admin/class-cl-settings.php:3924
+#: admin/class-cl-settings.php:4145
 msgid "Original"
 msgstr ""
 
-#: admin/class-cl-settings.php:3929
+#: admin/class-cl-settings.php:4150
 msgid "Improved"
 msgstr ""
 
-#: admin/class-cl-settings.php:3935
+#: admin/class-cl-settings.php:4156
 msgid "Original type means that the page links are in the following url format:"
 msgstr ""
 
-#: admin/class-cl-settings.php:3939
+#: admin/class-cl-settings.php:4160
 msgid "Improved type works via GET parameters:"
 msgstr ""
 
-#: admin/class-cl-settings.php:3943
+#: admin/class-cl-settings.php:4164
 msgid "Improved type must be used, if the shortcode is on the front page or various other types of pages of the site. If you are getting 404 from the page links, use the Improved type."
 msgstr ""
 
 #. translators: %s: link to contact management
-#: admin/class-cl-settings.php:3961
+#: admin/class-cl-settings.php:4182
 msgid "Insert contacts from the <a href=\"%s\" target=\"_blank\">contact management</a>."
 msgstr ""
 
-#: admin/class-cl-settings.php:3971
+#: admin/class-cl-settings.php:4192
 msgid "Insert the shortcode <span class=\"contact-list-mini-shortcode\">[contact_list]</span> or <span class=\"contact-list-mini-shortcode\">[contact_list_simple]</span> to the content editor of any page or post."
 msgstr ""
 
-#: admin/class-cl-settings.php:4003
+#: admin/class-cl-settings.php:4224
 msgid "These settings are for this form in the front-end:"
 msgstr ""
 
-#: admin/class-cl-settings.php:4010
+#: admin/class-cl-settings.php:4231
 msgid "To select any Font Awesome icon, copy the icon ID to the current icon field from here:"
 msgstr ""
 
-#: admin/class-cl-settings.php:4029
+#: admin/class-cl-settings.php:4250
 msgid "You may enter alternative titles and texts here. The values defined here will override the default values."
 msgstr ""
 
-#: admin/class-cl-settings.php:4036
+#: admin/class-cl-settings.php:4257
 msgid "Admin form elements"
 msgstr ""
 
-#: admin/class-cl-settings.php:4037
+#: admin/class-cl-settings.php:4258
 msgid "You may customize the admin form (the one displayed in the WP admin area and the front-end editor) using these settings."
 msgstr ""
 
-#: admin/class-cl-settings.php:4042
-msgid "Public form elements"
+#: admin/class-cl-settings.php:4263
+msgid "Fields in [contact_list_form]"
 msgstr ""
 
-#: admin/class-cl-settings.php:4043
+#: admin/class-cl-settings.php:4264
 msgid "You may customize the public form (the one displayed using the [contact_list_form] shortcode) using these settings."
 msgstr ""
 
-#: admin/class-cl-settings.php:4044
+#: admin/class-cl-settings.php:4265
 msgid "These choices also affect the form which is used by contacts themselves to update their info (by features \"request update\" and \"permanent update URL\")"
 msgstr ""
 
-#: admin/class-cl-settings.php:4051
-#: admin/class-cl-settings.php:4082
+#: admin/class-cl-settings.php:4272
+#: admin/class-cl-settings.php:4303
 msgid "General settings"
 msgstr ""
 
-#: admin/class-cl-settings.php:4056
+#: admin/class-cl-settings.php:4277
 msgid "Fields in simple list"
 msgstr ""
 
-#: admin/class-cl-settings.php:4061
+#: admin/class-cl-settings.php:4282
 msgid "Required fields for [contact_list_form]"
 msgstr ""
 
-#: admin/class-cl-settings.php:4066
+#: admin/class-cl-settings.php:4287
 msgid "Custom order and fields"
 msgstr ""
 
-#: admin/class-cl-settings.php:4076
+#: admin/class-cl-settings.php:4297
 msgid "Contact List Settings"
 msgstr ""
 
-#: admin/class-cl-settings.php:4088
+#: admin/class-cl-settings.php:4309
 msgid "Contact card"
 msgstr ""
 
-#: admin/class-cl-settings.php:4091
+#: admin/class-cl-settings.php:4312
 msgid "reCAPTCHA and email"
 msgstr ""
 
-#: admin/class-cl-settings.php:4094
+#: admin/class-cl-settings.php:4315
 msgid "Search form"
 msgstr ""
 
-#: admin/class-cl-settings.php:4100
+#: admin/class-cl-settings.php:4321
 msgid "Field titles and texts"
 msgstr ""
 
-#: admin/class-cl-settings.php:4103
+#: admin/class-cl-settings.php:4324
 msgid "Hide / show form elements"
 msgstr ""
 
-#: admin/class-cl-settings.php:4114
+#: admin/class-cl-settings.php:4335
 msgid "Contact edit"
 msgstr ""
 
-#: admin/class-cl-settings.php:4126
+#: admin/class-cl-settings.php:4347
 msgid "Custom post type"
 msgstr ""
 
-#: admin/class-cl-settings.php:4138
+#: admin/class-cl-settings.php:4359
 msgid "Import & export"
 msgstr ""
 
-#: admin/class-cl-settings.php:4175
+#: admin/class-cl-settings.php:4396
 msgid "Settings"
 msgstr ""
 
-#: admin/class-cl-settings.php:4184
+#: admin/class-cl-settings.php:4405
 msgid "Upgrade"
 msgstr ""
 
@@ -1878,10 +1951,10 @@ msgstr ""
 #: admin/class-cl-shortcodes.php:297
 #: admin/class-cl-shortcodes.php:511
 #: admin/class-cl-shortcodes.php:585
-#: admin/class-cl-shortcodes.php:636
-#: admin/class-cl-shortcodes.php:663
-#: admin/class-cl-shortcodes.php:694
-#: admin/class-cl-shortcodes.php:740
+#: admin/class-cl-shortcodes.php:632
+#: admin/class-cl-shortcodes.php:659
+#: admin/class-cl-shortcodes.php:690
+#: admin/class-cl-shortcodes.php:736
 msgid "Insert the shortcode"
 msgstr ""
 
@@ -1893,7 +1966,7 @@ msgstr ""
 #: admin/class-cl-shortcodes.php:136
 #: admin/class-cl-shortcodes.php:526
 #: admin/class-cl-shortcodes.php:595
-#: admin/class-cl-shortcodes.php:704
+#: admin/class-cl-shortcodes.php:700
 msgid "Additional parameters"
 msgstr ""
 
@@ -1925,6 +1998,17 @@ msgstr ""
 
 #: admin/class-cl-shortcodes.php:189
 msgid "Hide contacts first (contacts are shown when searched or any filter is selected):"
+msgstr ""
+
+#: admin/class-cl-shortcodes.php:191
+#: admin/class-cl-shortcodes.php:209
+#: admin/class-cl-shortcodes.php:359
+#: admin/class-cl-shortcodes.php:394
+#: admin/class-cl-shortcodes.php:547
+#: admin/class-cl-shortcodes.php:556
+#: admin/class-cl-shortcodes.php:611
+#: admin/class-cl-shortcodes.php:706
+msgid "New"
 msgstr ""
 
 #: admin/class-cl-shortcodes.php:207
@@ -2024,36 +2108,36 @@ msgstr ""
 msgid "Single contact"
 msgstr ""
 
-#: admin/class-cl-shortcodes.php:642
+#: admin/class-cl-shortcodes.php:638
 msgid "to the content editor of any page you wish the contact to appear. Replace CONTACT_ID with the appropriate id that can be found from contact management. There's a column \"ID\" in the All Contacts -page, which contains the numeric value."
 msgstr ""
 
-#: admin/class-cl-shortcodes.php:653
+#: admin/class-cl-shortcodes.php:649
 msgid "Allow visitors to add new contacts"
 msgstr ""
 
-#: admin/class-cl-shortcodes.php:669
+#: admin/class-cl-shortcodes.php:665
 msgid "to the page you wish the form to appear on."
 msgstr ""
 
-#: admin/class-cl-shortcodes.php:672
+#: admin/class-cl-shortcodes.php:668
 msgid "When a user submits the form, a new contact is saved to the contacts. The status of that contact is \"Pending Review\" and a site administrator must publish/edit/delete the contact."
 msgstr ""
 
-#: admin/class-cl-shortcodes.php:683
+#: admin/class-cl-shortcodes.php:679
 msgid "Only a search form that searches from all contacts"
 msgstr ""
 
-#: admin/class-cl-shortcodes.php:700
-#: admin/class-cl-shortcodes.php:750
+#: admin/class-cl-shortcodes.php:696
+#: admin/class-cl-shortcodes.php:746
 msgid "to the page you wish the view to appear on."
 msgstr ""
 
-#: admin/class-cl-shortcodes.php:708
+#: admin/class-cl-shortcodes.php:704
 msgid "Limit contacts to a specific group"
 msgstr ""
 
-#: admin/class-cl-shortcodes.php:726
+#: admin/class-cl-shortcodes.php:722
 msgid "Send email to a group"
 msgstr ""
 
@@ -2102,19 +2186,19 @@ msgstr ""
 msgid "Shortcode"
 msgstr ""
 
-#: includes/class-contact-list-custom-fields.php:80
+#: includes/class-contact-list-custom-fields.php:104
 msgid "Notify emails"
 msgstr ""
 
-#: includes/class-contact-list-custom-fields.php:85
+#: includes/class-contact-list-custom-fields.php:109
 msgid "Email addresses defined here (comma separated) also receive the emails that are sent to the primary email address using the front-end form."
 msgstr ""
 
-#: includes/class-contact-list-custom-fields.php:257
+#: includes/class-contact-list-custom-fields.php:281
 msgid "Description"
 msgstr ""
 
-#: includes/class-contact-list-custom-fields.php:300
+#: includes/class-contact-list-custom-fields.php:324
 msgid "Contact Details"
 msgstr ""
 
@@ -2164,23 +2248,23 @@ msgstr ""
 msgid "Please enter sender information first (name and email)."
 msgstr ""
 
-#: public/class-cl-public-card.php:384
+#: public/class-cl-public-card.php:430
 msgid "Facebook"
 msgstr ""
 
-#: public/class-cl-public-card.php:387
+#: public/class-cl-public-card.php:433
 msgid "Instagram"
 msgstr ""
 
-#: public/class-cl-public-card.php:390
-msgid "Twitter"
+#: public/class-cl-public-card.php:436
+msgid "X"
 msgstr ""
 
-#: public/class-cl-public-card.php:393
+#: public/class-cl-public-card.php:439
 msgid "LinkedIn"
 msgstr ""
 
-#: public/class-cl-public-helpers-simple.php:127
+#: public/class-cl-public-helpers-simple.php:130
 msgid "Social media"
 msgstr ""
 
@@ -2220,8 +2304,8 @@ msgstr ""
 msgid "Contact List for WordPress"
 msgstr ""
 
+#: public/class-shortcode_contact_list.php:49
 #: public/class-shortcode_contact_list.php:55
-#: public/class-shortcode_contact_list.php:61
-#: public/class-shortcode_contact_list.php:233
+#: public/class-shortcode_contact_list.php:227
 msgid "Contact not found"
 msgstr ""

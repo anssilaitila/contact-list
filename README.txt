@@ -3,7 +3,7 @@ Contributors: anssilaitila, freemius
 Tags: directory plugin, business directory, listing, address book, staff list, staff directory, contact manager, company directory, church directory, contact directory, contacts, chamber of commerce
 Requires at least: 5.4.0
 Tested up to: 6.3
-Stable tag: 2.9.77
+Stable tag: 2.9.78
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -231,6 +231,12 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 6. Contact management
 
 == Changelog ==
+
+= 2.9.78 - 2023-09-16 =
+* (Free + All plans) More settings to hide fields from the contact edit form, all fields are now covered (plugin settings, Hide / show form elements -tab -> Admin form elements)
+* (Free + All plans) New fields for contacts: Prefix, Middle name and Suffix (must be activated from the settings)
+* (Free + All plans) Twitter renamed to X and icon updated
+* (Free + All plans) Bug fixes
 
 = 2.9.77 - 2023-08-08 =
 * (All plans) Customize the contact card contents: see plugin settings / Contact card tab

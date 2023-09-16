@@ -32,8 +32,11 @@ class ContactListPublicHelpersDefault
     {
         $s = get_option( 'contact_list_settings' );
         $fields = array(
+            'name_prefix',
             'first_name',
+            'middle_name',
             'last_name',
+            'name_suffix',
             'job_title',
             'email',
             'phone',

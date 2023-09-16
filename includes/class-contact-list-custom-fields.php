@@ -20,6 +20,14 @@ class ContactListCustomFields
         $this->postTypes = array( 'contact' );
         $this->customFields = array(
             array(
+            'name'        => 'name_prefix',
+            'title'       => sanitize_text_field( __( 'Prefix', 'contact-list' ) ),
+            'description' => '',
+            'type'        => 'text',
+            'scope'       => array( 'contact' ),
+            'capability'  => 'edit_posts',
+        ),
+            array(
             'name'        => 'first_name',
             'title'       => sanitize_text_field( __( 'First name', 'contact-list' ) ),
             'description' => '',
@@ -28,8 +36,24 @@ class ContactListCustomFields
             'capability'  => 'edit_posts',
         ),
             array(
+            'name'        => 'middle_name',
+            'title'       => sanitize_text_field( __( 'Middle name', 'contact-list' ) ),
+            'description' => '',
+            'type'        => 'text',
+            'scope'       => array( 'contact' ),
+            'capability'  => 'edit_posts',
+        ),
+            array(
             'name'        => 'last_name',
             'title'       => sanitize_text_field( __( 'Last Name', 'contact-list' ) ),
+            'description' => '',
+            'type'        => 'text',
+            'scope'       => array( 'contact' ),
+            'capability'  => 'edit_posts',
+        ),
+            array(
+            'name'        => 'name_suffix',
+            'title'       => sanitize_text_field( __( 'Suffix', 'contact-list' ) ),
             'description' => '',
             'type'        => 'text',
             'scope'       => array( 'contact' ),
@@ -94,7 +118,7 @@ class ContactListCustomFields
         ),
             array(
             'name'        => 'twitter_url',
-            'title'       => sanitize_text_field( __( 'Twitter URL', 'contact-list' ) ),
+            'title'       => sanitize_text_field( __( 'X URL', 'contact-list' ) ),
             'description' => '',
             'type'        => 'text',
             'scope'       => array( 'contact' ),
@@ -152,7 +176,7 @@ class ContactListCustomFields
             'name'        => 'zip_code',
             'title'       => sanitize_text_field( __( 'ZIP Code', 'contact-list' ) ),
             'description' => '',
-            'type'        => 'city',
+            'type'        => 'zip',
             'scope'       => array( 'contact' ),
             'capability'  => 'edit_posts',
         ),
@@ -316,7 +340,7 @@ class ContactListCustomFields
         $options = get_option( 'contact_list_settings' );
         ?>
 
-        <div class="form-wrap">
+        <div class="contact-list-admin-form-wrap">
 
             <?php 
         wp_nonce_field(
@@ -327,7 +351,27 @@ class ContactListCustomFields
         );
         foreach ( $this->customFields as $customField ) {
             
+            if ( $customField['name'] == 'name_prefix' ) {
+                ?>
+                  <div class="contact-list-admin-name-container">
+                  <?php 
+            } elseif ( $customField['name'] == 'country' ) {
+                ?>
+                  <div class="contact-list-admin-country-and-others-container">
+                  <?php 
+            }
+            
+            
             if ( $customField['name'] == 'first_name' && isset( $options['af_hide_first_name'] ) ) {
+                continue;
+            } elseif ( $customField['name'] == 'name_prefix' && !isset( $options['af_show_name_prefix'] ) ) {
+                continue;
+            } elseif ( $customField['name'] == 'middle_name' && !isset( $options['af_show_middle_name'] ) ) {
+                continue;
+            } elseif ( $customField['name'] == 'name_suffix' && !isset( $options['af_show_name_suffix'] ) ) {
+                ?>
+                  </div>
+                  <?php 
                 continue;
             } elseif ( $customField['name'] == 'job_title' && isset( $options['af_hide_job_title'] ) ) {
                 continue;
@@ -343,7 +387,28 @@ class ContactListCustomFields
                 continue;
             } elseif ( $customField['name'] == 'instagram_url' && isset( $options['af_hide_instagram_url'] ) ) {
                 continue;
+            } elseif ( $customField['name'] == 'notify_emails' && isset( $options['af_hide_notify_emails'] ) ) {
+                continue;
+            } elseif ( $customField['name'] == 'country' && isset( $options['af_hide_country'] ) ) {
+                continue;
+            } elseif ( $customField['name'] == 'state' && isset( $options['af_hide_state'] ) ) {
+                continue;
+            } elseif ( $customField['name'] == 'city' && isset( $options['af_hide_city'] ) ) {
+                continue;
+            } elseif ( $customField['name'] == 'zip_code' && isset( $options['af_hide_zip_code'] ) ) {
+                ?>
+                  </div>
+                  <?php 
+                continue;
             } elseif ( ($customField['name'] == 'address' || $customField['name'] == 'address_line_1' || $customField['name'] == 'address_line_2' || $customField['name'] == 'address_line_3' || $customField['name'] == 'address_line_4') && isset( $options['af_hide_address'] ) ) {
+                continue;
+            } elseif ( $customField['name'] == 'address_line_1' && isset( $options['af_hide_address_line_1'] ) ) {
+                continue;
+            } elseif ( $customField['name'] == 'address_line_2' && isset( $options['af_hide_address_line_2'] ) ) {
+                continue;
+            } elseif ( $customField['name'] == 'address_line_3' && isset( $options['af_hide_address_line_3'] ) ) {
+                continue;
+            } elseif ( $customField['name'] == 'address_line_4' && isset( $options['af_hide_address_line_4'] ) ) {
                 continue;
             } elseif ( ($customField['name'] == 'custom_fields' || $customField['name'] == 'custom_field_1' || $customField['name'] == 'custom_field_2' || $customField['name'] == 'custom_field_3' || $customField['name'] == 'custom_field_4' || $customField['name'] == 'custom_field_5' || $customField['name'] == 'custom_field_6') && isset( $options['af_hide_custom_fields'] ) ) {
                 continue;
@@ -386,8 +451,10 @@ class ContactListCustomFields
             if ( $output ) {
                 ?>
 
-                    <div class="form-field form-required form-field-type-<?php 
+                    <div class="contact-list-admin-form-field form-required form-field-type-<?php 
                 echo  sanitize_html_class( $customField['type'] ) ;
+                ?> contact-list-field-<?php 
+                echo  sanitize_html_class( $customField['name'] ) ;
                 ?>">
 
                       <?php 
@@ -480,11 +547,21 @@ class ContactListCustomFields
                 ?>
 
                     </div>
+
+                    <?php 
+                if ( $customField['name'] == 'name_suffix' || $customField['name'] == 'zip_code' ) {
+                    ?>
+                      </div>
+                    <?php 
+                }
+                ?>
+
                 <?php 
             }
         
         }
         ?>
+
             <hr class="clear" />
         </div>
         <?php 

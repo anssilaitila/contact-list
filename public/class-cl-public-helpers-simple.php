@@ -41,8 +41,11 @@ class ContactListPublicHelpersSimple
         $html .= '<div class="contact-list-simple-list-row">';
         $simple_list_fields_default_titles = [
             'full_name'      => sanitize_text_field( __( 'Full name', 'contact-list' ) ),
+            'name_prefix'    => sanitize_text_field( __( 'Prefix', 'contact-list' ) ),
             'first_name'     => sanitize_text_field( __( 'First name', 'contact-list' ) ),
+            'middle_name'    => sanitize_text_field( __( 'Middle name', 'contact-list' ) ),
             'last_name'      => sanitize_text_field( __( 'Last Name', 'contact-list' ) ),
+            'name_suffix'    => sanitize_text_field( __( 'Suffix', 'contact-list' ) ),
             'job_title'      => sanitize_text_field( __( 'Job title', 'contact-list' ) ),
             'phone'          => sanitize_text_field( __( 'Phone 1', 'contact-list' ) ),
             'phone_2'        => sanitize_text_field( __( 'Phone 2', 'contact-list' ) ),
@@ -299,7 +302,7 @@ class ContactListPublicHelpersSimple
                                 $html .= ( $c['_cl_instagram_url'][0] ? '<a href="' . esc_url_raw( $c['_cl_instagram_url'][0] ) . '" target="_blank"><img src="' . esc_url_raw( plugins_url( '../img/instagram.svg', __FILE__ ) ) . '" alt="' . ContactListHelpers::sanitize_attr_value( 'Instagram', 'contact-list' ) . '" /></a>' : '' );
                             }
                             if ( isset( $c['_cl_twitter_url'] ) ) {
-                                $html .= ( $c['_cl_twitter_url'][0] ? '<a href="' . esc_url_raw( $c['_cl_twitter_url'][0] ) . '" target="_blank"><img src="' . esc_url_raw( plugins_url( '../img/twitter.svg', __FILE__ ) ) . '" alt="' . ContactListHelpers::sanitize_attr_value( 'Twitter', 'contact-list' ) . '" /></a>' : '' );
+                                $html .= ( $c['_cl_twitter_url'][0] ? '<a href="' . esc_url_raw( $c['_cl_twitter_url'][0] ) . '" target="_blank"><img src="' . esc_url_raw( plugins_url( '../img/x.svg', __FILE__ ) ) . '" alt="' . ContactListHelpers::sanitize_attr_value( 'X', 'contact-list' ) . '" /></a>' : '' );
                             }
                             if ( isset( $c['_cl_linkedin_url'] ) ) {
                                 $html .= ( $c['_cl_linkedin_url'][0] ? '<a href="' . esc_url_raw( $c['_cl_linkedin_url'][0] ) . '" target="_blank"><img src="' . esc_url_raw( plugins_url( '../img/linkedin.svg', __FILE__ ) ) . '" alt="' . ContactListHelpers::sanitize_attr_value( 'LinkedIn', 'contact-list' ) . '" /></a>' : '' );

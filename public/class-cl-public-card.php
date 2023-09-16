@@ -73,8 +73,11 @@ class ContactListCard
                 
                 if ( isset( $s['contact_card_title'] ) && $s['contact_card_title'] ) {
                     $fields = array(
+                        'name_prefix',
                         'first_name',
+                        'middle_name',
                         'last_name',
+                        'name_suffix',
                         'job_title',
                         'email',
                         'phone',
@@ -107,18 +110,61 @@ class ContactListCard
                         
                         if ( strpos( $contact_card_title, $search_for ) !== false ) {
                             $field_name = '_cl_' . $f;
-                            $field_value = sanitize_text_field( $c[$field_name][0] );
+                            $field_value = '';
+                            if ( isset( $c[$field_name][0] ) && $c[$field_name][0] ) {
+                                $field_value = sanitize_text_field( $c[$field_name][0] );
+                            }
                             $contact_fullname = str_replace( $search_for, $field_value, $contact_fullname );
                         }
                     
                     }
                 } elseif ( isset( $s['last_name_before_first_name'] ) ) {
-                    $contact_fullname = $c['_cl_last_name'][0] . (( isset( $c['_cl_first_name'][0] ) ? ' ' . $c['_cl_first_name'][0] : '' ));
-                    $text = (( isset( $c['_cl_first_name'][0] ) ? $c['_cl_first_name'][0] . ' ' : '' )) . $c['_cl_last_name'][0];
+                    $prefix = '';
+                    $first_name = '';
+                    $middle_name = '';
+                    $last_name = '';
+                    $suffix = '';
+                    if ( isset( $c['_cl_name_prefix'][0] ) && $c['_cl_name_prefix'][0] ) {
+                        $prefix = sanitize_text_field( $c['_cl_name_prefix'][0] ) . ' ';
+                    }
+                    if ( isset( $c['_cl_first_name'][0] ) && $c['_cl_first_name'][0] ) {
+                        $first_name = sanitize_text_field( $c['_cl_first_name'][0] ) . ' ';
+                    }
+                    if ( isset( $c['_cl_middle_name'][0] ) && $c['_cl_middle_name'][0] ) {
+                        $middle_name = sanitize_text_field( $c['_cl_middle_name'][0] ) . ' ';
+                    }
+                    if ( isset( $c['_cl_last_name'][0] ) && $c['_cl_last_name'][0] ) {
+                        $last_name = sanitize_text_field( $c['_cl_last_name'][0] ) . ' ';
+                    }
+                    if ( isset( $c['_cl_name_suffix'][0] ) && $c['_cl_name_suffix'][0] ) {
+                        $suffix = sanitize_text_field( $c['_cl_name_suffix'][0] );
+                    }
+                    $contact_fullname = rtrim( $prefix . $last_name . $first_name . $middle_name . $suffix );
+                    $text = rtrim( $prefix . $first_name . $middle_name . $last_name . $suffix );
                     $html .= '<div class="contact-list-hidden-name">' . sanitize_text_field( $text ) . '</div>';
                 } else {
-                    $contact_fullname = (( isset( $c['_cl_first_name'][0] ) ? $c['_cl_first_name'][0] . ' ' : '' )) . $c['_cl_last_name'][0];
-                    $text = $c['_cl_last_name'][0] . (( isset( $c['_cl_first_name'][0] ) ? ' ' . $c['_cl_first_name'][0] : '' ));
+                    $prefix = '';
+                    $first_name = '';
+                    $middle_name = '';
+                    $last_name = '';
+                    $suffix = '';
+                    if ( isset( $c['_cl_name_prefix'][0] ) && $c['_cl_name_prefix'][0] ) {
+                        $prefix = sanitize_text_field( $c['_cl_name_prefix'][0] ) . ' ';
+                    }
+                    if ( isset( $c['_cl_first_name'][0] ) && $c['_cl_first_name'][0] ) {
+                        $first_name = sanitize_text_field( $c['_cl_first_name'][0] ) . ' ';
+                    }
+                    if ( isset( $c['_cl_middle_name'][0] ) && $c['_cl_middle_name'][0] ) {
+                        $middle_name = sanitize_text_field( $c['_cl_middle_name'][0] ) . ' ';
+                    }
+                    if ( isset( $c['_cl_last_name'][0] ) && $c['_cl_last_name'][0] ) {
+                        $last_name = sanitize_text_field( $c['_cl_last_name'][0] ) . ' ';
+                    }
+                    if ( isset( $c['_cl_name_suffix'][0] ) && $c['_cl_name_suffix'][0] ) {
+                        $suffix = sanitize_text_field( $c['_cl_name_suffix'][0] );
+                    }
+                    $contact_fullname = rtrim( $prefix . $first_name . $middle_name . $last_name . $suffix );
+                    $text = rtrim( $prefix . $last_name . $first_name . $middle_name . $suffix );
                     $html .= '<div class="contact-list-hidden-name">' . sanitize_text_field( $text ) . '</div>';
                 }
                 
@@ -387,7 +433,7 @@ class ContactListCard
                     $html .= ( $c['_cl_instagram_url'][0] ? '<a href="' . esc_url_raw( $c['_cl_instagram_url'][0] ) . '" target="_blank"><img src="' . esc_url_raw( plugins_url( '../img/instagram.svg', __FILE__ ) ) . '" alt="' . ContactListHelpers::sanitize_attr_value( __( 'Instagram', 'contact-list' ) ) . '" /></a>' : '' );
                 }
                 if ( isset( $c['_cl_twitter_url'][0] ) && $c['_cl_twitter_url'][0] ) {
-                    $html .= ( $c['_cl_twitter_url'][0] ? '<a href="' . esc_url_raw( $c['_cl_twitter_url'][0] ) . '" target="_blank"><img src="' . esc_url_raw( plugins_url( '../img/twitter.svg', __FILE__ ) ) . '" alt="' . ContactListHelpers::sanitize_attr_value( __( 'Twitter', 'contact-list' ) ) . '" /></a>' : '' );
+                    $html .= ( $c['_cl_twitter_url'][0] ? '<a href="' . esc_url_raw( $c['_cl_twitter_url'][0] ) . '" target="_blank"><img src="' . esc_url_raw( plugins_url( '../img/x.svg', __FILE__ ) ) . '" alt="' . ContactListHelpers::sanitize_attr_value( __( 'X', 'contact-list' ) ) . '" /></a>' : '' );
                 }
                 if ( isset( $c['_cl_linkedin_url'][0] ) && $c['_cl_linkedin_url'][0] ) {
                     $html .= ( $c['_cl_linkedin_url'][0] ? '<a href="' . esc_url_raw( $c['_cl_linkedin_url'][0] ) . '" target="_blank"><img src="' . esc_url_raw( plugins_url( '../img/linkedin.svg', __FILE__ ) ) . '" alt="' . ContactListHelpers::sanitize_attr_value( __( 'LinkedIn', 'contact-list' ) ) . '" /></a>' : '' );
