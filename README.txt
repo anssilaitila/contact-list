@@ -3,7 +3,7 @@ Contributors: anssilaitila, freemius
 Tags: directory plugin, business directory, listing, address book, staff list, staff directory, contact manager, company directory, church directory, contact directory, contacts, chamber of commerce
 Requires at least: 5.4.0
 Tested up to: 6.3
-Stable tag: 2.9.78
+Stable tag: 2.9.79
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -231,6 +231,12 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 6. Contact management
 
 == Changelog ==
+
+= 2.9.79 - 2023-10-05 =
+* (All plans) New fields for contacts: Custom URLs. You can now add an icon or any image in the settings and add a link to the contact card (same way the social media urls work). The same icon / image is shown for all contacts and the link is defined when editing the contact. Can be activated from the plugin settings, Custom URLs tab.
+* (All plans) It is now possible to add any single field value to the contact card's left and right column (see plugin settings, Contact card tab)
+* (All plans) Import & export now supports images. The importable file should contain either the image id or filename (from media library, the image should be added to media library before the import).
+* (Free + All plans) Bug fixes
 
 = 2.9.78 - 2023-09-16 =
 * (Free + All plans) More settings to hide fields from the contact edit form, all fields are now covered (plugin settings, Hide / show form elements -tab -> Admin form elements)

@@ -842,6 +842,52 @@ class ContactListSettings
             'field_name' => $only_pro . 'search_dropdown_width_auto',
         )
         );
+        $tab = 'custom_urls';
+        add_settings_section(
+            'contact-list_tab_' . $tab,
+            '',
+            array( $this, 'contact_list_settings_tab_' . $tab . '_callback' ),
+            'contact-list'
+        );
+        $custom_fields = [ 1, 2 ];
+        foreach ( $custom_fields as $n ) {
+            $field_name = 'custom_url_' . $n . '_active';
+            add_settings_field(
+                'contact-list-' . $only_pro . $field_name,
+                sanitize_text_field( __( 'Custom URL', 'contact-list' ) . ' ' . $n . ' ' . __( 'active', 'contact-list' ) ),
+                array( $this, 'checkbox_render' ),
+                'contact-list',
+                'contact-list_tab_' . $tab,
+                array(
+                'label_for'  => 'contact-list-' . $only_pro . $field_name,
+                'field_name' => $only_pro . $field_name,
+            )
+            );
+            $field_name = 'custom_url_' . $n . '_title';
+            add_settings_field(
+                'contact-list-' . $only_pro . $field_name,
+                sanitize_text_field( __( 'Custom URL', 'contact-list' ) . ' ' . $n . ' ' . __( 'title', 'contact-list' ) ),
+                array( $this, 'input_render' ),
+                'contact-list',
+                'contact-list_tab_' . $tab,
+                array(
+                'label_for'  => 'contact-list-' . $only_pro . $field_name,
+                'field_name' => $only_pro . $field_name,
+            )
+            );
+            $field_name = 'custom_url_' . $n . '_img_url';
+            add_settings_field(
+                'contact-list-' . $only_pro . $field_name,
+                sanitize_text_field( __( 'Custom URL', 'contact-list' ) . ' ' . $n . ' ' . __( 'image url', 'contact-list' ) ),
+                array( $this, 'input_render' ),
+                'contact-list',
+                'contact-list_tab_' . $tab,
+                array(
+                'label_for'  => 'contact-list-' . $only_pro . $field_name,
+                'field_name' => $only_pro . $field_name,
+            )
+            );
+        }
         $tab = 5;
         add_settings_section(
             'contact-list_tab_' . $tab,
@@ -870,6 +916,17 @@ class ContactListSettings
             'label_for'   => 'contact-list-custom_field_1_title',
             'field_name'  => 'custom_field_1_title',
             'placeholder' => sanitize_text_field( __( 'Custom field 1', 'contact-list' ) ),
+        )
+        );
+        add_settings_field(
+            'contact-list-custom_field_1_type',
+            sanitize_text_field( __( 'Custom field 1 type', 'contact-list' ) ),
+            array( $this, 'input_render' ),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+            'label_for'  => 'contact-list-custom_field_1_type',
+            'field_name' => 'custom_field_1_type',
         )
         );
         if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'pro' ) || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
@@ -1876,6 +1933,17 @@ class ContactListSettings
             array(
             'label_for'  => 'contact-list-af_hide_instagram_url',
             'field_name' => 'af_hide_instagram_url',
+        )
+        );
+        add_settings_field(
+            'contact-list-af_hide_custom_urls',
+            sanitize_text_field( __( 'Hide custom URLs', 'contact-list' ) ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+            'label_for'  => 'contact-list-af_hide_custom_urls',
+            'field_name' => 'af_hide_custom_urls',
         )
         );
         add_settings_field(
@@ -3166,6 +3234,10 @@ class ContactListSettings
                 ?></div>
         
           <div class="contact-list-general-info-custom-order-row-2">[[full_name]]<br />[[phone_numbers]]<br />[[address]]</div>
+
+          <div class="contact-list-settings-contact-card-single-field-info"><b><?php 
+                echo  esc_html__( "You can also use the single fields, listed above for the field Contact card title, inside double brackets:", "contact-list" ) ;
+                ?></b><br />[[first_name]]<br />[[last_name]]<br />[[phone]]<br /><br /></div>
           
           <div class="contact-list-general-info-custom-order-row-3"><?php 
                 echo  esc_html__( 'Available fields are:', 'contact-list' ) ;
@@ -3333,6 +3405,22 @@ class ContactListSettings
         <?php 
             } else {
                 ?>
+
+          <?php 
+                $placeholder = '';
+                ?>
+          
+          <?php 
+                
+                if ( isset( $args['placeholder'] ) && $args['placeholder'] ) {
+                    ?>
+            <?php 
+                    $placeholder = sanitize_text_field( $args['placeholder'] );
+                    ?>
+          <?php 
+                }
+                
+                ?>
   
           <div class="contact-list-setting">
             <input type="text" class="input-field" id="contact-list-<?php 
@@ -3342,7 +3430,7 @@ class ContactListSettings
                 ?>]" value="<?php 
                 echo  ( isset( $options[$field_name] ) ? esc_attr( $options[$field_name] ) : '' ) ;
                 ?>" placeholder="<?php 
-                echo  ( $args['placeholder'] ? esc_attr( $args['placeholder'] ) : '' ) ;
+                echo  esc_attr( $placeholder ) ;
                 ?>">
           </div>
           
@@ -3377,6 +3465,23 @@ class ContactListSettings
                 ?>
       
         </div>
+
+      <?php 
+            } elseif ( strpos( $field_name, 'custom_url_1_img_url' ) !== false ) {
+                ?>
+
+        <p><?php 
+                echo  esc_html__( 'e.g. /wp-content/uploads/2023/01/custom-icon-1.png or any full url', 'shared-files' ) ;
+                ?></p>
+
+      <?php 
+            } elseif ( strpos( $field_name, 'custom_url_2_img_url' ) !== false ) {
+                ?>
+        
+        <p><?php 
+                echo  esc_html__( 'e.g. /wp-content/uploads/2023/01/custom-icon-2.png or any full url', 'shared-files' ) ;
+                ?></p>
+
       <?php 
             }
             
@@ -4224,6 +4329,13 @@ class ContactListSettings
         echo  '<p style="font-size: 16px; font-weight: 600; margin-bottom: 10px;">' . esc_html__( 'These settings are for this form in the front-end:', 'contact-list' ) . '<hr class="clear" /><img src="' . esc_url( plugins_url( '../img/search-form-sample.png', __FILE__ ) ) . '" style="box-shadow: 2px 2px 4px #bbb;" />' . '</p>' ;
     }
     
+    public function contact_list_settings_tab_custom_urls_callback()
+    {
+        echo  '</div>' ;
+        echo  '<div class="contact-list-settings-tab-custom-urls">' ;
+        echo  '<p>' . esc_html__( 'Custom URLs work the same way as the social media links: define an icon here (image url), that will be shown for each contact that has the url added to their data. When the custom URL is set to be active, the field is shown when editing the contact and also on the contact card.', 'contact-list' ) . '</p>' ;
+    }
+    
     public function contact_list_settings_tab_5_callback()
     {
         echo  '</div>' ;
@@ -4313,6 +4425,9 @@ class ContactListSettings
         ?></span></li>
           <li class="contact-list-settings-tab-4-title" data-settings-container="contact-list-settings-tab-4"><span><?php 
         echo  esc_html__( 'Search form', 'contact-list' ) ;
+        ?></span></li>
+          <li class="contact-list-settings-tab-custom-urls-title" data-settings-container="contact-list-settings-tab-custom-urls"><span><?php 
+        echo  esc_html__( 'Custom URLs', 'contact-list' ) ;
         ?></span></li>
           <li class="contact-list-settings-tab-5-title" data-settings-container="contact-list-settings-tab-5"><span><?php 
         echo  esc_html__( 'Custom fields', 'contact-list' ) ;

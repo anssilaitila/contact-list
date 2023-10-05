@@ -2,6 +2,32 @@
 
 class ContactListHelpers
 {
+    public static function getMediaLibraryFileID( $filename )
+    {
+        $newest_file_id = 0;
+        $args = array(
+            'post_type'      => 'attachment',
+            'post_status'    => 'inherit',
+            'posts_per_page' => 1,
+            'orderby'        => 'date',
+            'order'          => 'DESC',
+            'meta_query'     => array( array(
+            'key'     => '_wp_attached_file',
+            'value'   => $filename,
+            'compare' => 'LIKE',
+        ) ),
+        );
+        $query = new WP_Query( $args );
+        
+        if ( $query->have_posts() ) {
+            $query->the_post();
+            $newest_file_id = get_the_ID();
+        }
+        
+        wp_reset_postdata();
+        return $newest_file_id;
+    }
+    
     public static function sanitize_attr_value( $str )
     {
         $str = sanitize_text_field( $str );

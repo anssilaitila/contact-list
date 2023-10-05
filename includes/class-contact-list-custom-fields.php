@@ -141,42 +141,26 @@ class ContactListCustomFields
             'capability'  => 'edit_posts',
         ),
             array(
+            'name'        => 'custom_url_1',
+            'title'       => sanitize_text_field( __( 'Custom URL 1', 'contact-list' ) ),
+            'description' => '',
+            'type'        => 'text',
+            'scope'       => array( 'contact' ),
+            'capability'  => 'edit_posts',
+        ),
+            array(
+            'name'        => 'custom_url_2',
+            'title'       => sanitize_text_field( __( 'Custom URL 2', 'contact-list' ) ),
+            'description' => '',
+            'type'        => 'text',
+            'scope'       => array( 'contact' ),
+            'capability'  => 'edit_posts',
+        ),
+            array(
             'name'        => 'address',
             'title'       => sanitize_text_field( __( 'Address', 'contact-list' ) ),
             'description' => '',
             'type'        => 'title',
-            'scope'       => array( 'contact' ),
-            'capability'  => 'edit_posts',
-        ),
-            array(
-            'name'        => 'country',
-            'title'       => sanitize_text_field( __( 'Country', 'contact-list' ) ),
-            'description' => '',
-            'type'        => 'country',
-            'scope'       => array( 'contact' ),
-            'capability'  => 'edit_posts',
-        ),
-            array(
-            'name'        => 'state',
-            'title'       => sanitize_text_field( __( 'State', 'contact-list' ) ),
-            'description' => '',
-            'type'        => 'state',
-            'scope'       => array( 'contact' ),
-            'capability'  => 'edit_posts',
-        ),
-            array(
-            'name'        => 'city',
-            'title'       => sanitize_text_field( __( 'City', 'contact-list' ) ),
-            'description' => '',
-            'type'        => 'city',
-            'scope'       => array( 'contact' ),
-            'capability'  => 'edit_posts',
-        ),
-            array(
-            'name'        => 'zip_code',
-            'title'       => sanitize_text_field( __( 'ZIP Code', 'contact-list' ) ),
-            'description' => '',
-            'type'        => 'zip',
             'scope'       => array( 'contact' ),
             'capability'  => 'edit_posts',
         ),
@@ -209,6 +193,38 @@ class ContactListCustomFields
             'title'       => sanitize_text_field( __( 'Address Line 4', 'contact-list' ) ),
             'description' => '',
             'type'        => 'text',
+            'scope'       => array( 'contact' ),
+            'capability'  => 'edit_posts',
+        ),
+            array(
+            'name'        => 'city',
+            'title'       => sanitize_text_field( __( 'City', 'contact-list' ) ),
+            'description' => '',
+            'type'        => 'city',
+            'scope'       => array( 'contact' ),
+            'capability'  => 'edit_posts',
+        ),
+            array(
+            'name'        => 'state',
+            'title'       => sanitize_text_field( __( 'State', 'contact-list' ) ),
+            'description' => '',
+            'type'        => 'state',
+            'scope'       => array( 'contact' ),
+            'capability'  => 'edit_posts',
+        ),
+            array(
+            'name'        => 'zip_code',
+            'title'       => sanitize_text_field( __( 'ZIP Code', 'contact-list' ) ),
+            'description' => '',
+            'type'        => 'zip',
+            'scope'       => array( 'contact' ),
+            'capability'  => 'edit_posts',
+        ),
+            array(
+            'name'        => 'country',
+            'title'       => sanitize_text_field( __( 'Country', 'contact-list' ) ),
+            'description' => '',
+            'type'        => 'country',
             'scope'       => array( 'contact' ),
             'capability'  => 'edit_posts',
         ),
@@ -350,12 +366,13 @@ class ContactListCustomFields
             true
         );
         foreach ( $this->customFields as $customField ) {
+            $is_premium = 0;
             
             if ( $customField['name'] == 'name_prefix' ) {
                 ?>
                   <div class="contact-list-admin-name-container">
                   <?php 
-            } elseif ( $customField['name'] == 'country' ) {
+            } elseif ( $customField['name'] == 'city' ) {
                 ?>
                   <div class="contact-list-admin-country-and-others-container">
                   <?php 
@@ -389,13 +406,13 @@ class ContactListCustomFields
                 continue;
             } elseif ( $customField['name'] == 'notify_emails' && isset( $options['af_hide_notify_emails'] ) ) {
                 continue;
-            } elseif ( $customField['name'] == 'country' && isset( $options['af_hide_country'] ) ) {
+            } elseif ( $customField['name'] == 'city' && isset( $options['af_hide_city'] ) ) {
                 continue;
             } elseif ( $customField['name'] == 'state' && isset( $options['af_hide_state'] ) ) {
                 continue;
-            } elseif ( $customField['name'] == 'city' && isset( $options['af_hide_city'] ) ) {
-                continue;
             } elseif ( $customField['name'] == 'zip_code' && isset( $options['af_hide_zip_code'] ) ) {
+                continue;
+            } elseif ( $customField['name'] == 'country' && isset( $options['af_hide_country'] ) ) {
                 ?>
                   </div>
                   <?php 
@@ -409,6 +426,12 @@ class ContactListCustomFields
             } elseif ( $customField['name'] == 'address_line_3' && isset( $options['af_hide_address_line_3'] ) ) {
                 continue;
             } elseif ( $customField['name'] == 'address_line_4' && isset( $options['af_hide_address_line_4'] ) ) {
+                continue;
+            } elseif ( ($customField['name'] == 'custom_urls' || $customField['name'] == 'custom_url_1' || $customField['name'] == 'custom_url_2') && isset( $options['af_hide_custom_urls'] ) ) {
+                continue;
+            } elseif ( $is_premium && $customField['name'] == 'custom_url_1' && !isset( $options['custom_url_1_active'] ) ) {
+                continue;
+            } elseif ( $is_premium && $customField['name'] == 'custom_url_2' && !isset( $options['custom_url_2_active'] ) ) {
                 continue;
             } elseif ( ($customField['name'] == 'custom_fields' || $customField['name'] == 'custom_field_1' || $customField['name'] == 'custom_field_2' || $customField['name'] == 'custom_field_3' || $customField['name'] == 'custom_field_4' || $customField['name'] == 'custom_field_5' || $customField['name'] == 'custom_field_6') && isset( $options['af_hide_custom_fields'] ) ) {
                 continue;
@@ -440,7 +463,7 @@ class ContactListCustomFields
             // Premium-only fields are just ads for upgrading, not containing any real functionality
             if ( !$is_premium ) {
                 
-                if ( $customField['name'] == 'phone_2' || $customField['name'] == 'phone_3' || $customField['name'] == 'custom_field_2' || $customField['name'] == 'custom_field_3' || $customField['name'] == 'custom_field_4' || $customField['name'] == 'custom_field_5' || $customField['name'] == 'custom_field_6' ) {
+                if ( $customField['name'] == 'phone_2' || $customField['name'] == 'phone_3' || $customField['name'] == 'custom_url_1' || $customField['name'] == 'custom_url_2' || $customField['name'] == 'custom_field_2' || $customField['name'] == 'custom_field_3' || $customField['name'] == 'custom_field_4' || $customField['name'] == 'custom_field_5' || $customField['name'] == 'custom_field_6' ) {
                     $output = true;
                     $customField['name'] = '_FREE_' . $customField['name'];
                 }
@@ -549,7 +572,7 @@ class ContactListCustomFields
                     </div>
 
                     <?php 
-                if ( $customField['name'] == 'name_suffix' || $customField['name'] == 'zip_code' ) {
+                if ( $customField['name'] == 'name_suffix' || $customField['name'] == 'country' ) {
                     ?>
                       </div>
                     <?php 

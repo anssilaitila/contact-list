@@ -13,6 +13,16 @@ class ContactListCard
         $s = get_option( 'contact_list_settings' );
         $c = get_post_custom( $id );
         $html = '';
+        
+        if ( $fields_string ) {
+            $fields_arr = explode( ' ', $fields_string );
+            $fields_arr_new = [];
+            foreach ( $fields_arr as $field ) {
+                $fields_arr_new[] = '[[' . $field . ']]';
+            }
+            $fields_string = implode( ' ', $fields_arr_new );
+        }
+        
         $available_fields = array(
             'edit_contact_button',
             'full_name',
@@ -26,27 +36,55 @@ class ContactListCard
             'additional_info',
             'some_icons',
             'show_contact_button',
-            'featured_image'
+            'featured_image',
+            'name_prefix',
+            'first_name',
+            'middle_name',
+            'last_name',
+            'name_suffix',
+            'job_title',
+            'email',
+            'phone',
+            'linkedin_url',
+            'twitter_url',
+            'facebook_url',
+            'address_line_1',
+            'address_line_2',
+            'address_line_3',
+            'address_line_4',
+            'custom_field_1',
+            'custom_field_2',
+            'custom_field_3',
+            'custom_field_4',
+            'custom_field_5',
+            'custom_field_6',
+            'groups',
+            'country',
+            'state',
+            'city',
+            'zip_code',
+            'instagram_url',
+            'phone_2',
+            'phone_3'
         );
-        $mixed_content = 0;
-        foreach ( $available_fields as $f ) {
-            $search_for = '';
+        $active_fields_arr = explode( ' ', $fields_string );
+        foreach ( $active_fields_arr as $f ) {
+            $f = ltrim( $f, '[[' );
+            $f = rtrim( $f, ']]' );
             
-            if ( $mixed_content ) {
+            if ( in_array( $f, $available_fields ) ) {
                 $search_for = "[[" . $f . "]]";
-            } else {
-                $search_for = $f;
-            }
+                
+                if ( strpos( $fields_string, $search_for ) !== false ) {
+                    $markup = ContactListCard::getSingleMarkup(
+                        $id,
+                        $f,
+                        $atts,
+                        $is_modal
+                    );
+                    $fields_string = str_replace( $search_for, $markup, $fields_string );
+                }
             
-            
-            if ( strpos( $fields_string, $search_for ) !== false ) {
-                $markup = ContactListCard::getSingleMarkup(
-                    $id,
-                    $f,
-                    $atts,
-                    $is_modal
-                );
-                $fields_string = str_replace( $search_for, $markup, $fields_string );
             }
         
         }
@@ -182,7 +220,7 @@ class ContactListCard
                 if ( isset( $c['_cl_email'][0] ) && is_email( $c['_cl_email'][0] ) ) {
                     $mailto = sanitize_email( $c['_cl_email'][0] );
                     if ( isset( $c['_cl_email'][0] ) && is_email( $c['_cl_email'][0] ) && !isset( $s['hide_contact_email'] ) ) {
-                        $html .= '<span class="contact-list-email">' . (( $c['_cl_email'][0] ? '<a href="' . esc_url_raw( 'mailto:' . antispambot( $mailto ) ) . '">' . sanitize_text_field( antispambot( $mailto ) ) . '</a>' : '' )) . '</span>';
+                        //            $html .= '<span class="contact-list-email">' . ($c['_cl_email'][0] ? '<a href="' . esc_url_raw('mailto:' . antispambot( $mailto ) ) . '">' . sanitize_text_field( antispambot( $mailto ) ) . '</a>' : '') . '</span>';
                     }
                 }
                 
@@ -456,6 +494,46 @@ class ContactListCard
                 
                 break;
             default:
+                $field = sanitize_title( $field );
+                $fields = array(
+                    'name_prefix',
+                    'first_name',
+                    'middle_name',
+                    'last_name',
+                    'name_suffix',
+                    'job_title',
+                    'email',
+                    'phone',
+                    'linkedin_url',
+                    'twitter_url',
+                    'facebook_url',
+                    'address_line_1',
+                    'address_line_2',
+                    'address_line_3',
+                    'address_line_4',
+                    'custom_field_1',
+                    'custom_field_2',
+                    'custom_field_3',
+                    'custom_field_4',
+                    'custom_field_5',
+                    'custom_field_6',
+                    'groups',
+                    'country',
+                    'state',
+                    'city',
+                    'zip_code',
+                    'instagram_url',
+                    'phone_2',
+                    'phone_3'
+                );
+                
+                if ( in_array( $field, $fields ) ) {
+                    $field_name = '_cl_' . $field;
+                    if ( isset( $c[$field_name][0] ) && $c[$field_name][0] ) {
+                        $html .= '<div class="contact-list-card-' . $field . '-value">' . sanitize_text_field( $c[$field_name][0] ) . '</div>';
+                    }
+                }
+                
                 break;
         }
         return $html;

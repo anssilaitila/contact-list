@@ -153,6 +153,18 @@ class ContactListImportExport
                 <li><?php 
             echo  esc_html__( 'Suffix', 'contact-list' ) ;
             ?></li>
+                <li><?php 
+            echo  esc_html__( 'Image ID (if already exists in media library, not required)', 'contact-list' ) ;
+            ?></li>
+                <li><?php 
+            echo  esc_html__( 'Filename of image (if already exists media library, can be used without the Image ID)', 'contact-list' ) ;
+            ?></li>
+                <li><?php 
+            echo  esc_html__( 'Custom URL 1', 'contact-list' ) ;
+            ?></li>
+                <li><?php 
+            echo  esc_html__( 'Custom URL 2', 'contact-list' ) ;
+            ?></li>
             </ol>
           </p>
 
@@ -290,6 +302,18 @@ class ContactListImportExport
             ?></li>
               <li><?php 
             echo  esc_html__( 'Suffix', 'contact-list' ) ;
+            ?></li>
+              <li><?php 
+            echo  esc_html__( 'Image ID (from media library)', 'contact-list' ) ;
+            ?></li>
+              <li><?php 
+            echo  esc_html__( 'Filename of image', 'contact-list' ) ;
+            ?></li>
+              <li><?php 
+            echo  esc_html__( 'Custom URL 1', 'contact-list' ) ;
+            ?></li>
+              <li><?php 
+            echo  esc_html__( 'Custom URL 2', 'contact-list' ) ;
             ?></li>
             </ol>
           </p>
