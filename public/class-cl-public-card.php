@@ -42,8 +42,6 @@ class ContactListCard
             'middle_name',
             'last_name',
             'name_suffix',
-            'job_title',
-            'email',
             'phone',
             'linkedin_url',
             'twitter_url',
@@ -220,7 +218,7 @@ class ContactListCard
                 if ( isset( $c['_cl_email'][0] ) && is_email( $c['_cl_email'][0] ) ) {
                     $mailto = sanitize_email( $c['_cl_email'][0] );
                     if ( isset( $c['_cl_email'][0] ) && is_email( $c['_cl_email'][0] ) && !isset( $s['hide_contact_email'] ) ) {
-                        //            $html .= '<span class="contact-list-email">' . ($c['_cl_email'][0] ? '<a href="' . esc_url_raw('mailto:' . antispambot( $mailto ) ) . '">' . sanitize_text_field( antispambot( $mailto ) ) . '</a>' : '') . '</span>';
+                        $html .= '<span class="contact-list-email">' . (( $c['_cl_email'][0] ? '<a href="' . esc_url_raw( 'mailto:' . antispambot( $mailto ) ) . '">' . sanitize_text_field( antispambot( $mailto ) ) . '</a>' : '' )) . '</span>';
                     }
                 }
                 
@@ -530,7 +528,85 @@ class ContactListCard
                 if ( in_array( $field, $fields ) ) {
                     $field_name = '_cl_' . $field;
                     if ( isset( $c[$field_name][0] ) && $c[$field_name][0] ) {
-                        $html .= '<div class="contact-list-card-' . $field . '-value">' . sanitize_text_field( $c[$field_name][0] ) . '</div>';
+                        
+                        if ( $field == 'phone' || $field == 'phone_2' || $field == 'phone_3' ) {
+                            $n = 0;
+                            $field_title = '';
+                            
+                            if ( $field == 'phone' ) {
+                                $n = 1;
+                                $field_title = ContactListHelpers::getText( 'phone_title', __( 'Phone', 'contact-list' ) );
+                            } elseif ( $field == 'phone_2' ) {
+                                $n = 2;
+                                $field_title = ContactListHelpers::getText( 'phone_2_title', __( 'Phone 2', 'contact-list' ) );
+                            } elseif ( $field == 'phone_3' ) {
+                                $n = 3;
+                                $field_title = ContactListHelpers::getText( 'phone_3_title', __( 'Phone 3', 'contact-list' ) );
+                            }
+                            
+                            
+                            if ( isset( $c[$field_name][0] ) && $c[$field_name][0] ) {
+                                $phone_org = sanitize_text_field( $c[$field_name][0] );
+                                $phone_href = preg_replace( '/[^0-9\\,]/', '', $phone_org );
+                                $html .= '<span class="contact-list-phone contact-list-phone-' . $n . '">';
+                                if ( isset( $s['show_titles_above_phone_numbers'] ) ) {
+                                    $html .= '<span class="contact-list-phone-title">' . $field_title . '</span>';
+                                }
+                                $html .= '<a href="tel:' . $phone_href . '">' . $phone_org . '</a>';
+                                $html .= '</span>';
+                            }
+                        
+                        } elseif ( $field == 'custom_field_1' || $field == 'custom_field_2' || $field == 'custom_field_3' || $field == 'custom_field_4' || $field == 'custom_field_5' || $field == 'custom_field_6' ) {
+                            $n = (int) filter_var( $field, FILTER_SANITIZE_NUMBER_INT );
+                            if ( isset( $s['custom_field_' . $n . '_hide_from_contact_card'] ) ) {
+                                break;
+                            }
+                            $html .= '<div class="contact-list-custom-field-' . $n . '-container">';
+                            $url = '@(http)?(s)?(://)?(([a-zA-Z])([-\\w]+\\.)+([^\\s\\.]+[^\\s]*)+[^,.\\s])@';
+                            
+                            if ( isset( $c['_cl_custom_field_' . $n][0] ) && $c['_cl_custom_field_' . $n][0] ) {
+                                $cf_value = $c['_cl_custom_field_' . $n][0];
+                                
+                                if ( is_email( $cf_value ) ) {
+                                    $mailto = sanitize_email( $cf_value );
+                                    $mailto_obs = antispambot( $mailto );
+                                    $cf_value = '<a href="mailto:' . sanitize_text_field( $mailto_obs ) . '">' . sanitize_text_field( $mailto_obs ) . '</a>';
+                                } else {
+                                    $link_title = '';
+                                    if ( isset( $s['custom_field_' . $n . '_link_text'] ) && $s['custom_field_' . $n . '_link_text'] ) {
+                                        $link_title = sanitize_text_field( $s['custom_field_' . $n . '_link_text'] );
+                                    }
+                                    $disable_automatic_linking = 0;
+                                    if ( !$disable_automatic_linking ) {
+                                        
+                                        if ( $link_title ) {
+                                            $cf_value = preg_replace( $url, '<a href="http$2://$4" target="_blank" title="$0">' . $link_title . '</a>', $cf_value );
+                                        } else {
+                                            $cf_value = preg_replace( $url, '<a href="http$2://$4" target="_blank" title="$0">$0</a>', $cf_value );
+                                        }
+                                    
+                                    }
+                                }
+                                
+                                
+                                if ( isset( $s['custom_field_' . $n . '_icon'] ) && $s['custom_field_' . $n . '_icon'] ) {
+                                    $html .= '<div class="contact-list-custom-field-' . $n . ' contact-list-custom-field-with-icon">';
+                                    $html .= '<i class="fa ' . sanitize_html_class( $s['custom_field_' . $n . '_icon'] ) . '" aria-hidden="true"></i><span>' . wp_kses_post( $cf_value ) . '</span>';
+                                    $html .= '</div>';
+                                } else {
+                                    $html .= '<div class="contact-list-custom-field-' . $n . '">';
+                                    $html .= ( isset( $s['custom_field_' . $n . '_title'] ) && $s['custom_field_' . $n . '_title'] ? '<strong>' . sanitize_text_field( $s['custom_field_' . $n . '_title'] ) . '</strong>' : '' );
+                                    $html .= wp_kses_post( $cf_value );
+                                    $html .= '</div>';
+                                }
+                            
+                            }
+                            
+                            $html .= '</div>';
+                        } else {
+                            $html .= '<div class="contact-list-card-' . $field . '-value">' . sanitize_text_field( $c[$field_name][0] ) . '</div>';
+                        }
+                    
                     }
                 }
                 
