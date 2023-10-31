@@ -92,7 +92,12 @@ class ContactListPublicHelpers
         return $html;
     }
     
-    public static function searchFormMarkup( $atts, $s, $exclude = array() )
+    public static function searchFormMarkup(
+        $atts,
+        $s,
+        $exclude = array(),
+        $elem_class = ''
+    )
     {
         $html = '';
         $group_slug = '';
@@ -103,7 +108,8 @@ class ContactListPublicHelpers
             'posts_per_page' => -1,
             'post__not_in'   => $exclude,
         ) );
-        $html .= '<form method="get" action="./" class="contact-list-ajax-form">';
+        $form_class = 'contact-list-ajax-form';
+        $html .= '<form method="get" action="./" class="' . $form_class . '" data-elem-class="' . $elem_class . '">';
         if ( isset( $atts ) ) {
             $html .= '<input type="hidden" name="cl_atts" value=\'' . ContactListHelpers::sanitize_attr_value( serialize( $atts ) ) . '\'>';
         }

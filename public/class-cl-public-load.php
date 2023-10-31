@@ -38,7 +38,6 @@ class ContactListPublicLoad {
 
     $css = '';
     
-    
     if ( isset($s['contact_card_left_column_width']) && $s['contact_card_left_column_width'] ) {
       
       $left_width = intval( $s['contact_card_left_column_width'] );

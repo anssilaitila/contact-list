@@ -24,7 +24,7 @@ class ShortcodeContactList
         if ( !isset( $s['hide_send_email_button'] ) ) {
             $html .= ContactListHelpers::modalSendMessageMarkup();
         }
-        $html .= '<div class="contact-list-container ' . sanitize_html_class( $elem_class ) . ' ' . (( $layout ? 'contact-list-' . sanitize_html_class( $layout ) : '' )) . '">';
+        $html .= '<div class="contact-list-container ' . sanitize_html_class( $elem_class ) . ' ' . (( $layout ? 'contact-list-' . sanitize_html_class( $layout ) : '' )) . '" data-elem-class="' . $elem_class . '">';
         
         if ( isset( $atts['contact'] ) || isset( $_GET['contact_id'] ) ) {
             $contact = ( isset( $atts['contact'] ) ? (int) $atts['contact'] : (int) $_GET['contact_id'] );
@@ -179,13 +179,21 @@ class ShortcodeContactList
             ) );
             
             if ( !isset( $atts['hide_search'] ) ) {
+                $search_contacts_class = 'contact-list-search-contacts';
                 $placeholder = ( isset( $s['search_contacts'] ) && $s['search_contacts'] ? ContactListHelpers::sanitize_attr_value( $s['search_contacts'] ) : ContactListHelpers::sanitize_attr_value( __( 'Search contacts...', 'contact-list' ) ) );
-                $html .= '<input type="text" id="search-contacts" placeholder="' . $placeholder . '">';
+                $html .= '<input type="text" id="search-contacts" class="' . $search_contacts_class . '" placeholder="' . $placeholder . '" data-elem-class="' . $elem_class . '" />';
             }
             
             if ( !isset( $atts['hide_filters'] ) ) {
-                $html .= ContactListPublicHelpers::searchFormMarkup( $atts, $s, $exclude );
+                $html .= ContactListPublicHelpers::searchFormMarkup(
+                    $atts,
+                    $s,
+                    $exclude,
+                    $elem_class
+                );
             }
+            $container_class = 'contact-list-search-results-container';
+            $html .= '<div class="' . $container_class . '">';
             
             if ( $wp_query_for_filter->have_posts() ) {
                 $html .= '<div class="contact-list-basic-nothing-found">';
@@ -254,6 +262,7 @@ class ShortcodeContactList
             if ( $wp_query->found_posts == 0 ) {
                 $html .= '<p>' . ContactListHelpers::getText( 'text_sr_no_contacts_found', __( 'No contacts found.', 'contact-list' ) ) . '</p>';
             }
+            $html .= '</div>';
         }
         
         $html .= '</div>';

@@ -2,8 +2,8 @@
 Contributors: anssilaitila, freemius
 Tags: directory plugin, business directory, listing, address book, staff list, staff directory, contact manager, company directory, church directory, contact directory, contacts, chamber of commerce
 Requires at least: 5.4.0
-Tested up to: 6.3
-Stable tag: 2.9.80
+Tested up to: 6.4
+Stable tag: 2.9.81
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -231,6 +231,11 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 6. Contact management
 
 == Changelog ==
+
+= 2.9.81 - 2023-10-31 =
+* (All plans) New shortcode to make the search require a button click, for input field search only: [contact_list hide_filters=1 disable_instant_search=1 search_button_text="Search"]
+* (All plans) New shortcode to make the search require a button click, for search filters only: [contact_list hide_search=1 disable_instant_search=1 search_button_text="Search"]
+* (Free + All plans) It is now possible to add different variations of the [contact_list] shortcode to the same page, and the search functions work correctly
 
 = 2.9.80 - 2023-10-06 =
 * (All plans) Fix: Phone numbers and single custom fields are now properly formatted when using single field values in the contact card's left and right column

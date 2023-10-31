@@ -187,9 +187,7 @@ class ContactListShortcodes
                   
                     <?php 
         echo  esc_html__( 'Hide contacts first (contacts are shown when searched or any filter is selected):', 'contact-list' ) ;
-        ?> <span class="cl-new-feature-inline"> <?php 
-        echo  esc_html__( 'New', 'contact-list' ) ;
-        ?></span>
+        ?>
                   
                     <?php 
         echo  wp_kses( $plan_info_markup_all_plans, $plan_info_markup_allowed_tags ) ;
@@ -205,6 +203,22 @@ class ContactListShortcodes
                   
                     <?php 
         echo  esc_html__( 'Hide contacts first and show only a single default contact:', 'contact-list' ) ;
+        ?> 
+                    
+                    <?php 
+        echo  wp_kses( $plan_info_markup_all_plans, $plan_info_markup_allowed_tags ) ;
+        ?>
+                  
+                    <span class="contact-list-shortcode contact-list-shortcode-5-1333">[contact_list hide_contacts_first=1 default_contact_id=12345]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-5-1333"><?php 
+        echo  esc_html__( 'Copy', 'contact-list' ) ;
+        ?></button>
+                  
+                  </li>
+
+                  <li>
+                  
+                    <?php 
+        echo  esc_html__( 'Make the search require a button click, for input field search only:', 'contact-list' ) ;
         ?> <span class="cl-new-feature-inline"> <?php 
         echo  esc_html__( 'New', 'contact-list' ) ;
         ?></span>
@@ -213,7 +227,25 @@ class ContactListShortcodes
         echo  wp_kses( $plan_info_markup_all_plans, $plan_info_markup_allowed_tags ) ;
         ?>
                   
-                    <span class="contact-list-shortcode contact-list-shortcode-5-1333">[contact_list hide_contacts_first=1 default_contact_id=12345]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-5-1333"><?php 
+                    <span class="contact-list-shortcode contact-list-shortcode-5-1333-155-1">[contact_list hide_filters=1 disable_instant_search=1 search_button_text="Search"]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-5-1333-155-1"><?php 
+        echo  esc_html__( 'Copy', 'contact-list' ) ;
+        ?></button>
+                  
+                  </li>
+
+                  <li>
+                  
+                    <?php 
+        echo  esc_html__( 'Make the search require a button click, for search filters only:', 'contact-list' ) ;
+        ?> <span class="cl-new-feature-inline"> <?php 
+        echo  esc_html__( 'New', 'contact-list' ) ;
+        ?></span>
+                  
+                    <?php 
+        echo  wp_kses( $plan_info_markup_all_plans, $plan_info_markup_allowed_tags ) ;
+        ?>
+                  
+                    <span class="contact-list-shortcode contact-list-shortcode-5-1333-155-2">[contact_list hide_search=1 disable_instant_search=1 search_button_text="Search"]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-5-1333-155-2"><?php 
         echo  esc_html__( 'Copy', 'contact-list' ) ;
         ?></button>
                   
@@ -355,9 +387,7 @@ class ContactListShortcodes
               
                 <?php 
         echo  esc_html__( 'Exclude groups:', 'contact-list' ) ;
-        ?> <span class="cl-new-feature-inline"> <?php 
-        echo  esc_html__( 'New', 'contact-list' ) ;
-        ?></span>
+        ?>
               
                 <?php 
         echo  wp_kses( $plan_info_markup_all_plans, $plan_info_markup_allowed_tags ) ;
@@ -390,9 +420,7 @@ class ContactListShortcodes
 
                 <li><?php 
             echo  esc_html__( 'Show these fields (check the fields from plugin settings, Simple list tab)', 'contact-list' ) ;
-            ?>: <span class="cl-new-feature-inline"> <?php 
-            echo  esc_html__( 'New', 'contact-list' ) ;
-            ?></span>
+            ?>:
                 
                   <?php 
             echo  wp_kses( $plan_info_markup_professional, $plan_info_markup_allowed_tags ) ;
@@ -543,18 +571,14 @@ class ContactListShortcodes
                 </li>
                 <li><?php 
         echo  esc_html__( 'Hide breadcrumbs:', 'contact-list' ) ;
-        ?> <span class="cl-new-feature-inline"> <?php 
-        echo  esc_html__( 'New', 'contact-list' ) ;
-        ?></span>
+        ?>
                   <span class="contact-list-shortcode contact-list-shortcode-188">[contact_list_groups hide_breadcrumbs=1]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-188"><?php 
         echo  esc_html__( 'Copy', 'contact-list' ) ;
         ?></button>
                 </li>
                 <li><?php 
         echo  esc_html__( 'Hide group title:', 'contact-list' ) ;
-        ?> <span class="cl-new-feature-inline"> <?php 
-        echo  esc_html__( 'New', 'contact-list' ) ;
-        ?></span>
+        ?>
                   <span class="contact-list-shortcode contact-list-shortcode-1888">[contact_list_groups group="sample-group" hide_group_title=1]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-1888"><?php 
         echo  esc_html__( 'Copy', 'contact-list' ) ;
         ?></button>
@@ -607,9 +631,8 @@ class ContactListShortcodes
         ?></button></li>
               <li><?php 
         echo  esc_html__( 'Show contacts that belong to any of these groups (comma separated group slugs)', 'contact-list' ) ;
-        ?>: <span class="cl-new-feature-inline"> <?php 
-        echo  esc_html__( 'New', 'contact-list' ) ;
-        ?></span> <span class="contact-list-shortcode contact-list-shortcode-139">[contact_list_groups groups__or="group-slug-1,group-slug-2"]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-139"><?php 
+        ?>:
+               <span class="contact-list-shortcode contact-list-shortcode-139">[contact_list_groups groups__or="group-slug-1,group-slug-2"]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-139"><?php 
         echo  esc_html__( 'Copy', 'contact-list' ) ;
         ?></button></li>
             </ul>
@@ -702,9 +725,7 @@ class ContactListShortcodes
             <ul>
               <li><?php 
         echo  esc_html__( 'Limit contacts to a specific group', 'contact-list' ) ;
-        ?>: <span class="cl-new-feature-inline"> <?php 
-        echo  esc_html__( 'New', 'contact-list' ) ;
-        ?></span> <span class="contact-list-shortcode contact-list-shortcode-13324">[contact_list_search group=GROUP_SLUG]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-13324"><?php 
+        ?>: <span class="contact-list-shortcode contact-list-shortcode-13324">[contact_list_search group=GROUP_SLUG]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-13324"><?php 
         echo  esc_html__( 'Copy', 'contact-list' ) ;
         ?></button></li>
             </ul>

@@ -224,7 +224,7 @@ class ContactListHelpers
     
     public static function createElemClass()
     {
-        $elem_class = 'cuid-' . uniqid();
+        $elem_class = 'contact-list-embed-' . uniqid();
         return $elem_class;
     }
     
