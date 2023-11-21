@@ -4,6 +4,7 @@ class ContactListPublicAjax
 {
     public function cl_get_contacts()
     {
+        $s = get_option( 'contact_list_settings' );
         $html = '';
         $atts = [];
         $post_params_active = 0;

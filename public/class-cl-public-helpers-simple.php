@@ -131,8 +131,8 @@ class ContactListPublicHelpersSimple
                 $html .= '</span></div>';
             }
             
-            $custom_fields = [ 1 ];
-            foreach ( $custom_fields as $n ) {
+            $custom_fields_cnt = 1 + 1;
+            for ( $n = 1 ;  $n < $custom_fields_cnt ;  $n++ ) {
                 
                 if ( isset( $s['simple_list_show_custom_field_' . $n] ) ) {
                     $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-title"><span>';
@@ -190,9 +190,10 @@ class ContactListPublicHelpersSimple
                 $field_name_db = '_cl_' . $f;
                 switch ( $field_name ) {
                     case 'full_name':
-                        $simple_list_modal = 0;
+                        $simple_list_name_link_active = 0;
+                        $simple_list_name_link = '';
                         
-                        if ( !$simple_list_modal ) {
+                        if ( !$simple_list_name_link_active ) {
                             $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-name contact-list-simple-list-col-' . $field_name . '"><span>';
                             $html .= sanitize_text_field( $contact_fullname );
                             $html .= '</span></div>';
@@ -381,6 +382,34 @@ class ContactListPublicHelpersSimple
                         break;
                     case 'custom_field_6':
                         break;
+                    case 'custom_field_7':
+                        break;
+                    case 'custom_field_8':
+                        break;
+                    case 'custom_field_9':
+                        break;
+                    case 'custom_field_10':
+                        break;
+                    case 'custom_field_11':
+                        break;
+                    case 'custom_field_12':
+                        break;
+                    case 'custom_field_13':
+                        break;
+                    case 'custom_field_14':
+                        break;
+                    case 'custom_field_15':
+                        break;
+                    case 'custom_field_16':
+                        break;
+                    case 'custom_field_17':
+                        break;
+                    case 'custom_field_18':
+                        break;
+                    case 'custom_field_19':
+                        break;
+                    case 'custom_field_20':
+                        break;
                     case 'category':
                         $show_data = 1;
                         if ( !isset( $s['simple_list_show_category'] ) ) {
@@ -390,15 +419,21 @@ class ContactListPublicHelpersSimple
                         if ( $override || $show_data ) {
                             $terms = get_the_terms( $id, 'contact-group' );
                             $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-' . $field_name . '"><span>';
+                            $simple_list_group_link = '';
                             
                             if ( $terms ) {
                                 $html .= '<div class="contact-list-simple-contact-groups">';
                                 foreach ( $terms as $term ) {
                                     $t_id = intval( $term->term_id );
                                     $custom_fields = get_option( "taxonomy_term_{$t_id}" );
+                                    
                                     if ( !isset( $custom_fields['hide_group'] ) ) {
-                                        $html .= '<span>' . sanitize_text_field( $term->name ) . '</span>';
+                                        $simple_list_group_link_active = 0;
+                                        if ( !$simple_list_group_link_active ) {
+                                            $html .= '<span>' . sanitize_text_field( $term->name ) . '</span>';
+                                        }
                                     }
+                                
                                 }
                                 $html .= '</div>';
                             }

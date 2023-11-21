@@ -17,6 +17,7 @@ class ContactListSettings
     public function contact_list_settings_init()
     {
         $only_pro = '_FREE_';
+        $s = get_option( 'contact_list_settings' );
         register_setting( 'contact-list', 'contact_list_settings' );
         add_settings_section(
             'contact-list_section_general',
@@ -895,6 +896,20 @@ class ContactListSettings
             array( $this, 'contact_list_settings_tab_' . $tab . '_callback' ),
             'contact-list'
         );
+        if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'pro' ) || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
+            add_settings_field(
+                'contact-list-' . $only_pro . 'custom_fields_cnt',
+                sanitize_text_field( __( 'Number of custom fields', 'contact-list' ) ),
+                array( $this, 'custom_fields_cnt_render' ),
+                'contact-list',
+                'contact-list_tab_' . $tab,
+                array(
+                'label_for'   => 'contact-list-' . $only_pro . 'custom_fields_cnt',
+                'field_name'  => $only_pro . 'custom_fields_cnt',
+                'placeholder' => '',
+            )
+            );
+        }
         add_settings_field(
             'contact-list-' . $only_pro . 'disable_automatic_linking',
             sanitize_text_field( __( 'Disable automatic linking of partial custom field content that look like urls', 'contact-list' ) ),
@@ -906,316 +921,59 @@ class ContactListSettings
             'field_name' => $only_pro . 'disable_automatic_linking',
         )
         );
-        add_settings_field(
-            'contact-list-custom_field_1_title',
-            sanitize_text_field( __( 'Custom field 1 title', 'contact-list' ) ),
-            array( $this, 'input_render' ),
-            'contact-list',
-            'contact-list_tab_' . $tab,
-            array(
-            'label_for'   => 'contact-list-custom_field_1_title',
-            'field_name'  => 'custom_field_1_title',
-            'placeholder' => sanitize_text_field( __( 'Custom field 1', 'contact-list' ) ),
-        )
-        );
-        add_settings_field(
-            'contact-list-custom_field_1_type',
-            sanitize_text_field( __( 'Custom field 1 type', 'contact-list' ) ),
-            array( $this, 'input_render' ),
-            'contact-list',
-            'contact-list_tab_' . $tab,
-            array(
-            'label_for'  => 'contact-list-custom_field_1_type',
-            'field_name' => 'custom_field_1_type',
-        )
-        );
-        if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'pro' ) || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
+        $custom_fields_cnt = 1 + 1;
+        for ( $n = 1 ;  $n < $custom_fields_cnt ;  $n++ ) {
+            $placeholder = esc_attr__( 'Custom field', 'contact-list' ) . ' ' . $n;
             add_settings_field(
-                'contact-list-' . $only_pro . 'custom_field_1_hide_from_contact_card',
-                sanitize_text_field( __( 'Hide from contact card', 'contact-list' ) ),
-                array( $this, 'checkbox_render' ),
+                'contact-list-custom_field_' . $n . '_title',
+                sanitize_text_field( __( 'Custom field title', 'contact-list' ) . ' ' . $n ),
+                array( $this, 'input_render' ),
                 'contact-list',
                 'contact-list_tab_' . $tab,
                 array(
-                'label_for'  => 'contact-list-' . $only_pro . 'custom_field_1_hide_from_contact_card',
-                'field_name' => $only_pro . 'custom_field_1_hide_from_contact_card',
+                'label_for'   => 'contact-list-custom_field_' . $n . '_title',
+                'field_name'  => 'custom_field_' . $n . '_title',
+                'placeholder' => $placeholder,
             )
             );
-        }
-        add_settings_field(
-            'contact-list-custom_field_1_link_text',
-            sanitize_text_field( __( 'Link text (only applicable if the custom field content is a URL)', 'contact-list' ) ),
-            array( $this, 'input_render' ),
-            'contact-list',
-            'contact-list_tab_' . $tab,
-            array(
-            'label_for'   => 'contact-list-custom_field_1_link_text',
-            'field_name'  => 'custom_field_1_link_text',
-            'placeholder' => '',
-        )
-        );
-        add_settings_field(
-            'contact-list-custom_field_1_icon',
-            sanitize_text_field( __( 'Icon for custom field 1', 'contact-list' ) ),
-            array( $this, 'icon_render' ),
-            'contact-list',
-            'contact-list_tab_' . $tab,
-            array(
-            'label_for'   => 'contact-list-custom_field_1_icon',
-            'field_name'  => 'custom_field_1_icon',
-            'placeholder' => '',
-        )
-        );
-        $placeholder = '';
-        add_settings_field(
-            'contact-list-' . $only_pro . 'custom_field_2_title',
-            sanitize_text_field( __( 'Custom field 2 title', 'contact-list' ) ),
-            array( $this, 'input_render' ),
-            'contact-list',
-            'contact-list_tab_' . $tab,
-            array(
-            'label_for'   => 'contact-list-' . $only_pro . 'custom_field_2_title',
-            'field_name'  => $only_pro . 'custom_field_2_title',
-            'placeholder' => $placeholder,
-        )
-        );
-        if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'pro' ) || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
+            if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'pro' ) || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
+                add_settings_field(
+                    'contact-list-' . $only_pro . 'custom_field_' . $n . '_hide_from_contact_card',
+                    sanitize_text_field( __( 'Hide from contact card', 'contact-list' ) ),
+                    array( $this, 'checkbox_render' ),
+                    'contact-list',
+                    'contact-list_tab_' . $tab,
+                    array(
+                    'label_for'  => 'contact-list-' . $only_pro . 'custom_field_' . $n . '_hide_from_contact_card',
+                    'field_name' => $only_pro . 'custom_field_' . $n . '_hide_from_contact_card',
+                )
+                );
+            }
             add_settings_field(
-                'contact-list-' . $only_pro . 'custom_field_2_hide_from_contact_card',
-                sanitize_text_field( __( 'Hide from contact card', 'contact-list' ) ),
-                array( $this, 'checkbox_render' ),
+                'contact-list-custom_field_' . $n . '_link_text',
+                sanitize_text_field( __( 'Link text (only applicable if the custom field content is a URL)', 'contact-list' ) ),
+                array( $this, 'input_render' ),
                 'contact-list',
                 'contact-list_tab_' . $tab,
                 array(
-                'label_for'  => 'contact-list-' . $only_pro . 'custom_field_2_hide_from_contact_card',
-                'field_name' => $only_pro . 'custom_field_2_hide_from_contact_card',
+                'label_for'   => 'contact-list-custom_field_' . $n . '_link_text',
+                'field_name'  => 'custom_field_' . $n . '_link_text',
+                'placeholder' => '',
             )
             );
-        }
-        add_settings_field(
-            'contact-list-' . $only_pro . 'custom_field_2_link_text',
-            sanitize_text_field( __( 'Link text (only applicable if the custom field content is a URL)', 'contact-list' ) ),
-            array( $this, 'input_render' ),
-            'contact-list',
-            'contact-list_tab_' . $tab,
-            array(
-            'label_for'   => 'contact-list-' . $only_pro . 'custom_field_2_link_text',
-            'field_name'  => $only_pro . 'custom_field_2_link_text',
-            'placeholder' => '',
-        )
-        );
-        add_settings_field(
-            'contact-list-' . $only_pro . 'custom_field_2_icon',
-            sanitize_text_field( __( 'Icon for custom field 2', 'contact-list' ) ),
-            array( $this, 'icon_render' ),
-            'contact-list',
-            'contact-list_tab_' . $tab,
-            array(
-            'label_for'   => 'contact-list-' . $only_pro . 'custom_field_2_icon',
-            'field_name'  => $only_pro . 'custom_field_2_icon',
-            'placeholder' => '',
-        )
-        );
-        $placeholder = '';
-        add_settings_field(
-            'contact-list-' . $only_pro . 'custom_field_3_title',
-            sanitize_text_field( __( 'Custom field 3 title', 'contact-list' ) ),
-            array( $this, 'input_render' ),
-            'contact-list',
-            'contact-list_tab_' . $tab,
-            array(
-            'label_for'   => 'contact-list-' . $only_pro . 'custom_field_3_title',
-            'field_name'  => $only_pro . 'custom_field_3_title',
-            'placeholder' => $placeholder,
-        )
-        );
-        if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'pro' ) || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
             add_settings_field(
-                'contact-list-' . $only_pro . 'custom_field_3_hide_from_contact_card',
-                sanitize_text_field( __( 'Hide from contact card', 'contact-list' ) ),
-                array( $this, 'checkbox_render' ),
+                'contact-list-custom_field_' . $n . '_icon',
+                sanitize_text_field( __( 'Icon for custom field', 'contact-list' ) . ' ' . $n ),
+                array( $this, 'icon_render' ),
                 'contact-list',
                 'contact-list_tab_' . $tab,
                 array(
-                'label_for'  => 'contact-list-' . $only_pro . 'custom_field_3_hide_from_contact_card',
-                'field_name' => $only_pro . 'custom_field_3_hide_from_contact_card',
+                'label_for'   => 'contact-list-custom_field_' . $n . '_icon',
+                'field_name'  => 'custom_field_' . $n . '_icon',
+                'placeholder' => '',
             )
             );
         }
-        add_settings_field(
-            'contact-list-' . $only_pro . 'custom_field_3_link_text',
-            sanitize_text_field( __( 'Link text (only applicable if the custom field content is a URL)', 'contact-list' ) ),
-            array( $this, 'input_render' ),
-            'contact-list',
-            'contact-list_tab_' . $tab,
-            array(
-            'label_for'   => 'contact-list-' . $only_pro . 'custom_field_3_link_text',
-            'field_name'  => $only_pro . 'custom_field_3_link_text',
-            'placeholder' => '',
-        )
-        );
-        add_settings_field(
-            'contact-list-' . $only_pro . 'custom_field_3_icon',
-            sanitize_text_field( __( 'Icon for custom field 3', 'contact-list' ) ),
-            array( $this, 'icon_render' ),
-            'contact-list',
-            'contact-list_tab_' . $tab,
-            array(
-            'label_for'   => 'contact-list-' . $only_pro . 'custom_field_3_icon',
-            'field_name'  => $only_pro . 'custom_field_3_icon',
-            'placeholder' => '',
-        )
-        );
-        $placeholder = '';
-        add_settings_field(
-            'contact-list-' . $only_pro . 'custom_field_4_title',
-            sanitize_text_field( __( 'Custom field 4 title', 'contact-list' ) ),
-            array( $this, 'input_render' ),
-            'contact-list',
-            'contact-list_tab_' . $tab,
-            array(
-            'label_for'   => 'contact-list-' . $only_pro . 'custom_field_4_title',
-            'field_name'  => $only_pro . 'custom_field_4_title',
-            'placeholder' => $placeholder,
-        )
-        );
-        if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'pro' ) || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
-            add_settings_field(
-                'contact-list-' . $only_pro . 'custom_field_4_hide_from_contact_card',
-                sanitize_text_field( __( 'Hide from contact card', 'contact-list' ) ),
-                array( $this, 'checkbox_render' ),
-                'contact-list',
-                'contact-list_tab_' . $tab,
-                array(
-                'label_for'  => 'contact-list-' . $only_pro . 'custom_field_4_hide_from_contact_card',
-                'field_name' => $only_pro . 'custom_field_4_hide_from_contact_card',
-            )
-            );
-        }
-        add_settings_field(
-            'contact-list-' . $only_pro . 'custom_field_4_link_text',
-            sanitize_text_field( __( 'Link text (only applicable if the custom field content is a URL)', 'contact-list' ) ),
-            array( $this, 'input_render' ),
-            'contact-list',
-            'contact-list_tab_' . $tab,
-            array(
-            'label_for'   => 'contact-list-' . $only_pro . 'custom_field_4_link_text',
-            'field_name'  => $only_pro . 'custom_field_4_link_text',
-            'placeholder' => '',
-        )
-        );
-        add_settings_field(
-            'contact-list-' . $only_pro . 'custom_field_4_icon',
-            sanitize_text_field( __( 'Icon for custom field 4', 'contact-list' ) ),
-            array( $this, 'icon_render' ),
-            'contact-list',
-            'contact-list_tab_' . $tab,
-            array(
-            'label_for'   => 'contact-list-' . $only_pro . 'custom_field_4_icon',
-            'field_name'  => $only_pro . 'custom_field_4_icon',
-            'placeholder' => '',
-        )
-        );
-        $placeholder = '';
-        add_settings_field(
-            'contact-list-' . $only_pro . 'custom_field_5_title',
-            sanitize_text_field( __( 'Custom field 5 title', 'contact-list' ) ),
-            array( $this, 'input_render' ),
-            'contact-list',
-            'contact-list_tab_' . $tab,
-            array(
-            'label_for'   => 'contact-list-' . $only_pro . 'custom_field_5_title',
-            'field_name'  => $only_pro . 'custom_field_5_title',
-            'placeholder' => $placeholder,
-        )
-        );
-        if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'pro' ) || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
-            add_settings_field(
-                'contact-list-' . $only_pro . 'custom_field_5_hide_from_contact_card',
-                sanitize_text_field( __( 'Hide from contact card', 'contact-list' ) ),
-                array( $this, 'checkbox_render' ),
-                'contact-list',
-                'contact-list_tab_' . $tab,
-                array(
-                'label_for'  => 'contact-list-' . $only_pro . 'custom_field_5_hide_from_contact_card',
-                'field_name' => $only_pro . 'custom_field_5_hide_from_contact_card',
-            )
-            );
-        }
-        add_settings_field(
-            'contact-list-' . $only_pro . 'custom_field_5_link_text',
-            sanitize_text_field( __( 'Link text (only applicable if the custom field content is a URL)', 'contact-list' ) ),
-            array( $this, 'input_render' ),
-            'contact-list',
-            'contact-list_tab_' . $tab,
-            array(
-            'label_for'   => 'contact-list-' . $only_pro . 'custom_field_5_link_text',
-            'field_name'  => $only_pro . 'custom_field_5_link_text',
-            'placeholder' => '',
-        )
-        );
-        add_settings_field(
-            'contact-list-' . $only_pro . 'custom_field_5_icon',
-            sanitize_text_field( __( 'Icon for custom field 5', 'contact-list' ) ),
-            array( $this, 'icon_render' ),
-            'contact-list',
-            'contact-list_tab_' . $tab,
-            array(
-            'label_for'   => 'contact-list-' . $only_pro . 'custom_field_5_icon',
-            'field_name'  => $only_pro . 'custom_field_5_icon',
-            'placeholder' => '',
-        )
-        );
-        $placeholder = '';
-        add_settings_field(
-            'contact-list-' . $only_pro . 'custom_field_6_title',
-            sanitize_text_field( __( 'Custom field 6 title', 'contact-list' ) ),
-            array( $this, 'input_render' ),
-            'contact-list',
-            'contact-list_tab_' . $tab,
-            array(
-            'label_for'   => 'contact-list-' . $only_pro . 'custom_field_6_title',
-            'field_name'  => $only_pro . 'custom_field_6_title',
-            'placeholder' => $placeholder,
-        )
-        );
-        if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'pro' ) || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
-            add_settings_field(
-                'contact-list-' . $only_pro . 'custom_field_6_hide_from_contact_card',
-                sanitize_text_field( __( 'Hide from contact card', 'contact-list' ) ),
-                array( $this, 'checkbox_render' ),
-                'contact-list',
-                'contact-list_tab_' . $tab,
-                array(
-                'label_for'  => 'contact-list-' . $only_pro . 'custom_field_6_hide_from_contact_card',
-                'field_name' => $only_pro . 'custom_field_6_hide_from_contact_card',
-            )
-            );
-        }
-        add_settings_field(
-            'contact-list-' . $only_pro . 'custom_field_6_link_text',
-            sanitize_text_field( __( 'Link text (only applicable if the custom field content is a URL)', 'contact-list' ) ),
-            array( $this, 'input_render' ),
-            'contact-list',
-            'contact-list_tab_' . $tab,
-            array(
-            'label_for'   => 'contact-list-' . $only_pro . 'custom_field_6_link_text',
-            'field_name'  => $only_pro . 'custom_field_6_link_text',
-            'placeholder' => '',
-        )
-        );
-        add_settings_field(
-            'contact-list-' . $only_pro . 'custom_field_6_icon',
-            sanitize_text_field( __( 'Icon for custom field 6', 'contact-list' ) ),
-            array( $this, 'icon_render' ),
-            'contact-list',
-            'contact-list_tab_' . $tab,
-            array(
-            'label_for'   => 'contact-list-' . $only_pro . 'custom_field_6_icon',
-            'field_name'  => $only_pro . 'custom_field_6_icon',
-            'placeholder' => '',
-        )
-        );
         add_settings_section(
             'contact-list_section',
             '',
@@ -2436,19 +2194,32 @@ class ContactListSettings
             'placeholder' => $placeholder,
         )
         );
+        
         if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'pro' ) || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
             add_settings_field(
-                'contact-list-' . $only_pro . 'simple_list_modal',
-                sanitize_text_field( __( 'Contact names are links to the contact card lightbox', 'contact-list' ) ),
-                array( $this, 'checkbox_render' ),
+                'contact-list-' . $only_pro . 'simple_list_name_link',
+                sanitize_text_field( __( 'Contact names are links to...', 'contact-list' ) ),
+                array( $this, 'simple_list_name_link_render' ),
                 'contact-list',
                 'contact-list_simple_list_settings',
                 array(
-                'label_for'  => 'contact-list-' . $only_pro . 'simple_list_modal',
-                'field_name' => $only_pro . 'simple_list_modal',
+                'label_for'  => 'contact-list-' . $only_pro . 'simple_list_name_link',
+                'field_name' => $only_pro . 'simple_list_name_link',
+            )
+            );
+            add_settings_field(
+                'contact-list-' . $only_pro . 'simple_list_group_link',
+                sanitize_text_field( __( 'Group names are links to...', 'contact-list' ) ),
+                array( $this, 'simple_list_group_link_render' ),
+                'contact-list',
+                'contact-list_simple_list_settings',
+                array(
+                'label_for'  => 'contact-list-' . $only_pro . 'simple_list_group_link',
+                'field_name' => $only_pro . 'simple_list_group_link',
             )
             );
         }
+        
         add_settings_section(
             'contact-list_simple_list',
             '',
@@ -2579,14 +2350,8 @@ class ContactListSettings
             )
             );
         }
-        $custom_fields = [
-            2,
-            3,
-            4,
-            5,
-            6
-        ];
-        foreach ( $custom_fields as $n ) {
+        $custom_fields_cnt = 6 + 1;
+        for ( $n = 2 ;  $n < $custom_fields_cnt ;  $n++ ) {
             add_settings_field(
                 'contact-list-' . $only_pro . 'simple_list_show_custom_field_' . $n,
                 sanitize_text_field( __( 'Show custom field', 'contact-list' ) . ' ' . $n ),
@@ -2782,6 +2547,7 @@ class ContactListSettings
         
         if ( $field_name = $args['field_name'] ) {
             $options = get_option( 'contact_list_settings' );
+            $s = get_option( 'contact_list_settings' );
             ?>    
   
       <?php 
@@ -3051,43 +2817,26 @@ class ContactListSettings
                         array(
                         'name'  => 'address_line_4',
                         'title' => sanitize_text_field( __( 'Address Line 4', 'contact-list' ) ),
-                    ),
-                        array(
-                        'name'  => 'custom_field_1',
-                        'title' => sanitize_text_field( __( 'Custom field 1', 'contact-list' ) ),
-                    ),
-                        array(
-                        'name'  => 'custom_field_2',
-                        'title' => sanitize_text_field( __( 'Custom field 2', 'contact-list' ) ),
-                    ),
-                        array(
-                        'name'  => 'custom_field_3',
-                        'title' => sanitize_text_field( __( 'Custom field 3', 'contact-list' ) ),
-                    ),
-                        array(
-                        'name'  => 'custom_field_4',
-                        'title' => sanitize_text_field( __( 'Custom field 4', 'contact-list' ) ),
-                    ),
-                        array(
-                        'name'  => 'custom_field_5',
-                        'title' => sanitize_text_field( __( 'Custom field 5', 'contact-list' ) ),
-                    ),
-                        array(
-                        'name'  => 'custom_field_6',
-                        'title' => sanitize_text_field( __( 'Custom field 6', 'contact-list' ) ),
-                    ),
-                        array(
+                    )
+                    );
+                    $custom_fields_cnt = 6 + 1;
+                    for ( $n = 1 ;  $n < $custom_fields_cnt ;  $n++ ) {
+                        $simple_list_fields[] = array(
+                            'name'  => 'custom_field_' . $n,
+                            'title' => sanitize_text_field( __( 'Custom field', 'contact-list' ) . ' ' . $n ),
+                        );
+                    }
+                    $simple_list_fields[] = array(
                         'name'  => 'description',
                         'title' => sanitize_text_field( __( 'Additional information', 'contact-list' ) ),
-                    ),
-                        array(
+                    );
+                    $simple_list_fields[] = array(
                         'name'  => 'category',
                         'title' => sanitize_text_field( __( 'Category', 'contact-list' ) ),
-                    ),
-                        array(
+                    );
+                    $simple_list_fields[] = array(
                         'name'  => 'send_message',
                         'title' => sanitize_text_field( __( 'Send message', 'contact-list' ) ),
-                    )
                     );
                 }
                 
@@ -3471,7 +3220,7 @@ class ContactListSettings
                 ?>
 
         <p><?php 
-                echo  esc_html__( 'e.g. /wp-content/uploads/2023/01/custom-icon-1.png or any full url', 'shared-files' ) ;
+                echo  esc_html__( 'e.g. /wp-content/uploads/2023/01/custom-icon-1.png or any full url', 'contact-list' ) ;
                 ?></p>
 
       <?php 
@@ -3479,7 +3228,7 @@ class ContactListSettings
                 ?>
         
         <p><?php 
-                echo  esc_html__( 'e.g. /wp-content/uploads/2023/01/custom-icon-2.png or any full url', 'shared-files' ) ;
+                echo  esc_html__( 'e.g. /wp-content/uploads/2023/01/custom-icon-2.png or any full url', 'contact-list' ) ;
                 ?></p>
 
       <?php 
@@ -3786,6 +3535,92 @@ class ContactListSettings
     
     }
     
+    public function custom_fields_cnt_render( $args )
+    {
+        
+        if ( $field_name = $args['field_name'] ) {
+            $options = get_option( 'contact_list_settings' );
+            $val = '';
+            if ( isset( $options[$args['field_name']] ) ) {
+                $val = sanitize_text_field( $options[$args['field_name']] );
+            }
+            ?>
+  
+      <?php 
+            $free = 0;
+            ?>
+      <?php 
+            $free_class = '';
+            ?>
+      <?php 
+            $plan_required = 'Professional';
+            ?>
+      
+      <?php 
+            
+            if ( substr( $field_name, 0, strlen( '_FREE_' ) ) === '_FREE_' ) {
+                ?>
+        <?php 
+                $free = 1;
+                ?>
+        <?php 
+                $free_class = 'contact-list-setting-container-free';
+                ?>
+      <?php 
+            }
+            
+            ?>
+      
+      <div class="contact-list-setting-container <?php 
+            echo  esc_attr( $free_class ) ;
+            ?>">
+      
+        <?php 
+            
+            if ( $free ) {
+                ?>
+        
+          <a href="<?php 
+                echo  esc_url( get_admin_url() ) ;
+                ?>options-general.php?page=contact-list-pricing">
+            <div class="contact-list-settings-pro-feature-overlay"><div><?php 
+                echo  esc_html( $plan_required ) ;
+                ?></div></div>
+          </a>
+        
+        <?php 
+            } else {
+                ?>
+
+          <?php 
+                ?>
+        
+        <?php 
+            }
+            
+            ?>
+  
+      </div>
+
+      <?php 
+            
+            if ( $free ) {
+                ?>
+        <div class="email-info">
+          <?php 
+                echo  esc_html__( 'The Personal plan has 6 custom fields, Professional and Business any number.', 'contact-list' ) ;
+                ?><br />
+        </div>
+      <?php 
+            }
+            
+            ?>
+
+      <?php 
+        }
+    
+    }
+    
     public function icon_render( $args )
     {
         
@@ -4055,6 +3890,145 @@ class ContactListSettings
             echo  esc_html__( 'without contact images', 'contact-list' ) ;
             ?>)</option>
       </select>
+      <?php 
+        }
+    
+    }
+    
+    public function simple_list_name_link_render( $args )
+    {
+        
+        if ( $args['field_name'] ) {
+            $field_name = $args['field_name'];
+            $options = get_option( 'contact_list_settings' );
+            $sel = '';
+            if ( isset( $options[$args['field_name']] ) ) {
+                $sel = sanitize_text_field( $options[$args['field_name']] );
+            }
+            if ( !$sel && isset( $options['simple_list_modal'] ) ) {
+                $sel = 'contact-card-lightbox';
+            }
+            ?>    
+
+      <?php 
+            $free = 0;
+            ?>
+      <?php 
+            $free_class = '';
+            ?>
+      
+      <?php 
+            
+            if ( substr( $field_name, 0, strlen( '_FREE_' ) ) === '_FREE_' ) {
+                ?>
+        <?php 
+                $free = 1;
+                ?>
+        <?php 
+                $free_class = 'contact-list-setting-container-free';
+                ?>
+      <?php 
+            }
+            
+            ?>
+      
+      <div class="contact-list-setting-container <?php 
+            echo  esc_attr( $free_class ) ;
+            ?>">
+      
+        <?php 
+            
+            if ( $free ) {
+                ?>
+      
+          <a href="<?php 
+                echo  esc_url( get_admin_url() ) ;
+                ?>options-general.php?page=contact-list-pricing">
+            <div class="contact-list-settings-pro-feature-overlay"><div>All Plans</div></div>
+          </a>
+      
+        <?php 
+            } else {
+                ?>
+
+          <?php 
+                ?>
+          
+        <?php 
+            }
+            
+            ?>
+        
+      </div>
+
+      <?php 
+        }
+    
+    }
+    
+    public function simple_list_group_link_render( $args )
+    {
+        
+        if ( $args['field_name'] ) {
+            $field_name = $args['field_name'];
+            $options = get_option( 'contact_list_settings' );
+            $layout = '';
+            if ( isset( $options[$args['field_name']] ) ) {
+                $layout = sanitize_text_field( $options[$args['field_name']] );
+            }
+            ?>    
+
+      <?php 
+            $free = 0;
+            ?>
+      <?php 
+            $free_class = '';
+            ?>
+      
+      <?php 
+            
+            if ( substr( $field_name, 0, strlen( '_FREE_' ) ) === '_FREE_' ) {
+                ?>
+        <?php 
+                $free = 1;
+                ?>
+        <?php 
+                $free_class = 'contact-list-setting-container-free';
+                ?>
+      <?php 
+            }
+            
+            ?>
+      
+      <div class="contact-list-setting-container <?php 
+            echo  esc_attr( $free_class ) ;
+            ?>">
+      
+        <?php 
+            
+            if ( $free ) {
+                ?>
+      
+          <a href="<?php 
+                echo  esc_url( get_admin_url() ) ;
+                ?>options-general.php?page=contact-list-pricing">
+            <div class="contact-list-settings-pro-feature-overlay"><div>All Plans</div></div>
+          </a>
+      
+        <?php 
+            } else {
+                ?>
+
+          <?php 
+                ?>
+                
+        <?php 
+            }
+            
+            ?>
+        
+      </div>
+            
       <?php 
         }
     

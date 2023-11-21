@@ -74,6 +74,15 @@ class ShortcodeContactListSimple
             );
         }
         $tax_query = [];
+        $group_slug = '';
+        $group_name = '';
+        $show_group_title = 0;
+        
+        if ( $show_group_title ) {
+            $html .= '<div class="contact-list-simple-back-link-container"><a href="javascript:history.go(-1)">&lt;&lt; ' . sanitize_text_field( __( 'Back', 'contact-list' ) ) . '</a></div>';
+            $html .= '<h2 class="contact-list-simple-group-title">' . $group_name . '</h2>';
+        }
+        
         
         if ( isset( $_GET['cl_cat'] ) && $_GET['cl_cat'] ) {
             $tax_query = [
@@ -95,14 +104,14 @@ class ShortcodeContactListSimple
                 ];
             }
         
-        } elseif ( isset( $atts['group'] ) && $atts['group'] ) {
+        } elseif ( $group_slug ) {
             $tax_query = [
                 'relation' => 'AND',
             ];
             $tax_query[] = [
                 'taxonomy' => 'contact-group',
                 'field'    => 'slug',
-                'terms'    => sanitize_title( $atts['group'] ),
+                'terms'    => $group_slug,
             ];
         } elseif ( isset( $atts['exclude_groups'] ) && $atts['exclude_groups'] ) {
             $terms = explode( ',', sanitize_text_field( $atts['exclude_groups'] ) );

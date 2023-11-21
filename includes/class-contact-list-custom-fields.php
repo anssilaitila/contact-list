@@ -16,6 +16,7 @@ class ContactListCustomFields
     public  $customFields = array() ;
     function __construct()
     {
+        $s = get_option( 'contact_list_settings' );
         $this->prefix = '_cl_';
         $this->postTypes = array( 'contact' );
         $this->customFields = array(
@@ -235,71 +236,34 @@ class ContactListCustomFields
             'type'        => 'title',
             'scope'       => array( 'contact' ),
             'capability'  => 'edit_posts',
-        ),
-            array(
-            'name'        => 'custom_field_1',
-            'title'       => sanitize_text_field( __( 'Custom field 1', 'contact-list' ) ),
-            'description' => '',
-            'type'        => 'text',
-            'scope'       => array( 'contact' ),
-            'capability'  => 'edit_posts',
-        ),
-            array(
-            'name'        => 'custom_field_2',
-            'title'       => sanitize_text_field( __( 'Custom field 2', 'contact-list' ) ),
-            'description' => '',
-            'type'        => 'text',
-            'scope'       => array( 'contact' ),
-            'capability'  => 'edit_posts',
-        ),
-            array(
-            'name'        => 'custom_field_3',
-            'title'       => sanitize_text_field( __( 'Custom field 3', 'contact-list' ) ),
-            'description' => '',
-            'type'        => 'text',
-            'scope'       => array( 'contact' ),
-            'capability'  => 'edit_posts',
-        ),
-            array(
-            'name'        => 'custom_field_4',
-            'title'       => sanitize_text_field( __( 'Custom field 4', 'contact-list' ) ),
-            'description' => '',
-            'type'        => 'text',
-            'scope'       => array( 'contact' ),
-            'capability'  => 'edit_posts',
-        ),
-            array(
-            'name'        => 'custom_field_5',
-            'title'       => sanitize_text_field( __( 'Custom field 5', 'contact-list' ) ),
-            'description' => '',
-            'type'        => 'text',
-            'scope'       => array( 'contact' ),
-            'capability'  => 'edit_posts',
-        ),
-            array(
-            'name'        => 'custom_field_6',
-            'title'       => sanitize_text_field( __( 'Custom field 6', 'contact-list' ) ),
-            'description' => '',
-            'type'        => 'text',
-            'scope'       => array( 'contact' ),
-            'capability'  => 'edit_posts',
-        ),
-            array(
+        )
+        );
+        $custom_fields_cnt = 6 + 1;
+        for ( $n = 1 ;  $n < $custom_fields_cnt ;  $n++ ) {
+            $this->customFields[] = array(
+                'name'        => 'custom_field_' . $n,
+                'title'       => sanitize_text_field( __( 'Custom field', 'contact-list' ) . ' ' . $n ),
+                'description' => '',
+                'type'        => 'text',
+                'scope'       => array( 'contact' ),
+                'capability'  => 'edit_posts',
+            );
+        }
+        $this->customFields[] = array(
             'name'        => 'additional_info',
             'title'       => sanitize_text_field( __( 'Additional information', 'contact-list' ) ),
             'description' => '',
             'type'        => 'title',
             'scope'       => array( 'contact' ),
             'capability'  => 'edit_posts',
-        ),
-            array(
+        );
+        $this->customFields[] = array(
             'name'        => 'description',
             'title'       => sanitize_text_field( __( 'Description', 'contact-list' ) ),
             'description' => '',
             'type'        => 'wysiwyg_v2',
             'scope'       => array( 'contact' ),
             'capability'  => 'edit_posts',
-        )
         );
         add_action( 'admin_menu', array( $this, 'createCustomFields' ) );
         add_action(
@@ -433,7 +397,7 @@ class ContactListCustomFields
                 continue;
             } elseif ( $is_premium && $customField['name'] == 'custom_url_2' && !isset( $options['custom_url_2_active'] ) ) {
                 continue;
-            } elseif ( ($customField['name'] == 'custom_fields' || $customField['name'] == 'custom_field_1' || $customField['name'] == 'custom_field_2' || $customField['name'] == 'custom_field_3' || $customField['name'] == 'custom_field_4' || $customField['name'] == 'custom_field_5' || $customField['name'] == 'custom_field_6') && isset( $options['af_hide_custom_fields'] ) ) {
+            } elseif ( ($customField['name'] == 'custom_fields' || strpos( $customField['name'], 'custom_field_' ) !== false) && isset( $options['af_hide_custom_fields'] ) ) {
                 continue;
             } elseif ( ($customField['name'] == 'additional_info' || $customField['name'] == 'description') && isset( $options['af_hide_additional_info'] ) ) {
                 continue;

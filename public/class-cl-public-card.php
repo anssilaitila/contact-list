@@ -396,9 +396,9 @@ class ContactListCard
                 
                 break;
             case 'custom_fields':
-                $custom_fields = [ 1 ];
+                $custom_fields_cnt = 1 + 1;
                 $html .= '<div class="contact-list-custom-fields-container">';
-                foreach ( $custom_fields as $n ) {
+                for ( $n = 1 ;  $n < $custom_fields_cnt ;  $n++ ) {
                     if ( isset( $s['custom_field_' . $n . '_hide_from_contact_card'] ) ) {
                         continue;
                     }
@@ -556,7 +556,7 @@ class ContactListCard
                                 $html .= '</span>';
                             }
                         
-                        } elseif ( $field == 'custom_field_1' || $field == 'custom_field_2' || $field == 'custom_field_3' || $field == 'custom_field_4' || $field == 'custom_field_5' || $field == 'custom_field_6' ) {
+                        } elseif ( strpos( $field, 'custom_field_' ) !== false ) {
                             $n = (int) filter_var( $field, FILTER_SANITIZE_NUMBER_INT );
                             if ( isset( $s['custom_field_' . $n . '_hide_from_contact_card'] ) ) {
                                 break;
