@@ -66,6 +66,8 @@ class ContactListPublicHelpersSimple
             'custom_field_4' => sanitize_text_field( __( 'Custom field 4', 'contact-list' ) ),
             'custom_field_5' => sanitize_text_field( __( 'Custom field 5', 'contact-list' ) ),
             'custom_field_6' => sanitize_text_field( __( 'Custom field 6', 'contact-list' ) ),
+            'custom_url_1'   => sanitize_text_field( __( 'Custom URL 1', 'contact-list' ) ),
+            'custom_url_2'   => sanitize_text_field( __( 'Custom URL 2', 'contact-list' ) ),
             'description'    => sanitize_text_field( __( 'Additional information', 'contact-list' ) ),
             'category'       => sanitize_text_field( __( 'Category', 'contact-list' ) ),
             'send_message'   => sanitize_text_field( __( 'Send message', 'contact-list' ) ),
@@ -409,6 +411,10 @@ class ContactListPublicHelpersSimple
                     case 'custom_field_19':
                         break;
                     case 'custom_field_20':
+                        break;
+                    case 'custom_url_1':
+                        break;
+                    case 'custom_url_2':
                         break;
                     case 'category':
                         $show_data = 1;

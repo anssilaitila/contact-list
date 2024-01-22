@@ -20,9 +20,9 @@ class ShortcodeContactListSimple
             $html .= ContactListHelpers::modalSendMessageMarkup();
         }
         $html .= '<div class="contact-list-simple-container" />';
-        $html .= '<div class="contact-list-simple-text-contact" style="display: none;">' . sanitize_text_field( __( 'contact', 'contact-list' ) ) . '</div>';
-        $html .= '<div class="contact-list-simple-text-contacts" style="display: none;">' . sanitize_text_field( __( 'contacts', 'contact-list' ) ) . '</div>';
-        $html .= '<div class="contact-list-simple-text-found" style="display: none;">' . sanitize_text_field( __( 'found', 'contact-list' ) ) . '</div>';
+        $html .= '<div class="contact-list-simple-text-contact" style="display: none;">' . ContactListHelpers::getText( 'text_sr_contact', __( 'contact', 'contact-list' ) ) . '</div>';
+        $html .= '<div class="contact-list-simple-text-contacts" style="display: none;">' . ContactListHelpers::getText( 'text_sr_contacts', __( 'contacts', 'contact-list' ) ) . '</div>';
+        $html .= '<div class="contact-list-simple-text-found" style="display: none;">' . ContactListHelpers::getText( 'text_sr_found', __( 'found', 'contact-list' ) ) . '</div>';
         $meta_query = array(
             'relation' => 'AND',
         );
@@ -79,7 +79,7 @@ class ShortcodeContactListSimple
         $show_group_title = 0;
         
         if ( $show_group_title ) {
-            $html .= '<div class="contact-list-simple-back-link-container"><a href="javascript:history.go(-1)">&lt;&lt; ' . sanitize_text_field( __( 'Back', 'contact-list' ) ) . '</a></div>';
+            $html .= '<div class="contact-list-simple-back-link-container"><a href="javascript:history.go(-1)">' . ContactListHelpers::getText( 'back_link_title', __( '<< Back', 'contact-list' ) ) . '</a></div>';
             $html .= '<h2 class="contact-list-simple-group-title">' . $group_name . '</h2>';
         }
         

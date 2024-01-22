@@ -2365,6 +2365,52 @@ class ContactListSettings
             );
         }
         add_settings_field(
+            'contact-list-' . $only_pro . 'simple_list_show_custom_url_1',
+            sanitize_text_field( __( 'Show custom URL 1', 'contact-list' ) ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_simple_list',
+            array(
+            'label_for'  => 'contact-list-' . $only_pro . 'simple_list_show_custom_url_1',
+            'field_name' => $only_pro . 'simple_list_show_custom_url_1',
+        )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'simple_list_custom_url_1_link_text',
+            sanitize_text_field( __( 'Custom URL 1 link text (shown instead if image)', 'contact-list' ) ),
+            array( $this, 'input_render' ),
+            'contact-list',
+            'contact-list_simple_list',
+            array(
+            'label_for'   => 'contact-list-' . $only_pro . 'simple_list_custom_url_1_link_text',
+            'field_name'  => $only_pro . 'simple_list_custom_url_1_link_text',
+            'placeholder' => '',
+        )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'simple_list_show_custom_url_2',
+            sanitize_text_field( __( 'Show custom URL 2', 'contact-list' ) ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_simple_list',
+            array(
+            'label_for'  => 'contact-list-' . $only_pro . 'simple_list_show_custom_url_2',
+            'field_name' => $only_pro . 'simple_list_show_custom_url_2',
+        )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'simple_list_custom_url_2_link_text',
+            sanitize_text_field( __( 'Custom URL 2 link text (shown instead if image)', 'contact-list' ) ),
+            array( $this, 'input_render' ),
+            'contact-list',
+            'contact-list_simple_list',
+            array(
+            'label_for'   => 'contact-list-' . $only_pro . 'simple_list_custom_url_2_link_text',
+            'field_name'  => $only_pro . 'simple_list_custom_url_2_link_text',
+            'placeholder' => '',
+        )
+        );
+        add_settings_field(
             'contact-list-simple_list_show_category',
             sanitize_text_field( __( 'Show category / group', 'contact-list' ) ),
             array( $this, 'checkbox_render' ),
@@ -2826,6 +2872,14 @@ class ContactListSettings
                             'title' => sanitize_text_field( __( 'Custom field', 'contact-list' ) . ' ' . $n ),
                         );
                     }
+                    $simple_list_fields[] = array(
+                        'name'  => 'custom_url_1',
+                        'title' => sanitize_text_field( __( 'Custom URL 1', 'contact-list' ) ),
+                    );
+                    $simple_list_fields[] = array(
+                        'name'  => 'custom_url_2',
+                        'title' => sanitize_text_field( __( 'Custom URL 2', 'contact-list' ) ),
+                    );
                     $simple_list_fields[] = array(
                         'name'  => 'description',
                         'title' => sanitize_text_field( __( 'Additional information', 'contact-list' ) ),

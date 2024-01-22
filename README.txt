@@ -3,7 +3,7 @@ Contributors: anssilaitila, freemius
 Tags: directory plugin, business directory, listing, address book, staff list, staff directory, contact manager, company directory, church directory, contact directory, contacts, chamber of commerce
 Requires at least: 5.4.0
 Tested up to: 6.4
-Stable tag: 2.9.82
+Stable tag: 2.9.83
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -231,6 +231,12 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 6. Contact management
 
 == Changelog ==
+
+= 2.9.83 - 2024-01-20 =
+* (Professional + Business) Custom fields 7-20 added to import / export
+* (All plans) New settings for simple list: Show custom URL 1 and 2 + Custom URL 1 and 2 link text
+* (Free + All plans) The settings for search results texts are now valid for simple list also (10 contacts found etc.)
+* (Free + All plans) The setting "Back"-link title is now active in everywhere the link exists
 
 = 2.9.82 - 2023-11-21 =
 * (Professional + Business) Added permalink edit for single contacts when the setting "Enable single contact page" is active

@@ -64,105 +64,105 @@ class ContactListImportExport
             echo  esc_html__( 'The columns should be in this order:', 'contact-list' ) ;
             ?></strong>
             <ol>
-                <li><?php 
+              <li><?php 
             echo  esc_html__( 'First name', 'contact-list' ) ;
             ?></li>
-                <li><?php 
+              <li><?php 
             echo  esc_html__( 'Last name', 'contact-list' ) ;
             ?></li>
-                <li><?php 
+              <li><?php 
             echo  esc_html__( 'Job title', 'contact-list' ) ;
             ?></li>
-                <li><?php 
+              <li><?php 
             echo  esc_html__( 'Email', 'contact-list' ) ;
             ?></li>
-                <li><?php 
+              <li><?php 
             echo  esc_html__( 'Phone', 'contact-list' ) ;
             ?></li>
-                <li><?php 
+              <li><?php 
             echo  esc_html__( 'LinkedIn URL', 'contact-list' ) ;
             ?></li>
-                <li><?php 
+              <li><?php 
             echo  esc_html__( 'X URL', 'contact-list' ) ;
             ?></li>
-                <li><?php 
+              <li><?php 
             echo  esc_html__( 'Facebook URL', 'contact-list' ) ;
             ?></li>
-                <li><?php 
+              <li><?php 
             echo  esc_html__( 'Address line 1', 'contact-list' ) ;
             ?></li>
-                <li><?php 
+              <li><?php 
             echo  esc_html__( 'Address line 2', 'contact-list' ) ;
             ?></li>
-                <li><?php 
+              <li><?php 
             echo  esc_html__( 'Address line 3', 'contact-list' ) ;
             ?></li>
-                <li><?php 
+              <li><?php 
             echo  esc_html__( 'Address line 4', 'contact-list' ) ;
             ?></li>
-                <li><?php 
+              <li><?php 
             echo  esc_html__( 'Custom field 1', 'contact-list' ) ;
             ?></li>
-                <li><?php 
+              <li><?php 
             echo  esc_html__( 'Custom field 2', 'contact-list' ) ;
             ?></li>
-                <li><?php 
+              <li><?php 
             echo  esc_html__( 'Custom field 3', 'contact-list' ) ;
             ?></li>
-                <li><?php 
+              <li><?php 
             echo  esc_html__( 'Custom field 4', 'contact-list' ) ;
             ?></li>
-                <li><?php 
+              <li><?php 
             echo  esc_html__( 'Custom field 5', 'contact-list' ) ;
             ?></li>
-                <li><?php 
+              <li><?php 
             echo  esc_html__( 'Custom field 6', 'contact-list' ) ;
             ?></li>
-                <li><?php 
+              <li><?php 
             echo  esc_html__( 'Groups', 'contact-list' ) ;
             ?><i><br /><?php 
             echo  esc_html__( 'Group names separated by the character "|", like so: Cats|Dogs|Parrots', 'contact-list' ) ;
             ?></i></li>
-                <li><?php 
+              <li><?php 
             echo  esc_html__( 'Country', 'contact-list' ) ;
             ?></li>
-                <li><?php 
+              <li><?php 
             echo  esc_html__( 'State', 'contact-list' ) ;
             ?></li>
-                <li><?php 
+              <li><?php 
             echo  esc_html__( 'City', 'contact-list' ) ;
             ?></li>
-                <li><?php 
+              <li><?php 
             echo  esc_html__( 'ZIP Code', 'contact-list' ) ;
             ?></li>
-                <li><?php 
+              <li><?php 
             echo  esc_html__( 'Instagram URL', 'contact-list' ) ;
             ?></li>
-                <li><?php 
+              <li><?php 
             echo  esc_html__( 'Phone 2', 'contact-list' ) ;
             ?></li>
-                <li><?php 
+              <li><?php 
             echo  esc_html__( 'Phone 3', 'contact-list' ) ;
             ?></li>
-                <li><?php 
+              <li><?php 
             echo  esc_html__( 'Prefix', 'contact-list' ) ;
             ?></li>
-                <li><?php 
+              <li><?php 
             echo  esc_html__( 'Middle name', 'contact-list' ) ;
             ?></li>
-                <li><?php 
+              <li><?php 
             echo  esc_html__( 'Suffix', 'contact-list' ) ;
             ?></li>
-                <li><?php 
+              <li><?php 
             echo  esc_html__( 'Image ID (if already exists in media library, not required)', 'contact-list' ) ;
             ?></li>
-                <li><?php 
+              <li><?php 
             echo  esc_html__( 'Filename of image (if already exists media library, can be used without the Image ID)', 'contact-list' ) ;
             ?></li>
-                <li><?php 
+              <li><?php 
             echo  esc_html__( 'Custom URL 1', 'contact-list' ) ;
             ?></li>
-                <li><?php 
+              <li><?php 
             echo  esc_html__( 'Custom URL 2', 'contact-list' ) ;
             ?></li>
             </ol>
