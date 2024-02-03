@@ -50,7 +50,7 @@ class ShortcodeContactList
                 }
                 
                 $html .= '</ul>';
-                $html .= '</div><hr class="clear" />';
+                $html .= '</div>';
             } else {
                 $html .= '<p style="background: #f00; color: #fff; padding: 1rem; text-align: center;">' . sanitize_text_field( __( 'Contact not found', 'contact-list' ) ) . ' (ID: ' . intval( $contact ) . ')</p>';
             }
@@ -236,7 +236,7 @@ class ShortcodeContactList
                     }
                     
                     $html .= '</ul>';
-                    $html .= '</div><hr class="clear" />';
+                    $html .= '</div>';
                 } elseif ( $hide_contacts_first && !$get_params_active ) {
                     // ...
                 } else {
@@ -249,7 +249,6 @@ class ShortcodeContactList
                 }
                 
                 $html .= '</div>';
-                $html .= '<hr class="clear" />';
                 
                 if ( $hide_contacts_first && !$get_params_active ) {
                     // ...

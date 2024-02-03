@@ -184,14 +184,26 @@ class ContactListSettings
         );
         add_settings_field(
             'contact-list-card_height',
-            sanitize_text_field( __( 'Card height in pixels', 'contact-list' ) ),
+            sanitize_text_field( __( 'Card minimum height in pixels', 'contact-list' ) ),
             array( $this, 'input_render' ),
             'contact-list',
             'contact-list_tab_' . $tab,
             array(
             'label_for'   => 'contact-list-card_height',
             'field_name'  => 'card_height',
-            'placeholder' => '380',
+            'placeholder' => '300',
+        )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'contact_card_map_height_px',
+            sanitize_text_field( __( 'Map height in pixels', 'contact-list' ) ),
+            array( $this, 'input_render' ),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+            'label_for'   => 'contact-list-' . $only_pro . 'contact_card_map_height_px',
+            'field_name'  => '' . $only_pro . 'contact_card_map_height_px',
+            'placeholder' => '280',
         )
         );
         add_settings_field(
@@ -1826,6 +1838,17 @@ class ContactListSettings
         )
         );
         add_settings_field(
+            'contact-list-af_hide_map',
+            sanitize_text_field( __( 'Hide Google Maps iframe code', 'contact-list' ) ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+            'label_for'  => 'contact-list-af_hide_map',
+            'field_name' => 'af_hide_map',
+        )
+        );
+        add_settings_field(
             'contact-list-af_hide_additional_info',
             sanitize_text_field( __( 'Hide additional information', 'contact-list' ) ),
             array( $this, 'checkbox_render' ),
@@ -2192,6 +2215,28 @@ class ContactListSettings
             'label_for'   => 'contact-list-' . $only_pro . 'simple_list_call_button_title',
             'field_name'  => $only_pro . 'simple_list_call_button_title',
             'placeholder' => $placeholder,
+        )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'simple_list_exclude_subgroups',
+            sanitize_text_field( __( 'Exclude contacts belonging to only subgroups from group listings', 'contact-list' ) ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_simple_list_settings',
+            array(
+            'label_for'  => 'contact-list-' . $only_pro . 'simple_list_exclude_subgroups',
+            'field_name' => $only_pro . 'simple_list_exclude_subgroups',
+        )
+        );
+        add_settings_field(
+            'contact-list-simple_list_preserve_table_on_mobile',
+            sanitize_text_field( __( 'Preserve table-like layout on mobile devices', 'contact-list' ) ),
+            array( $this, 'checkbox_render' ),
+            'contact-list',
+            'contact-list_simple_list_settings',
+            array(
+            'label_for'  => 'contact-list-simple_list_preserve_table_on_mobile',
+            'field_name' => 'simple_list_preserve_table_on_mobile',
         )
         );
         
@@ -3026,6 +3071,10 @@ class ContactListSettings
                     array(
                     'name'  => 'featured_image',
                     'title' => sanitize_text_field( __( 'Featured image', 'contact-list' ) ),
+                ),
+                    array(
+                    'name'  => 'map',
+                    'title' => sanitize_text_field( __( 'Map', 'contact-list' ) ),
                 )
                 );
                 ?>

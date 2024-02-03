@@ -37,6 +37,7 @@ class ContactListCard
             'some_icons',
             'show_contact_button',
             'featured_image',
+            'map',
             'name_prefix',
             'first_name',
             'middle_name',
@@ -488,6 +489,25 @@ class ContactListCard
                     $featured_img_id = intval( get_post_thumbnail_id( $id ) );
                     $featured_img_alt = sanitize_text_field( get_post_meta( $featured_img_id, '_wp_attachment_image_alt', true ) );
                     $html .= '<div class="contact-list-image ' . (( isset( $s['contact_image_style'] ) && $s['contact_image_style'] ? 'contact-list-image-' . ContactListHelpers::sanitize_attr_value( $s['contact_image_style'] ) : '' )) . ' ' . (( isset( $s['contact_image_shadow'] ) && $s['contact_image_shadow'] ? 'contact-list-image-shadow' : '' )) . '"><img src="' . esc_url_raw( $featured_img_url ) . '" alt="' . ContactListHelpers::sanitize_attr_value( $featured_img_alt ) . '" /></div>';
+                }
+                
+                break;
+            case 'map':
+                
+                if ( isset( $c['_cl_map_iframe'][0] ) && $c['_cl_map_iframe'][0] ) {
+                    $iframe_code = $c['_cl_map_iframe'][0];
+                    $iframeRegex = '/<iframe[^>]*>(.*?)<\\/iframe>/si';
+                    $strippedHtml = '';
+                    if ( preg_match( $iframeRegex, $iframe_code, $matches ) ) {
+                        $strippedHtml = $matches[0];
+                    }
+                    
+                    if ( $strippedHtml ) {
+                        $html .= '<div class="contact-list-map-container">';
+                        $html .= $strippedHtml;
+                        $html .= '</div>';
+                    }
+                
                 }
                 
                 break;

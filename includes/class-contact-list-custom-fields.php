@@ -250,6 +250,21 @@ class ContactListCustomFields
             );
         }
         $this->customFields[] = array(
+            'name'        => 'map_title',
+            'title'       => sanitize_text_field( __( 'Google Maps iframe code', 'contact-list' ) ),
+            'description' => '',
+            'type'        => 'title',
+            'scope'       => array( 'contact' ),
+            'capability'  => 'edit_posts',
+        );
+        $this->customFields[] = array(
+            'name'        => 'map_iframe',
+            'description' => '',
+            'type'        => 'textarea_iframe',
+            'scope'       => array( 'contact' ),
+            'capability'  => 'edit_posts',
+        );
+        $this->customFields[] = array(
             'name'        => 'additional_info',
             'title'       => sanitize_text_field( __( 'Additional information', 'contact-list' ) ),
             'description' => '',
@@ -401,6 +416,8 @@ class ContactListCustomFields
                 continue;
             } elseif ( ($customField['name'] == 'additional_info' || $customField['name'] == 'description') && isset( $options['af_hide_additional_info'] ) ) {
                 continue;
+            } elseif ( ($customField['name'] == 'map_title' || $customField['name'] == 'map_iframe') && isset( $options['af_hide_map'] ) ) {
+                continue;
             }
             
             // Check scope
@@ -427,7 +444,7 @@ class ContactListCustomFields
             // Premium-only fields are just ads for upgrading, not containing any real functionality
             if ( !$is_premium ) {
                 
-                if ( $customField['name'] == 'phone_2' || $customField['name'] == 'phone_3' || $customField['name'] == 'custom_url_1' || $customField['name'] == 'custom_url_2' || $customField['name'] == 'custom_field_2' || $customField['name'] == 'custom_field_3' || $customField['name'] == 'custom_field_4' || $customField['name'] == 'custom_field_5' || $customField['name'] == 'custom_field_6' ) {
+                if ( $customField['name'] == 'phone_2' || $customField['name'] == 'phone_3' || $customField['name'] == 'custom_url_1' || $customField['name'] == 'custom_url_2' || $customField['name'] == 'custom_field_2' || $customField['name'] == 'custom_field_3' || $customField['name'] == 'custom_field_4' || $customField['name'] == 'custom_field_5' || $customField['name'] == 'custom_field_6' || $customField['name'] == 'map_iframe' ) {
                     $output = true;
                     $customField['name'] = '_FREE_' . $customField['name'];
                 }
@@ -451,9 +468,21 @@ class ContactListCustomFields
                       
                         <div class="contact-list-field-in-pro-container">
 
-                          <label><b><?php 
-                    echo  esc_html( $customField['title'] ) ;
-                    ?></b></label>
+                          <?php 
+                    
+                    if ( isset( $customField['title'] ) && $customField['title'] ) {
+                        ?>
+                            <label><b><?php 
+                        echo  esc_html( $customField['title'] ) ;
+                        ?></b></label>
+                          <?php 
+                    } else {
+                        ?>
+                            <div style="height: 12px;"></div>
+                          <?php 
+                    }
+                    
+                    ?>
                       
                           <a href="<?php 
                     echo  esc_url( get_admin_url() ) ;
@@ -479,6 +508,8 @@ class ContactListCustomFields
                             echo  '" style="width: auto;" />' ;
                             break;
                         case "textarea":
+                        case "textarea_iframe":
+                            break;
                         case "wysiwyg_v2":
                             $options_field = $customField['name'] . '_title';
                             $description = wp_kses_post( get_post_meta( intval( get_the_ID() ), $this->prefix . $customField['name'], true ) );
@@ -587,6 +618,20 @@ class ContactListCustomFields
                     
                     if ( $customField['type'] == 'wysiwyg_v2' ) {
                         $value = balanceTags( wp_kses_post( $value ), 1 );
+                    } elseif ( $customField['type'] == 'textarea_iframe' ) {
+                        $iframe_code = $value;
+                        $iframeRegex = '/<iframe[^>]*>(.*?)<\\/iframe>/si';
+                        $strippedHtml = '';
+                        if ( preg_match( $iframeRegex, $iframe_code, $matches ) ) {
+                            $strippedHtml = $matches[0];
+                        }
+                        
+                        if ( $strippedHtml ) {
+                            $value = $strippedHtml;
+                        } else {
+                            $value = '';
+                        }
+                    
                     } else {
                         $value = sanitize_text_field( $value );
                     }

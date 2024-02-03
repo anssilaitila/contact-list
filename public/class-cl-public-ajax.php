@@ -125,6 +125,7 @@ class ContactListPublicAjax
     
     public function cl_get_contacts_simple()
     {
+        $s = get_option( 'contact_list_settings' );
         $html = '';
         $atts = [];
         $meta_query = array(
@@ -184,21 +185,25 @@ class ContactListPublicAjax
         $tax_query = [];
         
         if ( isset( $_POST['cl_cat'] ) && $_POST['cl_cat'] ) {
+            $include_children = 1;
             $tax_query = array(
                 'relation' => 'AND',
                 array(
-                'taxonomy' => 'contact-group',
-                'field'    => 'slug',
-                'terms'    => sanitize_title( $_POST['cl_cat'] ),
+                'taxonomy'         => 'contact-group',
+                'field'            => 'slug',
+                'terms'            => sanitize_title( $_POST['cl_cat'] ),
+                'include_children' => $include_children,
             ),
             );
         } elseif ( $atts_group ) {
+            $include_children = 1;
             $tax_query = array(
                 'relation' => 'AND',
                 array(
-                'taxonomy' => 'contact-group',
-                'field'    => 'slug',
-                'terms'    => $atts_group,
+                'taxonomy'         => 'contact-group',
+                'field'            => 'slug',
+                'terms'            => $atts_group,
+                'include_children' => $include_children,
             ),
             );
         }

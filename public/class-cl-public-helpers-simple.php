@@ -11,9 +11,13 @@ class ContactListPublicHelpersSimple
     {
         $s = get_option( 'contact_list_settings' );
         $html = '';
+        $extra_class = '';
+        if ( isset( $s['simple_list_preserve_table_on_mobile'] ) ) {
+            $extra_class = ' contact-list-mobile-table';
+        }
         $html .= '<div class="contact-list-search">';
         $html .= '<div class="contact-list-simple-list-container">';
-        $html .= '<div class="contact-list-simple-list">';
+        $html .= '<div class="contact-list-simple-list' . $extra_class . '">';
         if ( isset( $s['simple_list_show_titles_for_columns'] ) ) {
             $html .= ContactListPublicHelpersSimple::contactListSimpleMarkupTitles( $atts );
         }

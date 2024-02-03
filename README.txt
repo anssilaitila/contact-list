@@ -3,7 +3,7 @@ Contributors: anssilaitila, freemius
 Tags: directory plugin, business directory, listing, address book, staff list, staff directory, contact manager, company directory, church directory, contact directory, contacts, chamber of commerce
 Requires at least: 5.4.0
 Tested up to: 6.4
-Stable tag: 2.9.83
+Stable tag: 2.9.84
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -231,6 +231,15 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 6. Contact management
 
 == Changelog ==
+
+= 2.9.84 - 2024-02-03 =
+* (All plans) New setting for simple list: Exclude contacts belonging to only subgroups from group listings
+* (All plans) New field for contacts: Google Maps iframe code
+* (All plans) New setting: Map height in pixels (Layout tab)
+* (Free + All plans) New setting: Hide Google Maps iframe code
+* (Free + All plans) New setting for simple list: Preserve table-like layout on mobile devices
+* (Free + All plans) Layout fixes
+* (Free + All plans) Bug fixes
 
 = 2.9.83 - 2024-01-20 =
 * (Professional + Business) Custom fields 7-20 added to import / export

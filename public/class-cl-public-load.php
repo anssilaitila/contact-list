@@ -67,7 +67,7 @@ class ContactListPublicLoad {
 
     if (isset($s['card_background']) && $s['card_background']) {
     
-      $css .= '.contact-list-container #contact-list-search ul li { margin-bottom: 5px; }';
+//      $css .= '.contact-list-container #contact-list-search ul li { margin-bottom: 5px; }';
     
       if ($s['card_background'] == 'white') {
         $css .= '.contact-list-contact-container { background: #fff; }';
@@ -96,14 +96,16 @@ class ContactListPublicLoad {
     }
     
     if ($card_height) {
-      $css .= '.contact-list-2-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: ' . intval( $card_height ) . 'px; }';  
-      $css .= '.contact-list-3-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: ' . intval( $card_height ) . 'px; }';  
-      $css .= '.contact-list-4-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: ' . intval( $card_height ) . 'px; }';  
+      $css .= '#all-contacts li { min-height: ' . intval( $card_height ) . 'px; }';  
+      $css .= '.contact-list-2-cards-on-the-same-row #all-contacts li { min-height: ' . intval( $card_height ) . 'px; }';  
+      $css .= '.contact-list-3-cards-on-the-same-row #all-contacts li { min-height: ' . intval( $card_height ) . 'px; }';  
+      $css .= '.contact-list-4-cards-on-the-same-row #all-contacts li { min-height: ' . intval( $card_height ) . 'px; }';  
     }
 
-    $css .= ' @media (max-width: 820px) { .contact-list-2-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: auto; } }';  
-    $css .= ' @media (max-width: 820px) { .contact-list-3-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: auto; } }';  
-    $css .= ' @media (max-width: 820px) { .contact-list-4-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: auto; } }';  
+    $css .= ' @media (max-width: 820px) { #all-contacts li { min-height: 0; } }';  
+    $css .= ' @media (max-width: 820px) { .contact-list-2-cards-on-the-same-row #all-contacts li { min-height: 0; } }';  
+    $css .= ' @media (max-width: 820px) { .contact-list-3-cards-on-the-same-row #all-contacts li { min-height: 0; } }';  
+    $css .= ' @media (max-width: 820px) { .contact-list-4-cards-on-the-same-row #all-contacts li { min-height: 0; } }';  
   
     return $css;
   

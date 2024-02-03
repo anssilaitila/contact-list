@@ -30,7 +30,7 @@ class ContactListPublicPagination {
 
       if (paginate_links($pagination_args)) {
 
-        $html .= '<hr class="clear" /><div class="contact-list-pagination-improved">';
+        $html .= '<div class="contact-list-pagination-improved">';
   
         $html .= '<div class="contact-list-pagination-improved-more-files">' . sanitize_text_field( __('Browse contacts:', 'contact-list') ) . '</div>';
         

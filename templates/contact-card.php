@@ -33,7 +33,7 @@
   
         // If content for the left column is defined in the plugin settings, get those instead of the fields defined here
         $column = 'left';
-        $fields = 'full_name job_title email send_message_button phone_numbers groups address custom_fields additional_info some_icons show_contact_button';
+        $fields = 'full_name job_title email send_message_button phone_numbers groups address custom_fields additional_info some_icons show_contact_button map';
         echo ContactListCard::getMarkup($id, $fields, $atts, $is_modal, $column);
           
         ?>

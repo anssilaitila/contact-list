@@ -85,13 +85,15 @@ class ShortcodeContactListSimple
         
         
         if ( isset( $_GET['cl_cat'] ) && $_GET['cl_cat'] ) {
+            $include_children = 1;
             $tax_query = [
                 'relation' => 'AND',
             ];
             $tax_query[] = [
-                'taxonomy' => 'contact-group',
-                'field'    => 'slug',
-                'terms'    => sanitize_title( $_GET['cl_cat'] ),
+                'taxonomy'         => 'contact-group',
+                'field'            => 'slug',
+                'terms'            => sanitize_title( $_GET['cl_cat'] ),
+                'include_children' => $include_children,
             ];
             
             if ( isset( $atts['exclude_groups'] ) && $atts['exclude_groups'] ) {
@@ -105,13 +107,15 @@ class ShortcodeContactListSimple
             }
         
         } elseif ( $group_slug ) {
+            $include_children = 1;
             $tax_query = [
                 'relation' => 'AND',
             ];
             $tax_query[] = [
-                'taxonomy' => 'contact-group',
-                'field'    => 'slug',
-                'terms'    => $group_slug,
+                'taxonomy'         => 'contact-group',
+                'field'            => 'slug',
+                'terms'            => $group_slug,
+                'include_children' => $include_children,
             ];
         } elseif ( isset( $atts['exclude_groups'] ) && $atts['exclude_groups'] ) {
             $terms = explode( ',', sanitize_text_field( $atts['exclude_groups'] ) );
