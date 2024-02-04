@@ -3,7 +3,7 @@ Contributors: anssilaitila, freemius
 Tags: directory plugin, business directory, listing, address book, staff list, staff directory, contact manager, company directory, church directory, contact directory, contacts, chamber of commerce
 Requires at least: 5.4.0
 Tested up to: 6.4
-Stable tag: 2.9.85
+Stable tag: 2.9.86
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -231,6 +231,10 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 6. Contact management
 
 == Changelog ==
+
+= 2.9.86 - 2024-02-04 =
+* (Free + All plans) Contact cards are now automatically expanded if content is longer than the set card height. Minimum card height can be set in the settings (Layout tab).
+* (Free + All plans) Layout fixes
 
 = 2.9.85 - 2024-02-04 =
 * (Personal) Fix: Custom URLs show up now properly on simple list
