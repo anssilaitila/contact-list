@@ -10,7 +10,7 @@
  * @var boolean $is_modal           Is this contact card opened in a modal (lightbox)
  * @var string  $contact_card_class Special classes for contact card
  *
- * @version 2.9.77
+ * @version 2.9.85
  */
 ?>
 
@@ -33,7 +33,7 @@
   
         // If content for the left column is defined in the plugin settings, get those instead of the fields defined here
         $column = 'left';
-        $fields = 'full_name job_title email send_message_button phone_numbers groups address custom_fields additional_info some_icons show_contact_button map';
+        $fields = 'full_name job_title email send_message_button phone_numbers groups address custom_fields additional_info some_icons show_contact_button';
         echo ContactListCard::getMarkup($id, $fields, $atts, $is_modal, $column);
           
         ?>
@@ -53,6 +53,19 @@
         
       ?>
   
+    </div>
+
+    <div class="contact-list-main-bottom">
+    
+      <?php 
+    
+      // If content for the bottom column is defined in the plugin settings, get those instead of the fields defined here
+      $column = 'bottom';
+      $fields = 'map';
+      echo ContactListCard::getMarkup($id, $fields, $atts, $is_modal, $column);
+        
+      ?>
+    
     </div>
   
   </div>

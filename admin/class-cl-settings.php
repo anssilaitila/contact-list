@@ -372,6 +372,18 @@ class ContactListSettings
             'placeholder' => '',
         )
         );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'contact_card_bottom_column',
+            sanitize_text_field( __( 'Contact card contents, bottom column (100% width)', 'contact-list' ) ),
+            array( $this, 'textarea_render' ),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+            'label_for'   => 'contact-list-' . $only_pro . 'contact_card_bottom_column',
+            'field_name'  => $only_pro . 'contact_card_bottom_column',
+            'placeholder' => '',
+        )
+        );
         
         if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'pro' ) || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
             add_settings_field(
@@ -3145,6 +3157,20 @@ class ContactListSettings
                 ?></div>
         
           <div class="contact-list-general-info-custom-order-row-2">[[featured_image]]<br/>[[groups]]</div>
+          
+        </div>
+
+      <?php 
+            } elseif ( $field_name == 'contact_card_bottom_column' || $field_name == '_FREE_contact_card_bottom_column' ) {
+                ?>
+        
+        <div class="general-info contact-list-general-info-custom-order">
+        
+          <div class="contact-list-general-info-custom-order-row-1"><?php 
+                echo  esc_html__( 'Add any fields using the field IDs in any order, inside double brackets like so:', 'contact-list' ) ;
+                ?></div>
+        
+          <div class="contact-list-general-info-custom-order-row-2">[[additional_info]]<br/>[[map]]</div>
           
         </div>
 

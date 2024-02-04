@@ -16,7 +16,15 @@ class ShortcodeContactListSimple
         
         $exclude = [];
         $html = '';
-        if ( isset( $s['simple_list_show_send_message'] ) ) {
+        $generate_send_message_modal_markup = 0;
+        
+        if ( isset( $s['simple_list_name_link'] ) && $s['simple_list_name_link'] == 'contact-card-lightbox' ) {
+            $generate_send_message_modal_markup = 1;
+        } elseif ( isset( $s['simple_list_show_send_message'] ) ) {
+            $generate_send_message_modal_markup = 1;
+        }
+        
+        if ( $generate_send_message_modal_markup ) {
             $html .= ContactListHelpers::modalSendMessageMarkup();
         }
         $html .= '<div class="contact-list-simple-container" />';
