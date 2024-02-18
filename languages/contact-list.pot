@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Contact List 2.9.86\n"
+"Project-Id-Version: Contact List 2.9.87\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/trunk\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-02-04T22:33:29+02:00\n"
+"POT-Creation-Date: 2024-02-18T22:10:26+02:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: contact-list\n"
@@ -152,25 +152,26 @@ msgstr ""
 #: admin/class-cl-shortcodes.php:351
 #: admin/class-cl-shortcodes.php:366
 #: admin/class-cl-shortcodes.php:381
-#: admin/class-cl-shortcodes.php:397
-#: admin/class-cl-shortcodes.php:417
-#: admin/class-cl-shortcodes.php:430
-#: admin/class-cl-shortcodes.php:470
-#: admin/class-cl-shortcodes.php:475
-#: admin/class-cl-shortcodes.php:543
-#: admin/class-cl-shortcodes.php:562
-#: admin/class-cl-shortcodes.php:569
-#: admin/class-cl-shortcodes.php:576
-#: admin/class-cl-shortcodes.php:583
-#: admin/class-cl-shortcodes.php:612
-#: admin/class-cl-shortcodes.php:625
-#: admin/class-cl-shortcodes.php:630
-#: admin/class-cl-shortcodes.php:636
-#: admin/class-cl-shortcodes.php:658
-#: admin/class-cl-shortcodes.php:685
-#: admin/class-cl-shortcodes.php:716
-#: admin/class-cl-shortcodes.php:729
-#: admin/class-cl-shortcodes.php:764
+#: admin/class-cl-shortcodes.php:396
+#: admin/class-cl-shortcodes.php:412
+#: admin/class-cl-shortcodes.php:432
+#: admin/class-cl-shortcodes.php:445
+#: admin/class-cl-shortcodes.php:485
+#: admin/class-cl-shortcodes.php:490
+#: admin/class-cl-shortcodes.php:558
+#: admin/class-cl-shortcodes.php:577
+#: admin/class-cl-shortcodes.php:584
+#: admin/class-cl-shortcodes.php:591
+#: admin/class-cl-shortcodes.php:598
+#: admin/class-cl-shortcodes.php:627
+#: admin/class-cl-shortcodes.php:640
+#: admin/class-cl-shortcodes.php:645
+#: admin/class-cl-shortcodes.php:651
+#: admin/class-cl-shortcodes.php:673
+#: admin/class-cl-shortcodes.php:700
+#: admin/class-cl-shortcodes.php:731
+#: admin/class-cl-shortcodes.php:744
+#: admin/class-cl-shortcodes.php:779
 #: admin/class-cl-taxonomy.php:109
 #: admin/class-cl-taxonomy.php:119
 msgid "Copy"
@@ -1134,7 +1135,7 @@ msgstr ""
 #: admin/class-cl-settings.php:1009
 #: admin/class-cl-settings.php:1016
 #: public/class-shortcode_contact_list.php:183
-#: public/class-shortcode_contact_list_simple.php:173
+#: public/class-shortcode_contact_list_simple.php:166
 msgid "Search contacts..."
 msgstr ""
 
@@ -2024,12 +2025,12 @@ msgstr ""
 
 #: admin/class-cl-shortcodes.php:126
 #: admin/class-cl-shortcodes.php:329
-#: admin/class-cl-shortcodes.php:539
-#: admin/class-cl-shortcodes.php:609
-#: admin/class-cl-shortcodes.php:655
-#: admin/class-cl-shortcodes.php:682
-#: admin/class-cl-shortcodes.php:713
-#: admin/class-cl-shortcodes.php:757
+#: admin/class-cl-shortcodes.php:554
+#: admin/class-cl-shortcodes.php:624
+#: admin/class-cl-shortcodes.php:670
+#: admin/class-cl-shortcodes.php:697
+#: admin/class-cl-shortcodes.php:728
+#: admin/class-cl-shortcodes.php:772
 msgid "Insert the shortcode"
 msgstr ""
 
@@ -2039,9 +2040,9 @@ msgid "to the content editor of any page you wish the contact list to appear."
 msgstr ""
 
 #: admin/class-cl-shortcodes.php:136
-#: admin/class-cl-shortcodes.php:554
-#: admin/class-cl-shortcodes.php:619
-#: admin/class-cl-shortcodes.php:723
+#: admin/class-cl-shortcodes.php:569
+#: admin/class-cl-shortcodes.php:634
+#: admin/class-cl-shortcodes.php:738
 msgid "Additional parameters"
 msgstr ""
 
@@ -2050,12 +2051,12 @@ msgid "Hide search form:"
 msgstr ""
 
 #: admin/class-cl-shortcodes.php:147
-#: admin/class-cl-shortcodes.php:559
+#: admin/class-cl-shortcodes.php:574
 msgid "Order by first name:"
 msgstr ""
 
 #: admin/class-cl-shortcodes.php:154
-#: admin/class-cl-shortcodes.php:566
+#: admin/class-cl-shortcodes.php:581
 msgid "Order by last name:"
 msgstr ""
 
@@ -2101,7 +2102,7 @@ msgid "Shows contacts in the defined group, and the group filter contains only t
 msgstr ""
 
 #: admin/class-cl-shortcodes.php:289
-#: admin/class-cl-shortcodes.php:409
+#: admin/class-cl-shortcodes.php:424
 msgid "Filter by custom field values, any number of fields"
 msgstr ""
 
@@ -2118,107 +2119,111 @@ msgid "Show filters:"
 msgstr ""
 
 #: admin/class-cl-shortcodes.php:358
-msgid "Show contacts from a specific group:"
+msgid "Use ajax query for input field search (beta):"
 msgstr ""
 
 #: admin/class-cl-shortcodes.php:373
+msgid "Show contacts from a specific group:"
+msgstr ""
+
+#: admin/class-cl-shortcodes.php:388
 msgid "Limit contacts per page (activates pagination):"
 msgstr ""
 
-#: admin/class-cl-shortcodes.php:389
+#: admin/class-cl-shortcodes.php:404
 msgid "Exclude groups:"
 msgstr ""
 
-#: admin/class-cl-shortcodes.php:422
+#: admin/class-cl-shortcodes.php:437
 msgid "Show these fields (check the fields from plugin settings, Simple list tab)"
 msgstr ""
 
-#: admin/class-cl-shortcodes.php:464
+#: admin/class-cl-shortcodes.php:479
 msgid "Enable front-end edit using the following shortcodes (user roles must also be activated from the plugin settings):"
 msgstr ""
 
-#: admin/class-cl-shortcodes.php:491
+#: admin/class-cl-shortcodes.php:506
 msgid "Parameters for all shortcodes"
 msgstr ""
 
-#: admin/class-cl-shortcodes.php:503
+#: admin/class-cl-shortcodes.php:518
 msgid "Card height in pixels"
 msgstr ""
 
-#: admin/class-cl-shortcodes.php:511
+#: admin/class-cl-shortcodes.php:526
 msgid "Exclude certain contacts (comma separated list of contact id's)"
 msgstr ""
 
-#: admin/class-cl-shortcodes.php:526
+#: admin/class-cl-shortcodes.php:541
 msgid "Contacts with groups"
 msgstr ""
 
-#: admin/class-cl-shortcodes.php:547
+#: admin/class-cl-shortcodes.php:562
 msgid "to the content editor of any page you wish the group list to appear. When a user selects a group, then a list of contacts belonging to that group is displayed. Also, if there are subgroups under that group, those will be displayed."
 msgstr ""
 
-#: admin/class-cl-shortcodes.php:573
+#: admin/class-cl-shortcodes.php:588
 msgid "Hide breadcrumbs:"
 msgstr ""
 
-#: admin/class-cl-shortcodes.php:580
+#: admin/class-cl-shortcodes.php:595
 msgid "Hide group title:"
 msgstr ""
 
-#: admin/class-cl-shortcodes.php:599
+#: admin/class-cl-shortcodes.php:614
 msgid "Contacts from specific group"
 msgstr ""
 
-#: admin/class-cl-shortcodes.php:615
+#: admin/class-cl-shortcodes.php:630
 msgid "to the content editor of any page you wish the contact list to appear. Replace GROUP_SLUG with the appropriate slug that can be found from group management."
 msgstr ""
 
-#: admin/class-cl-shortcodes.php:623
+#: admin/class-cl-shortcodes.php:638
 msgid "Show filters"
 msgstr ""
 
-#: admin/class-cl-shortcodes.php:628
+#: admin/class-cl-shortcodes.php:643
 msgid "Show contacts that belong to all of these groups (comma separated group slugs)"
 msgstr ""
 
-#: admin/class-cl-shortcodes.php:633
+#: admin/class-cl-shortcodes.php:648
 msgid "Show contacts that belong to any of these groups (comma separated group slugs)"
 msgstr ""
 
-#: admin/class-cl-shortcodes.php:649
+#: admin/class-cl-shortcodes.php:664
 msgid "Single contact"
 msgstr ""
 
-#: admin/class-cl-shortcodes.php:661
+#: admin/class-cl-shortcodes.php:676
 msgid "to the content editor of any page you wish the contact to appear. Replace CONTACT_ID with the appropriate id that can be found from contact management. There's a column \"ID\" in the All Contacts -page, which contains the numeric value."
 msgstr ""
 
-#: admin/class-cl-shortcodes.php:672
+#: admin/class-cl-shortcodes.php:687
 msgid "Allow visitors to add new contacts"
 msgstr ""
 
-#: admin/class-cl-shortcodes.php:688
+#: admin/class-cl-shortcodes.php:703
 msgid "to the page you wish the form to appear on."
 msgstr ""
 
-#: admin/class-cl-shortcodes.php:691
+#: admin/class-cl-shortcodes.php:706
 msgid "When a user submits the form, a new contact is saved to the contacts. The status of that contact is \"Pending Review\" and a site administrator must publish/edit/delete the contact."
 msgstr ""
 
-#: admin/class-cl-shortcodes.php:702
+#: admin/class-cl-shortcodes.php:717
 msgid "Only a search form that searches from all contacts"
 msgstr ""
 
-#: admin/class-cl-shortcodes.php:719
-#: admin/class-cl-shortcodes.php:767
+#: admin/class-cl-shortcodes.php:734
+#: admin/class-cl-shortcodes.php:782
 msgid "to the page you wish the view to appear on."
 msgstr ""
 
-#: admin/class-cl-shortcodes.php:727
+#: admin/class-cl-shortcodes.php:742
 msgid "Limit contacts to a specific group"
 msgstr ""
 
-#: admin/class-cl-shortcodes.php:743
+#: admin/class-cl-shortcodes.php:758
 msgid "Send email to a group"
 msgstr ""
 

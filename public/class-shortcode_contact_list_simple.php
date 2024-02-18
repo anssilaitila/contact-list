@@ -160,35 +160,48 @@ class ShortcodeContactListSimple
             'tax_query'      => $tax_query,
             'orderby'        => $order_by,
         ) );
-        $wp_query_for_filter = new WP_Query( array(
-            'post_type'      => 'contact',
-            'post_status'    => 'publish',
-            'posts_per_page' => -1,
-            'post__not_in'   => $exclude,
-            'meta_query'     => $meta_query,
-            'tax_query'      => $tax_query,
-            'orderby'        => $order_by,
-        ) );
+        $extra_class = '';
+        $html .= '<form method="get" action="./" class="contact-list-ajax-form-simple' . $extra_class . '">';
         if ( !isset( $atts['hide_search'] ) ) {
-            $html .= '<input type="text" class="contact-list-simple-search-contacts" placeholder="' . (( isset( $s['search_contacts'] ) && $s['search_contacts'] ? ContactListHelpers::sanitize_attr_value( $s['search_contacts'] ) : ContactListHelpers::sanitize_attr_value( __( 'Search contacts...', 'contact-list' ) ) )) . '">';
+            $html .= '<input type="text" class="contact-list-simple-search-contacts' . $extra_class . '" placeholder="' . (( isset( $s['search_contacts'] ) && $s['search_contacts'] ? ContactListHelpers::sanitize_attr_value( $s['search_contacts'] ) : ContactListHelpers::sanitize_attr_value( __( 'Search contacts...', 'contact-list' ) ) )) . '">';
         }
+        $html .= '<hr class="clear" /></form>';
         
-        if ( $wp_query_for_filter->have_posts() ) {
-            $html .= '<div class="contact-list-simple-all-contacts-container">';
-            $html .= '<div class="contact-list-simple-contacts-found"></div>';
-            $html .= ContactListPublicHelpersSimple::contactListSimpleMarkup(
-                $wp_query_for_filter,
-                0,
-                $atts,
-                1
-            );
-            $html .= '</div>';
+        if ( !isset( $atts['ajax'] ) ) {
+            $wp_query_for_filter = new WP_Query( array(
+                'post_type'      => 'contact',
+                'post_status'    => 'publish',
+                'posts_per_page' => -1,
+                'post__not_in'   => $exclude,
+                'meta_query'     => $meta_query,
+                'tax_query'      => $tax_query,
+                'orderby'        => $order_by,
+            ) );
+            
+            if ( $wp_query_for_filter->have_posts() ) {
+                $html .= '<div class="contact-list-simple-all-contacts-container">';
+                $html .= '<div class="contact-list-simple-contacts-found"></div>';
+                $html .= ContactListPublicHelpersSimple::contactListSimpleMarkup(
+                    $wp_query_for_filter,
+                    0,
+                    $atts,
+                    1
+                );
+                $html .= '</div>';
+            }
+        
         }
         
         
         if ( $wp_query->have_posts() ) {
+            $generate_modals = 0;
             $html .= '<div class="contact-list-simple-paginated-container contact-list-simple-ajax-results">';
-            $html .= ContactListPublicHelpersSimple::contactListSimpleMarkup( $wp_query, 0, $atts );
+            $html .= ContactListPublicHelpersSimple::contactListSimpleMarkup(
+                $wp_query,
+                0,
+                $atts,
+                $generate_modals
+            );
             $html .= '</div>';
         }
         

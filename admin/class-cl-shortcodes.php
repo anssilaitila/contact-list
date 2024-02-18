@@ -355,6 +355,21 @@ class ContactListShortcodes
               <li>
                 
                 <?php 
+        echo  esc_html__( 'Use ajax query for input field search (beta):', 'contact-list' ) ;
+        ?>
+              
+                <?php 
+        echo  wp_kses( $plan_info_markup_all_plans, $plan_info_markup_allowed_tags ) ;
+        ?>
+              
+                <span class="contact-list-shortcode contact-list-shortcode-188888">[contact_list_simple ajax=1]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-188888"><?php 
+        echo  esc_html__( 'Copy', 'contact-list' ) ;
+        ?></button>
+              
+              </li>
+              <li>
+                
+                <?php 
         echo  esc_html__( 'Show contacts from a specific group:', 'contact-list' ) ;
         ?>
 

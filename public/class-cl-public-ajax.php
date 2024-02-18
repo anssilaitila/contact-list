@@ -42,7 +42,7 @@ class ContactListPublicAjax
             $meta_query[] = array(
                 'key'     => '_cl_country',
                 'value'   => sanitize_text_field( $_POST[CONTACT_LIST_CAT1] ),
-                'compare' => 'LIKE',
+                'compare' => '=',
             );
             $post_params_active = 1;
         }
@@ -52,7 +52,7 @@ class ContactListPublicAjax
             $meta_query[] = array(
                 'key'     => '_cl_state',
                 'value'   => sanitize_text_field( $_POST[CONTACT_LIST_CAT2] ),
-                'compare' => 'LIKE',
+                'compare' => '=',
             );
             $post_params_active = 1;
         }
@@ -62,7 +62,7 @@ class ContactListPublicAjax
             $meta_query[] = array(
                 'key'     => '_cl_city',
                 'value'   => sanitize_text_field( $_POST[CONTACT_LIST_CAT3] ),
-                'compare' => 'LIKE',
+                'compare' => '=',
             );
             $post_params_active = 1;
         }
@@ -161,21 +161,21 @@ class ContactListPublicAjax
             $meta_query[] = array(
                 'key'     => '_cl_country',
                 'value'   => sanitize_text_field( $_POST[CONTACT_LIST_CAT1] ),
-                'compare' => 'LIKE',
+                'compare' => '=',
             );
         }
         if ( isset( $_POST[CONTACT_LIST_CAT2] ) && $_POST[CONTACT_LIST_CAT2] ) {
             $meta_query[] = array(
                 'key'     => '_cl_state',
                 'value'   => sanitize_text_field( $_POST[CONTACT_LIST_CAT2] ),
-                'compare' => 'LIKE',
+                'compare' => '=',
             );
         }
         if ( isset( $_POST[CONTACT_LIST_CAT3] ) && $_POST[CONTACT_LIST_CAT3] ) {
             $meta_query[] = array(
                 'key'     => '_cl_city',
                 'value'   => sanitize_text_field( $_POST[CONTACT_LIST_CAT3] ),
-                'compare' => 'LIKE',
+                'compare' => '=',
             );
         }
         $atts_group = '';
