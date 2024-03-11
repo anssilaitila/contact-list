@@ -406,7 +406,7 @@ class ContactListCard
                     $url = '@(http)?(s)?(://)?(([a-zA-Z])([-\\w]+\\.)+([^\\s\\.]+[^\\s]*)+[^,.\\s])@';
                     
                     if ( isset( $c['_cl_custom_field_' . $n][0] ) && $c['_cl_custom_field_' . $n][0] ) {
-                        $cf_value = $c['_cl_custom_field_' . $n][0];
+                        $cf_value = sanitize_text_field( $c['_cl_custom_field_' . $n][0] );
                         
                         if ( is_email( $cf_value ) ) {
                             $mailto = sanitize_email( $cf_value );
@@ -585,7 +585,7 @@ class ContactListCard
                             $url = '@(http)?(s)?(://)?(([a-zA-Z])([-\\w]+\\.)+([^\\s\\.]+[^\\s]*)+[^,.\\s])@';
                             
                             if ( isset( $c['_cl_custom_field_' . $n][0] ) && $c['_cl_custom_field_' . $n][0] ) {
-                                $cf_value = $c['_cl_custom_field_' . $n][0];
+                                $cf_value = sanitize_text_field( $c['_cl_custom_field_' . $n][0] );
                                 
                                 if ( is_email( $cf_value ) ) {
                                     $mailto = sanitize_email( $cf_value );

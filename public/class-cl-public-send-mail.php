@@ -41,7 +41,7 @@ class ContactListPublicSendMail
         }
         
         if ( isset( $c['_cl_notify_emails'] ) ) {
-            $notify_emails = explode( ',', $c['_cl_notify_emails'][0] );
+            $notify_emails = explode( ',', sanitize_text_field( $c['_cl_notify_emails'][0] ) );
             foreach ( $notify_emails as $email ) {
                 if ( is_email( $email ) ) {
                     $recipient_emails_array[] = sanitize_email( $email );
