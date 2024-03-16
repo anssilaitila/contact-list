@@ -208,6 +208,13 @@ class Contact_List
             10,
             2
         );
+        $this->loader->add_action(
+            'restrict_manage_posts',
+            $plugin_admin_list,
+            'filter_contacts_by_taxonomy',
+            10,
+            2
+        );
         $this->loader->add_action( 'pre_get_posts', $plugin_admin_list, 'contact_list_custom_orderby' );
         $this->loader->add_filter( 'manage_edit-contact_sortable_columns', $plugin_admin_list, 'set_custom_contact_list_sortable_columns' );
         // Custom taxonomy

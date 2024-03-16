@@ -167,7 +167,12 @@ class ShortcodeContactListSimple
         }
         $html .= '<hr class="clear" /></form>';
         
-        if ( !isset( $atts['ajax'] ) ) {
+        if ( isset( $atts['ajax'] ) ) {
+            if ( isset( $atts['send_group_email'] ) ) {
+                $html .= ContactListSendGroupEmail::markup( $wp_query, 0 );
+            }
+        } else {
+            // Original method without ajax
             $wp_query_for_filter = new WP_Query( array(
                 'post_type'      => 'contact',
                 'post_status'    => 'publish',
@@ -185,6 +190,7 @@ class ShortcodeContactListSimple
                     $wp_query_for_filter,
                     0,
                     $atts,
+                    1,
                     1
                 );
                 $html .= '</div>';

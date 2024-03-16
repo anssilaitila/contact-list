@@ -6,7 +6,8 @@ class ContactListPublicHelpersSimple
         $wp_query,
         $include_children = 0,
         $atts = array(),
-        $generate_modals = 0
+        $generate_modals = 0,
+        $send_group_email = 0
     )
     {
         $s = get_option( 'contact_list_settings' );
@@ -477,6 +478,7 @@ class ContactListPublicHelpersSimple
                             $html .= wp_kses_post( $c[$field_name_db][0] );
                         }
                         $html .= '</span></div>';
+                        break;
                     default:
                         $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-' . $field_name . '"><span>';
                         if ( isset( $c[$field_name_db] ) ) {

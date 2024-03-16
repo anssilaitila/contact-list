@@ -136,5 +136,28 @@ class ContactListAdminList
         }
     
     }
+    
+    function filter_contacts_by_taxonomy( $post_type, $which )
+    {
+        // Apply this only on a specific post type
+        if ( $post_type !== CONTACT_LIST_CPT ) {
+            return;
+        }
+        $taxonomy_slug = 'contact-group';
+        $current_group_slug = ( isset( $_GET['contact-group'] ) ? sanitize_title( $_GET['contact-group'] ) : '' );
+        if ( get_taxonomy( $taxonomy_slug ) ) {
+            wp_dropdown_categories( [
+                'show_option_all' => get_taxonomy( $taxonomy_slug )->labels->all_items,
+                'hide_empty'      => 1,
+                'hierarchical'    => 1,
+                'show_count'      => 1,
+                'orderby'         => 'name',
+                'name'            => $taxonomy_slug,
+                'value_field'     => 'slug',
+                'taxonomy'        => $taxonomy_slug,
+                'selected'        => $current_group_slug,
+            ] );
+        }
+    }
 
 }

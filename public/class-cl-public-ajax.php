@@ -230,27 +230,31 @@ class ContactListPublicAjax
             $html .= '<p>' . ContactListHelpers::getText( 'text_sr_no_contacts_found', __( 'No contacts found.', 'contact-list' ) ) . '</p>';
         }
         $html_allowed_tags = [
-            'div'  => [
+            'div'      => [
             'class' => [],
         ],
-            'span' => [
+            'span'     => [
             'class' => [],
         ],
-            'a'    => [
+            'a'        => [
             'href'            => [],
             'class'           => [],
             'data-contact-id' => [],
+            'target'          => [],
         ],
-            'hr'   => [
+            'hr'       => [
             'class' => [],
         ],
-            'img'  => [
+            'img'      => [
             'src' => [],
             'alt' => [],
         ],
-            'i'    => [
+            'i'        => [
             'class'       => [],
             'aria-hidden' => [],
+        ],
+            'textarea' => [
+            'class' => [],
         ],
         ];
         echo  wp_kses( $html, $html_allowed_tags ) ;

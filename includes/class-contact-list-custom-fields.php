@@ -524,6 +524,23 @@ class ContactListCustomFields
                         case "title":
                             $options_field = $customField['name'] . '_title';
                             echo  '<h3>' . (( isset( $options[$options_field] ) && $options[$options_field] ? esc_html( $options[$options_field] ) : esc_html( $customField['title'] ) )) . '</h3>' ;
+                            
+                            if ( $customField['name'] == 'custom_fields' ) {
+                                echo  '<div style="width: 100%; margin-top: 8px; margin-bottom: 0;">' ;
+                                $url = esc_url_raw( get_admin_url() . 'options-general.php?page=contact-list#contact-list-settings-tab-5' );
+                                echo  sprintf( wp_kses(
+                                    /* translators: %s: link to plugin settings, custom fields tab */
+                                    __( '<a href="%s" target="_blank">Settings for custom fields &raquo;</a>', 'contact-list' ),
+                                    array(
+                                        'a' => array(
+                                        'href'   => array(),
+                                        'target' => array(),
+                                    ),
+                                    )
+                                ), esc_url( $url ) ) ;
+                                echo  '</div>' ;
+                            }
+                            
                             break;
                         case "country":
                             $options_field = $customField['name'] . '_title';

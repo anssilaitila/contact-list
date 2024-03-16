@@ -3,7 +3,7 @@ Contributors: anssilaitila, freemius
 Tags: directory plugin, business directory, listing, address book, staff list
 Requires at least: 5.4.0
 Tested up to: 6.4
-Stable tag: 2.9.88
+Stable tag: 2.9.89
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -239,6 +239,12 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 6. Contact management
 
 == Changelog ==
+
+= 2.9.89 - 2024-03-16 =
+* (All plans) New feature: send email to multiple recipients from the front end. When a parameter [contact_list_simple send_group_email=1] is used, the email addresses of the contacts in the search results are shown in a comma separated list and also a Send email button is shown, which opens an email client for sending a message to all those emails.
+* (Free + All plans) Fixed an issue where the additional information would be displayed twice in the simple list
+* (Free + All plans) Accessibility fix: the send message modal is now accessible with keyboard
+* (Free + All plans) New feature: the list of contacts at WP admin / Contact List can now be filtered by group
 
 = 2.9.88 - 2024-03-07 =
 * (Free + All plans) Bug fixes
@@ -574,7 +580,7 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 * New feature/option (Pro): Link country and state (on Layout-tab in the settings). Country and state (or whatever you are using them for) can now be linked, meaning that a country must be selected first, and then the available states for that country will be displayed in the state dropdown.
 
 = 2.5.0 - 2019-12-04 =
-* New licensing model
+* New licensing model (separate free and paid version)
 
 = 1.0.0 - 2018-07-13 =
 * Initial release
