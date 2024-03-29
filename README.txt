@@ -2,8 +2,8 @@
 Contributors: anssilaitila, freemius
 Tags: directory plugin, business directory, listing, address book, staff list
 Requires at least: 5.4.0
-Tested up to: 6.4
-Stable tag: 2.9.89
+Tested up to: 6.5
+Stable tag: 2.9.90
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -239,6 +239,9 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 6. Contact management
 
 == Changelog ==
+
+= 2.9.90 - 2024-03-29 =
+* (Free + All plans) Fixed an issue where simple list search results would get duplicated
 
 = 2.9.89 - 2024-03-16 =
 * (All plans) New feature: send email to multiple recipients from the front end. When a parameter [contact_list_simple send_group_email=1] is used, the email addresses of the contacts in the search results are shown in a comma separated list and also a Send email button is shown, which opens an email client for sending a message to all those emails.
