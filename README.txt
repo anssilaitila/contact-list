@@ -3,7 +3,7 @@ Contributors: anssilaitila, freemius
 Tags: directory plugin, business directory, listing, address book, staff list
 Requires at least: 5.4.0
 Tested up to: 6.5
-Stable tag: 2.9.90
+Stable tag: 2.9.91
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -239,6 +239,9 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 6. Contact management
 
 == Changelog ==
+
+= 2.9.91 - 2024-03-29 =
+* (Free + All plans) Bug fixes
 
 = 2.9.90 - 2024-03-29 =
 * (Free + All plans) Fixed an issue where simple list search results would get duplicated
