@@ -1,9 +1,7 @@
 <?php
 
-class ContactListHelpers
-{
-    public static function getMediaLibraryFileID( $filename )
-    {
+class ContactListHelpers {
+    public static function getMediaLibraryFileID( $filename ) {
         $newest_file_id = 0;
         $args = array(
             'post_type'      => 'attachment',
@@ -11,54 +9,47 @@ class ContactListHelpers
             'posts_per_page' => 1,
             'orderby'        => 'date',
             'order'          => 'DESC',
-            'meta_query'     => array( array(
-            'key'     => '_wp_attached_file',
-            'value'   => $filename,
-            'compare' => 'LIKE',
-        ) ),
+            'meta_query'     => array(array(
+                'key'     => '_wp_attached_file',
+                'value'   => $filename,
+                'compare' => 'LIKE',
+            )),
         );
-        $query = new WP_Query( $args );
-        
+        $query = new WP_Query($args);
         if ( $query->have_posts() ) {
             $query->the_post();
             $newest_file_id = get_the_ID();
         }
-        
         wp_reset_postdata();
         return $newest_file_id;
     }
-    
-    public static function sanitize_attr_value( $str )
-    {
+
+    public static function sanitize_attr_value( $str ) {
         $str = sanitize_text_field( $str );
         $str = htmlspecialchars( $str );
         return $str;
     }
-    
-    public static function getSearchDropdownClass( $title = '', $message = '' )
-    {
+
+    public static function getSearchDropdownClass( $title = '', $message = '' ) {
         $s = get_option( 'contact_list_settings' );
         $dd_class = 'cl_select_v2';
         return $dd_class;
     }
-    
-    public static function writeLog( $title = '', $message = '' )
-    {
-        global  $wpdb ;
+
+    public static function writeLog( $title = '', $message = '' ) {
+        global $wpdb;
         $wpdb->insert( $wpdb->prefix . 'contact_list_log', array(
             'title'   => sanitize_text_field( $title ),
             'message' => sanitize_textarea_field( $message ),
         ) );
     }
-    
+
     public static function addFeaturedImage(
         $contact_id,
         $upload,
         $uploaded_type,
         $filename
-    )
-    {
-        
+    ) {
         if ( $contact_id && $upload && $uploaded_type && $filename ) {
             $contact_id = intval( $contact_id );
             if ( !function_exists( 'wp_crop_image' ) ) {
@@ -84,11 +75,9 @@ class ContactListHelpers
                     break;
             }
         }
-    
     }
-    
-    public static function getText( $text_id, $default_text )
-    {
+
+    public static function getText( $text_id, $default_text ) {
         $s = get_option( 'contact_list_settings' );
         $text = sanitize_text_field( $default_text );
         if ( isset( $s[$text_id] ) && $s[$text_id] ) {
@@ -96,25 +85,21 @@ class ContactListHelpers
         }
         return $text;
     }
-    
-    public static function getTextV2( $text_id, $translatable_text )
-    {
+
+    public static function getTextV2( $text_id, $translatable_text ) {
         $s = get_option( 'contact_list_settings' );
         $text = '';
         // Text defined in the settings
-        
         if ( isset( $s[$text_id] ) && $s[$text_id] ) {
             $text = sanitize_text_field( $s[$text_id] );
             // Default text
         } else {
             $text = sanitize_text_field( __( $translatable_text, 'contact-list' ) );
         }
-        
         return $text;
     }
-    
-    public static function proFeatureMarkup()
-    {
+
+    public static function proFeatureMarkup() {
         $html = '';
         $html .= '<div class="contact-list-pro-feature">';
         $html .= '<span>' . sanitize_text_field( __( 'This feature is available in the paid plans.', 'contact-list' ) ) . '</span>';
@@ -122,9 +107,8 @@ class ContactListHelpers
         $html .= '</div>';
         return $html;
     }
-    
-    public static function proFeatureMarkupV2( $text = '' )
-    {
+
+    public static function proFeatureMarkupV2( $text = '' ) {
         $html = '';
         $html .= '<div class="contact-list-pro-feature">';
         $html .= '<span>' . sanitize_text_field( $text ) . '</span>';
@@ -132,9 +116,8 @@ class ContactListHelpers
         $html .= '</div>';
         return $html;
     }
-    
-    public static function proFeatureSettingsMarkup()
-    {
+
+    public static function proFeatureSettingsMarkup() {
         $html = '';
         $html .= '<div class="contact-list-pro-feature">';
         $html .= '<span>' . sanitize_text_field( __( 'More settings available in the paid plans.', 'contact-list' ) ) . '</span>';
@@ -142,9 +125,8 @@ class ContactListHelpers
         $html .= '</div>';
         return $html;
     }
-    
-    public static function modalSendMessageMarkup()
-    {
+
+    public static function modalSendMessageMarkup() {
         $s = get_option( 'contact_list_settings' );
         $input = esc_url_raw( get_site_url() );
         // in case scheme relative URI is passed, e.g., //www.google.com/
@@ -199,14 +181,11 @@ class ContactListHelpers
         $html .= '</div>';
         return $html;
     }
-    
-    public static function getLayout( $s, $atts )
-    {
+
+    public static function getLayout( $s, $atts ) {
         $layout = '';
-        
         if ( isset( $atts['layout'] ) ) {
             $layout = sanitize_text_field( $atts['layout'] );
-            
             if ( $layout == '2-columns' ) {
                 $layout = '2-cards-on-the-same-row';
             } elseif ( $layout == '3-columns' ) {
@@ -214,22 +193,18 @@ class ContactListHelpers
             } elseif ( $layout == '4-columns' ) {
                 $layout = '4-cards-on-the-same-row';
             }
-        
         } elseif ( isset( $s['layout'] ) && $s['layout'] ) {
             $layout = sanitize_text_field( $s['layout'] );
         }
-        
         return $layout;
     }
-    
-    public static function createElemClass()
-    {
+
+    public static function createElemClass() {
         $elem_class = 'contact-list-embed-' . uniqid();
         return $elem_class;
     }
-    
-    public static function isPremium()
-    {
+
+    public static function isPremium() {
         $is_premium = 0;
         return $is_premium;
     }

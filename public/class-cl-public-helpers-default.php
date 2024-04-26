@@ -1,14 +1,12 @@
 <?php
 
-class ContactListPublicHelpersDefault
-{
+class ContactListPublicHelpersDefault {
     public static function contactListMarkup(
         $wp_query,
         $include_children = 0,
-        $atts = array(),
+        $atts = [],
         $output_modals = 0
-    )
-    {
+    ) {
         $html = '';
         $html .= '<div id="contact-list-search">';
         $html .= '<ul id="all-contacts">';
@@ -27,9 +25,8 @@ class ContactListPublicHelpersDefault
         wp_reset_postdata();
         return $html;
     }
-    
-    public static function singleContactFullname( $c )
-    {
+
+    public static function singleContactFullname( $c ) {
         $s = get_option( 'contact_list_settings' );
         $fields = array(
             'name_prefix',
@@ -66,24 +63,21 @@ class ContactListPublicHelpersDefault
         $contact_fullname = $contact_card_title;
         foreach ( $fields as $f ) {
             $search_for = '[' . $f . ']';
-            
             if ( strpos( $contact_card_title, $search_for ) !== false ) {
                 $field_name = '_cl_' . $f;
                 $field_value = sanitize_text_field( $c[$field_name][0] );
                 $contact_fullname = str_replace( $search_for, $field_value, $contact_fullname );
             }
-        
         }
         return $contact_fullname;
     }
-    
+
     public static function singleContactMarkup(
         $id,
         $showGroups = 0,
-        $atts = array(),
+        $atts = [],
         $is_modal = 0
-    )
-    {
+    ) {
         $s = get_option( 'contact_list_settings' );
         $c = get_post_custom( $id );
         $featured_img_url = esc_url_raw( get_the_post_thumbnail_url( $id, 'contact-list-contact' ) );

@@ -26,8 +26,7 @@
  * @subpackage Contact_List/includes
  * @author     Anssi Laitila <anssi.laitila@gmail.com>
  */
-class Contact_List
-{
+class Contact_List {
     /**
      * The loader that's responsible for maintaining and registering all hooks that power
      * the plugin.
@@ -36,7 +35,8 @@ class Contact_List
      * @access   protected
      * @var      Contact_List_Loader    $loader    Maintains and registers all hooks for the plugin.
      */
-    protected  $loader ;
+    protected $loader;
+
     /**
      * The unique identifier of this plugin.
      *
@@ -44,7 +44,8 @@ class Contact_List
      * @access   protected
      * @var      string    $plugin_name    The string used to uniquely identify this plugin.
      */
-    protected  $plugin_name ;
+    protected $plugin_name;
+
     /**
      * The current version of the plugin.
      *
@@ -52,7 +53,8 @@ class Contact_List
      * @access   protected
      * @var      string    $version    The current version of the plugin.
      */
-    protected  $version ;
+    protected $version;
+
     /**
      * Define the core functionality of the plugin.
      *
@@ -62,8 +64,7 @@ class Contact_List
      *
      * @since    1.0.0
      */
-    public function __construct()
-    {
+    public function __construct() {
         if ( defined( 'CONTACT_LIST_VERSION' ) ) {
             $this->version = CONTACT_LIST_VERSION;
         }
@@ -73,7 +74,7 @@ class Contact_List
         $this->define_admin_hooks();
         $this->define_public_hooks();
     }
-    
+
     /**
      * Load the required dependencies for this plugin.
      *
@@ -90,8 +91,7 @@ class Contact_List
      * @since    1.0.0
      * @access   private
      */
-    private function load_dependencies()
-    {
+    private function load_dependencies() {
         /**
          * The class responsible for orchestrating the actions and filters of the
          * core plugin.
@@ -145,7 +145,7 @@ class Contact_List
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-shortcode_contact_list_simple.php';
         $this->loader = new Contact_List_Loader();
     }
-    
+
     /**
      * Define the locale for this plugin for internationalization.
      *
@@ -155,12 +155,11 @@ class Contact_List
      * @since    1.0.0
      * @access   private
      */
-    private function set_locale()
-    {
+    private function set_locale() {
         $plugin_i18n = new Contact_List_i18n();
         $this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
     }
-    
+
     /**
      * Register all of the hooks related to the admin area functionality
      * of the plugin.
@@ -168,10 +167,9 @@ class Contact_List
      * @since    1.0.0
      * @access   private
      */
-    private function define_admin_hooks()
-    {
+    private function define_admin_hooks() {
         $s = get_option( 'contact_list_settings' );
-        $plugin_admin = new Contact_List_Admin( $this->get_plugin_name(), $this->get_version() );
+        $plugin_admin = new Contact_List_Admin($this->get_plugin_name(), $this->get_version());
         $plugin_admin_send_email = new ContactListAdminSendEmail();
         $plugin_admin_mail_log = new ContactListAdminMailLog();
         $plugin_admin_list = new ContactListAdminList();
@@ -293,7 +291,7 @@ class Contact_List
             $this->loader->add_action( 'admin_menu', $plugin_settings, 'add_upgrade_link' );
         }
     }
-    
+
     /**
      * Register all of the hooks related to the public-facing functionality
      * of the plugin.
@@ -301,9 +299,8 @@ class Contact_List
      * @since    1.0.0
      * @access   private
      */
-    private function define_public_hooks()
-    {
-        $plugin_public = new Contact_List_Public( $this->get_plugin_name(), $this->get_version() );
+    private function define_public_hooks() {
+        $plugin_public = new Contact_List_Public($this->get_plugin_name(), $this->get_version());
         $plugin_public_send_mail = new ContactListPublicSendMail();
         $plugin_public_ajax = new ContactListPublicAjax();
         $plugin_public_load = new ContactListPublicLoad();
@@ -322,17 +319,16 @@ class Contact_List
         $this->loader->add_action( 'wp_ajax_nopriv_cl_get_contacts_simple', $plugin_public_ajax, 'cl_get_contacts_simple' );
         $this->loader->add_action( 'wp_ajax_cl_get_contacts_simple', $plugin_public_ajax, 'cl_get_contacts_simple' );
     }
-    
+
     /**
      * Run the loader to execute all of the hooks with WordPress.
      *
      * @since    1.0.0
      */
-    public function run()
-    {
+    public function run() {
         $this->loader->run();
     }
-    
+
     /**
      * The name of the plugin used to uniquely identify it within the context of
      * WordPress and to define internationalization functionality.
@@ -340,30 +336,27 @@ class Contact_List
      * @since     1.0.0
      * @return    string    The name of the plugin.
      */
-    public function get_plugin_name()
-    {
+    public function get_plugin_name() {
         return $this->plugin_name;
     }
-    
+
     /**
      * The reference to the class that orchestrates the hooks with the plugin.
      *
      * @since     1.0.0
      * @return    Contact_List_Loader    Orchestrates the hooks of the plugin.
      */
-    public function get_loader()
-    {
+    public function get_loader() {
         return $this->loader;
     }
-    
+
     /**
      * Retrieve the version number of the plugin.
      *
      * @since     1.0.0
      * @return    string    The version number of the plugin.
      */
-    public function get_version()
-    {
+    public function get_version() {
         return $this->version;
     }
 

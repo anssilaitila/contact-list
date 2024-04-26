@@ -19,8 +19,7 @@
  * @subpackage Contact_List/admin
  * @author     Anssi Laitila <anssi.laitila@gmail.com>
  */
-class Contact_List_Admin
-{
+class Contact_List_Admin {
     /**
      * The ID of this plugin.
      *
@@ -28,7 +27,8 @@ class Contact_List_Admin
      * @access   private
      * @var      string    $plugin_name    The ID of this plugin.
      */
-    private  $plugin_name ;
+    private $plugin_name;
+
     /**
      * The version of this plugin.
      *
@@ -36,7 +36,8 @@ class Contact_List_Admin
      * @access   private
      * @var      string    $version    The current version of this plugin.
      */
-    private  $version ;
+    private $version;
+
     /**
      * Initialize the class and set its properties.
      *
@@ -44,14 +45,12 @@ class Contact_List_Admin
      * @param      string    $plugin_name       The name of this plugin.
      * @param      string    $version    The version of this plugin.
      */
-    public function __construct( $plugin_name, $version )
-    {
+    public function __construct( $plugin_name, $version ) {
         $this->plugin_name = $plugin_name;
         $this->version = $version;
     }
-    
-    public function enqueue_styles( $hook )
-    {
+
+    public function enqueue_styles( $hook ) {
         $current_screen = get_current_screen();
         $current_screen_id = '';
         if ( isset( $current_screen->id ) ) {
@@ -66,7 +65,6 @@ class Contact_List_Admin
             'all'
         );
         wp_add_inline_style( $this->plugin_name, $inline_css );
-        
         if ( $hook === 'edit-tags.php' || $hook === 'contact_page_contact-list-shortcodes' || $hook === 'contact_page_contact-list-support' ) {
             wp_enqueue_style(
                 $this->plugin_name . '-tipso',
@@ -113,11 +111,9 @@ class Contact_List_Admin
                 'all'
             );
         }
-    
     }
-    
-    public function enqueue_scripts( $hook )
-    {
+
+    public function enqueue_scripts( $hook ) {
         $current_screen = get_current_screen();
         $current_screen_id = '';
         if ( isset( $current_screen->id ) ) {
@@ -128,24 +124,23 @@ class Contact_List_Admin
             wp_enqueue_script(
                 $this->plugin_name,
                 CONTACT_LIST_URI . 'dist/js/a.js',
-                array( 'jquery' ),
+                array('jquery'),
                 $this->version,
                 false
             );
         }
-        
         if ( $hook === 'edit-tags.php' ) {
             wp_enqueue_script(
                 $this->plugin_name . '-tipso',
                 CONTACT_LIST_URI . 'dist/tipso.min.js',
-                array( 'jquery' ),
+                array('jquery'),
                 $this->version,
                 true
             );
             wp_enqueue_script(
                 $this->plugin_name . '-clipboard',
                 '/wp-includes/js/clipboard.js',
-                array( 'jquery' ),
+                array('jquery'),
                 $this->version,
                 true
             );
@@ -155,14 +150,14 @@ class Contact_List_Admin
             wp_enqueue_script(
                 $this->plugin_name . '-tipso',
                 CONTACT_LIST_URI . 'dist/tipso.min.js',
-                array( 'jquery' ),
+                array('jquery'),
                 $this->version,
                 true
             );
             wp_enqueue_script(
                 $this->plugin_name . '-clipboard',
                 '/wp-includes/js/clipboard.js',
-                array( 'jquery' ),
+                array('jquery'),
                 $this->version,
                 true
             );
@@ -170,14 +165,14 @@ class Contact_List_Admin
             wp_enqueue_script(
                 $this->plugin_name . '-tipso',
                 CONTACT_LIST_URI . 'dist/tipso.min.js',
-                array( 'jquery' ),
+                array('jquery'),
                 $this->version,
                 true
             );
             wp_enqueue_script(
                 $this->plugin_name . '-clipboard',
                 '/wp-includes/js/clipboard.js',
-                array( 'jquery' ),
+                array('jquery'),
                 $this->version,
                 true
             );
@@ -189,14 +184,14 @@ class Contact_List_Admin
             wp_enqueue_script(
                 $this->plugin_name . '-tipso',
                 CONTACT_LIST_URI . 'dist/tipso.min.js',
-                array( 'jquery' ),
+                array('jquery'),
                 $this->version,
                 true
             );
             wp_enqueue_script(
                 $this->plugin_name . '-clipboard',
                 '/wp-includes/js/clipboard.js',
-                array( 'jquery' ),
+                array('jquery'),
                 $this->version,
                 true
             );
@@ -207,7 +202,6 @@ class Contact_List_Admin
             $inline_js = ContactListAdminInlineScripts::inline_scripts( 'mail-log' );
             wp_add_inline_script( $this->plugin_name, $inline_js );
         }
-    
     }
 
 }

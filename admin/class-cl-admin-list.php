@@ -1,9 +1,7 @@
 <?php
 
-class ContactListAdminList
-{
-    function contact_custom_columns( $defaults )
-    {
+class ContactListAdminList {
+    function contact_custom_columns( $defaults ) {
         $s = get_option( 'contact_list_settings' );
         $defaults['contact_id'] = 'ID';
         if ( !isset( $s['af_hide_first_name'] ) ) {
@@ -34,111 +32,93 @@ class ContactListAdminList
         }
         return $defaults;
     }
-    
-    function contact_custom_columns_content( $column_name, $post_ID )
-    {
-        global  $post ;
+
+    function contact_custom_columns_content( $column_name, $post_ID ) {
+        global $post;
         if ( $column_name == 'contact_id' ) {
-            echo  esc_html( $post_ID ) ;
+            echo esc_html( $post_ID );
         }
-        
         if ( $column_name == 'first_name' ) {
             $first_name = sanitize_text_field( get_post_meta( $post_ID, '_cl_first_name', true ) . '' );
-            echo  esc_html( $first_name ) ;
+            echo esc_html( $first_name );
         }
-        
-        
         if ( $column_name == 'last_name' ) {
             $last_name = sanitize_text_field( get_post_meta( $post_ID, '_cl_last_name', true ) );
-            echo  esc_html( $last_name ) ;
-            echo  '<span class="contact-list-shortcode-admin-list contact-list-shortcode-admin-list-contact contact-list-shortcode-' . esc_attr( $post_ID ) . '" title="[contact_list contact=' . esc_attr( $post_ID ) . ']">[contact_list contact=' . esc_attr( $post_ID ) . ']</span>' ;
-            echo  '<button class="contact-list-copy contact-list-copy-admin-list" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-' . esc_attr( $post_ID ) . '">' . esc_html__( 'Copy', 'contact-list' ) . '</button>' ;
+            echo esc_html( $last_name );
+            echo '<span class="contact-list-shortcode-admin-list contact-list-shortcode-admin-list-contact contact-list-shortcode-' . esc_attr( $post_ID ) . '" title="[contact_list contact=' . esc_attr( $post_ID ) . ']">[contact_list contact=' . esc_attr( $post_ID ) . ']</span>';
+            echo '<button class="contact-list-copy contact-list-copy-admin-list" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-' . esc_attr( $post_ID ) . '">' . esc_html__( 'Copy', 'contact-list' ) . '</button>';
         }
-        
         if ( $column_name == 'menu_order' ) {
-            echo  esc_html( $post->menu_order ) ;
+            echo esc_html( $post->menu_order );
         }
-        
         if ( $column_name == 'job_title' ) {
             $job_title = sanitize_text_field( get_post_meta( $post_ID, '_cl_job_title', true ) );
-            echo  esc_html( $job_title ) ;
+            echo esc_html( $job_title );
         }
-        
-        
         if ( $column_name == 'email' ) {
             $email = sanitize_email( get_post_meta( $post_ID, '_cl_email', true ) );
-            
             if ( $email ) {
-                echo  esc_html( $email ) ;
+                echo esc_html( $email );
                 $is_premium = 0;
                 if ( !$is_premium ) {
-                    echo  '<button class="contact-list-request-update contact-list-request-update-free contact-list-request-update-' . esc_attr( $post_ID ) . '" data-contact-id="' . esc_attr( $post_ID ) . '">' . esc_html__( 'Request update', 'contact-list' ) . '</button><div class="contact-list-request-update-info contact-list-request-update-info-' . esc_attr( $post_ID ) . '"></div>' ;
+                    echo '<button class="contact-list-request-update contact-list-request-update-free contact-list-request-update-' . esc_attr( $post_ID ) . '" data-contact-id="' . esc_attr( $post_ID ) . '">' . esc_html__( 'Request update', 'contact-list' ) . '</button><div class="contact-list-request-update-info contact-list-request-update-info-' . esc_attr( $post_ID ) . '"></div>';
                 }
             }
-        
         }
-        
-        
         if ( $column_name == 'phone' ) {
             $phone = sanitize_text_field( get_post_meta( $post_ID, '_cl_phone', true ) );
-            echo  esc_html( $phone ) ;
+            echo esc_html( $phone );
         }
-        
         if ( $column_name == 'linkedin_url' ) {
             if ( get_post_meta( $post_ID, '_cl_linkedin_url', true ) ) {
-                echo  '<div style="text-align: center;">x</div>' ;
+                echo '<div style="text-align: center;">x</div>';
             }
         }
         if ( $column_name == 'twitter_url' ) {
             if ( get_post_meta( $post_ID, '_cl_twitter_url', true ) ) {
-                echo  '<div style="text-align: center;">x</div>' ;
+                echo '<div style="text-align: center;">x</div>';
             }
         }
         if ( $column_name == 'facebook_url' ) {
             if ( get_post_meta( $post_ID, '_cl_facebook_url', true ) ) {
-                echo  '<div style="text-align: center;">x</div>' ;
+                echo '<div style="text-align: center;">x</div>';
             }
         }
         if ( $column_name == 'instagram_url' ) {
             if ( get_post_meta( $post_ID, '_cl_instagram_url', true ) ) {
-                echo  '<div style="text-align: center;">x</div>' ;
+                echo '<div style="text-align: center;">x</div>';
             }
         }
     }
-    
-    function set_custom_contact_list_sortable_columns( $columns )
-    {
+
+    function set_custom_contact_list_sortable_columns( $columns ) {
         $columns['last_name'] = 'last_name';
         $columns['menu_order'] = 'menu_order';
         return $columns;
     }
-    
-    function contact_list_custom_orderby( $query )
-    {
+
+    function contact_list_custom_orderby( $query ) {
         if ( !is_admin() ) {
             return;
         }
         $orderby = $query->get( 'orderby' );
         $order = ( $query->get( 'order' ) == 'asc' ? 'ASC' : 'DESC' );
-        
         if ( $orderby == 'last_name' ) {
             $query->set( 'meta_query', array(
                 'relation'         => 'AND',
                 'last_name_clause' => array(
-                'key'     => '_cl_last_name',
-                'compare' => 'EXISTS',
-            ),
+                    'key'     => '_cl_last_name',
+                    'compare' => 'EXISTS',
+                ),
             ) );
             $query->set( 'orderby', array(
                 'last_name_clause' => $order,
                 'title'            => $order,
             ) );
         }
-    
     }
-    
-    function filter_contacts_by_taxonomy( $post_type, $which )
-    {
+
+    function filter_contacts_by_taxonomy( $post_type, $which ) {
         // Apply this only on a specific post type
         if ( $post_type !== CONTACT_LIST_CPT ) {
             return;

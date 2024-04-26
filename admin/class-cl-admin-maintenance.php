@@ -1,22 +1,19 @@
 <?php
 
-class ContactListAdminMaintenance
-{
-    public function update_db_check_v2()
-    {
+class ContactListAdminMaintenance {
+    public function update_db_check_v2() {
         $s = get_option( 'contact_list_settings' );
         // START METADATA UPDATE
         $metadata_check_field_name = 'contact_list_metadata_fixed_1000';
         $contact_list_metadata_fixed = get_option( $metadata_check_field_name );
-        
         if ( !$contact_list_metadata_fixed ) {
             ContactListHelpers::writeLog( 'START contact metadata update check (save empty values) - ' . $metadata_check_field_name, '' );
             update_option( $metadata_check_field_name, 1 );
-            $wp_query = new WP_Query( array(
+            $wp_query = new WP_Query(array(
                 'post_type'      => 'contact',
                 'post_status'    => 'publish',
                 'posts_per_page' => -1,
-            ) );
+            ));
             $sortable_fields = [
                 '_cl_first_name',
                 '_cl_custom_field_1',
@@ -27,7 +24,6 @@ class ContactListAdminMaintenance
                 '_cl_custom_field_6'
             ];
             $cnt = 0;
-            
             if ( $wp_query->have_posts() ) {
                 ContactListHelpers::writeLog( 'Total contacts: ' . sanitize_text_field( $wp_query->post_count ), '' );
                 while ( $wp_query->have_posts() ) {
@@ -43,17 +39,14 @@ class ContactListAdminMaintenance
                 }
                 wp_reset_postdata();
             }
-            
             ContactListHelpers::writeLog( 'Verified contacts: ' . sanitize_text_field( $cnt ), '' );
             //      ContactListHelpers::writeLog('Verified fields: ' . print_r( $sortable_fields, true ), '');
             ContactListHelpers::writeLog( 'END contact metadata update check (save empty values) - ' . $metadata_check_field_name, '' );
         }
-        
         // END METADATA UPDATE
     }
-    
-    public function actions()
-    {
+
+    public function actions() {
         $rand_code = sanitize_text_field( md5( uniqid( rand(), true ) ) );
         if ( !get_option( 'contact-list-sc' ) ) {
             add_option(
@@ -64,7 +57,6 @@ class ContactListAdminMaintenance
             );
         }
         $s = get_option( 'contact_list_settings' );
-        
         if ( $s === false ) {
             $default_settings = [
                 'layout'                               => '2-cards-on-the-same-row',
@@ -90,7 +82,6 @@ class ContactListAdminMaintenance
             add_option( 'contact_list_settings', $default_settings );
             update_option( 'contact_list_how_to_show_notice', 1, false );
         }
-    
     }
 
 }

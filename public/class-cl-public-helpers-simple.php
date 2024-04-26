@@ -1,15 +1,13 @@
 <?php
 
-class ContactListPublicHelpersSimple
-{
+class ContactListPublicHelpersSimple {
     public static function contactListSimpleMarkup(
         $wp_query,
         $include_children = 0,
-        $atts = array(),
+        $atts = [],
         $generate_modals = 0,
         $send_group_email = 0
-    )
-    {
+    ) {
         $s = get_option( 'contact_list_settings' );
         $html = '';
         $extra_class = '';
@@ -38,9 +36,8 @@ class ContactListPublicHelpersSimple
         wp_reset_postdata();
         return $html;
     }
-    
-    public static function contactListSimpleMarkupTitles( $atts )
-    {
+
+    public static function contactListSimpleMarkupTitles( $atts ) {
         $s = get_option( 'contact_list_settings' );
         $html = '';
         $html .= '<div class="contact-list-simple-list-row">';
@@ -78,106 +75,80 @@ class ContactListPublicHelpersSimple
             'send_message'   => sanitize_text_field( __( 'Send message', 'contact-list' ) ),
         ];
         $simple_list_fields = [];
-        
         if ( sizeof( $simple_list_fields ) > 1 ) {
         } else {
             $contact_fullname = '';
             $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-name contact-list-simple-list-col-title"><span>' . ContactListHelpers::getText( 'name_title', __( 'Name', 'contact-list' ) ) . '</span></div>';
-            
             if ( !isset( $s['simple_list_hide_job_title'] ) ) {
                 $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-title"><span>';
                 $html .= ContactListHelpers::getText( 'job_title_title', __( 'Job title', 'contact-list' ) );
                 $html .= '</span></div>';
             }
-            
-            
             if ( !isset( $s['simple_list_hide_email'] ) ) {
                 $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-title"><span>';
                 $html .= ContactListHelpers::getText( 'email_title', __( 'Email', 'contact-list' ) );
                 $html .= '</span></div>';
             }
-            
-            
             if ( !isset( $s['simple_list_hide_phone_1'] ) ) {
                 $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-title"><span>';
                 $html .= ContactListHelpers::getText( 'phone_title', __( 'Phone', 'contact-list' ) );
                 $html .= '</span></div>';
-                
                 if ( isset( $s['simple_list_show_extra_call_button'] ) ) {
                     $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-title contact-list-simple-list-col-title-phone-call-button"><span>';
                     $html .= '</span></div>';
                 }
-            
             }
-            
-            
             if ( isset( $s['simple_list_show_address_line_1'] ) ) {
                 $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-title"><span>';
                 $html .= ContactListHelpers::getText( 'address_title', __( 'Address', 'contact-list' ) );
                 $html .= '</span></div>';
             }
-            
-            
             if ( isset( $s['simple_list_show_city'] ) ) {
                 $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-title"><span>';
                 $html .= ContactListHelpers::getText( 'city_title', __( 'City', 'contact-list' ) );
                 $html .= '</span></div>';
             }
-            
-            
             if ( isset( $s['simple_list_show_zip_code'] ) ) {
                 $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-title"><span>';
                 $html .= ContactListHelpers::getText( 'zip_code_title', __( 'ZIP Code', 'contact-list' ) );
                 $html .= '</span></div>';
             }
-            
-            
             if ( !isset( $s['simple_list_hide_some_links'] ) ) {
                 $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-some contact-list-simple-list-col-title"><span>';
                 $html .= sanitize_text_field( __( 'Social media', 'contact-list' ) );
                 $html .= '</span></div>';
             }
-            
             $custom_fields_cnt = 1 + 1;
-            for ( $n = 1 ;  $n < $custom_fields_cnt ;  $n++ ) {
-                
+            for ($n = 1; $n < $custom_fields_cnt; $n++) {
                 if ( isset( $s['simple_list_show_custom_field_' . $n] ) ) {
                     $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-title"><span>';
                     $cf_field_title = ( isset( $s['custom_field_' . $n . '_title'] ) && $s['custom_field_' . $n . '_title'] ? $s['custom_field_' . $n . '_title'] : '' );
                     $html .= sanitize_text_field( $cf_field_title );
                     $html .= '</span></div>';
                 }
-            
             }
-            
             if ( isset( $s['simple_list_show_category'] ) ) {
                 $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-title"><span>';
                 $html .= ContactListHelpers::getText( 'category_title', __( 'Category', 'contact-list' ) );
                 $html .= '</span></div>';
             }
-            
-            
             if ( isset( $s['simple_list_show_send_message'] ) ) {
                 $html .= '<div class="contact-list-simple-list-col cl-align-right"><span>';
                 $html .= '';
                 $html .= '</span></div>';
             }
-        
         }
-        
         $html .= '</div>';
         return $html;
     }
-    
-    public static function singleContactSimpleMarkup( $id, $showGroups = 0, $atts = array() )
-    {
+
+    public static function singleContactSimpleMarkup( $id, $showGroups = 0, $atts = [] ) {
         $id = intval( $id );
         $s = get_option( 'contact_list_settings' );
         $c = get_post_custom( $id );
         $html = '';
         $html .= '<div class="contact-list-simple-list-row contact-list-simple-list-row-data">';
         $contact_fullname = '';
-        
         if ( isset( $s['last_name_before_first_name'] ) ) {
             $contact_fullname = $c['_cl_last_name'][0] . (( isset( $c['_cl_first_name'] ) ? ' ' . $c['_cl_first_name'][0] : '' ));
             $contact_fullname = sanitize_text_field( $contact_fullname );
@@ -187,7 +158,6 @@ class ContactListPublicHelpersSimple
             $contact_fullname = sanitize_text_field( $contact_fullname );
             $html .= '<div class="contact-list-hidden-name">' . sanitize_text_field( $c['_cl_last_name'][0] ) . (( isset( $c['_cl_first_name'] ) ? ' ' . sanitize_text_field( $c['_cl_first_name'][0] ) : '' )) . '</div>';
         }
-        
         $simple_list_fields = explode( ' ', 'full_name job_title email phone phone_2 phone_3 address_line_1 city zip_code some_icons custom_field_1 custom_field_2 custom_field_3 custom_field_4 custom_field_5 custom_field_6 category send_message' );
         $override = 0;
         if ( sizeof( $simple_list_fields ) > 0 ) {
@@ -199,20 +169,17 @@ class ContactListPublicHelpersSimple
                     case 'full_name':
                         $simple_list_name_link_active = 0;
                         $simple_list_name_link = '';
-                        
                         if ( !$simple_list_name_link_active ) {
                             $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-name contact-list-simple-list-col-' . $field_name . '"><span>';
                             $html .= sanitize_text_field( $contact_fullname );
                             $html .= '</span></div>';
                         }
-                        
                         break;
                     case 'job_title':
                         $show_data = 1;
                         if ( isset( $s['simple_list_hide_job_title'] ) ) {
                             $show_data = 0;
                         }
-                        
                         if ( $override || $show_data ) {
                             $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-' . $field_name . '"><span>';
                             if ( isset( $c[$field_name_db] ) ) {
@@ -220,21 +187,17 @@ class ContactListPublicHelpersSimple
                             }
                             $html .= '</span></div>';
                         }
-                        
                         break;
                     case 'phone':
                         $show_data = 1;
                         if ( isset( $s['simple_list_hide_phone_1'] ) ) {
                             $show_data = 0;
                         }
-                        
                         if ( $override || $show_data ) {
                             $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-' . $field_name . '"><span>';
-                            
                             if ( isset( $c['_cl_phone'] ) && $c['_cl_phone'][0] ) {
                                 $phone_org = sanitize_text_field( $c['_cl_phone'][0] );
                                 $phone_href = preg_replace( '/[^0-9\\,]/', '', $phone_org );
-                                
                                 if ( isset( $s['simple_list_call_button'] ) ) {
                                     $call_title = sanitize_text_field( __( 'Call', 'contact-list' ) );
                                     if ( isset( $s['simple_list_call_button_title'] ) ) {
@@ -244,17 +207,12 @@ class ContactListPublicHelpersSimple
                                 } else {
                                     $html .= '<a href="tel:' . $phone_href . '">' . $phone_org . '</a>';
                                 }
-                            
                             }
-                            
                             $html .= '</span></div>';
                         }
-                        
-                        
                         if ( isset( $s['simple_list_show_extra_call_button'] ) ) {
                             $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-' . $field_name . '-call-button"><span>';
                             if ( $override || $show_data ) {
-                                
                                 if ( isset( $c['_cl_phone'] ) && $c['_cl_phone'][0] ) {
                                     $call_title = sanitize_text_field( __( 'Call', 'contact-list' ) );
                                     if ( isset( $s['simple_list_call_button_title'] ) ) {
@@ -262,11 +220,9 @@ class ContactListPublicHelpersSimple
                                     }
                                     $html .= '<a href="tel:' . $phone_href . '" class="contact-list-simple-list-call-button contact-list-simple-list-call-button-extra">' . $call_title . '</a>';
                                 }
-                            
                             }
                             $html .= '</span></div>';
                         }
-                        
                         break;
                     case 'phone_2':
                         break;
@@ -277,10 +233,8 @@ class ContactListPublicHelpersSimple
                         if ( isset( $s['simple_list_hide_email'] ) ) {
                             $show_data = 0;
                         }
-                        
                         if ( $override || $show_data ) {
                             $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-' . $field_name . '"><span>';
-                            
                             if ( isset( $c['_cl_email'][0] ) ) {
                                 $mailto = sanitize_email( $c['_cl_email'][0] );
                                 $mailto_obs = antispambot( $mailto );
@@ -288,17 +242,14 @@ class ContactListPublicHelpersSimple
                                     $html .= ( $c['_cl_email'][0] ? '<a href="mailto:' . sanitize_text_field( $mailto_obs ) . '">' . sanitize_text_field( $mailto_obs ) . '</a>' : '' );
                                 }
                             }
-                            
                             $html .= '</span></div>';
                         }
-                        
                         break;
                     case 'some_icons':
                         $show_data = 1;
                         if ( isset( $s['simple_list_hide_some_links'] ) ) {
                             $show_data = 0;
                         }
-                        
                         if ( $override || $show_data ) {
                             $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-some contact-list-simple-list-col-' . $field_name . '"><span>';
                             $html .= '<div class="contact-list-simple-list-some-icons-container">';
@@ -319,14 +270,12 @@ class ContactListPublicHelpersSimple
                             $html .= '</div>';
                             $html .= '</span></div>';
                         }
-                        
                         break;
                     case 'city':
                         $show_data = 1;
                         if ( !isset( $s['simple_list_show_city'] ) ) {
                             $show_data = 0;
                         }
-                        
                         if ( $override || $show_data ) {
                             $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-' . $field_name . '"><span>';
                             if ( isset( $c['_cl_city'] ) ) {
@@ -334,14 +283,12 @@ class ContactListPublicHelpersSimple
                             }
                             $html .= '</span></div>';
                         }
-                        
                         break;
                     case 'zip_code':
                         $show_data = 1;
                         if ( !isset( $s['simple_list_show_zip_code'] ) ) {
                             $show_data = 0;
                         }
-                        
                         if ( $override || $show_data ) {
                             $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-' . $field_name . '"><span>';
                             if ( isset( $c['_cl_zip_code'] ) ) {
@@ -349,14 +296,12 @@ class ContactListPublicHelpersSimple
                             }
                             $html .= '</span></div>';
                         }
-                        
                         break;
                     case 'address_line_1':
                         $show_data = 1;
                         if ( !isset( $s['simple_list_show_address_line_1'] ) ) {
                             $show_data = 0;
                         }
-                        
                         if ( $override || $show_data ) {
                             $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-' . $field_name . '"><span>';
                             if ( isset( $c['_cl_address_line_1'] ) ) {
@@ -364,20 +309,17 @@ class ContactListPublicHelpersSimple
                             }
                             $html .= '</span></div>';
                         }
-                        
                         break;
                     case 'custom_field_1':
                         $show_data = 1;
                         if ( !isset( $s['simple_list_show_custom_field_1'] ) ) {
                             $show_data = 0;
                         }
-                        
                         if ( $override || $show_data ) {
                             $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-' . $field_name . '"><span>';
                             $html .= ContactListPublicHelpersSimple::singleContactSimpleCustomFieldMarkup( 1, $c );
                             $html .= '</span></div>';
                         }
-                        
                         break;
                     case 'custom_field_2':
                         break;
@@ -426,43 +368,34 @@ class ContactListPublicHelpersSimple
                         if ( !isset( $s['simple_list_show_category'] ) ) {
                             $show_data = 0;
                         }
-                        
                         if ( $override || $show_data ) {
                             $terms = get_the_terms( $id, 'contact-group' );
                             $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-' . $field_name . '"><span>';
                             $simple_list_group_link = '';
-                            
                             if ( $terms ) {
                                 $html .= '<div class="contact-list-simple-contact-groups">';
                                 foreach ( $terms as $term ) {
                                     $t_id = intval( $term->term_id );
                                     $custom_fields = get_option( "taxonomy_term_{$t_id}" );
-                                    
                                     if ( !isset( $custom_fields['hide_group'] ) ) {
                                         $simple_list_group_link_active = 0;
                                         if ( !$simple_list_group_link_active ) {
                                             $html .= '<span>' . sanitize_text_field( $term->name ) . '</span>';
                                         }
                                     }
-                                
                                 }
                                 $html .= '</div>';
                             }
-                            
                             $html .= '</span></div>';
                         }
-                        
                         break;
                     case 'send_message':
                         $show_data = 1;
-                        
                         if ( !isset( $s['simple_list_show_send_message'] ) ) {
                             $show_data = 0;
                         } elseif ( isset( $s['hide_send_email_button'] ) ) {
                             $show_data = 0;
                         }
-                        
-                        
                         if ( $override || $show_data ) {
                             $html .= '<div class="contact-list-simple-list-col cl-align-right contact-list-simple-list-col-' . $field_name . '"><span>';
                             if ( isset( $c['_cl_email'][0] ) && is_email( $c['_cl_email'][0] ) || isset( $c['_cl_notify_emails'] ) && $c['_cl_notify_emails'] ) {
@@ -470,7 +403,6 @@ class ContactListPublicHelpersSimple
                             }
                             $html .= '</span></div>';
                         }
-                        
                         break;
                     case 'description':
                         $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-' . $field_name . '"><span>';
@@ -491,16 +423,13 @@ class ContactListPublicHelpersSimple
         $html .= '</div>';
         return $html;
     }
-    
-    public static function singleContactSimpleCustomFieldMarkup( $n, $c )
-    {
+
+    public static function singleContactSimpleCustomFieldMarkup( $n, $c ) {
         $html = '';
-        
         if ( isset( $c['_cl_custom_field_' . $n] ) ) {
             $s = get_option( 'contact_list_settings' );
             $url = '@(http)?(s)?(://)?(([a-zA-Z])([-\\w]+\\.)+([^\\s\\.]+[^\\s]*)+[^,.\\s])@';
             $cf_value = sanitize_text_field( $c['_cl_custom_field_' . $n][0] );
-            
             if ( is_email( $cf_value ) ) {
                 $mailto = $cf_value;
                 $mailto_obs = antispambot( $mailto );
@@ -510,16 +439,12 @@ class ContactListPublicHelpersSimple
                 if ( isset( $s['custom_field_' . $n . '_link_text'] ) && $s['custom_field_' . $n . '_link_text'] ) {
                     $link_title = sanitize_text_field( $s['custom_field_' . $n . '_link_text'] );
                 }
-                
                 if ( $link_title ) {
                     $cf_value = preg_replace( $url, '<a href="http$2://$4" target="_blank" title="$0">' . $link_title . '</a>', $cf_value );
                 } else {
                     $cf_value = preg_replace( $url, '<a href="http$2://$4" target="_blank" title="$0">$0</a>', $cf_value );
                 }
-            
             }
-            
-            
             if ( isset( $s['custom_field_' . $n . '_icon'] ) && $s['custom_field_' . $n . '_icon'] && $cf_value ) {
                 $html .= '<div class="contact-list-custom-field-simple-list contact-list-custom-field-' . $n . ' contact-list-custom-field-with-icon">';
                 $html .= '<i class="fa ' . sanitize_html_class( $s['custom_field_' . $n . '_icon'] ) . '" aria-hidden="true"></i><span>' . balanceTags( wp_kses_post( $cf_value ) ) . '</span>';
@@ -529,9 +454,7 @@ class ContactListPublicHelpersSimple
                 $html .= balanceTags( wp_kses_post( $cf_value ) );
                 $html .= '</div>';
             }
-        
         }
-        
         return $html;
     }
 

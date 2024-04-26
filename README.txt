@@ -3,7 +3,7 @@ Contributors: anssilaitila, freemius
 Tags: directory plugin, business directory, listing, address book, staff list
 Requires at least: 5.4.0
 Tested up to: 6.5
-Stable tag: 2.9.91
+Stable tag: 2.9.92
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -239,6 +239,11 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 6. Contact management
 
 == Changelog ==
+
+= 2.9.92 - 2024-04-26 =
+* (All plans) Fix: search results are no longer limited by the contacts per page setting, when filtering contacts using dropdowns
+* (Free + All plans) Fix: [name_prefix], [middle_name] and [name_suffix] are now correctly replaced in the send message modal, if used for contact card title
+* (Free + All plans) Layout fixes
 
 = 2.9.91 - 2024-03-29 =
 * (Free + All plans) Bug fixes

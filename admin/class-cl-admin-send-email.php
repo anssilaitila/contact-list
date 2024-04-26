@@ -1,37 +1,34 @@
 <?php
 
-class ContactListAdminSendEmail
-{
-    public function register_send_email_page()
-    {
+class ContactListAdminSendEmail {
+    public function register_send_email_page() {
         add_submenu_page(
             'edit.php?post_type=' . CONTACT_LIST_CPT,
             sanitize_text_field( __( 'Send email to contacts', 'contact-list' ) ),
             sanitize_text_field( __( 'Send email', 'contact-list' ) ),
             'manage_options',
             'contact-list-send-email',
-            [ $this, 'register_send_email_page_callback' ]
+            [$this, 'register_send_email_page_callback']
         );
     }
-    
-    public function register_send_email_page_callback()
-    {
+
+    public function register_send_email_page_callback() {
         $term_id = ( isset( $_GET['group_id'] ) ? intval( $_GET['group_id'] ) : 0 );
         $tax_query = [];
         if ( $term_id ) {
-            $tax_query = array( array(
+            $tax_query = array(array(
                 'taxonomy'         => 'contact-group',
                 'field'            => 'term_id',
                 'terms'            => $term_id,
                 'include_children' => true,
-            ) );
+            ));
         }
-        $wpb_all_query = new WP_Query( array(
+        $wpb_all_query = new WP_Query(array(
             'post_type'      => CONTACT_LIST_CPT,
             'post_status'    => 'publish',
             'posts_per_page' => -1,
             'tax_query'      => $tax_query,
-        ) );
+        ));
         $recipient_emails = [];
         if ( $wpb_all_query->have_posts() ) {
             while ( $wpb_all_query->have_posts() ) {
@@ -54,27 +51,25 @@ class ContactListAdminSendEmail
         ?>
 
         <h1><?php 
-        echo  esc_html__( 'Send email to contacts', 'contact-list' ) ;
+        echo esc_html__( 'Send email to contacts', 'contact-list' );
         ?></h1>
 
         <?php 
-        
         if ( ContactListHelpers::isPremium() == 0 ) {
             ?>  
           <br />
           <?php 
-            echo  ContactListHelpers::proFeatureMarkup() ;
+            echo ContactListHelpers::proFeatureMarkup();
             ?>
           <br />
         <?php 
         }
-        
         ?>
 
         <div>
           
           <span class="restrict-recipients-title"><?php 
-        echo  esc_html__( 'Restrict recipients to specific group', 'contact-list' ) ;
+        echo esc_html__( 'Restrict recipients to specific group', 'contact-list' );
         ?>:</span>
 
           <?php 
@@ -83,10 +78,8 @@ class ContactListAdminSendEmail
             'hide_empty' => false,
         ) );
         $output = '';
-        
-        if ( !empty($taxonomies) ) {
+        if ( !empty( $taxonomies ) ) {
             foreach ( $taxonomies as $category ) {
-                
                 if ( $category->parent == 0 ) {
                     $output .= '<label class="contact-category"><input type="radio" name="_cl_groups[]" value="' . intval( $category->term_id ) . '" onclick="document.location.href=\'./edit.php?post_type=' . esc_js( CONTACT_LIST_CPT ) . '&page=contact-list-send-email&group_id=\' + this.value;" ' . (( isset( $_GET['group_id'] ) && $_GET['group_id'] == $category->term_id ? 'checked' : '' )) . ' /> <span class="contact-list-checkbox-title">' . esc_html( $category->name ) . '</span></label>';
                     foreach ( $taxonomies as $subcategory ) {
@@ -95,53 +88,50 @@ class ContactListAdminSendEmail
                         }
                     }
                 }
-            
             }
-            echo  '<div class="contact-list-restrict-to-groups">' ;
-            echo  $output ;
-            echo  '</div>' ;
+            echo '<div class="contact-list-restrict-to-groups">';
+            echo $output;
+            echo '</div>';
         } else {
-            echo  '<div class="contact-list-admin-no-groups-found">' ;
-            echo  esc_html__( 'No groups found.', 'contact-list' ) . ' ' ;
+            echo '<div class="contact-list-admin-no-groups-found">';
+            echo esc_html__( 'No groups found.', 'contact-list' ) . ' ';
             $url = get_admin_url() . 'edit-tags.php?taxonomy=contact-group&post_type=contact';
-            $text = sprintf( wp_kses(
+            $text = sprintf( wp_kses( 
                 /* translators: %s: link to group management */
                 __( 'You may add groups from <a href="%s">group management</a>.', 'contact-list' ),
                 array(
                     'a' => array(
-                    'href' => array(),
-                ),
+                        'href' => array(),
+                    ),
                 )
-            ), esc_url( $url ) );
-            echo  $text ;
-            echo  '</div>' ;
+             ), esc_url( $url ) );
+            echo $text;
+            echo '</div>';
         }
-        
         ?>
 
         </div>
 
         <span class="recipients-title"><?php 
-        echo  esc_html__( 'Recipients', 'contact-list' ) ;
+        echo esc_html__( 'Recipients', 'contact-list' );
         ?> (<?php 
-        echo  esc_html__( 'total of', 'contact-list' ) ;
+        echo esc_html__( 'total of', 'contact-list' );
         ?> <?php 
-        echo  sizeof( $recipient_emails ) ;
+        echo sizeof( $recipient_emails );
         ?> <?php 
-        echo  esc_html__( 'contacts with email addresses', 'contact-list' ) ;
+        echo esc_html__( 'contacts with email addresses', 'contact-list' );
         ?>):</span>
 
 
         <?php 
-        
         if ( sizeof( $recipient_emails ) > 0 ) {
             ?>
 
           <div><?php 
-            echo  implode( ', ', $recipient_emails ) ;
+            echo implode( ', ', $recipient_emails );
             ?></div>
           <input name="recipient_emails" type="hidden" value="<?php 
-            echo  esc_attr( implode( ',', $recipient_emails ) ) ;
+            echo esc_attr( implode( ',', $recipient_emails ) );
             ?>" />
 
         <?php 
@@ -151,34 +141,33 @@ class ContactListAdminSendEmail
           <div class="contact-list-admin-no-contacts-found">
 
             <?php 
-            echo  ContactListHelpers::getText( 'text_sr_no_contacts_found', __( 'No contacts found.', 'contact-list' ) ) ;
+            echo ContactListHelpers::getText( 'text_sr_no_contacts_found', __( 'No contacts found.', 'contact-list' ) );
             ?>
 
             <?php 
             $url = esc_url_raw( get_admin_url() . 'edit.php?post_type=' . CONTACT_LIST_CPT );
-            echo  sprintf( wp_kses(
+            echo sprintf( wp_kses( 
                 /* translators: %s: link to contact management */
                 __( 'You may add contacts or assign them to groups from <a href="%s">contact management</a>.', 'contact-list' ),
                 array(
                     'a' => array(
-                    'href' => array(),
-                ),
+                        'href' => array(),
+                    ),
                 )
-            ), esc_url( $url ) ) ;
+             ), esc_url( $url ) );
             ?>
 
           </div>
 
         <?php 
         }
-        
         ?>
 
         <hr class="style-one" />
 
         <label>
           <span><?php 
-        echo  esc_html__( 'Subject', 'contact-list' ) ;
+        echo esc_html__( 'Subject', 'contact-list' );
         ?></span>
           <input name="subject" type="text" value="" required />
         </label>
@@ -192,21 +181,21 @@ class ContactListAdminSendEmail
         
         <label>
           <span><?php 
-        echo  esc_html__( 'Sender name', 'contact-list' ) ;
+        echo esc_html__( 'Sender name', 'contact-list' );
         ?></span>
           <input name="sender_name" type="text" value="" required />
         </label>
 
         <label>
           <span><?php 
-        echo  esc_html__( 'Sender email', 'contact-list' ) ;
+        echo esc_html__( 'Sender email', 'contact-list' );
         ?></span>
           <input name="sender_email" type="email" value="" required />
         </label>
   
         <label>
           <span><?php 
-        echo  esc_html__( 'Message', 'contact-list' ) ;
+        echo esc_html__( 'Message', 'contact-list' );
         ?></span>
           <textarea name="body" required></textarea>
         </label>
@@ -214,10 +203,10 @@ class ContactListAdminSendEmail
         <div class="send_email_target_div"></div>
 
         <input type="submit" value="<?php 
-        echo  esc_attr__( 'Send', 'contact-list' ) ;
+        echo esc_attr__( 'Send', 'contact-list' );
         ?>" <?php 
         if ( sizeof( $recipient_emails ) == 0 || ContactListHelpers::isPremium() == 0 ) {
-            echo  'disabled' ;
+            echo 'disabled';
         }
         ?> />
         <hr class="style-one" />
