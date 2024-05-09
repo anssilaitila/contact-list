@@ -172,6 +172,7 @@ class ContactListImportExport {
     }
 
     public function register_export_page_callback() {
+        $s = get_option( 'contact_list_settings' );
         ?>
     
     <div class="wrap">

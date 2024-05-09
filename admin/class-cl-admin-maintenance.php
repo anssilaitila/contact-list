@@ -75,8 +75,6 @@ class ContactListAdminMaintenance {
                 'af_show_name_prefix'                  => 'on',
                 'af_show_middle_name'                  => 'on',
                 'af_show_name_suffix'                  => 'on',
-                'af_show_organization'                 => 'on',
-                'af_show_department'                   => 'on',
                 'simple_list_preserve_table_on_mobile' => 'on',
             ];
             add_option( 'contact_list_settings', $default_settings );

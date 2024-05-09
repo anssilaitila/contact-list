@@ -143,7 +143,7 @@ class ContactListHelpers {
         $html .= '<div class="cl-modal-inner">';
         $html .= '<div class="cl-modal">';
         $html .= '<div class="close-modal-container">';
-        $html .= '<a href="" class="cl-close-modal">&#10006;</a>';
+        $html .= '<a href="" tabindex="0" class="cl-close-modal" aria-label="' . sanitize_text_field( __( 'Close window', 'contact-list' ) ) . '">&#10006;</a>';
         $html .= '</div>';
         $html .= ContactListPublicHooks::get_action_content( 'contact_list_send_message_modal_content_start' );
         $html .= '<h3>' . ContactListHelpers::getTextV2( 'text_send_message', 'Send message' ) . '</h3>';
@@ -157,7 +157,7 @@ class ContactListHelpers {
         $html .= '<span><span id="recipient" class="contact-list-recipient"></span></span>';
         $html .= '<label for="message">' . sanitize_text_field( __( 'Message', 'contact-list' ) ) . '</label>';
         $html .= '<textarea name="message" class="contact-list-message" placeholder=""></textarea>';
-        $html .= '<div class="contact-list-message-error"></div>';
+        $html .= '<div class="contact-list-message-error" aria-live="assertive" aria-atomic="true" role="status"></div>';
         $html .= '<input name="contact_id" type="hidden" value="" class="contact-list-contact-id" />';
         $html .= '<input name="site_url" type="hidden" value="' . esc_url_raw( $site_url ) . '" />';
         $html .= '<input name="txt_please_msg_first" type="hidden" value="' . ContactListHelpers::sanitize_attr_value( __( 'Please write message first.', 'contact-list' ) ) . '" />';
@@ -173,7 +173,13 @@ class ContactListHelpers {
         $html .= '<input name="txt_please_sender_details_first" type="hidden" value="' . ContactListHelpers::sanitize_attr_value( __( 'Please enter sender information first (name and email).', 'contact-list' ) ) . '" />';
         $html .= ContactListPublicHooks::get_action_content( 'contact_list_send_message_modal_before_send_button' );
         $html .= '<input type="submit" name="send_message" class="contact-list-send-single-submit" value="' . ContactListHelpers::sanitize_attr_value( __( 'Send', 'contact-list' ) ) . '" />';
-        $html .= '<div class="contact-list-sending-message"></div>';
+        $html .= '<div class="contact-list-sending-message" aria-live="assertive" aria-atomic="true" role="status"></div>';
+        $html .= '<input name="txt_custom_subject" type="hidden" value="' . ContactListHelpers::sanitize_attr_value( $custom_subject ) . '" />';
+        $close_modal_in_secs = 0;
+        if ( isset( $s['send_message_close_automatically'] ) && isset( $s['send_message_close_automatically_seconds'] ) && $s['send_message_close_automatically_seconds'] ) {
+            $close_modal_in_secs = intval( $s['send_message_close_automatically_seconds'] );
+        }
+        $html .= '<input name="close_modal_in_secs" type="hidden" value="' . $close_modal_in_secs . '" />';
         $html .= '</form>';
         $html .= ContactListPublicHooks::get_action_content( 'contact_list_send_message_modal_content_end' );
         $html .= '</div>';

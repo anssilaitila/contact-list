@@ -1553,626 +1553,6 @@ class ContactListSettings {
             )
         );
         add_settings_section(
-            'contact-list_admin_form',
-            '',
-            array($this, 'contact_list_settings_admin_form_callback'),
-            'contact-list'
-        );
-        add_settings_field(
-            'contact-list-af_show_name_prefix',
-            sanitize_text_field( __( 'Show name prefix', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_admin_form',
-            array(
-                'label_for'  => 'contact-list-af_show_name_prefix',
-                'field_name' => 'af_show_name_prefix',
-            )
-        );
-        add_settings_field(
-            'contact-list-af_hide_first_name',
-            sanitize_text_field( __( 'Hide first name', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_admin_form',
-            array(
-                'label_for'  => 'contact-list-af_hide_first_name',
-                'field_name' => 'af_hide_first_name',
-            )
-        );
-        add_settings_field(
-            'contact-list-af_show_middle_name',
-            sanitize_text_field( __( 'Show middle name', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_admin_form',
-            array(
-                'label_for'  => 'contact-list-af_show_middle_name',
-                'field_name' => 'af_show_middle_name',
-            )
-        );
-        add_settings_field(
-            'contact-list-af_show_name_suffix',
-            sanitize_text_field( __( 'Show name suffix', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_admin_form',
-            array(
-                'label_for'  => 'contact-list-af_show_name_suffix',
-                'field_name' => 'af_show_name_suffix',
-            )
-        );
-        add_settings_field(
-            'contact-list-af_show_organization',
-            sanitize_text_field( __( 'Show organization', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_admin_form',
-            array(
-                'label_for'  => 'contact-list-af_show_organization',
-                'field_name' => 'af_show_organization',
-            )
-        );
-        add_settings_field(
-            'contact-list-af_show_department',
-            sanitize_text_field( __( 'Show department', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_admin_form',
-            array(
-                'label_for'  => 'contact-list-af_show_department',
-                'field_name' => 'af_show_department',
-            )
-        );
-        add_settings_field(
-            'contact-list-af_hide_job_title',
-            sanitize_text_field( __( 'Hide job title', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_admin_form',
-            array(
-                'label_for'  => 'contact-list-af_hide_job_title',
-                'field_name' => 'af_hide_job_title',
-            )
-        );
-        add_settings_field(
-            'contact-list-af_hide_email',
-            sanitize_text_field( __( 'Hide email', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_admin_form',
-            array(
-                'label_for'  => 'contact-list-af_hide_email',
-                'field_name' => 'af_hide_email',
-            )
-        );
-        add_settings_field(
-            'contact-list-af_hide_notify_emails',
-            sanitize_text_field( __( 'Hide notify emails', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_admin_form',
-            array(
-                'label_for'  => 'contact-list-af_hide_notify_emails',
-                'field_name' => 'af_hide_notify_emails',
-            )
-        );
-        add_settings_field(
-            'contact-list-af_hide_phone',
-            sanitize_text_field( __( 'Hide phone', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_admin_form',
-            array(
-                'label_for'  => 'contact-list-af_hide_phone',
-                'field_name' => 'af_hide_phone',
-            )
-        );
-        add_settings_field(
-            'contact-list-af_hide_linkedin_url',
-            sanitize_text_field( __( 'Hide LinkedIn URL', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_admin_form',
-            array(
-                'label_for'  => 'contact-list-af_hide_linkedin_url',
-                'field_name' => 'af_hide_linkedin_url',
-            )
-        );
-        add_settings_field(
-            'contact-list-af_hide_twitter_url',
-            sanitize_text_field( __( 'Hide X URL', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_admin_form',
-            array(
-                'label_for'  => 'contact-list-af_hide_twitter_url',
-                'field_name' => 'af_hide_twitter_url',
-            )
-        );
-        add_settings_field(
-            'contact-list-af_hide_facebook_url',
-            sanitize_text_field( __( 'Hide Facebook URL', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_admin_form',
-            array(
-                'label_for'  => 'contact-list-af_hide_facebook_url',
-                'field_name' => 'af_hide_facebook_url',
-            )
-        );
-        add_settings_field(
-            'contact-list-af_hide_instagram_url',
-            sanitize_text_field( __( 'Hide Instagram URL', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_admin_form',
-            array(
-                'label_for'  => 'contact-list-af_hide_instagram_url',
-                'field_name' => 'af_hide_instagram_url',
-            )
-        );
-        add_settings_field(
-            'contact-list-af_hide_custom_urls',
-            sanitize_text_field( __( 'Hide custom URLs', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_admin_form',
-            array(
-                'label_for'  => 'contact-list-af_hide_custom_urls',
-                'field_name' => 'af_hide_custom_urls',
-            )
-        );
-        add_settings_field(
-            'contact-list-af_hide_address',
-            sanitize_text_field( __( 'Hide address lines 1-4', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_admin_form',
-            array(
-                'label_for'  => 'contact-list-af_hide_address',
-                'field_name' => 'af_hide_address',
-            )
-        );
-        add_settings_field(
-            'contact-list-af_hide_address_line_1',
-            sanitize_text_field( __( 'Hide address line 1', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_admin_form',
-            array(
-                'label_for'  => 'contact-list-af_hide_address_line_1',
-                'field_name' => 'af_hide_address_line_1',
-            )
-        );
-        add_settings_field(
-            'contact-list-af_hide_address_line_2',
-            sanitize_text_field( __( 'Hide address line 2', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_admin_form',
-            array(
-                'label_for'  => 'contact-list-af_hide_address_line_2',
-                'field_name' => 'af_hide_address_line_2',
-            )
-        );
-        add_settings_field(
-            'contact-list-af_hide_address_line_3',
-            sanitize_text_field( __( 'Hide address line 3', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_admin_form',
-            array(
-                'label_for'  => 'contact-list-af_hide_address_line_3',
-                'field_name' => 'af_hide_address_line_3',
-            )
-        );
-        add_settings_field(
-            'contact-list-af_hide_address_line_4',
-            sanitize_text_field( __( 'Hide address line 4', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_admin_form',
-            array(
-                'label_for'  => 'contact-list-af_hide_address_line_4',
-                'field_name' => 'af_hide_address_line_4',
-            )
-        );
-        add_settings_field(
-            'contact-list-af_hide_country',
-            sanitize_text_field( __( 'Hide country', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_admin_form',
-            array(
-                'label_for'  => 'contact-list-af_hide_country',
-                'field_name' => 'af_hide_country',
-            )
-        );
-        add_settings_field(
-            'contact-list-af_hide_state',
-            sanitize_text_field( __( 'Hide state', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_admin_form',
-            array(
-                'label_for'  => 'contact-list-af_hide_state',
-                'field_name' => 'af_hide_state',
-            )
-        );
-        add_settings_field(
-            'contact-list-af_hide_city',
-            sanitize_text_field( __( 'Hide city', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_admin_form',
-            array(
-                'label_for'  => 'contact-list-af_hide_city',
-                'field_name' => 'af_hide_city',
-            )
-        );
-        add_settings_field(
-            'contact-list-af_hide_zip_code',
-            sanitize_text_field( __( 'Hide zip code', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_admin_form',
-            array(
-                'label_for'  => 'contact-list-af_hide_zip_code',
-                'field_name' => 'af_hide_zip_code',
-            )
-        );
-        add_settings_field(
-            'contact-list-af_hide_custom_fields',
-            sanitize_text_field( __( 'Hide custom fields', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_admin_form',
-            array(
-                'label_for'  => 'contact-list-af_hide_custom_fields',
-                'field_name' => 'af_hide_custom_fields',
-            )
-        );
-        add_settings_field(
-            'contact-list-af_hide_groups',
-            sanitize_text_field( __( 'Hide groups', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_admin_form',
-            array(
-                'label_for'  => 'contact-list-af_hide_groups',
-                'field_name' => 'af_hide_groups',
-            )
-        );
-        add_settings_field(
-            'contact-list-af_hide_map',
-            sanitize_text_field( __( 'Hide Google Maps iframe code', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_admin_form',
-            array(
-                'label_for'  => 'contact-list-af_hide_map',
-                'field_name' => 'af_hide_map',
-            )
-        );
-        add_settings_field(
-            'contact-list-af_hide_additional_info',
-            sanitize_text_field( __( 'Hide additional information', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_admin_form',
-            array(
-                'label_for'  => 'contact-list-af_hide_additional_info',
-                'field_name' => 'af_hide_additional_info',
-            )
-        );
-        add_settings_section(
-            'contact-list_public_form',
-            '',
-            array($this, 'contact_list_settings_public_form_callback'),
-            'contact-list'
-        );
-        add_settings_field(
-            'contact-list-' . $only_pro . 'pf_show_name_prefix',
-            sanitize_text_field( __( 'Show prefix', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_public_form',
-            array(
-                'label_for'  => 'contact-list-' . $only_pro . 'pf_show_name_prefix',
-                'field_name' => $only_pro . 'pf_show_name_prefix',
-            )
-        );
-        add_settings_field(
-            'contact-list-' . $only_pro . 'pf_hide_first_name',
-            sanitize_text_field( __( 'Hide first name', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_public_form',
-            array(
-                'label_for'  => 'contact-list-' . $only_pro . 'pf_hide_first_name',
-                'field_name' => $only_pro . 'pf_hide_first_name',
-            )
-        );
-        add_settings_field(
-            'contact-list-' . $only_pro . 'pf_show_middle_name',
-            sanitize_text_field( __( 'Show middle name', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_public_form',
-            array(
-                'label_for'  => 'contact-list-' . $only_pro . 'pf_show_middle_name',
-                'field_name' => $only_pro . 'pf_show_middle_name',
-            )
-        );
-        add_settings_field(
-            'contact-list-' . $only_pro . 'pf_show_name_suffix',
-            sanitize_text_field( __( 'Show suffix', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_public_form',
-            array(
-                'label_for'  => 'contact-list-' . $only_pro . 'pf_show_name_suffix',
-                'field_name' => $only_pro . 'pf_show_name_suffix',
-            )
-        );
-        add_settings_field(
-            'contact-list-' . $only_pro . 'pf_hide_job_title',
-            sanitize_text_field( __( 'Hide job title', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_public_form',
-            array(
-                'label_for'  => 'contact-list-' . $only_pro . 'pf_hide_job_title',
-                'field_name' => $only_pro . 'pf_hide_job_title',
-            )
-        );
-        add_settings_field(
-            'contact-list-' . $only_pro . 'pf_hide_email',
-            sanitize_text_field( __( 'Hide email', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_public_form',
-            array(
-                'label_for'  => 'contact-list-' . $only_pro . 'pf_hide_email',
-                'field_name' => $only_pro . 'pf_hide_email',
-            )
-        );
-        add_settings_field(
-            'contact-list-' . $only_pro . 'pf_hide_phone',
-            sanitize_text_field( __( 'Hide phone', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_public_form',
-            array(
-                'label_for'  => 'contact-list-' . $only_pro . 'pf_hide_phone',
-                'field_name' => $only_pro . 'pf_hide_phone',
-            )
-        );
-        add_settings_field(
-            'contact-list-' . $only_pro . 'pf_show_phone_2',
-            sanitize_text_field( __( 'Show phone 2', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_public_form',
-            array(
-                'label_for'  => 'contact-list-' . $only_pro . 'pf_show_phone_2',
-                'field_name' => $only_pro . 'pf_show_phone_2',
-            )
-        );
-        add_settings_field(
-            'contact-list-' . $only_pro . 'pf_show_phone_3',
-            sanitize_text_field( __( 'Show phone 3', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_public_form',
-            array(
-                'label_for'  => 'contact-list-' . $only_pro . 'pf_show_phone_3',
-                'field_name' => $only_pro . 'pf_show_phone_3',
-            )
-        );
-        add_settings_field(
-            'contact-list-' . $only_pro . 'pf_hide_linkedin_url',
-            sanitize_text_field( __( 'Hide LinkedIn URL', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_public_form',
-            array(
-                'label_for'  => 'contact-list-' . $only_pro . 'pf_hide_linkedin_url',
-                'field_name' => $only_pro . 'pf_hide_linkedin_url',
-            )
-        );
-        add_settings_field(
-            'contact-list-' . $only_pro . 'pf_hide_twitter_url',
-            sanitize_text_field( __( 'Hide X URL', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_public_form',
-            array(
-                'label_for'  => 'contact-list-' . $only_pro . 'pf_hide_twitter_url',
-                'field_name' => $only_pro . 'pf_hide_twitter_url',
-            )
-        );
-        add_settings_field(
-            'contact-list-' . $only_pro . 'pf_hide_facebook_url',
-            sanitize_text_field( __( 'Hide Facebook URL', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_public_form',
-            array(
-                'label_for'  => 'contact-list-' . $only_pro . 'pf_hide_facebook_url',
-                'field_name' => $only_pro . 'pf_hide_facebook_url',
-            )
-        );
-        add_settings_field(
-            'contact-list-' . $only_pro . 'pf_hide_instagram_url',
-            sanitize_text_field( __( 'Hide Instagram URL', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_public_form',
-            array(
-                'label_for'  => 'contact-list-' . $only_pro . 'pf_hide_instagram_url',
-                'field_name' => $only_pro . 'pf_hide_instagram_url',
-            )
-        );
-        add_settings_field(
-            'contact-list-' . $only_pro . 'pf_hide_photo',
-            sanitize_text_field( __( 'Hide photo', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_public_form',
-            array(
-                'label_for'  => 'contact-list-' . $only_pro . 'pf_hide_photo',
-                'field_name' => $only_pro . 'pf_hide_photo',
-            )
-        );
-        add_settings_field(
-            'contact-list-' . $only_pro . 'pf_hide_address',
-            sanitize_text_field( __( 'Hide address', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_public_form',
-            array(
-                'label_for'  => 'contact-list-' . $only_pro . 'pf_hide_address',
-                'field_name' => $only_pro . 'pf_hide_address',
-            )
-        );
-        add_settings_field(
-            'contact-list-' . $only_pro . 'pf_hide_country',
-            sanitize_text_field( __( 'Hide country', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_public_form',
-            array(
-                'label_for'  => 'contact-list-' . $only_pro . 'pf_hide_country',
-                'field_name' => $only_pro . 'pf_hide_country',
-            )
-        );
-        add_settings_field(
-            'contact-list-' . $only_pro . 'pf_hide_state',
-            sanitize_text_field( __( 'Hide state', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_public_form',
-            array(
-                'label_for'  => 'contact-list-' . $only_pro . 'pf_hide_state',
-                'field_name' => $only_pro . 'pf_hide_state',
-            )
-        );
-        add_settings_field(
-            'contact-list-' . $only_pro . 'pf_hide_city',
-            sanitize_text_field( __( 'Hide city', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_public_form',
-            array(
-                'label_for'  => 'contact-list-' . $only_pro . 'pf_hide_city',
-                'field_name' => $only_pro . 'pf_hide_city',
-            )
-        );
-        add_settings_field(
-            'contact-list-' . $only_pro . 'pf_hide_address_lines',
-            sanitize_text_field( __( 'Hide address lines 1-4', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_public_form',
-            array(
-                'label_for'  => 'contact-list-' . $only_pro . 'pf_hide_address_lines',
-                'field_name' => $only_pro . 'pf_hide_address_lines',
-            )
-        );
-        $custom_fields = [
-            1,
-            2,
-            3,
-            4,
-            5,
-            6
-        ];
-        foreach ( $custom_fields as $n ) {
-            add_settings_field(
-                'contact-list-' . $only_pro . 'pf_hide_custom_field_' . $n,
-                sanitize_text_field( __( 'Hide custom field', 'contact-list' ) . ' ' . $n ),
-                array($this, 'checkbox_render'),
-                'contact-list',
-                'contact-list_public_form',
-                array(
-                    'label_for'  => 'contact-list-' . $only_pro . 'pf_hide_custom_field_' . $n,
-                    'field_name' => $only_pro . 'pf_hide_custom_field_' . $n,
-                )
-            );
-        }
-        add_settings_field(
-            'contact-list-' . $only_pro . 'pf_hide_groups',
-            sanitize_text_field( __( 'Hide groups', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_public_form',
-            array(
-                'label_for'  => 'contact-list-' . $only_pro . 'pf_hide_groups',
-                'field_name' => $only_pro . 'pf_hide_groups',
-            )
-        );
-        add_settings_field(
-            'contact-list-' . $only_pro . 'pf_hide_additional_info',
-            sanitize_text_field( __( 'Hide additional information', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_public_form',
-            array(
-                'label_for'  => 'contact-list-' . $only_pro . 'pf_hide_additional_info',
-                'field_name' => $only_pro . 'pf_hide_additional_info',
-            )
-        );
-        add_settings_section(
-            'contact-list_public_form_required',
-            '',
-            array($this, 'contact_list_settings_public_form_required'),
-            'contact-list'
-        );
-        $pf_required_all_fields = [
-            'first_name'     => sanitize_text_field( __( 'First name', 'contact-list' ) ),
-            'last_name'      => sanitize_text_field( __( 'Last name', 'contact-list' ) ),
-            'job_title'      => sanitize_text_field( __( 'Job title', 'contact-list' ) ),
-            'email'          => sanitize_text_field( __( 'Email', 'contact-list' ) ),
-            'phone'          => sanitize_text_field( __( 'Phone 1', 'contact-list' ) ),
-            'phone_2'        => sanitize_text_field( __( 'Phone 2', 'contact-list' ) ),
-            'phone_3'        => sanitize_text_field( __( 'Phone 3', 'contact-list' ) ),
-            'linkedin_url'   => sanitize_text_field( __( 'LinkedIn URL', 'contact-list' ) ),
-            'twitter_url'    => sanitize_text_field( __( 'X URL', 'contact-list' ) ),
-            'facebook_url'   => sanitize_text_field( __( 'Facebook URL', 'contact-list' ) ),
-            'instagram_url'  => sanitize_text_field( __( 'Instagram URL', 'contact-list' ) ),
-            'photo'          => sanitize_text_field( __( 'Photo', 'contact-list' ) ),
-            'city'           => sanitize_text_field( __( 'City', 'contact-list' ) ),
-            'state'          => sanitize_text_field( __( 'State', 'contact-list' ) ),
-            'country'        => sanitize_text_field( __( 'Country', 'contact-list' ) ),
-            'address_line_1' => sanitize_text_field( __( 'Address line 1', 'contact-list' ) ),
-            'address_line_2' => sanitize_text_field( __( 'Address line 2', 'contact-list' ) ),
-            'address_line_3' => sanitize_text_field( __( 'Address line 3', 'contact-list' ) ),
-            'address_line_4' => sanitize_text_field( __( 'Address line 4', 'contact-list' ) ),
-            'custom_field_1' => sanitize_text_field( __( 'Custom field 1', 'contact-list' ) ),
-            'custom_field_2' => sanitize_text_field( __( 'Custom field 2', 'contact-list' ) ),
-            'custom_field_3' => sanitize_text_field( __( 'Custom field 3', 'contact-list' ) ),
-            'custom_field_4' => sanitize_text_field( __( 'Custom field 4', 'contact-list' ) ),
-            'custom_field_5' => sanitize_text_field( __( 'Custom field 5', 'contact-list' ) ),
-            'custom_field_6' => sanitize_text_field( __( 'Custom field 6', 'contact-list' ) ),
-        ];
-        foreach ( $pf_required_all_fields as $key => $value ) {
-            $pf_required_field_name = $only_pro . 'pf_required_' . $key;
-            $pf_required_field_title = $value;
-            add_settings_field(
-                'contact-list-' . $pf_required_field_name,
-                $pf_required_field_title,
-                array($this, 'checkbox_render'),
-                'contact-list',
-                'contact-list_public_form_required',
-                array(
-                    'label_for'  => 'contact-list-' . $pf_required_field_name,
-                    'field_name' => $pf_required_field_name,
-                )
-            );
-        }
-        add_settings_section(
             'contact-list_simple_list_settings',
             '',
             array($this, 'contact_list_settings_simple_list_settings_callback'),
@@ -2524,6 +1904,361 @@ class ContactListSettings {
                 'field_name' => $only_pro . 'can_add_contacts',
             )
         );
+        add_settings_section(
+            'contact-list_admin_form',
+            '',
+            array($this, 'contact_list_settings_admin_form_callback'),
+            'contact-list'
+        );
+        add_settings_field(
+            'contact-list-af_show_name_prefix',
+            sanitize_text_field( __( 'Show name prefix', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+                'label_for'  => 'contact-list-af_show_name_prefix',
+                'field_name' => 'af_show_name_prefix',
+            )
+        );
+        add_settings_field(
+            'contact-list-af_hide_first_name',
+            sanitize_text_field( __( 'Hide first name', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+                'label_for'  => 'contact-list-af_hide_first_name',
+                'field_name' => 'af_hide_first_name',
+            )
+        );
+        add_settings_field(
+            'contact-list-af_show_middle_name',
+            sanitize_text_field( __( 'Show middle name', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+                'label_for'  => 'contact-list-af_show_middle_name',
+                'field_name' => 'af_show_middle_name',
+            )
+        );
+        add_settings_field(
+            'contact-list-af_show_name_suffix',
+            sanitize_text_field( __( 'Show name suffix', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+                'label_for'  => 'contact-list-af_show_name_suffix',
+                'field_name' => 'af_show_name_suffix',
+            )
+        );
+        add_settings_field(
+            'contact-list-af_hide_job_title',
+            sanitize_text_field( __( 'Hide job title', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+                'label_for'  => 'contact-list-af_hide_job_title',
+                'field_name' => 'af_hide_job_title',
+            )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'af_hide_phone_1',
+            sanitize_text_field( __( 'Hide phone', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+                'label_for'  => 'contact-list-' . $only_pro . 'af_hide_phone_1',
+                'field_name' => $only_pro . 'af_hide_phone_1',
+            )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'af_hide_phone_2',
+            sanitize_text_field( __( 'Hide phone 2', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+                'label_for'  => 'contact-list-' . $only_pro . 'af_hide_phone_2',
+                'field_name' => $only_pro . 'af_hide_phone_2',
+            )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'af_hide_phone_3',
+            sanitize_text_field( __( 'Hide phone 3', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+                'label_for'  => 'contact-list-' . $only_pro . 'af_hide_phone_3',
+                'field_name' => $only_pro . 'af_hide_phone_3',
+            )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'af_hide_phone',
+            sanitize_text_field( __( 'Hide all phones', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+                'label_for'  => 'contact-list-' . $only_pro . 'af_hide_phone',
+                'field_name' => $only_pro . 'af_hide_phone',
+            )
+        );
+        add_settings_field(
+            'contact-list-af_hide_email',
+            sanitize_text_field( __( 'Hide email', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+                'label_for'  => 'contact-list-af_hide_email',
+                'field_name' => 'af_hide_email',
+            )
+        );
+        add_settings_field(
+            'contact-list-af_hide_notify_emails',
+            sanitize_text_field( __( 'Hide notify emails', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+                'label_for'  => 'contact-list-af_hide_notify_emails',
+                'field_name' => 'af_hide_notify_emails',
+            )
+        );
+        add_settings_field(
+            'contact-list-af_hide_linkedin_url',
+            sanitize_text_field( __( 'Hide LinkedIn URL', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+                'label_for'  => 'contact-list-af_hide_linkedin_url',
+                'field_name' => 'af_hide_linkedin_url',
+            )
+        );
+        add_settings_field(
+            'contact-list-af_hide_twitter_url',
+            sanitize_text_field( __( 'Hide X URL', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+                'label_for'  => 'contact-list-af_hide_twitter_url',
+                'field_name' => 'af_hide_twitter_url',
+            )
+        );
+        add_settings_field(
+            'contact-list-af_hide_facebook_url',
+            sanitize_text_field( __( 'Hide Facebook URL', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+                'label_for'  => 'contact-list-af_hide_facebook_url',
+                'field_name' => 'af_hide_facebook_url',
+            )
+        );
+        add_settings_field(
+            'contact-list-af_hide_instagram_url',
+            sanitize_text_field( __( 'Hide Instagram URL', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+                'label_for'  => 'contact-list-af_hide_instagram_url',
+                'field_name' => 'af_hide_instagram_url',
+            )
+        );
+        $custom_fields = [1, 2];
+        foreach ( $custom_fields as $n ) {
+            $field_name = 'af_hide_custom_url_' . $n;
+            add_settings_field(
+                'contact-list-' . $only_pro . $field_name,
+                sanitize_text_field( __( 'Hide custom URL', 'contact-list' ) . ' ' . $n ),
+                array($this, 'checkbox_render'),
+                'contact-list',
+                'contact-list_admin_form',
+                array(
+                    'label_for'  => 'contact-list-' . $only_pro . $field_name,
+                    'field_name' => $only_pro . $field_name,
+                )
+            );
+        }
+        add_settings_field(
+            'contact-list-' . $only_pro . 'af_hide_custom_urls',
+            sanitize_text_field( __( 'Hide all custom URLs', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+                'label_for'  => 'contact-list-' . $only_pro . 'af_hide_custom_urls',
+                'field_name' => $only_pro . 'af_hide_custom_urls',
+            )
+        );
+        add_settings_field(
+            'contact-list-af_hide_address',
+            sanitize_text_field( __( 'Hide address lines 1-4', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+                'label_for'  => 'contact-list-af_hide_address',
+                'field_name' => 'af_hide_address',
+            )
+        );
+        add_settings_field(
+            'contact-list-af_hide_address_line_1',
+            sanitize_text_field( __( 'Hide address line 1', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+                'label_for'  => 'contact-list-af_hide_address_line_1',
+                'field_name' => 'af_hide_address_line_1',
+            )
+        );
+        add_settings_field(
+            'contact-list-af_hide_address_line_2',
+            sanitize_text_field( __( 'Hide address line 2', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+                'label_for'  => 'contact-list-af_hide_address_line_2',
+                'field_name' => 'af_hide_address_line_2',
+            )
+        );
+        add_settings_field(
+            'contact-list-af_hide_address_line_3',
+            sanitize_text_field( __( 'Hide address line 3', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+                'label_for'  => 'contact-list-af_hide_address_line_3',
+                'field_name' => 'af_hide_address_line_3',
+            )
+        );
+        add_settings_field(
+            'contact-list-af_hide_address_line_4',
+            sanitize_text_field( __( 'Hide address line 4', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+                'label_for'  => 'contact-list-af_hide_address_line_4',
+                'field_name' => 'af_hide_address_line_4',
+            )
+        );
+        add_settings_field(
+            'contact-list-af_hide_country',
+            sanitize_text_field( __( 'Hide country', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+                'label_for'  => 'contact-list-af_hide_country',
+                'field_name' => 'af_hide_country',
+            )
+        );
+        add_settings_field(
+            'contact-list-af_hide_state',
+            sanitize_text_field( __( 'Hide state', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+                'label_for'  => 'contact-list-af_hide_state',
+                'field_name' => 'af_hide_state',
+            )
+        );
+        add_settings_field(
+            'contact-list-af_hide_city',
+            sanitize_text_field( __( 'Hide city', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+                'label_for'  => 'contact-list-af_hide_city',
+                'field_name' => 'af_hide_city',
+            )
+        );
+        add_settings_field(
+            'contact-list-af_hide_zip_code',
+            sanitize_text_field( __( 'Hide zip code', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+                'label_for'  => 'contact-list-af_hide_zip_code',
+                'field_name' => 'af_hide_zip_code',
+            )
+        );
+        $custom_fields_cnt = 6 + 1;
+        for ($n = 1; $n < $custom_fields_cnt; $n++) {
+            $placeholder = esc_attr__( 'Custom field', 'contact-list' ) . ' ' . $n;
+            add_settings_field(
+                'contact-list-' . $only_pro . 'af_hide_custom_field_' . $n,
+                sanitize_text_field( __( 'Hide custom field ', 'contact-list' ) . ' ' . $n ),
+                array($this, 'checkbox_render'),
+                'contact-list',
+                'contact-list_admin_form',
+                array(
+                    'label_for'  => 'contact-list-' . $only_pro . 'af_hide_custom_field_' . $n,
+                    'field_name' => $only_pro . 'af_hide_custom_field_' . $n,
+                )
+            );
+        }
+        add_settings_field(
+            'contact-list-' . $only_pro . 'af_hide_custom_fields',
+            sanitize_text_field( __( 'Hide all custom fields', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+                'label_for'  => 'contact-list-' . $only_pro . 'af_hide_custom_fields',
+                'field_name' => $only_pro . 'af_hide_custom_fields',
+            )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'af_hide_map',
+            sanitize_text_field( __( 'Hide Google Maps iframe code', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+                'label_for'  => 'contact-list-' . $only_pro . 'af_hide_map',
+                'field_name' => $only_pro . 'af_hide_map',
+            )
+        );
+        add_settings_field(
+            'contact-list-af_hide_additional_info',
+            sanitize_text_field( __( 'Hide additional information', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+                'label_for'  => 'contact-list-af_hide_additional_info',
+                'field_name' => 'af_hide_additional_info',
+            )
+        );
+        add_settings_field(
+            'contact-list-af_hide_groups',
+            sanitize_text_field( __( 'Hide groups', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_admin_form',
+            array(
+                'label_for'  => 'contact-list-af_hide_groups',
+                'field_name' => 'af_hide_groups',
+            )
+        );
         $tab = 10;
         add_settings_section(
             'contact-list_tab_' . $tab,
@@ -2629,6 +2364,343 @@ class ContactListSettings {
                 array(
                     'label_for'  => 'contact-list-' . $only_pro . 'cron_import_contacts_update_existing_by_email',
                     'field_name' => $only_pro . 'cron_import_contacts_update_existing_by_email',
+                )
+            );
+        }
+        $tab = 12;
+        add_settings_section(
+            'contact-list_tab_' . $tab,
+            '',
+            array($this, 'contact_list_settings_tab_' . $tab . '_callback'),
+            'contact-list'
+        );
+        add_settings_field(
+            'contact-list-send_message_close_automatically',
+            sanitize_text_field( __( 'Close automatically after message has been successfully sent', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+                'label_for'  => 'contact-list-send_message_close_automatically',
+                'field_name' => 'send_message_close_automatically',
+            )
+        );
+        add_settings_field(
+            'contact-list-send_message_close_automatically_seconds',
+            sanitize_text_field( __( 'Close after seconds (number)', 'contact-list' ) ),
+            array($this, 'input_render'),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+                'label_for'   => 'contact-list-send_message_close_automatically_seconds',
+                'field_name'  => 'send_message_close_automatically_seconds',
+                'placeholder' => '3',
+            )
+        );
+        $tab = 13;
+        add_settings_section(
+            'contact-list_tab_' . $tab,
+            '',
+            array($this, 'contact_list_settings_tab_' . $tab . '_callback'),
+            'contact-list'
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'pf_show_name_prefix',
+            sanitize_text_field( __( 'Show prefix', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+                'label_for'  => 'contact-list-' . $only_pro . 'pf_show_name_prefix',
+                'field_name' => $only_pro . 'pf_show_name_prefix',
+            )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'pf_hide_first_name',
+            sanitize_text_field( __( 'Hide first name', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+                'label_for'  => 'contact-list-' . $only_pro . 'pf_hide_first_name',
+                'field_name' => $only_pro . 'pf_hide_first_name',
+            )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'pf_show_middle_name',
+            sanitize_text_field( __( 'Show middle name', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+                'label_for'  => 'contact-list-' . $only_pro . 'pf_show_middle_name',
+                'field_name' => $only_pro . 'pf_show_middle_name',
+            )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'pf_show_name_suffix',
+            sanitize_text_field( __( 'Show suffix', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+                'label_for'  => 'contact-list-' . $only_pro . 'pf_show_name_suffix',
+                'field_name' => $only_pro . 'pf_show_name_suffix',
+            )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'pf_hide_job_title',
+            sanitize_text_field( __( 'Hide job title', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+                'label_for'  => 'contact-list-' . $only_pro . 'pf_hide_job_title',
+                'field_name' => $only_pro . 'pf_hide_job_title',
+            )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'pf_hide_email',
+            sanitize_text_field( __( 'Hide email', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+                'label_for'  => 'contact-list-' . $only_pro . 'pf_hide_email',
+                'field_name' => $only_pro . 'pf_hide_email',
+            )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'pf_hide_phone',
+            sanitize_text_field( __( 'Hide phone', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+                'label_for'  => 'contact-list-' . $only_pro . 'pf_hide_phone',
+                'field_name' => $only_pro . 'pf_hide_phone',
+            )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'pf_show_phone_2',
+            sanitize_text_field( __( 'Show phone 2', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+                'label_for'  => 'contact-list-' . $only_pro . 'pf_show_phone_2',
+                'field_name' => $only_pro . 'pf_show_phone_2',
+            )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'pf_show_phone_3',
+            sanitize_text_field( __( 'Show phone 3', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+                'label_for'  => 'contact-list-' . $only_pro . 'pf_show_phone_3',
+                'field_name' => $only_pro . 'pf_show_phone_3',
+            )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'pf_hide_linkedin_url',
+            sanitize_text_field( __( 'Hide LinkedIn URL', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+                'label_for'  => 'contact-list-' . $only_pro . 'pf_hide_linkedin_url',
+                'field_name' => $only_pro . 'pf_hide_linkedin_url',
+            )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'pf_hide_twitter_url',
+            sanitize_text_field( __( 'Hide X URL', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+                'label_for'  => 'contact-list-' . $only_pro . 'pf_hide_twitter_url',
+                'field_name' => $only_pro . 'pf_hide_twitter_url',
+            )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'pf_hide_facebook_url',
+            sanitize_text_field( __( 'Hide Facebook URL', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+                'label_for'  => 'contact-list-' . $only_pro . 'pf_hide_facebook_url',
+                'field_name' => $only_pro . 'pf_hide_facebook_url',
+            )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'pf_hide_instagram_url',
+            sanitize_text_field( __( 'Hide Instagram URL', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+                'label_for'  => 'contact-list-' . $only_pro . 'pf_hide_instagram_url',
+                'field_name' => $only_pro . 'pf_hide_instagram_url',
+            )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'pf_hide_photo',
+            sanitize_text_field( __( 'Hide photo', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+                'label_for'  => 'contact-list-' . $only_pro . 'pf_hide_photo',
+                'field_name' => $only_pro . 'pf_hide_photo',
+            )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'pf_hide_address',
+            sanitize_text_field( __( 'Hide address', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+                'label_for'  => 'contact-list-' . $only_pro . 'pf_hide_address',
+                'field_name' => $only_pro . 'pf_hide_address',
+            )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'pf_hide_country',
+            sanitize_text_field( __( 'Hide country', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+                'label_for'  => 'contact-list-' . $only_pro . 'pf_hide_country',
+                'field_name' => $only_pro . 'pf_hide_country',
+            )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'pf_hide_state',
+            sanitize_text_field( __( 'Hide state', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+                'label_for'  => 'contact-list-' . $only_pro . 'pf_hide_state',
+                'field_name' => $only_pro . 'pf_hide_state',
+            )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'pf_hide_city',
+            sanitize_text_field( __( 'Hide city', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+                'label_for'  => 'contact-list-' . $only_pro . 'pf_hide_city',
+                'field_name' => $only_pro . 'pf_hide_city',
+            )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'pf_hide_address_lines',
+            sanitize_text_field( __( 'Hide address lines 1-4', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+                'label_for'  => 'contact-list-' . $only_pro . 'pf_hide_address_lines',
+                'field_name' => $only_pro . 'pf_hide_address_lines',
+            )
+        );
+        $custom_fields = [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+        ];
+        foreach ( $custom_fields as $n ) {
+            add_settings_field(
+                'contact-list-' . $only_pro . 'pf_hide_custom_field_' . $n,
+                sanitize_text_field( __( 'Hide custom field', 'contact-list' ) . ' ' . $n ),
+                array($this, 'checkbox_render'),
+                'contact-list',
+                'contact-list_tab_' . $tab,
+                array(
+                    'label_for'  => 'contact-list-' . $only_pro . 'pf_hide_custom_field_' . $n,
+                    'field_name' => $only_pro . 'pf_hide_custom_field_' . $n,
+                )
+            );
+        }
+        add_settings_field(
+            'contact-list-' . $only_pro . 'pf_hide_groups',
+            sanitize_text_field( __( 'Hide groups', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+                'label_for'  => 'contact-list-' . $only_pro . 'pf_hide_groups',
+                'field_name' => $only_pro . 'pf_hide_groups',
+            )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'pf_hide_additional_info',
+            sanitize_text_field( __( 'Hide additional information', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+                'label_for'  => 'contact-list-' . $only_pro . 'pf_hide_additional_info',
+                'field_name' => $only_pro . 'pf_hide_additional_info',
+            )
+        );
+        add_settings_section(
+            'contact-list_public_form_required',
+            '',
+            array($this, 'contact_list_settings_public_form_required'),
+            'contact-list'
+        );
+        $pf_required_all_fields = [
+            'first_name'     => sanitize_text_field( __( 'First name', 'contact-list' ) ),
+            'last_name'      => sanitize_text_field( __( 'Last name', 'contact-list' ) ),
+            'job_title'      => sanitize_text_field( __( 'Job title', 'contact-list' ) ),
+            'email'          => sanitize_text_field( __( 'Email', 'contact-list' ) ),
+            'phone'          => sanitize_text_field( __( 'Phone 1', 'contact-list' ) ),
+            'phone_2'        => sanitize_text_field( __( 'Phone 2', 'contact-list' ) ),
+            'phone_3'        => sanitize_text_field( __( 'Phone 3', 'contact-list' ) ),
+            'linkedin_url'   => sanitize_text_field( __( 'LinkedIn URL', 'contact-list' ) ),
+            'twitter_url'    => sanitize_text_field( __( 'X URL', 'contact-list' ) ),
+            'facebook_url'   => sanitize_text_field( __( 'Facebook URL', 'contact-list' ) ),
+            'instagram_url'  => sanitize_text_field( __( 'Instagram URL', 'contact-list' ) ),
+            'photo'          => sanitize_text_field( __( 'Photo', 'contact-list' ) ),
+            'city'           => sanitize_text_field( __( 'City', 'contact-list' ) ),
+            'state'          => sanitize_text_field( __( 'State', 'contact-list' ) ),
+            'country'        => sanitize_text_field( __( 'Country', 'contact-list' ) ),
+            'address_line_1' => sanitize_text_field( __( 'Address line 1', 'contact-list' ) ),
+            'address_line_2' => sanitize_text_field( __( 'Address line 2', 'contact-list' ) ),
+            'address_line_3' => sanitize_text_field( __( 'Address line 3', 'contact-list' ) ),
+            'address_line_4' => sanitize_text_field( __( 'Address line 4', 'contact-list' ) ),
+            'custom_field_1' => sanitize_text_field( __( 'Custom field 1', 'contact-list' ) ),
+            'custom_field_2' => sanitize_text_field( __( 'Custom field 2', 'contact-list' ) ),
+            'custom_field_3' => sanitize_text_field( __( 'Custom field 3', 'contact-list' ) ),
+            'custom_field_4' => sanitize_text_field( __( 'Custom field 4', 'contact-list' ) ),
+            'custom_field_5' => sanitize_text_field( __( 'Custom field 5', 'contact-list' ) ),
+            'custom_field_6' => sanitize_text_field( __( 'Custom field 6', 'contact-list' ) ),
+        ];
+        foreach ( $pf_required_all_fields as $key => $value ) {
+            $pf_required_field_name = $only_pro . 'pf_required_' . $key;
+            $pf_required_field_title = $value;
+            add_settings_field(
+                'contact-list-' . $pf_required_field_name,
+                $pf_required_field_title,
+                array($this, 'checkbox_render'),
+                'contact-list',
+                'contact-list_public_form_required',
+                array(
+                    'label_for'  => 'contact-list-' . $pf_required_field_name,
+                    'field_name' => $pf_required_field_name,
                 )
             );
         }
@@ -4334,6 +4406,21 @@ class ContactListSettings {
         echo '<div class="contact-list-settings-tab-11">';
     }
 
+    public function contact_list_settings_tab_12_callback() {
+        echo '</div>';
+        echo '<div class="contact-list-settings-tab-12">';
+        echo '<h2>' . esc_html__( 'Send message modal window', 'contact-list' ) . '</h2>';
+        echo '<p>' . esc_html__( 'These settings are valid for the send message modal window.', 'contact-list' ) . '</p>';
+    }
+
+    public function contact_list_settings_tab_13_callback() {
+        echo '</div>';
+        echo '<div class="contact-list-settings-tab-13">';
+        echo '<h2 style="margin-top: 20px;">' . esc_html__( 'Fields in [contact_list_form]', 'contact-list' ) . '</h2>';
+        echo '<p>' . esc_html__( 'You may customize the public form (the one displayed using the [contact_list_form] shortcode) using these settings.', 'contact-list' ) . '</p>';
+        echo '<p>' . esc_html__( 'These choices also affect the form which is used by contacts themselves to update their info (by features "request update" and "permanent update URL")', 'contact-list' ) . '</p>';
+    }
+
     public function contact_list_settings_section_callback() {
         echo '</div>';
         echo '<div class="contact-list-settings-tab-6">';
@@ -4341,16 +4428,8 @@ class ContactListSettings {
     }
 
     public function contact_list_settings_admin_form_callback() {
-        echo '</div>';
-        echo '<div class="contact-list-settings-tab-7">';
-        echo '<p style="font-size: 16px; font-weight: 600; margin-bottom: 10px;">' . esc_html__( 'Admin form elements', 'contact-list' ) . '</p>';
-        echo '<p>' . esc_html__( 'You may customize the admin form (the one displayed in the WP admin area and the front-end editor) using these settings.', 'contact-list' ) . '</p>';
-    }
-
-    public function contact_list_settings_public_form_callback() {
-        echo '<h2 style="margin-top: 20px;">' . esc_html__( 'Fields in [contact_list_form]', 'contact-list' ) . '</h2>';
-        echo '<p>' . esc_html__( 'You may customize the public form (the one displayed using the [contact_list_form] shortcode) using these settings.', 'contact-list' ) . '</p>';
-        echo '<p>' . esc_html__( 'These choices also affect the form which is used by contacts themselves to update their info (by features "request update" and "permanent update URL")', 'contact-list' ) . '</p>';
+        echo '<p style="font-size: 16px; font-weight: 600; margin-bottom: 10px;">' . esc_html__( 'Hide / show contact edit fields', 'contact-list' ) . '</p>';
+        echo '<p>' . esc_html__( 'You may customize the contact edit form (the one displayed in the WP admin area and the front-end editor) using these settings.', 'contact-list' ) . '</p>';
     }
 
     public function contact_list_settings_simple_list_settings_callback() {
@@ -4406,9 +4485,9 @@ class ContactListSettings {
           <li class="contact-list-settings-tab-6-title" data-settings-container="contact-list-settings-tab-6"><span><?php 
         echo esc_html__( 'Field titles and texts', 'contact-list' );
         ?></span></li>
-          <li class="contact-list-settings-tab-7-title" data-settings-container="contact-list-settings-tab-7"><span><?php 
-        echo esc_html__( 'Hide / show form elements', 'contact-list' );
-        ?></span></li>
+          <?php 
+        // .contact-list-settings-tab-7
+        ?>
           <li class="contact-list-settings-tab-8-title" data-settings-container="contact-list-settings-tab-8"><span><?php 
         echo esc_html__( 'Simple list', 'contact-list' );
         ?></span></li>
@@ -4442,6 +4521,12 @@ class ContactListSettings {
           <?php 
         }
         ?>
+
+          <li class="contact-list-settings-tab-12-title" data-settings-container="contact-list-settings-tab-12"><span><?php 
+        echo esc_html__( 'Send message modal', 'contact-list' );
+        ?></span></li>
+
+          <li class="contact-list-settings-tab-13-title" data-settings-container="contact-list-settings-tab-13"><span>[contact_list_form]</span></li>
           
           <hr class="clear" />
         </ul>

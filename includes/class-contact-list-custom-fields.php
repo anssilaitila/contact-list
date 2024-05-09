@@ -368,7 +368,13 @@ class ContactListCustomFields {
                 continue;
             } elseif ( $customField['name'] == 'email' && isset( $options['af_hide_email'] ) ) {
                 continue;
-            } elseif ( ($customField['name'] == 'phone' || $customField['name'] == 'phone_2' || $customField['name'] == 'phone_3') && isset( $options['af_hide_phone'] ) ) {
+            } elseif ( $customField['name'] == 'phone' && isset( $options['af_hide_phone_1'] ) && $is_premium ) {
+                continue;
+            } elseif ( $customField['name'] == 'phone_2' && isset( $options['af_hide_phone_2'] ) && $is_premium ) {
+                continue;
+            } elseif ( $customField['name'] == 'phone_3' && isset( $options['af_hide_phone_3'] ) && $is_premium ) {
+                continue;
+            } elseif ( ($customField['name'] == 'phone' || $customField['name'] == 'phone_2' || $customField['name'] == 'phone_3') && isset( $options['af_hide_phone'] ) && $is_premium ) {
                 continue;
             } elseif ( $customField['name'] == 'linkedin_url' && isset( $options['af_hide_linkedin_url'] ) ) {
                 continue;
@@ -401,17 +407,21 @@ class ContactListCustomFields {
                 continue;
             } elseif ( $customField['name'] == 'address_line_4' && isset( $options['af_hide_address_line_4'] ) ) {
                 continue;
-            } elseif ( ($customField['name'] == 'custom_urls' || $customField['name'] == 'custom_url_1' || $customField['name'] == 'custom_url_2') && isset( $options['af_hide_custom_urls'] ) ) {
+            } elseif ( $customField['name'] == 'custom_url_1' && isset( $options['af_hide_custom_url_1'] ) && $is_premium ) {
+                continue;
+            } elseif ( $customField['name'] == 'custom_url_2' && isset( $options['af_hide_custom_url_2'] ) && $is_premium ) {
+                continue;
+            } elseif ( ($customField['name'] == 'custom_urls' || $customField['name'] == 'custom_url_1' || $customField['name'] == 'custom_url_2') && isset( $options['af_hide_custom_urls'] ) && $is_premium ) {
                 continue;
             } elseif ( $is_premium && $customField['name'] == 'custom_url_1' && !isset( $options['custom_url_1_active'] ) ) {
                 continue;
             } elseif ( $is_premium && $customField['name'] == 'custom_url_2' && !isset( $options['custom_url_2_active'] ) ) {
                 continue;
-            } elseif ( ($customField['name'] == 'custom_fields' || strpos( $customField['name'], 'custom_field_' ) !== false) && isset( $options['af_hide_custom_fields'] ) ) {
+            } elseif ( ($customField['name'] == 'custom_fields' || strpos( $customField['name'], 'custom_field_' ) !== false) && isset( $options['af_hide_custom_fields'] ) && $is_premium ) {
                 continue;
             } elseif ( ($customField['name'] == 'additional_info' || $customField['name'] == 'description') && isset( $options['af_hide_additional_info'] ) ) {
                 continue;
-            } elseif ( ($customField['name'] == 'map_title' || $customField['name'] == 'map_iframe') && isset( $options['af_hide_map'] ) ) {
+            } elseif ( ($customField['name'] == 'map_title' || $customField['name'] == 'map_iframe') && isset( $options['af_hide_map'] ) && $is_premium ) {
                 continue;
             }
             // Check scope
