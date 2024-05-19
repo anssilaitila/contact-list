@@ -938,6 +938,7 @@ class ContactListSettings {
             array(
                 'label_for'  => 'contact-list-' . $only_pro . 'disable_automatic_linking',
                 'field_name' => $only_pro . 'disable_automatic_linking',
+                'class'      => 'contact-list-padding-bottom',
             )
         );
         $custom_fields_cnt = 1 + 1;
@@ -953,6 +954,7 @@ class ContactListSettings {
                     'label_for'   => 'contact-list-custom_field_' . $n . '_title',
                     'field_name'  => 'custom_field_' . $n . '_title',
                     'placeholder' => $placeholder,
+                    'class'       => 'contact-list-border-top',
                 )
             );
             if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'pro' ) || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
@@ -968,6 +970,17 @@ class ContactListSettings {
                     )
                 );
             }
+            add_settings_field(
+                'contact-list-' . $only_pro . 'custom_field_' . $n . '_allow_unfiltered_content',
+                sanitize_text_field( __( 'Allow unfiltered content', 'contact-list' ) ),
+                array($this, 'checkbox_render'),
+                'contact-list',
+                'contact-list_tab_' . $tab,
+                array(
+                    'label_for'  => 'contact-list-' . $only_pro . 'custom_field_' . $n . '_allow_unfiltered_content',
+                    'field_name' => $only_pro . 'custom_field_' . $n . '_allow_unfiltered_content',
+                )
+            );
             add_settings_field(
                 'contact-list-custom_field_' . $n . '_link_text',
                 sanitize_text_field( __( 'Link text (only applicable if the custom field content is a URL)', 'contact-list' ) ),
@@ -2297,6 +2310,17 @@ class ContactListSettings {
             array($this, 'contact_list_settings_tab_' . $tab . '_callback'),
             'contact-list'
         );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'import_export_separator',
+            sanitize_text_field( __( 'Separator for the CSV file', 'contact-list' ) ),
+            array($this, 'separator_render'),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+                'label_for'  => 'contact-list-' . $only_pro . 'import_export_separator',
+                'field_name' => $only_pro . 'import_export_separator',
+            )
+        );
         if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
             add_settings_field(
                 'contact-list-' . $only_pro . 'cron_activate_import_contacts_daily',
@@ -2710,15 +2734,15 @@ class ContactListSettings {
         if ( $field_name = $args['field_name'] ) {
             $options = get_option( 'contact_list_settings' );
             $s = get_option( 'contact_list_settings' );
-            ?>    
-  
+            ?>
+
       <?php 
             $free = 0;
             ?>
       <?php 
             $free_class = '';
             ?>
-    
+
       <?php 
             if ( substr( $field_name, 0, strlen( '_FREE_' ) ) === '_FREE_' ) {
                 ?>
@@ -2731,15 +2755,15 @@ class ContactListSettings {
       <?php 
             }
             ?>
-  
+
       <div class="contact-list-setting-container <?php 
             echo esc_attr( $free_class );
             ?>">
-  
+
         <?php 
             if ( $free ) {
                 ?>
-  
+
           <a href="<?php 
                 echo esc_url( get_admin_url() );
                 ?>options-general.php?page=contact-list-pricing">
@@ -2747,17 +2771,17 @@ class ContactListSettings {
                 echo esc_html__( 'All Plans', 'contact-list' );
                 ?></div></div>
           </a>
-  
+
         <?php 
             } else {
                 ?>
-  
+
           <div class="contact-list-setting">
-            
+
             <?php 
                 $placeholder = '';
                 ?>
-  
+
             <?php 
                 if ( isset( $args['placeholder'] ) && $args['placeholder'] ) {
                     ?>
@@ -2777,19 +2801,19 @@ class ContactListSettings {
                 ?>"><?php 
                 echo ( isset( $options[$field_name] ) ? esc_html( $options[$field_name] ) : '' );
                 ?></textarea>
-  
+
           </div>
-          
+
         <?php 
             }
             ?>
-      
+
       </div>
 
       <?php 
             if ( $field_name == 'simple_list_custom_order' || $field_name == '_FREE_simple_list_custom_order' || $field_name == 'contact_card_title' ) {
                 ?>
-      
+
         <?php 
                 if ( $field_name == 'contact_card_title' ) {
                     $simple_list_fields = array(
@@ -3002,7 +3026,7 @@ class ContactListSettings {
                     );
                 }
                 ?>
-      
+
         <div class="general-info contact-list-general-info-custom-order">
 
           <?php 
@@ -3012,15 +3036,15 @@ class ContactListSettings {
             <div class="contact-list-general-info-custom-order-row-1"><?php 
                     echo esc_html__( 'Add any fields using the field IDs in any order, inside brackets:', 'contact-list' );
                     ?></div>
-          
+
             <div class="contact-list-general-info-custom-order-row-2">e.g. [first_name] [last_name] [country]</div>
 
             <div class="contact-list-general-info-custom-order-row-1"><?php 
                     echo esc_html__( 'You can also add any other content, that will be same for all contacts, like the text "from" here:', 'contact-list' );
                     ?></div>
-            
+
             <div class="contact-list-general-info-custom-order-row-2">[first_name] [last_name] from [country]</div>
-            
+
           <?php 
                 } else {
                     ?>
@@ -3028,9 +3052,9 @@ class ContactListSettings {
             <div class="contact-list-general-info-custom-order-row-1"><?php 
                     echo esc_html__( 'Add any fields using the field IDs in any order, separated by a whitespace.', 'contact-list' );
                     ?></div>
-  
+
             <div class="contact-list-general-info-custom-order-row-2">e.g. full_name city custom_field_1 some_icons send_message</div>
-            
+
           <?php 
                 }
                 ?>
@@ -3052,7 +3076,7 @@ class ContactListSettings {
             <?php 
                 foreach ( $simple_list_fields as $f ) {
                     ?>
-              
+
               <?php 
                     $options_field = $f['name'] . '_title';
                     $field_title = ( isset( $options[$options_field] ) && $options[$options_field] ? sanitize_text_field( $options[$options_field] ) : sanitize_text_field( $f['title'] ) );
@@ -3071,17 +3095,17 @@ class ContactListSettings {
                 ?>
             </table>
           </div>
-          
+
           <div class="contact-list-settings-php-template-info"><b><?php 
                 echo esc_html__( "It's also possible to customize the contact card PHP template in the paid plans:", "contact-list" );
                 ?></b><br />wp-content/plugins/contact-list-pro/templates/contact-card.php</div>
 
         </div>
-        
+
       <?php 
             } elseif ( $field_name == 'contact_card_left_column' || $field_name == '_FREE_contact_card_left_column' ) {
                 ?>
-      
+
         <?php 
                 $contact_card_fields = array(
                     array(
@@ -3138,23 +3162,23 @@ class ContactListSettings {
                     )
                 );
                 ?>
-      
+
         <div class="general-info contact-list-general-info-custom-order">
-    
+
           <div class="contact-list-general-info-custom-order-row-1"><?php 
                 echo esc_html__( 'Add any fields using the field IDs in any order, inside double brackets like so:', 'contact-list' );
                 ?></div>
-        
+
           <div class="contact-list-general-info-custom-order-row-2">[[full_name]]<br />[[phone_numbers]]<br />[[address]]</div>
 
           <div class="contact-list-settings-contact-card-single-field-info"><b><?php 
                 echo esc_html__( "You can also use the single fields, listed above for the field Contact card title, inside double brackets:", "contact-list" );
                 ?></b><br />[[first_name]]<br />[[last_name]]<br />[[phone]]<br /><br /></div>
-          
+
           <div class="contact-list-general-info-custom-order-row-3"><?php 
                 echo esc_html__( 'Available fields are:', 'contact-list' );
                 ?></div>
-      
+
           <div class="contact-list-settings-simple-list-custom-order-container">
             <table class="contact-list-settings-simple-list-custom-order">
             <tr>
@@ -3168,12 +3192,12 @@ class ContactListSettings {
             <?php 
                 foreach ( $contact_card_fields as $f ) {
                     ?>
-              
+
               <?php 
                     $options_field = $f['name'] . '_title';
                     $field_title = ( isset( $options[$options_field] ) && $options[$options_field] ? sanitize_text_field( $options[$options_field] ) : sanitize_text_field( $f['title'] ) );
                     ?>
-      
+
               <tr>
                 <td><?php 
                     echo esc_html( $field_title );
@@ -3199,34 +3223,34 @@ class ContactListSettings {
                 ?>
 
         <div class="general-info contact-list-general-info-custom-order">
-        
+
           <div class="contact-list-general-info-custom-order-row-1"><?php 
                 echo esc_html__( 'Add any fields using the field IDs in any order, inside double brackets like so:', 'contact-list' );
                 ?></div>
-        
+
           <div class="contact-list-general-info-custom-order-row-2">[[featured_image]]<br/>[[groups]]</div>
-          
+
         </div>
 
       <?php 
             } elseif ( $field_name == 'contact_card_bottom_column' || $field_name == '_FREE_contact_card_bottom_column' ) {
                 ?>
-        
+
         <div class="general-info contact-list-general-info-custom-order">
-        
+
           <div class="contact-list-general-info-custom-order-row-1"><?php 
                 echo esc_html__( 'Add any fields using the field IDs in any order, inside double brackets like so:', 'contact-list' );
                 ?></div>
-        
+
           <div class="contact-list-general-info-custom-order-row-2">[[additional_info]]<br/>[[map]]</div>
-          
+
         </div>
 
-      
+
       <?php 
             }
             ?>
-  
+
       <?php 
         }
     }
@@ -3264,7 +3288,7 @@ class ContactListSettings {
       <?php 
             $plan_required = 'All Plans';
             ?>
-    
+
       <?php 
             if ( substr( $field_name, 0, strlen( '_FREE_' ) ) === '_FREE_' ) {
                 ?>
@@ -3308,7 +3332,7 @@ class ContactListSettings {
         <?php 
             if ( $free ) {
                 ?>
- 
+
           <a href="<?php 
                 echo esc_url( get_admin_url() );
                 ?>options-general.php?page=contact-list-pricing">
@@ -3316,7 +3340,7 @@ class ContactListSettings {
                 echo esc_html( $plan_required );
                 ?></div></div>
           </a>
- 
+
         <?php 
             } else {
                 ?>
@@ -3324,7 +3348,7 @@ class ContactListSettings {
           <?php 
                 $placeholder = '';
                 ?>
-          
+
           <?php 
                 if ( isset( $args['placeholder'] ) && $args['placeholder'] ) {
                     ?>
@@ -3334,7 +3358,7 @@ class ContactListSettings {
           <?php 
                 }
                 ?>
-  
+
           <div class="contact-list-setting">
             <input type="text" class="input-field" id="contact-list-<?php 
                 echo esc_attr( $field_name );
@@ -3346,7 +3370,7 @@ class ContactListSettings {
                 echo esc_attr( $placeholder );
                 ?>">
           </div>
-          
+
         <?php 
             }
             ?>
@@ -3361,7 +3385,7 @@ class ContactListSettings {
           <?php 
                 echo esc_html__( '(directly under your WordPress installation folder)', 'contact-list' );
                 ?><br /><br />
-      
+
           <?php 
                 $url = get_admin_url( null, './edit.php?post_type=' . CONTACT_LIST_CPT . '&page=contact-list-import' );
                 echo sprintf( wp_kses( 
@@ -3374,7 +3398,7 @@ class ContactListSettings {
                     )
                  ), esc_url( $url ) );
                 ?>
-      
+
         </div>
 
       <?php 
@@ -3388,7 +3412,7 @@ class ContactListSettings {
       <?php 
             } elseif ( strpos( $field_name, 'custom_url_2_img_url' ) !== false ) {
                 ?>
-        
+
         <p><?php 
                 echo esc_html__( 'e.g. /wp-content/uploads/2023/01/custom-icon-2.png or any full url', 'contact-list' );
                 ?></p>
@@ -3404,7 +3428,7 @@ class ContactListSettings {
     public function checkbox_render( $args ) {
         if ( $field_name = $args['field_name'] ) {
             $options = get_option( 'contact_list_settings' );
-            ?>    
+            ?>
 
       <?php 
             $free = 0;
@@ -3415,7 +3439,7 @@ class ContactListSettings {
       <?php 
             $plan_required = 'All Plans';
             ?>
-    
+
       <?php 
             if ( substr( $field_name, 0, strlen( '_FREE_' ) ) === '_FREE_' ) {
                 ?>
@@ -3425,7 +3449,7 @@ class ContactListSettings {
         <?php 
                 $free_class = 'contact-list-setting-container-free';
                 ?>
-        
+
         <?php 
                 if ( $field_name == '_FREE_simple_list_modal' ) {
                     ?>
@@ -3509,7 +3533,7 @@ class ContactListSettings {
         <?php 
                 }
                 ?>
-        
+
       <?php 
             }
             ?>
@@ -3521,7 +3545,7 @@ class ContactListSettings {
         <?php 
             if ( $free ) {
                 ?>
- 
+
           <a href="<?php 
                 echo esc_url( get_admin_url() );
                 ?>options-general.php?page=contact-list-pricing">
@@ -3529,11 +3553,11 @@ class ContactListSettings {
                 echo esc_html( $plan_required );
                 ?></div></div>
           </a>
- 
+
         <?php 
             } else {
                 ?>
-  
+
           <div class="contact-list-setting">
             <input type="checkbox" id="contact-list-<?php 
                 echo esc_attr( $field_name );
@@ -3543,11 +3567,11 @@ class ContactListSettings {
                 echo ( isset( $options[$field_name] ) ? 'checked="checked"' : '' );
                 ?>>
           </div>
-          
+
         <?php 
             }
             ?>
-      
+
       </div>
 
       <?php 
@@ -3564,6 +3588,16 @@ class ContactListSettings {
           </div>
 
       <?php 
+            } elseif ( substr( $field_name, -strlen( '_allow_unfiltered_content' ) ) == '_allow_unfiltered_content' ) {
+                ?>
+
+        <div class="general-info">
+          <?php 
+                echo esc_html__( 'Allow any kind of content, like HTML, CSS and JavaScript.', 'contact-list' );
+                ?>
+        </div>
+
+      <?php 
             } elseif ( $field_name == 'link_country_and_state' || $field_name == '_FREE_link_country_and_state' ) {
                 ?>
 
@@ -3576,7 +3610,7 @@ class ContactListSettings {
       <?php 
             } elseif ( $field_name == 'enable_single_contact_page' || $field_name == '_FREE_enable_single_contact_page' ) {
                 ?>
-          
+
           <div class="general-info">
             <?php 
                 echo esc_html__( "Each contact will have their own page under slug 'contact', and as content the regular contact card, url being like so:", 'contact-list' );
@@ -3592,7 +3626,7 @@ class ContactListSettings {
       <?php 
             } elseif ( $field_name == 'show_contacts_in_site_search_results' || $field_name == '_FREE_show_contacts_in_site_search_results' ) {
                 ?>
-          
+
           <div class="general-info">
             <?php 
                 echo esc_html__( "Show the contacts in the site search results. Proper function requires also the single contact pages enabled.", 'contact-list' );
@@ -3602,7 +3636,7 @@ class ContactListSettings {
       <?php 
             } elseif ( $field_name == 'contact_card_show_modal_button' || $field_name == '_FREE_contact_card_show_modal_button' ) {
                 ?>
-          
+
           <div class="general-info">
             <?php 
                 echo esc_html__( "Button is shown if additional info is added to the contact.", 'contact-list' );
@@ -3612,7 +3646,7 @@ class ContactListSettings {
       <?php 
             }
             ?>
-      
+
       <?php 
         }
     }
@@ -3632,7 +3666,7 @@ class ContactListSettings {
                 '_cl_last_name'  => 'last_name_title',
                 '_cl_first_name' => 'first_name_title',
             ];
-            ?>    
+            ?>
 
       <select name="contact_list_settings[<?php 
             echo esc_attr( $args['field_name'] );
@@ -3648,7 +3682,7 @@ class ContactListSettings {
           <?php 
                 $field_title = $value;
                 ?>
-          
+
           <?php 
                 if ( isset( $s[$custom_name_field] ) && $s[$custom_name_field] ) {
                     ?>
@@ -3658,7 +3692,7 @@ class ContactListSettings {
           <?php 
                 }
                 ?>
-        
+
           <option value="<?php 
                 echo esc_attr( $key );
                 ?>" <?php 
@@ -3687,7 +3721,7 @@ class ContactListSettings {
                 $val = sanitize_text_field( $options[$args['field_name']] );
             }
             ?>
-  
+
       <?php 
             $free = 0;
             ?>
@@ -3697,7 +3731,7 @@ class ContactListSettings {
       <?php 
             $plan_required = 'Professional';
             ?>
-      
+
       <?php 
             if ( substr( $field_name, 0, strlen( '_FREE_' ) ) === '_FREE_' ) {
                 ?>
@@ -3710,15 +3744,15 @@ class ContactListSettings {
       <?php 
             }
             ?>
-      
+
       <div class="contact-list-setting-container <?php 
             echo esc_attr( $free_class );
             ?>">
-      
+
         <?php 
             if ( $free ) {
                 ?>
-        
+
           <a href="<?php 
                 echo esc_url( get_admin_url() );
                 ?>options-general.php?page=contact-list-pricing">
@@ -3726,18 +3760,18 @@ class ContactListSettings {
                 echo esc_html( $plan_required );
                 ?></div></div>
           </a>
-        
+
         <?php 
             } else {
                 ?>
 
           <?php 
                 ?>
-        
+
         <?php 
             }
             ?>
-  
+
       </div>
 
       <?php 
@@ -3771,7 +3805,7 @@ class ContactListSettings {
       <?php 
             $free_class = '';
             ?>
-    
+
       <?php 
             if ( substr( $field_name, 0, strlen( '_FREE_' ) ) === '_FREE_' ) {
                 ?>
@@ -3792,17 +3826,17 @@ class ContactListSettings {
         <?php 
             if ( $free ) {
                 ?>
- 
+
           <a href="<?php 
                 echo esc_url( get_admin_url() );
                 ?>options-general.php?page=contact-list-pricing">
             <div class="contact-list-settings-pro-feature-overlay"><div>All Plans</div></div>
           </a>
- 
+
         <?php 
             } else {
                 ?>
- 
+
           <div class="contact-list-setting">
 
             <div class="contact-list-current-icon">
@@ -3844,8 +3878,8 @@ class ContactListSettings {
                     ?>
               <?php 
                 }
-                ?> 
- 
+                ?>
+
               <label class="cl-icon-sel"><input type="radio" name="_CL_ICON_[<?php 
                 echo esc_attr( $field_name );
                 ?>]" value="" <?php 
@@ -3855,7 +3889,7 @@ class ContactListSettings {
                 ?>]').value = '';"> <?php 
                 echo esc_html__( 'none', 'contact-list' );
                 ?></label>
-        
+
               <?php 
                 $icons = [
                     'phone',
@@ -3886,11 +3920,11 @@ class ContactListSettings {
                     'info-circle'
                 ];
                 ?>
-              
+
               <?php 
                 foreach ( $icons as $icon ) {
                     ?>
-              
+
                 <?php 
                     if ( $sel == 'fa-' . $icon ) {
                         ?>
@@ -3909,7 +3943,7 @@ class ContactListSettings {
                 <?php 
                     }
                     ?>
-              
+
                 <label class="cl-icon-sel"><input type="radio" name="_CL_ICON_[<?php 
                     echo esc_attr( $field_name );
                     ?>]" value="fa-<?php 
@@ -3961,15 +3995,15 @@ class ContactListSettings {
                  ), esc_url( $url ) );
                 ?>
               </div>
-              
+
             </div>
 
           </div>
 
         <?php 
             }
-            ?> 
-     
+            ?>
+
       </div>
 
       <?php 
@@ -3983,7 +4017,7 @@ class ContactListSettings {
             if ( isset( $options[$args['field_name']] ) ) {
                 $layout = sanitize_text_field( $options[$args['field_name']] );
             }
-            ?>    
+            ?>
       <select name="contact_list_settings[<?php 
             echo esc_attr( $args['field_name'] );
             ?>]">
@@ -4025,7 +4059,7 @@ class ContactListSettings {
             if ( !$sel && isset( $options['simple_list_modal'] ) ) {
                 $sel = 'contact-card-lightbox';
             }
-            ?>    
+            ?>
 
       <?php 
             $free = 0;
@@ -4033,7 +4067,7 @@ class ContactListSettings {
       <?php 
             $free_class = '';
             ?>
-      
+
       <?php 
             if ( substr( $field_name, 0, strlen( '_FREE_' ) ) === '_FREE_' ) {
                 ?>
@@ -4046,32 +4080,32 @@ class ContactListSettings {
       <?php 
             }
             ?>
-      
+
       <div class="contact-list-setting-container <?php 
             echo esc_attr( $free_class );
             ?>">
-      
+
         <?php 
             if ( $free ) {
                 ?>
-      
+
           <a href="<?php 
                 echo esc_url( get_admin_url() );
                 ?>options-general.php?page=contact-list-pricing">
             <div class="contact-list-settings-pro-feature-overlay"><div>All Plans</div></div>
           </a>
-      
+
         <?php 
             } else {
                 ?>
 
           <?php 
                 ?>
-          
+
         <?php 
             }
             ?>
-        
+
       </div>
 
       <?php 
@@ -4086,7 +4120,7 @@ class ContactListSettings {
             if ( isset( $options[$args['field_name']] ) ) {
                 $layout = sanitize_text_field( $options[$args['field_name']] );
             }
-            ?>    
+            ?>
 
       <?php 
             $free = 0;
@@ -4094,7 +4128,7 @@ class ContactListSettings {
       <?php 
             $free_class = '';
             ?>
-      
+
       <?php 
             if ( substr( $field_name, 0, strlen( '_FREE_' ) ) === '_FREE_' ) {
                 ?>
@@ -4107,34 +4141,34 @@ class ContactListSettings {
       <?php 
             }
             ?>
-      
+
       <div class="contact-list-setting-container <?php 
             echo esc_attr( $free_class );
             ?>">
-      
+
         <?php 
             if ( $free ) {
                 ?>
-      
+
           <a href="<?php 
                 echo esc_url( get_admin_url() );
                 ?>options-general.php?page=contact-list-pricing">
             <div class="contact-list-settings-pro-feature-overlay"><div>All Plans</div></div>
           </a>
-      
+
         <?php 
             } else {
                 ?>
 
           <?php 
                 ?>
-                
+
         <?php 
             }
             ?>
-        
+
       </div>
-            
+
       <?php 
         }
     }
@@ -4146,7 +4180,7 @@ class ContactListSettings {
             if ( isset( $options[$args['field_name']] ) ) {
                 $card_background = sanitize_text_field( $options[$args['field_name']] );
             }
-            ?>    
+            ?>
       <select name="contact_list_settings[<?php 
             echo esc_attr( $args['field_name'] );
             ?>]">
@@ -4168,14 +4202,14 @@ class ContactListSettings {
         }
     }
 
-    public function recaptcha_method_render( $args ) {
+    public function separator_render( $args ) {
         if ( $field_name = $args['field_name'] ) {
             $options = get_option( 'contact_list_settings' );
             $sel = '';
             if ( isset( $options[$args['field_name']] ) ) {
                 $sel = sanitize_text_field( $options[$args['field_name']] );
             }
-            ?>    
+            ?>
 
       <?php 
             $free = 0;
@@ -4183,7 +4217,7 @@ class ContactListSettings {
       <?php 
             $free_class = '';
             ?>
-      
+
       <?php 
             if ( substr( $field_name, 0, strlen( '_FREE_' ) ) === '_FREE_' ) {
                 ?>
@@ -4196,7 +4230,7 @@ class ContactListSettings {
       <?php 
             }
             ?>
-      
+
       <div class="contact-list-setting-container <?php 
             echo esc_attr( $free_class );
             ?>">
@@ -4204,13 +4238,81 @@ class ContactListSettings {
         <?php 
             if ( $free ) {
                 ?>
-        
+
           <a href="<?php 
                 echo esc_url( get_admin_url() );
                 ?>options-general.php?page=contact-list-pricing">
             <div class="contact-list-settings-pro-feature-overlay"><div>All Plans</div></div>
           </a>
-        
+
+        <?php 
+            } else {
+                ?>
+
+          <select name="contact_list_settings[<?php 
+                echo esc_attr( $args['field_name'] );
+                ?>]">
+            <option value=",">, <?php 
+                echo esc_html__( '(comma)', 'contact-list' );
+                ?></option>
+            <option value=";" <?php 
+                echo ( $sel == ';' ? 'selected' : '' );
+                ?>>; <?php 
+                echo esc_html__( '(semicolon)', 'contact-list' );
+                ?></option>
+          </select>
+
+        <?php 
+            }
+            ?>
+
+      <?php 
+        }
+    }
+
+    public function recaptcha_method_render( $args ) {
+        if ( $field_name = $args['field_name'] ) {
+            $options = get_option( 'contact_list_settings' );
+            $sel = '';
+            if ( isset( $options[$args['field_name']] ) ) {
+                $sel = sanitize_text_field( $options[$args['field_name']] );
+            }
+            ?>
+
+      <?php 
+            $free = 0;
+            ?>
+      <?php 
+            $free_class = '';
+            ?>
+
+      <?php 
+            if ( substr( $field_name, 0, strlen( '_FREE_' ) ) === '_FREE_' ) {
+                ?>
+        <?php 
+                $free = 1;
+                ?>
+        <?php 
+                $free_class = 'contact-list-setting-container-free';
+                ?>
+      <?php 
+            }
+            ?>
+
+      <div class="contact-list-setting-container <?php 
+            echo esc_attr( $free_class );
+            ?>">
+
+        <?php 
+            if ( $free ) {
+                ?>
+
+          <a href="<?php 
+                echo esc_url( get_admin_url() );
+                ?>options-general.php?page=contact-list-pricing">
+            <div class="contact-list-settings-pro-feature-overlay"><div>All Plans</div></div>
+          </a>
+
         <?php 
             } else {
                 ?>
@@ -4228,8 +4330,8 @@ class ContactListSettings {
 
         <?php 
             }
-            ?> 
-          
+            ?>
+
       </div>
 
       <?php 
@@ -4243,7 +4345,7 @@ class ContactListSettings {
             if ( isset( $options[$args['field_name']] ) ) {
                 $card_border = sanitize_text_field( $options[$args['field_name']] );
             }
-            ?>    
+            ?>
       <select name="contact_list_settings[<?php 
             echo esc_attr( $args['field_name'] );
             ?>]">
@@ -4272,7 +4374,7 @@ class ContactListSettings {
             if ( isset( $options[$args['field_name']] ) ) {
                 $card_image_style = sanitize_text_field( $options[$args['field_name']] );
             }
-            ?>    
+            ?>
       <select name="contact_list_settings[<?php 
             echo esc_attr( $args['field_name'] );
             ?>]">
@@ -4301,7 +4403,7 @@ class ContactListSettings {
             if ( isset( $options[$args['field_name']] ) ) {
                 $val = sanitize_text_field( $options[$args['field_name']] );
             }
-            ?>    
+            ?>
       <select name="contact_list_settings[<?php 
             echo esc_attr( $args['field_name'] );
             ?>]">
@@ -4316,7 +4418,7 @@ class ContactListSettings {
             echo esc_html__( 'Improved', 'contact-list' );
             ?></option>
       </select>
-  
+
       <div class="email-info">
         <?php 
             echo esc_html__( 'Original type means that the page links are in the following url format:', 'contact-list' );
@@ -4330,7 +4432,7 @@ class ContactListSettings {
             echo esc_html__( 'Improved type must be used, if the shortcode is on the front page or various other types of pages of the site. If you are getting 404 from the page links, use the Improved type.', 'contact-list' );
             ?><br />
       </div>
-  
+
       <?php 
         }
     }
@@ -4512,22 +4614,16 @@ class ContactListSettings {
         }
         ?>
 
-          <?php 
-        if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
-            ?>
-            <li class="contact-list-settings-tab-11-title" data-settings-container="contact-list-settings-tab-11"><span><?php 
-            echo esc_html__( 'Import & export', 'contact-list' );
-            ?></span></li>
-          <?php 
-        }
-        ?>
+          <li class="contact-list-settings-tab-11-title" data-settings-container="contact-list-settings-tab-11"><span><?php 
+        echo esc_html__( 'Import & export', 'contact-list' );
+        ?></span></li>
 
           <li class="contact-list-settings-tab-12-title" data-settings-container="contact-list-settings-tab-12"><span><?php 
         echo esc_html__( 'Send message modal', 'contact-list' );
         ?></span></li>
 
           <li class="contact-list-settings-tab-13-title" data-settings-container="contact-list-settings-tab-13"><span>[contact_list_form]</span></li>
-          
+
           <hr class="clear" />
         </ul>
       </div>
@@ -4540,13 +4636,13 @@ class ContactListSettings {
         ?>
           <?php 
         do_settings_sections( 'contact-list' );
-        ?>  
+        ?>
         </div>
-        
+
         <?php 
         submit_button();
         ?>
-      
+
       </div>
 
     </form>

@@ -26,7 +26,7 @@ class ContactListImportExport {
     public function register_import_page_callback() {
         $s = get_option( 'contact_list_settings' );
         ?>
-    
+
     <div class="wrap">
 
         <h1><?php 
@@ -42,10 +42,16 @@ class ContactListImportExport {
 
           <p>
             <?php 
-            echo esc_html__( 'You may import contacts from csv file using this form. There should be one contact per row, columns separated by comma.', 'contact-list' );
+            echo esc_html__( 'You may import contacts from a csv file using this form.', 'contact-list' );
             ?>
           </p>
-          
+
+          <p>
+            <?php 
+            echo esc_html__( 'There should be one contact per row, columns separated by a comma or a semicolon (can be changed in the settings).', 'contact-list' );
+            ?>
+          </p>
+
           <hr class="style-one" />
 
           <?php 
@@ -53,7 +59,7 @@ class ContactListImportExport {
             ?>
 
           <hr class="style-one" />
-          
+
           <p>
             <strong><?php 
             echo esc_html__( 'The columns should be in this order:', 'contact-list' );
@@ -174,7 +180,7 @@ class ContactListImportExport {
     public function register_export_page_callback() {
         $s = get_option( 'contact_list_settings' );
         ?>
-    
+
     <div class="wrap">
 
         <h1><?php 
@@ -190,10 +196,16 @@ class ContactListImportExport {
 
           <p>
             <?php 
-            echo esc_html__( 'You may export contacts to a csv file. There will be one contact per row, columns separated by comma.', 'contact-list' );
+            echo esc_html__( 'You may export contacts to a csv file.', 'contact-list' );
             ?>
           </p>
-          
+
+          <p>
+            <?php 
+            echo esc_html__( 'There will be one contact per row, columns separated by a comma or a semicolon (can be changed in the settings).', 'contact-list' );
+            ?>
+          </p>
+
           <hr class="style-one" />
 
           <?php 
@@ -201,7 +213,7 @@ class ContactListImportExport {
             ?>
 
           <hr class="style-one" />
-          
+
           <p>
             <strong><?php 
             echo esc_html__( 'The columns are in this order:', 'contact-list' );

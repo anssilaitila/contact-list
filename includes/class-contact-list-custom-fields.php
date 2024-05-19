@@ -465,7 +465,7 @@ class ContactListCustomFields {
                       <?php 
                 if ( substr( $customField['name'], 0, strlen( '_FREE_' ) ) === '_FREE_' ) {
                     ?>
-                      
+
                         <div class="contact-list-field-in-pro-container">
 
                           <?php 
@@ -481,15 +481,15 @@ class ContactListCustomFields {
                           <?php 
                     }
                     ?>
-                      
+
                           <a href="<?php 
                     echo esc_url( get_admin_url() );
                     ?>options-general.php?page=contact-list-pricing">
                             <div class="contact-list-settings-pro-feature-overlay"><span>All Plans</span></div>
                           </a>
-                      
+
                         </div>
-                          
+
                       <?php 
                 } else {
                     ?>
@@ -598,6 +598,7 @@ class ContactListCustomFields {
      * Save the new Custom Fields values
      */
     function saveCustomFields( $post_id, $post ) {
+        $s = get_option( 'contact_list_settings' );
         $post_id = intval( $post_id );
         $wpnonce = '';
         if ( isset( $_POST['contact-list-custom-fields_wpnonce'] ) ) {
@@ -636,11 +637,13 @@ class ContactListCustomFields {
                             $value = '';
                         }
                     } else {
-                        $value = sanitize_text_field( $value );
+                        $bypass_sanitation = 0;
+                        if ( !$bypass_sanitation ) {
+                            $value = sanitize_text_field( $value );
+                        }
                     }
                     update_post_meta( $post_id, $custom_field_name, $value );
                 } else {
-                    //          delete_post_meta($post_id, $custom_field_name);
                     update_post_meta( $post_id, $custom_field_name, '' );
                 }
             }

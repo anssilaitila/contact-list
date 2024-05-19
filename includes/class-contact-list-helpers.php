@@ -1,6 +1,12 @@
 <?php
 
 class ContactListHelpers {
+    public static function getCustomFieldCnt() {
+        $s = get_option( 'contact_list_settings' );
+        $custom_fields_cnt = 6 + 1;
+        return $custom_fields_cnt;
+    }
+
     public static function getMediaLibraryFileID( $filename ) {
         $newest_file_id = 0;
         $args = array(

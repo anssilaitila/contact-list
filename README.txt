@@ -3,7 +3,7 @@ Contributors: anssilaitila, freemius
 Tags: directory plugin, business directory, listing, address book, staff list
 Requires at least: 5.4.0
 Tested up to: 6.5
-Stable tag: 2.9.93
+Stable tag: 2.9.94
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,7 +15,7 @@ One-Stop Directory Solution! Quick searches, tailored filters, front-end messagi
 
 Looking for a simple yet comprehensive directory plugin for a WordPress website? If the answer is YES, then you are in the right place!
 
-Contact List is a dedicated directory plugin to manage and create address books, company/business directories, yellow pages, and numerous other member directories right inside WordPress. 
+Contact List is a dedicated directory plugin to manage and create address books, company/business directories, yellow pages, and numerous other member directories right inside WordPress.
 
 * A simple method of listing contacts on a WordPress website
 * Email contacts immediately from the front-end form
@@ -32,7 +32,7 @@ Contact List is a dedicated directory plugin to manage and create address books,
 == Cases for Contact List Directory Plugin ==
 
 Contact List simplifies the process of creating WordPress website directories of any kind. The possibilities of a directory building with Contact List are endless. You can build...
- 
+
 * Address book
 * Business directory
 * Online directory
@@ -52,7 +52,7 @@ Contact List simplifies the process of creating WordPress website directories of
 * Staff list
 * Chamber of commerce
 
-... and even if you are not tech-geek, you can still build all of the above-mentioned directories with an ease, thanks to Contact List's simplicity in design and function. 
+... and even if you are not tech-geek, you can still build all of the above-mentioned directories with an ease, thanks to Contact List's simplicity in design and function.
 
 *What are you waiting for? Join the thousands who have already begun their journey and start composing your own business directory! Give it a try and you'll definitely love it.*
 
@@ -62,7 +62,7 @@ Contact List is a comprehensive directory plugin for building any kinds of direc
 
 **Start** creating your WordPress contact directory page, **with 2 steps**:
 
-1. Add some contacts from WP admin > Contact List > All contacts. 
+1. Add some contacts from WP admin > Contact List > All contacts.
 
 2. Insert one of these shortcodes to any page or post on your site.
     * [contact_list] (default contact list)
@@ -75,7 +75,7 @@ Contact List is a comprehensive directory plugin for building any kinds of direc
 = Fields for each contact =
 
 Contact List plugin is the best solution to comprise and build a WordPress website directory with ease. The ability to add new fields and remove certain existing ones is quite essential for a business directory plugin, and this is what Contact List offers.
- 
+
 If one wants to display information about employees other than the minimal minimum of first name, last name, and email, Contact List offers a lot of freedom. This directory plugin allows the the listing of any contact data including name, job title, contact info, social media links, and so forth. Fields can also come in handy for creating all-in-one address book. This is not all, there are more fields that can be added to the contact directory using the Contact List plugin.
 
 * First/last name
@@ -93,7 +93,7 @@ Give access to certain user roles to submit, manage and edit contacts from the f
 
 = Send emails =
 
-This directory plugin allows sending emails directly to contacts using a built-in form on the front end (featuring reCAPTCHA). This means that users and website visitors can contact enlisted directory members right inside the directory page without additional add-ons and efforts. 
+This directory plugin allows sending emails directly to contacts using a built-in form on the front end (featuring reCAPTCHA). This means that users and website visitors can contact enlisted directory members right inside the directory page without additional add-ons and efforts.
 
 Most importantly, the plugin still keeps contact info confidential. The contact's email address can be completely obscured, to prevent email spam, but still, email can be sent to the contact.
 
@@ -119,7 +119,7 @@ Easy search of contacts thanks to grouped and organized contact directory and nu
 
 = Contact views =
 
-Contact List supports two directory views: a comprehensive list of all contact information and a simpler table view. 
+Contact List supports two directory views: a comprehensive list of all contact information and a simpler table view.
 
 = Directory layouts =
 
@@ -147,7 +147,7 @@ Get a user-friendly WordPress directory plugin that simplifies the migration pro
 * Spam-prevention via obfuscated emails
 * Grouped and categorized contacts
 * Fast search targeting all contacts
-* Contact filters by country, state, city and category 
+* Contact filters by country, state, city and category
 * Additional filters by simply renaaming default country and state filters
 * Automatic country and state dropdowns are created using contact information
 * 1 custom field
@@ -239,6 +239,11 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 6. Contact management
 
 == Changelog ==
+
+= 2.9.94 - 2024-05-19 =
+* (All plans) New setting for import & export: Separator for the CSV file
+* (All plans) New setting for custom fields: Allow unfiltered content
+* (Free + All plans) Bug fixes
 
 = 2.9.93 - 2024-05-09 =
 * (All plans) More settings to hide fields from the contact edit form (like specific custom fields): see plugin settings, Contact edit tab
@@ -356,7 +361,7 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 * (All plans) New setting for contact import: Don't import the first line of the CSV file
 * (All plans) New setting for contact import: Delete ALL existing contacts before import
 * (Free + All plans) New setting: Contact card title. Add any fields or other content to be the contact card title (see plugin settings, Contact card tab)
- 
+
 = 2.9.69 - 2023-05-06 =
 * (All plans) New parameter [contact_list hide_contacts_first=1]: Hide contacts first (contacts are shown when searched or any filter is selected)
 * (All plans) New parameter [contact_list hide_contacts_first=1 default_contact_id=12345]: Hide contacts first and show only a single default contact
