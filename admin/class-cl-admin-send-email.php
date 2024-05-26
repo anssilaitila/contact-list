@@ -41,8 +41,8 @@ class ContactListAdminSendEmail {
         }
         wp_reset_postdata();
         ?>
-    
-    <div class="wrap">
+
+    <div class="wrap contact-list-admin-page">
 
       <form method="post" class="send_email_form" action="" target="send_email">
 
@@ -56,7 +56,7 @@ class ContactListAdminSendEmail {
 
         <?php 
         if ( ContactListHelpers::isPremium() == 0 ) {
-            ?>  
+            ?>
           <br />
           <?php 
             echo ContactListHelpers::proFeatureMarkup();
@@ -67,7 +67,7 @@ class ContactListAdminSendEmail {
         ?>
 
         <div>
-          
+
           <span class="restrict-recipients-title"><?php 
         echo esc_html__( 'Restrict recipients to specific group', 'contact-list' );
         ?>:</span>
@@ -178,7 +178,7 @@ class ContactListAdminSendEmail {
         <?php 
         $user = get_userdata( $user_id );
         ?>
-        
+
         <label>
           <span><?php 
         echo esc_html__( 'Sender name', 'contact-list' );
@@ -192,7 +192,7 @@ class ContactListAdminSendEmail {
         ?></span>
           <input name="sender_email" type="email" value="" required />
         </label>
-  
+
         <label>
           <span><?php 
         echo esc_html__( 'Message', 'contact-list' );
@@ -210,11 +210,11 @@ class ContactListAdminSendEmail {
         }
         ?> />
         <hr class="style-one" />
-          
+
       </form>
 
     </div>
-    
+
     <?php 
     }
 

@@ -31,12 +31,12 @@ class ContactListAdminMailLog {
         ));
 
     }
-    
+
     $wpb_all_query = new WP_Query(array(
       'post_type'       => CONTACT_LIST_CPT,
       'post_status'     => 'publish',
       'posts_per_page'  => -1,
-      
+
       'tax_query' => $tax_query
     ));
 
@@ -45,7 +45,7 @@ class ContactListAdminMailLog {
     if ($wpb_all_query->have_posts()) {
 
       while ($wpb_all_query->have_posts()) {
-        
+
         $wpb_all_query->the_post();
 
         $c = get_post_custom();
@@ -59,10 +59,10 @@ class ContactListAdminMailLog {
     }
 
     wp_reset_postdata();
-    
+
     ?>
-    
-    <div class="wrap">
+
+    <div class="wrap contact-list-admin-page">
 
       <h1><?php echo esc_html__('Log of sent mail', 'contact-list'); ?></h1>
 
@@ -71,14 +71,14 @@ class ContactListAdminMailLog {
         <?php
 
         $mail_id = (int) $_GET['mail_id'];
-        
+
         global $wpdb;
         $msg = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}cl_sent_mail_log WHERE id = " . $mail_id);
 
         ?>
-        
+
         <a href="javascript:history.go(-1)">&lt;&lt; <?php echo esc_html__('Back', 'contact-list') ?></a>
-        
+
         <?php foreach ($msg as $row): ?>
 
           <table class="contact-list-mail-log-msg-details">
@@ -115,9 +115,9 @@ class ContactListAdminMailLog {
             <td><?php echo esc_html( $row->mail_cnt ) ?></td>
           </tr>
           </table>
-          
+
           <h3><?php echo esc_html__('Mail report:', 'contact-list') ?></h3>
-          
+
           <div class="contact-list-mail-log-recipients-container">
             <?php echo wp_kses_post( $row->report ) ?>
           </div>
@@ -126,12 +126,12 @@ class ContactListAdminMailLog {
 
       <?php else: ?>
 
-        <?php if (isset($_GET['mail_log_emptied'])): ?>        
+        <?php if (isset($_GET['mail_log_emptied'])): ?>
 
           <?php echo '<h2 class="contact-list-mail-log-success">' . esc_html__('Mail log successfully emptied.', 'contact-list') . '</h2>'; ?>
 
-        <?php elseif (isset($_GET['mail_log_emptied_error'])): ?>        
-        
+        <?php elseif (isset($_GET['mail_log_emptied_error'])): ?>
+
           <?php echo '<h2 class="contact-list-mail-log-success-error">' . esc_html__('Mail log not emptied.', 'contact-list') . '</h2>'; ?>
 
         <?php else: ?>
@@ -145,14 +145,14 @@ class ContactListAdminMailLog {
           </form>
 
         <?php endif; ?>
-            
+
         <?php
 
         global $wpdb;
         $msg = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}cl_sent_mail_log ORDER BY created_at DESC LIMIT 200");
 
         ?>
-        
+
         <table class="contact-list-mail-log">
         <tr>
           <th><?php echo esc_html__('Date', 'contact-list') ?></th>
@@ -211,9 +211,9 @@ class ContactListAdminMailLog {
           </tr>
 
         <?php endif; ?>
-        
+
         </table>
-        
+
       <?php endif; ?>
 
     </div>

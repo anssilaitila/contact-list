@@ -83,14 +83,15 @@ class ContactListPublicAjax {
             );
         }
         $posts_per_page = -1;
-        $wp_query = new WP_Query(array(
+        $wp_query_args = array(
             'post_type'      => CONTACT_LIST_CPT,
             'post_status'    => 'publish',
             'posts_per_page' => (int) $posts_per_page,
             'meta_query'     => $meta_query,
             'tax_query'      => $tax_query,
             'orderby'        => $order_by,
-        ));
+        );
+        $wp_query = new WP_Query($wp_query_args);
         if ( $wp_query->have_posts() ) {
             $html .= ContactListPublicHelpersDefault::contactListMarkup(
                 $wp_query,

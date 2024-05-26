@@ -147,7 +147,7 @@ class ShortcodeContactList {
                 'tax_query'      => $tax_query,
                 'orderby'        => $order_by,
             ));
-            $wp_query_for_filter = new WP_Query(array(
+            $wp_query_for_filter_args = array(
                 'post_type'      => 'contact',
                 'post_status'    => 'publish',
                 'posts_per_page' => -1,
@@ -155,7 +155,8 @@ class ShortcodeContactList {
                 'meta_query'     => $meta_query,
                 'tax_query'      => $tax_query,
                 'orderby'        => $order_by,
-            ));
+            );
+            $wp_query_for_filter = new WP_Query($wp_query_for_filter_args);
             if ( !isset( $atts['hide_search'] ) ) {
                 $search_contacts_class = 'contact-list-search-contacts';
                 $placeholder = ( isset( $s['search_contacts'] ) && $s['search_contacts'] ? ContactListHelpers::sanitize_attr_value( $s['search_contacts'] ) : ContactListHelpers::sanitize_attr_value( __( 'Search contacts...', 'contact-list' ) ) );

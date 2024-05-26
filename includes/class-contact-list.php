@@ -115,6 +115,8 @@ class Contact_List {
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-shortcodes.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-help-support.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-import-export.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-import.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-export.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-printable.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-notifications.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-query.php';
@@ -134,6 +136,7 @@ class Contact_List {
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cl-public-helpers-simple.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cl-public-load.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cl-public-card.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-contact-helpers.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cl-public-pagination.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cl-public-hooks.php';
         /**

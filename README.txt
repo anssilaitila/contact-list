@@ -3,7 +3,7 @@ Contributors: anssilaitila, freemius
 Tags: directory plugin, business directory, listing, address book, staff list
 Requires at least: 5.4.0
 Tested up to: 6.5
-Stable tag: 2.9.94
+Stable tag: 2.9.95
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -239,6 +239,11 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 6. Contact management
 
 == Changelog ==
+
+= 2.9.95 - 2024-05-26 =
+* (All plans) It is now possible to import & export the chosen fields in any order (see plugins settings, Import & Export tab)
+* (All plans) New feature: export filtered contacts to a csv file from the frontend: [contact_list download_csv=1] (fields can be defined in the settings)
+* (Free + All plans) Bug fixes
 
 = 2.9.94 - 2024-05-19 =
 * (All plans) New setting for import & export: Separator for the CSV file

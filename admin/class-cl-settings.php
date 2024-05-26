@@ -2388,6 +2388,31 @@ class ContactListSettings {
                 array(
                     'label_for'  => 'contact-list-' . $only_pro . 'cron_import_contacts_update_existing_by_email',
                     'field_name' => $only_pro . 'cron_import_contacts_update_existing_by_email',
+                    'class'      => 'contact-list-padding-bottom',
+                )
+            );
+            add_settings_field(
+                'contact-list-' . $only_pro . 'admin_import_export_fields',
+                sanitize_text_field( __( 'Admin import & export fields', 'contact-list' ) ),
+                array($this, 'export_fields_render'),
+                'contact-list',
+                'contact-list_tab_' . $tab,
+                array(
+                    'label_for'  => 'contact-list-' . $only_pro . 'admin_import_export_fields',
+                    'field_name' => $only_pro . 'admin_import_export_fields',
+                    'class'      => 'contact-list-border-top contact-list-padding-bottom',
+                )
+            );
+            add_settings_field(
+                'contact-list-' . $only_pro . 'front_end_export_fields',
+                sanitize_text_field( __( 'Front end export fields', 'contact-list' ) ),
+                array($this, 'export_fields_render'),
+                'contact-list',
+                'contact-list_tab_' . $tab,
+                array(
+                    'label_for'  => 'contact-list-' . $only_pro . 'front_end_export_fields',
+                    'field_name' => $only_pro . 'front_end_export_fields',
+                    'class'      => 'contact-list-border-top',
                 )
             );
         }
@@ -3255,6 +3280,182 @@ class ContactListSettings {
         }
     }
 
+    public function export_fields_render( $args ) {
+        if ( $field_name = $args['field_name'] ) {
+            $options = get_option( 'contact_list_settings' );
+            $s = get_option( 'contact_list_settings' );
+            ?>
+
+      <?php 
+            $free = 0;
+            ?>
+      <?php 
+            $free_class = '';
+            ?>
+
+      <?php 
+            if ( substr( $field_name, 0, strlen( '_FREE_' ) ) === '_FREE_' ) {
+                ?>
+        <?php 
+                $free = 1;
+                ?>
+        <?php 
+                $free_class = 'contact-list-setting-container-free';
+                ?>
+      <?php 
+            }
+            ?>
+
+      <div class="contact-list-setting-container <?php 
+            echo esc_attr( $free_class );
+            ?>">
+
+        <?php 
+            if ( $free ) {
+                ?>
+
+          <a href="<?php 
+                echo esc_url( get_admin_url() );
+                ?>options-general.php?page=contact-list-pricing">
+            <div class="contact-list-settings-pro-feature-overlay"><div><?php 
+                echo esc_html__( 'All Plans', 'contact-list' );
+                ?></div></div>
+          </a>
+
+        <?php 
+            } else {
+                ?>
+
+          <div class="contact-list-setting">
+
+            <?php 
+                $placeholder = '';
+                ?>
+
+            <?php 
+                if ( isset( $args['placeholder'] ) && $args['placeholder'] ) {
+                    ?>
+              <?php 
+                    $placeholder = sanitize_text_field( $args['placeholder'] );
+                    ?>
+            <?php 
+                }
+                ?>
+
+            <textarea class="textarea-field" id="contact-list-<?php 
+                echo esc_attr( $field_name );
+                ?>" name="contact_list_settings[<?php 
+                echo esc_attr( $field_name );
+                ?>]" placeholder="<?php 
+                echo esc_attr( $placeholder );
+                ?>"><?php 
+                echo ( isset( $options[$field_name] ) ? esc_html( $options[$field_name] ) : '' );
+                ?></textarea>
+
+          </div>
+
+        <?php 
+            }
+            ?>
+
+      </div>
+
+      <?php 
+            if ( $field_name == 'admin_import_export_fields' || $field_name == '_FREE_admin_import_export_fields' ) {
+                ?>
+
+        <?php 
+                ?>
+
+        <div class="general-info contact-list-setting-info">
+
+          <p style="font-weight: 700;"><?php 
+                echo esc_html__( 'Override the default fields and their order here (see the available fields and instructions below).', 'contact-list' );
+                ?></p>
+
+          <p><?php 
+                echo esc_html__( 'These fields affect the import & export tools under WP admin / Contact List and also the automatic daily import.', 'contact-list' );
+                ?></p>
+
+        </div>
+
+      <?php 
+            } elseif ( $field_name == 'front_end_export_fields' || $field_name == '_FREE_front_end_export_fields' ) {
+                ?>
+
+        <?php 
+                $import_export_fields = ContactListContactHelpers::get_fields();
+                ?>
+
+        <?php 
+                ?>
+
+        <div class="general-info contact-list-setting-info">
+
+          <p style="font-weight: 700;"><?php 
+                echo esc_html__( 'This setting is valid for shortcodes with parameter download_csv=1.', 'contact-list' );
+                ?></p>
+
+          <p><?php 
+                echo esc_html__( 'Add any fields using the field IDs in any order, one field in a row or separated by a whitespace.', 'contact-list' );
+                ?></p>
+
+          <p>e.g. first_name middle_name last_name</p>
+
+          <p>OR</p>
+
+          <p>first_name<br />middle_name<br />last_name</p>
+
+          <p style="font-size: 15px; font-weight: 700; margin-top: 12px; margin-bottom: 10px;"><?php 
+                echo esc_html__( 'Available fields for all imports and exports are:', 'contact-list' );
+                ?></p>
+
+          <div class="contact-list-settings-simple-list-custom-order-container">
+            <table class="contact-list-settings-simple-list-custom-order">
+            <tr>
+              <th><?php 
+                echo esc_html__( 'Field title', 'contact-list' );
+                ?></th>
+              <th><?php 
+                echo esc_html__( 'Field ID', 'contact-list' );
+                ?></th>
+            </tr>
+            <?php 
+                foreach ( $import_export_fields as $f ) {
+                    ?>
+
+              <?php 
+                    $options_field = $f['name'] . '_title';
+                    $field_title = ( isset( $options[$options_field] ) && $options[$options_field] ? sanitize_text_field( $options[$options_field] ) : sanitize_text_field( $f['title'] ) );
+                    ?>
+
+              <tr>
+                <td><?php 
+                    echo esc_html( $field_title );
+                    ?></td>
+                <td><?php 
+                    echo esc_html( $f['name'] );
+                    ?></td>
+              </tr>
+            <?php 
+                }
+                ?>
+            </table>
+          </div>
+
+          <br />
+
+        </div>
+
+      <?php 
+            }
+            ?>
+
+
+      <?php 
+        }
+    }
+
     public function contact_list_settings_tab_9_callback() {
         echo '</div>';
         echo '<div class="contact-list-settings-tab-9">';
@@ -3380,6 +3581,7 @@ class ContactListSettings {
       <?php 
             if ( strpos( $field_name, 'cron_import_contacts_file' ) !== false ) {
                 ?>
+
         <div class="email-info">
           <strong>e.g. wp-content/uploads/contacts.csv</strong>
           <?php 
@@ -3399,6 +3601,17 @@ class ContactListSettings {
                  ), esc_url( $url ) );
                 ?>
 
+        </div>
+
+      <?php 
+            } elseif ( strpos( $field_name, 'cron_import_next_time' ) !== false ) {
+                ?>
+
+        <div class="email-info contact-list-setting-info">
+          <p>e.g. 03:00</p>
+          <p><?php 
+                echo esc_html__( 'Enter a time you wish the next import to be run (HH:MM)', 'contact-list' );
+                ?></p>
         </div>
 
       <?php 
@@ -4555,7 +4768,7 @@ class ContactListSettings {
     public function settings_page() {
         ?>
 
-    <form action="options.php" method="post" class="contact-list-settings-form">
+    <form action="options.php" method="post" class="contact-list-settings-form contact-list-admin-page">
 
       <h1><?php 
         echo esc_html__( 'Contact List Settings', 'contact-list' );
@@ -4682,6 +4895,21 @@ class ContactListSettings {
             $wpdb->query( "CREATE TABLE IF NOT EXISTS " . $table_name_log . " (\n        id              BIGINT(20) NOT NULL auto_increment,\n        title           VARCHAR(255) NOT NULL,\n        message         TEXT NOT NULL,\n        created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n        PRIMARY KEY (id)\n      ) " . $charset_collate . ";" );
             update_option( 'contact_list_version', CONTACT_LIST_VERSION );
             ContactListHelpers::writeLog( 'Plugin updated to version ' . CONTACT_LIST_VERSION, '' );
+            $cl_dir = wp_get_upload_dir()['basedir'] . '/contact-list/';
+            $cl_file = $cl_dir . 'index.php';
+            if ( !file_exists( $cl_dir ) || !is_dir( $cl_dir ) ) {
+                mkdir( $cl_dir );
+                if ( is_dir( $cl_dir ) ) {
+                    ContactListHelpers::writeLog( 'Created ' . $cl_dir, '' );
+                }
+            }
+            if ( is_dir( $cl_dir ) && !file_exists( $cl_file ) && ($file = fopen( $cl_file, 'a' )) ) {
+                fwrite( $file, '<?php // Automatically generated by Contact List ?>' . PHP_EOL );
+                fclose( $file );
+                if ( file_exists( $cl_file ) ) {
+                    ContactListHelpers::writeLog( 'Created ' . $cl_file, '' );
+                }
+            }
         }
     }
 

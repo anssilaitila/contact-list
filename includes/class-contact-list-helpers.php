@@ -1,6 +1,22 @@
 <?php
 
 class ContactListHelpers {
+    public static function getUploadDir() {
+        $dir = wp_get_upload_dir()['basedir'] . '/contact-list/';
+        return $dir;
+    }
+
+    public static function getUploadURL() {
+        $url = wp_get_upload_dir()['baseurl'] . '/contact-list/';
+        return $url;
+    }
+
+    public static function getRandomFilename( $type ) {
+        $rand = md5( rand() );
+        $filename = 'contacts_' . $type . '_' . date( 'Y-m-d' ) . '_' . substr( $rand, 0, 6 ) . '.csv';
+        return $filename;
+    }
+
     public static function getCustomFieldCnt() {
         $s = get_option( 'contact_list_settings' );
         $custom_fields_cnt = 6 + 1;
