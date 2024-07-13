@@ -1,17 +1,17 @@
-=== Contact List – Premium Staff Listing, Business Directory & Address Book  ===
+=== Contact List – Premium Staff List, Business Directory & Address Book with Frontend Email  ===
 Contributors: anssilaitila, freemius
-Tags: directory plugin, business directory, listing, address book, staff list
+Tags: contact, email, social, business directory, staff list
 Requires at least: 5.4.0
 Tested up to: 6.5
 Stable tag: 2.9.95
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-One-Stop Directory Solution! Quick searches, tailored filters, front-end messaging, custom fields, CSV import & export, reCAPTCHA & more.
+One-Stop Directory Solution! Quick searches, tailored filters, send email to contacts, CSV import & export, social media links & more.
 
 == Description ==
 
-== The easiest business directory plugin for WordPress ==
+== The best directory plugin and staff list for WordPress ==
 
 Looking for a simple yet comprehensive directory plugin for a WordPress website? If the answer is YES, then you are in the right place!
 
@@ -49,7 +49,7 @@ Contact List simplifies the process of creating WordPress website directories of
 * Employee Directory
 * Medical Personnel Directory
 * Team Members Directory
-* Staff list
+* Staff listing
 * Chamber of commerce
 
 ... and even if you are not tech-geek, you can still build all of the above-mentioned directories with an ease, thanks to Contact List's simplicity in design and function.
