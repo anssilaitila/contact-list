@@ -96,6 +96,58 @@ class Contact_List_Public {
         wp_enqueue_script( $this->plugin_name );
     }
 
+    public function enqueue_block_assets() {
+        if ( !function_exists( 'register_block_type' ) ) {
+            // Gutenberg not active
+            return;
+        }
+        if ( is_admin() ) {
+            wp_enqueue_style(
+                'contact-list-block-editor',
+                CONTACT_LIST_URI . 'dist/css/p.css',
+                array('wp-edit-blocks'),
+                filemtime( CONTACT_LIST_PATH . 'dist/css/p.css' )
+            );
+        }
+    }
+
+    public function register_block() {
+        if ( !function_exists( 'register_block_type' ) ) {
+            // Gutenberg not active
+            return;
+        }
+        register_block_type( CONTACT_LIST_PATH . 'blocks/contact-list/build/block.json', array(
+            'render_callback' => array($this, 'render_block'),
+        ) );
+    }
+
+    public function render_block( $attributes, $content ) {
+        $contact_id = ( isset( $attributes['contactId'] ) ? intval( $attributes['contactId'] ) : 0 );
+        $hide_search = ( isset( $attributes['hideSearch'] ) && $attributes['hideSearch'] ? ' hide_search="1"' : '' );
+        $hide_filters = ( isset( $attributes['hideFilters'] ) && $attributes['hideFilters'] ? ' hide_filters="1"' : '' );
+        $shortcode = '[contact_list';
+        if ( $contact_id ) {
+            $shortcode .= ' contact="' . $contact_id . '"';
+        }
+        $shortcode .= $hide_search . $hide_filters . ']';
+        return do_shortcode( $shortcode );
+    }
+
+    public function add_custom_fields_to_rest_api() {
+        register_rest_field( CONTACT_LIST_CPT, 'last_name', array(
+            'get_callback' => function ( $object ) {
+                return sanitize_text_field( get_post_meta( intval( $object['id'] ), '_cl_last_name', true ) );
+            },
+            'schema'       => null,
+        ) );
+        register_rest_field( CONTACT_LIST_CPT, 'first_name', array(
+            'get_callback' => function ( $object ) {
+                return sanitize_text_field( get_post_meta( intval( $object['id'] ), '_cl_first_name', true ) );
+            },
+            'schema'       => null,
+        ) );
+    }
+
     /**
      * Register the shortcodes.
      *

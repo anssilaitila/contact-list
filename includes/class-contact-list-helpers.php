@@ -124,7 +124,7 @@ class ContactListHelpers {
     public static function proFeatureMarkup() {
         $html = '';
         $html .= '<div class="contact-list-pro-feature">';
-        $html .= '<span>' . sanitize_text_field( __( 'This feature is available in the paid plans.', 'contact-list' ) ) . '</span>';
+        $html .= '<span>' . sanitize_text_field( __( 'This feature is available in the Pro version.', 'contact-list' ) ) . '</span>';
         $html .= '<a class="contact-list-admin-button-upgrade-link" href="' . esc_url_raw( get_admin_url() ) . 'options-general.php?page=contact-list-pricing">' . sanitize_text_field( __( 'Upgrade here', 'contact-list' ) ) . '</a>';
         $html .= '</div>';
         return $html;
@@ -142,7 +142,7 @@ class ContactListHelpers {
     public static function proFeatureSettingsMarkup() {
         $html = '';
         $html .= '<div class="contact-list-pro-feature">';
-        $html .= '<span>' . sanitize_text_field( __( 'More settings available in the paid plans.', 'contact-list' ) ) . '</span>';
+        $html .= '<span>' . sanitize_text_field( __( 'More settings available in the Pro version.', 'contact-list' ) ) . '</span>';
         $html .= '<a href="' . esc_url_raw( get_admin_url() ) . 'options-general.php?page=contact-list-pricing">' . sanitize_text_field( __( 'Upgrade here', 'contact-list' ) ) . '</a>';
         $html .= '</div>';
         return $html;
@@ -235,6 +235,38 @@ class ContactListHelpers {
     public static function isPremium() {
         $is_premium = 0;
         return $is_premium;
+    }
+
+    public static function isMin2() {
+        $is_min_2 = 0;
+        if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'pro' ) || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
+            $is_min_2 = 1;
+        }
+        return $is_min_2;
+    }
+
+    public static function isMin3() {
+        $is_min_3 = 0;
+        if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
+            $is_min_3 = 1;
+        }
+        return $is_min_3;
+    }
+
+    public static function isMin2Pr() {
+        $is_min_2 = 0;
+        if ( contact_list_fs()->is_plan_or_trial( 'pro' ) || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
+            $is_min_2 = 1;
+        }
+        return $is_min_2;
+    }
+
+    public static function isMin3Pr() {
+        $is_min_3 = 0;
+        if ( contact_list_fs()->is_plan_or_trial( 'business' ) ) {
+            $is_min_3 = 1;
+        }
+        return $is_min_3;
     }
 
 }

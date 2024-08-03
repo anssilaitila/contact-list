@@ -313,6 +313,9 @@ class Contact_List {
         $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
         $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public_load, 'public_inline_scripts' );
         $this->loader->add_action( 'init', $plugin_public, 'register_shortcodes' );
+        $this->loader->add_action( 'rest_api_init', $plugin_public, 'add_custom_fields_to_rest_api' );
+        $this->loader->add_action( 'enqueue_block_assets', $plugin_public, 'enqueue_block_assets' );
+        $this->loader->add_action( 'init', $plugin_public, 'register_block' );
         // Send mail to a single contact
         $this->loader->add_action( 'wp_ajax_nopriv_cl_send_mail_public', $plugin_public_send_mail, 'cl_send_mail_public' );
         $this->loader->add_action( 'wp_ajax_cl_send_mail_public', $plugin_public_send_mail, 'cl_send_mail_public' );

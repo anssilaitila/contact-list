@@ -24,6 +24,8 @@ class ContactListCPT {
             'menu_icon'           => 'dashicons-id',
             'capability_type'     => 'post',
             'exclude_from_search' => $exclude_from_search,
+            'show_in_rest'        => true,
+            'rest_base'           => 'contact-list',
         ] );
         if ( !$publicly_queryable ) {
             remove_post_type_support( CONTACT_LIST_CPT, 'title' );

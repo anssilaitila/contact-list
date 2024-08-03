@@ -20,8 +20,7 @@ class ContactListShortcodes {
         ?>
 
     <?php 
-        $plan_info_markup_all_plans = '<a href="' . esc_url_raw( get_admin_url() ) . 'options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">' . sanitize_text_field( __( 'Paid plans', 'contact-list' ) ) . '</a>';
-        $plan_info_markup_professional = '<a href="' . esc_url_raw( get_admin_url() ) . 'options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">Professional</a>';
+        $plan_info_markup_professional = '<a href="' . esc_url_raw( get_admin_url() ) . 'options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">Pro</a>';
         $plan_info_markup_allowed_tags = array(
             'a' => array(
                 'href'  => array(),
@@ -77,11 +76,11 @@ class ContactListShortcodes {
             ?>
 
             <span class="contact-list-pro-only-inline-inactive" style="margin-left: 0; margin-right: 1px;"><?php 
-            echo esc_html__( 'Paid plans', 'contact-list' );
+            echo esc_html__( 'Pro', 'contact-list' );
             ?></span>
 
             <?php 
-            echo esc_html__( 'means that the shortcode / parameter exists in all paid plans.', 'contact-list' );
+            echo esc_html__( 'means that the shortcode / parameter exists only in the Pro version.', 'contact-list' );
             ?>
 
           <?php 
@@ -91,11 +90,11 @@ class ContactListShortcodes {
             <a href="<?php 
             echo esc_url( get_admin_url() );
             ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline" style="margin-left: 0; margin-right: 1px;"><?php 
-            echo esc_html__( 'Paid plans', 'contact-list' );
+            echo esc_html__( 'Pro', 'contact-list' );
             ?></a>
 
             <?php 
-            echo wp_kses( __( 'means that the shortcode / parameter exists in all <strong>paid</strong> plans.', 'contact-list' ), array(
+            echo wp_kses( __( 'means that the shortcode / parameter exists only in the <strong>Pro</strong> version.', 'contact-list' ), array(
                 'strong' => array(),
             ) );
             ?>
@@ -182,7 +181,7 @@ class ContactListShortcodes {
         ?>
 
                   <?php 
-        echo wp_kses( $plan_info_markup_all_plans, $plan_info_markup_allowed_tags );
+        echo wp_kses( $plan_info_markup_professional, $plan_info_markup_allowed_tags );
         ?>
 
                   <span class="contact-list-shortcode contact-list-shortcode-243242">[contact_list download_csv=1]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-243242"><?php 
@@ -197,7 +196,7 @@ class ContactListShortcodes {
         ?>
 
                     <?php 
-        echo wp_kses( $plan_info_markup_all_plans, $plan_info_markup_allowed_tags );
+        echo wp_kses( $plan_info_markup_professional, $plan_info_markup_allowed_tags );
         ?>
 
                     <span class="contact-list-shortcode contact-list-shortcode-5-1222">[contact_list hide_contacts_first=1]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-5-1222"><?php 
@@ -213,7 +212,7 @@ class ContactListShortcodes {
         ?>
 
                     <?php 
-        echo wp_kses( $plan_info_markup_all_plans, $plan_info_markup_allowed_tags );
+        echo wp_kses( $plan_info_markup_professional, $plan_info_markup_allowed_tags );
         ?>
 
                     <span class="contact-list-shortcode contact-list-shortcode-5-1333">[contact_list hide_contacts_first=1 default_contact_id=12345]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-5-1333"><?php 
@@ -229,7 +228,7 @@ class ContactListShortcodes {
         ?>
 
                     <?php 
-        echo wp_kses( $plan_info_markup_all_plans, $plan_info_markup_allowed_tags );
+        echo wp_kses( $plan_info_markup_professional, $plan_info_markup_allowed_tags );
         ?>
 
                     <span class="contact-list-shortcode contact-list-shortcode-5-1333-155-1">[contact_list hide_filters=1 disable_instant_search=1 search_button_text="Search"]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-5-1333-155-1"><?php 
@@ -245,7 +244,7 @@ class ContactListShortcodes {
         ?>
 
                     <?php 
-        echo wp_kses( $plan_info_markup_all_plans, $plan_info_markup_allowed_tags );
+        echo wp_kses( $plan_info_markup_professional, $plan_info_markup_allowed_tags );
         ?>
 
                     <span class="contact-list-shortcode contact-list-shortcode-5-1333-155-2">[contact_list hide_search=1 disable_instant_search=1 search_button_text="Search"]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-5-1333-155-2"><?php 
@@ -261,7 +260,7 @@ class ContactListShortcodes {
         ?>
 
                     <?php 
-        echo wp_kses( $plan_info_markup_all_plans, $plan_info_markup_allowed_tags );
+        echo wp_kses( $plan_info_markup_professional, $plan_info_markup_allowed_tags );
         ?>
 
                     <span class="contact-list-shortcode contact-list-shortcode-5-1">[contact_list exclude_groups="group-slug-1,group-slug-2,group-slug-3"]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-5-1"><?php 
@@ -271,7 +270,7 @@ class ContactListShortcodes {
                   </li>
 
                   <?php 
-        if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'pro' ) || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
+        if ( ContactListHelpers::isMin2() ) {
             ?>
 
                     <li><?php 
@@ -345,7 +344,7 @@ class ContactListShortcodes {
         ?>
 
                 <?php 
-        echo wp_kses( $plan_info_markup_all_plans, $plan_info_markup_allowed_tags );
+        echo wp_kses( $plan_info_markup_professional, $plan_info_markup_allowed_tags );
         ?>
 
                 <span class="contact-list-shortcode contact-list-shortcode-18">[contact_list_simple show_filters=1]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-18"><?php 
@@ -360,7 +359,7 @@ class ContactListShortcodes {
         ?>
 
                 <?php 
-        echo wp_kses( $plan_info_markup_all_plans, $plan_info_markup_allowed_tags );
+        echo wp_kses( $plan_info_markup_professional, $plan_info_markup_allowed_tags );
         ?>
 
                 <span class="contact-list-shortcode contact-list-shortcode-188888">[contact_list_simple ajax=1]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-188888"><?php 
@@ -376,7 +375,7 @@ class ContactListShortcodes {
         ?>
 
                 <?php 
-        echo wp_kses( $plan_info_markup_all_plans, $plan_info_markup_allowed_tags );
+        echo wp_kses( $plan_info_markup_professional, $plan_info_markup_allowed_tags );
         ?>
 
                 <span class="contact-list-shortcode contact-list-shortcode-188888-123">[contact_list_simple send_group_email=1]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-188888-123"><?php 
@@ -392,7 +391,7 @@ class ContactListShortcodes {
         ?>
 
                 <?php 
-        echo wp_kses( $plan_info_markup_all_plans, $plan_info_markup_allowed_tags );
+        echo wp_kses( $plan_info_markup_professional, $plan_info_markup_allowed_tags );
         ?>
 
                 <span class="contact-list-shortcode contact-list-shortcode-99">[contact_list_simple group=GROUP_SLUG]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-99"><?php 
@@ -407,7 +406,7 @@ class ContactListShortcodes {
         ?>
 
                 <?php 
-        echo wp_kses( $plan_info_markup_all_plans, $plan_info_markup_allowed_tags );
+        echo wp_kses( $plan_info_markup_professional, $plan_info_markup_allowed_tags );
         ?>
 
                 <span class="contact-list-shortcode contact-list-shortcode-199">[contact_list_simple contacts_per_page=20]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-199"><?php 
@@ -423,7 +422,7 @@ class ContactListShortcodes {
         ?>
 
                 <?php 
-        echo wp_kses( $plan_info_markup_all_plans, $plan_info_markup_allowed_tags );
+        echo wp_kses( $plan_info_markup_professional, $plan_info_markup_allowed_tags );
         ?>
 
                 <span class="contact-list-shortcode contact-list-shortcode-5-1-123">[contact_list_simple exclude_groups="group-slug-1,group-slug-2,group-slug-3"]</span><button class="contact-list-copy" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-5-1-123"><?php 
@@ -432,9 +431,8 @@ class ContactListShortcodes {
 
               </li>
 
-
               <?php 
-        if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'pro' ) || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
+        if ( ContactListHelpers::isMin2() ) {
             ?>
 
                 <li><?php 
@@ -474,7 +472,7 @@ class ContactListShortcodes {
       </div>
 
       <?php 
-        if ( contact_list_fs()->is_free_plan() || contact_list_fs()->is_plan_or_trial( 'pro' ) || contact_list_fs()->is_plan_or_trial( 'business' ) ) {
+        if ( ContactListHelpers::isMin2() ) {
             ?>
 
         <div class="contact-list-admin-section contact-list-admin-section-shortcodes">
@@ -521,7 +519,7 @@ class ContactListShortcodes {
         ?>
 
           <?php 
-        echo wp_kses( $plan_info_markup_all_plans, $plan_info_markup_allowed_tags );
+        echo wp_kses( $plan_info_markup_professional, $plan_info_markup_allowed_tags );
         ?>
 
         </h2>
@@ -556,7 +554,7 @@ class ContactListShortcodes {
         ?>
 
           <?php 
-        echo wp_kses( $plan_info_markup_all_plans, $plan_info_markup_allowed_tags );
+        echo wp_kses( $plan_info_markup_professional, $plan_info_markup_allowed_tags );
         ?>
 
         </h2>
@@ -629,7 +627,7 @@ class ContactListShortcodes {
         ?>
 
           <?php 
-        echo wp_kses( $plan_info_markup_all_plans, $plan_info_markup_allowed_tags );
+        echo wp_kses( $plan_info_markup_professional, $plan_info_markup_allowed_tags );
         ?>
 
         </h2>
@@ -702,7 +700,7 @@ class ContactListShortcodes {
         ?>
 
           <?php 
-        echo wp_kses( $plan_info_markup_all_plans, $plan_info_markup_allowed_tags );
+        echo wp_kses( $plan_info_markup_professional, $plan_info_markup_allowed_tags );
         ?>
 
         </h2>
@@ -732,7 +730,7 @@ class ContactListShortcodes {
         ?>
 
           <?php 
-        echo wp_kses( $plan_info_markup_all_plans, $plan_info_markup_allowed_tags );
+        echo wp_kses( $plan_info_markup_professional, $plan_info_markup_allowed_tags );
         ?>
 
         </h2>
@@ -773,7 +771,7 @@ class ContactListShortcodes {
         ?>
 
           <?php 
-        echo wp_kses( $plan_info_markup_all_plans, $plan_info_markup_allowed_tags );
+        echo wp_kses( $plan_info_markup_professional, $plan_info_markup_allowed_tags );
         ?>
 
         </h2>
