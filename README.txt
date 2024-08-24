@@ -1,17 +1,17 @@
-=== Contact List – Premium Staff Listing, Business Directory & Address Book ===
+=== WP Business Directory Plugin, Staff Listing & Address Book – Contact List ===
 Contributors: anssilaitila, freemius
-Tags: address book, listing, directory, business directory, staff list
+Tags: directory plugin, listing, directory, business directory, staff list
 Requires at least: 5.4.0
 Tested up to: 6.6
 Stable tag: 2.9.98
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-One-Stop Solution for any kind of Directory Listing! Build a business directory, staff list, address book, employee listing & more.
+Build any kind of directory listing with this business directory plugin! Staff list, address book, employee listing & more.
 
 == Description ==
 
-== The best directory listing plugin for WordPress ==
+== The best directory plugin for WordPress ==
 
 Looking for a simple yet comprehensive directory plugin for a WordPress website? If the answer is YES, then you are in the right place!
 
@@ -80,7 +80,7 @@ Contact List is a comprehensive directory plugin for building any kinds of direc
 
 **That's it! You've added contact list to your site! It is super simple, isn't it?**
 
-== Contact List plugin features ==
+== Contact List directory plugin features ==
 
 = Fields for each contact =
 
@@ -150,7 +150,7 @@ Get a user-friendly WordPress directory plugin that simplifies the migration pro
 * [Submit Contact](https://www.contactlistpro.com/contact-list/submit-contact/)
 * [Search Contacts](https://www.contactlistpro.com/contact-list/search-contacts/)
 
-= Contact List – a free solution for creating a directory for WordPress =
+= Contact List – a free solution for creating a business directory for WordPress =
 
 * Direct email to contacts from the front-end form
 * 2 directory views: a complete list of all contact data and a simpler table type view
@@ -164,7 +164,7 @@ Get a user-friendly WordPress directory plugin that simplifies the migration pro
 * 4 ready-made directory layouts
 * Printable contact list
 
-= Contact List PRO – a complete package for directory listings =
+= Contact List PRO – a complete package for business directory listings =
 
 * Allow user roles modify contacts and contact info using the front-end contact editor
 * Request contacts to update their existing contact info simply clicking a button
