@@ -1,17 +1,17 @@
-=== WP Business Directory Plugin, Staff Listing & Address Book – Contact List ===
+=== Contact List – Premium Staff Listing, Business Directory & Address Book ===
 Contributors: anssilaitila, freemius
 Tags: directory plugin, listing, directory, business directory, staff list
 Requires at least: 5.4.0
 Tested up to: 6.6
-Stable tag: 2.9.98
+Stable tag: 2.9.99
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Build any kind of directory listing with this business directory plugin! Staff list, address book, employee listing & more.
+One-Stop Directory Solution! Quick searches, tailored filters, front-end messaging, custom fields, CSV import & export, reCAPTCHA & more.
 
 == Description ==
 
-== The best directory plugin for WordPress ==
+== The easiest business directory plugin for WordPress ==
 
 Looking for a simple yet comprehensive directory plugin for a WordPress website? If the answer is YES, then you are in the right place!
 
@@ -84,7 +84,7 @@ Contact List is a comprehensive directory plugin for building any kinds of direc
 
 = Fields for each contact =
 
-Contact List plugin is the best solution to comprise and build a WordPress website directory with ease. The ability to add new fields and remove certain existing ones is quite essential for a business directory plugin, and this is what Contact List offers.
+Contact List is the best solution to comprise and build a WordPress website directory with ease. The ability to add new fields and remove certain existing ones is quite essential for a business directory plugin, and this is what Contact List offers.
 
 If one wants to display information about employees other than the minimal minimum of first name, last name, and email, Contact List offers a lot of freedom. This directory plugin allows the the listing of any contact data including name, job title, contact info, social media links, and so forth. Fields can also come in handy for creating all-in-one address book. This is not all, there are more fields that can be added to the contact directory using the Contact List plugin.
 
@@ -249,6 +249,10 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 6. Contact management
 
 == Changelog ==
+
+= 2.9.99 - 2024-09-03 =
+* (Free + All plans) Tweaks and fixes
+* (All plans) New parameter for the simple list: [contact_list_simple hide_contacts_first=1]
 
 = 2.9.98 - 2024-08-03 =
 * (Free + All plans) Bug fixes

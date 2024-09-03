@@ -50,10 +50,6 @@ class ContactListAdminSendEmail {
         $is_premium = 0;
         ?>
 
-        <h1><?php 
-        echo esc_html__( 'Send email to contacts', 'contact-list' );
-        ?></h1>
-
         <?php 
         if ( ContactListHelpers::isPremium() == 0 ) {
             ?>

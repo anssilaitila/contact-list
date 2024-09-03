@@ -15,7 +15,7 @@
  * @wordpress-plugin
  * Plugin Name:       Contact List
  * Description:       Easily display contact information on your site with this simple plugin.
- * Version:           2.9.98
+ * Version:           2.9.99
  * Author:            Contact List – Business Directory
  * Author URI:        https://www.contactlistpro.com
  * License:           GPL-2.0+
@@ -30,7 +30,6 @@ if ( !defined( 'WPINC' ) ) {
 if ( function_exists( 'contact_list_fs' ) ) {
     contact_list_fs()->set_basename( false, __FILE__ );
 } else {
-    require_once dirname( __FILE__ ) . '/vendor/autoload.php';
     if ( !function_exists( 'contact_list_fs' ) ) {
         // Create a helper function for easy SDK access.
         function contact_list_fs() {
@@ -136,7 +135,7 @@ if ( function_exists( 'contact_list_fs' ) ) {
     }
     //  define('CONTACT_LIST_PLUGIN_NAME', 'contact-list');
     define( 'CONTACT_LIST_ORDER_BY', $order_by );
-    define( 'CONTACT_LIST_VERSION', '2.9.98' );
+    define( 'CONTACT_LIST_VERSION', '2.9.99' );
     define( 'CONTACT_LIST_URI', plugin_dir_url( __FILE__ ) );
     define( 'CONTACT_LIST_PATH', plugin_dir_path( __FILE__ ) );
     define( 'CONTACT_LIST_CPT', 'contact' );

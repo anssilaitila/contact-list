@@ -124,6 +124,7 @@ class Contact_List {
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-taxonomy.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-admin-maintenance.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-admin-operations.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-admin-toolbar.php';
         /**
          * The class responsible for defining all actions that occur in the public-facing
          * side of the site.
@@ -180,6 +181,7 @@ class Contact_List {
         $plugin_admin_operations = new ContactListAdminOperations();
         $plugin_admin_inline_styles = new ContactListAdminInlineStyles();
         $plugin_admin_inline_scripts = new ContactListAdminInlineScripts();
+        $plugin_admin_toolbar = new ContactListAdminToolbar();
         $plugin_settings = new ContactListSettings();
         $plugin_shortcodes = new ContactListShortcodes();
         $plugin_help_support = new ContactListHelpSupport();
@@ -193,6 +195,8 @@ class Contact_List {
         $this->loader->add_action( 'plugins_loaded', $plugin_settings, 'update_db_check' );
         $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
         $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+        $this->loader->add_action( 'in_admin_header', $plugin_admin_toolbar, 'admin_header' );
+        $this->loader->add_action( 'admin_body_class', $plugin_admin_toolbar, 'admin_body_class' );
         // CPT
         $this->loader->add_action( 'init', $plugin_cpt, 'create_custom_post_type_contact' );
         // Admin list

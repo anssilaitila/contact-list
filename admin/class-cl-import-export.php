@@ -30,7 +30,7 @@ class ContactListImportExport {
 
     <div class="wrap contact-list-admin-page">
 
-        <h1><?php 
+        <h1 style="display: none;"><?php 
         echo esc_html__( 'Import contacts', 'contact-list' );
         ?></h1>
 
@@ -120,7 +120,7 @@ class ContactListImportExport {
 
     <div class="wrap contact-list-admin-page">
 
-        <h1><?php 
+        <h1 style="display: none;"><?php 
         echo esc_html__( 'Export contacts', 'contact-list' );
         ?></h1>
 

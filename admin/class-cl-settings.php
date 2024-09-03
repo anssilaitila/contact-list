@@ -4766,101 +4766,102 @@ class ContactListSettings {
     public function settings_page() {
         ?>
 
-    <form action="options.php" method="post" class="contact-list-settings-form contact-list-admin-page">
+    <div class="contact-list-admin-page-content-container">
 
-      <h1><?php 
-        echo esc_html__( 'Contact List Settings', 'contact-list' );
-        ?></h1>
+      <form action="options.php" method="post" class="contact-list-settings-form contact-list-admin-page">
 
-      <div class="contact-list-settings-tabs-container">
-        <ul class="contact-list-settings-tabs">
-          <li class="contact-list-settings-tab-1-title" data-settings-container="contact-list-settings-tab-1"><span><?php 
+        <div class="contact-list-settings-tabs-container">
+          <ul class="contact-list-settings-tabs">
+            <li class="contact-list-settings-tab-1-title" data-settings-container="contact-list-settings-tab-1"><span><?php 
         echo esc_html__( 'General settings', 'contact-list' );
         ?></span></li>
-          <li class="contact-list-settings-tab-2-title" data-settings-container="contact-list-settings-tab-2"><span><?php 
+            <li class="contact-list-settings-tab-2-title" data-settings-container="contact-list-settings-tab-2"><span><?php 
         echo esc_html__( 'Layout', 'contact-list' );
         ?></span></li>
-          <li class="contact-list-settings-tab-contact-card-title" data-settings-container="contact-list-settings-tab-contact-card"><span><?php 
+            <li class="contact-list-settings-tab-contact-card-title" data-settings-container="contact-list-settings-tab-contact-card"><span><?php 
         echo esc_html__( 'Contact card', 'contact-list' );
         ?></span></li>
-          <li class="contact-list-settings-tab-3-title" data-settings-container="contact-list-settings-tab-3"><span><?php 
+            <li class="contact-list-settings-tab-3-title" data-settings-container="contact-list-settings-tab-3"><span><?php 
         echo esc_html__( 'reCAPTCHA and email', 'contact-list' );
         ?></span></li>
-          <li class="contact-list-settings-tab-4-title" data-settings-container="contact-list-settings-tab-4"><span><?php 
+            <li class="contact-list-settings-tab-4-title" data-settings-container="contact-list-settings-tab-4"><span><?php 
         echo esc_html__( 'Search form', 'contact-list' );
         ?></span></li>
-          <li class="contact-list-settings-tab-custom-urls-title" data-settings-container="contact-list-settings-tab-custom-urls"><span><?php 
+            <li class="contact-list-settings-tab-custom-urls-title" data-settings-container="contact-list-settings-tab-custom-urls"><span><?php 
         echo esc_html__( 'Custom URLs', 'contact-list' );
         ?></span></li>
-          <li class="contact-list-settings-tab-5-title" data-settings-container="contact-list-settings-tab-5"><span><?php 
+            <li class="contact-list-settings-tab-5-title" data-settings-container="contact-list-settings-tab-5"><span><?php 
         echo esc_html__( 'Custom fields', 'contact-list' );
         ?></span></li>
-          <li class="contact-list-settings-tab-6-title" data-settings-container="contact-list-settings-tab-6"><span><?php 
+            <li class="contact-list-settings-tab-6-title" data-settings-container="contact-list-settings-tab-6"><span><?php 
         echo esc_html__( 'Field titles and texts', 'contact-list' );
         ?></span></li>
-          <?php 
+            <?php 
         // .contact-list-settings-tab-7
         ?>
-          <li class="contact-list-settings-tab-8-title" data-settings-container="contact-list-settings-tab-8"><span><?php 
+            <li class="contact-list-settings-tab-8-title" data-settings-container="contact-list-settings-tab-8"><span><?php 
         echo esc_html__( 'Simple list', 'contact-list' );
         ?></span></li>
 
-          <?php 
+            <?php 
         if ( ContactListHelpers::isMin2() ) {
             ?>
 
-            <li class="contact-list-settings-tab-9-title" data-settings-container="contact-list-settings-tab-9"><span><?php 
+              <li class="contact-list-settings-tab-9-title" data-settings-container="contact-list-settings-tab-9"><span><?php 
             echo esc_html__( 'Contact edit', 'contact-list' );
             ?></span></li>
 
-          <?php 
+            <?php 
         }
         ?>
 
-          <?php 
+            <?php 
         if ( ContactListHelpers::isMin2() ) {
             ?>
 
-            <li class="contact-list-settings-tab-10-title" data-settings-container="contact-list-settings-tab-10"><span><?php 
+              <li class="contact-list-settings-tab-10-title" data-settings-container="contact-list-settings-tab-10"><span><?php 
             echo esc_html__( 'Custom post type', 'contact-list' );
             ?></span></li>
 
-          <?php 
+            <?php 
         }
         ?>
 
-          <li class="contact-list-settings-tab-11-title" data-settings-container="contact-list-settings-tab-11"><span><?php 
+            <li class="contact-list-settings-tab-11-title" data-settings-container="contact-list-settings-tab-11"><span><?php 
         echo esc_html__( 'Import & export', 'contact-list' );
         ?></span></li>
 
-          <li class="contact-list-settings-tab-12-title" data-settings-container="contact-list-settings-tab-12"><span><?php 
+            <li class="contact-list-settings-tab-12-title" data-settings-container="contact-list-settings-tab-12"><span><?php 
         echo esc_html__( 'Send message modal', 'contact-list' );
         ?></span></li>
 
-          <li class="contact-list-settings-tab-13-title" data-settings-container="contact-list-settings-tab-13"><span>[contact_list_form]</span></li>
+            <li class="contact-list-settings-tab-13-title" data-settings-container="contact-list-settings-tab-13"><span>[contact_list_form]</span></li>
 
-          <hr class="clear" />
-        </ul>
-      </div>
-
-      <div class="contact-list-settings-container">
-
-        <div class="contact-list-settings-tab-1">
-          <?php 
-        settings_fields( 'contact-list' );
-        ?>
-          <?php 
-        do_settings_sections( 'contact-list' );
-        ?>
+            <hr class="clear" />
+          </ul>
         </div>
 
-        <?php 
+        <div class="contact-list-settings-container">
+
+          <div class="contact-list-settings-tab-1">
+            <?php 
+        settings_fields( 'contact-list' );
+        ?>
+            <?php 
+        do_settings_sections( 'contact-list' );
+        ?>
+          </div>
+
+          <?php 
         submit_button();
         ?>
 
-      </div>
+        </div>
 
-    </form>
+      </form>
+
+    </div>
+
     <?php 
     }
 

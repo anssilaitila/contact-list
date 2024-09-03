@@ -64,8 +64,6 @@ class ContactListAdminMailLog {
 
     <div class="wrap contact-list-admin-page">
 
-      <h1><?php echo esc_html__('Log of sent mail', 'contact-list'); ?></h1>
-
       <?php if (isset($_GET['mail_id'])): ?>
 
         <?php

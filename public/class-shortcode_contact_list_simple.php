@@ -10,6 +10,8 @@ class ShortcodeContactListSimple {
         } elseif ( get_query_var( 'paged' ) ) {
             $pagination_active = 1;
         }
+        $get_params_active = 0;
+        $hide_contacts_first = 0;
         $exclude = [];
         $html = '';
         $generate_send_message_modal_markup = 0;
@@ -58,6 +60,7 @@ class ShortcodeContactListSimple {
                 'value'   => sanitize_text_field( $_GET[CONTACT_LIST_CAT1] ),
                 'compare' => 'LIKE',
             );
+            $get_params_active = 1;
         }
         if ( isset( $_GET[CONTACT_LIST_CAT2] ) && $_GET[CONTACT_LIST_CAT2] ) {
             $meta_query[] = array(
@@ -65,6 +68,7 @@ class ShortcodeContactListSimple {
                 'value'   => sanitize_text_field( $_GET[CONTACT_LIST_CAT2] ),
                 'compare' => 'LIKE',
             );
+            $get_params_active = 1;
         }
         if ( isset( $_GET[CONTACT_LIST_CAT3] ) && $_GET[CONTACT_LIST_CAT3] ) {
             $meta_query[] = array(
@@ -72,6 +76,7 @@ class ShortcodeContactListSimple {
                 'value'   => sanitize_text_field( $_GET[CONTACT_LIST_CAT3] ),
                 'compare' => 'LIKE',
             );
+            $get_params_active = 1;
         }
         $tax_query = [];
         $group_slug = '';
@@ -83,6 +88,7 @@ class ShortcodeContactListSimple {
         }
         if ( isset( $_GET['cl_cat'] ) && $_GET['cl_cat'] ) {
             $include_children = 1;
+            $get_params_active = 1;
             $tax_query = [
                 'relation' => 'AND',
             ];
@@ -178,16 +184,20 @@ class ShortcodeContactListSimple {
                 $html .= '</div>';
             }
         }
-        if ( $wp_query->have_posts() ) {
-            $generate_modals = 0;
-            $html .= '<div class="contact-list-simple-paginated-container contact-list-simple-ajax-results">';
-            $html .= ContactListPublicHelpersSimple::contactListSimpleMarkup(
-                $wp_query,
-                0,
-                $atts,
-                $generate_modals
-            );
-            $html .= '</div>';
+        if ( $hide_contacts_first && !$get_params_active ) {
+            // ...
+        } else {
+            if ( $wp_query->have_posts() ) {
+                $generate_modals = 0;
+                $html .= '<div class="contact-list-simple-paginated-container contact-list-simple-ajax-results">';
+                $html .= ContactListPublicHelpersSimple::contactListSimpleMarkup(
+                    $wp_query,
+                    0,
+                    $atts,
+                    $generate_modals
+                );
+                $html .= '</div>';
+            }
         }
         $html .= '</div>';
         wp_reset_postdata();
