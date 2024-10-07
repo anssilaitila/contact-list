@@ -463,6 +463,29 @@ class ContactListCustomFields {
                 ?>">
 
                       <?php 
+                // SUPPORT BOX START
+                if ( $customField['name'] == 'custom_fields' ) {
+                    $is_premium = 0;
+                    if ( !$is_premium ) {
+                        $url = 'https://wordpress.org/support/plugin/contact-list/';
+                        echo '<div class="contact-list-admin-support-box">';
+                        echo sprintf( wp_kses( 
+                            /* translators: %s: link to the support forum */
+                            __( 'If you have any questions in mind, please contact the author at <a href="%s" target="_blank">the support forum</a>. The forum is actively monitored and any kind of feedback is welcome.', 'contact-list' ),
+                            array(
+                                'a' => array(
+                                    'href'   => array(),
+                                    'target' => array(),
+                                ),
+                            )
+                         ), esc_url( $url ) );
+                        echo '</div>';
+                    }
+                }
+                // SUPPORT BOX END
+                ?>
+
+                      <?php 
                 if ( substr( $customField['name'], 0, strlen( '_FREE_' ) ) === '_FREE_' ) {
                     ?>
 
@@ -551,7 +574,53 @@ class ContactListCustomFields {
                         default:
                             // Plain text field
                             $options_field = $customField['name'] . '_title';
-                            echo '<label for="' . esc_attr( $this->prefix . $customField['name'] ) . '"><b>' . (( isset( $options[$options_field] ) && $options[$options_field] ? esc_html( $options[$options_field] ) : esc_html( $customField['title'] ) )) . '</b></label>';
+                            if ( substr( $customField['name'], 0, strlen( 'custom_field_' ) ) === 'custom_field_' && isset( $s['use_default_titles_for_custom_fields'] ) ) {
+                                $custom_field_title = sanitize_text_field( $customField['name'] );
+                                if ( $customField['name'] == 'custom_field_1' ) {
+                                    $custom_field_title = sanitize_text_field( __( 'Custom field 1', 'contact-list' ) );
+                                } elseif ( $customField['name'] == 'custom_field_2' ) {
+                                    $custom_field_title = sanitize_text_field( __( 'Custom field 2', 'contact-list' ) );
+                                } elseif ( $customField['name'] == 'custom_field_3' ) {
+                                    $custom_field_title = sanitize_text_field( __( 'Custom field 3', 'contact-list' ) );
+                                } elseif ( $customField['name'] == 'custom_field_4' ) {
+                                    $custom_field_title = sanitize_text_field( __( 'Custom field 4', 'contact-list' ) );
+                                } elseif ( $customField['name'] == 'custom_field_5' ) {
+                                    $custom_field_title = sanitize_text_field( __( 'Custom field 5', 'contact-list' ) );
+                                } elseif ( $customField['name'] == 'custom_field_6' ) {
+                                    $custom_field_title = sanitize_text_field( __( 'Custom field 6', 'contact-list' ) );
+                                } elseif ( $customField['name'] == 'custom_field_7' ) {
+                                    $custom_field_title = sanitize_text_field( __( 'Custom field 7', 'contact-list' ) );
+                                } elseif ( $customField['name'] == 'custom_field_8' ) {
+                                    $custom_field_title = sanitize_text_field( __( 'Custom field 8', 'contact-list' ) );
+                                } elseif ( $customField['name'] == 'custom_field_9' ) {
+                                    $custom_field_title = sanitize_text_field( __( 'Custom field 9', 'contact-list' ) );
+                                } elseif ( $customField['name'] == 'custom_field_10' ) {
+                                    $custom_field_title = sanitize_text_field( __( 'Custom field 10', 'contact-list' ) );
+                                } elseif ( $customField['name'] == 'custom_field_11' ) {
+                                    $custom_field_title = sanitize_text_field( __( 'Custom field 11', 'contact-list' ) );
+                                } elseif ( $customField['name'] == 'custom_field_12' ) {
+                                    $custom_field_title = sanitize_text_field( __( 'Custom field 12', 'contact-list' ) );
+                                } elseif ( $customField['name'] == 'custom_field_13' ) {
+                                    $custom_field_title = sanitize_text_field( __( 'Custom field 13', 'contact-list' ) );
+                                } elseif ( $customField['name'] == 'custom_field_14' ) {
+                                    $custom_field_title = sanitize_text_field( __( 'Custom field 14', 'contact-list' ) );
+                                } elseif ( $customField['name'] == 'custom_field_15' ) {
+                                    $custom_field_title = sanitize_text_field( __( 'Custom field 15', 'contact-list' ) );
+                                } elseif ( $customField['name'] == 'custom_field_16' ) {
+                                    $custom_field_title = sanitize_text_field( __( 'Custom field 16', 'contact-list' ) );
+                                } elseif ( $customField['name'] == 'custom_field_17' ) {
+                                    $custom_field_title = sanitize_text_field( __( 'Custom field 17', 'contact-list' ) );
+                                } elseif ( $customField['name'] == 'custom_field_18' ) {
+                                    $custom_field_title = sanitize_text_field( __( 'Custom field 18', 'contact-list' ) );
+                                } elseif ( $customField['name'] == 'custom_field_19' ) {
+                                    $custom_field_title = sanitize_text_field( __( 'Custom field 19', 'contact-list' ) );
+                                } elseif ( $customField['name'] == 'custom_field_20' ) {
+                                    $custom_field_title = sanitize_text_field( __( 'Custom field 20', 'contact-list' ) );
+                                }
+                                echo '<label for="' . esc_attr( $this->prefix . $customField['name'] ) . '"><b>' . esc_html( $custom_field_title ) . '</b></label>';
+                            } else {
+                                echo '<label for="' . esc_attr( $this->prefix . $customField['name'] ) . '"><b>' . (( isset( $options[$options_field] ) && $options[$options_field] ? esc_html( $options[$options_field] ) : esc_html( $customField['title'] ) )) . '</b></label>';
+                            }
                             echo '<input type="text" name="' . esc_attr( $this->prefix . $customField['name'] ) . '" id="' . esc_attr( $this->prefix . $customField['name'] ) . '" value="' . esc_attr( get_post_meta( $post->ID, $this->prefix . $customField['name'], true ) ) . '" />';
                             if ( isset( $customField['descr'] ) ) {
                                 echo '<div style="background: rgb(251, 251, 251); border: 1px solid #eee; padding: 5px 7px; margin-top: 8px; width: 90%; font-size: 11px;">' . esc_html( $customField['descr'] ) . '</div>';

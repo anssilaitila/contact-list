@@ -21,7 +21,7 @@ class ContactListShortcodes {
 
     <?php 
         $plan_info_markup_all_plans = '<a href="' . esc_url_raw( get_admin_url() ) . 'options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">' . sanitize_text_field( __( 'Paid plans', 'contact-list' ) ) . '</a>';
-        $plan_info_markup_professional = '<a href="' . esc_url_raw( get_admin_url() ) . 'options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">Professional</a>';
+        $plan_info_markup_professional = '<a href="' . esc_url_raw( get_admin_url() ) . 'options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">PRO</a>';
         $plan_info_markup_allowed_tags = array(
             'a' => array(
                 'href'  => array(),
@@ -32,7 +32,7 @@ class ContactListShortcodes {
 
     <div class="wrap contact-list-admin-page">
 
-      <div class="contact-list-admin-page-content-container">
+      <div class="Xcontact-list-admin-page-content-container">
 
         <div class="contact-list-examples">
 

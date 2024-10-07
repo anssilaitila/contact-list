@@ -202,6 +202,10 @@ class Contact_List_Admin {
             $inline_js = ContactListAdminInlineScripts::inline_scripts( 'mail-log' );
             wp_add_inline_script( $this->plugin_name, $inline_js );
         }
+        if ( ContactListHelpers::isPremium() == 0 ) {
+            $inline_js = ContactListAdminInlineScripts::box_inline_scripts();
+            wp_add_inline_script( $this->plugin_name, $inline_js );
+        }
     }
 
 }

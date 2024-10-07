@@ -1,13 +1,13 @@
-=== Contact List – Premium Staff Listing, Business Directory & Address Book ===
+=== Contact List – Premium Staff Listing, Business Directory Plugin & Address Book ===
 Contributors: anssilaitila, freemius
 Tags: directory plugin, listing, directory, business directory, staff list
 Requires at least: 5.4.0
 Tested up to: 6.6
-Stable tag: 2.9.99
+Stable tag: 3.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-One-Stop Directory Solution! Quick searches, tailored filters, front-end messaging, custom fields, CSV import & export, reCAPTCHA & more.
+One-Stop Directory Plugin! Build an address book, staff listing or contact directory featuring quick search, front-end messaging & more.
 
 == Description ==
 
@@ -175,7 +175,7 @@ Get a user-friendly WordPress directory plugin that simplifies the migration pro
 * Include contacts in website search results
 * Show contacts in site search results
 * A contact database created via a publicly accessible [contact submission form](https://www.contactlistpro.com/contact-list/submit-contact/)
-* 6 custom fields and WYSIWYG editor
+* Unlimited custom fields
 * Turn custom fields into filters
 * Bulk emails to all contacts or group of contacts
 * Excel import and export from/to CSV file
@@ -249,6 +249,10 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 6. Contact management
 
 == Changelog ==
+
+= 3.0.0 - 2024-10-07 =
+* (Free + All plans) New setting: Use default titles for custom fields (plugin settings, Custom fields tab). This way the custom field titles are translatable to multiple languages by using Loco Translate or similar plugin.
+* (All plans) New setting: Set group taxonomy public (this is required for the taxonomy to appear in Polylang settings), plugin settings / Custom post type tab
 
 = 2.9.99 - 2024-09-03 =
 * (Free + All plans) Tweaks and fixes

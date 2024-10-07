@@ -43,6 +43,19 @@ class ContactListHelpSupport {
             );
             ?>
             </p>
+            <p>
+            <?php
+            $url = 'https://www.contactlistpro.com/pricing/?utm_source=plugin-free-support';
+            echo sprintf(
+              wp_kses(
+                /* translators: %s: link to the pricing page of the paid version of the plugin */
+                __('The forum is actively monitored by the author, but for more personal support by email, please consider one of the <a href="%s" target="_blank">paid plans</a>.', 'contact-list'),
+                array('a' => array('href' => array(), 'target' => array()))
+              ),
+              esc_url($url)
+            );
+            ?>
+            </p>
 
           <?php endif; ?>
 

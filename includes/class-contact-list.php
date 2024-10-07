@@ -197,6 +197,7 @@ class Contact_List {
         $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
         $this->loader->add_action( 'in_admin_header', $plugin_admin_toolbar, 'admin_header' );
         $this->loader->add_action( 'admin_body_class', $plugin_admin_toolbar, 'admin_body_class' );
+        $this->loader->add_action( 'in_admin_footer', $plugin_admin_toolbar, 'admin_footer' );
         // CPT
         $this->loader->add_action( 'init', $plugin_cpt, 'create_custom_post_type_contact' );
         // Admin list

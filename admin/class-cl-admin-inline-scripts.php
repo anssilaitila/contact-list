@@ -23,6 +23,25 @@ class ContactListAdminInlineScripts {
         return $js;
     }
 
+    public static function box_inline_scripts( $context = '' ) {
+        $current_screen = get_current_screen();
+        $current_screen_id = '';
+        if ( isset( $current_screen->id ) ) {
+            $current_screen_id = $current_screen->id;
+        }
+        $js = '';
+        $is_premium = 0;
+        $admin_pages = ContactListAdminToolbar::get_admin_pages();
+        if ( !$is_premium && in_array( $current_screen_id, $admin_pages ) ) {
+            if ( $current_screen_id == 'settings_page_contact-list' ) {
+                $js = "\n        jQuery( document ).ready( function(\$) {\n          \$( '.contact-list-admin-pro-features' ).appendTo( '.contact-list-admin-page-content-container' ).css( 'display', 'block' );\n        });\n        ";
+            } else {
+                $js = "\n        jQuery( document ).ready( function(\$) {\n          \$( '.contact-list-admin-pro-features' ).appendTo( '#wpbody-content .wrap' ).css( 'display', 'block' );\n        });\n        ";
+            }
+        }
+        return $js;
+    }
+
     public static function contact_edit_scripts() {
         $js = '';
         $js .= "jQuery( document ).ready( function(\$) {\n      \$('#post').submit(function() {\n        if (\$('#_cl_last_name').val().length == 0) {\n          alert('" . esc_js( __( 'Please insert at least last name first.', 'contact-list' ) ) . "');\n          return false;\n        }\n      });\n    });";

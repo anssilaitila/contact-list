@@ -4,6 +4,14 @@ class ContactListTaxonomy {
 
   public function create_contact_list_custom_taxonomy() {
 
+    $public = false;
+
+    $s = get_option('contact_list_settings');
+
+    if ( isset( $s['category_is_public']) ) {
+      $public = true;
+    }
+
     $labels = array(
       'name'              => sanitize_text_field( __('Group', 'contact-list') ),
       'singular_name'     => sanitize_text_field( __('Group', 'contact-list') ),
@@ -24,45 +32,46 @@ class ContactListTaxonomy {
       'show_ui'           => true,
       'show_admin_column' => true,
       'query_var'         => true,
-      'public'            => false,
+      'public'            => $public,
       'rewrite'           => array('slug' => 'groups'),
     ));
+
   }
 
-  function contact_group_taxonomy_custom_fields($tag) {  
+  function contact_group_taxonomy_custom_fields($tag) {
 
     $t_id = intval( $tag->term_id );
     $term_meta = get_option("taxonomy_term_$t_id");
-    ?>  
-    
-    <tr class="form-field">  
+    ?>
 
-      <th scope="row" valign="top">  
+    <tr class="form-field">
 
-        <label for="term_meta[hide_group]"><?php echo esc_html__('Hide group', 'contact-list'); ?></label>  
+      <th scope="row" valign="top">
+
+        <label for="term_meta[hide_group]"><?php echo esc_html__('Hide group', 'contact-list'); ?></label>
         <div style="font-weight: 400; font-style: italic; font-size: 12px; margin-top: 6px;"><?php echo esc_html__('Note: this hides only the group from the front-end views (such as dropdowns and group lists), not the actual contacts that may belong to this group.', 'contact-list') ?></div>
 
-      </th>  
+      </th>
 
-      <td>  
+      <td>
 
         <input type="checkbox" name="term_meta[hide_group]" id="term_meta[hide_group]" <?php echo isset($term_meta['hide_group']) ? 'checked="checked"' : ''; ?>>
 
-      </td>  
+      </td>
 
-    </tr>  
-    
-  <?php  
-  }  
+    </tr>
 
-  function save_taxonomy_custom_fields($term_id) {  
+  <?php
+  }
 
-      $t_id = intval( $term_id );  
-      $term_meta = get_option("taxonomy_term_$t_id");  
+  function save_taxonomy_custom_fields($term_id) {
 
-      if (isset($_POST['term_meta'])) {  
-        
-        $cat_keys = array_keys($_POST['term_meta']);  
+      $t_id = intval( $term_id );
+      $term_meta = get_option("taxonomy_term_$t_id");
+
+      if (isset($_POST['term_meta'])) {
+
+        $cat_keys = array_keys($_POST['term_meta']);
 
         foreach ($cat_keys as $key) {
 
@@ -78,8 +87,8 @@ class ContactListTaxonomy {
         $term_meta = array();
       }
 
-      update_option("taxonomy_term_$t_id", $term_meta);  
-  }    
+      update_option("taxonomy_term_$t_id", $term_meta);
+  }
 
   public function theme_columns($theme_columns) {
 
@@ -102,25 +111,25 @@ class ContactListTaxonomy {
 
       case 'shortcode':
 
-        $content = 
-        
-          '<div class="contact-list-shortcode-admin-list-container">' . 
+        $content =
+
+          '<div class="contact-list-shortcode-admin-list-container">' .
 
           '<button class="contact-list-copy contact-list-copy-paid-only contact-list-copy-admin-list contact-list-copy-admin-list-left" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-g-' . sanitize_title( $term->slug ) . '">' . sanitize_text_field( __('Copy', 'contact-list') ) . '</button>' .
 
-          '<span class="contact-list-shortcode-admin-list contact-list-shortcode-admin-list-right contact-list-shortcode-g-' . sanitize_title( $term->slug ) . '" title="[contact_list_groups group=' . sanitize_title( $term->slug ) . ']">[contact_list_groups group=' . sanitize_title( $term->slug ) . ']</span>' . 
+          '<span class="contact-list-shortcode-admin-list contact-list-shortcode-admin-list-right contact-list-shortcode-g-' . sanitize_title( $term->slug ) . '" title="[contact_list_groups group=' . sanitize_title( $term->slug ) . ']">[contact_list_groups group=' . sanitize_title( $term->slug ) . ']</span>' .
 
-          '<hr class="clear" />' . 
+          '<hr class="clear" />' .
 
-          '</div>' . 
+          '</div>' .
 
-          '<div class="contact-list-shortcode-admin-list-container">' . 
+          '<div class="contact-list-shortcode-admin-list-container">' .
 
           '<button class="contact-list-copy contact-list-copy-paid-only contact-list-copy-admin-list contact-list-copy-admin-list-left" data-clipboard-action="copy" data-clipboard-target=".contact-list-shortcode-sl-' . sanitize_title( $term->slug ) . '">' . sanitize_text_field( __('Copy', 'contact-list') ) . '</button>' .
 
           '<span class="contact-list-shortcode-admin-list contact-list-shortcode-admin-list-right contact-list-shortcode-sl-' . sanitize_title( $term->slug ) . '" title="[contact_list_simple group=' . sanitize_title( $term->slug ) . ']">[contact_list_simple group=' . sanitize_title( $term->slug ) . ']</span>' .
 
-          '<hr class="clear" />' . 
+          '<hr class="clear" />' .
 
           '</div>';
 

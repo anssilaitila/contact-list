@@ -928,6 +928,17 @@ class ContactListSettings {
             )
         );
         add_settings_field(
+            'contact-list-use_default_titles_for_custom_fields',
+            sanitize_text_field( __( 'Use default titles for custom fields', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+                'label_for'  => 'contact-list-use_default_titles_for_custom_fields',
+                'field_name' => 'use_default_titles_for_custom_fields',
+            )
+        );
+        add_settings_field(
             'contact-list-' . $only_pro . 'disable_automatic_linking',
             sanitize_text_field( __( 'Disable automatic linking of partial custom field content that look like urls', 'contact-list' ) ),
             array($this, 'checkbox_render'),
@@ -2301,6 +2312,17 @@ class ContactListSettings {
                 )
             );
         }
+        add_settings_field(
+            'contact-list-' . $only_pro . 'category_is_public',
+            sanitize_text_field( __( 'Set group taxonomy public', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+                'label_for'  => 'contact-list-' . $only_pro . 'category_is_public',
+                'field_name' => $only_pro . 'category_is_public',
+            )
+        );
         $tab = 11;
         add_settings_section(
             'contact-list_tab_' . $tab,
@@ -3809,12 +3831,35 @@ class ContactListSettings {
         </div>
 
       <?php 
+            } elseif ( $field_name == 'use_default_titles_for_custom_fields' ) {
+                ?>
+
+        <div class="general-info">
+          <?php 
+                echo esc_html__( 'Use default titles for custom fields: Custom field 1, Custom field 2, Custom field 3 etc.', 'contact-list' );
+                ?><br /><br />
+          <?php 
+                echo esc_html__( 'This way the texts are translatable to multiple languages by using Loco Translate or similar plugin.', 'contact-list' );
+                ?>
+        </div>
+
+      <?php 
             } elseif ( $field_name == 'link_country_and_state' || $field_name == '_FREE_link_country_and_state' ) {
                 ?>
 
           <div class="general-info">
             <?php 
                 echo esc_html__( 'This means that the country must be selected first, and the state dropdown is populated after that based on the real values of the states available for the selected country. Same way the city dropdown is populated after the state is selected.', 'contact-list' );
+                ?>
+          </div>
+
+      <?php 
+            } elseif ( $field_name == 'category_is_public' || $field_name == '_FREE_category_is_public' ) {
+                ?>
+
+          <div class="general-info">
+            <?php 
+                echo esc_html__( 'Makes the group taxonomy public (this is required for the taxonomy to appear in Polylang settings).', 'contact-list' );
                 ?>
           </div>
 
