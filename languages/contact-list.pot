@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Contact List 3.0.0\n"
+"Project-Id-Version: Contact List 3.0.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/trunk\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-10-07T21:55:54+03:00\n"
+"POT-Creation-Date: 2024-10-08T19:22:20+03:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: contact-list\n"
@@ -123,7 +123,7 @@ msgstr ""
 #: admin/class-cl-settings.php:1322
 #: includes/class-contact-helpers.php:49
 #: public/class-cl-public-card.php:277
-#: public/class-cl-public-card.php:504
+#: public/class-cl-public-card.php:511
 #: public/class-cl-public-helpers-simple.php:94
 msgid "Phone"
 msgstr ""
@@ -744,7 +744,7 @@ msgid "Text for the button"
 msgstr ""
 
 #: admin/class-cl-settings.php:406
-#: public/class-cl-public-card.php:437
+#: public/class-cl-public-card.php:444
 msgid "More info"
 msgstr ""
 
@@ -1092,7 +1092,7 @@ msgstr ""
 #: admin/class-cl-settings.php:2998
 #: includes/class-contact-helpers.php:53
 #: includes/class-contact-list-custom-fields.php:82
-#: public/class-cl-public-card.php:507
+#: public/class-cl-public-card.php:514
 #: public/class-cl-public-helpers-simple.php:53
 msgid "Phone 2"
 msgstr ""
@@ -1103,7 +1103,7 @@ msgstr ""
 #: admin/class-cl-settings.php:3002
 #: includes/class-contact-helpers.php:57
 #: includes/class-contact-list-custom-fields.php:90
-#: public/class-cl-public-card.php:510
+#: public/class-cl-public-card.php:517
 #: public/class-cl-public-helpers-simple.php:54
 msgid "Phone 3"
 msgstr ""
@@ -1218,7 +1218,7 @@ msgstr ""
 #: admin/class-cl-settings.php:3493
 #: includes/class-contact-helpers.php:113
 #: includes/class-contact-list-custom-fields.php:270
-#: public/class-cl-public-card.php:413
+#: public/class-cl-public-card.php:420
 #: public/class-cl-public-helpers-simple.php:73
 msgid "Additional information"
 msgstr ""
@@ -1248,8 +1248,8 @@ msgid "Show call button in addition to the phone link"
 msgstr ""
 
 #: admin/class-cl-settings.php:1616
-#: public/class-cl-public-helpers-simple.php:202
-#: public/class-cl-public-helpers-simple.php:217
+#: public/class-cl-public-helpers-simple.php:206
+#: public/class-cl-public-helpers-simple.php:221
 msgid "Call"
 msgstr ""
 
@@ -1697,7 +1697,7 @@ msgstr ""
 
 #: admin/class-cl-settings.php:3066
 #: public/class-cl-public-helpers-simple.php:74
-#: public/class-cl-public-helpers-simple.php:132
+#: public/class-cl-public-helpers-simple.php:136
 msgid "Category"
 msgstr ""
 
@@ -2541,19 +2541,19 @@ msgstr ""
 msgid "Please enter sender information first (name and email)."
 msgstr ""
 
-#: public/class-cl-public-card.php:422
+#: public/class-cl-public-card.php:429
 msgid "Facebook"
 msgstr ""
 
-#: public/class-cl-public-card.php:425
+#: public/class-cl-public-card.php:432
 msgid "Instagram"
 msgstr ""
 
-#: public/class-cl-public-card.php:428
+#: public/class-cl-public-card.php:435
 msgid "X"
 msgstr ""
 
-#: public/class-cl-public-card.php:431
+#: public/class-cl-public-card.php:438
 msgid "LinkedIn"
 msgstr ""
 

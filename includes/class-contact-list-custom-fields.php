@@ -574,7 +574,7 @@ class ContactListCustomFields {
                         default:
                             // Plain text field
                             $options_field = $customField['name'] . '_title';
-                            if ( substr( $customField['name'], 0, strlen( 'custom_field_' ) ) === 'custom_field_' && isset( $s['use_default_titles_for_custom_fields'] ) ) {
+                            if ( substr( $customField['name'], 0, strlen( 'custom_field_' ) ) === 'custom_field_' && isset( $options['use_default_titles_for_custom_fields'] ) ) {
                                 $custom_field_title = sanitize_text_field( $customField['name'] );
                                 if ( $customField['name'] == 'custom_field_1' ) {
                                     $custom_field_title = sanitize_text_field( __( 'Custom field 1', 'contact-list' ) );

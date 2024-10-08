@@ -123,6 +123,10 @@ class ContactListPublicHelpersSimple {
                 if ( isset( $s['simple_list_show_custom_field_' . $n] ) ) {
                     $html .= '<div class="contact-list-simple-list-col contact-list-simple-list-col-title"><span>';
                     $cf_field_title = ( isset( $s['custom_field_' . $n . '_title'] ) && $s['custom_field_' . $n . '_title'] ? $s['custom_field_' . $n . '_title'] : '' );
+                    if ( isset( $s['use_default_titles_for_custom_fields'] ) ) {
+                        $lang_text = 'Custom field ' . $n;
+                        $cf_field_title = sanitize_text_field( __( $lang_text, 'contact-list' ) );
+                    }
                     $html .= sanitize_text_field( $cf_field_title );
                     $html .= '</span></div>';
                 }

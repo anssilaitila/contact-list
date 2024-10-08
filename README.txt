@@ -3,7 +3,7 @@ Contributors: anssilaitila, freemius
 Tags: directory plugin, listing, directory, business directory, staff list
 Requires at least: 5.4.0
 Tested up to: 6.6
-Stable tag: 3.0.0
+Stable tag: 3.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -249,6 +249,9 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 6. Contact management
 
 == Changelog ==
+
+= 3.0.1 - 2024-10-08 =
+* (Free + All plans) Fixed an issue where the custom field titles were not translated properly
 
 = 3.0.0 - 2024-10-07 =
 * (Free + All plans) New setting: Use default titles for custom fields (plugin settings, Custom fields tab). This way the custom field titles are translatable to multiple languages by using Loco Translate or similar plugin.
