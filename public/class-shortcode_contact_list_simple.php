@@ -3,6 +3,7 @@
 class ShortcodeContactListSimple {
     public static function view( $atts ) {
         $s = get_option( 'contact_list_settings' );
+        $elem_class = ContactListHelpers::createElemClass();
         $embed_id = ( isset( $atts['embed_id'] ) ? sanitize_title( $atts['embed_id'] ) : 'default' );
         $pagination_active = 0;
         if ( isset( $_GET['_paged'] ) && $_GET['_paged'] == $embed_id ) {
@@ -23,7 +24,7 @@ class ShortcodeContactListSimple {
         if ( $generate_send_message_modal_markup ) {
             $html .= ContactListHelpers::modalSendMessageMarkup();
         }
-        $html .= '<div class="contact-list-simple-container" />';
+        $html .= '<div class="contact-list-simple-container ' . sanitize_html_class( $elem_class ) . '" data-post-id="' . intval( get_the_ID() ) . '">';
         $html .= '<div class="contact-list-simple-text-contact" style="display: none;">' . ContactListHelpers::getText( 'text_sr_contact', __( 'contact', 'contact-list' ) ) . '</div>';
         $html .= '<div class="contact-list-simple-text-contacts" style="display: none;">' . ContactListHelpers::getText( 'text_sr_contacts', __( 'contacts', 'contact-list' ) ) . '</div>';
         $html .= '<div class="contact-list-simple-text-found" style="display: none;">' . ContactListHelpers::getText( 'text_sr_found', __( 'found', 'contact-list' ) ) . '</div>';
@@ -153,7 +154,7 @@ class ShortcodeContactListSimple {
         $extra_class = '';
         $html .= '<form method="get" action="./" class="contact-list-ajax-form-simple' . $extra_class . '">';
         if ( !isset( $atts['hide_search'] ) ) {
-            $html .= '<input type="text" class="contact-list-simple-search-contacts' . $extra_class . '" placeholder="' . (( isset( $s['search_contacts'] ) && $s['search_contacts'] ? ContactListHelpers::sanitize_attr_value( $s['search_contacts'] ) : ContactListHelpers::sanitize_attr_value( __( 'Search contacts...', 'contact-list' ) ) )) . '">';
+            $html .= '<input type="text" class="contact-list-simple-search-contacts' . $extra_class . '" placeholder="' . (( isset( $s['search_contacts'] ) && $s['search_contacts'] ? ContactListHelpers::sanitize_attr_value( $s['search_contacts'] ) : ContactListHelpers::sanitize_attr_value( __( 'Search contacts...', 'contact-list' ) ) )) . '" data-elem-class="' . $elem_class . '">';
         }
         $html .= '<hr class="clear" /></form>';
         if ( isset( $atts['ajax'] ) ) {

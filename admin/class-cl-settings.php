@@ -2773,6 +2773,91 @@ class ContactListSettings {
                 )
             );
         }
+        $tab = 14;
+        add_settings_section(
+            'contact-list_tab_' . $tab,
+            '',
+            array($this, 'contact_list_settings_tab_' . $tab . '_callback'),
+            'contact-list'
+        );
+        add_settings_field(
+            'contact-list-enable_search_log',
+            sanitize_text_field( __( 'Enable search log', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+                'label_for'  => 'contact-list-enable_search_log',
+                'field_name' => 'enable_search_log',
+            )
+        );
+        add_settings_field(
+            'contact-list-esl_search_term',
+            sanitize_text_field( __( 'Log search term', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+                'label_for'  => 'contact-list-esl_search_term',
+                'field_name' => 'esl_search_term',
+            )
+        );
+        add_settings_field(
+            'contact-list-esl_search_term_min_chars',
+            sanitize_text_field( __( 'Min. characters to log', 'contact-list' ) ),
+            array($this, 'input_render'),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+                'label_for'   => 'contact-list-esl_search_term_min_chars',
+                'field_name'  => 'esl_search_term_min_chars',
+                'placeholder' => '3',
+            )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'esl_user_ip',
+            sanitize_text_field( __( 'Log user IP address', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+                'label_for'  => 'contact-list-' . $only_pro . 'esl_user_ip',
+                'field_name' => $only_pro . 'esl_user_ip',
+            )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'esl_search_container',
+            sanitize_text_field( __( 'Log search container (page / post information)', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+                'label_for'  => 'contact-list-' . $only_pro . 'esl_search_container',
+                'field_name' => $only_pro . 'esl_search_container',
+            )
+        );
+        add_settings_field(
+            'contact-list-esl_user_agent',
+            sanitize_text_field( __( 'Log user agent (browser)', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+                'label_for'  => 'contact-list-esl_user_agent',
+                'field_name' => 'esl_user_agent',
+            )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'esl_referer_url',
+            sanitize_text_field( __( 'Log referer URL (full URL when searching)', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+                'label_for'  => 'contact-list-' . $only_pro . 'esl_referer_url',
+                'field_name' => $only_pro . 'esl_referer_url',
+            )
+        );
     }
 
     public function textarea_render( $args ) {
@@ -4779,6 +4864,13 @@ class ContactListSettings {
         echo '<p>' . esc_html__( 'These choices also affect the form which is used by contacts themselves to update their info (by features "request update" and "permanent update URL")', 'contact-list' ) . '</p>';
     }
 
+    public function contact_list_settings_tab_14_callback() {
+        echo '</div>';
+        echo '<div class="contact-list-settings-tab-14">';
+        echo '<h2>' . esc_html__( 'Search log', 'contact-list' ) . '</h2>';
+        echo '<p>' . esc_html__( 'These settings are valid for all shortcodes / contact lists that contain the search input field.', 'contact-list' ) . '</p>';
+    }
+
     public function contact_list_settings_section_callback() {
         echo '</div>';
         echo '<div class="contact-list-settings-tab-6">';
@@ -4882,6 +4974,10 @@ class ContactListSettings {
 
             <li class="contact-list-settings-tab-13-title" data-settings-container="contact-list-settings-tab-13"><span>[contact_list_form]</span></li>
 
+            <li class="contact-list-settings-tab-14-title" data-settings-container="contact-list-settings-tab-14"><span><?php 
+        echo esc_html__( 'Search log', 'contact-list' );
+        ?></span></li>
+
             <hr class="clear" />
           </ul>
         </div>
@@ -4938,6 +5034,9 @@ class ContactListSettings {
             // Table for mail log
             $table_name = $wpdb->prefix . 'cl_sent_mail_log';
             $wpdb->query( "CREATE TABLE IF NOT EXISTS " . $table_name . " (\n    \t  id              BIGINT(20) NOT NULL auto_increment,\n    \t  msg_id          VARCHAR(255) NOT NULL,\n    \t  sender_email    VARCHAR(255) NOT NULL,\n    \t  sender_name     VARCHAR(255) NOT NULL,\n    \t  recipient_email VARCHAR(255) NOT NULL,\n    \t  reply_to        VARCHAR(255) NOT NULL,\n    \t  msg_type        VARCHAR(255) NOT NULL,\n    \t  subject         VARCHAR(255) NOT NULL,\n    \t  response        VARCHAR(255) NOT NULL,\n    \t  mail_cnt        MEDIUMINT NOT NULL,\n    \t  report          TEXT NOT NULL,\n    \t  created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n    \t  PRIMARY KEY (id)\n    \t) " . $charset_collate . ";" );
+            // Table for search log
+            $table_name = $wpdb->prefix . 'contact_list_search_log';
+            $wpdb->query( "CREATE TABLE IF NOT EXISTS " . $table_name . " (\n        id              BIGINT(20) NOT NULL auto_increment,\n        created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n        user_ip         VARCHAR(255) NOT NULL,\n        user_country    VARCHAR(255) NOT NULL,\n        user_agent      VARCHAR(255) NOT NULL,\n        post_id         BIGINT(20) NOT NULL,\n        permalink       VARCHAR(255) NOT NULL,\n        referer_url     VARCHAR(255) NOT NULL,\n        search          VARCHAR(255) NOT NULL,\n        country         VARCHAR(255) NOT NULL,\n        state           VARCHAR(255) NOT NULL,\n        city            VARCHAR(255) NOT NULL,\n        category        VARCHAR(255) NOT NULL,\n        custom_field_1  VARCHAR(255) NOT NULL,\n        custom_field_2  VARCHAR(255) NOT NULL,\n        custom_field_3  VARCHAR(255) NOT NULL,\n        custom_field_4  VARCHAR(255) NOT NULL,\n        custom_field_5  VARCHAR(255) NOT NULL,\n        custom_field_6  VARCHAR(255) NOT NULL,\n        PRIMARY KEY (id)\n      ) " . $charset_collate . ";" );
             // Table for debug data and general log
             $table_name_log = $wpdb->prefix . 'contact_list_log';
             $wpdb->query( "CREATE TABLE IF NOT EXISTS " . $table_name_log . " (\n        id              BIGINT(20) NOT NULL auto_increment,\n        title           VARCHAR(255) NOT NULL,\n        message         TEXT NOT NULL,\n        created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n        PRIMARY KEY (id)\n      ) " . $charset_collate . ";" );

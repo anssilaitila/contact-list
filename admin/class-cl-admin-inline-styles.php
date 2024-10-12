@@ -3,11 +3,11 @@
 class ContactListAdminInlineStyles {
 
   public static function generateInlineStyles() {
-    
+
     $s = get_option('contact_list_settings');
-    
+
     $css = '';
-    
+
     $css .= '#menu-posts-contact > ul > li:nth-of-type(5):before { ';
     $css .= 'display: block;';
     $css .= "content: 'Tools';";
@@ -22,17 +22,12 @@ class ContactListAdminInlineStyles {
     $css .= 'font-size: 15px;';
     $css .= '}';
     $css .= '}';
-    
-    if (isset($s['disable_mail_log'])) {
-      $num_1 = 8;
-      $num_2 = 9;
-    } else {
-      $num_1 = 9;
-      $num_2 = 10;
-    }
-    
+
+    $num_1 = 10;
+    $num_2 = 11;
+
     $css .= '#menu-posts-contact > ul > li:nth-of-type(' . intval( $num_1 ) . ') {';
-    $css .= 'border-bottom: 1px solid rgb(110, 110, 110);';      
+    $css .= 'border-bottom: 1px solid rgb(110, 110, 110);';
     $css .= '}';
     $css .= '#menu-posts-contact > ul > li:nth-of-type(' . intval( $num_2 ) . ') {';
     $css .= 'padding-top: 7px;';
@@ -43,59 +38,59 @@ class ContactListAdminInlineStyles {
     }
 
     return $css;
-    
+
   }
 
   public static function printableListStyles() {
-  
+
     $s = get_option('contact_list_settings');
-  
-    $css = '';        
-    
-    $css .= '.contact-list-container #contact-list-search ul li { margin-bottom: 5px; } ';        
+
+    $css = '';
+
+    $css .= '.contact-list-container #contact-list-search ul li { margin-bottom: 5px; } ';
     $css .= '.contact-list-contact-container { background: #fff; } ';
-  
+
     if (isset($s['card_border']) && $s['card_border']) {
-  
+
       if ($s['card_border'] == 'black') {
         $css .= '.contact-list-contact-container { border: 1px solid #333; border-radius: 10px; padding: 10px; } ';
       } elseif ($s['card_border'] == 'gray') {
         $css .= '.contact-list-contact-container { border: 1px solid #bbb; border-radius: 10px; padding: 10px; } ';
       }
     }
-  
+
     if (isset($_GET['card_height'])) {
-  
-      $css .= '.contact-list-2-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: ' . intval( $_GET['card_height'] ) . 'px !important; } ';  
-      $css .= ' @media (max-width: 820px) { .contact-list-2-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: auto; } } ';  
-  
+
+      $css .= '.contact-list-2-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: ' . intval( $_GET['card_height'] ) . 'px !important; } ';
+      $css .= ' @media (max-width: 820px) { .contact-list-2-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: auto; } } ';
+
     } else {
-  
+
       $css .= '.contact-list-2-cards-on-the-same-row #all-contacts li .contact-list-contact-container { height: 340px !important; }';
-  
+
     }
-    
+
     return $css;
-    
+
   }
 
   public static function contactEditStyles() {
-  
+
     $s = get_option('contact_list_settings');
-  
-    $css = '';        
+
+    $css = '';
 
     if (isset($s['af_hide_groups'])) {
-      
+
       $css .= '
             #contact-groupdiv {
               display: none;
             }';
 
     }
-    
+
     return $css;
-    
+
   }
 
 }

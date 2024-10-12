@@ -396,13 +396,14 @@ class ContactListCard {
                             }
                             $html .= '<div class="contact-list-custom-field-' . $n . '">';
                             if ( $cf_title ) {
-                                $html .= '<strong>' . $cf_title . '</strong>';
+                                //                $html .= '<strong>' . $cf_title . '</strong>';
+                                $html .= '<div class="contact-list-custom-field-title">' . $cf_title . '</div>';
                             }
                             if ( isset( $s['custom_field_' . $n . '_allow_unfiltered_content'] ) ) {
                                 $cf_value = $c['_cl_custom_field_' . $n][0];
-                                $html .= $cf_value;
+                                $html .= '<div class="contact-list-custom-field-value">' . $cf_value . '</div>';
                             } else {
-                                $html .= wp_kses_post( $cf_value );
+                                $html .= '<div class="contact-list-custom-field-value">' . wp_kses_post( $cf_value ) . '</div>';
                             }
                             $html .= '</div>';
                         }
@@ -558,13 +559,21 @@ class ContactListCard {
                                     $html .= '<i class="fa ' . sanitize_html_class( $s['custom_field_' . $n . '_icon'] ) . '" aria-hidden="true"></i><span>' . wp_kses_post( $cf_value ) . '</span>';
                                     $html .= '</div>';
                                 } else {
+                                    $cf_title = ( isset( $s['custom_field_' . $n . '_title'] ) && $s['custom_field_' . $n . '_title'] ? sanitize_text_field( $s['custom_field_' . $n . '_title'] ) : '' );
+                                    if ( isset( $s['use_default_titles_for_custom_fields'] ) ) {
+                                        $lang_text = 'Custom field ' . $n;
+                                        $cf_title = sanitize_text_field( __( $lang_text, 'contact-list' ) );
+                                    }
                                     $html .= '<div class="contact-list-custom-field-' . $n . '">';
-                                    $html .= ( isset( $s['custom_field_' . $n . '_title'] ) && $s['custom_field_' . $n . '_title'] ? '<strong>' . sanitize_text_field( $s['custom_field_' . $n . '_title'] ) . '</strong>' : '' );
+                                    if ( $cf_title ) {
+                                        //                    $html .= '<strong>' . $cf_title . '</strong>';
+                                        $html .= '<div class="contact-list-custom-field-title">' . $cf_title . '</div>';
+                                    }
                                     if ( isset( $s['custom_field_' . $n . '_allow_unfiltered_content'] ) ) {
                                         $cf_value = $c['_cl_custom_field_' . $n][0];
-                                        $html .= $cf_value;
+                                        $html .= '<div class="contact-list-custom-field-value">' . $cf_value . '</div>';
                                     } else {
-                                        $html .= wp_kses_post( $cf_value );
+                                        $html .= '<div class="contact-list-custom-field-value">' . wp_kses_post( $cf_value ) . '</div>';
                                     }
                                     $html .= '</div>';
                                 }

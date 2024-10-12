@@ -20,7 +20,7 @@ class ShortcodeContactList {
         if ( !isset( $s['hide_send_email_button'] ) ) {
             $html .= ContactListHelpers::modalSendMessageMarkup();
         }
-        $html .= '<div class="contact-list-container ' . sanitize_html_class( $elem_class ) . ' ' . (( $layout ? 'contact-list-' . sanitize_html_class( $layout ) : '' )) . '" data-elem-class="' . $elem_class . '">';
+        $html .= '<div class="contact-list-container ' . sanitize_html_class( $elem_class ) . ' ' . (( $layout ? 'contact-list-' . sanitize_html_class( $layout ) : '' )) . '" data-elem-class="' . $elem_class . '" data-post-id="' . intval( get_the_ID() ) . '">';
         if ( isset( $atts['contact'] ) || isset( $_GET['contact_id'] ) ) {
             $contact = ( isset( $atts['contact'] ) ? (int) $atts['contact'] : (int) $_GET['contact_id'] );
             if ( $contact ) {

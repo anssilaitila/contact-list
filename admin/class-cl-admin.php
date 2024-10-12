@@ -201,6 +201,9 @@ class Contact_List_Admin {
         } elseif ( $hook == 'contact_page_contact-list-mail-log' ) {
             $inline_js = ContactListAdminInlineScripts::inline_scripts( 'mail-log' );
             wp_add_inline_script( $this->plugin_name, $inline_js );
+        } elseif ( $hook == 'contact_page_contact-list-search-log' ) {
+            $inline_js = ContactListAdminInlineScripts::inline_scripts( 'search-log' );
+            wp_add_inline_script( $this->plugin_name, $inline_js );
         }
         if ( ContactListHelpers::isPremium() == 0 ) {
             $inline_js = ContactListAdminInlineScripts::box_inline_scripts();

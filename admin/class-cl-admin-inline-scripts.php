@@ -10,6 +10,8 @@ class ContactListAdminInlineScripts {
         $js = '';
         if ( $context == 'mail-log' ) {
             $js .= "jQuery( document ).ready( function(\$) {\n\n        \$('.contact-list-empty-mail-log-form').submit(function() {\n\n          return confirm('" . esc_js( __( 'Are you sure that you want to empty the mail log?', 'contact-list' ) ) . ' ' . esc_js( __( 'This action is irreversible.', 'contact-list' ) ) . "');\n\n        });\n\n      });";
+        } elseif ( $context == 'search-log' ) {
+            $js .= "jQuery( document ).ready( function(\$) {\n\n        \$('.contact-list-empty-search-log-form').submit(function() {\n\n          return confirm('" . esc_js( __( 'Are you sure that you want to empty the search log?', 'contact-list' ) ) . ' ' . esc_js( __( 'This action is irreversible.', 'contact-list' ) ) . "');\n\n        });\n\n      });";
         } elseif ( $current_screen_id === 'edit-contact' || $current_screen_id === 'edit-contact-group' ) {
             $is_premium = 0;
             $js .= "jQuery( document ).ready( function(\$) {";

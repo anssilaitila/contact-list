@@ -13,6 +13,7 @@ class ContactListAdminToolbar {
       'contact_page_contact-list-printable',
       'contact_page_contact-list-send-email',
       'contact_page_contact-list-mail-log',
+      'contact_page_contact-list-search-log',
       'contact_page_contact-list-shortcodes',
       'contact_page_contact-list-support',
       'settings_page_contact-list',
@@ -180,6 +181,9 @@ class ContactListAdminToolbar {
           break;
         case 'contact_page_contact-list-mail-log':
           $page_title = sanitize_text_field( __('Log of sent mail', 'contact-list') );
+          break;
+        case 'contact_page_contact-list-search-log':
+          $page_title = sanitize_text_field( __('Search log', 'contact-list') );
           break;
         case 'contact_page_contact-list-shortcodes':
           $page_title = sanitize_text_field( __('Shortcodes', 'contact-list') );

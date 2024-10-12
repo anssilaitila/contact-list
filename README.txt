@@ -3,7 +3,7 @@ Contributors: anssilaitila, freemius
 Tags: directory plugin, listing, directory, business directory, staff list
 Requires at least: 5.4.0
 Tested up to: 6.6
-Stable tag: 3.0.1
+Stable tag: 3.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -19,6 +19,7 @@ Contact List is a dedicated directory plugin to manage and create address books,
 
 * A simple method of listing contacts on a WordPress website
 * Email contacts immediately from the front-end form
+* Search log of all searches made in the front end
 * Contact directories created by importing data from a CSV file or via a publicly accessible form
 * CSV import & export
 * Customize the contact card completely, either via settings or by creating a custom template
@@ -249,6 +250,11 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 6. Contact management
 
 == Changelog ==
+
+= 3.0.2 - 2024-10-12 =
+* (Free + All plans) Mail log now shows all items in the log and also has pagination
+* (Free + All plans) New feature: Search log. It is now possible to log all searches made in the front end. Can be activated from the plugin settings, Search log tab.
+* (Free + All plans) Tweaks and fixes
 
 = 3.0.1 - 2024-10-08 =
 * (Free + All plans) Fixed an issue where the custom field titles were not translated properly

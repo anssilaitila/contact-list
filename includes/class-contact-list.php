@@ -108,6 +108,7 @@ class Contact_List {
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-admin.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-admin-send-email.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-admin-mail-log.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-admin-search-log.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-admin-list.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-admin-inline-styles.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-admin-inline-scripts.php';
@@ -176,6 +177,7 @@ class Contact_List {
         $plugin_admin = new Contact_List_Admin($this->get_plugin_name(), $this->get_version());
         $plugin_admin_send_email = new ContactListAdminSendEmail();
         $plugin_admin_mail_log = new ContactListAdminMailLog();
+        $plugin_admin_search_log = new ContactListAdminSearchLog();
         $plugin_admin_list = new ContactListAdminList();
         $plugin_admin_maintenance = new ContactListAdminMaintenance();
         $plugin_admin_operations = new ContactListAdminOperations();
@@ -265,9 +267,9 @@ class Contact_List {
         // Send email
         $this->loader->add_action( 'admin_menu', $plugin_admin_send_email, 'register_send_email_page' );
         // Mail log
-        if ( !isset( $s['disable_mail_log'] ) ) {
-            $this->loader->add_action( 'admin_menu', $plugin_admin_mail_log, 'register_mail_log_page' );
-        }
+        $this->loader->add_action( 'admin_menu', $plugin_admin_mail_log, 'register_mail_log_page' );
+        // Search log
+        $this->loader->add_action( 'admin_menu', $plugin_admin_search_log, 'register_search_log_page' );
         // Settings
         $this->loader->add_action( 'admin_menu', $plugin_settings, 'add_settings_link' );
         $this->loader->add_action( 'admin_menu', $plugin_settings, 'contact_list_add_admin_menu' );
@@ -308,6 +310,7 @@ class Contact_List {
      * @access   private
      */
     private function define_public_hooks() {
+        $s = get_option( 'contact_list_settings' );
         $plugin_public = new Contact_List_Public($this->get_plugin_name(), $this->get_version());
         $plugin_public_send_mail = new ContactListPublicSendMail();
         $plugin_public_ajax = new ContactListPublicAjax();
@@ -329,6 +332,11 @@ class Contact_List {
         $this->loader->add_action( 'wp_ajax_cl_get_contacts', $plugin_public_ajax, 'cl_get_contacts' );
         $this->loader->add_action( 'wp_ajax_nopriv_cl_get_contacts_simple', $plugin_public_ajax, 'cl_get_contacts_simple' );
         $this->loader->add_action( 'wp_ajax_cl_get_contacts_simple', $plugin_public_ajax, 'cl_get_contacts_simple' );
+        // Search log
+        if ( isset( $s['enable_search_log'] ) ) {
+            $this->loader->add_action( 'wp_ajax_nopriv_contact_list_search_log', $plugin_public_ajax, 'search_log' );
+            $this->loader->add_action( 'wp_ajax_contact_list_search_log', $plugin_public_ajax, 'search_log' );
+        }
     }
 
     /**
