@@ -1,6 +1,15 @@
 <?php
 
 class ContactListHelpers {
+    public static function searchType() {
+        $s = get_option( 'contact_list_settings' );
+        $type = 0;
+        if ( isset( $s['enable_search_log'] ) ) {
+            $type = 1;
+        }
+        return $type;
+    }
+
     public static function getIPAddress() {
         foreach ( array(
             'HTTP_CLIENT_IP',

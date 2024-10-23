@@ -24,7 +24,7 @@ class ShortcodeContactListSimple {
         if ( $generate_send_message_modal_markup ) {
             $html .= ContactListHelpers::modalSendMessageMarkup();
         }
-        $html .= '<div class="contact-list-simple-container ' . sanitize_html_class( $elem_class ) . '" data-post-id="' . intval( get_the_ID() ) . '">';
+        $html .= '<div class="contact-list-simple-container ' . sanitize_html_class( $elem_class ) . '" data-search-type="' . sanitize_title( ContactListHelpers::searchType() ) . '" data-post-id="' . intval( get_the_ID() ) . '">';
         $html .= '<div class="contact-list-simple-text-contact" style="display: none;">' . ContactListHelpers::getText( 'text_sr_contact', __( 'contact', 'contact-list' ) ) . '</div>';
         $html .= '<div class="contact-list-simple-text-contacts" style="display: none;">' . ContactListHelpers::getText( 'text_sr_contacts', __( 'contacts', 'contact-list' ) ) . '</div>';
         $html .= '<div class="contact-list-simple-text-found" style="display: none;">' . ContactListHelpers::getText( 'text_sr_found', __( 'found', 'contact-list' ) ) . '</div>';

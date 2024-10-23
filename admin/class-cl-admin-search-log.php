@@ -76,6 +76,7 @@ class ContactListAdminSearchLog {
           <th><?php echo esc_html__('Search term', 'contact-list') ?></th>
           <th><?php echo esc_html__('Search container', 'contact-list') ?></th>
           <th><?php echo esc_html__('User IP', 'contact-list') ?></th>
+          <th><?php echo esc_html__('Country', 'contact-list') ?></th>
           <th><?php echo esc_html__('Referer URL', 'contact-list') ?></th>
           <th><?php echo esc_html__('User agent', 'contact-list') ?></th>
         </tr>
@@ -112,6 +113,11 @@ class ContactListAdminSearchLog {
               <td>
                 <?php if (isset($row->user_ip)): ?>
                   <?php echo esc_html( $row->user_ip ) ?>
+                <?php endif; ?>
+              </td>
+              <td>
+                <?php if (isset($row->user_country)): ?>
+                  <?php echo esc_html( $row->user_country ) ?>
                 <?php endif; ?>
               </td>
               <td>

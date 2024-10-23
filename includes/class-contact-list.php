@@ -112,6 +112,7 @@ class Contact_List {
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-admin-list.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-admin-inline-styles.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-admin-inline-scripts.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-admin-statistics.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-settings.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-shortcodes.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-help-support.php';
@@ -184,6 +185,7 @@ class Contact_List {
         $plugin_admin_inline_styles = new ContactListAdminInlineStyles();
         $plugin_admin_inline_scripts = new ContactListAdminInlineScripts();
         $plugin_admin_toolbar = new ContactListAdminToolbar();
+        $plugin_admin_statistics = new ContactListAdminStatistics();
         $plugin_settings = new ContactListSettings();
         $plugin_shortcodes = new ContactListShortcodes();
         $plugin_help_support = new ContactListHelpSupport();

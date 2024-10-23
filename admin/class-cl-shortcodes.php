@@ -32,6 +32,8 @@ class ContactListShortcodes {
 
     <div class="wrap contact-list-admin-page">
 
+      <h2 style="display: none;"></h2>
+
       <div class="Xcontact-list-admin-page-content-container">
 
         <div class="contact-list-examples">

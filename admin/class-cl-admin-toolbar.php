@@ -117,8 +117,9 @@ class ContactListAdminToolbar {
             <a href="<?php echo esc_url_raw( get_admin_url(null, './edit.php?post_type=' . CONTACT_LIST_CPT) ) ?>"><?php echo esc_html__('All contacts', 'contact-list'); ?></a>
             <a href="<?php echo esc_url_raw( get_admin_url(null, './post-new.php?post_type=' . CONTACT_LIST_CPT) ) ?>"><?php echo esc_html__('Add new contact', 'contact-list'); ?></a>
             <a href="<?php echo esc_url_raw( get_admin_url(null, './edit-tags.php?taxonomy=contact-group&post_type=' . CONTACT_LIST_CPT) ) ?>"><?php echo esc_html__('Groups', 'contact-list'); ?></a>
-            <a href="<?php echo esc_url_raw( get_admin_url(null, './edit.php?post_type=contact&page=contact-list-shortcodes') ) ?>"><?php echo esc_html__('Shortcodes', 'contact-list'); ?></a>
-            <a href="<?php echo esc_url_raw( get_admin_url(null, './edit.php?post_type=contact&page=contact-list-support') ) ?>"><?php echo esc_html__('Support', 'contact-list'); ?></a>
+
+            <span class="contact-list-admin-toolbar-divider"></span>
+
             <a class="contact-list-btn-alt" href="<?php echo esc_url_raw( get_admin_url(null, './options-general.php?page=contact-list') ) ?>"><?php echo esc_html__('Settings', 'contact-list'); ?></a>
 
             <?php $freemius_user = contact_list_fs()->get_user(); ?>
@@ -128,6 +129,11 @@ class ContactListAdminToolbar {
               <a class="contact-list-btn-alt" href="<?php echo esc_url_raw( get_admin_url(null, './options-general.php?page=contact-list-account') ) ?>"><?php echo esc_html__('Account', 'contact-list'); ?></a>
 
             <?php endif; ?>
+
+            <span class="contact-list-admin-toolbar-divider"></span>
+
+            <a href="<?php echo esc_url_raw( get_admin_url(null, './edit.php?post_type=contact&page=contact-list-shortcodes') ) ?>"><?php echo esc_html__('Shortcodes', 'contact-list'); ?></a>
+            <a href="<?php echo esc_url_raw( get_admin_url(null, './edit.php?post_type=contact&page=contact-list-support') ) ?>"><?php echo esc_html__('Support', 'contact-list'); ?></a>
 
           </div>
         </div>

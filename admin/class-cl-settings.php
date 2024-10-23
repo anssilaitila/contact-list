@@ -2826,6 +2826,30 @@ class ContactListSettings {
             )
         );
         add_settings_field(
+            'contact-list-' . $only_pro . 'esl_user_country',
+            sanitize_text_field( __( 'Log user country', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+                'label_for'  => 'contact-list-' . $only_pro . 'esl_user_country',
+                'field_name' => $only_pro . 'esl_user_country',
+                'class'      => 'contact-list-new-feature',
+            )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'log_enable_country_logging',
+            sanitize_text_field( __( 'Log debug data from country updates', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+                'label_for'  => 'contact-list-' . $only_pro . 'log_enable_country_logging',
+                'field_name' => $only_pro . 'log_enable_country_logging',
+                'class'      => 'contact-list-new-feature',
+            )
+        );
+        add_settings_field(
             'contact-list-' . $only_pro . 'esl_search_container',
             sanitize_text_field( __( 'Log search container (page / post information)', 'contact-list' ) ),
             array($this, 'checkbox_render'),
@@ -3985,6 +4009,43 @@ class ContactListSettings {
           </div>
 
       <?php 
+            } elseif ( $field_name == 'esl_user_country' || $field_name == '_FREE_esl_user_country' ) {
+                ?>
+
+        <div class="general-info">
+          <div class="contact-list-new-feature-container">
+            <div class="contact-list-new-feature">
+              <?php 
+                echo esc_html__( 'New', 'contact-list' );
+                ?>
+            </div>
+          </div>
+
+          <p><?php 
+                echo esc_html__( "If enabled, the searcher's country is automatically detected based on the their IP address by using an external service at ws.tammersoft.com, hosted and maintained by the plugin developer on an Amazon AWS EC2 instance (region us-east-1).", 'contact-list' );
+                ?></p>
+
+          <p><?php 
+                echo esc_html__( "Using the service requires an active subscription or a lifetime license.", 'contact-list' );
+                ?></p>
+
+          <p><?php 
+                $url = 'https://www.maxmind.com';
+                echo sprintf( wp_kses( 
+                    /* translators: %s: link to maxmind.com, the provider of geographical data */
+                    __( 'This product includes GeoLite2 data created by MaxMind, available from <a href="%s" target="_blank">maxmind.com</a>.', 'contact-list' ),
+                    array(
+                        'a' => array(
+                            'href'   => array(),
+                            'target' => array(),
+                        ),
+                    )
+                 ), esc_url( $url ) );
+                ?></p>
+
+        </div>
+
+      <?php 
             }
             ?>
 
@@ -4868,7 +4929,7 @@ class ContactListSettings {
         echo '</div>';
         echo '<div class="contact-list-settings-tab-14">';
         echo '<h2>' . esc_html__( 'Search log', 'contact-list' ) . '</h2>';
-        echo '<p>' . esc_html__( 'These settings are valid for all shortcodes / contact lists that contain the search input field.', 'contact-list' ) . '</p>';
+        echo '<p>' . esc_html__( 'These settings are valid for all shortcodes and blocks that contain the search input field.', 'contact-list' ) . '</p>';
     }
 
     public function contact_list_settings_section_callback() {
@@ -5037,6 +5098,8 @@ class ContactListSettings {
             // Table for search log
             $table_name = $wpdb->prefix . 'contact_list_search_log';
             $wpdb->query( "CREATE TABLE IF NOT EXISTS " . $table_name . " (\n        id              BIGINT(20) NOT NULL auto_increment,\n        created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n        user_ip         VARCHAR(255) NOT NULL,\n        user_country    VARCHAR(255) NOT NULL,\n        user_agent      VARCHAR(255) NOT NULL,\n        post_id         BIGINT(20) NOT NULL,\n        permalink       VARCHAR(255) NOT NULL,\n        referer_url     VARCHAR(255) NOT NULL,\n        search          VARCHAR(255) NOT NULL,\n        country         VARCHAR(255) NOT NULL,\n        state           VARCHAR(255) NOT NULL,\n        city            VARCHAR(255) NOT NULL,\n        category        VARCHAR(255) NOT NULL,\n        custom_field_1  VARCHAR(255) NOT NULL,\n        custom_field_2  VARCHAR(255) NOT NULL,\n        custom_field_3  VARCHAR(255) NOT NULL,\n        custom_field_4  VARCHAR(255) NOT NULL,\n        custom_field_5  VARCHAR(255) NOT NULL,\n        custom_field_6  VARCHAR(255) NOT NULL,\n        PRIMARY KEY (id)\n      ) " . $charset_collate . ";" );
+            // user_country_code
+            // user_city
             // Table for debug data and general log
             $table_name_log = $wpdb->prefix . 'contact_list_log';
             $wpdb->query( "CREATE TABLE IF NOT EXISTS " . $table_name_log . " (\n        id              BIGINT(20) NOT NULL auto_increment,\n        title           VARCHAR(255) NOT NULL,\n        message         TEXT NOT NULL,\n        created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n        PRIMARY KEY (id)\n      ) " . $charset_collate . ";" );

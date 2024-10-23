@@ -183,6 +183,7 @@ class ContactListHelpSupport {
 
             <?php endif; ?>
 
+            </table>
 
 
           </div>
