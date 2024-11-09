@@ -4864,6 +4864,16 @@ class ContactListSettings {
         ) );
         echo '</span></li>';
         echo '</ol>';
+        echo '<div class="general-info" style="display: flex; align-items: center; align-content: center; border: 1px solid #333; background: #fff; border-radius: 2px;">';
+        echo '<div class="contact-list-new-feature-container" style="margin-bottom: 0;">';
+        echo '<div class="contact-list-new-feature">';
+        echo esc_html__( 'New', 'contact-list' );
+        echo '</div>';
+        echo '</div>';
+        echo '<a href="' . esc_url( get_admin_url() ) . 'options-general.php?page=contact-list&_cl_reload=' . esc_attr( md5( rand() ) ) . '#contact-list-settings-tab-14" style="margin-left: 7px; color: #333; font-weight: 700;">';
+        echo esc_html__( "Country detector in search log", 'contact-list' );
+        echo '</a>';
+        echo '</div>';
         echo '</div>';
     }
 

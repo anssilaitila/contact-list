@@ -464,7 +464,7 @@ class ContactListCustomFields {
 
                       <?php 
                 // SUPPORT BOX START
-                if ( $customField['name'] == 'custom_fields' ) {
+                if ( $customField['name'] == 'address' ) {
                     $is_premium = 0;
                     if ( !$is_premium ) {
                         $url = 'https://wordpress.org/support/plugin/contact-list/';

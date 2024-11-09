@@ -55,7 +55,7 @@ class ContactListShortcodes {
             $url = 'https://wordpress.org/support/plugin/contact-list/';
             echo sprintf( wp_kses( 
                 /* translators: %s: link to the support forum */
-                __( 'For support using the plugin please contact us at <a href="%s" target="_blank">the support forum</a>.', 'contact-list' ),
+                __( 'If you have any questions regarding the shortcodes or the plugin in general, please contact the author at <a href="%s" target="_blank">the support forum</a>.', 'contact-list' ),
                 array(
                     'a' => array(
                         'href'   => array(),
@@ -65,6 +65,10 @@ class ContactListShortcodes {
              ), esc_url( $url ) );
             ?>
             </p>
+
+            <p><?php 
+            echo esc_html__( 'The forum is actively monitored and you will get a quick answer.', 'shared-files' );
+            ?></p>
 
           <?php 
         }

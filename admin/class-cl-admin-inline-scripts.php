@@ -16,6 +16,20 @@ class ContactListAdminInlineScripts {
             $is_premium = 0;
             $js .= "jQuery( document ).ready( function(\$) {";
             if ( !$is_premium ) {
+                if ( $current_screen_id === 'edit-contact' ) {
+                    $url = 'https://wordpress.org/support/plugin/contact-list/';
+                    $support_html = sprintf( wp_kses( 
+                        /* translators: %s: link to the support forum */
+                        __( 'If you have any questions in mind, please contact the author at <a href="%s" target="_blank">the support forum</a>. The forum is actively monitored and any kind of feedback is welcome.', 'contact-list' ),
+                        array(
+                            'a' => array(
+                                'href'   => array(),
+                                'target' => array(),
+                            ),
+                        )
+                     ), esc_url( $url ) );
+                    $js .= "\n            \$('.post-type-contact .page-title-action').after(function() {\n\n              return '<div class=\"contact-list-admin-support-box\">" . $support_html . "</div>';\n\n            });\n          ";
+                }
                 $js .= "\n          \$('.contact-list-copy-paid-only').tipso({\n            content: '" . esc_js( __( 'This feature is available in the Pro version.', 'contact-list' ) ) . "',\n            width: 280,\n            background: '#2271b1',\n          });\n        ";
                 $js .= "\n          \$('.contact-list-request-update').tipso({\n            content: '" . esc_js( __( 'This feature is available in the Pro version.', 'contact-list' ) ) . "',\n            width: 280,\n            background: '#2271b1',\n          });\n        ";
                 $js .= "\n          \$('.contact-list-request-update').on('click', function(e) {\n            e.preventDefault();\n            \$(this).prop( 'disabled', true );\n          });\n        ";
