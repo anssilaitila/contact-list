@@ -77,6 +77,11 @@ class ContactListAdminSearchLog {
           <th><?php echo esc_html__('Search container', 'contact-list') ?></th>
           <th><?php echo esc_html__('User IP', 'contact-list') ?></th>
           <th><?php echo esc_html__('Country', 'contact-list') ?></th>
+
+          <?php if ( isset( $s['esl_user_city'] ) ): ?>
+            <th><?php echo esc_html__('City', 'shared-files') ?></th>
+          <?php endif; ?>
+
           <th><?php echo esc_html__('Referer URL', 'contact-list') ?></th>
           <th><?php echo esc_html__('User agent', 'contact-list') ?></th>
         </tr>
@@ -120,6 +125,15 @@ class ContactListAdminSearchLog {
                   <?php echo esc_html( $row->user_country ) ?>
                 <?php endif; ?>
               </td>
+
+              <?php if ( isset( $s['esl_user_city'] ) ): ?>
+                <td>
+                  <?php if (isset($row->user_city)): ?>
+                    <?php echo esc_html( $row->user_city ) ?>
+                  <?php endif; ?>
+                </td>
+              <?php endif; ?>
+
               <td>
                 <?php if (isset($row->referer_url)): ?>
                   <?php echo esc_html( $row->referer_url ) ?>

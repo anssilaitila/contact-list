@@ -2341,6 +2341,30 @@ class ContactListSettings {
                 'field_name' => $only_pro . 'import_export_separator',
             )
         );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'import_num_contacts_at_once',
+            sanitize_text_field( __( "Import this number of contacts at once", 'contact-list' ) ),
+            array($this, 'input_render'),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+                'label_for'   => 'contact-list-' . $only_pro . 'import_num_contacts_at_once',
+                'field_name'  => $only_pro . 'import_num_contacts_at_once',
+                'placeholder' => 500,
+            )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'import_seconds_between_chunks',
+            sanitize_text_field( __( "Delay in seconds between processing the smaller chunks of contacts (if activated above)", 'contact-list' ) ),
+            array($this, 'input_render'),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+                'label_for'   => 'contact-list-' . $only_pro . 'import_seconds_between_chunks',
+                'field_name'  => $only_pro . 'import_seconds_between_chunks',
+                'placeholder' => 30,
+            )
+        );
         if ( ContactListHelpers::isMin3() ) {
             add_settings_field(
                 'contact-list-' . $only_pro . 'cron_activate_import_contacts_daily',
@@ -2837,6 +2861,20 @@ class ContactListSettings {
                 'class'      => 'contact-list-new-feature',
             )
         );
+        if ( ContactListHelpers::isMin2() ) {
+            add_settings_field(
+                'contact-list-' . $only_pro . 'esl_user_city',
+                sanitize_text_field( __( 'Log user city', 'contact-list' ) ),
+                array($this, 'checkbox_render'),
+                'contact-list',
+                'contact-list_tab_' . $tab,
+                array(
+                    'label_for'  => 'contact-list-' . $only_pro . 'esl_user_city',
+                    'field_name' => $only_pro . 'esl_user_city',
+                    'class'      => 'contact-list-new-feature',
+                )
+            );
+        }
         add_settings_field(
             'contact-list-' . $only_pro . 'log_enable_country_logging',
             sanitize_text_field( __( 'Log debug data from country updates', 'contact-list' ) ),
@@ -2880,6 +2918,58 @@ class ContactListSettings {
             array(
                 'label_for'  => 'contact-list-' . $only_pro . 'esl_referer_url',
                 'field_name' => $only_pro . 'esl_referer_url',
+            )
+        );
+        $tab = 15;
+        add_settings_section(
+            'contact-list_tab_' . $tab,
+            '',
+            array($this, 'contact_list_settings_tab_' . $tab . '_callback'),
+            'contact-list'
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'wp_admin_email_subject',
+            sanitize_text_field( __( 'Subject', 'contact-list' ) ),
+            array($this, 'input_render'),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+                'label_for'  => 'contact-list-' . $only_pro . 'wp_admin_email_subject',
+                'field_name' => $only_pro . 'wp_admin_email_subject',
+            )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'wp_admin_email_sender_name',
+            sanitize_text_field( __( 'Sender name', 'contact-list' ) ),
+            array($this, 'input_render'),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+                'label_for'  => 'contact-list-' . $only_pro . 'wp_admin_email_sender_name',
+                'field_name' => $only_pro . 'wp_admin_email_sender_name',
+            )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'wp_admin_email_sender_email',
+            sanitize_text_field( __( 'Sender email', 'contact-list' ) ),
+            array($this, 'input_render'),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+                'label_for'  => 'contact-list-' . $only_pro . 'wp_admin_email_sender_email',
+                'field_name' => $only_pro . 'wp_admin_email_sender_email',
+            )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'wp_admin_email_message',
+            sanitize_text_field( __( 'Message', 'contact-list' ) ),
+            array($this, 'textarea_render'),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+                'label_for'   => 'contact-list-' . $only_pro . 'wp_admin_email_message',
+                'field_name'  => '' . $only_pro . 'wp_admin_email_message',
+                'placeholder' => '',
             )
         );
     }
@@ -3708,7 +3798,23 @@ class ContactListSettings {
       </div>
 
       <?php 
-            if ( strpos( $field_name, 'cron_import_contacts_file' ) !== false ) {
+            if ( strpos( $field_name, 'import_num_contacts_at_once' ) !== false ) {
+                ?>
+
+        <div class="general-info">
+          <p><?php 
+                echo esc_html__( 'If a number is defined here, the import processes this amount of contacts at once. Can be useful, if the number of contacts in the CSV file is large and the server has limitations regarding the maximum execution time or memory.', 'contact-list' );
+                ?></p>
+          <p><?php 
+                echo esc_html__( 'If a number is not defined here, the import processes the whole file at once.', 'contact-list' );
+                ?></p>
+          <p><?php 
+                echo esc_html__( 'This feature is currently available for the manual import only, at WP admin / Contact List / Import contacts.', 'contact-list' );
+                ?></p>
+        </div>
+
+      <?php 
+            } elseif ( strpos( $field_name, 'cron_import_contacts_file' ) !== false ) {
                 ?>
 
         <div class="email-info">
@@ -4022,8 +4128,30 @@ class ContactListSettings {
           </div>
 
           <p><?php 
-                echo esc_html__( "If enabled, the searcher's country is automatically detected based on the their IP address by using an external service at ws.tammersoft.com, hosted and maintained by the plugin developer on an Amazon AWS EC2 instance (region us-east-1).", 'contact-list' );
+                echo esc_html__( "If enabled, the searcher's country is automatically detected based on the their IP address by using an external service at ws.tammersoft.com, hosted and maintained by the plugin developer.", 'contact-list' );
                 ?></p>
+
+          <p><?php 
+                echo esc_html__( "The following information is sent to ws.tammersoft.com in the process:", 'contact-list' );
+                ?></p>
+
+          <ul class="contact-list-ws-details">
+            <li><?php 
+                echo esc_html__( 'IP address', 'contact-list' );
+                ?></li>
+            <li><?php 
+                echo esc_html__( 'Site URL', 'contact-list' );
+                ?></li>
+            <li><?php 
+                echo esc_html__( 'Freemius User ID (number)', 'contact-list' );
+                ?></li>
+            <li><?php 
+                echo esc_html__( 'Freemius License ID (number)', 'contact-list' );
+                ?></li>
+            <li><?php 
+                echo esc_html__( 'Freemius Install ID (number)', 'contact-list' );
+                ?></li>
+          </ul>
 
           <p><?php 
                 echo esc_html__( "Using the service requires an active subscription or a lifetime license.", 'contact-list' );
@@ -4041,6 +4169,25 @@ class ContactListSettings {
                         ),
                     )
                  ), esc_url( $url ) );
+                ?></p>
+
+        </div>
+
+      <?php 
+            } elseif ( $field_name == 'esl_user_city' || $field_name == '_FREE_esl_user_city' ) {
+                ?>
+
+        <div class="general-info">
+          <div class="contact-list-new-feature-container">
+            <div class="contact-list-new-feature">
+              <?php 
+                echo esc_html__( 'New', 'contact-list' );
+                ?>
+            </div>
+          </div>
+
+          <p><?php 
+                echo esc_html__( "The city is detected the same way as the country (described above).", 'contact-list' );
                 ?></p>
 
         </div>
@@ -4942,6 +5089,13 @@ class ContactListSettings {
         echo '<p>' . esc_html__( 'These settings are valid for all shortcodes and blocks that contain the search input field.', 'contact-list' ) . '</p>';
     }
 
+    public function contact_list_settings_tab_15_callback() {
+        echo '</div>';
+        echo '<div class="contact-list-settings-tab-15">';
+        echo '<h2>' . esc_html__( 'Send message from WP admin area', 'contact-list' ) . '</h2>';
+        echo '<p>' . esc_html__( 'Change default values for the form that at WP admin / Contact List / Send email.', 'contact-list' ) . '</p>';
+    }
+
     public function contact_list_settings_section_callback() {
         echo '</div>';
         echo '<div class="contact-list-settings-tab-6">';
@@ -5049,6 +5203,10 @@ class ContactListSettings {
         echo esc_html__( 'Search log', 'contact-list' );
         ?></span></li>
 
+            <li class="contact-list-settings-tab-15-title" data-settings-container="contact-list-settings-tab-15"><span><?php 
+        echo esc_html__( 'Send message (WP admin)', 'contact-list' );
+        ?></span></li>
+
             <hr class="clear" />
           </ul>
         </div>
@@ -5107,15 +5265,43 @@ class ContactListSettings {
             $wpdb->query( "CREATE TABLE IF NOT EXISTS " . $table_name . " (\n    \t  id              BIGINT(20) NOT NULL auto_increment,\n    \t  msg_id          VARCHAR(255) NOT NULL,\n    \t  sender_email    VARCHAR(255) NOT NULL,\n    \t  sender_name     VARCHAR(255) NOT NULL,\n    \t  recipient_email VARCHAR(255) NOT NULL,\n    \t  reply_to        VARCHAR(255) NOT NULL,\n    \t  msg_type        VARCHAR(255) NOT NULL,\n    \t  subject         VARCHAR(255) NOT NULL,\n    \t  response        VARCHAR(255) NOT NULL,\n    \t  mail_cnt        MEDIUMINT NOT NULL,\n    \t  report          TEXT NOT NULL,\n    \t  created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n    \t  PRIMARY KEY (id)\n    \t) " . $charset_collate . ";" );
             // Table for search log
             $table_name = $wpdb->prefix . 'contact_list_search_log';
-            $wpdb->query( "CREATE TABLE IF NOT EXISTS " . $table_name . " (\n        id              BIGINT(20) NOT NULL auto_increment,\n        created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n        user_ip         VARCHAR(255) NOT NULL,\n        user_country    VARCHAR(255) NOT NULL,\n        user_agent      VARCHAR(255) NOT NULL,\n        post_id         BIGINT(20) NOT NULL,\n        permalink       VARCHAR(255) NOT NULL,\n        referer_url     VARCHAR(255) NOT NULL,\n        search          VARCHAR(255) NOT NULL,\n        country         VARCHAR(255) NOT NULL,\n        state           VARCHAR(255) NOT NULL,\n        city            VARCHAR(255) NOT NULL,\n        category        VARCHAR(255) NOT NULL,\n        custom_field_1  VARCHAR(255) NOT NULL,\n        custom_field_2  VARCHAR(255) NOT NULL,\n        custom_field_3  VARCHAR(255) NOT NULL,\n        custom_field_4  VARCHAR(255) NOT NULL,\n        custom_field_5  VARCHAR(255) NOT NULL,\n        custom_field_6  VARCHAR(255) NOT NULL,\n        PRIMARY KEY (id)\n      ) " . $charset_collate . ";" );
+            $wpdb->query( "CREATE TABLE IF NOT EXISTS " . $table_name . " (\n        id              BIGINT(20) NOT NULL auto_increment,\n        created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n        user_ip         VARCHAR(255) NOT NULL,\n        user_country    VARCHAR(255) NOT NULL,\n        user_country_code    VARCHAR(255) NOT NULL,\n        user_city       VARCHAR(255) NOT NULL,\n        user_agent      VARCHAR(255) NOT NULL,\n        post_id         BIGINT(20) NOT NULL,\n        permalink       VARCHAR(255) NOT NULL,\n        referer_url     VARCHAR(255) NOT NULL,\n        search          VARCHAR(255) NOT NULL,\n        country         VARCHAR(255) NOT NULL,\n        state           VARCHAR(255) NOT NULL,\n        city            VARCHAR(255) NOT NULL,\n        category        VARCHAR(255) NOT NULL,\n        custom_field_1  VARCHAR(255) NOT NULL,\n        custom_field_2  VARCHAR(255) NOT NULL,\n        custom_field_3  VARCHAR(255) NOT NULL,\n        custom_field_4  VARCHAR(255) NOT NULL,\n        custom_field_5  VARCHAR(255) NOT NULL,\n        custom_field_6  VARCHAR(255) NOT NULL,\n        PRIMARY KEY (id)\n      ) " . $charset_collate . ";" );
             // user_country_code
+            $column_name = 'user_country_code';
+            $column_exists = $wpdb->get_results( "SHOW COLUMNS FROM `{$table_name}` LIKE '{$column_name}'" );
+            if ( empty( $column_exists ) ) {
+                $wpdb->query( "ALTER TABLE `{$table_name}` ADD `{$column_name}` VARCHAR(255) NOT NULL" );
+            }
             // user_city
+            $column_name = 'user_city';
+            $column_exists = $wpdb->get_results( "SHOW COLUMNS FROM `{$table_name}` LIKE '{$column_name}'" );
+            if ( empty( $column_exists ) ) {
+                $wpdb->query( "ALTER TABLE `{$table_name}` ADD `{$column_name}` VARCHAR(255) NOT NULL" );
+            }
             // Table for debug data and general log
             $table_name_log = $wpdb->prefix . 'contact_list_log';
             $wpdb->query( "CREATE TABLE IF NOT EXISTS " . $table_name_log . " (\n        id              BIGINT(20) NOT NULL auto_increment,\n        title           VARCHAR(255) NOT NULL,\n        message         TEXT NOT NULL,\n        created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n        PRIMARY KEY (id)\n      ) " . $charset_collate . ";" );
+            // Table for import log
+            $table_name_import_log = $wpdb->prefix . 'contact_list_import_log';
+            $wpdb->query( "CREATE TABLE IF NOT EXISTS " . $table_name_import_log . " (\n        id              BIGINT(20) NOT NULL auto_increment,\n        created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n        title           VARCHAR(255) NOT NULL,\n        message         TEXT NOT NULL,\n        PRIMARY KEY (id)\n      ) " . $charset_collate . ";" );
             update_option( 'contact_list_version', CONTACT_LIST_VERSION );
             ContactListHelpers::writeLog( 'Plugin updated to version ' . CONTACT_LIST_VERSION, '' );
             $cl_dir = wp_get_upload_dir()['basedir'] . '/contact-list/';
+            $cl_file = $cl_dir . 'index.php';
+            if ( !file_exists( $cl_dir ) || !is_dir( $cl_dir ) ) {
+                mkdir( $cl_dir );
+                if ( is_dir( $cl_dir ) ) {
+                    ContactListHelpers::writeLog( 'Created ' . $cl_dir, '' );
+                }
+            }
+            if ( is_dir( $cl_dir ) && !file_exists( $cl_file ) && ($file = fopen( $cl_file, 'a' )) ) {
+                fwrite( $file, '<?php // Automatically generated by Contact List ?>' . PHP_EOL );
+                fclose( $file );
+                if ( file_exists( $cl_file ) ) {
+                    ContactListHelpers::writeLog( 'Created ' . $cl_file, '' );
+                }
+            }
+            $cl_dir = wp_get_upload_dir()['basedir'] . '/contact-list/_import-temp/';
             $cl_file = $cl_dir . 'index.php';
             if ( !file_exists( $cl_dir ) || !is_dir( $cl_dir ) ) {
                 mkdir( $cl_dir );

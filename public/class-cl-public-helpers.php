@@ -69,7 +69,7 @@ class ContactListPublicHelpers {
         $html = '';
         $html .= '<div class="contact-list-public-pro-feature">';
         $html .= '<span class="contact-list-public-pro-feature-title">';
-        $html .= sanitize_text_field( __( 'This feature is available in the Pro version.', 'contact-list' ) );
+        $html .= sanitize_text_field( __( 'This feature is available in the paid plans.', 'contact-list' ) );
         $html .= '</span>';
         $html .= '<span>';
         $html .= sanitize_text_field( __( 'You can use the shortcodes', 'contact-list' ) ) . ' [[contact_list]] ' . sanitize_text_field( __( 'and', 'contact-list' ) ) . ' [[contact_list_simple]].';

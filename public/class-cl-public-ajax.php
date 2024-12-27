@@ -26,10 +26,14 @@ class ContactListPublicAjax {
                     }
                 }
                 $user_country = '';
+                $user_city = '';
+                $user_country = '';
+                $user_city = '';
                 global $wpdb;
                 $wpdb->insert( $wpdb->prefix . 'contact_list_search_log', array(
                     'user_ip'      => $user_ip,
                     'user_country' => $user_country,
+                    'user_city'    => $user_city,
                     'post_id'      => $post_id,
                     'permalink'    => $permalink,
                     'search'       => $search_term,

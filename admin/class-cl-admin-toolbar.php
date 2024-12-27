@@ -9,6 +9,7 @@ class ContactListAdminToolbar {
       'contact',
       'edit-contact-group',
       'contact_page_contact-list-import',
+      'contact_page_contact-list-import-log',
       'contact_page_contact-list-export',
       'contact_page_contact-list-printable',
       'contact_page_contact-list-send-email',
@@ -142,8 +143,8 @@ class ContactListAdminToolbar {
 
           <?php if (ContactListHelpers::isPremium() == 0): ?>
 
-            <a href="https://www.contactlistpro.com/pricing/?utm_source=Contact+List+Free&utm_medium=wpadminplugin&utm_campaign=Contact+List+upgrade&utm_content=header" target="_blank">
-              <?php echo esc_html__( 'Unlock Extra Features with Contact List PRO', 'contact-list' ); ?> ➜
+            <a href="https://www.contactlistpro.com/pricing/?utm_source=Contact+List+Free&utm_medium=wpadminplugin&utm_campaign=Contact+List+upgrade+trial&utm_content=header" target="_blank">
+              <?php echo esc_html__( 'Start a Free Trial of Contact List PRO', 'contact-list' ); ?> ➜
             </a>
 
           <?php endif; ?>
@@ -175,6 +176,9 @@ class ContactListAdminToolbar {
           break;
         case 'contact_page_contact-list-import':
           $page_title = sanitize_text_field( __('Import contacts', 'contact-list') );
+          break;
+        case 'contact_page_contact-list-import-log':
+          $page_title = sanitize_text_field( __('Import log', 'contact-list') );
           break;
         case 'contact_page_contact-list-export':
           $page_title = sanitize_text_field( __('Export contacts', 'contact-list') );

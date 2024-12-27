@@ -70,13 +70,13 @@ class ContactListPrintable {
             <input name="card_height" value="<?php echo isset($_GET['card_height']) ? esc_attr( $_GET['card_height'] ) : 340 ?>" style="width: 60px; text-align: right;" /> px
           </div>
 
-          <div style="background: #fff; margin-top: 20px; padding: 10px 20px;">
-            <input type="submit" class="contact-list-admin-button" style="font-size: 15px; padding: 5px 10px; font-weight: 600; border: 1px solid #bbb;" value="<?php echo esc_attr__('Show contacts', 'contact-list') ?>" style="margin-left: 6px;" />
+          <div>
+            <input type="submit" class="contact-list-admin-button contact-list-admin-default-btn" value="<?php echo esc_attr__('Show contacts', 'contact-list') ?>" style="margin-left: 6px;" />
 
             <?php if (isset($_GET['search'])): ?>
 
               <span class="cl-dont-print">
-                <button onclick="window.print();" class="contact-list-admin-button" style="font-size: 15px; padding: 5px 20px; font-weight: 600; background: mediumseagreen; border: 1px solid mediumseagreen; color: white; text-shadow: 1px 1px 0 #000;" ><?php echo esc_html__('Print contacts', 'contact-list') ?></button>
+                <button onclick="window.print();" class="contact-list-admin-button contact-list-admin-default-btn contact-list-admin-green-btn" style="margin-left: 10px;"><?php echo esc_html__('Print contacts', 'contact-list') ?></button>
               </span>
 
             <?php endif; ?>

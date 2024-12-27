@@ -1,17 +1,17 @@
-=== Contact List – Premium Staff Listing, Business Directory & Address Book  ===
+=== Contact List – Online Staff Directory & Address Book  ===
 Contributors: anssilaitila, freemius
-Tags: directory plugin, business directory, listing, address book, staff list
-Requires at least: 5.4.0
+Tags: staff directory, directory, staff, address book, listings
+Requires at least: 5.9.0
 Tested up to: 6.7
-Stable tag: 3.0.4
+Stable tag: 3.0.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-One-Stop Directory Solution! Quick searches, tailored filters, front-end messaging, custom fields, CSV import & export, reCAPTCHA & more.
+Build a custom staff directory, address book or any kind of listing with this easy-to-use plugin.
 
 == Description ==
 
-== The easiest business directory plugin for WordPress ==
+== The best staff directory plugin for WordPress ==
 
 Looking for a simple yet comprehensive directory plugin for a WordPress website? If the answer is YES, then you are in the right place!
 
@@ -249,6 +249,15 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 6. Contact management
 
 == Changelog ==
+
+= 3.0.5 - 2024-12-27 =
+* (Pro & Max) New feature: city detector for the search log
+* (All plans) Improvements to the import tool
+* (All plans) New setting: Import this number of contacts at once (plugin settings, Import & export tab)
+* (All plans) New setting: Delay in seconds between processing the smaller chunks of contacts (Import & export tab)
+* (All plans) New feature: Import log, every import is logged in detail
+* (All plans) New settings: Set default values for the send message tool at WP admin / Contact List / Send email
+* (Free + All plans) Tweaks and fixes
 
 = 3.0.4 - 2024-10-26 =
 * (Free + All plans) Search log improvements

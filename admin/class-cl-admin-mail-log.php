@@ -140,11 +140,11 @@ class ContactListAdminMailLog {
 
           <?php if (isset($_GET['mail_log_emptied'])): ?>
 
-            <?php echo '<h2 class="contact-list-mail-log-success">' . esc_html__('Mail log successfully emptied.', 'contact-list') . '</h2>'; ?>
+            <?php echo '<div class="contact-list-mail-log-success">' . esc_html__('Mail log successfully emptied.', 'contact-list') . '</div>'; ?>
 
           <?php elseif (isset($_GET['mail_log_emptied_error'])): ?>
 
-            <?php echo '<h2 class="contact-list-mail-log-success-error">' . esc_html__('Mail log not emptied.', 'contact-list') . '</h2>'; ?>
+            <?php echo '<div class="contact-list-mail-log-success-error">' . esc_html__('Mail log not emptied.', 'contact-list') . '</div>'; ?>
 
           <?php else: ?>
 

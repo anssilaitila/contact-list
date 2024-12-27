@@ -23,8 +23,8 @@ class ContactListAdminInlineStyles {
     $css .= '}';
     $css .= '}';
 
-    $num_1 = 10;
-    $num_2 = 11;
+    $num_1 = 11;
+    $num_2 = 12;
 
     $css .= '#menu-posts-contact > ul > li:nth-of-type(' . intval( $num_1 ) . ') {';
     $css .= 'border-bottom: 1px solid rgb(110, 110, 110);';

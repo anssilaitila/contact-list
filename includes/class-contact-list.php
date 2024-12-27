@@ -118,6 +118,7 @@ class Contact_List {
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-help-support.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-import-export.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-import.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-admin-import-log.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-export.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-printable.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-notifications.php';
@@ -190,6 +191,8 @@ class Contact_List {
         $plugin_shortcodes = new ContactListShortcodes();
         $plugin_help_support = new ContactListHelpSupport();
         $plugin_import_export = new ContactListImportExport();
+        $plugin_import = new ContactListImport();
+        $plugin_admin_import_log = new ContactListAdminImportLog();
         $plugin_printable = new ContactListPrintable();
         $plugin_query = new ContactListQuery();
         $plugin_cpt = new ContactListCPT();
@@ -261,8 +264,18 @@ class Contact_List {
         $this->loader->add_action( 'init', $plugin_admin_maintenance, 'update_db_check_v2' );
         // Admin operations
         $this->loader->add_filter( 'admin_init', $plugin_admin_operations, 'operations' );
-        // Import & export
+        // Import
         $this->loader->add_action( 'admin_menu', $plugin_import_export, 'register_import_page' );
+        $this->loader->add_action(
+            'contact_list_import',
+            $plugin_import_export,
+            'trigger_import',
+            10,
+            5
+        );
+        // Import log
+        $this->loader->add_action( 'admin_menu', $plugin_admin_import_log, 'register_import_log_page' );
+        // Export
         $this->loader->add_action( 'admin_menu', $plugin_import_export, 'register_export_page' );
         // Printable list
         $this->loader->add_action( 'admin_menu', $plugin_printable, 'register_printable_page' );

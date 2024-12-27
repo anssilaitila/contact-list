@@ -41,9 +41,26 @@ class ContactListHelpers {
         return $url;
     }
 
+    public static function getImportTempDir() {
+        $dir = wp_get_upload_dir()['basedir'] . '/contact-list/_import-temp/';
+        return $dir;
+    }
+
+    public static function getImportTempURL() {
+        $url = wp_get_upload_dir()['baseurl'] . '/contact-list/_import-temp/';
+        return $url;
+    }
+
     public static function getRandomFilename( $type ) {
         $rand = md5( rand() );
         $filename = 'contacts_' . $type . '_' . date( 'Y-m-d' ) . '_' . substr( $rand, 0, 6 ) . '.csv';
+        return $filename;
+    }
+
+    public static function getRandomImportFilename() {
+        //    $rand = md5( rand() );
+        //    substr($rand, 0, 12);
+        $filename = 'contacts_import.csv';
         return $filename;
     }
 
@@ -154,7 +171,7 @@ class ContactListHelpers {
     public static function proFeatureMarkup() {
         $html = '';
         $html .= '<div class="contact-list-pro-feature">';
-        $html .= '<span>' . sanitize_text_field( __( 'This feature is available in the Pro version.', 'contact-list' ) ) . '</span>';
+        $html .= '<span>' . sanitize_text_field( __( 'This feature is available in the paid plans.', 'contact-list' ) ) . '</span>';
         $html .= '<a class="contact-list-admin-button-upgrade-link" href="' . esc_url_raw( get_admin_url() ) . 'options-general.php?page=contact-list-pricing">' . sanitize_text_field( __( 'Upgrade here', 'contact-list' ) ) . '</a>';
         $html .= '</div>';
         return $html;
@@ -172,7 +189,7 @@ class ContactListHelpers {
     public static function proFeatureSettingsMarkup() {
         $html = '';
         $html .= '<div class="contact-list-pro-feature">';
-        $html .= '<span>' . sanitize_text_field( __( 'More settings available in the Pro version.', 'contact-list' ) ) . '</span>';
+        $html .= '<span>' . sanitize_text_field( __( 'More settings available in the paid plans.', 'contact-list' ) ) . '</span>';
         $html .= '<a href="' . esc_url_raw( get_admin_url() ) . 'options-general.php?page=contact-list-pricing">' . sanitize_text_field( __( 'Upgrade here', 'contact-list' ) ) . '</a>';
         $html .= '</div>';
         return $html;

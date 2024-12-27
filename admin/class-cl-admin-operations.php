@@ -50,6 +50,29 @@ class ContactListAdminOperations {
 
       }
 
+    } elseif (isset($_POST) && isset($_POST['_contact_list_empty_import_log']) && isset($_REQUEST['_wpnonce']) && is_super_admin()) {
+
+      $wp_nonce = sanitize_text_field( $_REQUEST['_wpnonce'] );
+
+      if ( wp_verify_nonce($wp_nonce, '_contact-list-empty-import-log')) {
+
+        global $wpdb;
+        $delete = $wpdb->query("TRUNCATE TABLE {$wpdb->prefix}contact_list_import_log");
+
+        $goto_url = get_admin_url(null, './edit.php?post_type=' . CONTACT_LIST_CPT . '&page=contact-list-import-log&import_log_emptied=1');
+
+        wp_safe_redirect( esc_url_raw( $goto_url ) );
+
+        exit;
+
+      } else {
+
+        $goto_url = get_admin_url(null, './edit.php?post_type=' . CONTACT_LIST_CPT . '&page=contact-list-import-log&import_log_emptied_error=1');
+
+        wp_safe_redirect( esc_url_raw( $goto_url ) );
+
+      }
+
     }
 
 
