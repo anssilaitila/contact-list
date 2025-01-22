@@ -20,12 +20,13 @@ class ContactListShortcodes {
         ?>
 
     <?php 
-        $plan_info_markup_all_plans = '<a href="' . esc_url_raw( get_admin_url() ) . 'options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">' . sanitize_text_field( __( 'Paid plans', 'contact-list' ) ) . '</a>';
-        $plan_info_markup_professional = '<a href="' . esc_url_raw( get_admin_url() ) . 'options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">PRO</a>';
+        $plan_info_markup_all_plans = '<a href="https://www.contactlistpro.com/pricing/?utm_source=Contact+List+Free&utm_medium=plugin-shortcodes" target="_blank" class="contact-list-pro-only-inline">' . sanitize_text_field( __( 'Paid plans', 'contact-list' ) ) . '</a>';
+        $plan_info_markup_professional = '<a href="https://www.contactlistpro.com/pricing/?utm_source=Contact+List+Free&utm_medium=plugin-shortcodes" target="_blank" class="contact-list-pro-only-inline">PRO</a>';
         $plan_info_markup_allowed_tags = array(
             'a' => array(
-                'href'  => array(),
-                'class' => array(),
+                'href'   => array(),
+                'class'  => array(),
+                'target' => array(),
             ),
         );
         ?>
@@ -67,7 +68,7 @@ class ContactListShortcodes {
             </p>
 
             <p><?php 
-            echo esc_html__( 'The forum is actively monitored and you will get a quick answer.', 'shared-files' );
+            echo esc_html__( 'The forum is actively monitored and you will get a quick answer.', 'contact-list' );
             ?></p>
 
           <?php 
@@ -92,9 +93,7 @@ class ContactListShortcodes {
         } else {
             ?>
 
-              <a href="<?php 
-            echo esc_url( get_admin_url() );
-            ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline" style="margin-left: 0; margin-right: 1px;"><?php 
+              <a href="https://www.contactlistpro.com/pricing/?utm_source=Contact+List+Free&utm_medium=plugin-shortcodes" target="_blank" class="contact-list-pro-only-inline" style="margin-left: 0; margin-right: 1px;"><?php 
             echo esc_html__( 'Paid plans', 'contact-list' );
             ?></a>
 

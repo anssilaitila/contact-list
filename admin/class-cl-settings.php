@@ -3008,12 +3008,17 @@ class ContactListSettings {
             if ( $free ) {
                 ?>
 
-          <a href="<?php 
-                echo esc_url( get_admin_url() );
-                ?>options-general.php?page=contact-list-pricing">
-            <div class="contact-list-settings-pro-feature-overlay"><div><?php 
+          <a href="https://www.contactlistpro.com/pricing/?utm_source=Contact+List+Free&utm_medium=plugin-settings" target="_blank">
+            <div class="contact-list-settings-pro-feature-overlay">
+              <div>
+                <span><?php 
                 echo esc_html__( 'All Plans', 'contact-list' );
-                ?></div></div>
+                ?></span>
+                <img src="<?php 
+                echo esc_url_raw( CONTACT_LIST_URI );
+                ?>img/external-link-black.svg" class="contact-list-external-link-icon" />
+              </div>
+            </div>
           </a>
 
         <?php 
@@ -3533,12 +3538,17 @@ class ContactListSettings {
             if ( $free ) {
                 ?>
 
-          <a href="<?php 
-                echo esc_url( get_admin_url() );
-                ?>options-general.php?page=contact-list-pricing">
-            <div class="contact-list-settings-pro-feature-overlay"><div><?php 
+          <a href="https://www.contactlistpro.com/pricing/?utm_source=Contact+List+Free&utm_medium=plugin-settings" target="_blank">
+            <div class="contact-list-settings-pro-feature-overlay">
+              <div>
+                <span><?php 
                 echo esc_html__( 'All Plans', 'contact-list' );
-                ?></div></div>
+                ?></span>
+                <img src="<?php 
+                echo esc_url_raw( CONTACT_LIST_URI );
+                ?>img/external-link-black.svg" class="contact-list-external-link-icon" />
+              </div>
+            </div>
           </a>
 
         <?php 
@@ -3753,12 +3763,17 @@ class ContactListSettings {
             if ( $free ) {
                 ?>
 
-          <a href="<?php 
-                echo esc_url( get_admin_url() );
-                ?>options-general.php?page=contact-list-pricing">
-            <div class="contact-list-settings-pro-feature-overlay"><div><?php 
+          <a href="https://www.contactlistpro.com/pricing/?utm_source=Contact+List+Free&utm_medium=plugin-settings" target="_blank">
+            <div class="contact-list-settings-pro-feature-overlay">
+              <div>
+                <span><?php 
                 echo esc_html( $plan_required );
-                ?></div></div>
+                ?></span>
+                <img src="<?php 
+                echo esc_url_raw( CONTACT_LIST_URI );
+                ?>img/external-link-black.svg" class="contact-list-external-link-icon" />
+              </div>
+            </div>
           </a>
 
         <?php 
@@ -3941,6 +3956,12 @@ class ContactListSettings {
                     $plan_required = 'Pro';
                     ?>
         <?php 
+                } elseif ( $field_name == '_FREE_esl_user_city' ) {
+                    ?>
+          <?php 
+                    $plan_required = 'Pro';
+                    ?>
+        <?php 
                 } elseif ( substr( $field_name, 0, strlen( '_FREE_can_edit_contacts_' ) ) === '_FREE_can_edit_contacts_' ) {
                     ?>
           <?php 
@@ -3994,12 +4015,17 @@ class ContactListSettings {
             if ( $free ) {
                 ?>
 
-          <a href="<?php 
-                echo esc_url( get_admin_url() );
-                ?>options-general.php?page=contact-list-pricing">
-            <div class="contact-list-settings-pro-feature-overlay"><div><?php 
+          <a href="https://www.contactlistpro.com/pricing/?utm_source=Contact+List+Free&utm_medium=plugin-settings" target="_blank">
+            <div class="contact-list-settings-pro-feature-overlay">
+              <div>
+                <span><?php 
                 echo esc_html( $plan_required );
-                ?></div></div>
+                ?></span>
+                <img src="<?php 
+                echo esc_url_raw( CONTACT_LIST_URI );
+                ?>img/external-link-black.svg" class="contact-list-external-link-icon" />
+              </div>
+            </div>
           </a>
 
         <?php 
@@ -4302,12 +4328,17 @@ class ContactListSettings {
             if ( $free ) {
                 ?>
 
-          <a href="<?php 
-                echo esc_url( get_admin_url() );
-                ?>options-general.php?page=contact-list-pricing">
-            <div class="contact-list-settings-pro-feature-overlay"><div><?php 
+          <a href="https://www.contactlistpro.com/pricing/?utm_source=Contact+List+Free&utm_medium=plugin-settings" target="_blank">
+            <div class="contact-list-settings-pro-feature-overlay">
+              <div>
+                <span><?php 
                 echo esc_html( $plan_required );
-                ?></div></div>
+                ?></span>
+                <img src="<?php 
+                echo esc_url_raw( CONTACT_LIST_URI );
+                ?>img/external-link-black.svg" class="contact-list-external-link-icon" />
+              </div>
+            </div>
           </a>
 
         <?php 
@@ -4376,10 +4407,17 @@ class ContactListSettings {
             if ( $free ) {
                 ?>
 
-          <a href="<?php 
-                echo esc_url( get_admin_url() );
-                ?>options-general.php?page=contact-list-pricing">
-            <div class="contact-list-settings-pro-feature-overlay"><div>All Plans</div></div>
+          <a href="https://www.contactlistpro.com/pricing/?utm_source=Contact+List+Free&utm_medium=plugin-settings" target="_blank">
+            <div class="contact-list-settings-pro-feature-overlay">
+              <div>
+                <span><?php 
+                echo esc_html__( 'All Plans', 'contact-list' );
+                ?></span>
+                <img src="<?php 
+                echo esc_url_raw( CONTACT_LIST_URI );
+                ?>img/external-link-black.svg" class="contact-list-external-link-icon" />
+              </div>
+            </div>
           </a>
 
         <?php 
@@ -4638,10 +4676,17 @@ class ContactListSettings {
             if ( $free ) {
                 ?>
 
-          <a href="<?php 
-                echo esc_url( get_admin_url() );
-                ?>options-general.php?page=contact-list-pricing">
-            <div class="contact-list-settings-pro-feature-overlay"><div>All Plans</div></div>
+          <a href="https://www.contactlistpro.com/pricing/?utm_source=Contact+List+Free&utm_medium=plugin-settings" target="_blank">
+            <div class="contact-list-settings-pro-feature-overlay">
+              <div>
+                <span><?php 
+                echo esc_html__( 'All Plans', 'contact-list' );
+                ?></span>
+                <img src="<?php 
+                echo esc_url_raw( CONTACT_LIST_URI );
+                ?>img/external-link-black.svg" class="contact-list-external-link-icon" />
+              </div>
+            </div>
           </a>
 
         <?php 
@@ -4699,10 +4744,17 @@ class ContactListSettings {
             if ( $free ) {
                 ?>
 
-          <a href="<?php 
-                echo esc_url( get_admin_url() );
-                ?>options-general.php?page=contact-list-pricing">
-            <div class="contact-list-settings-pro-feature-overlay"><div>All Plans</div></div>
+          <a href="https://www.contactlistpro.com/pricing/?utm_source=Contact+List+Free&utm_medium=plugin-settings" target="_blank">
+            <div class="contact-list-settings-pro-feature-overlay">
+              <div>
+                <span><?php 
+                echo esc_html__( 'All Plans', 'contact-list' );
+                ?></span>
+                <img src="<?php 
+                echo esc_url_raw( CONTACT_LIST_URI );
+                ?>img/external-link-black.svg" class="contact-list-external-link-icon" />
+              </div>
+            </div>
           </a>
 
         <?php 
@@ -4788,10 +4840,17 @@ class ContactListSettings {
             if ( $free ) {
                 ?>
 
-          <a href="<?php 
-                echo esc_url( get_admin_url() );
-                ?>options-general.php?page=contact-list-pricing">
-            <div class="contact-list-settings-pro-feature-overlay"><div>All Plans</div></div>
+          <a href="https://www.contactlistpro.com/pricing/?utm_source=Contact+List+Free&utm_medium=plugin-settings" target="_blank">
+            <div class="contact-list-settings-pro-feature-overlay">
+              <div>
+                <span><?php 
+                echo esc_html__( 'All Plans', 'contact-list' );
+                ?></span>
+                <img src="<?php 
+                echo esc_url_raw( CONTACT_LIST_URI );
+                ?>img/external-link-black.svg" class="contact-list-external-link-icon" />
+              </div>
+            </div>
           </a>
 
         <?php 
@@ -4856,10 +4915,17 @@ class ContactListSettings {
             if ( $free ) {
                 ?>
 
-          <a href="<?php 
-                echo esc_url( get_admin_url() );
-                ?>options-general.php?page=contact-list-pricing">
-            <div class="contact-list-settings-pro-feature-overlay"><div>All Plans</div></div>
+          <a href="https://www.contactlistpro.com/pricing/?utm_source=Contact+List+Free&utm_medium=plugin-settings" target="_blank">
+            <div class="contact-list-settings-pro-feature-overlay">
+              <div>
+                <span><?php 
+                echo esc_html__( 'All Plans', 'contact-list' );
+                ?></span>
+                <img src="<?php 
+                echo esc_url_raw( CONTACT_LIST_URI );
+                ?>img/external-link-black.svg" class="contact-list-external-link-icon" />
+              </div>
+            </div>
           </a>
 
         <?php 
@@ -5018,7 +5084,7 @@ class ContactListSettings {
         echo '</div>';
         echo '</div>';
         echo '<a href="' . esc_url( get_admin_url() ) . 'options-general.php?page=contact-list&_cl_reload=' . esc_attr( md5( rand() ) ) . '#contact-list-settings-tab-14" style="margin-left: 7px; color: #333; font-weight: 700;">';
-        echo esc_html__( "Country detector in search log", 'contact-list' );
+        echo esc_html__( "Country and city detector in search log", 'contact-list' );
         echo '</a>';
         echo '</div>';
         echo '</div>';
@@ -5165,17 +5231,9 @@ class ContactListSettings {
         echo esc_html__( 'Simple list', 'contact-list' );
         ?></span></li>
 
-            <?php 
-        if ( ContactListHelpers::isMin2() ) {
-            ?>
-
-              <li class="contact-list-settings-tab-9-title" data-settings-container="contact-list-settings-tab-9"><span><?php 
-            echo esc_html__( 'Contact edit', 'contact-list' );
-            ?></span></li>
-
-            <?php 
-        }
-        ?>
+            <li class="contact-list-settings-tab-9-title" data-settings-container="contact-list-settings-tab-9"><span><?php 
+        echo esc_html__( 'Contact edit', 'contact-list' );
+        ?></span></li>
 
             <?php 
         if ( ContactListHelpers::isMin2() ) {
@@ -5244,7 +5302,7 @@ class ContactListSettings {
 
     public function add_upgrade_link() {
         global $submenu;
-        $permalink = 'options-general.php?page=contact-list-pricing';
+        $permalink = 'https://www.contactlistpro.com/pricing/?utm_source=Contact+List+Free&utm_medium=wp-menu-upgrade';
         $menuitem = 'edit.php?post_type=' . CONTACT_LIST_CPT;
         $submenu[$menuitem][] = array(
             sanitize_text_field( __( 'Upgrade', 'contact-list' ) ) . '&nbsp;&nbsp;➤',

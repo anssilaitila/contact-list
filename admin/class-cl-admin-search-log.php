@@ -79,7 +79,7 @@ class ContactListAdminSearchLog {
           <th><?php echo esc_html__('Country', 'contact-list') ?></th>
 
           <?php if ( isset( $s['esl_user_city'] ) ): ?>
-            <th><?php echo esc_html__('City', 'shared-files') ?></th>
+            <th><?php echo esc_html__('City', 'contact-list') ?></th>
           <?php endif; ?>
 
           <th><?php echo esc_html__('Referer URL', 'contact-list') ?></th>

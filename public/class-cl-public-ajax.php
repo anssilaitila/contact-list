@@ -232,7 +232,7 @@ class ContactListPublicAjax {
                 ),
             );
         }
-        $posts_per_page = -1;
+        $posts_per_page = 100;
         $wp_query = new WP_Query(array(
             'post_type'      => CONTACT_LIST_CPT,
             'post_status'    => 'publish',

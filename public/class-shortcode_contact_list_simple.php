@@ -140,7 +140,7 @@ class ShortcodeContactListSimple {
             }
         }
         //    $paged = (get_query_var('paged')) ? absint(get_query_var('paged')) : 1;
-        $posts_per_page = -1;
+        $posts_per_page = 100;
         $wp_query = new WP_Query(array(
             'post_type'      => 'contact',
             'post_status'    => 'publish',

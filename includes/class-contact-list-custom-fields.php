@@ -505,10 +505,13 @@ class ContactListCustomFields {
                     }
                     ?>
 
-                          <a href="<?php 
-                    echo esc_url( get_admin_url() );
-                    ?>options-general.php?page=contact-list-pricing">
-                            <div class="contact-list-settings-pro-feature-overlay"><span>All Plans</span></div>
+                          <a href="https://www.contactlistpro.com/pricing/?utm_source=Contact+List+Free&utm_medium=contact-edit" target="_blank">
+                            <div class="contact-list-settings-pro-feature-overlay">
+                              <span>All Plans</span>
+                              <img src="<?php 
+                    echo esc_url_raw( CONTACT_LIST_URI );
+                    ?>img/external-link-black.svg" class="contact-list-external-link-icon" />
+                            </div>
                           </a>
 
                         </div>

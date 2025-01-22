@@ -52,9 +52,9 @@ class ContactListAdminInlineScripts {
         $admin_pages = ContactListAdminToolbar::get_admin_pages();
         if ( !$is_premium && in_array( $current_screen_id, $admin_pages ) ) {
             if ( $current_screen_id == 'settings_page_contact-list' ) {
-                $js = "\n        jQuery( document ).ready( function(\$) {\n          \$( '.contact-list-admin-pro-features' ).appendTo( '.contact-list-admin-page-content-container' ).css( 'display', 'block' );\n        });\n        ";
+                $js = "\n        jQuery( document ).ready( function(\$) {\n          \$( '.contact-list-admin-pro-features' ).appendTo( '.contact-list-admin-page-content-container' ).fadeIn(2000);\n        });\n        ";
             } else {
-                $js = "\n        jQuery( document ).ready( function(\$) {\n          \$( '.contact-list-admin-pro-features' ).appendTo( '#wpbody-content .wrap' ).css( 'display', 'block' );\n        });\n        ";
+                $js = "\n        jQuery( document ).ready( function(\$) {\n          \$( '.contact-list-admin-pro-features' ).appendTo( '#wpbody-content .wrap' ).fadeIn(2000);\n        });\n        ";
             }
         }
         return $js;

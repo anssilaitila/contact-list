@@ -8,6 +8,31 @@ class ContactListAdminInlineStyles {
 
     $css = '';
 
+    $css .= '.wp-list-table tr[data-slug="contact-list"] span.upgrade {';
+    $css .= 'display: none !important;';
+    $css .= '}';
+
+    $css .= '.wp-submenu .contact-list-upgrade {';
+    $css .= 'display: none !important;';
+    $css .= '}';
+
+    $css .= 'a[href^="options-general.php?page=contact-list-pricing"] {';
+    $css .= 'display: none !important;';
+    $css .= '}';
+
+    $css .= '.contact-list-pro-only {';
+    $css .= 'display: flex;';
+    $css .= 'justify-content: center;';
+    $css .= 'align-content: center;';
+    $css .= 'align-items: center;';
+    $css .= '}';
+
+    $css .= '.contact-list-external-link-icon {';
+    $css .= 'margin-left: 3px;';
+    $css .= 'margin-bottom: 2px;';
+    $css .= 'width: 13px;';
+    $css .= '}';
+
     $css .= '#menu-posts-contact > ul > li:nth-of-type(5):before { ';
     $css .= 'display: block;';
     $css .= "content: 'Tools';";

@@ -256,10 +256,27 @@ class ContactListAdminToolbar {
 
     ?>
 
-    <?php if ( $show_box ): ?>
+    <?php if ( ContactListHelpers::isPremium() == 0 && $show_box ): ?>
 
-      <div class="contact-list-admin-pro-features">
-      </div>
+      <?php
+      $current_date = wp_date('Y-m-d');
+
+      $start_date = '2025-01-13';
+      $end_date = '2025-02-02';
+      ?>
+
+      <?php if ($current_date >= $start_date && $current_date <= $end_date): ?>
+
+        <div class="contact-list-admin-pro-features-container">
+
+          <a href="https://www.contactlistpro.com/pricing/?utm_source=Contact+List+Free&utm_medium=special-offer" target="_blank" class="contact-list-admin-pro-features">
+            <span><?php echo esc_html__('Special offer: All licenses -30% for Contact List PRO!', 'contact-list') ?></span>
+            <span class="contact-list-admin-pro-features-button"><?php echo esc_html__('Buy Now', 'contact-list') ?></span>
+          </a>
+
+        </div>
+
+      <?php endif; ?>
 
     <?php endif; ?>
 

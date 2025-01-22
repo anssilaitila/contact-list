@@ -113,6 +113,7 @@ class Contact_List {
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-admin-inline-styles.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-admin-inline-scripts.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-admin-statistics.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-admin-pagination.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-settings.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-shortcodes.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cl-help-support.php';

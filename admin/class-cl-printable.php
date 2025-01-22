@@ -142,10 +142,25 @@ class ContactListPrintable {
           		);
           }
 
+          $posts_per_page = 100;
+
+          if ( isset($_SETTING['search']) ) {
+            $posts_per_page = 1000;
+          }
+
+          $paged = 1;
+
+          if (isset($_GET['_page']) && $_GET['_page']) {
+            $paged = (int) $_GET['_page'];
+          } elseif (get_query_var('paged')) {
+            $paged = absint( get_query_var('paged') );
+          }
+
           $wp_query = new WP_Query(array(
             'post_type'       => 'contact',
             'post_status'     => 'publish',
-            'posts_per_page'  => -1,
+            'posts_per_page'  => $posts_per_page,
+            'paged'           => $paged,
 
             'meta_query'      => $meta_query,
             'tax_query'       => $tax_query,
@@ -172,6 +187,8 @@ class ContactListPrintable {
           endif;
 
           $html .= '</div>';
+
+          $html .= ContactListAdminPagination::getPagination(1, $wp_query, 'default');
 
           echo $html;
 
