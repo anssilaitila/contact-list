@@ -134,7 +134,16 @@ class ContactListAdminToolbar {
             <span class="contact-list-admin-toolbar-divider"></span>
 
             <a href="<?php echo esc_url_raw( get_admin_url(null, './edit.php?post_type=contact&page=contact-list-shortcodes') ) ?>"><?php echo esc_html__('Shortcodes', 'contact-list'); ?></a>
-            <a href="<?php echo esc_url_raw( get_admin_url(null, './edit.php?post_type=contact&page=contact-list-support') ) ?>"><?php echo esc_html__('Support', 'contact-list'); ?></a>
+
+            <?php if ( ContactListHelpers::isPremium() == 0 ): ?>
+
+              <a class="contact-list-admin-toolbar-support" href="https://wordpress.org/support/plugin/contact-list/" target="_blank"><?php echo esc_html__('Support', 'contact-list'); ?><img src="<?php echo esc_url_raw( CONTACT_LIST_URI ) ?>img/external-link-black.svg" class="contact-list-external-link-icon" /></a>
+
+            <?php else: ?>
+
+              <a href="<?php echo esc_url_raw( get_admin_url(null, './edit.php?post_type=contact&page=contact-list-support') ) ?>"><?php echo esc_html__('Support', 'contact-list'); ?></a>
+
+            <?php endif; ?>
 
           </div>
         </div>
