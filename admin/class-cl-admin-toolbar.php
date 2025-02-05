@@ -152,7 +152,7 @@ class ContactListAdminToolbar {
 
           <?php if (ContactListHelpers::isPremium() == 0): ?>
 
-            <a href="https://www.contactlistpro.com/pricing/?utm_source=Contact+List+Free&utm_medium=wpadminplugin&utm_campaign=Contact+List+upgrade+trial&utm_content=header" target="_blank">
+            <a href="https://www.contactlistpro.com/pricing/?utm_source=Contact+List+Free&utm_medium=toolbar-button-trial" target="_blank">
               <?php echo esc_html__( 'Start a Free Trial of Contact List PRO', 'contact-list' ); ?> ➜
             </a>
 

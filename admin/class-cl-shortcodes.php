@@ -20,13 +20,12 @@ class ContactListShortcodes {
         ?>
 
     <?php 
-        $plan_info_markup_all_plans = '<a href="https://www.contactlistpro.com/pricing/?utm_source=Contact+List+Free&utm_medium=plugin-shortcodes" target="_blank" class="contact-list-pro-only-inline">' . sanitize_text_field( __( 'Paid plans', 'contact-list' ) ) . '</a>';
-        $plan_info_markup_professional = '<a href="https://www.contactlistpro.com/pricing/?utm_source=Contact+List+Free&utm_medium=plugin-shortcodes" target="_blank" class="contact-list-pro-only-inline">PRO</a>';
+        $plan_info_markup_all_plans = '<a href="' . esc_url_raw( get_admin_url() ) . 'options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">' . sanitize_text_field( __( 'Paid plans', 'contact-list' ) ) . '</a>';
+        $plan_info_markup_professional = '<a href="' . esc_url_raw( get_admin_url() ) . 'options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline">PRO</a>';
         $plan_info_markup_allowed_tags = array(
             'a' => array(
-                'href'   => array(),
-                'class'  => array(),
-                'target' => array(),
+                'href'  => array(),
+                'class' => array(),
             ),
         );
         ?>
@@ -93,7 +92,9 @@ class ContactListShortcodes {
         } else {
             ?>
 
-              <a href="https://www.contactlistpro.com/pricing/?utm_source=Contact+List+Free&utm_medium=plugin-shortcodes" target="_blank" class="contact-list-pro-only-inline" style="margin-left: 0; margin-right: 1px;"><?php 
+              <a href="<?php 
+            echo esc_url( get_admin_url() );
+            ?>options-general.php?page=contact-list-pricing" class="contact-list-pro-only-inline" style="margin-left: 0; margin-right: 1px;"><?php 
             echo esc_html__( 'Paid plans', 'contact-list' );
             ?></a>
 

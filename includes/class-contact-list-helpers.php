@@ -172,7 +172,7 @@ class ContactListHelpers {
         $html = '';
         $html .= '<div class="contact-list-pro-feature">';
         $html .= '<span>' . sanitize_text_field( __( 'This feature is available in the paid plans.', 'contact-list' ) ) . '</span>';
-        $html .= '<a class="contact-list-admin-button-upgrade-link" href="https://www.contactlistpro.com/pricing/?utm_source=Contact+List+Free&utm_medium=pro-feature" target="_blank">' . sanitize_text_field( __( 'Upgrade here', 'contact-list' ) ) . '</a>';
+        $html .= '<a class="contact-list-admin-button-upgrade-link" href="' . esc_url_raw( get_admin_url() ) . 'options-general.php?page=contact-list-pricing">' . sanitize_text_field( __( 'Upgrade here', 'contact-list' ) ) . '</a>';
         $html .= '</div>';
         return $html;
     }
@@ -181,7 +181,7 @@ class ContactListHelpers {
         $html = '';
         $html .= '<div class="contact-list-pro-feature">';
         $html .= '<span>' . sanitize_text_field( $text ) . '</span>';
-        $html .= '<a href="https://www.contactlistpro.com/pricing/?utm_source=Contact+List+Free&utm_medium=pro-feature" target="_blank">' . sanitize_text_field( __( 'Upgrade here', 'contact-list' ) ) . '</a>';
+        $html .= '<a href="' . esc_url_raw( get_admin_url() ) . 'options-general.php?page=contact-list-pricing">' . sanitize_text_field( __( 'Upgrade here', 'contact-list' ) ) . '</a>';
         $html .= '</div>';
         return $html;
     }
@@ -190,7 +190,7 @@ class ContactListHelpers {
         $html = '';
         $html .= '<div class="contact-list-pro-feature">';
         $html .= '<span>' . sanitize_text_field( __( 'More settings available in the paid plans.', 'contact-list' ) ) . '</span>';
-        $html .= '<a href="https://www.contactlistpro.com/pricing/?utm_source=Contact+List+Free&utm_medium=pro-feature" target="_blank">' . sanitize_text_field( __( 'Upgrade here', 'contact-list' ) ) . '</a>';
+        $html .= '<a href="' . esc_url_raw( get_admin_url() ) . 'options-general.php?page=contact-list-pricing">' . sanitize_text_field( __( 'Upgrade here', 'contact-list' ) ) . '</a>';
         $html .= '</div>';
         return $html;
     }
