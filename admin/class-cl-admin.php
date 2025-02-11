@@ -102,6 +102,13 @@ class Contact_List_Admin {
                 'all'
             );
             wp_add_inline_style( $this->plugin_name . '-printable', $printable_inline_css );
+            wp_enqueue_style(
+                $this->plugin_name . '-font-awesome',
+                CONTACT_LIST_URI . 'dist/font-awesome-4.7.0/css/font-awesome.min.css',
+                array(),
+                $this->version,
+                'all'
+            );
         } elseif ( $hook == 'settings_page_contact-list' ) {
             wp_enqueue_style(
                 $this->plugin_name . '-font-awesome',

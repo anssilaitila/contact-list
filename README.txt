@@ -3,7 +3,7 @@ Contributors: anssilaitila, freemius
 Tags: staff directory, directory, staff, address book, listings
 Requires at least: 5.9.0
 Tested up to: 6.7
-Stable tag: 3.0.8
+Stable tag: 3.0.9
 Requires PHP: 7.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -250,6 +250,11 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 6. Contact management
 
 == Changelog ==
+
+= 3.0.9 - 2025-02-11 =
+* (All plans) More detailed logging added to import regarding errors and possible issues
+* (All plans) Status info for WP-Cron added to WP admin / Import log
+* (Free + All plans) Missing Font Awesome icons added to printable list
 
 = 3.0.8 - 2025-02-05 =
 * (Free + All plans) Tweaks and fixes
