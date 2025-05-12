@@ -1,11 +1,11 @@
 === Contact List – Online Staff Directory & Address Book  ===
 Contributors: anssilaitila, freemius
 Tags: staff directory, directory, staff, address book, listings
-Requires at least: 5.9.0
-Tested up to: 6.7
-Stable tag: 3.0.9
-Requires PHP: 7.1
-License: GPLv2 or later
+Requires at least: 6.2
+Tested up to: 6.8
+Stable tag: 3.0.11
+Requires PHP: 7.2
+License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Build a custom staff directory, address book or any kind of listing with this easy-to-use plugin.
@@ -251,288 +251,158 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 
 == Changelog ==
 
+= 3.0.11 - 2025-05-12 =
+* Bug fixes
+
+= 3.0.10 - 2025-05-07 =
+* Tweaks and fixes
+
 = 3.0.9 - 2025-02-11 =
-* (All plans) More detailed logging added to import regarding errors and possible issues
-* (All plans) Status info for WP-Cron added to WP admin / Import log
-* (Free + All plans) Missing Font Awesome icons added to printable list
+* Missing Font Awesome icons added to printable list
 
 = 3.0.8 - 2025-02-05 =
-* (Free + All plans) Tweaks and fixes
+* Tweaks and fixes
 
 = 3.0.7 - 2025-01-27 =
-* (Free + All plans) Tweaks and fixes
+* Tweaks and fixes
 
 = 3.0.6 - 2025-01-23 =
-* (Free + All plans) Bug fixes
+* Bug fixes
 
 = 3.0.5 - 2024-12-27 =
-* (Pro & Max) New feature: city detector for the search log
-* (All plans) Improvements to the import tool
-* (All plans) New setting: Import this number of contacts at once (plugin settings, Import & export tab)
-* (All plans) New setting: Delay in seconds between processing the smaller chunks of contacts (Import & export tab)
-* (All plans) New feature: Import log, every import is logged in detail
-* (All plans) New settings: Set default values for the send message tool at WP admin / Contact List / Send email
-* (Free + All plans) Tweaks and fixes
+* Tweaks and fixes
 
 = 3.0.4 - 2024-10-26 =
-* (Free + All plans) Search log improvements
+* Search log improvements
 
 = 3.0.3 - 2024-10-23 =
-* (All plans) New feature: country detector (plugin settings, Search log tab). When the setting is active, search log will contain the searcher's country.
-* (Free + All plans) Tweaks and fixes
+* Tweaks and fixes
 
 = 3.0.2 - 2024-10-12 =
-* (Free + All plans) New feature: Search log. It is now possible to log all searches made in the front end. Can be activated from the plugin settings, Search log tab.
-* (Free + All plans) Mail log now shows all items in the log and also has pagination
-* (Free + All plans) Tweaks and fixes
+* New feature: Search log. It is now possible to log all searches made in the front end. Can be activated from the plugin settings, Search log tab.
+* Mail log now shows all items in the log and also has pagination
+* Tweaks and fixes
 
 = 3.0.1 - 2024-10-08 =
-* (Free + All plans) Fixed an issue where the custom field titles were not translated properly
+* Fixed an issue where the custom field titles were not translated properly
 
 = 3.0.0 - 2024-10-07 =
-* (Free + All plans) New setting: Use default titles for custom fields (plugin settings, Custom fields tab). This way the custom field titles are translatable to multiple languages by using Loco Translate or similar plugin.
-* (All plans) New setting: Set group taxonomy public (this is required for the taxonomy to appear in Polylang settings), plugin settings / Custom post type tab
+* New setting: Use default titles for custom fields (plugin settings, Custom fields tab). This way the custom field titles are translatable to multiple languages by using Loco Translate or similar plugin.
 
 = 2.9.99 - 2024-09-03 =
-* (Free + All plans) Tweaks and fixes
-* (All plans) New parameter for the simple list: [contact_list_simple hide_contacts_first=1]
+* Tweaks and fixes
 
 = 2.9.98 - 2024-08-03 =
-* (Free + All plans) Bug fixes
+* Bug fixes
 
 = 2.9.97 - 2024-07-30 =
-* (Free + All plans) Gutenberg block added: Contact List (category: text)
+* Gutenberg block added: Contact List (category: text)
 
 = 2.9.96 - 2024-07-24 =
-* (Free + All plans) Bug fixes
+* Bug fixes
 
 = 2.9.95 - 2024-05-26 =
-* (All plans) It is now possible to import & export the chosen fields in any order (see plugins settings, Import & Export tab)
-* (All plans) New feature: export filtered contacts to a csv file from the frontend: [contact_list download_csv=1] (fields can be defined in the settings)
-* (Free + All plans) Bug fixes
+* Bug fixes
 
 = 2.9.94 - 2024-05-19 =
-* (All plans) New setting for import & export: Separator for the CSV file
-* (All plans) New setting for custom fields: Allow unfiltered content
-* (Free + All plans) Bug fixes
+* Bug fixes
 
 = 2.9.93 - 2024-05-09 =
-* (All plans) More settings to hide fields from the contact edit form (like specific custom fields): see plugin settings, Contact edit tab
-* (All plans) Appropriate field titles added to the export file
-* (Free + All plans) Accessibility improvements for the send message modal window
-* (Free + All plans) New settings for the send message modal window (plugin settings, Send message modal tab)
+* Accessibility improvements for the send message modal window
+* New settings for the send message modal window (plugin settings, Send message modal tab)
 
 = 2.9.92 - 2024-04-26 =
-* (All plans) Fix: search results are no longer limited by the contacts per page setting, when filtering contacts using dropdowns
-* (Free + All plans) Fix: [name_prefix], [middle_name] and [name_suffix] are now correctly replaced in the send message modal, if used for contact card title
-* (Free + All plans) Layout fixes
+* Fix: [name_prefix], [middle_name] and [name_suffix] are now correctly replaced in the send message modal, if used for contact card title
+* Layout fixes
 
 = 2.9.91 - 2024-03-29 =
-* (Free + All plans) Bug fixes
+* Bug fixes
 
 = 2.9.90 - 2024-03-29 =
-* (Free + All plans) Fixed an issue where simple list search results would get duplicated
+* Fixed an issue where simple list search results would get duplicated
 
 = 2.9.89 - 2024-03-16 =
-* (All plans) New feature: send email to multiple recipients from the front end. When a parameter [contact_list_simple send_group_email=1] is used, the email addresses of the contacts in the search results are shown in a comma separated list and also a Send email button is shown, which opens an email client for sending a message to all those emails.
-* (Free + All plans) Fixed an issue where the additional information would be displayed twice in the simple list
-* (Free + All plans) Accessibility fix: the send message modal is now accessible with keyboard
-* (Free + All plans) New feature: the list of contacts at WP admin / Contact List can now be filtered by group
+* Fixed an issue where the additional information would be displayed twice in the simple list
+* Accessibility fix: the send message modal is now accessible with keyboard
+* New feature: the list of contacts at WP admin / Contact List can now be filtered by group
 
 = 2.9.88 - 2024-03-07 =
-* (Free + All plans) Bug fixes
+* Bug fixes
 
 = 2.9.87 - 2024-02-18 =
-* (All plans) New feature (beta): When a parameter ajax is used in the simple list shortcode, the input field search is done using an ajax query (can make the page load faster if the number of contacts is large), [contact_list ajax=1]
-* (Free + All plans) Bug fixes
+* Bug fixes
 
 = 2.9.86 - 2024-02-04 =
-* (Free + All plans) Contact cards are now automatically expanded if content is longer than the set card height. Minimum card height can be set in the settings (Layout tab).
-* (Free + All plans) Layout fixes
+* Contact cards are now automatically expanded if content is longer than the set card height. Minimum card height can be set in the settings (Layout tab).
+* Layout fixes
 
 = 2.9.85 - 2024-02-04 =
-* (Lite) Fix: Custom URLs show up now properly on simple list
-* (Pro) New setting / column for contact cards: Contact card contents, bottom column (100% width)
 
 = 2.9.84 - 2024-02-03 =
-* (All plans) New setting for simple list: Exclude contacts belonging to only subgroups from group listings
-* (All plans) New field for contacts: Google Maps iframe code
-* (All plans) New setting: Map height in pixels (Layout tab)
-* (Free + All plans) New setting: Hide Google Maps iframe code
-* (Free + All plans) New setting for simple list: Preserve table-like layout on mobile devices
-* (Free + All plans) Layout fixes
-* (Free + All plans) Bug fixes
+* New setting: Hide Google Maps iframe code
+* New setting for simple list: Preserve table-like layout on mobile devices
+* Layout fixes
+* Bug fixes
 
 = 2.9.83 - 2024-01-20 =
-* (Pro + Max) Custom fields 7-20 added to import / export
-* (Pro) New settings for simple list: Show custom URL 1 and 2 + Custom URL 1 and 2 link text
-* (Free + All plans) The settings for search results texts are now valid for simple list also (10 contacts found etc.)
-* (Free + All plans) The setting "Back"-link title is now active in everywhere the link exists
+* The settings for search results texts are now valid for simple list also (10 contacts found etc.)
+* The setting "Back"-link title is now active in everywhere the link exists
 
 = 2.9.82 - 2023-11-21 =
-* (Pro + Max) Added permalink edit for single contacts when the setting "Enable single contact page" is active
-* (Pro + Max) Contact names in the simple list can now be linked to the single contact page (see plugin settings, Simple list tab)
-* (Pro + Max) You can now activate any number of custom fields (plugin settings, Custom fields tab)
-* (All plans) Group names in the simple list can now be linked to a list of members from that group (plugin settings, Simple list tab)
-* (Free + All plans) Tweaks and fixes
+* Tweaks and fixes
 
 = 2.9.81 - 2023-10-31 =
-* (All plans) New shortcode to make the search require a button click, for input field search only: [contact_list hide_filters=1 disable_instant_search=1 search_button_text="Search"]
-* (All plans) New shortcode to make the search require a button click, for search filters only: [contact_list hide_search=1 disable_instant_search=1 search_button_text="Search"]
-* (Free + All plans) It is now possible to add different variations of the [contact_list] shortcode to the same page, and the search functions work correctly
+* It is now possible to add different variations of the [contact_list] shortcode to the same page, and the search functions work correctly
 
 = 2.9.80 - 2023-10-06 =
-* (All plans) Fix: Phone numbers and single custom fields are now properly formatted when using single field values in the contact card's left and right column
-* (Free + All plans) Fix: Email address added back to the contact card
+* Fix: Email address added back to the contact card
 
 = 2.9.79 - 2023-10-05 =
-* (All plans) New fields for contacts: Custom URLs. You can now add an icon or any image in the settings and add a link to the contact card (same way the social media urls work). The same icon / image is shown for all contacts and the link is defined when editing the contact. Can be activated from the plugin settings, Custom URLs tab.
-* (All plans) It is now possible to add any single field value to the contact card's left and right column (see plugin settings, Contact card tab)
-* (All plans) Import & export now supports images. The importable file should contain either the image id or filename (from media library, the image should be added to media library before the import).
-* (Free + All plans) Bug fixes
+* Bug fixes
 
 = 2.9.78 - 2023-09-16 =
-* (Free + All plans) More settings to hide fields from the contact edit form, all fields are now covered (plugin settings, Hide / show form elements -tab -> Admin form elements)
-* (Free + All plans) New fields for contacts: Prefix, Middle name and Suffix (must be activated from the settings)
-* (Free + All plans) Twitter renamed to X and icon updated
-* (Free + All plans) Bug fixes
+* More settings to hide fields from the contact edit form, all fields are now covered (plugin settings, Hide / show form elements -tab -> Admin form elements)
+* New fields for contacts: Prefix, Middle name and Suffix (must be activated from the settings)
+* Twitter renamed to X and icon updated
+* Bug fixes
 
 = 2.9.77 - 2023-08-08 =
-* (All plans) Customize the contact card contents: see plugin settings / Contact card tab
-* (All plans) Customize the contact card PHP template: see wp-content/plugins/contact-list-pro/templates/contact-card.php
-* (Free + All plans) New setting for contact card: Left column width (%)
-* (Free + All plans) Bug fixes
+* New setting for contact card: Left column width (%)
+* Bug fixes
 
 = 2.9.76 - 2023-08-06 =
-* (Pro + Max) New feature: Show a button on the contact card that opens a lightbox (can be used to show longer description / additional info)
-* (Pro + Max) New setting: Show a button that opens the contact card lightbox (Contact card tab)
-* (Pro + Max) New setting: Text for the button
-* (Pro + Max) New setting: Hide additional information from default contact card, show only in lightbox
-* (Free + All plans) Fix: no more backslash before an apostrophe in email subject
+* Fix: no more backslash before an apostrophe in email subject
 
 = 2.9.75 - 2023-07-25 =
 * Compatibility for WP 6.3
 
 = 2.9.74 - 2023-07-21 =
-* (Free + All plans) Minor tweaks and fixes
+* Minor tweaks and fixes
 
 = 2.9.73 - 2023-07-11 =
-* (Free + All plans) Bug fixes
+* Bug fixes
 
 = 2.9.72 - 2023-07-05 =
-* (Free + All plans) Various tweaks and fixes
+* Various tweaks and fixes
 
 = 2.9.71 - 2023-06-18 =
-* (All plans) New setting for using reCAPTCHA: Method used for reCAPCHA check in PHP (file_get_contents() or cURL)
-* (All plans) New setting: Subject for messages sent from contact card (see plugin settings, reCAPTCHA and email tab)
+* Tweaks and fixes
 
 = 2.9.70 - 2023-06-11 =
-* (Max) New setting for the daily import: Don't import the first line of the CSV file
-* (All plans) New setting for contact import: Update contacts by email addresses instead of adding new contacts
-* (All plans) New setting for contact import: Don't import the first line of the CSV file
-* (All plans) New setting for contact import: Delete ALL existing contacts before import
-* (Free + All plans) New setting: Contact card title. Add any fields or other content to be the contact card title (see plugin settings, Contact card tab)
+* New setting: Contact card title. Add any fields or other content to be the contact card title (see plugin settings, Contact card tab)
 
 = 2.9.69 - 2023-05-06 =
-* (All plans) New parameter [contact_list hide_contacts_first=1]: Hide contacts first (contacts are shown when searched or any filter is selected)
-* (All plans) New parameter [contact_list hide_contacts_first=1 default_contact_id=12345]: Hide contacts first and show only a single default contact
-* (Free + All plans) Bug fixes
+* Bug fixes
 
 = 2.9.68 - 2023-03-09 =
-* (Free + All plans) Fixed an issue where the phone column was not aligned correctly in simple list
-* (All plans) New parameter for search only shortcode: [contact_list_search group=GROUP_SLUG]
-* (All plans) New parameter to exclude groups from simple list: [contact_list_simple exclude_groups="group-slug-1,group-slug-2,group-slug-3"]
+* Fixed an issue where the phone column was not aligned correctly in simple list
 
 = 2.9.67 - 2023-02-12 =
-* (Pro + Max) Fix: [contact_list group=GROUP_SLUG] now preserves the set group after changing filters
-* (All plans) Fix: [contact_list_simple group=GROUP_SLUG] now preserves the set group after changing filters
-* (Free + All plans) New setting: Show titles above phone numbers on contact card (plugin settings, Layout tab)
-* (Free + All plans) Minor bug fixes
+* New setting: Show titles above phone numbers on contact card (plugin settings, Layout tab)
+* Minor bug fixes
 
 = 2.9.66 - 2023-02-06 =
-* (Max) New feature: set up a scheduled daily contact import (see plugin settings, Import & Export tab)
-
-= 2.9.65 - 2022-12-30 =
-* (All plans) It is now possible to define the required fields for the form generated by shortcode [contact_list_form] (see plugin settings, Hide / show form elements tab)
-* (Free + All plans) New setting for simple list: Show call button in addition to the phone link
-* Some PHP actions added to enable better customization of the plugin. For more information see https://www.contactlistpro.com/docs/php-actions/.
-
-= 2.9.64 - 2022-12-23 =
-* (Pro + Max) You can now define the fields shown in simple list for each shortcode separately like so: [contact_list_simple fields="full_name phone city category"]
-* (All plans) Fixed the issue that appeared after the last update when using custom fields 2-6 in the simple list
-
-= 2.9.63 - 2022-12-21 =
-* (All plans) You can now select any fields in any order to the simple list (see plugin settings, bottom of Simple list tab)
-* (Free + All plans) New setting for simple list: Show call button instead of phone number
-
-= 2.9.62 - 2022-12-18 =
-* Various tweaks and fixes
-
-= 2.9.61 - 2022-11-29 =
-* (Pro + Max) New tab in settings: Custom post type
-* (Pro + Max) Separate pages for single contacts, e.g. /contact/firstname-lastname/
-* (Pro + Max) Show contacts in site search results
-
-= 2.9.60 - 2022-11-15 =
-* Freemius WordPress SDK update (2.5.2)
-
-= 2.9.59 - 2022-11-06 =
-* WordPress 6.1 compatibility update
-
-= 2.9.58 - 2022-10-16 =
-* (All plans) ZIP Code added to simple list (can be activated from the settings)
-* (Free + All plans) Bug fixes
-
-= 2.9.57 - 2022-09-05 =
-* (Free + All plans) Various tweaks and fixes
-
-= 2.9.56 - 2022-05-15 =
-* (All plans) Phone 2 & 3 added to simple list (see plugin settings, Simple list tab)
-* (All plans) New shortcode parameter: Show contacts that belong to any of these groups (comma separated group slugs), [contact_list_groups groups__or="group-slug-1,group-slug-2"]
-* (All plans) Fix: automatically generated custom field search filter titles are now correctly formed based on the actual custom field title
-* (All plans) Fix: The shortcode [contact_list_groups] is now correctly sorted by the setting 'Sort contact list by'
-* (Free + All plans) New setting: Contact image size (see plugin settings, Layout tab)
-
-= 2.9.55 - 2022-05-04 =
-* Fixed an issue where all available states were not shown on the search filter using shortcode [contact_list]
-
-= 2.9.54 - 2022-04-24 =
-* (Free + All plans) Fix: the improved version of the pagination works now correctly
-* (Pro + Max) Frontend contact edit optimized: faster page load time when logged in and using the parameter edit=1
-
-= 2.9.53 - 2022-03-19 =
-* (All plans) New setting: It is now possible to sort the contacts by custom field values
-* (All plans) New parameter hide_group_title: [contact_list_groups group="sample-group" hide_group_title=1]
-* (Free + All plans) Improvement: If the contacts are sorted by other field than last name, the sortable field values can also be empty now
-* (Free + All plans) Fix: the debug info section opens normally now
-
-= 2.9.52 - 2022-03-08 =
-* (Free + All plans) PHP error fix (happened during plugin activation if the plugin Shared Files is also installed)
-
-= 2.9.51 - 2022-03-02 =
-* (All plans) New parameter to hide the breadcrumbs: [contact_list_groups hide_breadcrumbs=1]
-* (All plans) New parameter to exclude groups (from search filter and actual contacts): [contact_list exclude_groups="group-slug-1,group-slug-2,group-slug-3"]
-* (All plans) Extra backslashes removed from subject when sending email using [contact_list_send_email]
-* (All plans) Reset button added to [contact_list_send_email]
-* (Free + All plans) Fixed a small jump of the contact list when changing the search filters for the first time
-* Some corrections to the French translations
-
-= 2.9.50 - 2022-03-01 =
-* Various tweaks and fixes
-
-= 2.9.49 - 2022-01-23 =
-* (Pro + Max) It is now possible to add new contacts from the front end, must be activated first from the plugin settings (Contact edit tab)
-* (All plans) Fields phone 2 and phone 3 added to the import & export tools
-* (All plans) Fix: phone 2 and phone 3 are now saved when editing the contact using the front end editor
-* (All plans) Fix: reply-to address is now correctly set when sending mail using shortcode [contact_list_send_email group=GROUP_SLUG]
-* (Free + All plans) Fix: The strong tag is no more missing from the contact card after searching or filtering contacts
-
-= 2.9.48 - 2022-01-13 =
-* (Free + All plans) Fix: Category dropdown is now normally shown in the search form
-
-= 2.9.47 - 2022-01-02 =
-* (Pro + Max): New setting: Send messages to groups as Bcc (reCAPTCHA and email tab)
-* (Free + All plans) Minor tweaks and fixes
+* Bug fixes
 
 = 2.5.0 - 2019-12-04 =
 * New licensing model (separate free and paid version)

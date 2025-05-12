@@ -1,2 +1,5 @@
 node_modules/
 vendor/
+package.json
+src/
+webpack.config.js
