@@ -10,17 +10,35 @@
  * @subpackage Contact_List/includes
  */
 class ContactListCustomFields {
-    public $prefix = '';
+    /**
+     * Remove the default Custom Fields meta box
+     */
+    function removeDefaultCustomFields( $type, $context, $post ) {
+        foreach ( array('normal', 'advanced', 'side') as $context ) {
+            remove_meta_box( 'postcustom', CONTACT_LIST_CPT, $context );
+        }
+    }
 
-    public $postTypes = [];
+    /**
+     * Create the new Custom Fields meta box
+     */
+    function createCustomFields() {
+        if ( function_exists( 'add_meta_box' ) ) {
+            add_meta_box(
+                'contact-list-custom-fields',
+                sanitize_text_field( __( 'Contact Details', 'contact-list' ) ),
+                array($this, 'displayCustomFields'),
+                CONTACT_LIST_CPT,
+                'normal',
+                'high'
+            );
+        }
+    }
 
-    public $customFields = [];
-
-    function __construct() {
+    function getCustomFields() {
         $s = get_option( 'contact_list_settings' );
-        $this->prefix = '_cl_';
-        $this->postTypes = array('contact');
-        $this->customFields = array(
+        $cf_prefix = '_cl_';
+        $custom_fields = array(
             array(
                 'name'        => 'name_prefix',
                 'title'       => sanitize_text_field( __( 'Prefix', 'contact-list' ) ),
@@ -241,16 +259,18 @@ class ContactListCustomFields {
         );
         $custom_fields_cnt = 6 + 1;
         for ($n = 1; $n < $custom_fields_cnt; $n++) {
-            $this->customFields[] = array(
+            $custom_field_translatable_text = 'Custom field ' . $n;
+            $custom_field_title = sanitize_text_field( __( $custom_field_translatable_text, 'contact-list' ) );
+            $custom_fields[] = array(
                 'name'        => 'custom_field_' . $n,
-                'title'       => sanitize_text_field( __( 'Custom field', 'contact-list' ) . ' ' . $n ),
+                'title'       => $custom_field_title,
                 'description' => '',
                 'type'        => 'text',
                 'scope'       => array('contact'),
                 'capability'  => 'edit_posts',
             );
         }
-        $this->customFields[] = array(
+        $custom_fields[] = array(
             'name'        => 'map_title',
             'title'       => sanitize_text_field( __( 'Google Maps iframe code', 'contact-list' ) ),
             'description' => '',
@@ -258,14 +278,14 @@ class ContactListCustomFields {
             'scope'       => array('contact'),
             'capability'  => 'edit_posts',
         );
-        $this->customFields[] = array(
+        $custom_fields[] = array(
             'name'        => 'map_iframe',
             'description' => '',
             'type'        => 'textarea_iframe',
             'scope'       => array('contact'),
             'capability'  => 'edit_posts',
         );
-        $this->customFields[] = array(
+        $custom_fields[] = array(
             'name'        => 'additional_info',
             'title'       => sanitize_text_field( __( 'Additional information', 'contact-list' ) ),
             'description' => '',
@@ -273,7 +293,7 @@ class ContactListCustomFields {
             'scope'       => array('contact'),
             'capability'  => 'edit_posts',
         );
-        $this->customFields[] = array(
+        $custom_fields[] = array(
             'name'        => 'description',
             'title'       => sanitize_text_field( __( 'Description', 'contact-list' ) ),
             'description' => '',
@@ -281,48 +301,7 @@ class ContactListCustomFields {
             'scope'       => array('contact'),
             'capability'  => 'edit_posts',
         );
-        add_action( 'admin_menu', array($this, 'createCustomFields') );
-        add_action(
-            'save_post',
-            array($this, 'saveCustomFields'),
-            1,
-            2
-        );
-        add_action(
-            'do_meta_boxes',
-            array($this, 'removeDefaultCustomFields'),
-            10,
-            3
-        );
-    }
-
-    /**
-     * Remove the default Custom Fields meta box
-     */
-    function removeDefaultCustomFields( $type, $context, $post ) {
-        foreach ( array('normal', 'advanced', 'side') as $context ) {
-            foreach ( $this->postTypes as $postType ) {
-                remove_meta_box( 'postcustom', $postType, $context );
-            }
-        }
-    }
-
-    /**
-     * Create the new Custom Fields meta box
-     */
-    function createCustomFields() {
-        if ( function_exists( 'add_meta_box' ) ) {
-            foreach ( $this->postTypes as $postType ) {
-                add_meta_box(
-                    'contact-list-custom-fields',
-                    sanitize_text_field( __( 'Contact Details', 'contact-list' ) ),
-                    array($this, 'displayCustomFields'),
-                    $postType,
-                    'normal',
-                    'high'
-                );
-            }
-        }
+        return $custom_fields;
     }
 
     /**
@@ -331,6 +310,8 @@ class ContactListCustomFields {
     function displayCustomFields() {
         global $post;
         $options = get_option( 'contact_list_settings' );
+        $cf_prefix = '_cl_';
+        $custom_fields = $this->getCustomFields();
         ?>
 
         <div class="contact-list-admin-form-wrap">
@@ -342,7 +323,7 @@ class ContactListCustomFields {
             false,
             true
         );
-        foreach ( $this->customFields as $customField ) {
+        foreach ( $custom_fields as $customField ) {
             $is_premium = 0;
             if ( $customField['name'] == 'name_prefix' ) {
                 ?>
@@ -521,9 +502,9 @@ class ContactListCustomFields {
                     switch ( $customField['type'] ) {
                         case "checkbox":
                             // Checkbox
-                            echo '<label for="' . esc_attr( $this->prefix . $customField['name'] ) . '" style="display:inline;"><b>' . esc_html( $customField['title'] ) . '</b></label>';
-                            echo '<input type="checkbox" name="' . esc_attr( $this->prefix . $customField['name'] ) . '" id="' . esc_attr( $this->prefix . $customField['name'] ) . '" value="yes"';
-                            if ( get_post_meta( $post->ID, $this->prefix . $customField['name'], true ) == "yes" ) {
+                            echo '<label for="' . esc_attr( $cf_prefix . $customField['name'] ) . '" style="display:inline;"><b>' . esc_html( $customField['title'] ) . '</b></label>';
+                            echo '<input type="checkbox" name="' . esc_attr( $cf_prefix . $customField['name'] ) . '" id="' . esc_attr( $cf_prefix . $customField['name'] ) . '" value="yes"';
+                            if ( get_post_meta( $post->ID, $cf_prefix . $customField['name'], true ) == "yes" ) {
                                 echo ' checked="checked"';
                             }
                             echo '" style="width: auto;" />';
@@ -533,14 +514,14 @@ class ContactListCustomFields {
                             break;
                         case "wysiwyg_v2":
                             $options_field = $customField['name'] . '_title';
-                            $description = wp_kses_post( get_post_meta( intval( get_the_ID() ), $this->prefix . $customField['name'], true ) );
+                            $description = wp_kses_post( get_post_meta( intval( get_the_ID() ), $cf_prefix . $customField['name'], true ) );
                             $settings = array(
                                 'media_buttons' => false,
                                 'teeny'         => true,
                                 'wpautop'       => false,
                                 'textarea_rows' => 16,
                             );
-                            wp_editor( $description, $this->prefix . $customField['name'], $settings );
+                            wp_editor( $description, $cf_prefix . $customField['name'], $settings );
                             break;
                         case "title":
                             $options_field = $customField['name'] . '_title';
@@ -563,13 +544,13 @@ class ContactListCustomFields {
                             break;
                         case "country":
                             $options_field = $customField['name'] . '_title';
-                            echo '<label for="' . esc_attr( $this->prefix . $customField['name'] ) . '"><b>' . (( isset( $options[$options_field] ) && $options[$options_field] ? esc_html( $options[$options_field] ) : esc_html( $customField['title'] ) )) . '</b></label>';
-                            echo '<input type="text" name="' . esc_attr( $this->prefix . $customField['name'] ) . '" id="' . esc_attr( $this->prefix . $customField['name'] ) . '" value="' . esc_attr( get_post_meta( $post->ID, $this->prefix . $customField['name'], true ) ) . '" />';
+                            echo '<label for="' . esc_attr( $cf_prefix . $customField['name'] ) . '"><b>' . (( isset( $options[$options_field] ) && $options[$options_field] ? esc_html( $options[$options_field] ) : esc_html( $customField['title'] ) )) . '</b></label>';
+                            echo '<input type="text" name="' . esc_attr( $cf_prefix . $customField['name'] ) . '" id="' . esc_attr( $cf_prefix . $customField['name'] ) . '" value="' . esc_attr( get_post_meta( $post->ID, $cf_prefix . $customField['name'], true ) ) . '" />';
                             break;
                         case "state":
                             $options_field = $customField['name'] . '_title';
-                            echo '<label for="' . esc_attr( $this->prefix . $customField['name'] ) . '"><b>' . (( isset( $options[$options_field] ) && $options[$options_field] ? esc_html( $options[$options_field] ) : esc_html( $customField['title'] ) )) . '</b></label>';
-                            echo '<input type="text" name="' . esc_attr( $this->prefix . $customField['name'] ) . '" id="' . esc_attr( $this->prefix . $customField['name'] ) . '" value="' . esc_attr( get_post_meta( $post->ID, $this->prefix . $customField['name'], true ) ) . '" />';
+                            echo '<label for="' . esc_attr( $cf_prefix . $customField['name'] ) . '"><b>' . (( isset( $options[$options_field] ) && $options[$options_field] ? esc_html( $options[$options_field] ) : esc_html( $customField['title'] ) )) . '</b></label>';
+                            echo '<input type="text" name="' . esc_attr( $cf_prefix . $customField['name'] ) . '" id="' . esc_attr( $cf_prefix . $customField['name'] ) . '" value="' . esc_attr( get_post_meta( $post->ID, $cf_prefix . $customField['name'], true ) ) . '" />';
                             break;
                         default:
                             // Plain text field
@@ -617,11 +598,11 @@ class ContactListCustomFields {
                                 } elseif ( $customField['name'] == 'custom_field_20' ) {
                                     $custom_field_title = sanitize_text_field( __( 'Custom field 20', 'contact-list' ) );
                                 }
-                                echo '<label for="' . esc_attr( $this->prefix . $customField['name'] ) . '"><b>' . esc_html( $custom_field_title ) . '</b></label>';
+                                echo '<label for="' . esc_attr( $cf_prefix . $customField['name'] ) . '"><b>' . esc_html( $custom_field_title ) . '</b></label>';
                             } else {
-                                echo '<label for="' . esc_attr( $this->prefix . $customField['name'] ) . '"><b>' . (( isset( $options[$options_field] ) && $options[$options_field] ? esc_html( $options[$options_field] ) : esc_html( $customField['title'] ) )) . '</b></label>';
+                                echo '<label for="' . esc_attr( $cf_prefix . $customField['name'] ) . '"><b>' . (( isset( $options[$options_field] ) && $options[$options_field] ? esc_html( $options[$options_field] ) : esc_html( $customField['title'] ) )) . '</b></label>';
                             }
-                            echo '<input type="text" name="' . esc_attr( $this->prefix . $customField['name'] ) . '" id="' . esc_attr( $this->prefix . $customField['name'] ) . '" value="' . esc_attr( get_post_meta( $post->ID, $this->prefix . $customField['name'], true ) ) . '" />';
+                            echo '<input type="text" name="' . esc_attr( $cf_prefix . $customField['name'] ) . '" id="' . esc_attr( $cf_prefix . $customField['name'] ) . '" value="' . esc_attr( get_post_meta( $post->ID, $cf_prefix . $customField['name'], true ) ) . '" />';
                             if ( isset( $customField['descr'] ) ) {
                                 echo '<div style="background: rgb(251, 251, 251); border: 1px solid #eee; padding: 5px 7px; margin-top: 8px; width: 90%; font-size: 11px;">' . esc_html( $customField['descr'] ) . '</div>';
                             }
@@ -668,6 +649,8 @@ class ContactListCustomFields {
      */
     function saveCustomFields( $post_id, $post ) {
         $s = get_option( 'contact_list_settings' );
+        $cf_prefix = '_cl_';
+        $custom_fields = $this->getCustomFields();
         $post_id = intval( $post_id );
         $wpnonce = '';
         if ( isset( $_POST['contact-list-custom-fields_wpnonce'] ) ) {
@@ -682,12 +665,12 @@ class ContactListCustomFields {
         if ( !current_user_can( 'edit_post', $post_id ) ) {
             return;
         }
-        if ( !in_array( $post->post_type, $this->postTypes ) ) {
+        if ( !in_array( $post->post_type, [CONTACT_LIST_CPT] ) ) {
             return;
         }
-        foreach ( $this->customFields as $customField ) {
+        foreach ( $custom_fields as $customField ) {
             if ( current_user_can( $customField['capability'], $post_id ) ) {
-                $custom_field_name = sanitize_title( $this->prefix . $customField['name'] );
+                $custom_field_name = sanitize_title( $cf_prefix . $customField['name'] );
                 if ( isset( $_POST[$custom_field_name] ) && trim( $_POST[$custom_field_name] ) ) {
                     $value = $_POST[$custom_field_name];
                     // Auto-paragraphs for any wysiwyg field

@@ -29,9 +29,6 @@ class ContactListPublicHelpersSimple {
         }
         $html .= '</div>';
         $html .= '</div><hr class="clear" />';
-        $html .= '<div class="contact-list-simple-nothing-found">';
-        $html .= ContactListHelpers::getText( 'text_sr_no_contacts_found', __( 'No contacts found.', 'contact-list' ) );
-        $html .= '</div>';
         $html .= '</div>';
         wp_reset_postdata();
         return $html;

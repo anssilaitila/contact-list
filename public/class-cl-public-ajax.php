@@ -204,6 +204,7 @@ class ContactListPublicAjax {
                 'compare' => '=',
             );
         }
+        $search_for = '';
         $atts_group = '';
         if ( isset( $atts['group'] ) && $atts['group'] ) {
             $atts_group = sanitize_title( $atts['group'] );
@@ -260,6 +261,8 @@ class ContactListPublicAjax {
                 'class'           => [],
                 'data-contact-id' => [],
                 'target'          => [],
+                'data-id'         => [],
+                'data-name'       => [],
             ],
             'hr'       => [
                 'class' => [],

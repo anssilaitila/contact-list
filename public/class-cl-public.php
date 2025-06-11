@@ -94,6 +94,10 @@ class Contact_List_Public {
         }
         wp_localize_script( $this->plugin_name, 'contact_list_settings', $settings );
         wp_enqueue_script( $this->plugin_name );
+        wp_localize_script( $this->plugin_name, 'contactListData', array(
+            'root'  => esc_url_raw( rest_url() ),
+            'nonce' => wp_create_nonce( 'wp_rest' ),
+        ) );
     }
 
     public function enqueue_block_assets() {

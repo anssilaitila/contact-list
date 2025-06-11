@@ -132,7 +132,7 @@ class ContactListPublicHelpers {
             }
             $link_country_and_state = 0;
             if ( isset( $countries_for_dd ) && is_array( $countries_for_dd ) ) {
-                sort( $countries_for_dd );
+                sort( $countries_for_dd, SORT_STRING | SORT_FLAG_CASE );
             }
             $html .= '<select name="' . CONTACT_LIST_CAT1 . '" class="' . ContactListHelpers::getSearchDropdownClass() . ' contact-list-cat1-sel" data-link-country-and-state="' . intval( $link_country_and_state ) . '">';
             $html .= '<option value="">' . ContactListHelpers::getText( 'text_select_country', __( 'Select country', 'contact-list' ) ) . '</option>';
@@ -154,7 +154,7 @@ class ContactListPublicHelpers {
                 }
             }
             if ( isset( $states ) && is_array( $states ) ) {
-                sort( $states );
+                sort( $states, SORT_STRING | SORT_FLAG_CASE );
             }
             $html .= '<select name="' . CONTACT_LIST_CAT2 . '" class="' . ContactListHelpers::getSearchDropdownClass() . ' contact-list-cat2-sel" data-select-value="' . ContactListHelpers::getText( 'text_select_state', __( 'Select state', 'contact-list' ) ) . '" data-current-value="' . (( isset( $_GET[CONTACT_LIST_CAT2] ) ? ContactListHelpers::sanitize_attr_value( $_GET[CONTACT_LIST_CAT2] ) : '' )) . '">';
             if ( !isset( $s['link_country_and_state'] ) ) {
@@ -178,7 +178,7 @@ class ContactListPublicHelpers {
                 }
             }
             if ( isset( $cities ) && is_array( $cities ) ) {
-                sort( $cities );
+                sort( $cities, SORT_STRING | SORT_FLAG_CASE );
             }
             $html .= '<select name="' . CONTACT_LIST_CAT3 . '" class="' . ContactListHelpers::getSearchDropdownClass() . ' contact-list-cat3-sel" data-select-value="' . ContactListHelpers::getText( 'text_select_city', __( 'Select city', 'contact-list' ) ) . '" data-current-value="' . (( isset( $_GET[CONTACT_LIST_CAT3] ) ? ContactListHelpers::sanitize_attr_value( $_GET[CONTACT_LIST_CAT3] ) : '' )) . '">';
             if ( !isset( $s['link_country_and_state'] ) ) {

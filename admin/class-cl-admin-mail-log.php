@@ -126,6 +126,10 @@ class ContactListAdminMailLog {
               <td><?php echo esc_html__('Message count', 'contact-list') ?></td>
               <td><?php echo esc_html( $row->mail_cnt ) ?></td>
             </tr>
+            <tr>
+              <td><?php echo esc_html__('Message type', 'contact-list') ?></td>
+              <td><?php echo esc_html( $row->msg_type ) ?></td>
+            </tr>
             </table>
 
             <h3><?php echo esc_html__('Mail report:', 'contact-list') ?></h3>
@@ -182,6 +186,7 @@ class ContactListAdminMailLog {
             <th><?php echo esc_html__('Reply-to', 'contact-list') ?></th>
             <th><?php echo esc_html__('Subject', 'contact-list') ?></th>
             <th><?php echo esc_html__('Recipients', 'contact-list') ?></th>
+            <th><?php echo esc_html__('Message type', 'contact-list') ?></th>
           </tr>
 
           <?php if (sizeof($results) > 0): ?>
@@ -218,6 +223,11 @@ class ContactListAdminMailLog {
 
                     <?php echo esc_html( $row->mail_cnt ) ?>
 
+                  <?php endif; ?>
+                </td>
+                <td>
+                  <?php if (isset($row->msg_type)): ?>
+                    <?php echo esc_html( $row->msg_type ) ?>
                   <?php endif; ?>
                 </td>
               </tr>

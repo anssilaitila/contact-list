@@ -152,11 +152,15 @@ class ShortcodeContactListSimple {
             'orderby'        => $order_by,
         ));
         $extra_class = '';
-        $html .= '<form method="get" action="./" class="contact-list-ajax-form-simple' . $extra_class . '">';
+        $html .= '<form method="get" action="./" class="contact-list-ajax-form-simple' . $extra_class . '" data-elem-class="' . $elem_class . '">';
         if ( !isset( $atts['hide_search'] ) ) {
             $html .= '<input type="text" class="contact-list-simple-search-contacts' . $extra_class . '" placeholder="' . (( isset( $s['search_contacts'] ) && $s['search_contacts'] ? ContactListHelpers::sanitize_attr_value( $s['search_contacts'] ) : ContactListHelpers::sanitize_attr_value( __( 'Search contacts...', 'contact-list' ) ) )) . '" data-elem-class="' . $elem_class . '">';
         }
         $html .= '<hr class="clear" /></form>';
+        $html .= '<div class="contact-list-simple-contacts-found"></div>';
+        $html .= '<div class="contact-list-simple-nothing-found">';
+        $html .= ContactListHelpers::getText( 'text_sr_no_contacts_found', __( 'No contacts found.', 'contact-list' ) );
+        $html .= '</div>';
         if ( isset( $atts['ajax'] ) ) {
             if ( isset( $atts['send_group_email'] ) ) {
                 $html .= ContactListSendGroupEmail::markup( $wp_query, 0 );
@@ -174,7 +178,6 @@ class ShortcodeContactListSimple {
             ));
             if ( $wp_query_for_filter->have_posts() ) {
                 $html .= '<div class="contact-list-simple-all-contacts-container">';
-                $html .= '<div class="contact-list-simple-contacts-found"></div>';
                 $html .= ContactListPublicHelpersSimple::contactListSimpleMarkup(
                     $wp_query_for_filter,
                     0,

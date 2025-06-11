@@ -247,4 +247,66 @@ class ContactListAdminSendEmail {
     <?php 
     }
 
+    public static function send_chunk(
+        $headers,
+        $subject,
+        $body,
+        $sender_name,
+        $sender_email,
+        $reply_to,
+        $recipient_emails_chunk_arr,
+        $msg_type
+    ) {
+        $s = get_option( 'contact_list_settings' );
+        $recipient_emails_chunk_string = implode( ',', $recipient_emails_chunk_arr );
+        if ( isset( $s['send_as_bcc_to_group'] ) && $s['send_as_bcc_to_group'] ) {
+            foreach ( $recipient_emails_chunk_arr as $recipient_email ) {
+                if ( is_email( $recipient_email ) ) {
+                    $headers[] = 'Bcc: ' . sanitize_email( $recipient_email );
+                }
+            }
+            $recipient_emails_for_report = $recipient_emails_chunk_string;
+            $recipient_emails_chunk_string = '';
+            if ( $reply_to ) {
+                $recipient_emails_chunk_string = $reply_to;
+            } elseif ( $sender_email ) {
+                $recipient_emails_chunk_string = $sender_email;
+            }
+            $resp = wp_mail(
+                $recipient_emails_chunk_string,
+                $subject,
+                $body,
+                $headers
+            );
+        } else {
+            $recipient_emails_chunk_string = implode( ',', $recipient_emails_chunk_arr );
+            $resp = wp_mail(
+                $recipient_emails_chunk_string,
+                $subject,
+                $body,
+                $headers
+            );
+            $recipient_emails_for_report = $recipient_emails_chunk_string;
+        }
+        if ( !isset( $s['disable_mail_log'] ) ) {
+            global $wpdb;
+            $mail_cnt = sizeof( $recipient_emails_chunk_arr );
+            $report = '';
+            if ( $resp ) {
+                $report = 'Mail successfully processed using <strong>wp_mail</strong>.<br /><br />' . '<strong>Sent to these recipient(s):</strong><br />' . $recipient_emails_for_report;
+            } else {
+                $report = 'ERROR processing mail using <strong>wp_mail</strong>.<br /><br />' . '<strong>Tried to send to these recipient(s):</strong><br />' . $recipient_emails_for_report;
+            }
+            $wpdb->insert( $wpdb->prefix . 'cl_sent_mail_log', array(
+                'subject'      => $subject,
+                'sender_name'  => $sender_name,
+                'reply_to'     => $reply_to,
+                'report'       => $report,
+                'sender_email' => $sender_email,
+                'mail_cnt'     => $mail_cnt,
+                'msg_type'     => $msg_type,
+            ) );
+        }
+    }
+
 }

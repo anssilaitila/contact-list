@@ -907,6 +907,18 @@ class ContactListSettings {
                     'field_name' => $only_pro . $field_name,
                 )
             );
+            add_settings_field(
+                'contact-list-' . $only_pro . 'simple_list_custom_url_' . $n . '_link_text',
+                sanitize_text_field( __( 'Custom URL', 'contact-list' ) . ' ' . $n . ' ' . __( 'link text (shown instead if image)', 'contact-list' ) ),
+                array($this, 'input_render'),
+                'contact-list',
+                'contact-list_tab_' . $tab,
+                array(
+                    'label_for'   => 'contact-list-' . $only_pro . 'simple_list_custom_url_' . $n . '_link_text',
+                    'field_name'  => $only_pro . 'simple_list_custom_url_' . $n . '_link_text',
+                    'placeholder' => '',
+                )
+            );
         }
         $tab = 5;
         add_settings_section(
@@ -1828,18 +1840,6 @@ class ContactListSettings {
             )
         );
         add_settings_field(
-            'contact-list-' . $only_pro . 'simple_list_custom_url_1_link_text',
-            sanitize_text_field( __( 'Custom URL 1 link text (shown instead if image)', 'contact-list' ) ),
-            array($this, 'input_render'),
-            'contact-list',
-            'contact-list_simple_list',
-            array(
-                'label_for'   => 'contact-list-' . $only_pro . 'simple_list_custom_url_1_link_text',
-                'field_name'  => $only_pro . 'simple_list_custom_url_1_link_text',
-                'placeholder' => '',
-            )
-        );
-        add_settings_field(
             'contact-list-' . $only_pro . 'simple_list_show_custom_url_2',
             sanitize_text_field( __( 'Show custom URL 2', 'contact-list' ) ),
             array($this, 'checkbox_render'),
@@ -1848,18 +1848,6 @@ class ContactListSettings {
             array(
                 'label_for'  => 'contact-list-' . $only_pro . 'simple_list_show_custom_url_2',
                 'field_name' => $only_pro . 'simple_list_show_custom_url_2',
-            )
-        );
-        add_settings_field(
-            'contact-list-' . $only_pro . 'simple_list_custom_url_2_link_text',
-            sanitize_text_field( __( 'Custom URL 2 link text (shown instead if image)', 'contact-list' ) ),
-            array($this, 'input_render'),
-            'contact-list',
-            'contact-list_simple_list',
-            array(
-                'label_for'   => 'contact-list-' . $only_pro . 'simple_list_custom_url_2_link_text',
-                'field_name'  => $only_pro . 'simple_list_custom_url_2_link_text',
-                'placeholder' => '',
             )
         );
         add_settings_field(
@@ -2640,6 +2628,20 @@ class ContactListSettings {
                 'field_name' => $only_pro . 'pf_hide_instagram_url',
             )
         );
+        $custom_urls_cnt = 2;
+        for ($n = 1; $n <= $custom_urls_cnt; $n++) {
+            add_settings_field(
+                'contact-list-' . $only_pro . 'pf_show_custom_url_' . $n,
+                sanitize_text_field( __( 'Show custom URL', 'contact-list' ) . ' ' . $n ),
+                array($this, 'checkbox_render'),
+                'contact-list',
+                'contact-list_tab_' . $tab,
+                array(
+                    'label_for'  => 'contact-list-' . $only_pro . 'pf_show_custom_url_' . $n,
+                    'field_name' => $only_pro . 'pf_show_custom_url_' . $n,
+                )
+            );
+        }
         add_settings_field(
             'contact-list-' . $only_pro . 'pf_hide_photo',
             sanitize_text_field( __( 'Hide photo', 'contact-list' ) ),
@@ -2706,26 +2708,36 @@ class ContactListSettings {
                 'field_name' => $only_pro . 'pf_hide_address_lines',
             )
         );
-        $custom_fields = [
-            1,
-            2,
-            3,
-            4,
-            5,
-            6
-        ];
-        foreach ( $custom_fields as $n ) {
-            add_settings_field(
-                'contact-list-' . $only_pro . 'pf_hide_custom_field_' . $n,
-                sanitize_text_field( __( 'Hide custom field', 'contact-list' ) . ' ' . $n ),
-                array($this, 'checkbox_render'),
-                'contact-list',
-                'contact-list_tab_' . $tab,
-                array(
-                    'label_for'  => 'contact-list-' . $only_pro . 'pf_hide_custom_field_' . $n,
-                    'field_name' => $only_pro . 'pf_hide_custom_field_' . $n,
-                )
-            );
+        $custom_fields_cnt = 6;
+        if ( isset( $s['custom_fields_cnt'] ) && $s['custom_fields_cnt'] ) {
+            $custom_fields_cnt = intval( $s['custom_fields_cnt'] );
+        }
+        for ($n = 1; $n <= $custom_fields_cnt; $n++) {
+            if ( $n <= 6 ) {
+                add_settings_field(
+                    'contact-list-' . $only_pro . 'pf_hide_custom_field_' . $n,
+                    sanitize_text_field( __( 'Hide custom field', 'contact-list' ) . ' ' . $n ),
+                    array($this, 'checkbox_render'),
+                    'contact-list',
+                    'contact-list_tab_' . $tab,
+                    array(
+                        'label_for'  => 'contact-list-' . $only_pro . 'pf_hide_custom_field_' . $n,
+                        'field_name' => $only_pro . 'pf_hide_custom_field_' . $n,
+                    )
+                );
+            } else {
+                add_settings_field(
+                    'contact-list-' . $only_pro . 'pf_show_custom_field_' . $n,
+                    sanitize_text_field( __( 'Show custom field', 'contact-list' ) . ' ' . $n ),
+                    array($this, 'checkbox_render'),
+                    'contact-list',
+                    'contact-list_tab_' . $tab,
+                    array(
+                        'label_for'  => 'contact-list-' . $only_pro . 'pf_show_custom_field_' . $n,
+                        'field_name' => $only_pro . 'pf_show_custom_field_' . $n,
+                    )
+                );
+            }
         }
         add_settings_field(
             'contact-list-' . $only_pro . 'pf_hide_groups',
@@ -2767,6 +2779,8 @@ class ContactListSettings {
             'twitter_url'    => sanitize_text_field( __( 'X URL', 'contact-list' ) ),
             'facebook_url'   => sanitize_text_field( __( 'Facebook URL', 'contact-list' ) ),
             'instagram_url'  => sanitize_text_field( __( 'Instagram URL', 'contact-list' ) ),
+            'custom_url_1'   => sanitize_text_field( __( 'Custom URL 1', 'contact-list' ) ),
+            'custom_url_2'   => sanitize_text_field( __( 'Custom URL 2', 'contact-list' ) ),
             'photo'          => sanitize_text_field( __( 'Photo', 'contact-list' ) ),
             'city'           => sanitize_text_field( __( 'City', 'contact-list' ) ),
             'state'          => sanitize_text_field( __( 'State', 'contact-list' ) ),
@@ -2775,16 +2789,29 @@ class ContactListSettings {
             'address_line_2' => sanitize_text_field( __( 'Address line 2', 'contact-list' ) ),
             'address_line_3' => sanitize_text_field( __( 'Address line 3', 'contact-list' ) ),
             'address_line_4' => sanitize_text_field( __( 'Address line 4', 'contact-list' ) ),
-            'custom_field_1' => sanitize_text_field( __( 'Custom field 1', 'contact-list' ) ),
-            'custom_field_2' => sanitize_text_field( __( 'Custom field 2', 'contact-list' ) ),
-            'custom_field_3' => sanitize_text_field( __( 'Custom field 3', 'contact-list' ) ),
-            'custom_field_4' => sanitize_text_field( __( 'Custom field 4', 'contact-list' ) ),
-            'custom_field_5' => sanitize_text_field( __( 'Custom field 5', 'contact-list' ) ),
-            'custom_field_6' => sanitize_text_field( __( 'Custom field 6', 'contact-list' ) ),
         ];
         foreach ( $pf_required_all_fields as $key => $value ) {
             $pf_required_field_name = $only_pro . 'pf_required_' . $key;
             $pf_required_field_title = $value;
+            add_settings_field(
+                'contact-list-' . $pf_required_field_name,
+                $pf_required_field_title,
+                array($this, 'checkbox_render'),
+                'contact-list',
+                'contact-list_public_form_required',
+                array(
+                    'label_for'  => 'contact-list-' . $pf_required_field_name,
+                    'field_name' => $pf_required_field_name,
+                )
+            );
+        }
+        $custom_fields_cnt = 6;
+        if ( isset( $s['custom_fields_cnt'] ) && $s['custom_fields_cnt'] ) {
+            $custom_fields_cnt = intval( $s['custom_fields_cnt'] );
+        }
+        for ($n = 1; $n <= $custom_fields_cnt; $n++) {
+            $pf_required_field_name = $only_pro . 'pf_required_' . 'custom_field_' . $n;
+            $pf_required_field_title = sanitize_text_field( __( 'Custom field', 'contact-list' ) . ' ' . $n );
             add_settings_field(
                 'contact-list-' . $pf_required_field_name,
                 $pf_required_field_title,
@@ -2970,6 +2997,18 @@ class ContactListSettings {
                 'label_for'   => 'contact-list-' . $only_pro . 'wp_admin_email_message',
                 'field_name'  => '' . $only_pro . 'wp_admin_email_message',
                 'placeholder' => '',
+            )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'wp_admin_email_chunk_size',
+            sanitize_text_field( __( 'Send a message to this amount of recipients at once (chunk size)', 'contact-list' ) ),
+            array($this, 'input_render'),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+                'label_for'   => 'contact-list-' . $only_pro . 'wp_admin_email_chunk_size',
+                'field_name'  => $only_pro . 'wp_admin_email_chunk_size',
+                'placeholder' => '1000000',
             )
         );
     }
@@ -3810,6 +3849,25 @@ class ContactListSettings {
                 ?></p>
           <p><?php 
                 echo esc_html__( 'This feature is currently available for the manual import only, at WP admin / Contact List / Import contacts.', 'contact-list' );
+                ?></p>
+        </div>
+
+      <?php 
+            } elseif ( strpos( $field_name, 'wp_admin_email_chunk_size' ) !== false ) {
+                ?>
+
+        <div class="general-info">
+          <p><?php 
+                echo esc_html__( 'If a number is defined here, when you send a message it is sent max. this amount of contacts at once.' );
+                ?></p>
+          <p><?php 
+                echo esc_html__( 'Can be useful, if the number of recipients is large and the server or hosting provider has limitations regarding the maximum number of recipients (email addresses) in one wp_mail() function call.', 'contact-list' );
+                ?></p>
+          <p><?php 
+                echo esc_html__( 'If a number is not defined here, the wp_mail() will be executed only once, including all recipients.', 'contact-list' );
+                ?></p>
+          <p><?php 
+                echo esc_html__( 'This feature is currently available for the send message feature at WP admin / Contact List / Send email.', 'contact-list' );
                 ?></p>
         </div>
 
@@ -4987,6 +5045,33 @@ class ContactListSettings {
             echo esc_html__( 'Improved type must be used, if the shortcode is on the front page or various other types of pages of the site. If you are getting 404 from the page links, use the Improved type.', 'contact-list' );
             ?><br />
       </div>
+
+      <?php 
+        }
+    }
+
+    public function phone_link_format_render( $args ) {
+        if ( $args['field_name'] ) {
+            $options = get_option( 'contact_list_settings' );
+            $val = '';
+            if ( isset( $options[$args['field_name']] ) ) {
+                $val = sanitize_text_field( $options[$args['field_name']] );
+            }
+            ?>
+      <select name="contact_list_settings[<?php 
+            echo esc_attr( $args['field_name'] );
+            ?>]">
+          <option value="" <?php 
+            echo ( $val == '' ? 'only_numbers' : '' );
+            ?>><?php 
+            echo esc_html__( 'Only numbers, other characters automatically removed', 'contact-list' );
+            ?></option>
+          <option value="improved" <?php 
+            echo ( $val == 'plus_and_numbers' ? 'selected' : '' );
+            ?>><?php 
+            echo esc_html__( 'Optional plus sign and numbers', 'contact-list' );
+            ?></option>
+      </select>
 
       <?php 
         }

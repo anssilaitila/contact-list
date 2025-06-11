@@ -199,6 +199,21 @@ class Contact_List {
         $plugin_cpt = new ContactListCPT();
         $plugin_taxonomy = new ContactListTaxonomy();
         $plugin_custom_fields = new ContactListCustomFields();
+        $this->loader->add_action( 'admin_menu', $plugin_custom_fields, 'createCustomFields' );
+        $this->loader->add_action(
+            'save_post',
+            $plugin_custom_fields,
+            'saveCustomFields',
+            1,
+            2
+        );
+        $this->loader->add_action(
+            'do_meta_boxes',
+            $plugin_custom_fields,
+            'removeDefaultCustomFields',
+            10,
+            3
+        );
         $plugin_notifications = new ContactListNotifications();
         $this->loader->add_action( 'plugins_loaded', $plugin_settings, 'update_db_check' );
         $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
