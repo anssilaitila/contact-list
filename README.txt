@@ -1,9 +1,9 @@
-=== Contact List – Online Staff Directory & Address Book  ===
+=== Contact List – Staff Listing & Business Directory Plugin ===
 Contributors: anssilaitila, freemius
-Tags: staff directory, directory, staff, address book, listings
+Tags: business directory, directory plugin, directory, staff directory, staff list
 Requires at least: 6.2
 Tested up to: 6.8
-Stable tag: 3.0.12
+Stable tag: 3.0.13
 Requires PHP: 7.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -12,7 +12,7 @@ Build a custom staff directory, address book or any kind of listing with this ea
 
 == Description ==
 
-== The best staff directory plugin for WordPress ==
+== The best business directory plugin for WordPress ==
 
 Looking for a simple yet comprehensive directory plugin for a WordPress website? If the answer is YES, then you are in the right place!
 
@@ -30,7 +30,7 @@ Contact List is a dedicated directory plugin to manage and create address books,
 
 **7-day free trial available for the Pro version**
 
-== Cases for Contact List Directory Plugin ==
+== Build a staff list or any kind of employee directory ==
 
 Contact List simplifies the process of creating WordPress website directories of any kind. The possibilities of a directory building with Contact List are endless. You can build...
 
@@ -250,6 +250,10 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 6. Contact management
 
 == Changelog ==
+
+= 3.0.13 - 2025-06-18 =
+* (All plans) The required fields set for [contact_list_form] are now required also in the front end contact update form (permanent update URL)
+* (Free + All plans) Layout tweaks
 
 = 3.0.12 - 2025-06-11 =
 * (Free + All plans) The values in the dropdowns in the search forms are now sorted alphabetically, case insensitive
