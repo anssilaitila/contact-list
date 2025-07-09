@@ -3,7 +3,7 @@ Contributors: anssilaitila, freemius
 Tags: business directory, directory plugin, directory, staff directory, staff list
 Requires at least: 6.2
 Tested up to: 6.8
-Stable tag: 3.0.13
+Stable tag: 3.0.14
 Requires PHP: 7.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -250,6 +250,10 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 6. Contact management
 
 == Changelog ==
+
+= 3.0.14 - 2025-07-09 =
+* (All Plans) New setting for import: Run the import immediately, bypassing WP-Cron (available at WP admin / Contact List / Import contacts)
+* (Free + All plans) It is now possible to show custom fields in the admin list at WP admin / Contact List / All contacts (can be activated for each custom field at the plugin settings, Custom fields -tab
 
 = 3.0.13 - 2025-06-18 =
 * (All plans) The required fields set for [contact_list_form] are now required also in the front end contact update form (permanent update URL)

@@ -18,6 +18,13 @@ class ContactListAdminList {
         if ( !isset( $s['af_hide_phone'] ) ) {
             $defaults['phone'] = ( isset( $s['phone_title'] ) && $s['phone_title'] ? sanitize_text_field( $s['phone_title'] ) : sanitize_text_field( __( 'Phone', 'contact-list' ) ) );
         }
+        $custom_fields_cnt = 1 + 1;
+        for ($n = 1; $n < $custom_fields_cnt; $n++) {
+            if ( isset( $s['custom_field_' . $n . '_show_in_admin_list'] ) ) {
+                $custom_field_title = 'Custom field ' . $n;
+                $defaults['custom_field_' . $n] = ( isset( $s['custom_field_' . $n . '_title'] ) && $s['custom_field_' . $n . '_title'] ? sanitize_text_field( $s['custom_field_' . $n . '_title'] ) : sanitize_text_field( __( $custom_field_title, 'contact-list' ) ) );
+            }
+        }
         if ( !isset( $s['af_hide_linkedin_url'] ) ) {
             $defaults['linkedin_url'] = ( isset( $s['linkedin_url_title'] ) && $s['linkedin_url_title'] ? sanitize_text_field( $s['linkedin_url_title'] ) : '<img src="' . esc_url_raw( plugins_url( '../img/linkedin.svg', __FILE__ ) ) . '" width="28" height="28" alt="" />' );
         }
@@ -68,6 +75,13 @@ class ContactListAdminList {
         if ( $column_name == 'phone' ) {
             $phone = sanitize_text_field( get_post_meta( $post_ID, '_cl_phone', true ) );
             echo esc_html( $phone );
+        }
+        $custom_fields_cnt = 1 + 1;
+        for ($n = 1; $n < $custom_fields_cnt; $n++) {
+            if ( $column_name == 'custom_field_' . $n ) {
+                $val = sanitize_text_field( get_post_meta( $post_ID, '_cl_custom_field_' . $n, true ) );
+                echo esc_html( $val );
+            }
         }
         if ( $column_name == 'linkedin_url' ) {
             if ( get_post_meta( $post_ID, '_cl_linkedin_url', true ) ) {

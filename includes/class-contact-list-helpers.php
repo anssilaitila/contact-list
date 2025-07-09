@@ -53,7 +53,7 @@ class ContactListHelpers {
 
     public static function getRandomFilename( $type ) {
         $rand = md5( rand() );
-        $filename = 'contacts_' . $type . '_' . date( 'Y-m-d' ) . '_' . substr( $rand, 0, 6 ) . '.csv';
+        $filename = 'contacts_' . $type . '_' . wp_date( 'Y-m-d' ) . '_' . substr( $rand, 0, 6 ) . '.csv';
         return $filename;
     }
 

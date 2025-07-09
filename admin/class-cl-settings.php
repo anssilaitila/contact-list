@@ -992,6 +992,17 @@ class ContactListSettings {
                 );
             }
             add_settings_field(
+                'contact-list-custom_field_' . $n . '_show_in_admin_list',
+                sanitize_text_field( __( 'Show in admin list (at WP admin / Contact List / All contacts)', 'contact-list' ) ),
+                array($this, 'checkbox_render'),
+                'contact-list',
+                'contact-list_tab_' . $tab,
+                array(
+                    'label_for'  => 'contact-list-custom_field_' . $n . '_show_in_admin_list',
+                    'field_name' => 'custom_field_' . $n . '_show_in_admin_list',
+                )
+            );
+            add_settings_field(
                 'contact-list-' . $only_pro . 'custom_field_' . $n . '_allow_unfiltered_content',
                 sanitize_text_field( __( 'Allow unfiltered content', 'contact-list' ) ),
                 array($this, 'checkbox_render'),
