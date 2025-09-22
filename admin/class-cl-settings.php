@@ -72,6 +72,17 @@ class ContactListSettings {
             )
         );
         add_settings_field(
+            'contact-list-' . $only_pro . 'comma_after_last_name',
+            sanitize_text_field( __( '...and comma after last name (before first name)', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_section_general',
+            array(
+                'label_for'  => 'contact-list-' . $only_pro . 'comma_after_last_name',
+                'field_name' => $only_pro . 'comma_after_last_name',
+            )
+        );
+        add_settings_field(
             'contact-list-' . $only_pro . 'contacts_per_page',
             sanitize_text_field( __( 'Contacts per page (activates pagination)', 'contact-list' ) ),
             array($this, 'input_render'),
@@ -1307,6 +1318,18 @@ class ContactListSettings {
                 'label_for'   => 'contact-list-name_title',
                 'field_name'  => 'name_title',
                 'placeholder' => sanitize_text_field( __( 'Name', 'contact-list' ) ),
+            )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'full_name_title',
+            sanitize_text_field( __( 'Full name (simple list title for the field full_name)', 'contact-list' ) ),
+            array($this, 'input_render'),
+            'contact-list',
+            'contact-list_section',
+            array(
+                'label_for'   => 'contact-list-' . $only_pro . 'full_name_title',
+                'field_name'  => $only_pro . 'full_name_title',
+                'placeholder' => sanitize_text_field( __( 'Full name', 'contact-list' ) ),
             )
         );
         add_settings_field(
