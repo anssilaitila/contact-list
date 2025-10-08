@@ -1,106 +1,201 @@
-=== Meet the Team & Directory Plugin – Contact List ===
+=== Contact List – Online Staff Directory & Address Book  ===
 Contributors: anssilaitila, freemius
-Tags: directory plugin, staff directory, directory, meet the team, business directory
-Requires at least: 6.2
+Tags: staff directory, directory, staff, address book, listings
+Requires at least: 5.9
 Tested up to: 6.8
 Stable tag: 3.0.15
-Requires PHP: 7.4
+Requires PHP: 7.2
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Build a custom meet the team page, business directory, address book, staff listing or any kind of directory with this easy-to-use plugin.
+Build a custom staff directory, address book or any kind of listing with this easy-to-use plugin.
 
 == Description ==
 
-**Build a staff directory, meet the team page, or contact book quickly — entirely within WordPress.**
+== The best staff directory plugin for WordPress ==
 
-Contact List enables you to create searchable, customizable contact directories (e.g., address books, member lists, meet the team pages, yellow pages) complete with CSV import/export, frontend editing, secure email forms, and flexible layout options.
+Looking for a simple yet comprehensive directory plugin for a WordPress website? If the answer is YES, then you are in the right place!
 
-Whether you're showcasing team members, local businesses, or a professional network, this plugin gives you full control — without needing additional tools.
+Contact List is a dedicated directory plugin to manage and create address books, company/business directories, yellow pages, and numerous other member directories right inside WordPress.
 
----
+* A simple method of listing contacts on a WordPress website
+* Email contacts immediately from the front-end form
+* Contact directories created by importing data from a CSV file or via a publicly accessible form
+* CSV import & export
+* Customize the contact card completely, either via settings or by creating a custom template
 
-### 🚀 Key Benefits
-- **Simple directory setup** using intuitive shortcodes ([contact_list], [contact_list_simple])
-- **Import & export via CSV** to manage large directories efficiently
-- **Front-end contact editor** — let users submit or update contacts without accessing the admin area
-- **Built-in email form** with spam protection (reCAPTCHA), ensuring privacy while allowing direct communication
-- **Advanced contact search & filters** by category, country, city, and custom fields
+* [Contact List Plugin Demos](https://www.contactlistpro.com/contact-list/)
+* [Documentation](https://www.contactlistpro.com/docs/)
+* [Blog](https://www.contactlistpro.com/blog/)
 
----
+**7-day free trial available for the Pro version**
 
-### 🗂  Core Features
-- **Fully customizable contact cards** — include name, photo, job title, social links, address, and more
-- **Multiple directory layouts and views** — choose between full-detail view or compact table format
-- **Categorization & grouping** — organize contacts by department, category, or any grouping
-- **Dynamic filters** — auto-generate dropdowns (e.g. country, state) based on directory data
-- **Email obfuscation** — protect email addresses while keeping contact functionality intact
-- **CSV Import & Export** — batch-manage your contacts easily
+== Cases for Contact List Directory Plugin ==
 
----
+Contact List simplifies the process of creating WordPress website directories of any kind. The possibilities of a directory building with Contact List are endless. You can build...
 
-### 🎯 Ideal Use Cases
-- Companies showcasing **team or staff directories**
-- Organizations building **member or faculty listings**
-- Associations listing **local businesses or professionals**
-- Churches, hospitals, schools needing **directory-style listing**
-- Anyone wanting a **flexible contact directory** without heavy setup
+* Address book
+* Business directory
+* Online directory
+* Member directory
+* Contact directory
+* Business listing
+* Yellow pages directory
+* List of any kind of contacts like companies or offices
+* Phone book
+* Faculty and Staff Directory
+* Medical Staff Directory
+* Church Directory
+* Directory of Doctors and Medical Staff
+* Employee Directory
+* Medical Personnel Directory
+* Team Members Directory
+* Staff list
+* Chamber of commerce
+* Lawyer directory
+* Hospital & Doctor directory
+* Local Directory
+* Restaurant Directory
+* Service listing
+* Business listing
+* Directory listing
+* Automated staff list
+* Job directory
+* Local business directory
 
----
+... and even if you are not tech-geek, you can still build all of the above-mentioned directories with an ease, thanks to Contact List's simplicity in design and function.
 
-### 👥 Meet the Team Pages Made Easy
-Want to create a **Meet the Team** page in WordPress without coding?
-Contact List makes it effortless to showcase your staff, faculty, or members in a clean, mobile-friendly layout.
+*What are you waiting for? Join the thousands who have already begun their journey and start composing your own business directory! Give it a try and you'll definitely love it.*
 
-With built-in support for **photos, job titles, bios, and social media links**, you can introduce each team member professionally while keeping the page easy to navigate. Add search and filtering so visitors can find the right person instantly.
+== Getting started ==
 
-Perfect for:
-- **About Us** pages that feature team members
-- **Faculty and staff introductions** for schools or universities
-- **Department or project team profiles** in organizations
-- **Board member directories** for nonprofits
+Contact List is a comprehensive directory plugin for building any kinds of directories a on WordPress website. Get the plugin downloaded first. The process is quite simple.
 
----
+**Start** creating your WordPress contact directory page, **with 2 steps**:
 
-### 📥 Getting Started is Easy
-1. Install **Contact List** from the WordPress plugin directory
-2. Add contacts via WP Admin → Contact List → All Contacts
-3. Embed the directory using one of the shortcodes:
-   - `[contact_list]` — standard view
-   - `[contact_list_simple]` — minimalist table view
+1. Add some contacts from WP admin > Contact List > All contacts.
 
----
+2. Insert one of these shortcodes to any page or post on your site.
+    * [contact_list] (default contact list)
+    * [contact_list_simple] (simple contact list)
 
-### 🌟 Upgrade to Pro for More Power
-Unlock premium features including:
-- Advanced filtering options
-- More layout styles and pagination options
-- City and country detector in search log
-- Display contacts in the site search results
-- Front-end role-based editing
-- Advanced template control
-- Allow users / visitors to submit contacts directly from the front end
-- All available fields for contacts, plugin settings and shortcodes
-- Priority support from the original plugin author
+**That's it! You've added contact list to your site! It is super simple, isn't it?**
 
-🚀 [Start a free 7-day PRO Trial »](https://checkout.freemius.com/mode/dialog/plugin/5106/plan/8292/?trial=free&billing_cycle=monthly&coupon=WPORG&cancel_url=https%3A%2F%2Fwordpress.org%2Fplugins%2Fcontact-list%2F)
-🔍 [Learn more about Contact List Pro »](https://www.contactlistpro.com)
+== Contact List plugin features ==
 
----
+= Fields for each contact =
 
-### 📌 Why Choose Contact List?
-Unlike generic directory or listing tools, Contact List is designed **specifically** for managing people and business information within WordPress:
-- **No external dependencies** — keep all data under your control
-- **Optimized for performance** — lightweight code that loads fast, even with large directories
-- **Flexible customization** — adapt layouts and fields to fit your exact use case
-- **Ease of use** — intuitive interface for both admins and front-end contributors
-- **Complete privacy control** — built-in email protection and user role permissions
+Contact List plugin is the best solution to comprise and build a WordPress website directory with ease. The ability to add new fields and remove certain existing ones is quite essential for a business directory plugin, and this is what Contact List offers.
 
----
+If one wants to display information about employees other than the minimal minimum of first name, last name, and email, Contact List offers a lot of freedom. This directory plugin allows the the listing of any contact data including name, job title, contact info, social media links, and so forth. Fields can also come in handy for creating all-in-one address book. This is not all, there are more fields that can be added to the contact directory using the Contact List plugin.
 
-This product includes GeoLite2 data created by MaxMind, available from [maxmind.com](https://www.maxmind.com)
+* First/last name
+* Photo
+* Job title
+* Contact info (e.g. email, phone)
+* Social media links (e.g. LinkedIn, Twitter, Facebook URLs)
+* Address (including country, state, and city in separate fields)
+* Category
+* Multiple custom fields
 
----
+= Front-end Contact Editor =
+
+Give access to certain user roles to submit, manage and edit contacts from the front end. Furthermore, with a single click of button request user roles or enlisted contacts to update their directory info.
+
+= Send emails =
+
+This directory plugin allows sending emails directly to contacts using a built-in form on the front end (featuring reCAPTCHA). This means that users and website visitors can contact enlisted directory members right inside the directory page without additional add-ons and efforts.
+
+Most importantly, the plugin still keeps contact info confidential. The contact's email address can be completely obscured, to prevent email spam, but still, email can be sent to the contact.
+
+Furthermore, Contact List allows sending emails in bulk to all of the contacts or contacts in the specific group simultaneously.
+
+= Categorized contacts =
+
+Contact List supports easy and fast categorization and grouping directory contacts into small or big groups in order to facilitate the search process.
+
+= Contact Filters =
+
+The Contact List plugin allows to set comprehensive filters on the contact directory: such as filtering contacts by country, state, city, and category. Additionally, country and state dropdowns are generated automatically based on the directory contact data.
+
+Alongside this, there can be more filters added to the directory based on the needs and preferences.
+
+= Contact submission forms =
+
+Contact List is a directory plugin that allows to built directory contact submission forms with various fields, insert them on your directory page and further expand your contact list.
+
+= Contact search =
+
+Easy search of contacts thanks to grouped and organized contact directory and numerous contact filters. Furthermore, facilitate contact search showing contacts in site search results, except for the contacts directory page.
+
+= Contact views =
+
+Contact List supports two directory views: a comprehensive list of all contact information and a simpler table view.
+
+= Directory layouts =
+
+Control how the WordPress website directory looks and function with ease. Set the number of users per page, the sorting criteria and order, and numerous other display options. As well as, choose among 4 different contact directory layouts suggested by the Contact List plugin.
+
+= CSV Import & Export =
+
+Get a user-friendly WordPress directory plugin that simplifies the migration process by allowing you import thousands of listings from a CSV file. Plus export the list with a CSV file, and keep it on computer in case of any trouble.
+
+= Demos =
+
+* [Simple List](https://www.contactlistpro.com/contact-list/simple-list/)
+* [3 Columns](https://www.contactlistpro.com/contact-list/3-columns/)
+* [Simple List with Filters](https://www.contactlistpro.com/contact-list/simple-list-with-filters/)
+* [Contacts with Groups](https://www.contactlistpro.com/contact-list/contacts-with-groups/)
+* [Single Contact](https://www.contactlistpro.com/contact-list/single-contact/)
+* [Contacts from specific group](https://www.contactlistpro.com/contact-list/contacts-from-specific-group/)
+* [Submit Contact](https://www.contactlistpro.com/contact-list/submit-contact/)
+* [Search Contacts](https://www.contactlistpro.com/contact-list/search-contacts/)
+
+= Contact List free offerings =
+
+* Direct email to contacts from the front-end form
+* 2 directory views: a complete list of all contact data and a simpler table type view
+* Spam-prevention via obfuscated emails
+* Grouped and categorized contacts
+* Fast search targeting all contacts
+* Contact filters by country, state, city and category
+* Additional filters by simply renaaming default country and state filters
+* Automatic country and state dropdowns are created using contact information
+* 1 custom field
+* 4 ready-made directory layouts
+* Printable contact list
+
+= Contact List paid offerings =
+
+* Allow user roles modify contacts and contact info using the front-end contact editor
+* Request contacts to update their existing contact info simply clicking a button
+* Numerous shortcodes and views for varied usage scenarios ([simple list](https://www.contactlistpro.com/contact-list/simple-list/), [3 columns](https://www.contactlistpro.com/contact-list/3-columns/), etc.)
+* [Single contact pages](https://www.contactlistpro.com/contact-list/single-contact/), such as /contact/firstname-lastname/, for each individual contact
+* Support for pagination
+* Display contact information in a lightbox
+* Include contacts in website search results
+* Show contacts in site search results
+* A contact database created via a publicly accessible [contact submission form](https://www.contactlistpro.com/contact-list/submit-contact/)
+* 6 custom fields and WYSIWYG editor
+* Turn custom fields into filters
+* Bulk emails to all contacts or group of contacts
+* Excel import and export from/to CSV file
+* Change field titles and hide particular fields from the public form or admin area to customize fields in any way you like
+* Create any kind of business directory or address book
+
+**7-day free trial available for the Pro version**
+
+== Additional resources ==
+
+You can check more info about us on our website: [https://www.contactlistpro.com/](https://www.contactlistpro.com/)
+
+For any support queries or feature requests regarding the free version, please contact us at [the support forum](https://wordpress.org/support/plugin/contact-list/).
+
+Follow the [Contact List blog](https://www.contactlistpro.com/blog/) to stay informed about the plugin and its advancements.
+
+Contact List's simplicity in design and function, the vast array of unique features, and versatility are the reasons more and more people are turning to this WordPress directory plugin as a business directory and contact list-building solution. It allows building various directories, including staff directory, employee directory, address book, or phonebook. Something that you will really need for neatly managing your contacts and for staying organized.
+
+What are you waiting for? Hurry up to get the Contact List plugin and get a start building your own WordPress website business directory today!
 
 == How can I report security bugs? ==
 
@@ -116,22 +211,6 @@ Please see the [first FAQ item](#how%20can%20i%20report%20security%20bugs%3F) be
 = How can I report security bugs? =
 
 You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/vdp/contact-list)
-
-= Can I customize which fields appear for each contact? =
-
-Yes — add or remove fields like photo, position, social profiles, categories, and custom entries via settings or a custom template.
-
-= Can users submit or update their info from the front end? =
-
-Yes — front-end editing and submission is supported and can be enabled per user role.
-
-= How does the contact email form work? =
-
-Visitors can email contacts directly using a secure, reCAPTCHA-protected form. Contact emails stay hidden to prevent spam.
-
-= Can I group or filter contacts by location? =
-
-Absolutely. You can categorize contacts and filter by country, state, city, category, or any custom field. Dropdowns are auto-generated for convenience.
 
 = Can I use the plugin for a business directory? =
 
