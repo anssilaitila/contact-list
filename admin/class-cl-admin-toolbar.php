@@ -270,8 +270,8 @@ class ContactListAdminToolbar {
       <?php
       $current_date = wp_date('Y-m-d');
 
-      $start_date = '2025-10-24';
-      $end_date = '2025-10-31';
+      $start_date = '2025-11-12';
+      $end_date = '2025-11-30';
       ?>
 
       <?php if ($current_date >= $start_date && $current_date <= $end_date): ?>
@@ -279,7 +279,7 @@ class ContactListAdminToolbar {
         <div class="contact-list-admin-pro-features-container">
 
           <a href="https://www.contactlistpro.com/pricing/?utm_source=Contact+List+Free&utm_medium=special-offer" target="_blank" class="contact-list-admin-pro-features">
-            <span><?php echo esc_html__('Special offer: All subscriptions -30% for Contact List PRO!', 'contact-list') ?></span>
+            <span><?php echo esc_html__('Black Friday Deal: All licenses -30% for Contact List PRO!', 'contact-list') ?></span>
             <span class="contact-list-admin-pro-features-button"><?php echo esc_html__('Get started', 'contact-list') ?></span>
           </a>
 
