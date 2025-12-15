@@ -1,8 +1,8 @@
 === Contact List – Online Staff Directory & Address Book  ===
 Contributors: anssilaitila, freemius
-Tags: staff directory, directory, staff, address book, listings
+Tags: staff directory, directory, business directory, address book, directory plugin
 Requires at least: 5.9
-Tested up to: 6.8
+Tested up to: 6.9
 Stable tag: 3.0.17
 Requires PHP: 7.2
 License: GPLv2
