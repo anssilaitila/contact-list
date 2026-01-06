@@ -44,31 +44,35 @@ class ContactListHelpSupport {
             <p>
             <?php 
             $url = 'https://wordpress.org/support/plugin/contact-list/';
-            echo sprintf( wp_kses( 
+            echo wp_kses( sprintf(
                 /* translators: %s: link to the support forum */
                 __( 'Any kind of feedback is welcome. You may contact the author at <a href="%s" target="_blank">the support forum</a>.', 'contact-list' ),
+                esc_url( $url )
+                ),
                 array(
                     'a' => array(
                         'href'   => array(),
                         'target' => array(),
                     ),
                 )
-             ), esc_url( $url ) );
+             );
             ?>
             </p>
             <p>
             <?php 
             $url = 'https://www.contactlistpro.com/pricing/?utm_source=plugin-free-support';
-            echo sprintf( wp_kses( 
+            echo wp_kses( sprintf(
                 /* translators: %s: link to the pricing page of the paid version of the plugin */
                 __( 'The forum is actively monitored by the author, but for more personal support by email, please consider one of the <a href="%s" target="_blank">paid plans</a>.', 'contact-list' ),
+                esc_url( $url )
+                ),
                 array(
                     'a' => array(
                         'href'   => array(),
                         'target' => array(),
                     ),
                 )
-             ), esc_url( $url ) );
+             );
             ?>
             </p>
 
@@ -86,16 +90,18 @@ class ContactListHelpSupport {
             <li>
               <?php 
         $url = esc_url_raw( get_admin_url() . 'edit.php?post_type=contact' );
-        echo sprintf( wp_kses( 
+        echo wp_kses( printf(
             /* translators: %s: link to file management */
             __( 'Add the contacts from the <a href="%s" target="_blank">contact management</a>. You can add categories, country, state and city directly to the contact.', 'contact-list' ),
+            esc_url( $url )
+            ),
             array(
                 'a' => array(
                     'href'   => array(),
                     'target' => array(),
                 ),
             )
-         ), esc_url( $url ) );
+         );
         ?>
             </li>
             <li>
@@ -135,16 +141,18 @@ class ContactListHelpSupport {
               <strong>
               <?php 
         $url = esc_url_raw( get_admin_url() . 'edit.php?post_type=contact&page=contact-list-shortcodes' );
-        echo sprintf( wp_kses( 
+        echo wp_kses( sprintf(
             /* translators: %s: link to the list of available shortcodes */
             __( 'A complete list of available shortcodes can be found <a href="%s">here</a>.', 'contact-list' ),
+            esc_url( $url )
+            ),
             array(
                 'a' => array(
                     'href'   => array(),
                     'target' => array(),
                 ),
             )
-         ), esc_url( $url ) );
+         );
         ?>
               </strong>
 
@@ -160,9 +168,9 @@ class ContactListHelpSupport {
 
           <p>
             <?php 
-        echo sprintf( wp_kses( __( 'If you like <strong>Contact List</strong> please consider leaving a ★★★★★ rating. It helps the plugin in getting more audience.', 'contact-list' ), array(
+        echo wp_kses( sprintf( __( 'If you like <strong>Contact List</strong> please consider leaving a ★★★★★ rating. It helps the plugin in getting more audience.', 'contact-list' ) ), array(
             'strong' => array(),
-        ) ) );
+        ) );
         ?>
 
           </p>
