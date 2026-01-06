@@ -168,7 +168,7 @@ class ContactListHelpSupport {
 
           <p>
             <?php 
-        echo wp_kses( sprintf( __( 'If you like <strong>Contact List</strong> please consider leaving a ★★★★★ rating. It helps the plugin in getting more audience.', 'contact-list' ) ), array(
+        echo wp_kses( __( 'If you like <strong>Contact List</strong> please consider leaving a ★★★★★ rating. It helps the plugin in getting more audience.', 'contact-list' ), array(
             'strong' => array(),
         ) );
         ?>
