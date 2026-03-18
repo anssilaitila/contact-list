@@ -1,9 +1,9 @@
 === Contact List – Online Staff Directory & Address Book  ===
 Contributors: anssilaitila, freemius
 Tags: staff directory, directory, business directory, address book, directory plugin
-Requires at least: 5.9
-Tested up to: 6.9
-Stable tag: 3.0.17
+Requires at least: 6.0
+Tested up to: 7.0
+Stable tag: 3.0.18
 Requires PHP: 7.2
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -250,6 +250,9 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 6. Contact management
 
 == Changelog ==
+
+= 3.0.18 - 2026-03-10 =
+* (Free + All plans) Tweaks and fixes
 
 = 3.0.17 - 2025-11-12 =
 * (Free + All plans) Layout tweaks

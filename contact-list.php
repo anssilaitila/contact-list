@@ -15,7 +15,7 @@
  * @wordpress-plugin
  * Plugin Name:       Contact List
  * Description:       Easily display contact information on your site with this simple plugin.
- * Version:           3.0.17
+ * Version:           3.0.18
  * Author:            Contact List – Staff Directory
  * Author URI:        https://www.contactlistpro.com
  * License:           GPL-2.0+
@@ -30,6 +30,7 @@ if ( !defined( 'WPINC' ) ) {
 if ( function_exists( 'contact_list_fs' ) ) {
     contact_list_fs()->set_basename( false, __FILE__ );
 } else {
+    require_once __DIR__ . '/vendor/autoload.php';
     if ( !function_exists( 'contact_list_fs' ) ) {
         // Create a helper function for easy SDK access.
         function contact_list_fs() {
@@ -37,24 +38,25 @@ if ( function_exists( 'contact_list_fs' ) ) {
             $s = get_option( 'contact_list_settings' );
             if ( !isset( $contact_list_fs ) ) {
                 // Include Freemius SDK.
-                require_once dirname( __FILE__ ) . '/freemius/start.php';
+                // SDK is auto-loaded through Composer
                 $settings_contact = false;
                 $settings_support = true;
                 $contact_list_fs = fs_dynamic_init( array(
-                    'id'             => '5106',
-                    'slug'           => 'contact-list',
-                    'premium_slug'   => 'contact-list-pro',
-                    'type'           => 'plugin',
-                    'public_key'     => 'pk_9808753bcf234f1feef91bd833ab6',
-                    'is_premium'     => false,
-                    'premium_suffix' => 'Pro',
-                    'has_addons'     => false,
-                    'has_paid_plans' => true,
-                    'trial'          => array(
+                    'id'               => '5106',
+                    'slug'             => 'contact-list',
+                    'premium_slug'     => 'contact-list-pro',
+                    'type'             => 'plugin',
+                    'public_key'       => 'pk_9808753bcf234f1feef91bd833ab6',
+                    'is_premium'       => false,
+                    'premium_suffix'   => 'Pro',
+                    'has_addons'       => false,
+                    'has_paid_plans'   => true,
+                    'is_org_compliant' => true,
+                    'trial'            => array(
                         'days'               => 7,
                         'is_require_payment' => true,
                     ),
-                    'menu'           => array(
+                    'menu'             => array(
                         'slug'    => 'contact-list',
                         'contact' => $settings_contact,
                         'support' => $settings_support,
@@ -62,7 +64,7 @@ if ( function_exists( 'contact_list_fs' ) ) {
                             'slug' => 'options-general.php',
                         ),
                     ),
-                    'is_live'        => true,
+                    'is_live'          => true,
                 ) );
             }
             return $contact_list_fs;
@@ -135,7 +137,7 @@ if ( function_exists( 'contact_list_fs' ) ) {
     }
     //  define('CONTACT_LIST_PLUGIN_NAME', 'contact-list');
     define( 'CONTACT_LIST_ORDER_BY', $order_by );
-    define( 'CONTACT_LIST_VERSION', '3.0.17' );
+    define( 'CONTACT_LIST_VERSION', '3.0.18' );
     define( 'CONTACT_LIST_URI', plugin_dir_url( __FILE__ ) );
     define( 'CONTACT_LIST_PATH', plugin_dir_path( __FILE__ ) );
     define( 'CONTACT_LIST_CPT', 'contact' );
