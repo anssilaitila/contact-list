@@ -272,7 +272,7 @@ class ContactListCustomFields {
         }
         $custom_fields[] = array(
             'name'        => 'map_title',
-            'title'       => sanitize_text_field( __( 'Google Maps iframe code', 'contact-list' ) ),
+            'title'       => sanitize_text_field( __( 'Google Maps or OpenStreetMap iframe code', 'contact-list' ) ),
             'description' => '',
             'type'        => 'title',
             'scope'       => array('contact'),
@@ -677,17 +677,7 @@ class ContactListCustomFields {
                     if ( $customField['type'] == 'wysiwyg_v2' ) {
                         $value = balanceTags( wp_kses_post( $value ), 1 );
                     } elseif ( $customField['type'] == 'textarea_iframe' ) {
-                        $iframe_code = $value;
-                        $iframeRegex = '/<iframe[^>]*>(.*?)<\\/iframe>/si';
-                        $strippedHtml = '';
-                        if ( preg_match( $iframeRegex, $iframe_code, $matches ) ) {
-                            $strippedHtml = $matches[0];
-                        }
-                        if ( $strippedHtml ) {
-                            $value = $strippedHtml;
-                        } else {
-                            $value = '';
-                        }
+                        $value = '';
                     } else {
                         $bypass_sanitation = 0;
                         if ( !$bypass_sanitation ) {

@@ -454,19 +454,6 @@ class ContactListCard {
                 }
                 break;
             case 'map':
-                if ( isset( $c['_cl_map_iframe'][0] ) && $c['_cl_map_iframe'][0] ) {
-                    $iframe_code = $c['_cl_map_iframe'][0];
-                    $iframeRegex = '/<iframe[^>]*>(.*?)<\\/iframe>/si';
-                    $strippedHtml = '';
-                    if ( preg_match( $iframeRegex, $iframe_code, $matches ) ) {
-                        $strippedHtml = $matches[0];
-                    }
-                    if ( $strippedHtml ) {
-                        $html .= '<div class="contact-list-map-container">';
-                        $html .= $strippedHtml;
-                        $html .= '</div>';
-                    }
-                }
                 break;
             default:
                 $field = sanitize_title( $field );
