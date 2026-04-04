@@ -15,7 +15,7 @@
  * @wordpress-plugin
  * Plugin Name:       Contact List
  * Description:       Easily display contact information on your site with this simple plugin.
- * Version:           3.0.19
+ * Version:           3.0.20
  * Author:            Contact List – Staff Directory
  * Author URI:        https://www.contactlistpro.com
  * License:           GPL-2.0+
@@ -137,7 +137,7 @@ if ( function_exists( 'contact_list_fs' ) ) {
     }
     //  define('CONTACT_LIST_PLUGIN_NAME', 'contact-list');
     define( 'CONTACT_LIST_ORDER_BY', $order_by );
-    define( 'CONTACT_LIST_VERSION', '3.0.19' );
+    define( 'CONTACT_LIST_VERSION', '3.0.20' );
     define( 'CONTACT_LIST_URI', plugin_dir_url( __FILE__ ) );
     define( 'CONTACT_LIST_PATH', plugin_dir_path( __FILE__ ) );
     define( 'CONTACT_LIST_CPT', 'contact' );
