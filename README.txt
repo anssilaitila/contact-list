@@ -3,7 +3,7 @@ Contributors: anssilaitila, freemius
 Tags: staff directory, directory, business directory, address book, directory plugin
 Requires at least: 6.0
 Tested up to: 7.0
-Stable tag: 3.0.20
+Stable tag: 3.0.21
 Requires PHP: 7.2
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -251,7 +251,13 @@ You can use the Contact List plugin for any purpose that suits your needs. That 
 
 == Changelog ==
 
-= 3.0.20 - 2026-04-03 =
+= 3.0.21 - 2026-04-19 =
+* (All plans) Fixed default titles for Custom URLs on [contact_list_form]
+* (All plans) New settings to hide individual address lines from [contact_list_form] (see plugin settings, [contact_list_form] -tab)
+* (All plans) There can now be more than 6 custom field filters in search (can be activated from plugin settings, Search form -tab)
+* (Free + All plans) Layout tweaks
+
+= 3.0.20 - 2026-04-04 =
 * (Free + All plans) Tweaks and fixes
 
 = 3.0.19 - 2026-03-19 =

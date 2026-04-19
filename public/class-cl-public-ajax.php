@@ -149,7 +149,14 @@ class ContactListPublicAjax {
         if ( $wp_query->found_posts == 0 ) {
             $html .= '<p>' . ContactListHelpers::getText( 'text_sr_no_contacts_found', __( 'No contacts found.', 'contact-list' ) ) . '</p>';
         }
-        echo wp_kses_post( $html );
+        $html_allowed_tags = wp_kses_allowed_html( 'post' );
+        $html_allowed_tags['iframe'] = [
+            'width'  => [],
+            'height' => [],
+            'src'    => [],
+            'style'  => [],
+        ];
+        echo wp_kses( $html, $html_allowed_tags );
     }
 
     public function cl_get_contacts_simple() {

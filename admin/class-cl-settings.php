@@ -796,72 +796,23 @@ class ContactListSettings {
                 'field_name' => $only_pro . 'simpler_category_dropdown',
             )
         );
-        add_settings_field(
-            'contact-list-' . $only_pro . 'show_cf_1_select_in_search',
-            sanitize_text_field( __( 'Show custom field 1 select', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_tab_' . $tab,
-            array(
-                'label_for'  => 'contact-list-' . $only_pro . 'show_cf_1_select_in_search',
-                'field_name' => $only_pro . 'show_cf_1_select_in_search',
-            )
-        );
-        add_settings_field(
-            'contact-list-' . $only_pro . 'show_cf_2_select_in_search',
-            sanitize_text_field( __( 'Show custom field 2 select', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_tab_' . $tab,
-            array(
-                'label_for'  => 'contact-list-' . $only_pro . 'show_cf_2_select_in_search',
-                'field_name' => $only_pro . 'show_cf_2_select_in_search',
-            )
-        );
-        add_settings_field(
-            'contact-list-' . $only_pro . 'show_cf_3_select_in_search',
-            sanitize_text_field( __( 'Show custom field 3 select', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_tab_' . $tab,
-            array(
-                'label_for'  => 'contact-list-' . $only_pro . 'show_cf_3_select_in_search',
-                'field_name' => $only_pro . 'show_cf_3_select_in_search',
-            )
-        );
-        add_settings_field(
-            'contact-list-' . $only_pro . 'show_cf_4_select_in_search',
-            sanitize_text_field( __( 'Show custom field 4 select', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_tab_' . $tab,
-            array(
-                'label_for'  => 'contact-list-' . $only_pro . 'show_cf_4_select_in_search',
-                'field_name' => $only_pro . 'show_cf_4_select_in_search',
-            )
-        );
-        add_settings_field(
-            'contact-list-' . $only_pro . 'show_cf_5_select_in_search',
-            sanitize_text_field( __( 'Show custom field 5 select', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_tab_' . $tab,
-            array(
-                'label_for'  => 'contact-list-' . $only_pro . 'show_cf_5_select_in_search',
-                'field_name' => $only_pro . 'show_cf_5_select_in_search',
-            )
-        );
-        add_settings_field(
-            'contact-list-' . $only_pro . 'show_cf_6_select_in_search',
-            sanitize_text_field( __( 'Show custom field 6 select', 'contact-list' ) ),
-            array($this, 'checkbox_render'),
-            'contact-list',
-            'contact-list_tab_' . $tab,
-            array(
-                'label_for'  => 'contact-list-' . $only_pro . 'show_cf_6_select_in_search',
-                'field_name' => $only_pro . 'show_cf_6_select_in_search',
-            )
-        );
+        $custom_fields_cnt = 6 + 1;
+        if ( isset( $s['custom_fields_cnt'] ) && $s['custom_fields_cnt'] ) {
+            $custom_fields_cnt = intval( $s['custom_fields_cnt'] ) + 1;
+        }
+        for ($n = 1; $n < $custom_fields_cnt; $n++) {
+            add_settings_field(
+                'contact-list-' . $only_pro . 'show_cf_' . $n . '_select_in_search',
+                sanitize_text_field( __( 'Show filter for custom field', 'contact-list' ) . ' ' . $n ),
+                array($this, 'checkbox_render'),
+                'contact-list',
+                'contact-list_tab_' . $tab,
+                array(
+                    'label_for'  => 'contact-list-' . $only_pro . 'show_cf_' . $n . '_select_in_search',
+                    'field_name' => $only_pro . 'show_cf_' . $n . '_select_in_search',
+                )
+            );
+        }
         add_settings_field(
             'contact-list-' . $only_pro . 'search_dropdown_width_auto',
             sanitize_text_field( __( 'Search dropdown width defined based on contents (instead of fixed width)', 'contact-list' ) ),
@@ -2689,7 +2640,7 @@ class ContactListSettings {
         );
         add_settings_field(
             'contact-list-' . $only_pro . 'pf_hide_address',
-            sanitize_text_field( __( 'Hide address', 'contact-list' ) ),
+            sanitize_text_field( __( 'Hide address (including title and all fields)', 'contact-list' ) ),
             array($this, 'checkbox_render'),
             'contact-list',
             'contact-list_tab_' . $tab,
@@ -2729,6 +2680,50 @@ class ContactListSettings {
             array(
                 'label_for'  => 'contact-list-' . $only_pro . 'pf_hide_city',
                 'field_name' => $only_pro . 'pf_hide_city',
+            )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'pf_hide_address_line_1',
+            sanitize_text_field( __( 'Hide address line 1', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+                'label_for'  => 'contact-list-' . $only_pro . 'pf_hide_address_line_1',
+                'field_name' => $only_pro . 'pf_hide_address_line_1',
+            )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'pf_hide_address_line_2',
+            sanitize_text_field( __( 'Hide address line 2', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+                'label_for'  => 'contact-list-' . $only_pro . 'pf_hide_address_line_2',
+                'field_name' => $only_pro . 'pf_hide_address_line_2',
+            )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'pf_hide_address_line_3',
+            sanitize_text_field( __( 'Hide address line 3', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+                'label_for'  => 'contact-list-' . $only_pro . 'pf_hide_address_line_3',
+                'field_name' => $only_pro . 'pf_hide_address_line_3',
+            )
+        );
+        add_settings_field(
+            'contact-list-' . $only_pro . 'pf_hide_address_line_4',
+            sanitize_text_field( __( 'Hide address line 4', 'contact-list' ) ),
+            array($this, 'checkbox_render'),
+            'contact-list',
+            'contact-list_tab_' . $tab,
+            array(
+                'label_for'  => 'contact-list-' . $only_pro . 'pf_hide_address_line_4',
+                'field_name' => $only_pro . 'pf_hide_address_line_4',
             )
         );
         add_settings_field(
