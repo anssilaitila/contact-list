@@ -270,8 +270,8 @@ class ContactListAdminToolbar {
       <?php
       $current_date = wp_date('Y-m-d');
 
-      $start_date = '2026-03-10';
-      $end_date = '2026-03-31';
+      $start_date = '2026-08-09';
+      $end_date = '2026-08-31';
       ?>
 
       <?php if ($current_date >= $start_date && $current_date <= $end_date): ?>

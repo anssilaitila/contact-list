@@ -400,7 +400,7 @@ class ContactListPublicHelpersSimple {
                         if ( $override || $show_data ) {
                             $html .= '<div class="contact-list-simple-list-col cl-align-right contact-list-simple-list-col-' . $field_name . '"><span>';
                             if ( isset( $c['_cl_email'][0] ) && is_email( $c['_cl_email'][0] ) || isset( $c['_cl_notify_emails'] ) && $c['_cl_notify_emails'] ) {
-                                $html .= '<span class="contact-list-send-email contact-list-simple-send-email cl-dont-print"><a href="" data-id="' . ContactListHelpers::sanitize_attr_value( $id ) . '" data-name="' . ContactListHelpers::sanitize_attr_value( $contact_fullname ) . '">' . ContactListHelpers::getTextV2( 'text_send_message', 'Send message' ) . ' &raquo;</a></span>';
+                                $html .= '<span class="contact-list-send-email contact-list-simple-send-email cl-dont-print"><a href="" role="button" data-id="' . ContactListHelpers::sanitize_attr_value( $id ) . '" data-name="' . ContactListHelpers::sanitize_attr_value( $contact_fullname ) . '">' . ContactListHelpers::getTextV2( 'text_send_message', 'Send message' ) . ' &raquo;</a></span>';
                             }
                             $html .= '</span></div>';
                         }

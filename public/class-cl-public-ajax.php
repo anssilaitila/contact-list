@@ -270,6 +270,7 @@ class ContactListPublicAjax {
                 'target'          => [],
                 'data-id'         => [],
                 'data-name'       => [],
+                'role'            => [],
             ],
             'hr'       => [
                 'class' => [],
